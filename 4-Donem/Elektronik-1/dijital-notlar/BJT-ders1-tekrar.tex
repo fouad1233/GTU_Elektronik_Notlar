@@ -1,0 +1,147 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik I}{BJT -- 1. ders tekrarı}{BJT-ders1-tekrar.pdf}
+
+\section{npn Junction}
+\noindent\sayfa{1}%
+\begin{minipage}[c]{0.55\linewidth}
+\[
+  i_C=\underset{\substack{\downarrow\\ \text{saturation}\\ \text{current}}}{I_S}\,e^{V_{BE}/V_T}
+\]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\centering
+\fbox{$\displaystyle I_S=\frac{A_E\,q\,D_n\,n_{p0}}{W}$}
+
+\medskip
+\begin{circuitikz}[line width=0.6pt]
+  \draw[color=turuncukalem] (0,0) node[npn](Q){};
+  \draw[color=turuncukalem] (Q.B) node[left]{$B$};
+  \draw[color=turuncukalem] (Q.C) node[right]{$C$};
+  \draw[color=turuncukalem] (Q.E) node[left]{$E$} node[right]{$n$};
+  \node[text=turuncukalem] at (0,-1.3) {npn};
+\end{circuitikz}
+\end{minipage}
+
+\[
+  i_B=\frac{i_C}{\beta} \qquad \beta \rightarrow \left(\text{influenced by width, and doping}\right)
+\]
+\[
+  i_E=\frac{\beta+1}{\beta}\,i_C=\frac{1}{\alpha}\,i_C=(\beta+1)\,i_B
+\]
+\[
+  i_C=\alpha\,i_E
+\]
+
+\sayfa{2}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,4.6) node[ocirc]{} node[right]{$C$} to[short, i=$i_C$] (0,4) to[cI, l={$I_S\,e^{V_{BE}/V_T}$}] (0,2.4) to[D, l={$D_E\ (I_{SE}=I_S/\alpha)$}] (0,0.6) to[short, i=$i_E$] (0,0) node[ocirc]{};
+  \draw (-2.2,2.4) node[ocirc]{} node[left]{$B$} to[short, i=$i_B$] (0,2.4);
+  \node at (-0.5,2.0) {$+$}; \node at (-0.75,1.5) {$V_{BE}$}; \node at (-0.5,0.9) {$-$};
+\end{circuitikz}
+\end{center}
+
+\noindent In npn
+\sekilnotu[2]{npn transistör sembolü ($B$, $C$, $E$; emetör tarafında $n$); yanına baz--kollektör ve baz--emetör eklemleri birer diyot olarak çizilmiş, diyotların üzerinde çarpı işaretleri var.}
+\begin{align*}
+  &\text{Active:} && V_{BE}\geq 0{,}7, && V_{BC}\leq 0{,}4\ \text{V} \\
+  &\text{Cut off:} && V_{BE}<0{,}7, && V_{BC}\leq 0{,}4\ \text{V} \\
+  &\text{Saturation:} && V_{BE}\geq 0{,}7, && V_{BC}>0{,}4
+\end{align*}
+
+\noindent for pnp
+\sekilnotu[2]{pnp transistör sembolü: $E$ ($p$) üstte, $B$ ($n$) solda, $C$ ($p$) altta; $I_E$ akım oku; renkli kalemle emetör--baz ve kollektör--baz eklemleri diyot olarak çizilmiş ve işaretlenmiş.}
+\begin{align*}
+  &\text{Active:} && V_{EB}\geq 0{,}7\ \text{V}, && V_{CB}\leq 0{,}4\ \text{V} \\
+  &\text{Cut off:} && V_{EB}<0{,}7\ \text{V}, && V_{CB}\leq 0{,}4\ \text{V} \\
+  &\text{Saturation:} && V_{EB}<0{,}7\ \text{V}\ \text{\footnotemark}, && V_{CB}>0{,}4\ \text{V} \quad /\!/
+\end{align*}
+\footnotetext{Claude notu: muhtemelen doyumda da $V_{EB}\geq 0{,}7$ V olmalı (npn'deki $V_{BE}\geq 0{,}7$ ile tutarlı).}
+
+\sayfa{3}
+\noindent
+\begin{minipage}[c]{0.3\linewidth}
+$2<4$\\
+$-2>-4$
+\end{minipage}
+\begin{minipage}[c]{0.6\linewidth}
+$V_C-V_B\leq 0{,}4$ V\\
+$V_B-V_C\geq -0{,}4$
+\end{minipage}
+
+\section{Operation in Saturation Mode}
+\[
+  i_C=I_S\,e^{V_{BE}/V_T}-\underbrace{I_{SC}\,e^{V_{BC}/V_T}}_{\substack{V_{BC}>0{,}4\\ \text{için önem taşır}}}
+\]
+base current in sat region:
+\[
+  i_B=\frac{I_S}{\beta}\,e^{V_{BE}/V_T}+I_{SC}\,e^{V_{BC}/V_T}
+\]
+\[
+  \text{forced }\beta=\left.\frac{i_C}{i_B}\right|_{sat}\leq\beta
+\]
+\hrule
+\medskip
+\noindent $V_{CB}<0{,}4$ olmalı
+
+\begin{ornek}
+\textcolor{turuncukalem}{Determine the value of $R_1$ such that $Q_1$ operate in active mode}
+
+\noindent
+\begin{minipage}[c]{0.45\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw[color=kirmizikalem] (0,0) node[pnp](Q){};
+  \draw[color=kirmizikalem] (Q.E) -- ++(0,0.2) coordinate(EE) to[R, l_=$R_1$] ++(0,1.8) node[above]{$5$ V};
+  \draw[color=kirmizikalem] (EE) -- ++(0.9,0) node[circ]{} node[right]{$E$\ \ $0{,}7$ V};
+  \draw[color=kirmizikalem] (Q.B) -- ++(-0.6,0) node[ground]{};
+  \path (Q.B) ++(-0.6,-0.75) node[text=kirmizikalem]{$B$};
+  \draw[color=kirmizikalem] (Q.C) -- ++(0,-0.2) coordinate(CC) to[R, l=$3\,\text{k}\Omega$] ++(0,-1.8) node[below]{$-5$ V};
+  \draw[color=kirmizikalem] (CC) -- ++(0.9,0) node[circ]{} node[right]{$C$};
+  \node[text=kirmizikalem] at (-1.8,0.3) {$\beta=\infty$};
+  \node[text=kirmizikalem] at (-0.8,1) {$0{,}7$ V $+$};
+  \node at (1.3,-0.3) {$+0{,}4$};
+  \node at (1.4,1.4) {$\downarrow 1{,}8$ mA};
+  \node at (1.4,-1.4) {$\downarrow 1{,}8$ mA};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+\[
+  i_E=\frac{5-0{,}7}{R_1}=\frac{4{,}7}{R_1}\ \text{\stepcounter{footnote}\textsuperscript{\thefootnote}}
+\]
+\[
+  i_E=\frac{\beta}{\beta+1}\,i_C=i_C \quad (\beta=\infty)
+\]
+\[
+  V_{CB}=0{,}4\ \text{V}
+\]
+\[
+  i_C=\frac{+0{,}4+5}{3\text{k}}=\frac{5{,}4}{3\text{k}}=1{,}8\ \text{mA}
+\]
+\end{minipage}
+\end{ornek}
+\footnotetext[\value{footnote}]{Claude notu: muhtemelen $5-0{,}7=4{,}3$ olmalı, yani $i_E=4{,}3/R_1$.}
+\sekilnotu[3]{Altta ``pnp'' yazısı ve yanında küçük bir diyot çizimi.}
+
+\sayfa{4}
+\[
+  R_1\geq\frac{4{,}7}{1{,}8\ \text{mA}}\geq 2{,}3\ \text{k}\Omega\ \text{\footnotemark}
+\]
+\footnotetext{Claude notu: $4{,}7/1{,}8\approx 2{,}6$; $2{,}3$--$2{,}4$ k$\Omega$ sonucu $4{,}3/1{,}8$ ile tutarlı (bkz. önceki sayfadaki not).}
+\noindent
+\begin{minipage}[t]{0.3\linewidth}
+çünkü
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+$V_{CB}<0{,}4$\\
+eğer akım artarsa\\
+$V_{CB}$ artar\\
+yani direnç azalırsa
+\end{minipage}
+
+\medskip
+\noindent Yani direnç artarsa akım de azalır ve öylece çözmüş oluruz. /\!/
+
+\end{document}

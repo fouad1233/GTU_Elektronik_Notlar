@@ -1,0 +1,408 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Nümerik Analiz}{2. Ders -- Tek değişkenli fonksiyonlar ve kök bulma yöntemleri}{numerik-2.ders.pdf}
+
+\sayfa{1}
+\noindent\textit{2. ders}
+
+\section{Tek değişkenli fonksiyonlar ve kök bulma yöntemleri}
+\[ f:[a,b]\to\mathbb{R}\ ; \qquad f(x)=0 \]
+
+\subsection{1) İkiye bölme}
+``Ara değer Teo.''
+
+$f\in C[a,b]$ \qquad $f(a)\cdot f(b)<0$
+
+en az bir sıfır $\rightarrow$ $f(p)=0$ \qquad $p\in(a,b)$
+
+\hspace*{5cm}$x=p$ kök
+
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=1cm,murekkep,line width=0.7pt]
+  \draw[->] (0,0) -- (4.5,0);
+  \draw[->] (1.6,-1.5) -- (1.6,1.6) node[left] {$f(x)$};
+  \draw[domain=0.3:4.05,samples=80,smooth] plot (\x,{0.45*(\x-1)*(\x-2.4)*(\x-3.2)});
+  \draw (0.3,0) -- (0.3,{0.45*(0.3-1)*(0.3-2.4)*(0.3-3.2)});
+  \node[above left] at (0.3,0) {$a$};
+  \node[below] at (0.3,-1.95) {$f(a)$};
+  \fill (3.9,0) circle (1.2pt) node[below] {$b$};
+\end{tikzpicture}
+\end{center}
+
+\[
+  a_1=a \qquad b_1=b \qquad p_1=a_1+\frac{b_1-a_1}{2}=\frac{a_1+b_1}{2} \qquad f(p_1)=0 \Rightarrow p=p_1
+\]
+\hfill $f(p_1)\neq 0$ \quad $f(p_1)$, $f(a)$, $f(b)$ işaret karşılaştır
+
+\[
+  \underbrace{f(p_1)\cdot f(a)}_{\text{işaretler aynı}}>0 \ \Rightarrow\ p\in(p_1,b_1)
+\]
+ya da
+\[
+  f(p_1)\,f(b)>0 \ \Rightarrow\ p\in(a_1,p_1)
+\]
+\[
+  \hookrightarrow\ a_2=a_1,\quad b_2=p_1\ ; \qquad p_2=\frac{a_2+b_2}{2}
+\]
+
+$n$. adım $\rightarrow$ $[a_n,b_n]$ \ $\rightarrow$ \ $f(a_n)\cdot f(b_n)<0$ \quad $p\in[a_n,b_n]$
+
+\noindent\begin{minipage}[c]{0.45\linewidth}
+\[ p_n=\frac{a_n+b_n}{2} \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\begin{tikzpicture}[murekkep,line width=0.7pt]
+  \draw (0,0) -- (3.6,0);
+  \foreach \x/\l in {0/a_n,1.6/p_n,2.3/,3.6/b_n} {\draw (\x,-0.12) -- (\x,0.12); \node[below] at (\x,-0.1) {$\l$};}
+  \node[above] at (2.3,0.1) {$p$};
+\end{tikzpicture}
+\end{minipage}
+
+\sayfa{2}
+\begin{ornek}[1]
+$[1,2]$ \qquad $f(x)=x^3-x-1$ verilmiş olsun
+\begin{enumerate}[label=\alph*)]
+  \item $f(x)=0$ denkleminin tek kökünün mevcut olduğunu gösteriniz
+  \item İkiye bölme yöntemiyle 3 iterasyon ilerletiniz
+\end{enumerate}
+\end{ornek}
+
+a) $f(1)=-1<0$ ; \ $f(2)=5>0$ : \ $f(1)\,f(2)<0$
+\[
+  f'(x)=3x^2-1 \ \rightarrow\ f'(x)=0 \ \rightarrow\ 3x^2-1=0
+\]
+\[
+  \Rightarrow\ x_1=-\frac{1}{\sqrt3}\ ;\quad x_2=\frac{1}{\sqrt3}
+\]
+
+\noindent\begin{minipage}[c]{0.55\linewidth}
+\centering
+\begin{tikzpicture}[murekkep,line width=0.7pt,x=1cm,y=1cm]
+  \draw (-2.4,0) -- (2.4,0);
+  \foreach \x/\l in {-1.4/-\frac{1}{\sqrt3},0/0,1.4/\frac{1}{\sqrt3}} {\fill (\x,0) circle (1.2pt); \node[below] at (\x,-0.05) {$\l$};}
+  \draw (-2.3,0.45) to[out=-30,in=110] (-1.4,0);
+  \draw (-1.4,0) to[out=60,in=180] (0,0.6) to[out=0,in=120] (1.4,0);
+  \draw (1.4,0) to[out=70,in=180] (2.3,0.45);
+  \node at (-2.1,0.15) {$+$}; \node at (0,0.25) {$-$}; \node at (2.1,0.15) {$+$};
+\end{tikzpicture}
+
+$f'(-1)>0$ \qquad $f'(0)=-1$ \qquad $f'(1)>0$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.42\linewidth}
+$f(x)$ monoton $\rightarrow$ 1 kökü var
+\end{minipage}
+
+\medskip
+b)\quad $a_1=1$ \qquad $b_1=2$ \qquad $p_1=\dfrac32$ \qquad
+$\underbrace{f(p_1)}_{0,875}\neq 0$ \qquad
+$\underset{\textstyle 0{,}875>0}{f(p_1),f(a),f(b)}$
+\[
+  a_2=a_1=1,\quad b_2=p_1=\frac32\ ;\quad p_2=\frac{a_2+b_2}{2}=\frac54
+\]
+\[
+  f(p_2)=-0{,}2969<0
+\]
+\[
+  \downarrow
+\]
+\[
+  f(p_2)\,f(b_1)<0
+\]
+\[
+  a_3=p_2=\frac54\ ;\quad b_3=b_2=\frac32,\quad p_3=\frac{a_3+b_3}{2}=\frac{11}{8}
+\]
+\begin{center}
+\begin{tabular}{ccccc}
+  \toprule
+  $n$ & $a_n$ & $b_n$ & $p_n$ & $f(p_n)$\\ \midrule
+  1 & 1 & 2 & 3/2 & 0,875\\
+  2 & 1 & 3/2 & 5/4 & $-0{,}2969$\\
+  3 & 5/4 & 3/2 & 11/8 & \\ \bottomrule
+\end{tabular}
+\end{center}
+
+\sayfa{3}
+\begin{teorem}[1]
+$f\in C[a,b]$ ve $f(a)\cdot f(b)<0$ olsun. Bu durumda İBY ile elde edilen $p_n$, $n=1,2,\dots$
+iterasyonları, $f(x)=0$ denkleminin köküne yaklaşır ve bu yaklaşımın mutlak hatası
+\[ |p_n-p|\le\frac{b-a}{2^n} \qquad n\ge 1 \]
+\end{teorem}
+
+\textbf{İspat}
+\[
+  n\ge1 \text{ için } b_n-a_n=\frac{b-a}{2^{n-1}} \quad\text{ve } p_n\in(a_n,b_n)
+\]
+\[ p_n=\frac{a_n+b_n}{2} \]
+\[ |p_n-p|\le\frac{b_n-a_n}{2} \]
+\[ p_n\to p \qquad n\to\infty \]
+
+\begin{ornek}[2]
+$10^{-3}$ düzeyde doğrulukla kökü kaç iterasyonda bulunur
+\end{ornek}
+\begin{align*}
+  |p_n-p|&\le\frac{b-a}{2^n}<10^{-3}\\
+  \frac{1}{2^n}&<10^{-3}\\
+  \log\frac{1}{2^n}&<\log10^{-3}\\
+  -n\log2&<-3\\
+  n&>\frac{3}{\log2}\cong 9{,}9658 \qquad n=10
+\end{align*}
+
+\sayfa{4}
+\subsection{Sabit nokta (fixed point iteration)}
+\[ f(x)=g(x)-x=0 \quad\text{olsun} \]
+\[ g(x)=x \]
+
+\begin{tanim}
+$g:[a,b]\to\mathbb{R}$ fonksiyonu için
+\[ g(p)=p \]
+olacak biçimde bir $p\in[a,b]$ sayısı bulunuyorsa $p$'ye $g(x)$ fonksiyonun sabit noktası denir.
+\end{tanim}
+
+Bir $p_0\in[a,b]$ sayısı alalım başlangıç iterasyonu olarak
+\[ p_n=g(p_{n-1}) \qquad n=1,2,\dots \]
+Böyle bir $p_n$ dizisine sabit nokta iterasyonu denir.
+
+\begin{ornek}[3]
+$g(x)=\dfrac{x}{2}-\dfrac{1}{4x}+1$ \quad $p_0=1$ olmak üzere sabit nokta iterasyon ile $p_2$'yi bulunuz.
+\end{ornek}
+\begin{align*}
+  p_n&=g(p_{n-1}) \qquad n=1,2\\
+  p_n&=\frac{p_{n-1}}{2}-\frac{1}{4p_{n-1}}+1\\
+  p_1&=\frac{p_0}{2}-\frac{1}{4p_0}+1=\frac12-\frac14\\
+  p_2&=\frac{p_1}{2}-\frac{1}{4p_1}+1=\frac58-\frac15+1=\frac{57}{40}
+\end{align*}
+
+\begin{teorem}[2 -- Sabit nokta teoremi]
+$g\in C[a,b]$ verilmiş olsun
+\begin{enumerate}[label=\arabic*)]
+  \item Eğer her $x\in[a,b]$ için $g(x)\in[a,b]$ oluyorsa $g$ fonksiyonun $[a,b]$'de en az bir adet
+        sabit noktası vardır
+\end{enumerate}
+1) ve 2) Eğer $g$ fonksiyonun $(a,b)$ aralığında türevi varsa ve her $x\in(a,b)$ için
+$|g'(x)|\le k$ olacak şekilde bir $0<k<1$ bir $k$ bulunabiliyorsa o halde, $g$ fonksiyonun $[a,b]$
+aralığında sabit noktası tektir.
+\end{teorem}
+
+\sayfa{5}
+1), 2) ve 3) Her $p_0\in[a,b]$ başlangıç iterasyonu için $p_n=g(p_{n-1})$, \ $n=1,2,\dots$ \
+SNİ $g$ fonksiyonunun $p\in[a,b]$ sabit noktasına yakınsak olur.
+
+\textbf{İspat}\quad $g(x)\in C[a,b]$ \qquad 1 ve 2 sağlanmak üzere \ $g(p)=p$
+
+$p_n=g(p_{n-1})$ SNİ için ortalama değer teoremi uygulanırsa
+\[ f(b)-f(a)=f'(c)\,(b-a) \]
+\begin{align*}
+  p_n-p&=g(p_{n-1})-g(p)=g'(\xi_n)\,(p_{n-1}-p) \qquad \xi_n\in(a,b)\\
+  |p_n-p|&=|g'(\xi_n)|\,|p_{n-1}-p|\le k\,|p_{n-1}-p|\\
+  &\le k\,k\,|p_{n-2}-p|\le k^3\,|p_{n-3}-p|\le\dots\\
+  &\le k^n\,|p_0-p|
+\end{align*}
+\[ \lim_{n\to\infty}k^n\to 0 \]
+\[ \lim_{n\to\infty}|p_n-p|=0 \qquad p_n\to p \]
+
+\begin{ornek}[4]
+$[1,2]$'de verilmiş $g(x)=\dfrac{x}{2}-\dfrac{1}{4x}+1$ fonksiyonun sabit noktasının tek olduğunu
+gösteriniz.
+\end{ornek}
+\noindent\begin{minipage}[c]{0.4\linewidth}
+\[
+  \begin{aligned}
+    g(1)&=\tfrac54>1\\
+    g(2)&=\tfrac{15}{8}<2
+  \end{aligned}
+\]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.58\linewidth}
+$+\ g'(x)=\dfrac12+\dfrac{1}{4x^2}\neq 0$
+
+kritik (ekstremum) nokta yok
+\end{minipage}
+
+\medskip
+$\forall x\in[1,2]$ için $g(x)\in[1,2]$ \hfill 1) $\checkmark$ \ en az 1 sabit nokta
+
+\medskip
+2)\ $g'(x)=\dfrac12+\dfrac{1}{4x^2}$ ; \ $x\in[1,2]$ \hfill $\checkmark$ \ tek sabit nokta
+\[ |g'(x)|\le\frac12+\frac14=\frac34<1 \]
+
+\sayfa{6}
+\begin{ozet}[Sonuç!]
+Teorem 2'nin koşulları sağlandığında $p_n$ SNİ'nin $p$ sabit noktasına yaklaşımındaki hata
+\[ |p_n-p|\le k^n\cdot\max\{p_0-a,\ b-p_0\} \]
+\end{ozet}
+
+\textbf{Soru}\quad $|p_n-p|\le10^{-4}$ olması için ne gerekiyor?
+\[
+  |p_n-p|\le k^n\max\{\underbrace{p_0-a}_{0},\ \underbrace{b-p_0}_{1}\}=k^n<10^{-4}
+\]
+\[ \left(\frac34\right)^n<10^{-4} \]
+\[ n>\frac{4}{\log4-\log3}\cong 32{,}0157 \]
+yani sağlayan $n=33$'tür
+
+\sayfa{7}
+\section{Uygulama 2}
+\begin{ornek}[1]
+$[0,1]$ aralığında $f(x)=\sqrt{x}-\cos(\pi x)$ fonksiyonu verilsin
+\begin{enumerate}[label=\alph*)]
+  \item ikiye bölme yöntemi (bisection) uygulayarak $p_3$ iterasyonunu hesaplayınız
+  \item yaklaşık çözümün doğruluğunu $10^{-2}$ olacak şekilde, iterasyon sayısını belirleyiniz
+\end{enumerate}
+\end{ornek}
+
+a)\quad $f(0)=0-\cos(0)=-1<0$ \ $\checkmark$
+
+\hspace*{2.2em}$f(1)=1-\cos(\pi)=1-(-1)=2>0$ \ $\checkmark$
+
+\hspace*{2.2em}$f(0)\cdot f(1)<0$ şartı sağlanıyorsa
+
+I)\quad $a_1=0$ ve $b_1=1$ olsun. Bu durumda
+\[ p_1=\frac{a_1+b_1}{2}=\frac12 \text{ olur} \]
+\begin{center}
+\begin{tikzpicture}[murekkep,line width=0.7pt]
+  \foreach \x/\s/\l in {0/-/a_1,2/+/p_1,3.5/+/b_1} {\draw (\x,0) -- (\x,1); \node[above] at (\x,1) {$\s$}; \node[below] at (\x,0) {$\l$};}
+\end{tikzpicture}
+\end{center}
+\[
+  f(p_1)=f\!\left(\tfrac12\right)=\sqrt{\tfrac12}-\cos\!\left(\tfrac{\pi}{2}\right)=\frac{\sqrt2}{2}-0=\frac{\sqrt2}{2}=0{,}70710678>0
+\]
+
+II)\quad $f(0)\cdot f(p_1)=(-1)\,(0{,}707)<0$
+
+\hspace*{2.2em}$a_2=0$ \quad $b_2=\dfrac12$ olsun. Bu durumda
+\[
+  p_2=\frac{a_2+b_2}{2}=\frac14
+\]
+\[
+  f(p_2)=f\!\left(\tfrac14\right)=\sqrt{\tfrac14}-\cos\!\left(\tfrac{\pi}{4}\right)=\frac12-\frac{\sqrt2}{2}=-0{,}20710678
+\]
+\begin{center}
+\begin{tikzpicture}[murekkep,line width=0.7pt]
+  \foreach \x/\s/\l in {0/-/a_2,2/-/p_2,3.5/+/b_2} {\draw (\x,0) -- (\x,1); \node[above] at (\x,1) {$\s$}; \node[below] at (\x,0) {$\l$};}
+\end{tikzpicture}
+\end{center}
+\[ f(p_2)\cdot f(b_2)<0 \]
+\[
+  a_3=\frac14 \qquad b_3=\frac12
+\]
+\[
+  p_3=\frac{a_3+b_3}{2}=\frac38
+\]
+\[
+  f(p_3)=f\!\left(\tfrac38\right)=\sqrt{\tfrac38}-\cos\!\left(\tfrac{3\pi}{8}\right)
+\]
+
+\sayfa{8}
+\begin{center}
+\small
+\begin{tabular}{|c|c|c|l|}
+  \hline
+  $n$ & $a_n$ & $b_n$ & $f(p_n)$\\ \hline
+  1 & 0 & 1 & $0{,}7071067811$\\ \hline
+  2 & 0 & 1/2 & $-0{,}20710678118$\\ \hline
+  3 & 1/4 & 1/2 & $0{,}22968900333070463$\\ \hline
+  4 & 0,25 & 0,375 & $0{,}0034467613553451626$\\ \hline
+  5 & 0,25 & 0,3125 & $-0{,}104063198273735$\\ \hline
+  6 & 0,281250 & 0,3125 & $-0{,}05083693654984922$\\ \hline
+  7 & 0,2968\okunamadi{75} & 0,3125 & $-0{,}2382313727554966$\footnotemark\\ \hline
+  8 & 0,3046875 & 0,3125 & $-0{,}010219659701388939$\\ \hline
+  9 & 0,308594 & 0,3125 & $-0{,}0033942480683670784$\\ \hline
+  10 & 0,310547 & 0,3125 & $2{,}431563856108987\cdot10^{-5}$\\ \hline
+\end{tabular}
+\end{center}
+\footnotetext{Claude notu: muhtemelen $-0{,}0238231372\ldots$ olmalı (bir sıfır eksik).}
+
+b)\quad $\left.\begin{aligned} f(0)&=-1<0\\ f(1)&=2>0 \end{aligned}\right\}$ olduğuna göre $f(x)=0$
+denkleminin bir $p\in(0,1)$ kökü vardır.
+
+\noindent\begin{minipage}[t]{0.62\linewidth}
+$p_n$, $n=1,2,\dots$ dizisi için
+\[ |p_n-p|\le\frac{b-a}{2^n}<10^{-2} \]
+\[
+  \Rightarrow\ \frac{1}{2^n}<10^{-2} \ \Rightarrow\ \log_{10}\frac{1}{2^n}<\log_{10}10^{-2}
+\]
+\[ \log_{10}2^{-n}<-2 \]
+\[ \Rightarrow\ -n\log_{10}2<-2 \]
+\[ n>\frac{2}{\log2}\approx 6{,}64385\ldots \]
+\[ n=7 \]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.34\linewidth}
+\small
+\[ \frac{b-a}{2^n}=t \]
+\[ \frac{1}{2^n}=\frac{t}{b-a} \]
+\[ -n\log_{10}2=\log_{10}\left(\frac{t}{b-a}\right) \]
+\[ -n=\log\left(\frac{t}{b-a}\div 2\right)\footnotemark \]
+\[ n=-\log\left(\frac{t}{2(b-a)}\right) \]
+\end{minipage}
+\footnotetext{Claude notu: muhtemelen $-n=\log\left(\frac{t}{b-a}\right)\big/\log 2$ olmalı.}
+
+\sayfa{9}
+{\small\textit{``bisection root finder'' \quad root calculator}}
+
+\begin{ornek}[2. soru]
+$[0,2\pi]$ aralığında $g(x)=\pi+\frac12\sin\!\left(\frac{x}{2}\right)$ fonksiyonu veriliyor
+\begin{enumerate}[label=\alph*)]
+  \item $g(x)$'in en az bir sabit noktası olduğunu gösterin
+  \item Bu sabit noktanın tek olduğunu gösterin
+  \item $p_0=\pi$ olarak hatanın $10^{-2}$ olacak şekilde gereken iterasyon sayısını belirleyiniz
+  \item Bu sayıya göre iterasyonu bulun
+\end{enumerate}
+\end{ornek}
+
+a)\quad $g(0)=\pi+\frac12\sin(0)=\pi>0$
+
+\hspace*{2.2em}$g(2\pi)=\pi+\frac12\sin(\pi)=\pi<2\pi$
+
+\hspace*{2.2em}en az bir sabit nokta vardır
+
+\medskip
+b)\quad $g'(x)=\dfrac14\cos\!\left(\dfrac{x}{2}\right)$
+\[ |g'(x)|\le\frac14 \]
+$0<\frac14<1$ aralığında olduğunda bu sabit nokta tektir.
+
+\medskip
+c)\quad $p_0=\pi$
+
+\hspace*{2.2em}$a=0$, \ $b=2\pi$
+\[
+  |p_n-p|\le k^n\,\underbrace{\max\{p_0-a,\ b-p_0\}}_{\pi}\le10^{-2}
+\]
+\[ k=\frac14 \text{ idi (b şıkkında)} \]
+\[
+  \pi\cdot\left(\frac14\right)^n<10^{-2} \ \Rightarrow\ \log_{10}\left[\pi\left(\frac14\right)^n\right]<\log_{10}10^{-2}
+\]
+\[ \log\pi+n\log\frac14=\log\pi-n\log4<-2 \]
+\[ n>\frac{2+\log\pi}{\log4}\approx 4{,}14767 \]
+\[ n=5 \]
+
+\sayfa{10}
+\noindent\textit{ödev}
+
+d)\quad $p_n=g(p_{n-1})$
+\begin{align*}
+  p_1&=g(p_0)=\pi+\tfrac12\sin\!\left(\tfrac{\pi}{2}\right)\\
+     &=3{,}641592\\[2mm]
+  p_2&=g(p_1)=3{,}6260488\\[2mm]
+  p_3&=g(p_2)=3{,}62699562\\
+  p_4&=g(p_3)=3{,}626938
+\end{align*}
+
+\begin{cozum}
+\[
+  p_n=g(p_{n-1}) \qquad p_0=\pi \qquad g(x)=\pi+\frac12\sin\!\left(\frac{x}{2}\right)
+\]
+\begin{align*}
+  p_1&=g(p_0)=\pi+\tfrac12\sin\!\left(\tfrac{\pi}{2}\right)=3{,}641592654\\[2mm]
+  p_2&=g(p_1)=\pi+\tfrac12\sin\!\left(\frac{3{,}641592654}{2}\right)\\
+     &=3{,}626048864\\[2mm]
+  p_3&=g(p_2)=\pi+\tfrac12\sin\bigl(3{,}626048864\bigr)\\
+     &=3{,}626995622\\[2mm]
+  p_4&=g(p_3)=\pi+\tfrac12\sin\bigl(3{,}626995622\bigr)\\
+  p_4&=3{,}626942208\footnotemark
+\end{align*}
+\end{cozum}
+\footnotetext{Claude notu: $p_3$ ve $p_4$ satırlarında $\sin$ içinde $/2$ kastedilmiş; $p_4\approx3{,}626938794$ olmalı
+(yukarıdaki $3{,}626938$ ile uyumlu). $3{,}626942208$ değeri $p_5$'e karşılık geliyor.}
+
+\end{document}

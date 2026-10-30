@@ -1,0 +1,253 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{İşaretler ve Sistemler}{Uygulama -- Kararlılık ve konvolüsyon soruları}{salihahocauyg.pdf}
+% \notbilgi already prints the bilingual "transcribed with Claude, may contain errors" box.
+
+\sayfa{1}
+\begin{ornek}[8)]
+Kararlılık: \ $\displaystyle\int_{-\infty}^{\infty} |h(\tau)|\,d\tau < \infty$
+\end{ornek}
+\[
+h(t) = 3^t u(-t+10) \longrightarrow \int_{-\infty}^{10} 3^t\,dt = \frac{3^t}{\log 3}\Big|_{-\infty}^{10}
+ = \frac{1}{\log 3}\left(3^{10} - 3^{-\infty}\right) = \underset{\text{Kararlı}}{3^{10}/\log 3}
+\]
+\vspace{-2mm}\hfill$\longleftarrow\ \log(x) = \ln(x)$\ \ {\small Natural logarithm}
+
+\[
+h(t) = e^{-(1-2j)t}u(t) \longrightarrow \int_0^{\infty} e^{-(1-2j)t}\,dt = \frac{e^{-(1-2j)t}}{-(1-2j)}\Big|_0^{\infty}
+ = \frac{-1}{1-2j}\left(e^{-\infty} - e^{-0}\right) = \underset{\text{Kararlı}}{\frac{1}{1-2j}}
+\]
+\[
+h(t) = e^{-t}\cos(2t)u(t) \longrightarrow \int_0^{\infty} e^{-t}\cos(2t)\,dt \underset{\text{Kararlı}}{< \infty}
+\]
+\[
+h(t) = t\cos\left(\frac{\pi t}{4}\right)u(t) \longrightarrow \int_0^{\infty} t\cos\left(\frac{\pi t}{4}\right) \longrightarrow \underset{\text{Kararsız}}{\infty}
+\]
+
+\begin{ornek}[9)]
+$x[n] = u[n-3]$ \ ve \ $h[n] = -\delta[n] + \delta[n+2]$ \ ise \ $y[n] = ?$
+\end{ornek}
+\[
+\begin{aligned}
+y[n] = x[n] * h[n] &= u[n-3] * \bigl(-\delta[n] + \delta[n+2]\bigr) = -\delta[n] * u[n-3] + \delta[n+2] * u[n-3]\\
+&= -u[n-3] + u[n-1] = \delta[n-1] + \delta[n-2]
+\end{aligned}
+\]
+
+\sayfa{2}
+2) \vurgu[pembe]{Herhangi bir sonlu $t$ aralığında},
+\begin{itemize}[label=--]
+  \item sonlu sayıda \vurgu[pembe]{maksimum ve minimum} değere sahip olmalıdır.
+  \item sonlu sayıda \vurgu[pembe]{süreksizliğe} ve bu noktalarda sonlu değere sahip olmalıdır.
+\end{itemize}
+$\Rightarrow$ Frekans spektrumları:
+
+\sayfa{3}
+{\small\itshape (Claude notu: sayfanın üstü kesik; önceki sorudan yalnızca şu kısım görünüyor:)} \quad
+$\underset{t=-3}{\downarrow} \qquad \underset{t=1}{\downarrow}$
+% \kok{eksen başı}{eksen sonu}{n/h kökleri}{sıfır noktaları}{eksen etiketleri}{ek çizim}{alt yazı}
+\newcommand{\kok}[7]{%
+\begin{tikzpicture}[x=0.42cm,y=0.75cm,baseline={(0,0.3)}]
+  \draw[-{Stealth},murekkep] (#1,0) -- (#2,0) node[right,font=\small] {$n$};
+  \foreach \n/\h in {#3} {\draw[murekkep,thick] (\n,0) -- (\n,\h); \fill[murekkep] (\n,\h) circle (1.5pt);}
+  \foreach \n in {#4} {\fill[murekkep] (\n,0) circle (1.5pt);}
+  \foreach \n in {#5} {\node[below,font=\scriptsize,inner sep=1.5pt] at (\n,0) {$\n$};}
+  #6
+  \node[font=\small] at ({(#1+#2)/2},-0.85) {#7};
+\end{tikzpicture}}
+
+\begin{ornek}[4)]
+$u[n-1] - u[n-2] = ?$
+
+\medskip
+\noindent
+\kok{-0.6}{5.6}{1/1,2/1,3/1,4/1}{0}{0,1,2,3,4}{\node[font=\scriptsize,left] at (1,1) {$1$}; \node at (4.9,0.45) {$\cdots$};}{$u[n-1]$}
+\ $-$\
+\kok{-0.6}{5.6}{2/1,3/1,4/1}{0,1}{0,1,2,3,4}{\node[font=\scriptsize,left] at (2,1) {$1$}; \node at (4.9,0.45) {$\cdots$};}{$u[n-2]$}
+\ $=$\
+\kok{-0.6}{4.6}{1/1}{0,2,3}{0,1,2,3}{\node[font=\scriptsize,left] at (1,1) {$1$}; \node at (4,0.45) {$\cdots$};}{}
+\ $= \delta[n-1]$
+\end{ornek}
+
+\begin{ornek}[5)]
+$u[n-7] - u[n-5] = ?$
+
+\medskip
+\noindent
+\kok{5.4}{11.6}{7/1,8/1,9/1,10/1}{}{7,8,9,10}{\node[font=\scriptsize,left] at (7,1) {$1$}; \node at (11,0.45) {$\cdots$};}{$u[n-7]$}
+\ $-$\
+\kok{4.4}{10.6}{5/1,6/1,7/1,8/1,9/1}{}{5,6,7,8,9}{\node[font=\scriptsize,left] at (5,1) {$1$}; \node at (10,0.45) {$\cdots$};}{$u[n-5]$}
+\ $=$\
+\kok{3.6}{7.6}{5/-1,6/-1}{}{}{\node[font=\scriptsize,above] at (5,0) {$5$}; \node[font=\scriptsize,above] at (6,0) {$6$}; \node[font=\scriptsize,left] at (5,-1) {$1$};}{}
+\ $= -\delta[n-5] - \delta[n-6]$
+\end{ornek}
+
+\sayfa{4}
+\newcommand{\iptal}[1]{\tikz[baseline=(gtuIptal.base)]{\node[inner sep=1pt](gtuIptal){$\displaystyle #1$};
+  \draw[turuncukalem,line width=0.7pt] (gtuIptal.south west) -- (gtuIptal.north east);}}
+{\small\itshape (Claude notu: bu sayfada turuncu kalemle çok sayıda altı çizme / parantez işareti var; sayfanın üstünde turuncu ``$f_0$'' yazılmış.)}
+
+\begin{ornek}[Ex]
+$X(f) = \delta(f-f_0)$ \ ise \ $x(t) = ?$
+\end{ornek}
+\[
+x(t) = \int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,df = \int_{-\infty}^{\infty}\delta(f-f_0)\,e^{j2\pi ft}\,df
+ = \int_{-\infty}^{\infty}\delta(f-f_0)\,e^{j2\pi f_0 t}\,df
+ = e^{j2\pi f_0 t}\underbrace{\int_{-\infty}^{\infty}\delta(f-f_0)\,df}_{=1} = \underline{\underline{e^{j2\pi f_0 t}}}
+\]
+
+\begin{ornek}[Ex]
+$X(f) = \delta(f)$ \ ise \ $x(t) = ?$
+\end{ornek}
+\[
+x(t) = \int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,df = \int_{-\infty}^{\infty}\delta(f)\,e^{j2\pi ft}\,df
+ = \int_{-\infty}^{\infty}\delta(f)\,\iptal{e^{j2\pi 0 t}}\,df = \int_{-\infty}^{\infty}\delta(f)\,df = 1
+\]
+\[
+\left.\begin{aligned}
+\delta(t) &\xleftrightarrow{\ \mathcal{F}\ } 1\\
+1 &\xleftrightarrow{\ \mathcal{F}\ } \delta(f)
+\end{aligned}\ \right)
+\]
+\[
+\begin{aligned}
+e^{j2\pi f_0 t} &\xleftrightarrow{\ \mathcal{F}\ } \underline{\delta(f-f_0)}\\
+e^{-j2\pi f_0 t} &\xleftrightarrow{\ \mathcal{F}\ } \delta(f+f_0)
+\end{aligned}
+\]
+
+\sayfa{5}
+{\small\itshape (Claude notu: bu sayfa, el yazısı notun bir PDF görüntüleyicideki ekran görüntüsü; üstteki araç çubuğu aktarılmadı. s.~3, bu sayfanın devamıdır.)}
+
+\begin{ornek}[1)]
+\[
+\sqrt{2}\,e^{j9\pi/4} = \sqrt{2}\left(\cos 9\pi/4 + j\sin 9\pi/4\right) = \sqrt{2}\left(\cos\pi/4 + j\sin\pi/4\right)
+ = \sqrt{2}\left(\frac{\sqrt{2}}{2} + j\frac{\sqrt{2}}{2}\right) = 1+j
+\]
+\end{ornek}
+
+\begin{ornek}[2)]
+$x(t) = u(t) + u(-t)$
+
+\medskip
+\noindent
+\begin{tikzpicture}[x=0.5cm,y=0.55cm,baseline=(current bounding box.center)]
+  \draw[-{Stealth},murekkep] (-2.2,0) -- (2.8,0) node[right,font=\small] {$t$};
+  \draw[-{Stealth},murekkep] (0,-0.8) -- (0,1.8) node[right,font=\small] {$u(t)$};
+  \draw[murekkep,thick] (0,1) -- (2.2,1);
+  \node[left,font=\scriptsize] at (0,1) {$1$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[x=0.5cm,y=0.55cm,baseline=(current bounding box.center)]
+  \draw[-{Stealth},murekkep] (-2.2,0) -- (2.8,0) node[right,font=\small] {$t$};
+  \draw[-{Stealth},murekkep] (0,-0.8) -- (0,1.8) node[right,font=\small] {$u(-t)$};
+  \draw[murekkep,thick] (-2.2,1) -- (0,1);
+  \node[right,font=\scriptsize] at (0,1) {$1$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[x=0.5cm,y=0.55cm,baseline=(current bounding box.center)]
+  \draw[murekkep] (-2.2,0) -- (2.8,0);
+  \draw[-{Stealth},murekkep] (0,-0.8) -- (0,1.8) node[right,font=\small] {$x(t)$};
+  \draw[murekkep,thick] (-2.2,1) -- (2.8,1);
+\end{tikzpicture}\hfill
+\begin{minipage}[c]{0.27\linewidth}
+$T \to \infty$\\
+Periyodik değildir
+\end{minipage}
+\end{ornek}
+
+\begin{ornek}[3)]
+$x(t) = 2, \ -1 < t < 3$ \ ise \ $x(1-2t) + x(2+t) = ?$
+\end{ornek}
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\vspace{0pt}
+\begin{tikzpicture}[x=0.42cm,y=0.42cm]
+  \draw[-{Stealth},murekkep] (-2.5,0) -- (4.5,0) node[right,font=\small] {$t$};
+  \draw[-{Stealth},murekkep] (0,-0.8) -- (0,3) node[right,font=\small] {$x(t)$};
+  \draw[murekkep,thick] (-1,0) -- (-1,2) -- (3,2) -- (3,0);
+  \node[above right,font=\scriptsize,inner sep=1pt] at (0,2) {$2$};
+  \node[below,font=\scriptsize] at (-1,0) {$-1$};
+  \node[below,font=\scriptsize] at (3,0) {$3$};
+\end{tikzpicture}
+\[
+x(1-2t) \longrightarrow x(t) \quad t:[-1,3]
+\]
+\[
+\begin{array}{c}
+1-2t : [-1,3]\\
+\swarrow \qquad\qquad \searrow\\
+\begin{array}{cc} 1-2t = -1 \quad & \quad 1-2t = 3\\ t = 1 \quad & \quad t = -1 \end{array}
+\end{array}
+\]
+\[
+x(2+t) \longrightarrow x(t) \quad t:[-1,3]
+\]
+\[
+\begin{array}{c}
+2+t : [-1,3]\\
+\swarrow \qquad \searrow\\
+\begin{array}{cc} t = -3 \quad & \quad t = 1 \end{array}
+\end{array}
+\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\vspace{0pt}
+\centering
+\begin{tikzpicture}[x=0.42cm,y=0.42cm]
+  \draw[-{Stealth},murekkep] (-2.5,0) -- (3,0) node[right,font=\small] {$t$};
+  \draw[-{Stealth},murekkep] (0,-0.8) -- (0,3) node[right,font=\small] {$x(1-2t)$};
+  \draw[murekkep,thick] (-1,0) -- (-1,2) -- (1,2) -- (1,0);
+  \node[above right,font=\scriptsize,inner sep=1pt] at (0,2) {$2$};
+  \node[below,font=\scriptsize] at (-1,0) {$-1$};
+  \node[below,font=\scriptsize] at (1,0) {$1$};
+\end{tikzpicture}
+
+\medskip
+\begin{tikzpicture}[x=0.42cm,y=0.42cm]
+  \draw[-{Stealth},murekkep] (-4,0) -- (3,0) node[right,font=\small] {$t$};
+  \draw[-{Stealth},murekkep] (0,-0.8) -- (0,3) node[right,font=\small] {$x(t+2)$};
+  \draw[murekkep,thick] (-3,0) -- (-3,2) -- (1,2) -- (1,0);
+  \node[above right,font=\scriptsize,inner sep=1pt] at (0,2) {$2$};
+  \node[below,font=\scriptsize] at (-3,0) {$-3$};
+  \node[below,font=\scriptsize] at (1,0) {$1$};
+\end{tikzpicture}
+
+\medskip
+\begin{tikzpicture}[x=0.42cm,y=0.42cm]
+  \draw[-{Stealth},murekkep] (-4,0) -- (3,0) node[right,font=\small] {$t$};
+  \draw[-{Stealth},murekkep] (0,-0.8) -- (0,5) node[right,font=\small] {$x(1-2t)+x(t+2)$};
+  \draw[murekkep,thick] (-3,0) -- (-3,2) -- (-1,2) -- (-1,4) -- (1,4) -- (1,0);
+  \draw[murekkep,dotted] (-1,2) -- (0,2);
+  \node[right,font=\scriptsize,inner sep=1pt] at (0,2) {$2$};
+  \node[above right,font=\scriptsize,inner sep=1pt] at (0,4) {$4$};
+  \node[below,font=\scriptsize] at (-3,0) {$-3$};
+  \node[below,font=\scriptsize] at (-1,0) {$-1$};
+  \node[below,font=\scriptsize] at (1,0) {$1$};
+\end{tikzpicture}
+\end{minipage}
+
+\medskip
+{\small\itshape (Claude notu: sayfanın altındaki 4.\ soru, $u[n-1]-u[n-2] = \delta[n-1]$, s.~3'teki ile aynıdır; tekrar aktarılmadı.)}
+
+\noindent\sayfa{6}
+{\small\itshape (Claude notu: bu sayfa s.~5'teki 3.\ sorunun aynısıdır (aynı çizimler ve çözüm); tek fark, soru ifadesindeki $x(t) = 2$, \ $-1 < t < 3$, \ $x(1-2t)$ ve $x(2+t)$ kısımlarının turuncu kalemle altının çizilmiş olmasıdır. Tekrar aktarılmadı.)}
+
+\sayfa{7}
+{\small\itshape (Claude notu: sayfanın üstündeki 5.\ soru, $u[n-7]-u[n-5] = -\delta[n-5]-\delta[n-6]$, s.~3'teki ile aynıdır; tekrar aktarılmadı. 6.\ soru turuncu kalemle çerçeve içine alınmış. Sağ alttaki CamScanner logosu aktarılmadı.)}
+
+\begin{ornek}[6)]
+$\cos\left(\frac{\pi}{3}n\right)\delta[n+4] = ?$
+\end{ornek}
+\[
+\text{Reminder:}\quad
+\begin{aligned}[t]
+x[n]\,\delta[n] &= x[0]\,\delta[n]\\
+x[n]\,\delta[n-n_0] &= x[n_0]\,\delta[n-n_0]
+\end{aligned}
+\]
+\[
+\cos\left(\frac{\pi}{3}n\right)\delta[n+4] = \cos\left(-\frac{4\pi}{3}\right)\delta[n+4] = \cos\left(\frac{4\pi}{3}\right)\delta[n+4]
+\]
+
+\end{document}

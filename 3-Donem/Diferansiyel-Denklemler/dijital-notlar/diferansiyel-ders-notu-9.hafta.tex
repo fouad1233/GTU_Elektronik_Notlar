@@ -1,0 +1,294 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Diferansiyel Denklemler}{9. Hafta -- Euler denklemleri, mertebenin indirgenmesi, seri çözümlerine giriş}{diferansiyel-ders-notu-9.hafta.pdf}
+
+\sayfa{1}
+\begin{ornek}
+$x^2y'' - 3xy' + 4y = 0$ denkleminin çözümünü bulunuz
+\end{ornek}
+\begin{gather*}
+x = e^t \qquad x>0\\
+\Downarrow\\
+t=\ln x \;\Rightarrow\; \frac{dy}{dx}=\frac{dy}{dt}\,\frac{dt}{dx} = y'_t\,e^{-t}\\
+\Downarrow\\
+\frac{dt}{dx}=\frac{1}{x}\ \ e^{-t} \qquad\qquad \frac{d^2y}{dx^2}=e^{-2t}\,(y''_t-y'_t)
+\end{gather*}
+Denklemde yerine yazarsak
+\[ e^{2t}\cdot e^{-2t}\,(y''_t - y'_t) - 3e^{t}e^{-t}\,y'_t + 4y = 0 \]
+\begin{align*}
+y''_t - y'_t - 3y'_t + 4y &= 0\\
+y''_t - 4y'_t + 4y &= 0 \qquad \frac{d^2y}{dt^2} - 4\frac{dy}{dt} + 4y = 0\\
+k^2 - 4k + 4 &= 0\\
+(k-2)^2 &= 0 \qquad k_{1,2} = 2
+\end{align*}
+\[ e^{2t},\ te^{2t} \;\rightarrow\; t=\ln x \;\rightarrow\; e^{2\ln x} = x^2 \]
+\[ \rightarrow\; \ln x\, e^{2\ln x} = \ln x\, x^2 \]
+
+\sayfa{2}
+Genel çözüm
+\[ y(x) = c_1x^2 + c_2x^2\ln x \]
+
+\begin{ornek}
+$x^2y'' + xy' + 4y = 0$
+\end{ornek}
+\[ x=e^t \qquad x>0 \qquad\qquad t=\ln x \qquad\qquad
+\begin{aligned} y' &= e^{-t}y'_t\\ y'' &= e^{-2t}(y''_t - y'_t)\end{aligned} \]
+Denkleme yazarsak:
+\[ \underbrace{e^{2t}\cdot e^{-2t}}_{1}(y''_t - y'_t) + \underbrace{e^{t}\cdot e^{-t}}_{1}\cdot y'_t + 4y = 0 \]
+\begin{align*}
+y''_t - y'_t + y'_t + 4y &= 0\\
+y''_t + 4y &= 0 \;\rightarrow\; \text{karakteristik denklem}
+\end{align*}
+\[ k^2+4=0 \qquad k=\mp 2i \]
+\[ x_1 = \cos 2t \qquad x_2 = \sin 2t \]
+$t=\ln x$ olduğunda\footnote{Claude notu: aşağıdaki satırda muhtemelen $y_1=\cos(2\ln x)$, $y_2=\sin(2\ln x)$ olmalı (çözümler $y$ için).}
+\[ x = \cos(2\ln x),\ \sin(2\ln x) \]
+
+\sayfa{3}
+\begin{ornek}
+$x^3y'' - 2xy = -6\ln x$ denkleminin genel çözümünü bulunuz.
+\end{ornek}
+$\rightarrow$ $x$'e böl
+\[ x^2y'' - 2y = -\frac{6\ln x}{x} \]
+$x>0$ için $x=e^t$ dönüşümü ile $t=\ln x$
+\[ x^2y'' - 2y = -\frac{6\ln x}{x} \]
+\begin{align*}
+y' &= y'_t\,e^{-t}\\
+y'' &= e^{-2t}(y''_t - y'_t)
+\end{align*}
+\[ e^{2t}e^{-2t}(y''_t - y'_t) - 2y = -\frac{6\ln e^t}{e^t} \]
+\[ y''_t - y'_t - 2y = \frac{-6t}{e^t} \qquad \text{(lineer homojen olmayan denklem)} \]
+Biliyoruz ki \qquad $y = y_h + y_p$
+
+\sayfa{4}
+Homojen kısım için
+\[ \begin{array}{c} k^2 - k - 2 = 0\\ \swarrow\quad\searrow\\ -2\qquad 1 \end{array}
+\qquad\qquad
+\begin{array}{c} (k-2)(k+1)=0\\ k=2 \qquad k=-1 \end{array} \]
+\[ y_h = c_1e^{2t} + c_2\,\tikz[baseline=(c.base)]\node[draw=kirmizikalem,circle,inner sep=0.2pt](c){$e^{-t}$}; \]
+\[ y''_t - y'_t - 2y = -6te^{-t} \]
+Belirsiz katsayılar yöntemini kullanalım
+\[ \begin{array}{l}
+\quad\downarrow\\
+te^{-t}\\
+(\lambda+1)^2 \;\nearrow\; e^{-t}\cdot te^{-t}\\
+\quad\downarrow\\
+(\lambda+1)^3
+\end{array} \]
+{\small\itshape (Notta daire içindeki $e^{-t}$'den $te^{-t}$'ye bir ok çizilmiş.)}
+
+Çözümler $e^{-t},\ te^{-t},\ t^2e^{-t}$
+\begin{align*}
+y_p &= B_0\,te^{-t} + B_1\,t^2e^{-t}\\
+y'_p &= B_0e^{-t} - B_0te^{-t} + B_1\,2te^{-t} - B_1t^2e^{-t}\\
+y'_p &= \bigl(B_0 - (B_0+2B_1)t\bigr)e^{-t} - B_1t^2e^{-t}\footnotemark
+\end{align*}
+\footnotetext{Claude notu: bu satırda muhtemelen $\bigl(B_0-(B_0-2B_1)t\bigr)e^{-t}$ olmalı; sonraki sayfadaki $y''_p$'nin ikinci satırı bu doğru ifadeyle uyumlu.}
+
+\sayfa{5}
+\begin{align*}
+y''_p &= -(B_0+2B_1)e^{-t} - (B_0-(B_0+2B_1)e^{-t} - 2B_1te^{-t} + B_1t^2e^{-t}\\
+y''_p &= 2B_1 - 2B_0 - (4B_1-B_0)t + B_1t^2)e^{-t}
+\end{align*}
+\[ (2B_1-3B_0)e^{-t} - (4B_1 - B_0 + 2B_1 - B_0 + 2B_0)\,te^{-t} = -6te^{-t} \]
+\begin{align*}
+2B_1 &= 3B_0\\
+-6B_1 &= 6\footnotemark\\
+B_1 &= 1\\
+B_0 &= \frac{2}{3}
+\end{align*}
+\footnotetext{Claude notu: denklemin sağ tarafı $-6te^{-t}$ olduğundan muhtemelen $-6B_1=-6$ olmalı (sonuç $B_1=1$ ile uyumlu).}
+\[ y_p = \frac{2}{3}te^{-t} + t^2e^{-t} = \left(\frac{2}{3}t + t^2\right)e^{-t} \]
+\begin{align*}
+y_{\text{genel}} &= y_h + y_p\\
+&= c_1e^{2t} + c_2e^{-t} + \left(\frac{2}{3}t + t^2\right)e^{-t}\\
+y_g &= c_1e^{2\ln x} + c_2e^{-\ln x} + \left(\frac{2}{3}\ln x + (\ln x)^2\right)e^{-\ln x}\\
+&\phantom{=}\ c_1x^2 + c_2\left(\frac{1}{x}\right) + \left(\frac{2}{3}\ln x + (\ln x)^2\,\frac{1}{x}\right)
+\end{align*}
+
+\sayfa{6}
+\stepcounter{footnote}%
+\begin{ornek}
+$x^3y''' - x^2y'' + 2xy - 2y = x^3$
+
+genel çözüm bulunuz.\textsuperscript{\thefootnote}
+\end{ornek}
+\footnotetext{Claude notu: muhtemelen $2xy'$ olmalı (aşağıdaki $2r$ terimi ile uyumlu).}
+$x>0 \qquad x=e^t$
+
+2. yol kullanımı $\rightarrow$ \quad $y=x^r \qquad y' = r\,x^{r-1}$
+\[ y'' = r(r-1)\,x^{r-2} \qquad\qquad y''' = r(r-1)(r-2)\,x^{r-3} \]
+\[ r(r-1)(r-2) - r(r-1) \underbrace{+\,2r-2}_{2(r-1)} = 0 \]
+\[ r^3 - 4r^2 + 5r - 2 = 0 \;\Rightarrow\; (r-1)(\underset{-2\ \ \ -1}{r^2-3r+2}) = 0 \]
+\[ \text{Yapma bunu}\ \left\{\begin{aligned} r_1 &= 1\\ r_2 &= 2\\ r_3 &= 1 \end{aligned}\right. \]
+$\downarrow$ \quad $x=e^t$
+\[ y'''_t - 4y''_t + 5y'_t - 2y = e^{3t} \]
+Karakteristik denklemi
+\[ k^3 - 4k^2 + 5k - 2 = 0 \qquad k_1=1 \quad k_2=1 \quad k_3=2 \]
+kökler \qquad $e^t,\ te^t,\ e^{2t}$
+
+\sayfa{7}
+\[ y_1 = c_1e^t + c_2te^t + c_3e^{2t} \]
+\[ y'''_t - 4y''_t + 5y'_t - 2y = e^{3t} \qquad\qquad y_p = B_0e^{3t} \]
+\begin{align*}
+y_p &= B_0e^{3t}\\
+y'_p &= 3B_0e^{3t}\\
+y''_p &= 9B_0e^{3t}\\
+y'''_p &= 27B_0e^{3t}
+\end{align*}
+\[ \underbrace{(27B_0 - 36B_0 + 15B_0 - 2B_0)}_{1}\,e^{3t} = e^{3t} \]
+\[ 4B_0 = 1 \qquad\qquad B_0 = \frac{1}{4} \]
+\begin{align*}
+y_p &= \frac{1}{4}e^{3t}\\
+y_p &= \frac{1}{4}e^{3\ln x} = \frac{1}{4}x^3
+\end{align*}
+\[ y_{\text{genel}} = c_1x + c_2x\ln x + c_3x^2 + \frac{1}{4}x^3 \qquad \forall c_1,c_2,c_3\in\mathbb{R} \]
+
+\section{Mertebenin indirgenmesi}
+\sayfa{8}
+\[ a_0(x)\,y^{n} + a_1(x)\,y^{n-1} + \cdots + a_{n-1}(x)\,y' + a_n(x)\,y = 0 \qquad (5) \]
+denklemi verilsin ve bu denklemin bir $y_1=y_1(x)$ çözümü bilinsin. Bu durumda
+\[ y = u\,y_1(x) \qquad u=u(x) \]
+dönüşümüyle $u$'ya göre denklemde $u'=v$ dönüşümüyle (5) denklem mertebesi bir düşüyor.
+
+$n=2$ durumunda,
+\[ a_0y'' + a_1y' + a_2y = 0 \]
+bir çözümü $y_1=y_1(x)$ olsun.
+
+$y = u\cdot y_1$ dönüşümü yapalım.
+\begin{align*}
+y' &= u'y_1 + uy'_1\\
+y'' &= u''y_1 + u'y'_1 + u'y'_1 + uy''_1
+\end{align*}
+$a_0y'' + a_1y' + a_2y = 0$ için
+\[ a_0(u''y_1 + 2u'y'_1 + uy''_1) + a_1(uy'_1 + u'y_1) + a_2uy_1 = 0 \]
+\[ \underbrace{u(a_0y''_1 + a_1y'_1 + a_2y_1)}_{0} + a_0y_1u'' + (2a_0y'_1 + a_1y_1)\,u' = 0 \]
+
+\sayfa{9}
+\[ a_0y_1u'' + (2a_0y'_1 + a_1y_1)\,u' = 0 \]
+denklemine indirgeniyor. Bu denklemde
+\[ \begin{aligned} v &= u'\\ v' &= u'' \end{aligned} \qquad\qquad a_0y_1v' + (2a_0y'_1 + a_1y_1)\,v = 0 \]
+
+\begin{ornek}
+$(x^2+1)y'' - 2xy' + 2y = 0$ denkleminin bir çözümünün $y_1(x)=x$ olduğu biliniyor. Genel çözümünü bulunuz.
+\end{ornek}
+\begin{cozum}
+\begin{align*}
+y &= ux \qquad\qquad u=u(x)\\
+y' &= u'x + u\\
+y'' &= u''x + u' + u' = u''x + 2u'
+\end{align*}
+Denklemde yerine yaz.
+\begin{gather*}
+(x^2+1)\,u''x + 2u' - 2x(u'x+u) + 2ux = 0\\
+(x^2+1)u''x + (x^2+1)\,2u' - 2x^2u'
+\tikz[baseline=(s.base)]{\node[inner sep=0.5pt](s){$-2xu$};\draw[kirmizikalem] (s.south west)--(s.north east);}
+\tikz[baseline=(s.base)]{\node[inner sep=0.5pt](s){$+2xu$};\draw[kirmizikalem] (s.south west)--(s.north east);}
+= 0
+\end{gather*}
+$(x^2+1)\,x\,u'' + 2u' = 0$ denklemi elde edilir
+
+\sayfa{10}
+$v=u'$ dönüşümü yaparsak \qquad $v'=u''$
+\[ x(x^2+1)\,v' + 2v = 0 \]
+\[ v' + \frac{2v}{x(x^2+1)}\,v = 0 \]
+\begin{align*}
+I(x) = e^{\int \frac{2}{x(x^2+1)}} \qquad x=\frac{1}{t} \qquad
+&= e^{\int \frac{2\cdot\left(-\frac{1}{t^2}\right)}{\frac{1}{t}\left(\frac{1}{t^2}+1\right)}}\\
+&= e^{-\int \frac{2t\,dt}{t^2+1}}\\
+&= e^{-\ln(t^2+1)}\\
+&= (t^2+1)^{-1}\\
+I(x) &= \left(\frac{x^2+1}{x^2}\right)^{-1} = \frac{x^2}{x^2+1}
+\end{align*}
+\[ \left[\left(\frac{x^2}{x^2+1}\right)\cdot v\right]' = 0 \]
+\[ \left(\frac{x^2}{x^2+1}\right)\cdot v = c_1 \qquad\qquad v = c_1\,\frac{x^2+1}{x^2} \quad \forall c_1 \]
+
+\sayfa{11}
+\[ v = \frac{c_1(1+x^2)}{x^2} \qquad \forall c_1 \]
+$v=u'$ olduğunda
+\[ u' = \frac{c_1(1+x^2)}{x^2} \qquad \text{integral al} \]
+\begin{align*}
+u &= c_1\int\left(\frac{1}{x^2}+1\right)dx\\
+u &= c_1\left(-\frac{1}{x}+x\right) + c_2
+\end{align*}
+$y=ux$ olduğundan çözüm
+\[ y = \left(c_1\left(-\frac{1}{x}+x\right) + c_2\right)x \qquad /\!/ \]
+\[ y = c_1(x^2-1) + c_2x \qquad \forall c_1,c_2\in\mathbb{R} \]
+\end{cozum}
+
+\sayfa{12}
+\begin{ornek}
+$(1-2x^2)y'' + 2y' + 4y = 0$ denkleminin çözümünün $y_1(x) = x^n + a_1x^{n-1} + \cdots a_{n-1}x + a_n$ şeklinde bir polinom olduğu biliniyor. Genel çözümünü bulunuz.
+\end{ornek}
+Önce polinomun derecesini belirleyelim.
+\[ y_1(x) = x^n + \cdots + \qquad y'_1(x) = nx^{n-1} + \cdots \qquad y''_1(x) = n(n-1)x^{n-2} \]
+\[ -2x^2n(n-1)x^{n-2} + n(n-1)x^{n-2} + \cdots + 2nx^{n-1} \cdots 4x^n = 0 \]
+\[ \underbrace{(-2n(n-1)+4)}_{0}\,x^n = 0 \]
+\[ -2n^2 + 2 + 4 = 0\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $-2n^2+2n+4=0$ olmalı (kökler $n=2$, $n=-1$ bununla uyumlu).}
+\[ n \begin{array}{l} \nearrow 2\\ \searrow -1 \end{array} \quad \text{$-1$ polinom olduğu için alamayız} \]
+
+Demek ki \quad $y_1(x) = x^2 + a_1x + a_2$ \quad şeklindeymiş
+\begin{align*}
+y'_1(x) &= 2x + a_1\\
+y''_1(x) &= 2
+\end{align*}
+\[ (1-2x)\,2 + 2(2x+a_1) + 4(x^2+a_1x+a_2) = 0\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $(1-2x^2)\,2$ olmalı (sonraki sayfadaki sonuç bununla uyumlu).}
+
+\sayfa{13}
+\[ \underbrace{(4+4a_1)}_{0}\,x + \underbrace{(2+2a_1+4a_2)}_{0} = 0 \]
+\[ a_1 = -1 \qquad\qquad a_2 = 0 \]
+Demek ki \quad $y_1(x) = (x^2-x)$
+
+Demek ki
+\begin{align*}
+y &= u\,y_1(x)\\
+y &= u(x^2-x) \quad \text{arayalım}
+\end{align*}
+\begin{align*}
+y' &= \,?\\
+y'' &= \,?
+\end{align*}
+\[ (1-2x^2)(x^2-x)\,u'' + (1-2x^2)(4x-2) + 2(x^2-x)\,u' = 0 \]
+
+\section{Diferansiyel Denklemlerin Seri Çözümleri}
+\sayfa{14}
+\subsection{Analitik fonksiyonlar}
+Bir $I\subset\mathbb{R}$ açık aralığında tanımlı, sonsuz mertebeden türevlenebilen bir $f(x)$ fonksiyonu verilsin. Bir $x_0\in I$ noktası alalım.
+\[ (1)\qquad \sum_{n=0}^{\infty} \frac{f^{n}(x_0)}{n!}\,(x-x_0)^n \quad \text{serisine } f(x) \]
+fonksiyonunun $x_0$ noktasındaki Taylor serisi denir.
+\[ f(x) = \begin{cases} e^{-\frac{1}{x^2}}, & x>0\\ 0, & x\le 0 \end{cases} \]
+fonksiyonunun $x=0$ noktasında her mertebeden türevi vardır. ve $f^{n}(0)=0$ \ $\forall n\in\mathbb{N}$ ancak $x=0$ noktası civarında $f(x)$'e eşit değildir.
+
+\begin{tanim}
+Eğer $x=x_0$ noktasında $f(x)$ fonksiyonunun Taylor serisi $x_0$ noktasının civarında yakınsaksa ve yakınsak olduğu
+\sayfa{15}fonksiyon $f(x)$'e eşitse, $f(x)$ fonksiyonu $x_0$ noktasında analitiktir denir.
+\end{tanim}
+\[ e^x \qquad \sin x \qquad \cos x \qquad \text{analitik fonk.} \]
+\noindent\begin{minipage}[c]{0.35\linewidth}\centering
+$\displaystyle f(x) = \frac{1+x}{(x^2-3x+2)}$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.6\linewidth}
+Bu fonksiyon $2$, $1$ noktaları dışında her yerde analitiktir.
+\end{minipage}
+
+\sayfa{16}
+{\small\itshape (Bu sayfa ders tahtasının fotoğrafı; tahtada yazılanlar:)}
+\[ a_0(x-x_0)^2y'' + a_1(x-x_0)\,y' + a_2y = 0 \]
+\begin{ornek}
+$x^2y'' - 3xy' + 4y = 0$
+
+\okunamadi{Denk.} genel çözümünü bulunuz
+\end{ornek}
+\begin{gather*}
+x=e^t,\quad x>0\\
+\Downarrow\\
+t=\ln x \;\Rightarrow\; \frac{dy}{dx} = \frac{dy}{dt}\,\frac{dt}{dx} = y'_t\cdot e^{-t}\\
+\Downarrow\\
+\frac{dt}{dx} = \frac{1}{x} = e^{-t} \qquad\qquad \frac{d^2y}{dx^2} = e^{-2t}\,(y''_t - y'_t)
+\end{gather*}
+\sekilnotu[16]{Fotoğrafın sol kenarında kesik bir başlık (``\dots nklemler'') ve sağdaki ikinci tahta panelinde kısmen görünen satırlar: ``Denklemde y\dots'', $e^{2t}e^{-2t}(\dots$, $y_t\dots$, $t=\ln x$ (kesik, okunamıyor).}
+
+\end{document}

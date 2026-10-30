@@ -1,0 +1,303 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Nümerik Analiz}{Vize notlarım 1 -- Temel teoremler, kök bulma, interpolasyon, nümerik türev ve integral}{numerik-notlarim1-vize.pdf}
+
+\sayfa{1}
+\section{Nümerik Analiz}
+
+\begin{teorem}[1 (Rolle Teoremi)]
+  $f \in C[a,b]$ \quad ve türevlenebilir
+
+  $f(a) = f(b) \rightarrow$ en az bir \ $x = c \in [a,b]$'de \ $f'(c) = 0$
+\end{teorem}
+
+\begin{teorem}[2 (Ortalama değer Teoremi)]
+  $f \in C[a,b]$ \quad ve \quad $f$ \ $(a,b)$ diferansiyellenebilir
+
+  $c \in (a,b) \longrightarrow f'(c) = \dfrac{f(b) - f(a)}{b - a}$
+\end{teorem}
+
+\begin{teorem}[3 (Extremum değer teoremi)]
+  $f \in C[a,b]$ \qquad $x$ \okunamadi{$\in$} $c_1, c_2 \in [a,b]$
+
+  \qquad $f(c_1) \le f(x) \le f(c_2)$ olsun
+
+  $f$ \ $(a,b)$'de türevlenebilirse $\rightarrow$ $c_1$ ve $c_2$ noktaları aralığın uç noktaları
+  yada $f'$nin sıfır olduğu noktalar.
+\end{teorem}
+
+\begin{teorem}[4 (Ara değer teoremi)]
+  $f \in C[a,b]$ \quad $f(a) \cdot f(b) < 0$
+
+  O halde öyle bir $c \in (a,b)$ bulunur ki \ $f(c) = 0$
+\end{teorem}
+
+\sayfa{2}
+\subsection{Riemann manasında integrallenebilir}
+\[ \int_a^b f(x)\,dx = \lim_{n \to \infty} \frac{b-a}{n} \sum_{i=1}^{n} f(x_i) \]
+
+\subsection{Taylor polinomu ve Mclaurin}
+\[
+  f(x) = \underbrace{P_n(x)}_{\substack{\text{tahmini}\\ \text{değer}}}
+       + \underbrace{R_n(x)}_{\substack{\text{kesim}\\ \text{hatası}}}
+\]
+\[ P_n(x) = \sum_{k=0}^{n} \frac{f^{(k)}(x_0)}{k!}\,(x - x_0)^k \]
+\[ R_n = \frac{f^{(n+1)}(\xi)}{(n+1)!}\,(x - x_0)^{n+1} \]
+
+$x_0 = 0$ \quad Mclaurin serisini verir
+
+\sayfa{3}
+\section{Tek değişkenli fonksiyonlar ve kök bulma yöntemi}
+\subsection{1) Bisection}
+\begin{align*}
+  & f \in C[a,b] \quad \text{ve} \quad f(a) \cdot f(b) < 0 \\
+  & a_1 = a \qquad b_1 = b \\
+  & p_1 = \frac{a_1 + b_1}{2}
+\end{align*}
+\begin{tabular}{@{}ll@{}}
+  if & $f(p_1) \cdot f(a) < 0$ \ ise \ $p \in (a, p_1)$ \\
+  else if & $f(p_1)\, f(b) < 0$ \ ise \ $p \in (p_1, b)$
+\end{tabular}
+
+\medskip
+$n$. step $\rightarrow [a_n, b_n] \rightarrow f(a_n) \cdot f(b_n) < 0$
+
+\qquad $p \in (a_n, b_n)$ \qquad $p_n = \dfrac{a_n + b_n}{2}$
+
+\underline{Hatası:} \qquad $|p_n - p| \le \dfrac{b-a}{2^n}$
+
+\sayfa{4}
+\subsection{Sabit nokta (fixed point iteration)}
+\begin{align*}
+  f(x) = g(x) - x &= 0 \quad \text{olsun} \\
+  g(x) &= x
+\end{align*}
+$g : [a,b] \rightarrow \mathbb{R}$ fonksiyonu için \ $g(p) = p$ \ olacak şekilde bir $p \in [a,b]$
+sayısı bulunuyorsa $p$'ye $g(x)$ fonksiyonun sabit noktası denir.
+\[ p_n = g(p_{n-1}) \]
+
+\begin{teorem}
+  $g \in C[a,b]$
+  \begin{enumerate}[label=\arabic*)]
+    \item Eğer her $x \in [a,b]$ için $g(x) \in [a,b]$ oluyorsa $g$ fonksiyonun $[a,b]$'de en az
+      bir adet sabit noktası vardır.
+    \item 1 sağlanıyorsa, eğer $x \in (a,b)$ için $|g'(x)| \le k$ olacak biçimde bir
+      $0 < k < 1$ bulunabiliyorsa o halde, $g$ fonksiyonun $[a,b]$ aralığında sabit noktası tektir.
+    \item 1 ve 2 sağlanıyorsa, her $p_0 \in [a,b]$ başlangıç iterasyonu için $p_n = g(p_{n-1})$
+      SNI $g$ fonksiyonunun $p \in [a,b]$ sabit noktasına yakınsak olur.
+  \end{enumerate}
+\end{teorem}
+
+\sayfa{5}
+\textcolor{kirmizikalem}{Hatası:} \ Teorem'in koşulları sağlandığında $p_n$ SNI'nun $p$ sabit noktasına
+yaklaşımındaki hata
+\[ |p_n - p| \le k^n \max\{p_0 - a,\ b - p_0\} \]
+
+\subsection{Newton-Raphson}
+$f : [a,b] \rightarrow \mathbb{R}$ için \ $f(x) = 0$, \ $x = p$ olsun
+
+$f \in C^2[a,b]$ \ ve $p_0 \in [a,b]$ bir nokta
+
+$f'(p_0) \neq 0$ \ ve \ $|p - p_0|$ küçük bir büyüklük.
+\[
+  0 = f(\overset{p}{x}) = f(p_0) + f'(p_0)(\overset{p}{x} - p_0)
+      + \frac{f''(\xi)}{2!}(\overset{p}{x} - p_0)^2
+\]
+\[ p \cong p_0 - \frac{f(p_0)}{f'(p_0)} = p_1 \]
+\[ \Rightarrow \quad p_n = p_{n-1} - \frac{f(p_{n-1})}{f'(p_{n-1})}, \qquad n = 1, 2, \dots \]
+\[ R_n = \frac{f''(\xi)}{2!}\,(p - p_0)^2 \]
+
+\sayfa{6}
+\begin{teorem}
+  $f \in C^2[a,b]$, Eğer $p \in (a,b)$ noktasında $f(p) = 0$ ve $f'(p) \neq 0$ olursa o halde öyle
+  bir $\delta > 0$ vardır ki, Newton iterasyonu her $p_0 \in [p - \delta,\, p + \delta]$ başlangıç
+  iterasyonu için $p$ sayısına yakınsar.
+\end{teorem}
+
+\subsection{Sekant yöntemi}
+\[
+  p_n = p_{n-1} - \frac{f(p_{n-1})\,(p_{n-1} - p_{n-2})}{f(p_{n-1}) - f(p_{n-2})},
+  \qquad n = 2, 3, \dots
+\]
+
+\subsection{İterasyon yöntemlerinde hata analizi}
+Eğer; \ $\displaystyle \lim_{n \to \infty} \frac{|p_{n+1} - p|}{|p_n - p|^{\alpha}} = \lambda$
+
+$p_n$, $p$ sayısına $\alpha$'ıncı dereceden yakınsaktır
+
+Sabit nokta iterasyonu lineer
+
+Newton-raphson quadratik yakınsar (Basit kök için)
+
+\sayfa{7}
+\subsection{Lagrange interpolasyonu}
+\[ P_n(x) = \sum_{k=0}^{n} L_{n,k}(x) \cdot f(x_k) \]
+\[ L_{n,k} = \prod_{\substack{i=0 \\ i \neq k}}^{n} \frac{(x - x_i)}{(x_k - x_i)} \]
+\[
+  f(x) = P_n(x) + \underbrace{\frac{f^{(n+1)}(\xi)}{(n+1)!}\,(x - x_0)(x - x_1)\cdots(x - x_n)}_{\text{Hata}}
+\]
+
+\sayfa{8}
+\subsection{Newton bölünmüş farklar interpolasyon polinomu}
+\[ n_k = \prod_{i=0}^{k-1} (x - x_i) \]
+ve \ $a_n = f[x_0, x_1, \dots, x_n]$ \ olmak üzere
+\begin{center}
+  $\displaystyle N(x) = \sum_{i=0}^{k} a_k\, n_k(x)$\footnote{Claude notu: toplam indisi muhtemelen
+  $\sum_{k=0}^{n}$ olmalı.}
+\end{center}
+
+\noindent\sayfa{9}\textit{(Bu sayfa defterde yan çevrilerek yazılmış: bölünmüş farklar tablosu.)}
+\begin{center}
+  {\renewcommand\arraystretch{1.6}
+  \begin{tabular}{cccc}
+    $x_i$ & $f[x_i]$ & $f[x_i, x_{i+1}]$ & $f[x_i, x_{i+1}, x_{i+2}]$ \\
+    $x_0$ & $f[x_0]$ & & \\
+      & & $\boxed{\dfrac{f[x_1] - f[x_0]}{x_1 - x_0}}^{\,f[x_0, x_1]}$ & \\
+    $x_1$ & $f[x_1]$ & & $\dfrac{f[x_1, x_2] - f[x_0, x_1]}{x_2 - x_0}$ \\
+      & & $\dfrac{f[x_2] - f[x_1]}{x_2 - x_1}$ & \\
+    $x_2$ & $f[x_2]$ & & \\
+      & & $\dfrac{f[x_3] - f[x_2]}{x_3 - x_2}$ & \\
+    $x_3$ & $f[x_3]$ & & \\
+      & & $\dfrac{f[x_4] - f[x_3]}{x_4 - x_3}$ & \\
+    $x_4$ & $f[x_4]$ & & \\
+      & & $\dfrac{f[x_5] - f[x_4]}{x_5 - x_4}$ & \\
+    $x_5$ & $f[x_5]$ & &
+  \end{tabular}}
+\end{center}
+
+\sayfa{10}
+\subsection{Hermite Polinomu}
+\[
+  \begin{array}{lr}
+    (*)\ \ H(x_k) \Rightarrow f(x_0)\ f(x_1)\ f(x_2) \cdots f(x_n) & n+1 \\
+    (**)\ H'(x_k) \Rightarrow f'(x_0)\ f'(x_1)\ f'(x_2) \cdots f'(x_n) & +\ \ n+1 \\ \cline{2-2}
+    & 2n+2 \text{ bilgi}
+  \end{array}
+\]
+\[ H_{2n+1}(x) = a_0 + a_1 x + \dots + a_{2n+1} x^{2n+1} \]
+\[
+  H_{2n+1}(x) = \sum_{k=0}^{n} h_{n,k}(x)\, f(x_k) + \sum_{k=0}^{n} \hat{h}_{n,k}(x)\, f'(x_k)
+\]
+\[ H_{n,k}(x) = \bigl[1 - 2(x - x_k)\, L'_{n,k}(x_k)\bigr]\, L^2_{n,k}(x) \]
+\[ \hat{h}_{n,k}(x) = (x - x_k)\, L^2_{n,k}(x) \]
+\[
+  f(x) = H_{2n+1}(x) + \frac{f^{(2n+2)}(\xi)}{(2n+2)!}\,(x - x_0)^2 (x - x_1)^2 \cdots (x - x_n)^2
+\]
+
+\subsection{Kübik spline interpolasyonu}
+\noindent\sayfa{11}$[a,b]$ aralığında $f(x)$ fonksiyonu var olsun
+\[ a = x_0 < x_1 < \dots < x_n = b \]
+\[ f(x_k), \quad k = 0, 1, \dots, n \]
+\[
+  S(x)
+  \begin{cases}
+    S_0(x) & ;\ a = x_0 \le x \le x_1 \\
+    S_1(x) & ,\ x_1 \le x \le x_2 \\
+    \ \vdots & \\
+    S_{n-1}(x) & \phantom{,}\ x_{n-1} \le x \le x_n = b
+  \end{cases}
+\]
+\[ S_k(x) = a_k + b_k(x - x_k) + c_k(x - x_k)^2 + d_k(x - x_k)^3 \]
+\begin{enumerate}[label=\alph*)]
+  \item $S_0(x_0) = f(x_0)$, \ $S_k(x_{k+1}) = f(x_{k+1}) = S_{k+1}(x_{k+1})$, \\
+    $k = 0, 1, \dots, n-2$, \ $S_{n-1}(x_n) = f(x_n)$
+  \item $S'_k(x_{k+1}) = S'_{k+1}(x_{k+1})$, \quad $k = 0, 1, \dots, n-2$
+  \item $S''_k(x_{k+1}) = S''_{k+1}(x_{k+1})$, \quad $k = 0, 1, \dots, n-2$
+  \item Şunlardan biri sağlansın
+    \begin{itemize}[label={}]
+      \item (doğal) {\small natural} \quad 1) \ $S''(x_0) = 0 = S''(x_n) \Longleftrightarrow
+        S''_0(a) = S''_{n-1}(b) = 0$
+      \item bağlanmış {\small clamped} \quad 2) \ $S'(x_0) = f'(x_0)$, \ $S'(x_n) = f'(x_n)$ \\
+        \hspace*{3cm} $\Longleftrightarrow S'_0(a) = f'(a)$, \ $S'_{n-1}(b) = f'(b)$
+    \end{itemize}
+\end{enumerate}
+
+\sayfa{12}
+\section{Nümerik Diferansiyelleme}
+\subsection{İki nokta formülü:}
+\[ f'(x) = \frac{f(x_0 + h) - f(x_0)}{h} - h\,\frac{f''(\xi)}{2} \]
+\[ \xi \ (x_0,\ x_0 + h) \]
+geri fark tüm ileri fark formüllerinde \ $h \rightarrow -h$ \ konularak bulunur
+
+\subsection{3 nokta uç nokta formülü}
+\[ f'(x_0) = P_2'(x_0) + \frac{f'''(\xi)}{6}\,2h^2 \]
+\[ P_2'(x_0) = \frac{1}{2h}\bigl[-3f(x_0) + 4f(x_0 + h) - f(x_0 + 2h)\bigr] \]
+
+\subsection{3 nokta orta nokta formülü}
+\[ f'(x_0) = \frac{1}{2h}\bigl[f(x_0 + h) - f(x_0 - h)\bigr] - \frac{h^2}{6}\,f'''(\xi) \]
+
+\sayfa{13}
+\subsection{İkinci dereceden türev}
+\[ f''(x_0) = \frac{f(x_0 - h) - 2f(x_0) + f(x_0 + h)}{h^2} - \frac{h^2}{12}\,f^{(4)}(\xi) \]
+
+\section{Nümerik integralleme}
+\subsection{Trapezoid (yamuk) kuralı}
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, murekkep]
+  \draw (0,0) -- (4,0);
+  \draw (0,0.12) -- (0,-0.12);
+  \draw (4,0.12) -- (4,-0.12);
+  \node[below] at (0,-0.12) {$x_0 = a$};
+  \node[below] at (4,-0.12) {$x_1 = b$};
+  \draw (0.1,0.3) .. controls (0.6,0.55) and (1.6,0.35) .. (2,0.6)
+        .. controls (2.4,0.35) and (3.4,0.55) .. (3.9,0.3);
+  \node[above] at (2,0.6) {$h$};
+\end{tikzpicture}
+\end{center}
+\[ \int_a^b f(x)\,dx = \frac{h}{2}\bigl[f(x_0) + f(x_1)\bigr] - \frac{h^3}{12}\,f''(\xi_1) \]
+\[ f(x) \cong P_1(x) = \frac{x - x_1}{x_0 - x_1}\,f(x_0) + \frac{x - x_0}{x_1 - x_0}\,f(x_1) \]
+\[ E_1(x) = \frac{f''(\xi(x))}{2}\,(x - x_0)(x - x_1) \qquad \xi \in (x_0, x_1) \]
+
+\sayfa{14}
+\subsection{Simpson kuralı}
+\[
+  \int_a^b f(x)\,dx = \frac{h}{3}\bigl[f(x_0) + 4f(x_1) + f(x_2)\bigr] - \frac{h^5}{90}\,f^{(4)}(\xi)
+\]
+
+\subsection{Kapalı Newton-Cotes formülü}
+$[a,b]$ kapalı aralık
+\[ x_0 = a, \quad x_n = b \]
+\[ x_k = x_0 + kh \qquad h = \frac{b-a}{n} \qquad k = 0, 1, \dots, n \]
+\begin{center}
+  $\displaystyle P_n(x) = \sum_{k=1}^{n} f(x_k) \prod_{\substack{i=0 \\ i \neq k}}^{n} \frac{(x - x_i)}{(x_k - x_i)}$%
+  \footnote{Claude notu: toplam muhtemelen $k = 0$'dan başlamalı.}
+\end{center}
+\[ f(x) = P_n(x) + \frac{f^{(n+1)}(\xi(x))}{(n+1)!} \prod_{k=0}^{n} (x - x_k) \]
+\[ \int_a^b f(x)\,dx \cong \int_a^b P_n(x)\,dx = \sum_{k=0}^{n} \alpha_k\, f(x_k) \]
+\[ \alpha_k = \int_a^b \prod_{\substack{i=0 \\ i \neq k}}^{n} \frac{x - x_i}{x_k - x_i}\,dx \]
+$\displaystyle \sum_{k=0}^{n} \alpha_k\, f(x_k)$ \ $(n+1)$ adet noktadan kapalı NC formülü olsun,
+
+\qquad $x_0 = a$, \ $x_n = b$ \ ve \ $h = \dfrac{b-a}{n}$
+
+\sayfa{15}
+Böylece $\xi \in (a,b)$ sayısı, $n$ çift ve $f \in C^{n+2}[a,b]$ olacak biçimde
+\[
+  \int_a^b f(x)\,dx = \sum_{k=0}^{n} \alpha_k\, f(x_k) + \frac{h^{n+3} f^{(n+2)}(\xi)}{(n+2)!}
+  \cdot \int_0^n t^2 (t-1) \cdots (t-n)\,dt
+\]
+
+$n$ tek ve $f \in C^{n+1}[a,b]$
+\begin{center}
+  $\displaystyle \int_a^b f(x)\,dx = \sum_{k=0}^{n} \alpha_k\, f(x_k) + \frac{h^{n+1} f^{(n+1)}(\xi)}{(n+1)!}
+  \cdot \int_0^n t (t-1) \cdots (t-n)\,dt$\footnote{Claude notu: muhtemelen $h^{n+2}$ olmalı.}
+\end{center}
+
+\subsection{Açık Newton-Cotes formülü {\normalsize(\okunamadi{Ara nokta})}}
+$(a,b)$ açık aralık
+\[ x_{-1} = a, \quad x_{n+1} = b \]
+\[ x_k = x_0 + kh \qquad\qquad h = \frac{b-a}{n+2} \]
+\[ k = 0, 1, \dots, n \]
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, murekkep]
+  \draw (0,0) -- (8,0);
+  \foreach \x in {0,1.2,2.6,8} \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (0,-0.12) {$x_{-1} = a$};
+  \node[below] at (1.2,-0.12) {$x_0$};
+  \node[below] at (2.6,-0.12) {$x_1$};
+  \node[below] at (8,-0.12) {$x_{n+1} = b$};
+\end{tikzpicture}
+\end{center}
+\[ \int_a^b f(x)\,dx = 2h\, f(x_0) + \frac{h^3}{3}\, f''(\xi_1) \]
+
+\end{document}

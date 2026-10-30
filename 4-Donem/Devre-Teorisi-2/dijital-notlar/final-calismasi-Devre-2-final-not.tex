@@ -1,0 +1,364 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Devre Teorisi II}{Final çalışması -- Laplace, s-domeni analizi, Fourier serileri, frekans yanıtı ve pasif filtreler}{Devre-2-final-not.pdf}
+
+\section{Laplace transform}
+\sayfa{1}
+\[
+  F(s)=\mathcal{L}\left[f(t)\right]=\int_{0^-}^{\infty} f(t)\,e^{-st}\,dt
+  \qquad \text{\small (one sided, for $t>0$)}
+\]
+\[
+  e^{-at} \donusum \frac{1}{s+a} \qquad\qquad \sin\omega t \donusum \frac{\omega}{s^2+\omega^2}
+\]
+\[
+  \frac{df}{dt} \donusum sF(s)-f(0^-) \qquad\qquad \cos\omega t \donusum \frac{s}{s^2+\omega^2}
+\]
+
+\sekilnotu[1]{Basılı materyal (ders kitabından ekran görüntüsü): \textit{Table 14.2-1 Laplace Transform Pairs} ve \textit{Table 14.2-2 Laplace Transform Properties} tabloları; dijitalleştirilmedi.}
+
+$\star$\quad $A\cos(\omega t+\theta)=(A\cos\theta)\cos(\omega t)-(A\sin\theta)\sin(\omega t)$
+
+\subsection{Inverse Laplace Transform: Simple, Real poles}
+\sekilnotu[1]{Basılı formül (kitaptan): basit reel kutuplar için $F(s)=N(s)/D(s)$'nin kısmi kesirlere açılımı ve $R_i$ katsayılarının formülü; dijitalleştirilmedi.}
+
+\subsection{Repeated poles}
+\sekilnotu[1]{Basılı formül (kitaptan): $p_1$'de $q$ katlı kutup için kısmi kesir açılımı ve $R_{q-k}$, $R_1$, $R_2$, $R_q$ katsayılarının türevli formülleri; dijitalleştirilmedi. El yazısı ekler: $\frac{d^k}{ds^k}$ terimine ok ile ``\textit{k'ıncı dereceden türev alacağız}'' notu ve formüllerin yanında kırmızı parantez ile $\star$ işareti.}
+
+\subsection{Improper Rational function}
+$\star$ payın derecesi büyükse polinom bölmesi yapıl\okunamadi{ır}
+
+\section{Circuit Analysis Using Impedance and Initial Conditions}
+\[
+  v(t)=i(t)R \donusum V(s)=I(s)R \quad\Rightarrow\quad Z(s)=\frac{V(s)}{I(s)}
+\]
+
+\textbf{For capacitor}
+\[
+  v(t)=\frac{1}{C}\int_0^t i(\tau)\,d\tau+v(0) \donusum V(s)=\frac{1}{Cs}\,I(s)+\frac{v(0)}{s}
+\]
+\[
+  \Rightarrow\ Z_C(s)=\frac{1}{Cs} \qquad\text{and}\qquad I(s)=CsV(s)-Cv(0)
+\]
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  % zaman domeni
+  \draw (0,3) node[ocirc]{} to[short, i=$i(t)$] (0,2.4) to[C, l=$C$] (0,0.6) -- (0,0) node[ocirc]{};
+  \node at (-0.45,2.2) {$+$}; \node at (-0.8,1.5) {$v(t)$}; \node at (-0.45,0.8) {$-$};
+  % seri model
+  \draw (3.2,3) node[ocirc]{} to[short, i=$I(s)$] (3.2,2.6);
+  \draw (3.2,0) node[ocirc]{} to[V, l_=$\frac{v(0)}{s}$] (3.2,1.3) to[C, l_=$\frac{1}{Cs}$] (3.2,2.6);
+  \node at (2.75,2.4) {$+$}; \node at (2.4,1.9) {$V(s)$};
+  % paralel model
+  \draw (6.6,3) node[ocirc]{} to[short, i=$I(s)$] (6.6,2.4) -- (5.9,2.4) to[C, l_=$\frac{1}{Cs}$] (5.9,0.6) -- (7.3,0.6) to[I, l_=$Cv(0)$] (7.3,2.4) -- (6.6,2.4);
+  \draw (6.6,0.6) -- (6.6,0) node[ocirc]{};
+  \node at (6.6,2.1) {$+$}; \node at (6.6,1.5) {$V(s)$}; \node at (6.6,0.9) {$-$};
+\end{circuitikz}
+\end{center}
+\sekilnotu[1]{Yanda kitaptan küçük basılı bir şekil (kondansatör ve bobin s-domeni modelleri) yapıştırılmış; dijitalleştirilmedi.}
+
+\textbf{For Inductor}
+\[
+  v(t)=L\,\frac{d}{dt}\,i(t) \donusum V(s)=Ls\,I(s)-Li(0)
+\]
+\[
+  Z_L(s)=Ls \qquad\text{and}\qquad I(s)=\frac{1}{Ls}\,V(s)+\frac{i(0)}{s}
+\]
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  % zaman domeni
+  \draw (0,3) node[ocirc]{} to[short, i=$i(t)$] (0,2.4) to[L, l=$L$] (0,0.6) -- (0,0) node[ocirc]{};
+  \node at (-0.45,2.2) {$+$}; \node at (-0.8,1.5) {$v(t)$}; \node at (-0.45,0.8) {$-$};
+  % seri model
+  \draw (3.2,3) node[ocirc]{} to[short, i=$I(s)$] (3.2,2.6);
+  \draw (3.2,0) node[ocirc]{} to[V, invert, l_=$Li(0)$] (3.2,1.3) to[L, l_=$Ls$] (3.2,2.6);
+  \node at (2.75,2.4) {$+$}; \node at (2.55,1.9) {$V(s)$};
+  \node[text=kirmizikalem, font=\small, align=center] at (4.4,0.1) {yöne\\dikkat};
+  % paralel model
+  \draw (6.6,3) node[ocirc]{} -- (6.6,2.4) -- (5.9,2.4) to[L, l_=$Ls$] (5.9,0.6) -- (7.3,0.6);
+  \draw (6.6,2.4) -- (7.3,2.4) to[I, l=$\frac{i(0)}{s}$] (7.3,0.6);
+  \draw (6.6,0.6) -- (6.6,0) node[ocirc]{};
+  \node at (6.6,2.1) {$+$}; \node at (6.6,1.5) {$V(s)$}; \node at (6.6,0.9) {$-$};
+\end{circuitikz}
+\end{center}
+
+\section{Transfer function and impedance}
+\[
+  H(s)=\frac{V_o(s)}{V_1(s)}
+\]
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  % zaman domeni
+  \draw (0,0) to[V, l=$v_1(t)$] (0,2) -- (0.8,2) node[ocirc]{} node[above]{$a$} to[L, l={$i(0)=0$}] (2.8,2) to[R, l_=$R$] (2.8,0) -- (0.8,0) node[ocirc]{} node[below]{$b$} -- (0,0);
+  \node at (3.2,1.5) {$+$}; \node at (3.4,1) {$v_o$}; \node at (3.2,0.5) {$-$};
+  \node at (1.5,1) {$\circlearrowright\, i(t)$};
+  \node at (4.6,1) {$\Rightarrow$};
+  % s-domeni
+  \draw (6.4,0) to[V, l=$V_1(s)$] (6.4,2) -- (7.2,2) node[ocirc]{} node[above]{$a$} to[L, l=$Ls$] (9.2,2) to[R, l_=$R$] (9.2,0) -- (6.4,0);
+  \node at (9.6,1.5) {$+$}; \node at (9.9,1) {$V_o(s)$}; \node at (9.6,0.5) {$-$};
+  \node at (7.9,1) {$\circlearrowright\, I(s)$};
+\end{circuitikz}
+\end{center}
+\[
+  V_o(s)=H(s)\,V_1(s)
+\]
+\textit{when the input is a unit step function}
+\[
+  V_1(s)=\mathcal{L}\left[u(t)\right]=\frac{1}{s} \qquad\qquad V_o(s)=\frac{H(s)}{s}
+\]
+\[
+  \Rightarrow\ \text{Step response}=\mathcal{L}^{-1}\left[\frac{H(s)}{s}\right]
+\]
+\textit{when the input is an impulse function}
+\[
+  v_1(t)=\delta(t) \donusum V_1(s)=\mathcal{L}\left[\delta(t)\right]=1 \qquad\qquad V_o(s)=H(s)
+\]
+\[
+  \text{Impulse response}=\mathcal{L}^{-1}\left[H(s)\right]
+\]
+\begin{align*}
+  H(s) &= \text{Voltage gain} = \frac{V_o(s)}{V_i(s)} &
+  H(s) &= \text{current gain} = \frac{I_o(s)}{I_i(s)} \\
+  H(s) &= \text{Impedance} = \frac{V(s)}{I(s)} &
+  H(s) &= \text{Admittance} = \frac{I(s)}{V(s)}
+\end{align*}
+
+\section{The Fourier Series}
+\sayfa{2}
+\subsection{Trigonometric Fourier series}
+\[
+  f(t)=f(t+nT)
+\]
+\[
+  f(t)=\underbrace{a_0}_{dc}+\underbrace{\sum_{n=1}^{\infty}\left(a_n\cos n\omega_0 t+b_n\sin n\omega_0 t\right)}_{ac}
+\]
+\[
+  a_0=\frac{1}{T}\int_0^T f(t)\,dt \qquad
+  a_n=\frac{2}{T}\int_0^T f(t)\cos n\omega_0 t\,dt \qquad
+  b_n=\frac{2}{T}\int_0^T f(t)\sin n\omega_0 t\,dt
+\]
+\textit{As alternative}
+\[
+  f(t)=a_0+\sum_{n=1}^{\infty}A_n\cos(n\omega_0 t+\phi_n), \qquad
+  A_n=\sqrt{a_n^2+b_n^2}, \quad \phi_n=-\tan^{-1}\frac{b_n}{a_n}
+\]
+\textit{important integrals}
+\begin{align*}
+  \int\cos at\,dt &= \frac{1}{a}\sin at &
+  \int t\cos at\,dt &= \frac{1}{a^2}\cos at+\frac{1}{a}\,t\sin at \\
+  \int\sin at\,dt &= -\frac{1}{a}\cos at &
+  \int t\sin at\,dt &= \frac{1}{a^2}\sin at-\frac{1}{a}\,t\cos at
+\end{align*}
+
+\subsection{Symmetry Considerations}
+\textbf{Even Symmetry (çift)}
+\[
+  f(t)=f(-t) \qquad
+  a_0=\frac{2}{T}\int_0^{T/2} f(t)\,dt \qquad
+  a_n=\frac{4}{T}\int_0^{T/2} f(t)\cos n\omega_0 t\,dt \qquad b_n=0
+\]
+\textbf{Odd Symmetry (tek simetri)}
+\[
+  f(-t)=-f(t) \qquad \int_{-T/2}^{T/2} f_o(t)\,dt=0
+\]
+\[
+  a_0=0 \quad a_n=0 \qquad
+  b_n=\frac{4}{T}\int_0^{T/2} f(t)\sin n\omega_0 t\,dt
+\]
+\textbf{Halfwave Symmetry}
+\[
+  f\!\left(t-\frac{T}{2}\right)=-f(t) \qquad a_0=0
+\]
+\[
+  a_n=\begin{cases}
+    \dfrac{4}{T}\displaystyle\int_0^{T/2} f(t)\cos n\omega_0 t\,dt, & \text{for } n \text{ odd}\\[2mm]
+    0, & \text{for } n \text{ even}
+  \end{cases}
+  \qquad
+  b_n=\begin{cases}
+    \dfrac{4}{T}\displaystyle\int_0^{T/2} f(t)\sin n\omega_0 t\,dt, & \text{for } n \text{ odd}\\[2mm]
+    0, & \text{for } n \text{ even}
+  \end{cases}
+\]
+
+\subsection{Circuit Applications}
+\[
+  v(t)=V_0+\sum_{n=1}^{\infty}V_n\cos(n\omega_0 t+\theta_n)
+\]
+$v(t)$ consists of two parts: the dc component $V_0$ and the ac component $\mathbf{V}_n=|V_n|\phase{\theta_n}$ with several harmonics.
+
+\sekilnotu[2]{Basılı şekil (kitaptan): seri bağlı $V_0$, $V_1\cos(\omega_0 t+\theta_1)$, $V_2\cos(2\omega_0 t+\theta_2)$, \dots, $V_n\cos(n\omega_0 t+\theta_n)$ kaynakları bir ``Linear network''ü besliyor, akım $i(t)$; dijitalleştirilmedi.}
+\[
+  \text{so}\quad i(t)=I_0+\sum_{n=1}^{\infty}|I_n|\cos(n\omega_0 t+\psi_n)
+\]
+
+\subsection{Average Power and RMS Values}
+\[
+  v(t)=V_{dc}+\sum_{n=1}^{\infty}V_n\cos(n\omega_0 t-\theta_n) \qquad
+  i(t)=I_{dc}+\sum_{n=1}^{\infty}I_n\cos(n\omega_0 t-\phi_n)
+\]
+\[
+  P=V_{dc}I_{dc}+\frac{1}{2}\sum_{n=1}^{\infty}V_nI_n\cos(\theta_n-\phi_n)
+\]
+\formulkutu{F_{rms}=\sqrt{a_0^2+\frac{1}{2}\sum_{n=1}^{\infty}\left(a_n^2+b_n^2\right)}}
+
+\section{Frequency Response}
+\sayfa{3}
+\[
+  H(\omega)=\frac{Y(\omega)}{X(\omega)}
+\]
+\subsection{The decibel Scale}
+\begin{enumerate}[label=\arabic*.]
+  \item $\log P_1P_2=\log P_1+\log P_2$
+  \item $\log P_1/P_2=\log P_1-\log P_2$
+  \item $\log P^n=n\log P$
+  \item $\log 1=0$
+\end{enumerate}
+\begin{align*}
+  G &= \text{Number of bels}=\log_{10}\frac{P_2}{P_1} \\
+  G_{dB} &= 10\log_{10}\frac{P_2}{P_1} \qquad
+  G_{dB} = 20\log_{10}\frac{V_2}{V_1} \qquad
+  G_{dB} = 20\log_{10}\frac{I_2}{I_1}
+\end{align*}
+\[
+  H=|H|\phase{\phi}=He^{j\phi} \qquad
+  \ln H=\ln|H|+\ln e^{j\phi}=\ln|H|+j\phi \qquad
+  H_{dB}=20\log_{10}H
+\]
+
+\sekilnotu[3]{Basılı materyal (kitaptan): Bode diyagramı tablosu -- \textit{Factor / Magnitude / Phase} sütunları; $K$, $(j\omega)^N$, $1/(j\omega)^N$, $(1+j\omega/z)^N$, $1/(1+j\omega/p)^N$ ve ikinci dereceden terimler için asimptotik genlik ($\pm 20N$, $\pm 40N$ dB/decade) ve faz ($0^\circ$, $\pm 90N^\circ$, $\pm 180N^\circ$) çizimleri; dijitalleştirilmedi.}
+
+\subsection{Series Resonance}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[V, l={$V_s=V_m\phase{\theta}$}] (0,2) to[R, l=$R$] (2.2,2) to[L, l=$j\omega L$] (4.4,2) to[C, l=$\frac{1}{j\omega C}$] (4.4,0) -- (0,0);
+  \node at (2.2,1) {$\circlearrowright\, I$};
+\end{circuitikz}
+\end{center}
+\begin{align*}
+  Z &= H(\omega)=\frac{V_s}{I}=R+j\omega L+\frac{1}{j\omega C} \\
+  Z &= R+j\left(\omega L-\frac{1}{\omega C}\right) \\
+  \operatorname{Im}(Z) &= \omega L-\frac{1}{\omega C}=0
+\end{align*}
+\[
+  \omega_0L=\frac{1}{\omega_0C} \qquad \kutula{\omega_0=\frac{1}{\sqrt{LC}}\ \text{rad/s}}
+\]
+since $\omega_0=2\pi f_0$
+\[
+  f_0=\frac{1}{2\pi\sqrt{LC}}\ \text{Hz}
+\]
+The frequency response of the circuit's current magnitude
+\[
+  I=|I|=\frac{V_m}{\sqrt{R^2+(\omega L-1/\omega C)^2}}
+\]
+\[
+  P(\omega)=\frac{1}{2}I^2R \qquad\qquad P(\omega_0)=\frac{1}{2}\,\frac{V_m^2}{R}
+\]
+\[
+  P(\omega_1)=P(\omega_2)=\frac{(V_m/\sqrt{2})^2}{2R}=\frac{V_m^2}{4R} \quad \leftarrow \text{half power}
+\]
+\[
+  \sqrt{R^2+\left(\omega L-\frac{1}{\omega C}\right)^2}=\sqrt{2}\,R
+\]
+\[
+  \omega_1=-\frac{R}{2L}+\sqrt{\left(\frac{R}{2L}\right)^2+\frac{1}{LC}} \qquad
+  \omega_2=\frac{R}{2L}+\sqrt{\left(\frac{R}{2L}\right)^2+\frac{1}{LC}}
+\]
+\[
+  \omega_0=\sqrt{\omega_1\omega_2}
+\]
+\[
+  Q=2\pi\,\frac{\text{Peak energy stored in the circuit}}{\text{Energy dissipated by the circuit in one period at resonance}}
+\]
+\[
+  Q=2\pi\,\frac{\frac{1}{2}LI^2}{\frac{1}{2}I^2R\,(1/f_0)}=\frac{2\pi f_0L}{R}
+\]
+\formulkutu{Q=\frac{\omega_0L}{R}=\frac{1}{\omega_0CR}}
+\formulkutu{\text{Bandwidth}=\frac{R}{L}=\frac{\omega_0}{Q}}
+\[
+  \omega_1\simeq\omega_0-\frac{B}{2}, \qquad \omega_2\simeq\omega_0+\frac{B}{2}
+\]
+
+\subsection{Parallel Resonance}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[I, l={$I=I_m\phase{\theta}$}] (0,2) -- (6,2);
+  \draw (2,2) to[R, l=$R$] (2,0);
+  \draw (4,2) to[L, l=$j\omega L$] (4,0);
+  \draw (6,2) to[C, l=$\frac{1}{j\omega C}$] (6,0) -- (0,0);
+  \node at (1.5,1.6) {$+$}; \node at (1.5,1) {$V$}; \node at (1.5,0.4) {$-$};
+\end{circuitikz}
+\end{center}
+\[
+  Y=H(\omega)=\frac{I}{V}=\frac{1}{R}+j\omega C+\frac{1}{j\omega L} \qquad
+  Y=\frac{1}{R}+j\left(\omega C-\frac{1}{\omega L}\right)
+\]
+\[
+  \omega_1=-\frac{1}{2RC}+\sqrt{\left(\frac{1}{2RC}\right)^2+\frac{1}{LC}} \qquad
+  \omega_2=\frac{1}{2RC}+\sqrt{\left(\frac{1}{2RC}\right)^2+\frac{1}{LC}}
+\]
+\[
+  \kutula{B=\omega_2-\omega_1=\frac{1}{RC}} \qquad
+  \kutula{Q=\frac{\omega_0}{B}=\omega_0RC=\frac{R}{\omega_0L}}
+\]
+
+\section{Passive Filters}
+\sayfa{4}
+\subsection{Low pass filter}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[V, l=$v_i(t)$] (0,2) to[R, l=$R$] (2.6,2) to[C, l_=$C$] (2.6,0) -- (0,0);
+  \node at (3,1.6) {$+$}; \node at (3.4,1) {$v_o(t)$}; \node at (3,0.4) {$-$};
+\end{circuitikz}
+\end{center}
+\[
+  H(\omega)=\frac{V_o}{V_i}=\frac{1/j\omega C}{R+1/j\omega C} \qquad
+  H(\omega)=\frac{1}{1+j\omega RC}
+\]
+$\star$\ $H(0)=1$, \ $H(\infty)=0$
+\[
+  \underset{\text{cutoff frequency}}{H(\omega_c)}=\frac{1}{\sqrt{1+\omega_c^2R^2C^2}}=\frac{1}{\sqrt{2}}
+  \qquad \kutula{\omega_c=\frac{1}{RC}}
+\]
+
+\subsection{High pass filter}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[V, l=$v_i(t)$] (0,2) to[C, l=$C$] (2.6,2) to[R, l_=$R$] (2.6,0) -- (0,0);
+  \node at (3,1.6) {$+$}; \node at (3.4,1) {$v_o(t)$}; \node at (3,0.4) {$-$};
+\end{circuitikz}
+\end{center}
+\[
+  H(\omega)=\frac{V_o}{V_i}=\frac{R}{R+1/j\omega C} \qquad
+  H(\omega)=\frac{j\omega RC}{1+j\omega RC}
+\]
+$\star$\ $H(0)=0$, \ $H(\infty)=1$ \ $\Rightarrow$ \ $\omega_c=\dfrac{1}{RC}$
+
+\subsection{Band pass filter}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[V, l=$v_i(t)$] (0,2) to[L, l=$L$] (2,2) to[C, l=$C$] (3.6,2) to[R, l_=$R$] (3.6,0) -- (0,0);
+  \node at (4,1.6) {$+$}; \node at (4.4,1) {$v_o(t)$}; \node at (4,0.4) {$-$};
+\end{circuitikz}
+\end{center}
+\[
+  H(\omega)=\frac{V_o}{V_i}=\frac{R}{R+j(\omega L-1/\omega C)} \qquad
+  \omega_0=\frac{1}{\sqrt{LC}}
+\]
+
+\subsection{Bandstop filter}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[V, l=$v_i(t)$] (0,3) to[R, l=$R$] (2.6,3) to[C, l_=$C$] (2.6,1.5) to[L, l_=$L$] (2.6,0) -- (0,0);
+  \node at (3,2.6) {$+$}; \node at (3.4,1.5) {$v_o(t)$}; \node at (3,0.4) {$-$};
+\end{circuitikz}
+\end{center}
+\[
+  H(\omega)=\frac{V_o}{V_i}=\frac{j(\omega L-1/\omega C)}{R+j(\omega L-1/\omega C)}
+\]
+Notice that $H(0)=1$, $H(\infty)=1$
+
+and \ $\omega_0=\dfrac{1}{\sqrt{LC}}$ \quad //
+
+\end{document}

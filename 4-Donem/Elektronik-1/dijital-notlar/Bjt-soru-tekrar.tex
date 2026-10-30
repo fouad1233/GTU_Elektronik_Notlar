@@ -1,0 +1,289 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik I}{BJT soru tekrarı -- çalışma bölgeleri ve DC analiz örnekleri}{Bjt-soru-tekrar.pdf}
+
+\section{npn Junction}
+\noindent\sayfa{1}%
+\begin{minipage}[c]{0.6\linewidth}
+\[
+  i_C=I_S\,e^{V_{BE}/V_T} \qquad \text{\small ($I_S$ $\hookrightarrow$ saturation current)}
+\]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.35\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw[color=kirmizikalem] (0,0) node[npn](Q){};
+  \draw[color=kirmizikalem] (Q.B) node[left]{$B$};
+  \draw[color=kirmizikalem] (Q.C) node[right]{$C$};
+  \draw[color=kirmizikalem] (Q.E) node[left]{$E$} node[right]{$n$};
+  \node[text=kirmizikalem] at (-0.6,-1.1) {npn};
+\end{circuitikz}
+\end{minipage}
+\[
+  \kutula{i_B=\frac{i_C}{\beta}} \qquad
+  \kutula{i_E=\frac{\beta+1}{\beta}\,i_C}=\frac{1}{\alpha}\,i_C=(\beta+1)\,i_B
+\]
+\[
+  i_C=\alpha\,i_E
+\]
+\begin{center}
+\begin{tabular}{llll}
+  \toprule
+      & Active & Sat & Cutoff \\ \midrule
+  EBJ & \textcolor{kirmizikalem}{Forward bias} & \textcolor{kirmizikalem}{Forward bias} & \textcolor{kirmizikalem}{Reverse bias} \\
+  CBJ & \textcolor{kirmizikalem}{Reverse bias} & \textcolor{kirmizikalem}{Forward bias} & \textcolor{kirmizikalem}{Reverse bias} \\
+  \bottomrule
+\end{tabular}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\underline{In npn}
+\sekilnotu[1]{npn sembolü ($B$: $p$, $C$ ve $E$: $n$); BC ve BE eklemleri birer diyot olarak yanına çizilmiş.}
+\begin{tabular}{@{}l@{\ }l@{}}
+  Active: & $V_{BE}\geq 0{,}7$, $V_{BC}\leq 0{,}4$ V \\
+  Cutoff: & $V_{BE}<0{,}7$, $V_{BC}\leq 0{,}4$ V \\
+  Saturation: & $V_{BE}\geq 0{,}7$, $V_{BC}>0{,}4$ V
+\end{tabular}
+\end{minipage}\hfill\vrule\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\underline{In pnp}
+\sekilnotu[1]{pnp sembolü ($E$ ve $C$: $p$, $B$: $n$), $I_E$ oku; EB ve CB eklemleri renkli kalemle diyot olarak çizilmiş.}
+\begin{tabular}{@{}l@{\ }l@{}}
+  Active: & $V_{EB}\geq 0{,}7$, $V_{CB}\leq 0{,}4$ V \\
+  Cutoff: & $V_{EB}<0{,}7$, $V_{CB}\leq 0{,}4$ V \\
+  Saturation: & $V_{EB}>0{,}7$ V, $V_{CB}>0{,}4$ V
+\end{tabular}
+\end{minipage}
+
+\begin{ornek}[1]
+\textcolor{kirmizikalem}{Analyze the circuit below calculate all node voltages and branch currents. Assume that $\beta$ is specific to be 100. $V_{BE}=0{,}7$ V}
+
+\noindent
+\begin{minipage}[c]{0.42\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[npn](Q){};
+  \draw (Q.C) to[R, l_={$4{,}7\,\text{k}\Omega$}] ++(0,2) node[above]{$10$ V};
+  \draw (Q.C) -- ++(0.8,0) node[ocirc]{} node[above]{$C$};
+  \draw (Q.E) -- ++(0,-0.1) coordinate(EE) to[R, l={$3{,}3\,\text{k}\Omega$}] ++(0,-1.8) node[ground]{};
+  \draw (EE) -- ++(0.8,0) node[ocirc]{} node[right]{$V_E=3{,}3$ V};
+  \draw (Q.B) -- ++(-1.2,0) coordinate(BB) to[V, invert, l_=$4$ V] ++(0,-1.8) node[ground]{};
+  \path (Q.C) ++(1.9,1.1) node{$\downarrow I_C$};
+  \path (Q.E) ++(1.9,-1.1) node{$\downarrow I_E$};
+  \path (Q.B) ++(-0.6,0.3) node{$I_B\!\rightarrow$};
+  \path (Q.B) ++(-0.2,-1.2) node[text=yesilkalem]{$+\,0{,}7\,-$};
+\end{circuitikz}
+
+npn
+\end{minipage}\hfill
+\begin{minipage}[c]{0.55\linewidth}
+Assume that transistor operate in active mode.
+\begin{align*}
+  I_E &= \frac{3{,}3\ \text{V}}{3{,}3\text{k}}=1\ \text{mA} \\
+  I_E &= \frac{1}{\alpha}\,I_C \\
+  I_C &= \alpha I_E=\frac{\beta}{\beta+1}\,I_E=\frac{100}{101}\,1=0{,}99\ \text{mA}
+\end{align*}
+\[
+  I_E=I_B+I_C \qquad I_B=I_E-I_C=1\ \text{mA}-0{,}99\ \text{mA}=10\ \mu\text{A}
+\]
+\end{minipage}
+\end{ornek}
+
+\sayfa{2}
+\noindent
+\begin{minipage}[c]{0.42\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[npn](Q){};
+  \draw (Q.C) to[R, l_={$4{,}7\,\text{k}\Omega$}] ++(0,2) node[above]{$10$ V};
+  \draw (Q.C) -- ++(0.8,0) node[ocirc]{} node[above]{$C$};
+  \draw (Q.E) -- ++(0,-0.1) coordinate(EE) to[R, l={$3{,}3\,\text{k}\Omega$}] ++(0,-1.8) node[ground]{};
+  \draw (EE) -- ++(0.8,0) node[ocirc]{} node[right]{$V_E=$};
+  \draw (Q.B) -- ++(-1.2,0) coordinate(BB) to[V, invert, l_=$5$ V] ++(0,-1.8) node[ground]{};
+  \path (Q.C) ++(1.9,1.1) node{$\downarrow I_C$};
+  \path (Q.E) ++(1.9,-1.1) node{$\downarrow I_E$};
+  \path (Q.B) ++(-0.6,0.3) node{$I_B\!\rightarrow$};
+  \path (Q.E) ++(0.9,0.5) node{$4{,}3$ V};
+\end{circuitikz}
+
+npn
+\end{minipage}\hfill
+\begin{minipage}[c]{0.55\linewidth}
+\centering $V_{CE}\cong 0{,}2$ V\\
+Assume in Active mode
+\begin{align*}
+  I_E &= \frac{4{,}3}{3{,}3\text{k}}=1{,}30\ \text{mA} \\
+  I_C &= \frac{\beta}{\beta+1}\cdot 1{,}30=1{,}287\ \text{mA} \\
+  \Rightarrow\ V_C &= 10-(4{,}7\times 1{,}287) \\
+  &= 3{,}95 \\
+  V_{BC} &= 1{,}05\ \overset{?}{\leq}\ 0{,}4\ \text{V} \quad \times
+\end{align*}
+\centering Not in active mode
+\end{minipage}
+
+\medskip
+\noindent
+\begin{minipage}[c]{0.42\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[npn](Q){};
+  \draw (Q.C) to[R, l_={$4{,}7\,\text{k}\Omega$}] ++(0,2) node[above]{$10$ V};
+  \draw (Q.C) -- ++(0.8,0) node[ocirc]{} node[right]{$4{,}5$ V};
+  \draw (Q.E) -- ++(0,-0.1) coordinate(EE) to[R, l={$3{,}3\,\text{k}\Omega$}] ++(0,-1.8) node[ground]{};
+  \draw (EE) -- ++(0.8,0) node[ocirc]{} node[right]{$V_E=4{,}3$ V};
+  \draw (Q.B) -- ++(-1.2,0) coordinate(BB) to[V, invert, l_=$5$ V] ++(0,-1.8) node[ground]{};
+  \path (Q.C) ++(1.9,1.1) node{$\downarrow I_C$};
+  \path (Q.E) ++(1.9,-1.1) node{$\downarrow I_E$};
+  \path (Q.B) ++(-0.6,0.3) node{$I_B\!\rightarrow$};
+  \path (BB) ++(0.6,-1.6) node{$\circlearrowright_1$};
+\end{circuitikz}
+
+npn
+\end{minipage}\hfill
+\begin{minipage}[c]{0.55\linewidth}
+In sat $=$ ?\\
+$V_{CE\,sat}=0{,}2$ V
+\begin{align*}
+  I_E &= 1{,}30\ \text{mA} \\
+  I_C &= \frac{10-4{,}5}{4{,}7\text{k}}=1{,}17\ \text{mA} \\
+  I_B &= 0{,}13\ \text{mA} \quad /\!/
+\end{align*}
+\[
+  \beta_{sat}=\frac{I_C}{I_B}=\frac{1{,}17}{0{,}13}=9 \quad /\!/
+\]
+\end{minipage}
+
+\begin{ornek}[2]
+\textcolor{kirmizikalem}{Calculate all node voltages and branch currents for the circuit below. $V_{BE}=0{,}7$ V, $\beta=99$}
+
+\noindent
+\begin{minipage}[c]{0.45\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt, color=kirmizikalem]
+  \draw (0,0) node[npn](Q){};
+  \draw (Q.C) to[R, l_={$2\,\text{k}\Omega$}] ++(0,1.8) node[above]{$10$ V};
+  \draw[->] (Q.C) -- ++(1,0) node[right]{$V_C=1{,}42$ V};
+  \draw (Q.E) -- ++(0,-0.4) node[ground]{};
+  \draw[->] (Q.E) -- ++(1,0) node[right]{$V_E$};
+  \draw (Q.B) to[R, l_={$100\,\text{k}\Omega$}] ++(-2,0) coordinate(BB) to[V, invert, l_=$5$ V] ++(0,-1.6) node[ground]{};
+  \path (Q.B) ++(0.15,-0.35) node{$+$};
+  \path (Q.E) ++(-0.3,-0.2) node{$-$};
+  \path (Q.B) ++(-0.9,-1.1) node{$\circlearrowleft$};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+\[
+  -5+100\text{k}\,I_B+0{,}7=0
+\]
+\begin{align*}
+  I_B &= \frac{4{,}3}{100\text{k}}=43\ \mu\text{A} \\
+  I_C &= \beta\cdot I_B=4{,}29\ \text{mA}\ \text{\stepcounter{footnote}\textsuperscript{\thefootnote}}
+\end{align*}
+\end{minipage}
+\end{ornek}
+\footnotetext[\value{footnote}]{Claude notu: $99\cdot 43\ \mu$A $\approx 4{,}26$ mA olmalı (bu durumda $V_C\approx 1{,}49$ V).}
+
+\sayfa{3}
+\noindent
+\begin{minipage}[t]{0.55\linewidth}
+\[
+  V_C=10-(4{,}28\ \text{mA}\cdot 2\,\text{k}\Omega)=1{,}42\ \text{V} \ /\!/
+\]
+\[
+  V_{BC}\leq 0{,}4 \quad \checkmark
+\]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.4\linewidth}
+\begin{align*}
+  V_B &= 5-100\text{k}\cdot 43\ \mu\text{A} \\
+      &= 5-100\cdot 43\ \okunamadi{mA} \\
+      &= 5-\okunamadi{4{,}3} \\
+      &= 0{,}7\ \text{V}
+\end{align*}
+\end{minipage}
+
+\begin{ornek}[3]
+\textcolor{kirmizikalem}{Calculate all branch currents and node voltages} \hfill $\beta=30$
+
+\noindent
+\begin{minipage}[c]{0.45\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt, color=kirmizikalem]
+  \draw (0,0) node[pnp](Q){};
+  \draw (Q.E) -- ++(0,0.3) coordinate(EE) to[R, l_={$1\,\text{k}\Omega$}] ++(0,1.8) node[above]{$5$ V};
+  \draw (EE) -- ++(1,0) node[right]{$V+0{,}7$};
+  \path (EE) ++(0.35,0.25) node{$E$};
+  \draw (Q.C) -- ++(0,-0.3) coordinate(CC) to[R, l={$10\,\text{k}\Omega$}] ++(0,-1.8) node[below]{$-5$ V};
+  \draw (CC) -- ++(1,0) node[right]{$V+0{,}5$};
+  \path (CC) ++(-0.3,0.25) node{$C$};
+  \draw (Q.B) to[R, l={$10\,\text{k}\Omega$}] ++(-1.8,0) node[ground]{};
+  \path (Q.B) ++(-1.8,0.35) node{$B$};
+  \path (Q.B) ++(-0.35,0.7) node{$V\,\uparrow$};
+  \draw[->, line width=0.8pt] (-2.2,2.3) to[out=0, in=80] (-2.4,1.2);
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+$V_{EC\,sat}=0{,}2$ V\\
+\underline{Assume in active mode}
+\begin{align*}
+  & -5+31\,I_B+0{,}7+10\text{k}\,I_B=0 \\
+  & 41\text{k}\,I_B=4{,}3\ \text{V} \\
+  & I_B=0{,}11\ \text{mA},\ 110\ \mu\text{A} \\
+  & I_C=3{,}3\ \text{mA} \\
+  & I_E\cong 3{,}4\ \text{mA} \\
+  & V_C=28\ \text{V} \quad \text{not possible}
+\end{align*}
+\end{minipage}
+
+\medskip
+Assume sat\\
+$\square$
+\end{ornek}
+
+\noindent\sayfa{4}
+\sekilnotu[4]{Basılı materyal (kitaptan ekran görüntüsü): \textit{Example 6.10} -- Fig.\ 6.28(a) devresindeki tüm düğüm gerilimlerini ve kol akımlarını bulma sorusu ($\beta=100$; $+15$ V, $R_{B1}=100$ k$\Omega$, $R_{B2}=50$ k$\Omega$, $R_C=5$ k$\Omega$, $R_E=3$ k$\Omega$); dijitalleştirilmedi.}
+
+\noindent
+\begin{minipage}[c]{0.45\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[V] (0,3) -- (1.6,3) to[R, l={$100\,\text{k}\Omega$}] (1.6,1.5) to[R, l={$50\,\text{k}\Omega$}] (1.6,0) -- (0,0);
+  \draw (1.6,1.5) -- (3,1.5) node[ocirc]{};
+  \draw (1.6,0) -- (3,0) node[ocirc]{};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+\[
+  V_{oc}=\frac{50\cdot 15}{150}=\frac{50}{10}=5\ \text{V}
+\]
+\end{minipage}
+
+\noindent
+\begin{minipage}[c]{0.45\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) to[V] (0,2) -- (1.6,2) to[R, l={$100\,\text{k}\Omega$}] (1.6,0) -- (0,0);
+  \node at (0.6,-0.5) {$V=I\cdot R$};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+\[
+  \frac{15}{100\text{k}}=0{,}15\ \text{mA}
+\]
+\[
+  R_{th}=\frac{5\ \text{V}}{0{,}15\ \text{mA}}\cong 33{,}3\ \text{k}\Omega
+\]
+\end{minipage}
+
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[npn](Q){};
+  \draw (Q.C) to[R, l_={$R_C=5\,\text{k}\Omega$}] ++(0,1.6) node[vcc]{};
+  \draw (Q.E) to[R, l={$R_E=3\,\text{k}\Omega$}] ++(0,-1.8) node[ground]{};
+  \draw (Q.B) to[R, l_={$33{,}3\,\text{k}$}] ++(-2.2,0) coordinate(BB) to[V, invert, l_=$5$ V] ++(0,-1.6) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\end{document}

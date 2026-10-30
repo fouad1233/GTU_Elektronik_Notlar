@@ -1,0 +1,69 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{İşaretler ve Sistemler}{Ders 11 -- Soru çözümleri (DTFT ile konvolüsyon ve fark denklemi)}{Isaret-ve-Sistemler-ders-11_Soru.pdf}
+
+\sayfa{1}
+\begin{ornek}[]
+  $x[n]=\alpha^nu[n]$, \ $|\alpha|<1$ \qquad $y[n]=\,?$\\
+  $h[n]=\beta^nu[n]$, \ $|\beta|<1$
+\end{ornek}
+\[
+  y[n]=x[n]*h[n]=\mathcal{F}^{-1}\bigl\{Y(e^{j\omega})=X(e^{j\omega})H(e^{j\omega})\bigr\}
+\]
+Reminder: \quad $\alpha^nu[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ \dfrac{1}{1-\alpha e^{-j\omega}}$
+\[
+  Y(e^{j\omega})=\frac{1}{(1-\alpha e^{-j\omega})(1-\beta e^{-j\omega})}=\frac{A}{1-\alpha e^{-j\omega}}+\frac{B}{1-\beta e^{-j\omega}}
+\]
+\[ \Big\updownarrow\,\mathcal{F}^{-1} \]
+\[
+  y[n]=A\alpha^nu[n]-B\beta^nu[n]\text{\footnotemark}
+\]
+\footnotetext{Claude notu: $B=-\beta/(\alpha-\beta)$ alındığı için muhtemelen $y[n]=A\alpha^nu[n]+B\beta^nu[n]$ olmalı (sonuç doğru).}
+\[
+  A=\frac{\alpha}{\alpha-\beta}\qquad\qquad B=\frac{{\color{turuncukalem}-}\beta}{\alpha-\beta}
+\]
+\[
+  y[n]=\frac{1}{\alpha-\beta}\Bigl[\alpha\,\alpha^nu[n]-\beta\,\beta^nu[n]\Bigr]=\frac{1}{\alpha-\beta}\bigl(\alpha^{n+1}-\beta^{n+1}\bigr)u[n]
+\]
+
+\begin{ornek}[]
+  $\alpha=\beta$ ise $y[n]=\,?$
+\end{ornek}
+\[ Y(e^{j\omega})=\frac{1}{(1-\alpha e^{-j\omega})^2} \]
+\begin{align*}
+  \text{Reminder:}\quad x[n]=\alpha^nu[n]\ &\overset{\mathcal{F}}{\longleftrightarrow}\ X(e^{j\omega})=\frac{1}{1-\alpha e^{-j\omega}}\\
+  n\,x[n]\ &\overset{\mathcal{F}}{\longleftrightarrow}\ j\,\frac{dX(e^{j\omega})}{d\omega}\\
+  x[n-n_0]\ &\overset{\mathcal{F}}{\longleftrightarrow}\ e^{-j\omega n_0}X(e^{j\omega})
+\end{align*}
+\[
+  \frac{dX(e^{j\omega})}{d\omega}=-j\alpha e^{-j\omega}\,\frac{1}{(1-\alpha e^{-j\omega})^2}=-j\alpha e^{-j\omega}\,Y(e^{j\omega})
+\]
+\[
+  Y(e^{j\omega})=\frac1\alpha\underset{\substack{\downarrow\\ \text{Zamanda öteleme}}}{e^{j\omega}}\;
+  \underbrace{j\,\frac{dX(e^{j\omega})}{d\omega}}_{\substack{\text{Frekansta türev}\\ \downarrow\\ n\alpha^nu[n]}}
+  \ \overset{\mathcal{F}^{-1}}{\longleftrightarrow}\
+  y[n]=\frac1\alpha(n+1)\alpha^{n+1}u[n+1]=\underset{\substack{\downarrow\\ y[-1]=0}}{(n+1)\alpha^nu[n]}
+\]
+\[
+  (n+1)\alpha^nu[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ \frac{1}{(1-\alpha e^{-j\omega})^2}
+\]
+
+\sayfa{2}
+\begin{ornek}[]
+  $y[n]-\frac34y[n-1]+\frac18y[n-2]=2x[n]$ \ ise \ $h[n]=\,?$
+\end{ornek}
+\[
+  Y(e^{j\omega})-\frac34e^{-j\omega}Y(e^{j\omega})+\frac18e^{-j2\omega}Y(e^{j\omega})=2X(e^{j\omega})
+\]
+\[
+  H(e^{j\omega})=\frac{Y(e^{j\omega})}{X(e^{j\omega})}=\frac{2}{1-\frac34e^{-j\omega}+\frac18e^{-j2\omega}}
+  =\frac{A}{1-\frac12e^{-j\omega}}+\frac{B}{1-\frac14e^{-j\omega}},\qquad
+  \begin{array}{l}A=4\\ B=-2\end{array}
+\]
+\[ \Big\updownarrow\,\mathcal{F}^{-1} \]
+\[
+  h[n]=4\Bigl(\frac12\Bigr)^nu[n]-2\Bigl(\frac14\Bigr)^nu[n]
+\]
+
+\end{document}

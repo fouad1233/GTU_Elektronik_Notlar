@@ -1,0 +1,178 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Diferansiyel Denklemler}{Vize sonrası -- Cauchy--Euler, mertebe indirgeme, seri çözümleri, Laplace, konvolüsyon teoremi}{diferansiyel-not-vize-sonrasi-konvulasyon-teoremi.pdf}
+
+\section{Cauchy-Euler denkleminin çözülmesi}
+\sayfa{1}
+\[ a_0x^ny^{(n)} + a_1x^{n-1}y^{(n-1)} + \cdots + a_{n-1}xy' + a_ny = f(x) \]
+\[ \kutula{x=e^t} \qquad \kutula{t=\ln x} \]
+Bu denklemin de karakteristik denklemi
+\begin{multline*}
+a_0k(k-1)\cdots(k-n+1) + a_1k(k-1)\cdots(k-n+2)\\
++ \cdots + a_{n-2}k(k-1) + a_{n-1}k + a_n = 0
+\end{multline*}
+
+\begin{ornek}
+$x^2y'' + xy' + y = 4\sin(\ln x)$
+\end{ornek}
+\begin{enumerate}[label=\arabic*.]
+\item Karakteristik denklem
+\[ r(r-1) + r + 1 = 0 \;\rightarrow\; r^2+1 = 0 \]
+\[ y''_t + y_t = 4\sin t \]
+\item Homojen denklem
+\[ y''_t + y_t = 0 \;\Rightarrow\; r^2+1 \;\Rightarrow\; r_1 = i,\ r_2 = -i \]
+\[ y_h(t) = c_1\cos t + c_2\sin t \]
+\end{enumerate}
+Özel çözüm bulunur
+\[ y_p(t) = t(A\cos t + B\sin t) \]
+belirsiz katsayılar
+\[ \Rightarrow\; y_p(t) = -2t\cos t \]
+
+\sayfa{2}
+O zaman
+\[ y(t) = c_1\cos t + c_2\sin t - 2t\cos t \]
+$t=\ln x$
+\[ y(x) = c_1\cos(\ln x) + c_2\sin(\ln x) - 2\ln x\cos(\ln x)\,; \qquad c_1,c_2\in\mathbb{R} \]
+
+\section{Mertebelerin indirgenmesi}
+\sayfa{3}
+\[ a_0(x)y^{(n)} + a_1(x)y^{(n-1)} + \cdots + a_{n-1}(x)y' + a_n(x)y = 0 \]
+denklemi verilsin\\
+$y_1 = y_1(x)$ çözümü bilinsin.
+
+Bu durumda
+
+``$y = u\cdot y_1$ \ ; \ $u=u(x)$'' dönüşümüyle
+
+ve daha sonraki adımda
+
+$u'=v$ dönüşümüyle denklemin mertebesi düşer. Böylece $(n-1)$. mertebe denklem elde edilir
+
+\section{Hatırlatma}
+\sayfa{4}
+\[ \text{Taylor serisi} = \sum_{n=0}^{\infty} \frac{f^{(n)}(x_0)}{n!}\,(x-x_0)^n \]
+$\ast$ Eğer $x=x_0$ noktasında $f(x)$ fonksiyonunun taylor serisi $x_0$ noktasının civarında yakınsaksa ve yakınsak olduğu fonksiyon $f(x)$'e eşitse, ``$f(x)$ fonksiyonu $x_0$ noktasında analitiktir'' denir.
+
+\section{Serisel Çözümler}
+\[ y'' + p(x)y' + q(x)y = 0 \]
+2. mertebeden lineer ve homojen diferansiyel denklem verilsin.
+\begin{itemize}[label=--]
+\item Eğer, $p(x)$ ve $q(x)$ katsayıları bir $x_0$ noktasında \vurgu[pembe]{analitik} olurlarsa $x_0$ noktasına denklemin \vurgu[pembe]{adi noktası} denir.
+\item Eğer, $p(x)$ ve $q(x)$ fonksiyonlarından birisi veya herikisi $x_0$ noktasında analitik değillerse, $x_0$ noktasına denklemin ``tekil (singüler) noktası'' denir.
+\end{itemize}
+
+\sayfa{5}
+$\ast$ Eğer $x=x_0$ noktası denklemin adi noktası olursa, bu durumda denklemin her çözümü bir $|x-x_0|<r$ \ $(r>0)$ aralığında yakınsak olan
+\[ \sum_{n=0}^{\infty} c_n(x-x_0)^n \quad \text{şeklinde} \]
+fonksiyonlardır.
+
+\subsection{Adi nokta civarında çözüm yolu}
+\begin{enumerate}[label=\arabic*.]
+\item Denklemi normal forma dönüştür yani
+\[ y'' + p(x)y' + q(x)y = 0 \]
+\item Bir adi nokta $x_0$ olarak seçilir.
+\item $\displaystyle y = \sum_{n=0}^{\infty} c_n(x-x_0)^n$ şeklinde seçilir
+\end{enumerate}
+$c_n$ katsayılarını bulmak için türevleri alıp, denklemde (ilk denklem) yerine yazarız.\\
+(Not $x_0\neq 0$ dan ise $x-x_0=t$ denilerek çözüme ulaşılır böylece daha kolay olur)
+
+\sayfa{6}
+\begin{enumerate}[label=\arabic*.,start=4]
+\item katsayılar bulunduktan sonra serinin birkaç terimini yazarız
+\item Başlangıç değer problemi ise başlangıç koşulları koyulup kalan katsayılar bulunur
+\item $t=x-x_0$ koyulur ve $y(x)$ bulunur
+\item genel çözüm\\
+sırasıyla \quad $c_0=0,\ c_1=1$\\
+sonra \quad $c_0=1$ ve $c_1=0$\\
+vererek iki temel çözüm bulunur
+
+ve çözüm bunların lineer kombinasyonudur
+\end{enumerate}
+
+\sayfa{7}
+$\ast$ Eğer $x=x_0$ denklemin bir tekil noktasıysa ancak $(x-x_0)p(x)$ ve $(x-x_0)^2q(x)$ fonksiyonları $x=x_0$ noktasında analitik fonksiyonlar olursa $x=x_0$ noktasına denklemin ``regular tekil noktası'' denir.
+
+\subsection{Forbenius yöntemi;}
+Eğer $x=x_0$ noktası denklemin regular tekil noktası olursa bu nokta civarında denklemin
+\[ y(x) = |x-x_0|^r \sum_{n=0}^{\infty} c_n(x-x_0)^n, \quad c_0\neq 0 \]
+genelleştirilmiş kuvvet serisi şeklinde çözümü var oluyor.
+
+$\ast$ Genelleştirilmiş kuvvet serisi yardımıyla çözüm yapılırken öncelikle
+\[ \kutula{r(r-1) + p_0r + q_0} = 0 \]
+denkleminden $r_1$ ve $r_2$ bulunur.
+\[ p_0 = \lim_{x\to 0} x\,p(x) \quad\text{ve}\quad q_0 = \lim_{x\to 0} x^2q(x) \ \text{dir.} \]
+Bu denkleme $x=0$ regüler tekil noktası için ``indis denklemi'' denir.
+
+\sayfa{8}
+Daha sonrasında aşağıdaki durumlar geçerli olur
+
+\noindent 1) \underline{$r_1-r_2\neq 0,1,2,3,\cdots$ (negatif olmayan tamsayı değil)} ise
+\begin{align*}
+y_1(x) &= x^{r_1}\cdot\sum_{n=0}^{\infty} c_nx^n, \quad c_0\neq 0 \quad\text{ve}\\
+y_2(x) &= x^{r_2}\cdot\sum_{n=0}^{\infty} c_n^{*}x^n, \quad c_0^{*}\neq 0
+\end{align*}
+2) \underline{$r_1-r_2 = 1,2,3,\cdots$ (doğal sayılar)} ise
+\begin{align*}
+y_1(x) &= x^{r_1}\cdot\sum_{n=0}^{\infty} c_nx^n, \quad c_0\neq 0\\
+&\text{ve}\\
+y_2(x) &= x^{r_2}\sum_{n=0}^{\infty} c_n^{*}x^n + c\,y_1(x)\ln x \qquad c_0^{*}\neq 0,\ \ c \text{ constant}
+\end{align*}
+3) \underline{$r_1-r_2=0$ ise}
+\begin{align*}
+y_1(x) &= x^{r_1}\cdot\sum_{n=0}^{\infty} c_nx^n, \quad c_0\neq 0 \quad\text{ve}\\
+y_2(x) &= x^{r_1+1}\sum_{n=0}^{\infty} c_n^{*}x^n + y_1(x)\ln x
+\end{align*}
+(2) ve (3) durumlarında $y_2(x)$ çözümleri $y_1(x)$ çözümü bilindikten sonra mertebe düşürmekle elde edilir
+
+\section{Laplace}
+\sayfa{9}
+Bir $f(x)$, $x>0$ fonksiyonu verilmiş olsun. Bu durumda,
+\[ \kutula{F(s) = \int_0^{\infty} e^{-sx}f(x)\,dx} \]
+integrali tanımlı ise bu $F$ fonksiyonuna $f$'in Laplace dönüşümü denir.
+\[ F(s) = \mathcal{L}(f(x) \qquad\text{ve}\qquad \mathcal{L}^{-1}(F(s)) = f(x) \]
+$\ast$ $f(x)$, $x>0$ fonksiyonu ve $a>0$ için
+\[ \begin{cases} 0 & 0<x<a\\ f(x-a) & x>a \end{cases} \qquad \text{fonksiyonuna} \]
+``geçiş fonksiyonu'' denir.
+
+Birim basamak fonksiyonun
+\[ u_a(x) = \begin{cases} 0, & 0<x<a\\ 1, & x>a \end{cases} \qquad \text{tanımına göre} \]
+
+\sayfa{10}
+geçiş fonksiyonu için
+\[ u_a(x)\,f(x-a) = \begin{cases} 0, & 0<x<a\\ f(x-a), & x>a \end{cases} \quad \text{olur} \]
+$\ast$ Bazı fonksiyonların Laplace dönüşümleri aşağıdaki gibidir
+\begin{center}
+\renewcommand\arraystretch{1.5}
+\begin{tabular}{c|l}
+$f(x),\ x>0$ & \quad $F(s)=\mathcal{L}(f(x))$ \\ \hline
+$1$ & \quad $1/s$ \\
+$x$ & \quad $1/s^2$ \\
+$x^n$ & \quad $n!/s^{n+1}$ \\
+$e^{ax}$ & \quad $1/s-a$ \\
+$\sin(ax)$ & \quad $\dfrac{a}{s^2+a^2}$ \\
+$\cos(ax)$ & \quad $\dfrac{s}{s^2+a^2}$ \\[2mm]
+\multicolumn{1}{l|}{Özellikler} & \\
+$e^{ax}f(x)$ & \quad $F(s-a)$ \\
+$f^{(n)}(x)$ & \quad $s^nF(s) - s^{n-1}f(0)$ \\
+ & \quad $-\,s^{n-2}f'(0) - \cdots$ \\
+ & \quad $-\,f^{(n-1)}(0)$ \\
+$x^nf(x)$ & \quad $(-1)^nF^{(n)}(s)$ \\
+$u_a(x)f(x-a)$ & \quad $e^{-as}F(s),\ a>0$
+\end{tabular}
+\end{center}
+
+\section{Konvulasyon teoremi}
+\sayfa{11}
+$\ast$ Eksponsiyonel dereceli ve her $0\le x\le b$ aralığında parçalı sürekli $f$ ve $g$ fonksiyonlarının konvolusyonu
+\formulkutu{f(x) * g(x) = \int_0^{x} f(z)\,g(x-z)\,dz}
+integrali ile belirlenmiş $f*g$ fonksiyonuna denir.
+
+Ayrıca, \ $f*g = g*f$ dir
+
+$\ast$ Eğer $f$ ve $g$ fonksiyonları $e^{at}$ exsponansiyonel dereceli ve her $0\le x\le b$ aralığında parçalı sürekli iki fonksiyon olursa, o halde $f*g$ konvolüsyonun Laplace dönüşümü
+\[ \mathcal{L}[f*g] = \mathcal{L}[f]\cdot\mathcal{L}[g] \]
+ve
+\[ \mathcal{L}^{-1}[F(s)\cdot G(s)] = \mathcal{L}^{-1}[F(s)] * \mathcal{L}^{-1}[G(s)] \]
+
+\end{document}

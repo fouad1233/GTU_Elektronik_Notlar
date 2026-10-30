@@ -1,0 +1,557 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{İşaretler ve Sistemler}{Ders 1 -- İşaretler: enerji, güç ve temel işlemler}{Isaret-ve-Sistemler-ders-1.pdf}
+
+\section{İşaretler ve Sistemler}
+\sayfa{1}
+\begin{tanim}[(İşaret -- signal)]
+  Herhangi bir fiziki olay hakkında bilgi taşıyan, bir veya daha fazla bağımsız değişkeni olan fonksiyondur.
+\end{tanim}
+
+\subsection{Sürekli zamanlı işaret (continuous-time signal)}
+\begin{minipage}[c]{0.6\linewidth}
+  $x(t)$\\
+  \quad $\hookrightarrow$ bağımsız değişkeni $t$ süreklidir.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.36\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.8]
+    \draw[->] (-1.8,0) -- (2,0) node[right] {$t$};
+    \draw[->] (0,-0.8) -- (0,1.2) node[above] {$x(t)$};
+    \draw[murekkep, thick, smooth] plot[domain=-1.6:1.6, samples=60] (\x, {0.6*sin(deg(3*\x))+0.25*sin(deg(5*\x+1))});
+  \end{tikzpicture}
+\end{minipage}
+
+ör: Ses işareti akustik basıncın zamana bağlı bir fonksiyonudur.\\
+\phantom{ör: }Resim parlaklığın iki uzamsal $(x,y)$ değişkene bağlı bir fonksiyonudur.
+
+\subsection{Ayrık zamanlı işaret (discrete-time signal)}
+\begin{minipage}[c]{0.6\linewidth}
+  $x[n]$\\
+  \quad $\hookrightarrow$ bağımsız değişkeni $n$ süreksizdir ($n\in\mathbb{Z}$, tamsayı değerleri alır.)
+\end{minipage}\hfill
+\begin{minipage}[c]{0.36\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.75]
+    \draw[->] (-2.8,0) -- (2.8,0) node[right] {$n$};
+    \draw[->] (0,-0.7) -- (0,1.7) node[above] {$x[n]$};
+    \foreach \k in {-2,-1,1,2} \draw (\k,0.06) -- (\k,-0.06) node[below] {\small$\k$};
+    \node[below left] at (0,0) {\small$0$};
+    \draw[murekkep, thick] (-2,0) -- (-2,1.2);
+    \fill[murekkep] (-2,1.2) circle (2pt) node[above] {$x[-2]$};
+    \draw[murekkep, thick] (1,0) -- (1,0.8);
+    \fill[murekkep] (1,0.8) circle (2pt) node[right] {$x[1]$};
+    \draw[dashed, kursunkalem] (0,0.8) -- (1,0.8);
+  \end{tikzpicture}
+\end{minipage}
+
+ör: Yıllık nüfus sayısı
+
+Ayrık zamanlı işaret;
+\begin{itemize}[label=--]
+  \item olayın doğası gereği ayrık değerler alabilir.
+  \item sürekli zamanlı işaretin zamanda belli aralıklarla örneklenmesiyle elde edilebilir.
+\end{itemize}
+\[ x(t) \xrightarrow[\text{Sampling}]{@\,nT_s} x(nT_s) \equiv x[n] \]
+
+\subsection{Enerji (energy of a signal)}
+\begin{align*}
+  E_x &= \int_{-\infty}^{\infty} |x(t)|^2\,dt = \lim_{T\to\infty} \int_{-T}^{T} |x(t)|^2\,dt \\
+  E_x &= \sum_{n=-\infty}^{\infty} |x[n]|^2 = \lim_{N\to\infty} \sum_{n=-N}^{N} |x[n]|^2
+\end{align*}
+
+\subsection{Güç (power of a signal)}
+\begin{align*}
+  P_x &= \lim_{T\to\infty} \frac{1}{2T} \int_{-T}^{T} |x(t)|^2\,dt \\
+  P_x &= \lim_{N\to\infty} \frac{1}{2N+1} \sum_{n=-N}^{N} |x[n]|^2
+\end{align*}
+
+\begin{itemize}[label=$*$]
+  \item $E_x<\infty$ ise $x(t)/x[n]$ işareti enerji işaretidir ve ortalama gücü sıfırdır, $P_x=0$.
+  \item \vurgu[turuncu]{$0<P_x<\infty$} ise $x(t)/x[n]$ işareti güç işaretidir ve enerjisi sonsuzdur, $E_x\to\infty$.
+  \item Bazı işaretler ne enerji ne de güç işareti olmayabilirler.\\
+  Ör: $x(t)=kt \;\longrightarrow\; E_x\to\infty$\\
+  \phantom{Ör: $x(t)=kt$\;}$\hookrightarrow P_x\to\infty$
+\end{itemize}
+
+\section{Bağımsız değişkenlerin dönüşümleri}
+\sayfa{2}
+(Transformation of independent variable)
+
+\subsection{Zamanda öteleme (time shifting)}
+\[
+  x(t)\longrightarrow x(t-t_0)\;
+  \begin{array}{l}
+    \longrightarrow t_0>0 \ \ \text{gecikme (delay), sağa öteleme}\\
+    \hookrightarrow t_0<0 \ \ \text{ilerleme (advance), sola öteleme}
+  \end{array}
+\]
+\[ x[n]\longrightarrow x[n-n_0] \]
+
+Ex:\par
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \draw[->] (-1.8,0) -- (2.9,0) node[right] {$t$};
+  \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t)$};
+  \draw[murekkep, thick] (-1,0) -- (0,2) -- (2,2) -- (2,0);
+  \foreach \k in {-1,1,2} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+  \node[below left] at (0,0) {\scriptsize$0$};
+  \node[left] at (0,2) {\scriptsize$2$};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[scale=0.5]
+  \draw[->] (-1,0) -- (3.9,0) node[right] {$t$};
+  \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t-1)$};
+  \draw[murekkep, thick] (0,0) -- (1,2) -- (3,2) -- (3,0);
+  \foreach \k in {1,2,3} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+  \node[left] at (0,2) {\scriptsize$2$};
+  \node[below, align=center, font=\small] at (1.5,-1.1) {$t_0=1>0$ gecikme/sağa öteleme};
+\end{tikzpicture}\hfill
+\begin{tikzpicture}[scale=0.5]
+  \draw[->] (-2.8,0) -- (1.9,0) node[right] {$t$};
+  \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t+1)$};
+  \draw[murekkep, thick] (-2,0) -- (-1,2) -- (1,2) -- (1,0);
+  \foreach \k in {-2,-1,1} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+  \node[above right] at (0,2) {\scriptsize$2$};
+  \node[below, align=center, font=\small] at (-0.4,-1.1) {$t_0=-1<0$ ilerleme/sola öteleme};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Zamanda ters çevirme (time reversal)}
+\[ x(t)\longrightarrow x(-t)\longrightarrow \text{orijine veya sıfır noktasına göre yansımasını alma} \]
+\[ x[n]\longrightarrow x[-n] \]
+
+Ex:\par
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+  \draw[->] (-1.8,0) -- (2.9,0) node[right] {$t$};
+  \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t)$};
+  \draw[murekkep, thick] (-1,0) -- (0,2) -- (2,2) -- (2,0);
+  \foreach \k in {-1,2} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+  \node[below right] at (0,0) {\scriptsize$0$};
+  \node[left] at (0,2) {\scriptsize$2$};
+\end{tikzpicture}\qquad\qquad
+\begin{tikzpicture}[scale=0.5]
+  \draw[->] (-2.8,0) -- (1.9,0) node[right] {$t$};
+  \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(-t)$};
+  \draw[murekkep, thick] (-2,0) -- (-2,2) -- (0,2) -- (1,0);
+  \foreach \k in {-2,-1,1} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+  \node[above right] at (0,2) {\scriptsize$2$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Zamanda ölçekleme (time scaling)}
+\[
+  x(t)\longrightarrow x(\alpha t)\;
+  \begin{array}{l}
+    \longrightarrow \alpha>1 \ \ \text{sıkıştırma (compression)}\\
+    \hookrightarrow 0<\alpha<1 \ \ \text{genişletme (expansion)}
+  \end{array}
+\]
+\[ x[n]\longrightarrow x[\alpha n] \]
+
+Ex:\par
+\noindent
+\begin{minipage}[t]{0.28\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.5]
+    \draw[->] (-1.8,0) -- (2.9,0) node[right] {$t$};
+    \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t)$};
+    \draw[murekkep, thick] (-1,0) -- (0,2) -- (2,2) -- (2,0);
+    \foreach \k in {-1,1,2} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+    \node[left] at (0,2) {\scriptsize$2$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.34\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.5]
+    \draw[->] (-1.8,0) -- (2.9,0) node[right] {$t$};
+    \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(2t)$};
+    \draw[murekkep, thick] (-1,0) -- (0,2) -- (2,2) -- (2,0);
+    \draw (-1,0.08) -- (-1,-0.08) node[below] {\scriptsize$-\frac12$};
+    \draw (1,0.08) -- (1,-0.08) node[below] {\scriptsize$\frac12$};
+    \draw (2,0.08) -- (2,-0.08) node[below] {\scriptsize$1$};
+    \node[left] at (0,2) {\scriptsize$2$};
+  \end{tikzpicture}\\[1mm]
+  \raggedright
+  $x(t)$, $t:[-1,2]$\\
+  $x(2t)$, $2t:[-1,2]$\\
+  \quad$\hookrightarrow t:[-1/2,\,1]$\\
+  $\alpha=2>1$ sıkıştırma
+\end{minipage}\hfill
+\begin{minipage}[t]{0.34\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.5]
+    \draw[->] (-2.8,0) -- (4.9,0) node[right] {$t$};
+    \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t/2)$};
+    \draw[murekkep, thick] (-2,0) -- (0,2) -- (4,2) -- (4,0);
+    \foreach \k in {-2,2,4} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+    \node[left] at (0,2) {\scriptsize$2$};
+  \end{tikzpicture}\\[1mm]
+  \raggedright
+  $x(t)$, $t:[-1,2]$\\
+  $x(t/2)$, $t/2:[-1,2]$\\
+  \quad$\hookrightarrow t:[-2,4]$\\
+  $0<\alpha=\frac12<1$ genişletme
+\end{minipage}
+
+\sayfa{3}
+\[
+  *\ \ x(t)\longrightarrow x(\alpha t+\beta)\qquad
+  \begin{array}{l}
+    \text{1) } \beta \text{ kadar öteleme}\\
+    \text{2) } \alpha \text{ kadar ölçekleme ve gerekiyorsa zamanda ters çevirme}
+  \end{array}
+\]
+
+\begin{ornek}[]
+  $x(t)$ veriliyor; \quad $x(-2t+5)=\,?$\par
+  \begin{center}
+  \begin{tikzpicture}[scale=0.5]
+    \draw[->] (-1.8,0) -- (2.9,0) node[right] {$t$};
+    \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t)$};
+    \draw[murekkep, thick] (-1,0) -- (0,2) -- (2,2) -- (2,0);
+    \foreach \k in {-1,1,2} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+    \node[below right] at (0,0) {\scriptsize$0$};
+    \node[left] at (0,2) {\scriptsize$2$};
+  \end{tikzpicture}
+  \end{center}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.45]
+    \draw[->] (-6.8,0) -- (1,0) node[right] {$t$};
+    \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(t+5)$};
+    \draw[murekkep, thick] (-6,0) -- (-5,2) -- (-3,2) -- (-3,0);
+    \foreach \k in {-6,-5,-4,-3} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+    \draw (-0.08,2) -- (0.08,2) node[right] {\scriptsize$2$};
+  \end{tikzpicture}\hfill
+  \begin{tikzpicture}[scale=0.45]
+    \draw[->] (-0.8,0) -- (6.9,0) node[right] {$t$};
+    \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(-t+5)$};
+    \draw[murekkep, thick] (3,0) -- (3,2) -- (5,2) -- (6,0);
+    \foreach \k in {3,4,5,6} \draw (\k,0.08) -- (\k,-0.08) node[below] {\scriptsize$\k$};
+    \draw (-0.08,2) -- (0.08,2); \node[left] at (0,2) {\scriptsize$2$};
+  \end{tikzpicture}\hfill
+  \begin{tikzpicture}[scale=0.45]
+    \draw[->] (-0.8,0) -- (6.9,0) node[right] {$t$};
+    \draw[->] (0,-0.6) -- (0,2.9) node[above] {$x(-2t+5)$};
+    \draw[murekkep, thick] (3,0) -- (3,2) -- (5,2) -- (6,0);
+    \draw[dashed, kursunkalem] (0,2) -- (3,2);
+    \draw (3,0.08) -- (3,-0.08) node[below] {\scriptsize$\frac32$};
+    \draw (4,0.08) -- (4,-0.08) node[below] {\scriptsize$2$};
+    \draw (5,0.08) -- (5,-0.08) node[below] {\scriptsize$\frac52$};
+    \draw (6,0.08) -- (6,-0.08) node[below] {\scriptsize$3$};
+    \node[left] at (0,2) {\scriptsize$2$};
+  \end{tikzpicture}
+  \end{center}
+  \begin{align*}
+    &x(t),\quad t:[-1,2]\\
+    &x(-2t+5),\quad -2t+5:[-1,2]\\
+    &\phantom{x(-2t+5),\quad -2t+5:\ }t:[1{,}5,\ 3]
+  \end{align*}
+\end{ornek}
+
+\begin{ornek}[]
+  $x[n]=\begin{cases} 0, & n<-2 \text{ ve } n>3\\ 1, & \text{diğer}\end{cases}$
+  \ olmak üzere \ $x[-n/2+1]=\,?$
+\end{ornek}
+\begin{center}
+  \begin{tikzpicture}[scale=0.42]
+    \draw[->] (-3,0) -- (4,0) node[right] {$n$};
+    \draw[->] (0,-0.4) -- (0,2.2) node[above] {$x[n]$};
+    \draw[dashed, kursunkalem] (-2,1.2) -- (3,1.2);
+    \foreach \k in {-2,...,3} {\draw[murekkep, thick] (\k,0) -- (\k,1.2); \fill[murekkep] (\k,1.2) circle (3pt);}
+    \foreach \k in {-2,-1,0,1,2,3} \node[below] at (\k,0) {\scriptsize$\k$};
+    \node[above left] at (0,1.2) {\scriptsize$1$};
+  \end{tikzpicture}\hspace{1.5cm}
+  \begin{tikzpicture}[scale=0.42]
+    \draw[->] (-5,0) -- (7,0) node[right] {$n$};
+    \draw[->] (0,-0.4) -- (0,2.2) node[above] {$x[-n/2+1]$};
+    \draw[dashed, kursunkalem] (-4,1.2) -- (6,1.2);
+    \foreach \k in {-4,...,6} {\draw[murekkep, thick] (\k,0) -- (\k,1.2); \fill[murekkep] (\k,1.2) circle (3pt);}
+    \foreach \k in {-4,...,6} \node[below] at (\k,0) {\tiny$\k$};
+  \end{tikzpicture}
+\end{center}
+$x[n],\ n:[-2,3]$\\
+$x[-n/2+1],\ -\frac{n}{2}+1:[-2,3]$\\
+\phantom{$x[-n/2+1],\ -\frac{n}{2}+1:$\,}$n:[-4,6]$\footnote{Claude notu: ayrık zamanda $-n/2+1$ yalnızca çift $n$ için tamsayıdır; tek $n$ değerlerinde $x[-n/2+1]$ tanımsızdır (genellikle $0$ alınır), yani çubuklar muhtemelen yalnızca $n=-4,-2,0,2,4,6$ noktalarında olmalı.}
+
+\section{Periyodik işaretler (periodic signals)}
+\sayfa{4}
+\begin{align*}
+  x(t) &= x(t+kT_0), && t\in\mathbb{R},\ k\in\mathbb{Z},\ T_0:\text{ periyot} && \longrightarrow \text{Periyodik.}\\
+  x[n] &= x[n+kN_0], && n,k\in\mathbb{Z},\ N_0:\text{ periyot}
+\end{align*}
+Bu eşitlikleri sağlayan $T_0/N_0$ yok ise işaret aperiyodiktir.
+
+\noindent
+\begin{minipage}[c]{0.55\linewidth}
+  Ex:\par
+  \centering
+  \begin{tikzpicture}[scale=0.7]
+    \draw[->] (-4,0) -- (4,0) node[right] {$t$};
+    \draw[->] (0,-0.3) -- (0,1.7) node[above] {$x(t)$};
+    \foreach \c in {-2.6,0,2.6} \draw[murekkep, thick] (\c-0.9,0) -- (\c,1.2) -- (\c+0.9,0);
+    \draw[dashed, kursunkalem] (-2.6,0) -- (-2.6,1.2);
+    \draw[dashed, kursunkalem] (2.6,0) -- (2.6,1.2);
+    \node[below] at (-2.6,0) {\small$-T$};
+    \node[below] at (0,0) {\small$0$};
+    \node[below] at (2.6,0) {\small$T$};
+    \node at (-3.7,0.5) {$\cdots$};
+    \node at (3.7,0.5) {$\cdots$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.42\linewidth}
+  $\Rightarrow x(t)=x(t+T)$, \ $T$ ile periyodiktir.
+\end{minipage}
+
+\medskip
+Ex: $x(t)=\cos(t)$
+\[
+  x(t+kT_0)=\cos(t+kT_0)\underset{T_0=2\pi}{=}\cos(t+2\pi k)=\cos(t)=x(t)
+\]
+
+\section{Tek (Odd) / Çift (Even) İşaretler}
+\noindent
+\begin{minipage}[c]{0.66\linewidth}
+  \underline{Çift:} \ $x(t)=x(-t)\longrightarrow \forall t$ için $y$ eksenine göre simetrik ise çift işarettir.\\
+  \phantom{\underline{Çift:} \ }$x[n]=x[-n]$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.3\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.55]
+    \draw[->] (-2.6,0) -- (2.8,0) node[right] {$t$};
+    \draw[->] (0,-0.3) -- (0,1.8) node[above] {$x(t)$};
+    \draw[murekkep, thick, smooth] plot[domain=-2:2, samples=61] (\x, {abs(sin(deg(pi*\x/2)))});
+    \foreach \k in {-2,-1,1,2} \draw (\k,0.06) -- (\k,-0.06) node[below] {\scriptsize$\k$};
+    \node[below left] at (0,0) {\scriptsize$0$};
+    \node[left] at (0,1) {\scriptsize$1$};
+  \end{tikzpicture}
+\end{minipage}
+
+\noindent
+\begin{minipage}[c]{0.66\linewidth}
+  \underline{Tek:} \ $x(t)=-x(-t)\longrightarrow \forall t$ için orijine göre simetrik ise tek işarettir.\\
+  \phantom{\underline{Tek:} \ }$x[n]=-x[-n]$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.3\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.55]
+    \draw[->] (-2.6,0) -- (2.8,0) node[right] {$t$};
+    \draw[->] (0,-1.3) -- (0,1.6) node[above] {$x(t)$};
+    \draw[murekkep, thick, smooth] plot[domain=-2:2, samples=61] (\x, {sin(deg(pi*\x/2))});
+    \draw[dashed, kursunkalem] (1,0) -- (1,1);
+    \draw[dashed, kursunkalem] (-1,0) -- (-1,-1);
+    \foreach \k in {-2,-1,1,2} \draw (\k,0.06) -- (\k,-0.06);
+    \foreach \k in {-2,-1} \node[above] at (\k,0) {\scriptsize$\k$};
+    \foreach \k in {1,2} \node[below] at (\k,0) {\scriptsize$\k$};
+  \end{tikzpicture}
+\end{minipage}
+
+\[ *\ \ x(t)=x_e(t)+x_o(t) \]
+\[
+  x_e(t)=\frac{x(t)+x(-t)}{2}\qquad\qquad x_o(t)=\frac{x(t)-x(-t)}{2}
+\]
+
+\section{Üstel ve Sinüsoidal İşaretler (Exponential and sinusoidal Signals)}
+\sayfa{5}
+\subsection{Sürekli zamanlı sinüsoidal işaretler}
+\[
+  x(t)=A\cos(\omega_0 t+\phi)\longrightarrow
+  \begin{array}{l}
+    A:\ \text{genlik}\\
+    \omega_0:\ \text{açısal frekans, [rad/sn]}\\
+    \phi:\ \text{faz}
+  \end{array}
+\]
+\[
+  \omega_0=2\pi f_0=\frac{2\pi}{T_0}\ \longrightarrow\
+  \begin{array}{l}
+    T_0:\ \text{periyot, [sn]}\\[1mm]
+    f_0=\dfrac{1}{T_0}:\ \text{frekans, } \left[\text{Hertz}=\dfrac{1}{\text{sn}}\right]
+  \end{array}
+\]
+
+\noindent
+\begin{minipage}[c]{0.42\linewidth}
+  \centering
+  \begin{tikzpicture}[scale=0.5]
+    \draw[->] (-1.8,0) -- (8.2,0) node[right] {$t$};
+    \draw[->] (0,-1.8) -- (0,2.2) node[above] {$A\cos(\omega_0t+\phi)$};
+    \draw[murekkep, thick, smooth] plot[domain=-1.6:7.6, samples=90] (\x, {1.3*cos(deg(\x-0.6))});
+    \draw[dashed, kursunkalem] (-0.1,1.3) -- (0.6,1.3);
+    \node[left] at (0,1.3) {\scriptsize$A$};
+    \node[left] at (0,0.75) {\scriptsize$A\cos\phi$};
+    \draw[<->] (0.6,1.5) -- (6.88,1.5) node[midway, above] {\scriptsize$T_0$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.55\linewidth}
+  $\Rightarrow$ (Açısal) frekans $\times$ Periyot\\
+  \quad $\omega_0\!\uparrow$ \ $f_0\!\uparrow$ \ $T_0\!\downarrow$ \ işaretin salınımı hızlanır.\\[1mm]
+  {\color{kursunkalem}\small $\omega_0\!\uparrow$ \ $f_0\!\uparrow$ \ $T_0\!\downarrow$ \ işaretin osilasyonu artar, periyot azalır\\
+  $x(t)=\text{Constant}$ ise \ $T_0\to\infty$ (undefined) \ $f_0\to0$ osilasyonu yoktur}
+\end{minipage}
+
+\subsection{Sürekli zamanlı karmaşık üstel işaretler}
+\[
+  x(t)=Ce^{at}\longrightarrow
+  \begin{array}{l}
+    C=|C|e^{j\theta}\\
+    a=r+j\omega_0
+  \end{array}
+\]
+$*$ $a$ ve $C$ reel/gerçek ise $x(t)$ reel üstel (real exponential) işarettir.\\
+\phantom{$*$ }$C=|C|$ ve $a=r$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.6]
+  \draw[->] (-3,0) -- (3.2,0) node[right] {$t$};
+  \draw[->] (0,-0.2) -- (0,3.2) node[above] {$x(t)=Ce^{at}$};
+  \draw[murekkep, thick, smooth] plot[domain=-3:2.6, samples=60] (\x, {0.6*exp(0.62*\x)});
+  \node[left] at (0,0.6) {\scriptsize$C$};
+  \node[below] at (0,-0.5) {\small$a>0$ iken artan üstel};
+\end{tikzpicture}\qquad\qquad
+\begin{tikzpicture}[scale=0.6]
+  \draw[->] (-3,0) -- (3.2,0) node[right] {$t$};
+  \draw[->] (0,-0.2) -- (0,3.2) node[above] {$x(t)$};
+  \draw[murekkep, thick, smooth] plot[domain=-2.6:3, samples=60] (\x, {0.6*exp(-0.62*\x)});
+  \node[right] at (0,0.6) {\scriptsize$C$};
+  \node[below] at (0,-0.5) {\small$a<0$ iken azalan üstel};
+\end{tikzpicture}
+\end{center}
+
+$*$ $a=j\omega_0$ $(r=0)$ olmak üzere tamamen sanal olduğunda $x(t)=e^{j\omega_0t}$ olup, periyodik karmaşık üstel (periodic complex exponential) işarettir.
+
+\medskip
+$x(t)\overset{?}{=}x(t+T)$ ise periyodiktir.\\
+İspat: \ $x(t)=e^{j\omega_0t}$
+\begin{align*}
+  x(t+T)&=e^{j\omega_0(t+T)}=e^{j\omega_0t}\cdot e^{j\omega_0T}
+\end{align*}
+Eğer $e^{j\omega_0T}=1$ olursa $x(t)$'nin periyodikliği ispatlanır.
+\[
+  e^{j\omega_0T}=1=e^{j2\pi},\quad \omega_0T=2\pi\ \longrightarrow\ T=\frac{2\pi}{\omega_0},\ \ \omega_0\neq0
+  \qquad
+  {\color{kirmizikalem}\fbox{\begin{tabular}{l}$\omega_0=0$, $x(t)=1$\\ $T\to\infty$\end{tabular}}}
+\]
+
+\sayfa{6}
+\noindent
+\begin{minipage}[c]{0.72\linewidth}
+  Euler bağıntısı $\Rightarrow e^{j\theta}=\cos\theta+j\sin\theta$
+  \[ e^{j2\pi}=\underbrace{\cos2\pi}_{1}+j\underbrace{\sin2\pi}_{0}=1 \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.25\linewidth}
+  \centering
+  {\color{kirmizikalem}\fbox{$e^{j\pi}=-1$}}
+\end{minipage}
+\[
+  e^{j\omega_0t}=\cos\omega_0t+j\sin\omega_0t\ \
+  \begin{array}{l}
+    \longrightarrow \cos\omega_0t=\bigl(e^{j\omega_0t}+e^{-j\omega_0t}\bigr)/2\\[1mm]
+    \hookrightarrow \sin\omega_0t=\bigl(e^{j\omega_0t}-e^{-j\omega_0t}\bigr)/2j
+  \end{array}
+\]
+\begin{align*}
+  Ae^{j(\omega_0t+\phi)}&=A\cos(\omega_0t+\phi)+jA\sin(\omega_0t+\phi)\quad\longrightarrow\\
+  A\cos(\omega_0t+\phi)&=\mathrm{Re}\bigl\{Ae^{j(\omega_0t+\phi)}\bigr\}\\
+  A\sin(\omega_0t+\phi)&=\mathrm{Im}\bigl\{Ae^{j(\omega_0t+\phi)}\bigr\}
+\end{align*}
+
+\subsection{Ayrık zamanlı sinüsoidal işaretler}
+\[
+  x[n]=A\cos(\omega_0n+\phi)=\frac{A}{2}\Bigl[e^{j(\omega_0n+\phi)}+e^{-j(\omega_0n+\phi)}\Bigr]
+  =\frac{A}{2}\Bigl[e^{j\phi}e^{j\omega_0n}+e^{-j\phi}e^{-j\omega_0n}\Bigr]
+\]
+
+\subsection{Ayrık zamanlı karmaşık üstel işaretler}
+\noindent
+\begin{minipage}[c]{0.65\linewidth}
+  \[
+    x[n]=C\alpha^n\longrightarrow
+    \begin{array}{l}
+      C=|C|e^{j\theta}\\
+      \alpha=|\alpha|e^{j\omega_0}
+    \end{array}
+  \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.3\linewidth}
+  \centering
+  {\color{kirmizikalem}\fbox{$N_0=2\pi/\omega_0$}}
+\end{minipage}
+
+$*$ $C$ ve $\alpha$ reel ise $x[n]$ reel üstel işarettir.\\
+$*$ $\alpha=e^{j\omega_0}$ olmak üzere $x[n]=e^{j\omega_0n}$ işareti periyodik üstel işarettir.
+
+\subsection{Ayrık zamanlı karmaşık üstel işaretlerin periyodikliği}
+$*$ $x[n]=e^{j\omega_0n}$
+\[
+  \omega_0+2\pi\longrightarrow e^{j(\omega_0+2\pi)n}=e^{j\omega_0n}\cdot\underbrace{e^{j2\pi n}}_{\to1}=e^{j\omega_0n}
+\]
+Ayrık zamanlı karmaşık üstel işaretler ancak $2\pi$ aralığındaki frekanslarda farklılık gösterirler.
+Bu nedenle bu işaretleri $-\pi<\omega_0<\pi$ veya $0<\omega_0<2\pi$ aralıklarında incelemek yeterlidir.
+
+\medskip
+$*$ $x[n]\overset{?}{=}x[n+N]$
+\begin{align*}
+  x[n+N]&=e^{j\omega_0(n+N)}=e^{j\omega_0n}\cdot e^{j\omega_0N}\\
+  e^{j\omega_0N}&=1=e^{j2\pi m}\ \longrightarrow\ \omega_0N=2\pi m\\
+  &\phantom{=1=e^{j2\pi m}\ \longrightarrow\ }\frac{\omega_0}{2\pi}=\frac{m}{N},\ \ m \text{ ve } N>0\in\mathbb{Z}
+    \ \Bigl(\tfrac{m}{N} \text{ kesirli yani iki tam sayının oranı olmalı}\Bigr)\\
+  &\phantom{=1=e^{j2\pi m}\ \longrightarrow\ }N=\Bigl(\frac{2\pi}{\omega_0}\Bigr)m
+\end{align*}
+
+\sayfa{7}
+\noindent
+\begin{minipage}[t]{0.44\linewidth}
+  \underline{$e^{j\omega_0t}$}\par\smallskip
+  $\omega_0$'ın farklı değerleri için farklı işaret\\[1mm]
+  Herhangi bir $\omega_0$ değeri için periyodik\\[1mm]
+  Esas frekans $\omega_0$\\[2mm]
+  Esas periyot $T_0=\dfrac{2\pi}{\omega_0}$, \ $\omega_0\neq0$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.53\linewidth}
+  \underline{$e^{j\omega_0n}$}\par\smallskip
+  $2\pi$'nin katlarındaki $\omega_0$ değerleri için aynı işaret\\[1mm]
+  $\dfrac{\omega_0}{2\pi}=\dfrac{m}{N}$ kesirli bir ifade ise periyodik $(m,N>0\in\mathbb{Z})$\\[1mm]
+  Esas frekans $\dfrac{\omega_0}{m}$\\[1mm]
+  Esas periyot $N_0=m\Bigl(\dfrac{2\pi}{\omega_0}\Bigr)$
+\end{minipage}
+
+\begin{ornek}[]
+  $x[n]=3e^{j3\pi(n+1/2)/5}$, \quad $y[n]=3e^{j3(n+1/2)/5}$ \quad işaretleri periyodik midir?
+\end{ornek}
+\begin{cozum}
+  \[
+    x[n]=3e^{j\frac{3\pi}{5}(n+\frac12)}=3e^{j\frac{3\pi}{10}}\cdot e^{j\frac{3\pi n}{5}}=Ce^{j\omega_0n}
+    \ \longrightarrow\
+    \begin{array}{l} C=3e^{j3\pi/10}\\[1mm] \omega_0=\dfrac{3\pi}{5}\end{array}
+  \]
+  \[
+    x[n]\overset{?}{=}x[n+N]\ \longrightarrow\ N_0=\Bigl(\frac{2\pi}{\omega_0}\Bigr)m=m\,\frac{2\pi}{\frac{3\pi}{5}}=m\,\frac{10}{3}\in\mathbb{Z}
+  \]
+  \begin{center} $N_0=10$ periyodu ile periyodik \end{center}
+  \[
+    y[n]=3e^{j\frac{3}{10}}\cdot e^{j\frac{3n}{5}}=Ce^{j\omega_0n}
+    \ \longrightarrow\
+    \begin{array}{l} C=3e^{j3/10}\\[1mm] \omega_0=3/5\end{array}
+  \]
+  \[
+    N_0=\frac{2\pi}{3/5}\,m=\frac{10\pi}{3}\,m\notin\mathbb{Z}\ \text{ olup aperiyodik}
+  \]
+\end{cozum}
+
+\begin{ornek}[]
+  $x(t)=2\cos(10t+1)-\sin(4t-1)$ işaretinin periyodu nedir?
+\end{ornek}
+\begin{cozum}
+  \[
+    \left.
+    \begin{array}{ll}
+      A\cos(\omega_0t+\phi)\longrightarrow \omega_{01}=10 & T_{01}=\dfrac{2\pi}{\omega_{01}}=\dfrac{2\pi}{10}=\dfrac{\pi}{5}\\[4mm]
+      A\sin(\omega_0t+\phi)\longrightarrow \omega_{02}=4 & T_{02}=\dfrac{2\pi}{\omega_{02}}=\dfrac{2\pi}{4}=\dfrac{\pi}{2}
+    \end{array}
+    \right\}\ T_0=\pi
+  \]
+\end{cozum}
+
+\end{document}

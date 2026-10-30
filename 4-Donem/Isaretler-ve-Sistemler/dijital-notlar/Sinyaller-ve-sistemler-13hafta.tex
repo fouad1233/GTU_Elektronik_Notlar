@@ -1,0 +1,500 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{İşaretler ve Sistemler}{13. hafta -- Laplace dönüşümü, ROC, ters Laplace}{Sinyaller-ve-sistemler-13hafta.pdf}
+
+\sayfa{1}\nopagebreak
+\section{Laplace transformu}
+\[ X(s)=\int_{-\infty}^{\infty} x(t)\,e^{-st}\,dt \]
+
+\begin{ornek}
+  $\displaystyle X(s)=\frac{1}{(s+1)(s+2)}$ \qquad tüm olası ROC'lar $=$ ?
+  \[ =\ \frac{A}{s+1}+\frac{B}{s+2}\ =\ \underset{\scriptstyle s=-1}{\frac{1}{s+1}}\ -\ \underset{\scriptstyle s=-2}{\frac{1}{s+2}} \]
+\end{ornek}
+
+\[ e^{-at}u(t)\to\frac{1}{s+a},\ \ \mathrm{Re}(s)>-a \qquad\qquad -e^{-at}u(-t)\leftrightarrow\frac{1}{s+a} \]
+
+\begin{center}
+\begin{minipage}[t]{0.32\linewidth}\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+  \fill[pattern=north east lines, pattern color=murekkep] (-1,-1.6) rectangle (1.7,1.6);
+  \draw[dashed] (-1,-1.8) -- (-1,1.8);
+  \draw[-{Stealth[length=2mm]}] (-3,0) -- (2.2,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-1.8) -- (0,2) node[right] {\small Im};
+  \node at (-2,0) {$\times$}; \node at (-1,0) {$\times$};
+  \node[below left] at (-2,0) {\small $-2$}; \node[below right] at (-1,0) {\small $-1$};
+\end{tikzpicture}\\[1mm]
+{\small $x(t)$ sağ yanlı ise\\ $x(t)=e^{-t}u(t)-e^{-2t}u(t)$\\ ROC, $s=j\omega$ içerir, FT yakınsar}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+  \fill[pattern=north east lines, pattern color=murekkep] (-3,-1.6) rectangle (-2,1.6);
+  \draw (-2,-1.8) -- (-2,1.8);
+  \draw[-{Stealth[length=2mm]}] (-3,0) -- (2.2,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-1.8) -- (0,2) node[right] {\small Im};
+  \node at (-2,0) {$\times$}; \node at (-1,0) {$\times$};
+  \node[below left] at (-2,0) {\small $-2$}; \node[below right] at (-1,0) {\small $-1$};
+\end{tikzpicture}\\[1mm]
+{\small $x(t)$ sol yanlı ise\\ $x(t)=-e^{-t}u(-t)+e^{-2t}u(-t)$\\ FT yoktur}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+  \fill[pattern=north east lines, pattern color=murekkep] (-2,-1.6) rectangle (-1,1.6);
+  \draw (-2,-1.8) -- (-2,1.8); \draw (-1,-1.8) -- (-1,1.8);
+  \draw[-{Stealth[length=2mm]}] (-3,0) -- (2.2,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-1.8) -- (0,2) node[right] {\small Im};
+  \node at (-2,0) {$\times$}; \node at (-1,0) {$\times$};
+  \node[below left] at (-2,0) {\small $-2$}; \node[below right] at (-1,0) {\small $-1$};
+\end{tikzpicture}\\[1mm]
+{\small $x(t)$ çift yanlı ise\\ $x(t)=-e^{-t}u(-t)$\\ $\phantom{x(t)}-e^{-2t}u(t)$\\ FT yoktur}
+\end{minipage}
+\end{center}
+
+\section{Ters Laplace Transform:}
+\begin{minipage}{\linewidth}
+\[ X(s)=X(\sigma+j\omega)=\int_{-\infty}^{\infty} x(t)\,e^{-\sigma t}\,e^{-st}\,dt=\Fou{x(t)\,e^{-\sigma t}}\footnote{Claude notu: muhtemelen $e^{-j\omega t}$ olmalı.} \]
+\end{minipage}
+\[ x(t)\,e^{-\sigma t}=\iFou{X(\sigma+j\omega)}=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\sigma+j\omega)\,e^{j\omega t}\,d\omega \]
+\[ x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\sigma+j\omega)\,e^{(\sigma+j\omega)t}\,d\omega \]
+\[ s=\sigma+j\omega \ \to\ ds=j\,d\omega \]
+\[ x(t)=\frac{1}{2\pi j}\int_{\sigma-j\infty}^{\sigma+j\infty} X(s)\,e^{st}\,ds \]
+\[ \to\ X(s)=\sum_{i=1}^{m}\frac{A_i}{s+a_i}\ \longrightarrow\
+\begin{aligned}
+  & x(t)=A_i\,e^{-a_i t}u(t)\ :\ \text{sağ yanlı},\\
+  \hookrightarrow\ & x(t)=-A_i\,e^{-a_i t}u(-t)\ :\ \text{sol yanlı}
+\end{aligned} \]
+
+\sayfa{2}\nopagebreak
+\section{Laplace Transformun özellikleri}
+\[ x(t)\ \overset{\mathcal{L}}{\longleftrightarrow}\ X(s),\ \ \mathrm{ROC}:\ R \]
+
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=5pt]
+  \item Lineerlik: $\alpha x_1(t)+\beta x_2(t)\donusum \alpha X_1(s)+\beta X_2(s)$, \ ROC: $R_1\cap R_2$
+  \item Zamanda öteleme: $x(t-t_0)\donusum e^{-st_0}X(s)$, \ ROC: $R$
+  \item S-domaininde öteleme: $e^{s_0 t}x(t)\donusum X(s-s_0)$, \ ROC: $R+\mathrm{Re}\{s_0\}$\\
+    $s_0=j\omega_0\ \Rightarrow\ e^{j\omega_0 t}x(t)\donusum X(s-j\omega_0)$, \ ROC: $R$
+  \item Zamanda ölçeklendirme: $x(at)=\dfrac{1}{|a|}X(s/a)$, \ ROC: $R/a$\\
+    $a=-1\ \to\ x(-t)\donusum X(-s)$, \ ROC: $-R$
+  \item Eşlenik alma: $x^{*}(t)\donusum X^{*}(s^{*})$, \ ROC: $R$
+  \item Türev: $\dfrac{dx(t)}{dt}\donusum sX(s)$, \ ROC: $R$'yi içerir\\
+    $-t\,x(t)\donusum\dfrac{dX(s)}{ds}$, \ ROC: $R$
+  \item İntegral: $\displaystyle\int_{-\infty}^{t}x(\tau)\,d\tau\donusum\frac{1}{s}X(s)$, \ ROC: $R\cap\{\mathrm{Re}\{s\}>0\}$
+  \item Konvolüsyon: $x_1(t)*x_2(t)\donusum X_1(s)X_2(s)$, \ ROC: $R_1\cap R_2$
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt]
+  \node (x) at (0,0) {$x(t)$};
+  \node[draw, minimum width=1.8cm, minimum height=0.8cm] (h) at (3,0) {$h(t)$};
+  \node (y) at (6,0) {$y(t)$};
+  \draw[-{Stealth[length=2mm]}] (x) -- (h);
+  \draw[-{Stealth[length=2mm]}] (h) -- (y);
+\end{tikzpicture}
+\end{center}
+
+\[ y(t)=x(t)*h(t)\donusum Y(s)=X(s)H(s) \]
+\[ H(s)=\frac{Y(s)}{X(s)}\ \ :\ \text{Transfer fonksiyon} \]
+
+\begin{ornek}
+  $x(t)=t\,e^{-at}u(t)$, \ $X(s)=$ ?
+\end{ornek}
+\[ e^{-at}u(t)\donusum\frac{1}{s+a},\ \ \mathrm{Re}\{s\}>-a \]
+
+\sayfa{3}\nopagebreak
+\begin{align*}
+  t\,e^{-at}u(t) &\donusum -\frac{d}{ds}\left(\frac{1}{s+a}\right)=\frac{1}{(s+a)^2},\ \ \mathrm{Re}\{s\}>-a\\
+  \frac{t^2}{2}\,e^{-at}u(t) &\donusum \frac{1}{(s+a)^3},\ \ \mathrm{Re}\{s\}>-a\\
+  \vdots\ & \\
+  \star\ \ \frac{t^{n-1}}{(n-1)!}\,e^{-at}u(t) &\donusum \frac{1}{(s+a)^n},\ \ \mathrm{Re}\{s\}>-a
+\end{align*}
+
+\begin{ornek}
+  $\displaystyle H(s)=\frac{2s^2+5s+5}{(s+1)^2(s+2)}$, \ $\mathrm{Re}\{s\}>-1$, \ $h(t)=$ ?
+\end{ornek}
+\[ \underset{\mathclap{\updownarrow\ \mathcal{L}^{-1}}}{H(s)}=\frac{A}{(s+1)^2}+\frac{B}{s+1}+\frac{C}{s+2}\ \ \to\ \
+\begin{aligned} A&=2\\ B&=-1\\ C&=3 \end{aligned} \]
+\[ h(t)=2t\,e^{-t}u(t)-e^{-t}u(t)+3e^{-2t}u(t) \]
+
+\section{ROC ile LTI sistemlerinin özelliklerinin analizi}
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=6pt]
+  \item \underline{Nedensellik}: $h(t)=0$, $t<0$ \ \ sağ yanlı $\to$ ROC sağ yanlı
+  \item \underline{kararlılık}: $\displaystyle\int_{-\infty}^{\infty}|h(t)|\,dt<\infty\ \to$ ROC $j\omega$ eksenini içermelidir.
+\end{enumerate}
+
+\begin{ornek}
+  $h(t)=e^{-t}u(t)$, kararlı mıdır?
+\end{ornek}
+\noindent
+\begin{minipage}[c]{0.52\linewidth}
+  $\updownarrow$\\[1mm]
+  $H(s)=\dfrac{1}{s+1}$, \ $\mathrm{Re}\{s\}>-1$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.44\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north east lines, pattern color=murekkep] (-1,-1.6) rectangle (1.6,1.6);
+    \draw (-1,-1.8) -- (-1,1.8);
+    \draw[-{Stealth[length=2mm]}] (-1.8,0) -- (2.2,0);
+    \draw[-{Stealth[length=2mm]}] (0,-1.8) -- (0,2) node[right] {\small Im};
+    \node at (-1,0) {$\times$}; \node[below left] at (-1,0) {\small $-1$};
+  \end{tikzpicture}
+\end{minipage}
+
+\medskip
+\noindent ROC sağ yanlı olduğundan nedenseldir !\\
+$j\omega$'yi kesmektedir onun için kararlı!
+
+\sayfa{4}\nopagebreak
+\formulkutu{\begin{aligned} x(t)&=e^{-b|t|}\\ X(s)&=\frac{-2b}{s^2-b^2},\ \ -b<\mathrm{Re}\{s\}<b \end{aligned}}
+
+\begin{samepage}
+\begin{ornek}
+  $h(t)=e^{-|t|}\donusum H(s)=\dfrac{-2}{s^2-1}$, \ $-1<\mathrm{Re}\{s\}<1$
+\end{ornek}
+\noindent
+\begin{minipage}[c]{0.45\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north east lines, pattern color=murekkep] (-1,-1.8) rectangle (1,1.6);
+    \draw (-1,-2) -- (-1,1.8); \draw (1,-2) -- (1,1.8);
+    \draw[-{Stealth[length=2mm]}] (-2.2,0) -- (2.6,0) node[right] {\small Re};
+    \draw[-{Stealth[length=2mm]}] (0,-2) -- (0,2.1) node[right] {\small Im};
+    \node[below left] at (-1,0) {\small $-1$}; \node[below right] at (1,0) {\small $1$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+  Nedensel değildir\\ kararlıdır
+\end{minipage}
+\end{samepage}
+
+\begin{ornek}
+  $\displaystyle H(s)=\frac{s-1}{(s+1)(s-2)}=\frac{A}{s+1}+\frac{B}{s-2}$, \ $A=2/3$, \ $B=\dfrac{1}{3}$
+\end{ornek}
+\noindent
+\begin{minipage}[t]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, x=0.7cm, y=0.7cm]
+  \fill[pattern=north east lines, pattern color=murekkep] (2,-1.8) rectangle (3.5,1.8);
+  \draw[dashed] (2,-2) -- (2,2);
+  \draw[-{Stealth[length=2mm]}] (-2.4,0) -- (3.9,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-2) -- (0,2.2) node[right] {\small Im};
+  \draw (1,0) circle (0.09); \node at (2,0) {$\times$};
+  \node[below] at (1,0) {\small $1$}; \node[below right] at (2,0) {\small $2$};
+\end{tikzpicture}\\[1mm]
+\raggedright\small
+$h(t)$ sağ yanlı\\
+$h(t)=\dfrac{2}{3}e^{-t}u(t)$\\
+\hspace*{1.2em}$+\dfrac{1}{3}e^{2t}u(t)$\\
+Nedensel (sağ yanlı)\\
+kararlı değil ($j\omega$ eksenini kesmez)
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, x=0.7cm, y=0.7cm]
+  \fill[pattern=north east lines, pattern color=murekkep] (-2.4,-1.8) rectangle (-1,1.8);
+  \draw (-1,-2) -- (-1,2);
+  \draw[-{Stealth[length=2mm]}] (-2.4,0) -- (3.9,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-2) -- (0,2.2) node[right] {\small Im};
+  \draw (1,0) circle (0.09); \node at (-1,0) {$\times$}; \node at (2,0) {$\times$};
+  \node[below right] at (-1,0) {\small $-1$}; \node[below] at (1,0) {\small $1$}; \node[below right] at (2,0) {\small $2$};
+\end{tikzpicture}\\[1mm]
+\raggedright\small
+$h(t)$ sol yanlı\\
+$h(t)=\dfrac{-2}{3}e^{-t}u(-t)$\\
+\hspace*{1.2em}$-\dfrac{1}{3}e^{2t}u(-t)$\\
+Nedensel değil Sol yanlı\\
+kararlı değil
+\end{minipage}\hfill
+\begin{minipage}[t]{0.32\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, x=0.7cm, y=0.7cm]
+  \fill[pattern=north east lines, pattern color=murekkep] (-1,-1.8) rectangle (2,1.8);
+  \draw (-1,-2) -- (-1,2); \draw (2,-2) -- (2,2);
+  \draw[-{Stealth[length=2mm]}] (-2.4,0) -- (3.9,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-2) -- (0,2.2) node[right] {\small Im};
+  \draw (1,0) circle (0.09); \node at (-1,0) {$\times$}; \node at (2,0) {$\times$};
+  \node[below left] at (-1,0) {\small $-1$}; \node[below] at (1,0) {\small $1$}; \node[below right] at (2,0) {\small $2$};
+\end{tikzpicture}\\[1mm]
+\raggedright\small
+$h(t)$ çift yanlı\\
+$h(t)=\dfrac{2}{3}e^{-t}u(t)$\\
+\hspace*{1.2em}$-\dfrac{1}{3}e^{2t}u(-t)$\\
+Nedensel değil\\
+kararlı
+\end{minipage}
+
+\sayfa{5}\nopagebreak
+\begin{ornek}
+  $\displaystyle\frac{d^2y(t)}{dt^2}+3\frac{dy(t)}{dt}+2y(t)=\frac{dx(t)}{dt}+3x(t)$, \ $h(t)=$ ?
+\end{ornek}
+\[ \updownarrow\ \mathcal{L} \]
+\[ s^2Y(s)+3sY(s)+2Y(s)=sX(s)+3X(s) \]
+\[ \underset{\mathclap{\updownarrow\ \mathcal{L}^{-1}}}{H(s)}=\frac{Y(s)}{X(s)}=\frac{s+3}{s^2+3s+2}=\frac{A}{s+1}+\frac{B}{s+2},\qquad
+\begin{aligned} A&=2\\ B&=-1 \end{aligned} \]
+\begin{minipage}{\linewidth}
+\[ h(t)=2e^{-t}u(t)-e^{-t}u(t),\ \ \mathrm{Re}\{s\}>-1\;\footnote{Claude notu: muhtemelen $-e^{-2t}u(t)$ olmalı ($B/(s+2)$ terimi için).} \]
+\end{minipage}
+
+\section{z transformu}
+\[ X(z)=\sum_{n=-\infty}^{\infty}x[n]\,z^{-n} \]
+\[ x[n]\ \overset{z}{\longleftrightarrow}\ X(z) \]
+\[ X(z)=\mathcal{Z}\{x[n]\} \]
+\[ \Rightarrow\ z=re^{j\omega}\qquad
+\begin{aligned}
+  \longrightarrow\ & r:\ \text{magnitude}\\
+  \hookrightarrow\ & \omega:\ \text{angle}
+\end{aligned} \]
+\begin{align*}
+  X(z)=X(re^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]\,(re^{j\omega})^{-n}
+    &=\sum_{n=-\infty}^{\infty}x[n]\,r^{-n}e^{-j\omega n}\\
+    &=\Fou{x[n]\,r^{-n}}
+\end{align*}
+\[ \Rightarrow\ z=e^{j\omega}\ (r=1) \]
+\[ X(z)=X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]\,e^{-j\omega n}=\Fou{x[n]}=X(z)\Big|_{z=e^{j\omega}} \]
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt]
+  \draw (0,0) circle (0.9);
+  \draw[-{Stealth[length=2mm]}] (-1.8,0) -- (1.8,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-1.8) -- (0,1.9) node[right] {\small Im};
+  \draw[thin] (0,0) -- (45:0.9) -- (1.15,1.4) node[above right] {$z=e^{j\omega}$};
+  \node at (0.38,0.18) {\scriptsize $\omega$};
+  \node[below right] at (0.9,0) {\small $1$};
+  \draw[-{Stealth[length=1.5mm]}] (1.05,-0.45) -- ++(0.55,-0.15) node[right, align=left] {\small Birim\\ çember};
+  \node[below] at (0,-1.8) {\small Z düzlemi};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{6}\nopagebreak
+$\to$ Yakınsama bölgesi (region of convergence): z-transform toplamının yakınsadığı z değer aralığıdır.
+
+\underline{Not}: z-transformun ROC'u birim çemberi içerirse Fourier transformu yakınsar.
+
+\begin{ornek}
+  $a^n u[n]$
+\end{ornek}
+\[ X(z)=\sum_{n=-\infty}^{\infty}x[n]\,z^{-n}=\sum_{n=-\infty}^{\infty}a^n u[n]\,z^{-n}=\sum_{n=0}^{\infty}(az^{-1})^n \]
+\[ \text{Reminder}:\ \sum_{k=0}^{\infty}a^k=\frac{1}{1-a},\ \ |a|<1 \]
+\[ X(z)=\frac{1}{1-az^{-1}}=\frac{z}{z-a},\ \ |az^{-1}|<1,\ \ |z|>|a| \]
+\hfill\begin{minipage}{0.4\linewidth} $z=0$ sıfırı\\ $z=a$ kutupu \end{minipage}\hspace{1.5cm}
+
+\begin{align*}
+  a^n u[n] &\;\overset{z}{\longleftrightarrow}\; \frac{1}{1-az^{-1}},\ \ |z|>|a|\ \ \swarrow\ a=1\\
+  u[n] &\donusum \frac{1}{1-z^{-1}},\ \ |z|>1
+\end{align*}
+
+\noindent
+\begin{minipage}[c]{0.55\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt]
+    \foreach \ang in {10,35,60,85,110,135,160,185,210,235,260,285,310,335}{
+      \draw[thin] (\ang:0.75) -- (\ang:1.7);
+    }
+    \draw[line width=1.1pt] (0,0) circle (1.25);
+    \draw[dashed] (0,0) circle (0.75);
+    \draw[-{Stealth[length=2mm]}] (-2.0,0) -- (2.4,0) node[right] {\small Re};
+    \draw[-{Stealth[length=2mm]}] (0,-1.9) -- (0,2.0) node[right] {\small Im};
+    \node[below right] at (1.25,0) {\small $1$};
+    \node[below left] at (0.75,0) {\small $a$};
+  \end{tikzpicture}\\[1mm]
+  {\small z düzlemi: / kutup-sıfır çizimi}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.38\linewidth}
+  $\times$: kutup\\ $\circ$: sıfır\\ $0<a<1$
+\end{minipage}
+
+\begin{ornek}
+  $x[n]=-a^n u[-n-1]$
+\end{ornek}
+\begin{align*}
+  X(z)&=\sum_{n=-\infty}^{\infty}x[n]\,z^{-n}=-\sum_{n=-\infty}^{\infty}a^n u[-n-1]\,z^{-n}\\
+  &=-\sum_{n=-\infty}^{-1}a^n z^{-n}=-\sum_{n=1}^{\infty}a^{-n}z^{n}=1-\sum_{n=0}^{\infty}(a^{-1}z)^n\\
+  &=1-\frac{1}{1-a^{-1}z}=\frac{1}{1-az^{-1}}=\frac{z}{z-a},\ \ |a^{-1}z|<1,\ \ |z|<|a|
+\end{align*}
+
+\sayfa{7}\nopagebreak
+\[ -a^nu[-n-1]\;\overset{z}{\longleftrightarrow}\;\frac{1}{1-az^{-1}},\ \ |z|<|a| \]
+
+\noindent
+\begin{minipage}[c]{0.55\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt]
+    \fill[pattern=north east lines, pattern color=murekkep] (0,0) circle (0.5);
+    \draw[dashed] (0,0) circle (0.5);
+    \draw[line width=1.1pt] (0,0) circle (1.25);
+    \draw[-{Stealth[length=2mm]}] (-1.9,0) -- (2.4,0) node[right] {\small Re};
+    \draw[-{Stealth[length=2mm]}] (0,-1.7) -- (0,1.9) node[right] {\small Im};
+    \draw[fill=white] (0,0) circle (0.06);
+    \node[above right] at (1.25,0) {\small $1$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.3\linewidth}
+  $0<a<1$
+\end{minipage}
+
+\noindent $X(z)$'in ROC'u birim çemberi içermediğinden, $x[n]$'in Fourier Transformu yoktur.
+
+\begin{ornek}
+  $x[n]=7\left(\dfrac{1}{3}\right)^{n}u[n]-6\left(\dfrac{1}{2}\right)^{n}u[n]$
+\end{ornek}
+\noindent \underline{Reminder}: $a^nu[n]\;\overset{z}{\longleftrightarrow}\;\dfrac{1}{1-az^{-1}}$, \ $|z|>|a|$
+
+\[ X(z)=\frac{7}{\underbrace{1-\frac{1}{3}z^{-1}}_{\begin{array}{c}\left|\frac{1}{3}z^{-1}\right|<1\\[1mm] |z|>\frac{1}{3}\end{array}}}
+ -\frac{6}{\underbrace{1-\frac{1}{2}z^{-1}}_{\begin{array}{c}\left|\frac{1}{2}z^{-1}\right|<1\\[1mm] |z|>1/2\end{array}}} \]
+
+\[ =\frac{1-\frac{3}{2}z^{-1}}{\left(1-\frac{1}{3}z^{-1}\right)\left(1-\frac{1}{2}z^{-1}\right)}
+ =\frac{z(z-3/2)}{(z-1/3)(z-1/2)},\ \ |z|>1/2 \]
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt]
+  \foreach \ang in {10,40,70,100,130,160,190,220,250,280,310,340}{
+    \draw[thin] (\ang:0.8) -- (\ang:2.0);
+  }
+  \draw[line width=1.1pt] (0,0) circle (1.6);
+  \draw[dashed] (0,0) circle (0.8);
+  \draw[-{Stealth[length=2mm]}] (-2.2,0) -- (3.2,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-2.1) -- (0,2.3);
+  \node at (0.53,0) {$\times$}; \node at (0.8,0) {$\times$};
+  \draw (2.4,0) circle (0.07);
+  \node[below left] at (0.55,0) {\scriptsize $\frac{1}{3}$}; \node[below right] at (0.78,0) {\scriptsize $\frac{1}{2}$};
+  \node[below] at (2.4,0) {\scriptsize $3/2$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{8}\nopagebreak
+\begin{ornek}
+  $x[n]=\left(\dfrac{1}{3}\right)^{n}\sin\left(\dfrac{\pi n}{4}\right)u[n]$, \ $X(z)=$ ?
+\end{ornek}
+\[ x[n]=\frac{1}{2j}\left(\frac{1}{3}e^{j\pi/4}\right)^{n}u[n]-\frac{1}{2j}\left(\frac{1}{3}e^{-j\pi/4}\right)^{n}u[n] \]
+\[ X(z)=\frac{1}{2j}\,\frac{1}{\underbrace{1-\frac{1}{3}e^{j\pi/4}z^{-1}}_{\left|\frac{1}{3}e^{j\pi/4}z^{-1}\right|<1}}
+ -\frac{1}{2j}\,\frac{1}{\underbrace{1-\frac{1}{3}e^{-j\pi/4}z^{-1}}_{\left|\frac{1}{3}e^{-j\pi/4}z^{-1}\right|<1}} \]
+\[ =\frac{z/(3\sqrt{2})}{\left(z-\frac{1}{3}e^{j\pi/4}\right)\left(z-\frac{1}{3}e^{-j\pi/4}\right)},\ \ |z|>1/3 \]
+
+\noindent
+\begin{tabular}{@{}l@{\ \ }c@{\ \ }l@{\ \ }l@{}}
+  Not: Payın derecesi & $>$ & paydanın derecesi & $\to$ sonsuzda kutup vardır\\[2mm]
+  & $<$ & & $\to$ sonsuzda sıfır vardır.
+\end{tabular}
+
+\section{Yakınsaklık bölgesi (ROC) özellikleri}
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=6pt]
+  \item $X(z)$'nin ROC'u z düzleminde
+  \item ROC, herhangi bir kutup içermez
+  \item $x[n]$ sonlu süreli ise, ROC, olası $z=0$ ve/veya $z=\infty$ değerleri dışında bütün z-düzlemidir.
+\end{enumerate}
+
+\begin{ornek}
+  $x[n]=\delta[n]$
+\end{ornek}
+\[ X(z)=\sum_{n=-\infty}^{\infty}x[n]\,z^{-n}=\sum_{n=-\infty}^{\infty}\delta[n]\,z^{-n}=\underset{\mathclap{\begin{array}{c}\uparrow\\[-1mm] \delta[n]=1,\ n=0\end{array}}}{1}, \]
+
+\sayfa{9}\nopagebreak
+\noindent $\delta[n]\;\overset{z}{\longleftrightarrow}\;1$, \ $\forall z$ (ROC, $z=0$ ve $z=\infty$ içeren bütün z düzlemidir)
+
+\begin{ornek}
+  $x[n]=\delta[n-1]$
+\end{ornek}
+\[ X(z)=\sum_{n=-\infty}^{\infty}x[n]\,z^{-n}=\sum_{n=-\infty}^{\infty}\delta[n-1]\,z^{-n}=\underset{\mathclap{\delta[n-1]=1,\ n=1}}{z^{-1}=\frac{1}{z}} \]
+\noindent $z=0$'da bir kutup var\\
+ROC, $z=\infty$ içeren, $z=0$ dışında bütün z düzlemidir.
+
+\begin{ornek}
+  $x[n]=\delta[n+1]$
+\end{ornek}
+\begin{minipage}{\linewidth}
+\[ X(z)=\delta[n+1]\footnote{Claude notu: muhtemelen $x[n]=\delta[n+1]$ olmalı.} \]
+\end{minipage}
+\[ X(z)=\sum_{n=-\infty}^{\infty}\delta[n+1]\,z^{-n}\ \underset{\mathclap{\begin{array}{c}\uparrow\\[-1mm]\delta[n+1]=1,\ n=-1\end{array}}}{=}\ z \]
+\vspace{4mm}
+
+\noindent $z=\infty$'da bir kutup vardır\\
+ROC, $z=0$ içeren, $z=\infty$ dışında bütün z düzlemidir.
+
+\begin{enumerate}[label=\arabic*), start=4, leftmargin=2em]
+  \item $x[n]$ sağ yanlı ve $|z|=r_0$ çemberi ROC'da ise, $|z|>r_0$ sağlayan sonlu bütün z değerleri de ROC'dadır.
+\end{enumerate}
+
+\noindent
+\begin{minipage}[c]{0.5\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt]
+    \draw[-{Stealth[length=2mm]}] (-2.2,0) -- (3.0,0) node[right] {\small $n$};
+    \foreach \x in {-1.5,-1.0,-0.5} \fill (\x,0) circle (0.04);
+    \draw (0,0) -- (0,0.8);   \fill (0,0.8) circle (0.04);
+    \draw (0.5,0) -- (0.5,1.3); \fill (0.5,1.3) circle (0.04);
+    \draw (1.0,0) -- (1.0,0.4); \fill (1.0,0.4) circle (0.04);
+    \draw (1.5,0) -- (1.5,1.8); \fill (1.5,1.8) circle (0.04);
+    \node[below] at (0,0) {\small $N_1$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.45\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt]
+    \foreach \ang in {15,45,75,105,135,165,195,225,255,285,315,345}{
+      \draw[thin] (\ang:1.0) -- (\ang:1.7);
+    }
+    \draw[dashed, line width=1.1pt] (0,0) circle (1.0);
+    \draw[-{Stealth[length=2mm]}] (-1.7,0) -- (2.0,0) node[right] {\small Re};
+    \draw[-{Stealth[length=2mm]}] (0,-1.3) -- (0,1.5) node[right] {\small Im};
+  \end{tikzpicture}
+\end{minipage}
+
+\begin{minipage}{\linewidth}
+\[ X(z)=\sum_{n=}^{\infty}x[n]\,z^{-n}\ \to\ \begin{array}{l} N_1<0\ \text{iken}\ z\to\infty,\ X(z)\ \text{sonsuzdur}\\ \text{ve ROC},\ z=\infty\ \text{içermez}\footnote{Claude notu: toplamın alt sınırı yazılmamış (muhtemelen $n=N_1$).} \end{array} \]
+\end{minipage}
+
+\sayfa{10}\nopagebreak
+\begin{enumerate}[label=\arabic*), start=5, leftmargin=2em]
+  \item $x[n]$ sol yanlı ve $|z|=r_0$ çemberi ROC'da ise, $0<|z|<r_0$ sağlayan bütün z değerleri de ROC'da olur
+\end{enumerate}
+
+\noindent
+\begin{minipage}[c]{0.5\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt]
+    \draw[-{Stealth[length=2mm]}] (-2.4,0) -- (1.8,0) node[right] {\small $n$};
+    \draw (0,0) -- (0,1.7);       \fill (0,1.7) circle (0.04);
+    \draw (-0.45,0) -- (-0.45,0.8); \fill (-0.45,0.8) circle (0.04);
+    \draw (-0.9,0) -- (-0.9,1.25);  \fill (-0.9,1.25) circle (0.04);
+    \draw (-1.35,0) -- (-1.35,1.9); \fill (-1.35,1.9) circle (0.04);
+    \draw (-1.8,0) -- (-1.8,0.6);   \fill (-1.8,0.6) circle (0.04);
+    \node[below] at (0,0) {\small $N_2$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.45\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt]
+    \begin{scope}
+      \clip (0,0) circle (1.1);
+      \fill[pattern=north east lines, pattern color=murekkep] (-1.2,-1.2) rectangle (1.2,1.2);
+    \end{scope}
+    \draw[line width=1.1pt] (0,0) circle (1.1);
+    \draw[-{Stealth[length=2mm]}] (-1.8,0) -- (2.0,0) node[right] {\small Re};
+    \draw[-{Stealth[length=2mm]}] (0,-1.3) -- (0,1.7) node[right] {\small Im};
+  \end{tikzpicture}
+\end{minipage}
+
+\medskip
+\begin{enumerate}[label=\arabic*), start=6, leftmargin=2em]
+  \item $x[n]$ iki yanlı ve $|z|=r_0$ çemberi ROC'da ise, ROC, z-düzleminde $|z|=r_0$ çemberini içeren bir halkadır
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt]
+  \fill[pattern=north east lines, pattern color=murekkep, even odd rule] (0,0) circle (1.3) (0,0) circle (0.7);
+  \draw[dashed] (0,0) circle (1.3);
+  \draw[dashed] (0,0) circle (0.7);
+  \draw[-{Stealth[length=2mm]}] (-1.8,0) -- (2.4,0) node[right] {\small Re};
+  \draw[-{Stealth[length=2mm]}] (0,-1.5) -- (0,1.7) node[right] {\small Im};
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}[label=\arabic*), start=7, leftmargin=2em]
+  \item $X(z)$ rasyonel ise, ROC, ya kutuplarla sınırlıdır ya da sonsuza genişler ve kutup içermez
+\end{enumerate}
+\begin{itemize}[label=$\to$, leftmargin=2.6em, itemsep=3pt]
+  \item $x[n]$ sağ yanlı ise, ROC, en dışındaki kutupların dışındaki z düzlemidir.
+  \item $x[n]$ sol yanlı ise, ROC, en içerdeki sıfırdan farklı kutupların içindeki z düzlemidir.
+\end{itemize}
+
+\end{document}

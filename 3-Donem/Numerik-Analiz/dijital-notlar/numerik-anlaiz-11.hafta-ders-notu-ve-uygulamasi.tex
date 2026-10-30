@@ -1,0 +1,389 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Nümerik Analiz}{11. Hafta -- Lineer denklem sistemleri için iterasyon yöntemleri}{numerik-anlaiz-11.hafta-ders-notu-ve-uygulamasi.pdf}
+
+\sayfa{1}
+\begin{center}
+  {\Large\bfseries MAT 214}\\[2mm]
+  Sayısal Yöntemler\\[4mm]
+  \underline{11. Hafta}\\[6mm]
+  \textbf{Lineer Cebri Denklemler Sistemi için\\ İterasyon Yöntemleri.}
+\end{center}
+
+\begin{enumerate}[label=\arabic*)]
+  \item Matrisin öz değer ve öz fonksiyonları;
+  \item Jacobi iterasyon yöntemi.
+\end{enumerate}
+
+\sayfa{2}
+\section{Lineer Cebri Denklem Sistemleri için İterasyon Yöntemleri}
+\subsection{Matrisin özdeğer ve özvektörleri, Spektral Yarıçap.}
+$n\times n$ boyutlu bir $A=[a_{ij}]$ matrisi verilmiş olsun. Bu matris için, $\lambda$ reel veya kompleks sayı olmakla
+\[ \underline{Ax=\lambda x} \ \Leftrightarrow\ (A-\lambda I_n)\,x=0, \qquad I_n \text{ özdeşlik matristir} \]
+denklem sistemini inceleyelim. Bu denklem sisteminin açık şekli
+\[
+  \begin{cases}
+    \underline{(a_{11}-\lambda)}\,x_1+a_{12}x_2+\cdots+a_{1n}x_n=0,\\
+    a_{21}x_1+\underline{(a_{22}-\lambda)}\,x_2+\cdots+a_{2n}x_n=0,\\
+    \qquad\vdots\qquad\qquad\qquad\qquad\vdots\\
+    a_{n1}x_1+a_{n2}x_2+\cdots+\underline{(a_{nn}-\lambda)}\,x_n=0
+  \end{cases}
+  \qquad x=\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}
+\]
+olur. Kolayca görüldüğü üzere her $\lambda$ sayısı için $x=0$ bu sistemin çözümü olur. Bu çözüme
+\underline{aşikar} (\underline{trivial}) çözüm denir. Maksat bu denklem sisteminin trivial olmayan
+($x\neq 0$) çözümünü bulmaktır.
+
+$\lambda$ parametresinin, bu sistemin \underline{trivial olmayan} çözümlerini temin eden değerlerine
+\underline{özdeğerler}, trivial olmayan çözümlere ise \underline{özvektörler} denir.
+
+Kolayca görüldüğü üzere, eğer $\det(A-\lambda I_n)\neq 0$ olursa sistemin tek $x=0$ trivial çözümü olur.
+Demek ki trivial olmayan çözüme $\lambda$'nın $\det(A-\lambda I_n)=0$ yapan değerleri ile ulaşabiliriz.
+Başka deyimle,
+\[ p(\lambda)=\det(A-\lambda I)\text{'ye } A \text{ matrisinin karakteristik} \]
+
+\sayfa{3}
+polinomu dersek, bu polinomun sıfırlarına $A$ matrisinin özdeğerleri denir:
+\[ p(\lambda)=0 \ \Leftrightarrow\ \underline{\det(A-\lambda I)=0} \]
+denklemlerinin çözümleri $A$ matrisinin özdeğerleridir.
+Eğer $\lambda$ sayısı $A$ matrisinin bir özdeğeri ise
+\[ (A-\lambda I)\,x=0 \]
+sisteminin trivial olmayan ($x\neq 0$) çözümleri bu özdeğere karşı gelen özvektörler olur.
+
+Böylece $n\times n$ boyutlu $A=[a_{ij}]$ matrisinin özdeğer ve özfonksiyonlarını aşağıdaki aşamalarla bulabiliriz:
+\begin{itemize}
+  \item $\det(A-\lambda I)=0$ denklemini çözerek, $A$ matrisinin $\lambda$ \underline{özdeğerleri} bulunur;
+  \item $\lambda$ özdeğer olduğunda
+  \[ (A-\lambda I)\,x=0 \]
+  denklem sistemini çözmekle, $\lambda$ özdeğerine karşı gelen $x\neq 0$ \underline{özvektörleri} bulunur;
+\end{itemize}
+
+\begin{ornek}
+Aşağıdaki matrislerin özdeğer ve özvektörlerini bulunuz\\[1mm]
+a) \ $A=\begin{bmatrix}0&1\\-1&0\end{bmatrix}$, \qquad b) \ $A=\begin{bmatrix}2&0&0\\1&1&2\\1&-1&4\end{bmatrix}$
+\end{ornek}
+\begin{cozum}
+\[ \text{a)}\quad A-\lambda I=\begin{bmatrix}0&1\\-1&0\end{bmatrix}-\lambda\begin{bmatrix}1&0\\0&1\end{bmatrix}=\begin{bmatrix}-\lambda&1\\-1&-\lambda\end{bmatrix} \]
+
+\sayfa{4}
+\[ \det(A-\lambda I)=\begin{vmatrix}-\lambda&1\\-1&-\lambda\end{vmatrix}=\lambda^2+1=0 \]
+\[ \Rightarrow\ \lambda_1=i,\ \lambda_2=-i \]
+$A$ matrisinin iki $\lambda_1=i$ ve $\lambda_2=-i$ özdeğerleri vardır.
+\[
+  \lambda_1=i \ \rightarrow\ (A-\lambda_1 I)\,x=\begin{bmatrix}-i&1\\-1&-i\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}=0
+\]
+\[
+  \Rightarrow\ \begin{cases}-i\,x_1+x_2=0\\-x_1-i\,x_2=0\end{cases}
+  \ \Rightarrow\ \underline{x_2=i\,x_1}
+\]
+\[
+  \begin{bmatrix}x_1\\x_2\end{bmatrix}=\begin{bmatrix}x_1\\i\,x_1\end{bmatrix}
+  =\underline{\begin{bmatrix}1\\i\end{bmatrix}}\,x_1
+\]
+Böylece, \underline{$\lambda_1=i$} özdeğerine karşı gelen özvektör \underline{$\begin{bmatrix}1\\i\end{bmatrix}$}'dir
+\[
+  \lambda_2=-i \ \rightarrow\ (A-\lambda_2 I)\,x=\begin{bmatrix}i&1\\-1&i\end{bmatrix}\begin{bmatrix}x_1\\x_2\end{bmatrix}=0
+\]
+\[
+  \Rightarrow\ \begin{cases}i\,x_1+x_2=0\\-x_1+i\,x_2=0\end{cases}
+  \ \rightarrow\ x_2=-i\,x_1
+\]
+\[
+  \begin{bmatrix}x_1\\x_2\end{bmatrix}=\begin{bmatrix}x_1\\-i\,x_1\end{bmatrix}
+  =\underline{\begin{bmatrix}1\\-i\end{bmatrix}}\,x_1
+\]
+\underline{$\lambda_2=-i$} özdeğerine karşı gelen özvektör \underline{$\begin{bmatrix}1\\-i\end{bmatrix}$}'dir
+\[
+  \text{b)}\quad A-\lambda I=\begin{bmatrix}2&0&0\\1&1&2\\1&-1&4\end{bmatrix}
+  -\lambda\begin{bmatrix}1&0&0\\0&1&0\\0&0&1\end{bmatrix}
+  =\begin{bmatrix}2-\lambda&0&0\\1&1-\lambda&2\\1&-1&4-\lambda\end{bmatrix}
+\]
+\begin{align*}
+  \det(A-\lambda I)&=\begin{vmatrix}2-\lambda&0&0\\1&1-\lambda&2\\1&-1&4-\lambda\end{vmatrix}
+  =(2-\lambda)\cdot\begin{vmatrix}1-\lambda&2\\-1&4-\lambda\end{vmatrix}\\
+  &=(2-\lambda)(6-5\lambda+\lambda^2)=0
+\end{align*}
+
+\sayfa{5}
+\[ \Rightarrow\ \lambda_{1,2}=2,\ \lambda_3=3. \]
+$A$ matrisinin birisi iki katlı olmakla 2 sayıda $\lambda_{1,2}=2,\ \lambda_3=3$ özdeğeri vardır.
+\[
+  \lambda_{1,2}=2 \ \rightarrow\ (A-\lambda_{1,2}I)\,x=0 \ \Rightarrow\
+  \begin{bmatrix}0&0&0\\1&-1&2\\1&-1&2\end{bmatrix}\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}=0
+\]
+\[
+  \Rightarrow\ x_1-x_2+2x_3=0 \ \Rightarrow\ x_1=x_2-3x_3\stepcounter{mpfootnote}\textsuperscript{\thempfootnote}
+\]
+\footnotetext{Claude notu: $x_1-x_2+2x_3=0$ denkleminden muhtemelen $x_1=x_2-2x_3$ olmalı (bu durumda ikinci özvektör $[-2,\,0,\,1]^T$ olur).}
+\[
+  \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}=\begin{bmatrix}x_2-3x_3\\x_2\\x_3\end{bmatrix}
+  =\underline{\begin{bmatrix}1\\1\\0\end{bmatrix}}\,x_2+\underline{\begin{bmatrix}-3\\0\\1\end{bmatrix}}\,x_3
+\]
+\underline{$\lambda_{1,2}$}$=2$ özdeğerine karşı gelen lineer bağımsız iki tane özvektör
+\[
+  \underline{\begin{bmatrix}1\\1\\0\end{bmatrix}}\ \text{ve}\ \underline{\begin{bmatrix}-3\\0\\1\end{bmatrix}}\,\text{'dur.}
+\]
+\[
+  \lambda_3=3 \ \rightarrow\ (A-\lambda_3 I)\,x=0 \ \Rightarrow\
+  \begin{bmatrix}-1&0&0\\0&-2&2\\1&-1&1\end{bmatrix}\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}=0\stepcounter{mpfootnote}\textsuperscript{\thempfootnote}
+\]
+\footnotetext{Claude notu: $A-3I$ matrisinin ikinci satırı muhtemelen $[1,\,-2,\,2]$ olmalı (ikinci denklem $x_1-2x_2+2x_3=0$ olurdu; $x_1=0$ olduğu için sonuç değişmez).}
+\[
+  \Rightarrow\ \begin{cases}-x_1=0\\-2x_2+2x_3=0\\x_1-x_2+x_3=0\end{cases}
+  \ \Rightarrow\ x_1=0,\ x_2=x_3
+\]
+\[
+  \begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}=\begin{bmatrix}0\\x_2\\x_2\end{bmatrix}
+  =\underline{\begin{bmatrix}0\\1\\1\end{bmatrix}}\,x_2
+\]
+$\lambda_3=3$ özdeğerine karşı gelen özvektör $\begin{bmatrix}0\\1\\1\end{bmatrix}$'dir.
+
+\end{cozum}
+
+\sayfa{6}
+$n\times n$ boyutlu $A$ matrisinin
+\[ \lambda_1,\lambda_2,\dots,\lambda_m \]
+\noindent\begin{minipage}[b]{0.55\linewidth}
+özdeğerleri bulunsun.
+\end{minipage}\hfill
+\begin{minipage}[b]{0.38\linewidth}
+$\lambda=a+ib$\\[1mm]
+$|\lambda|=\sqrt{a^2+b^2}$
+\end{minipage}
+\[ r(A)=\max\bigl\{|\lambda_1|,\dots,|\lambda_m|\bigr\}, \]
+sayısına $A$ matrisinin \underline{spektral yarıçap} (radius) denir.
+
+\medskip
+\noindent\underline{\underline{Örneğin}} \quad \underline{a)} \ $A=\begin{bmatrix}0&1\\-1&0\end{bmatrix}$ matrisinin özdeğerleri
+$\lambda_1=i$ ve $\lambda_2=-i$ olduğuna göre
+$|\lambda_1|=1$ ve $|\lambda_2|=1$ olduğundan, spektral yarıçap
+\[ r(A)=\max\{1,1\}=1 \quad\text{olur.} \]
+\underline{\underline{b)}} \ $A=\begin{bmatrix}2&0&0\\1&1&2\\1&-1&4\end{bmatrix}$ matrisinin özdeğerleri $\lambda_{1,2}=2$ ve $\lambda_3=3$
+olduğuna göre $|\lambda_{1,2}|=2$ ve $|\lambda_3|=3$ olduğuna göre Spektral yarıçap
+\[ r(A)=\max\{2,3\}=3 \quad\text{olur.} \]
+
+\subsection{Yakınsak Matrisler.}
+$n\times n$ boyutlu $A=[a_{ij}]$ matrisi için
+\[
+  A^2=A\cdot A,\quad A^3=A\cdot A\cdot A,\ \dots,\quad
+  A^k=\underbrace{A\cdot A\cdots A}_{k\ \text{kez}}
+  \qquad \text{matrisleri düzenleyelim}
+\]
+$[A^k]_{ij}$ ile $A^k$ matrisinin $i$. satır ve $j$. sütun elemanını işaretleyelim.
+
+\sayfa{7}
+Eğer her $i,j=1,2,..,n$ için
+\[ \lim_{k\to+\infty}[A^k]_{ij}=0 \]
+olursa, diyorlar ki, $A$ matrisi \underline{yakınsak matristir}
+
+\begin{ornek}[2]
+$A=\begin{bmatrix}\frac12&0\\[1mm]\frac14&\frac12\end{bmatrix}$ matrisinin yakınsak matris olduğunu gösteriniz.
+\end{ornek}
+\begin{cozum}
+\[
+  A^2=A\cdot A=\begin{bmatrix}\frac12&0\\[1mm]\frac14&\frac12\end{bmatrix}\cdot\begin{bmatrix}\frac12&0\\[1mm]\frac14&\frac12\end{bmatrix}
+  =\begin{bmatrix}\frac14&0\\[1mm]\frac28&\frac14\end{bmatrix}
+  =\begin{bmatrix}\frac14&0\\[1mm]\frac14&\frac14\end{bmatrix}
+\]
+\[
+  A^3=A\cdot A^2=\begin{bmatrix}\frac12&0\\[1mm]\frac14&\frac12\end{bmatrix}\cdot\begin{bmatrix}\frac14&0\\[1mm]\frac14&\frac14\end{bmatrix}
+  =\begin{bmatrix}\frac18&0\\[1mm]\frac{3}{16}&\frac18\end{bmatrix}
+\]
+\[
+  A^4=A\cdot A^3=\begin{bmatrix}\frac{1}{16}&0\\[1mm]\frac18&\frac{1}{16}\end{bmatrix}\quad\text{vs.}
+\]
+\[
+  A^k=\begin{bmatrix}\frac{1}{2^k}&0\\[1mm]\frac{k}{2^{k+1}}&\frac{1}{2^k}\end{bmatrix}
+\]
+Görüldüğü üzere
+\[
+  \lim_{k\to+\infty}\frac{1}{2^k}=0 \quad\text{ve}\quad \lim_{k\to+\infty}\frac{k}{2^{k+1}}=0
+\]
+\[ \Rightarrow\ A \text{ yakınsak matristir.} \]
+\end{cozum}
+$A$ matrisinin \underline{yakınsak olması}, onun spektral yarıçapının
+\underline{$r(A)<1$} olması ile \underline{gerek ve yeterdir.}
+
+\sayfa{8}
+\section{Lineer Cebri Denklem sistemi için Jacobi iterasyon yöntemi.}
+$n\times n$ boyutlu $A=[a_{ij}]$ matrisi verilsin, öyle ki, $a_{ii}\neq 0$ olsun.
+$x=[x_1,\dots,x_n]^T$ bilinmeyeni ve $b=[b_1,\dots,b_n]^T$ sağ tarafı için
+\[
+  Ax=b \ \Leftrightarrow\
+  \begin{cases}
+    \kutula{a_{11}x_1}+a_{12}x_2+\cdots+a_{1n}x_n=b_1\\
+    a_{21}x_1+\kutula{a_{22}x_2}+\cdots+a_{2n}x_n=b_2\\
+    \qquad\vdots\qquad\qquad\qquad\qquad\qquad\ \vdots\\
+    a_{n1}x_1+a_{n2}x_2+\cdots+\kutula{a_{nn}x_n}=b_n
+  \end{cases}
+\]
+denklem sisteminin çözümü için \okunamadi{yaklaşık} (iteratif) yöntem verelim.
+
+1. denklemin her tarafına $a_{11}$, 2. denklemin her tarafına $a_{22}$ ve s. $n$. denklemin her tarafına $a_{nn}$'le bölürsek
+\[
+  \begin{array}{r@{\;}c@{\;}l@{\;}c@{\;}l@{\;}c@{\;}l}
+    x_1&=&-\dfrac{a_{12}}{a_{11}}\,x_2&-\cdots-&\dfrac{a_{1n}}{a_{11}}\,x_n&+&\dfrac{b_1}{a_{11}}\,,\\[4mm]
+    x_2&=&-\dfrac{a_{21}}{a_{22}}\,x_1&-\cdots-&\dfrac{a_{2n}}{a_{22}}\,x_n&+&\dfrac{b_2}{a_{22}}\,,\\[2mm]
+    \vdots&&\vdots&&&&\vdots\\[2mm]
+    x_n&=&-\dfrac{a_{n1}}{a_{nn}}\,x_1&-\cdots-&\dfrac{a_{n,n-1}}{a_{nn}}\,x_{n-1}&+&\dfrac{b_n}{a_{nn}}
+  \end{array}
+\]
+Şeklinde veya kısaca
+\[
+  x_i=\sum_{\substack{j=1\\ j\neq i}}^{n}\left(-\frac{a_{ij}}{a_{ii}}\,x_j\right)+\frac{b_i}{a_{ii}}\,,
+  \qquad i=1,2,\dots,n
+\]
+denklem sistemini elde ederiz.
+
+\sayfa{9}
+Başlangıç iterasyon olarak
+\[ x^{(0)}=0 \qquad \left(x^{(0)}=\begin{bmatrix}0\\0\\\vdots\\0\end{bmatrix}\right) \]
+alırsak (veya $x^{(0)}$ olarak keyfi bir vektör de alınabilir)
+\[
+  x_i^{(k)}=\frac{1}{a_{ii}}\left[-\sum_{\substack{j=1\\ j\neq i}}^{n}a_{ij}\,x_j^{(k-1)}+b_i\right],
+  \qquad i=1,2,\dots,n;\quad k=1,2,\dots
+\]
+Şeklinde iterasyon belirleyebiliriz. Bu iterasyona Jacobi iterasyonu denir. $k$ iterasyon adımıdır.
+
+\begin{ornek}[3]
+\[
+  \begin{cases}
+    \kutula{3x_1}-x_2+x_3=1\\
+    3x_1+\kutula{6x_2}+2x_3=0\\
+    3x_1+3x_2+\kutula{7x_3}=0
+  \end{cases}
+\]
+denklem sistemi için $x^{0}=0$ olmakla Jacobi iterasyon yöntemi uygulayarak ilk 2 iterasyonu bulunuz
+\end{ornek}
+\begin{cozum}
+1. denklemi 3 ile, 2. denklemi 6 ile ve 3. denklemi 7 ile bölerek sistemi aşağıdaki şekilde yazabiliriz
+\[
+  \left.\begin{aligned}
+    \kutula{x_1}-\tfrac13x_2+\tfrac13x_3&=\tfrac13\\[1mm]
+    \tfrac36x_1+\kutula{x_2}+\tfrac26x_3&=0\\[1mm]
+    \tfrac37x_1+\tfrac37x_2+\kutula{x_3}&=0
+  \end{aligned}\right\}
+  \ \Rightarrow\
+  \left\{\begin{aligned}
+    x_1&=\tfrac13x_2-\tfrac13x_3+\tfrac13\\[1mm]
+    x_2&=-\tfrac12x_1-\tfrac13x_3\\[1mm]
+    x_3&=-\tfrac37x_1-\tfrac37x_2
+  \end{aligned}\right.
+\]
+Şimdi Jacobi iterasyonunu belirleyelim:
+
+\sayfa{10}
+\[
+  \left\{\begin{aligned}
+    x_1^{(k)}&=\frac13\,x_2^{(k-1)}-\frac13\,x_3^{(k-1)}+\frac13\,,\\[1mm]
+    x_2^{(k)}&=-\frac12\,x_1^{(k-1)}-\frac13\,x_3^{(k-1)}\,,\\[1mm]
+    x_3^{(k)}&=-\frac37\,x_1^{(k-1)}-\frac37\,x_2^{(k-1)}\,,
+  \end{aligned}\right.
+  \qquad \underline{k=1,2,\dots}
+\]
+\[ x_1^{(0)}=0,\quad x_2^{(0)}=0,\quad x_3^{(0)}=0 \]
+$k=1$ olduğunda
+\[
+  \left\{\begin{aligned}
+    x_1^{(1)}&=\frac13\,x_2^{(0)}-\frac13\,x_3^{(0)}+\frac13=\frac13\\[1mm]
+    x_2^{(1)}&=-\frac12\,x_1^{(0)}-\frac13\,x_3^{(0)}=0\\[1mm]
+    x_3^{(1)}&=-\frac37\,x_1^{(0)}-\frac37\,x_2^{(0)}=0
+  \end{aligned}\right.
+\]
+\[ x_1^{(1)}=\frac13,\quad x_2^{(1)}=0,\quad x_3^{(1)}=0 \]
+$k=2$ olduğunda
+\[
+  \left\{\begin{aligned}
+    x_1^{(2)}&=\frac13\,x_2^{(1)}-\frac13\,x_3^{(1)}+\frac13=\frac13\\[1mm]
+    x_2^{(2)}&=-\frac12\,x_1^{(1)}-\frac13\,x_3^{(1)}=-\frac16\\[1mm]
+    x_3^{(2)}&=-\frac37\,x_1^{(1)}-\frac37\,x_2^{(1)}=-\frac37\cdot\frac13=-\frac17
+  \end{aligned}\right.
+\]
+Böylece,
+\[ x_1^{(2)}=\frac13,\quad x_2^{(2)}=-\frac16,\quad x_3^{(2)}=-\frac17 \]
+
+\end{cozum}
+
+\sayfa{11}
+Şimdi Jacobi iterasyon formülünü matris-vektör şeklinde verelim. Bunun için $A$ matrisini
+{\small\setlength{\arraycolsep}{2.5pt}
+\[
+  \underbrace{\begin{bmatrix}a_{11}&a_{12}&\cdots&a_{1n}\\a_{21}&a_{22}&\cdots&a_{2n}\\\vdots&&&\vdots\\a_{n1}&a_{n2}&\cdots&a_{nn}\end{bmatrix}}_{A}
+  =\underbrace{\begin{bmatrix}0&0&\cdots&0\\a_{21}&0&\cdots&0\\\vdots&&&\vdots\\a_{n1}&a_{n2}&\cdots&0\end{bmatrix}}_{\substack{L\\ \text{(alt üçgen)}}}
+  +\underbrace{\begin{bmatrix}a_{11}&0&\cdots&0\\0&a_{22}&\cdots&0\\\vdots&&&\vdots\\0&0&\cdots&a_{nn}\end{bmatrix}}_{\substack{D\\ \text{(köşegen)}}}
+  +\underbrace{\begin{bmatrix}0&a_{12}&\cdots&a_{1n}\\0&0&\cdots&a_{2n}\\\vdots&&&\vdots\\0&0&\cdots&0\end{bmatrix}}_{\substack{U\\ \text{(üst üçgen)}}}
+\]}
+\[ A=L+D+U \]
+Şeklinde yazalım. Bu durumda
+\[ Ax=b \ \Leftrightarrow\ (L+D+U)\,x=b \ \Rightarrow\ Dx=-(L+U)\,x+b \]
+olur. $a_{ii}\neq 0,\ i=1,\dots,n$ olduğuna göre $\det D\neq 0$ olur ve demek ki, tersi vardır: Her tarafı $D^{-1}$'le çarparsak
+\[ x=-D^{-1}(L+U)\,x+D^{-1}b \ \Leftrightarrow\ \underline{x=T_J\,x+c_J} \]
+elde edilir.
+Başlangıç iterasyon olarak $x^{0}=0$ alırsak, bu denklem üzerinden
+\[ T_J=-D^{-1}(L+U),\qquad c_J=D^{-1}b \]
+işaretlersek
+\formulkutu{x^{(k)}=T_J\,x^{(k-1)}+c_J,\quad k=1,2,\dots}
+Şeklinde iterasyon belirleyebiliriz.
+
+$T_J$ matrisine Jacobi matrisi denir.
+
+\sayfa{12}
+\underline{Örneğin} bir önceki örnekteki
+\[
+  \begin{cases}
+    \kutula{3x_1}-x_2+x_3=1\\
+    3x_1+\kutula{6x_2}+2x_3=0\\
+    3x_1+3x_2+\kutula{7x_3}=0
+  \end{cases}
+  \Leftrightarrow\
+  \underbrace{\begin{bmatrix}3&-1&1\\3&6&2\\3&3&7\end{bmatrix}}_{A}
+  \underbrace{\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}}_{x}
+  =\underbrace{\begin{bmatrix}1\\0\\0\end{bmatrix}}_{b}
+\]
+Sistemi için
+\[
+  D=\begin{bmatrix}3&0&0\\0&6&0\\0&0&7\end{bmatrix}
+  \quad\text{ve}\quad
+  L+U=\begin{bmatrix}0&-1&1\\3&0&2\\3&3&0\end{bmatrix}
+\]
+\[
+  \text{olduğundan ve}\quad
+  D^{-1}=\begin{bmatrix}\frac13&0&0\\[1mm]0&\frac16&0\\[1mm]0&0&\frac17\end{bmatrix}
+  \quad\text{olduğu için}
+\]
+\[ Ax=b \ \Leftrightarrow\ (D+L+U)\,x=b \ \Leftrightarrow\ Dx=-(L+U)\,x+b \]
+\[ \Leftrightarrow\ x=\underbrace{-D^{-1}(L+U)}_{T_J}\,x+\underbrace{D^{-1}b}_{c_J} \]
+\[
+  T_J=-\begin{bmatrix}\frac13&0&0\\[1mm]0&\frac16&0\\[1mm]0&0&\frac17\end{bmatrix}\cdot\begin{bmatrix}0&-1&1\\3&0&2\\3&3&0\end{bmatrix}
+  =-\begin{bmatrix}0&-\frac13&\frac13\\[1mm]\frac12&0&\frac13\\[1mm]\frac37&\frac37&0\end{bmatrix}
+\]
+\[
+  \Rightarrow\quad \text{Jacobi matrisi}\quad
+  T_J=\begin{bmatrix}0&\frac13&\frac13\\[1mm]-\frac12&0&-\frac13\\[1mm]-\frac37&-\frac37&0\end{bmatrix}\footnotemark
+  \quad\text{olur.}
+\]
+\footnotetext{Claude notu: bir önceki satırdaki çarpıma göre birinci satır muhtemelen $\bigl[0,\ \tfrac13,\ -\tfrac13\bigr]$ olmalı.}
+
+\sayfa{13}
+\section{Sorular}
+\begin{enumerate}[label=\arabic*)]
+  \item Aşağıdaki matrislerin özdeğer ve özfonksiyonlarını bulunuz:
+  \[
+    \text{a)}\ A=\begin{bmatrix}1&2\\-1&2\end{bmatrix},\qquad
+    \text{b)}\ A=\begin{bmatrix}-1&2&0\\0&3&4\\0&0&7\end{bmatrix}
+  \]
+  Ayrıca bu matrislerin spektral yarıçaplarını hesaplayınız.
+  \item
+  \[
+    \begin{cases}
+      4x_1+x_2-x_3+x_4=-2\\
+      x_1+4x_2-x_3-x_4=-1\\
+      -x_1-x_2+5x_3+x_4=0\\
+      x_1-x_2+x_3+3x_4=1
+    \end{cases}
+  \]
+  Sistemini $x^{(0)}=0$ olmakla Jacobi iterasyonu kullanarak ilk iki iterasyonunu bulunuz. Jacobi matrisini bulunuz.
+\end{enumerate}
+
+\end{document}

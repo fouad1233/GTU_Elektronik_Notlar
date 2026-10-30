@@ -1,0 +1,186 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\renewcommand\thempfootnote{\alph{mpfootnote}}% kutu içindeki dipnotlar için
+\notbilgi{Diferansiyel Denklemler}{9. Hafta Uygulama -- Cauchy--Euler denklemi ve mertebe indirgeme}{DIF-uygulama-9-hafta.pdf}
+
+\sayfa{1}
+\hfill\fbox{8. HAFTA}
+\section{Hatırlatma}
+\begin{itemize}[label=$\ast$]
+\item $a_0x^ny^{(n)} + a_1x^{k-1}y^{(n-1)} + \dots + a_{n-1}xy' + a_ny = f(x)$\footnote{Claude notu: muhtemelen $a_1x^{n-1}y^{(n-1)}$ olmalı.} şeklinde değişken katsayılı denkleme ``Cauchy-Euler denklemi'' denir, burada $a_0, a_1, \dots, a_n$ sabitlerdir. Bu denklemi çözmek için $x>0$ olduğunda $x = e^{t}$ ($x<0$ olduğunda ise $x = -e^{t}$) dönüşümü yapmamız gerekiyor. Bu dönüşüm sayesinde, denklem sabit katsayılı bir denkleme dönüşür ki, bu denklemin de karakteristik denklemi
+\[
+a_0k(k-1)\dots(k-n+1) + a_1k(k-1)\dots(k-n+2) + \dots + a_{n-2}k(k-1) + a_{n-1}k + a_n = 0
+\]
+olur. Bu denklemi elde etmenin basit yolu $y = x^{k}$ dönüşümü yapmaktır.
+\item Yüksek mertebeli değişken katsayılı denklemlerde bir diğer çözüm yöntemi mertebelerin indirgenmesi yöntemidir.
+\[
+a_0(x)y^{(n)} + a_1(x)y^{(n-1)} + \dots + a_{n-1}(x)y' + a_n(x)y = 0
+\]
+denklemi verilsin ve bu denklemin bir $y_1 = y_p(x)$ çözümü bilinsin. Bu durumda, ``$y = u\cdot y_1$ ; $u = u(x)$'' dönüşümüyle ve daha sonraki adımda $u' = v$ dönüşümüyle denklemin mertebesi düşer. Böylece $(n-1)$. mertebeden denklem elde edilir.
+\end{itemize}
+
+\section{Alıştırmalar}
+\begin{ornek}[1]
+$x^2y'' + xy' + y = 4\sin(\ln x)$ denkleminin çözümünü bulunuz.
+\end{ornek}
+\begin{cozum}
+Bu denklem bir Cauchy-Euler denklemidir. Bu durumda, $x>0$ kabul edelim ve $x = e^{t}$ dönüşümü yapalım. Bu dönüşüm sayesinde elde edeceğimiz sabit katsayılı denklemin karakteristik denklemi,
+\[
+r(r-1) + r + 1 = 0 \Rightarrow r^2 + 1 = 0
+\]
+elde edilir. O halde, $\underset{(t=\ln x)}{x = e^{t}}$ dönüşümünden sonra elde edilen sabit katsayılı denklem $y_t'' + y_t = 4\sin t$ şeklinde olmalıdır. Şimdi, bu denklemin çözümünü bulalım.
+\[
+y_t'' + y_t = 0 \Rightarrow r^2 + 1 = 0 \Rightarrow r_1 = i,\ r_2 = -i \Rightarrow \kutula{y_h(t) = c_1\cos t + c_2\sin t \quad c_1, c_2 \in \mathbb{R}}
+\]
+\sayfa{2}
+\[
+\left.\begin{aligned}
+y_p(t) &= t\left(A\cos t + B\sin t\right)\\
+y_p'(t) &= A\cos t + B\sin t + t\left(-A\sin t + B\cos t\right)\\
+y_p''(t) &= -A\sin t + B\cos t - A\sin t + B\cos t + t\left(-A\cos t - B\sin t\right)
+\end{aligned}\right\}
+\Rightarrow \begin{array}{l}\text{Denklemde}\\ \text{yerine}\\ \text{yazalım}\end{array}
+\]
+\[
+-2A\sin t + 2B\cos t = 4\sin t \Rightarrow B = 0,\ A = -2
+\]
+O halde, özel çözüm $y_p(t) = -2t\cos t$ bulunur. Bu durumda genel çözüm
+\[
+y(t) = c_1\cos t + c_2\sin t - 2t\cos t
+\]
+olacağından $t = \ln x$ dönüşümü yapılarak
+\[
+\kutula{y(x) = c_1\cos(\ln x) + c_2\sin(\ln x) - 2\ln x\cos(\ln x) \quad ; \ c_1, c_2 \in \mathbb{R}}
+\]
+bulunur.
+\end{cozum}
+
+\begin{ornek}[2]
+$x^2y'' - 4xy' + 4y = 4x^2 - 6x^3$ denkleminin çözümünü bulunuz.
+\end{ornek}
+\begin{cozum}
+Bu denklem bir Cauchy-Euler denklemidir. Bu durumda, $x>0$ kabul edelim ve $x = e^{t}$ dönüşümü yapalım. Bu dönüşüm sayesinde elde edeceğimiz sabit katsayılı denklemin karakteristik denklemi,
+\[
+r(r-1) - 4r + 4 = 0 \Rightarrow r^2 - 5r + 4 = 0
+\]
+elde edilir. O halde, $x = e^{t}$ $(t = \ln x)$ dönüşümünden sonra elde edilen sabit katsayılı denklem $y_t'' - 5y_t' + 4y_t = 4e^{2t} - 6e^{3t}$ şeklinde olmalıdır.
+Şimdi, bu denklemin çözümünü bulalım.
+\[
+y_t'' - 5y_t' + 4y_t = 0 \Rightarrow r^2 - 5r + 4 = 0 \Rightarrow r_1 = 4,\ r_2 = 1 \Rightarrow \kutula{y_h(t) = c_1e^{4t} + c_2e^{t} \ ; \ c_1, c_2 \in \mathbb{R}}
+\]
+\[
+\left.\begin{aligned}
+y_p(t) &= Ae^{2t} + Be^{3t}\\
+y_p'(t) &= 2Ae^{2t} + 3Be^{3t}\\
+y_p''(t) &= 4Ae^{2t} + 9Be^{3t}
+\end{aligned}\right\}
+\quad \text{Denklemde yerine yazarsak}
+\]
+\sayfa{3}
+\[
+4Ae^{2t} + 9Be^{3t} - 10Ae^{2t} - 15Be^{3t} + 4Ae^{2t} + 4Be^{3t} = 4e^{2t} - 6e^{3t}
+\]
+\[
+\Rightarrow -2Ae^{2t} - 2Be^{3t} = 4e^{2t} - 6e^{3t} \Rightarrow A = -2,\ B = 3
+\]
+\[
+\Rightarrow y_p(t) = -2e^{2t} + 3e^{3t}
+\]
+Bu durumda, genel çözüm
+\[
+y(t) = c_1e^{4t} + c_2e^{t} - 2e^{2t} + 3e^{3t}
+\]
+olacağından $t = \ln x$ dönüşümü yapılarak
+\[
+\kutula{y(x) = c_1x^4 + c_2x - 2x^2 + 3x^3 \quad ; \ c_1, c_2 \in \mathbb{R}}
+\]
+bulunur.
+\end{cozum}
+
+\begin{ornek}[3]
+$x^2\dfrac{d^2y}{dx^2} - 4x\dfrac{dy}{dx} + 4y = 0$ denkleminin $y = x$ verilmiş bir çözümü olsun. Genel çözümü bulunuz.
+\end{ornek}
+\begin{cozum}
+$y = u\cdot x$ \ ; \ $u = u(x)$ dönüşümü yapalım
+\[
+y = ux \Rightarrow y' = xu' + u \Rightarrow y'' = u' + xu'' + u' = xu'' + 2u'
+\]
+Denklemde yerine yazarsak,
+\[
+x^2\left(xu'' + 2u'\right) - 4x\left(xu' + u\right) + 4ux = 0 \Rightarrow x^3u'' + 2x^2u' - 4x^2u' - 4xu + 4ux = 0
+\]
+\[
+\Rightarrow u''x^3 - 2x^2u' = 0
+\]
+Şimdi; $u' = v$ dönüşümü yapalım.
+\[
+v'x^3 - 2x^2v = 0 \Rightarrow v' - \frac{2}{x}v = 0 \rightarrow \text{Bu bir lineer denklemdir. } a(x) = -\frac{2}{x}
+\]
+o.ü. integrasyon çarpanı hesaplanır.
+
+integrasyon çarpanı $\Rightarrow I(x) = e^{-\int\frac{2}{x}dx} = e^{-2\ln x} = \dfrac{1}{x^2}$
+
+Lineer denklemin her tarafını $\dfrac{1}{x^2}$ ile çarparsak,
+\sayfa{4}
+\[
+\underbrace{\frac{1}{x^2}v' - \frac{2}{x^3}v}_{} = 0 \Rightarrow \left(\frac{1}{x^2}\cdot v\right)' = 0 \Rightarrow \frac{1}{x^2}v = c \Rightarrow v = c_1x^2 \ ; \ c_1 \in \mathbb{R}
+\]
+\[
+\underset{v=u'}{\Rightarrow} u' = c_1x^2 \Rightarrow u = c_1\int x^2\,dx \Rightarrow u(x) = c_1\frac{x^3}{3} + c_2 \ ; \ c_1, c_2 \in \mathbb{R}
+\]
+\[
+\underset{u=\frac{y}{x}}{\Rightarrow} \frac{y}{x} = c_1\frac{x^3}{3} + c_2 \Rightarrow y(x) = \underbrace{c_1\frac{x^4}{3}}_{c_3} + c_2x \Rightarrow \kutula{y(x) = c_2x + c_3x^4 \ ; \ c_2, c_3 \in \mathbb{R}}
+\]
+elde edilir.
+\end{cozum}
+
+\begin{ornek}[4]
+$(2x+1)\dfrac{d^2y}{dx^2} - 4(x+1)\dfrac{dy}{dx} + 4y = 0$ denkleminin $y = e^{2x}$ verilmiş bir çözümü olsun. Mertebe düşürerek genel çözümü bulunuz.
+\end{ornek}
+\begin{cozum}
+$y = ux$\footnote{Claude notu: muhtemelen $y = ue^{2x}$ olmalı (sonraki satırda öyle kullanılmış).} \ ; \ $u = u(x)$ dönüşümü yapalım.
+\[
+y = ue^{2x} \Rightarrow y' = u'e^{2x} + 2e^{2x}u \Rightarrow y'' = u''e^{2x} + 2e^{2x}u' + 4e^{2x}u + 2e^{2x}u'
+\]
+Denklemde yerine yazarsak,
+\[
+e^{2x}(2x+1)\left(u'' + 4u' + 4u\right) - 4(x+1)e^{2x}\left(u' + 2u\right) + 4ue^{2x} = 0
+\]
+\[
+\Rightarrow (2x+1)\left(u'' + 4u' + 4u\right) - 4(x+1)\left(u' + 2u\right) + 4u = 0
+\]
+\[
+\Rightarrow 2xu'' + 8xu' + 8xu + u'' + 4u' + 4u - 4xu' - 8xu - 4u' - 8u + 4u = 0
+\]
+\[
+\Rightarrow (2x+1)u'' + 4xu' = 0
+\]
+Şimdi, $u' = v$ dönüşümü yapalım.
+\[
+(2x+1)v' + 4xv = 0 \Rightarrow v' + \frac{4x}{2x+1}v = 0 \rightarrow \text{Lineer denklem ve } a(x) = \frac{4x}{2x+1}
+\]
+integrasyon çarpanı
+\[
+\Rightarrow I(x) = e^{2\int\frac{2x\,dx}{2x+1}} \underset{\substack{\downarrow\\ 2x+1=t\\ 2dx=dt}}{=} e^{\int\frac{t-1}{t}dt} = e^{t-\ln t} = \frac{e^{t}}{t} = e^{2x+1}(2x+1)^{-1}
+\]
+\sayfa{5}
+Lineer denklemin her tarafını $e^{2x+1}(2x+1)^{-1}$ ile çarpalım
+\[
+\underbrace{e^{2x+1}v' + 4xe^{2x+1}(2x+1)^{-1}v}_{} = 0 \Rightarrow \left(e^{2x+1}(2x+1)^{-1}v\right)' = 0 \quad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen ilk terim $e^{2x+1}(2x+1)^{-1}v'$ olmalı.}
+\[
+\Rightarrow \frac{e^{2x+1}}{2x+1}v = c \Rightarrow v = \frac{c(2x+1)}{e^{2x+1}}
+\]
+\[
+\underset{v=u'}{\Rightarrow} u' = \frac{c(2x+1)}{e^{2x+1}} \Rightarrow u(x) = c\int\frac{2x+1}{e^{2x+1}}\,dx
+\overset{\substack{(\text{Kısmi integrasyon})\\ \uparrow}}{\Rightarrow} u(x) = c_1e^{-(2x+1)}(x+1) + c_2
+\]
+\[
+\underset{u=\frac{y}{e^{2x}}}{\Rightarrow} \frac{y}{e^{2x}} = \overbrace{\frac{c_1}{e}}^{c_3}\frac{(x+1)}{e^{2x}} + c_2 \Rightarrow \kutula{y(x) = c_2e^{2x} + c_3(x+1) \ ; \ c_2, c_3 \in \mathbb{R}}
+\]
+bulunur.
+\end{cozum}
+
+\end{document}

@@ -1,0 +1,372 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\renewcommand\thempfootnote{\alph{mpfootnote}}% kutu içindeki dipnotlar için
+\notbilgi{Diferansiyel Denklemler}{1. Hafta Uygulama (2. ders) -- Ayrılabilir ve homojen denklemler}{diff-2.ders-1-hafta.pdf}
+
+\sayfa{1}
+\hfill\fbox{1. HAFTA}
+\section{Hatırlatma}
+\begin{itemize}[label=\#]
+\item $x$ bağımsız değişken, $y = y(x)$ ona bağlı fonksiyon ve bu fonksiyonun $y', y'', \dots, y^{(n)}$ türevleri arasındaki
+\[
+F\left(x, y, y', y'', \dots, y^{(n)}\right) = 0
+\]
+şeklindeki ilişkiye ``$n$. mertebeden adi diferansiyel denklem'' denir.
+\item Eğer $F$ fonksiyonu $y$ ve onun $y', y'', \dots, y^{(n)}$ türevlerine göre lineer olursa bu durumda denkleme ``lineer adi diferansiyel denklem'' denir.
+\item \underline{Ayrılabilir denklemler}: \ $y' = f_1(x)\cdot f_2(y)$ şeklinde veya
+$M_1(x)\cdot M_2(y)\,dx + N_1(x)\cdot N_2(y)\,dy = 0$ şeklindeki denklemlere ``değişkenlerine ayrılabilir denklem'' denir.
+
+Bu durumda, $M_2(y)\cdot N_1(x) \neq 0$ olursa, denklemi bu çarpana bölüp, integral alınırsa diferansiyel denklemin genel çözümü elde edilmiş olur. Tabi, bu durumda $M_2(y)\cdot N_1(x) = 0$ durumu için çözüm kaybolabilir. O yüzden bu durumu ayrı incelemek gerekir.
+\item \underline{Ayrılabilir denklemlere indirgenebilir denklemler}: iki tip denklem vardır.
+\begin{itemize}[label={}]
+\item (a) $y' = f(ax+by+c) \Rightarrow z = ax+by+c$ dönüşümü yapılarak integral alınır.
+\item (b) Homojen denklemler: \ $y' = f\!\left(\dfrac{y}{x}\right) \Rightarrow u = \dfrac{y}{x}$ dönüşümü yapılarak integral alınır.
+\end{itemize}
+\end{itemize}
+
+\section{Alıştırmalar}
+\begin{ornek}[1]
+Aşağıda verilen diferansiyel denklemlerin türlerini mertebelerine göre belirleyiniz
+\end{ornek}
+\begin{itemize}[label=$\ast$]
+\item $\dfrac{dy}{dx} + x^2y = xe^{2}$ \qquad $\rightarrow$ 1. mertebeden lineer denklem
+\item $\dfrac{d^4y}{dx^4} + \left(\dfrac{d^2y}{dx^2}\right)^5 + 5y = 0$ \quad $\rightarrow$ 4. mertebeden lineer olmayan denklem
+\end{itemize}
+
+\sayfa{2}
+\begin{itemize}[label=$\ast$]
+\item $\dfrac{d^2y}{dx^2} + y\sin x = 0$ \qquad $\rightarrow$ 2. mertebeden lineer denklem
+\item $\dfrac{d^6x}{dt^6} + \left(\dfrac{d^4x}{dt^4}\right)\left(\dfrac{d^3x}{dt^3}\right) + x = t$ \quad $\rightarrow$ 6. mertebeden lineer olmayan denklem
+\item $\dfrac{d^3y}{dx^3} + 4\dfrac{d^2y}{dx^2} - 5\dfrac{dy}{dx} + 3y = \sin x$ \quad $\rightarrow$ 3. mertebeden lineer denklem
+\end{itemize}
+
+\begin{ornek}[2]
+$x^3 + 3xy^2 = 1$ fonksiyonunun $0<x<1$ aralığında $2xy\left(\dfrac{dy}{dx}\right) + x^2 + y^2 = 0$ diferansiyel denkleminin bir kapalı çözümü olduğunu gösteriniz.
+\end{ornek}
+\begin{cozum}
+$x^3 + 3xy^2 = 1$ ifadesinin $x$ e göre türevini alalım.
+\[
+3x^2 + 3y^2 + 6xyy' = 0 \Rightarrow 3\left(x^2 + y^2 + 2xyy'\right) = 0 \Rightarrow \kutula{x^2 + y^2 + 2xyy' = 0}
+\]
+sağlandığından verilen kapalı form diferansiyel denklemin bir çözümüdür.
+\end{cozum}
+
+\begin{ornek}[3]
+$f(x) = e^{mx}$ fonksiyonunun $\dfrac{d^3y}{dx^3} - 3\dfrac{d^2y}{dx^2} - 4\dfrac{dy}{dx} + 12y = 0$ diferansiyel denkleminin bir çözümü olması için $m$ nin alacağı değerler nedir?
+\end{ornek}
+\begin{cozum}
+$y = e^{mx}$, \ $y' = me^{mx}$, \ $y'' = m^2e^{mx}$, \ $y''' = m^3e^{mx}$ diferansiyel denklemde yerine koyarsak,
+\[
+m^3e^{mx} - 3m^2e^{mx} - 4me^{mx} + 12e^{mx} = 0 \Rightarrow \overbrace{e^{mx}}^{\neq 0}\left(m^3 - 3m^2 - 4m + 12\right) = 0
+\]
+\[
+\Rightarrow m^3 - 3m^2 - 4m + 12 = 0 \Rightarrow m^2(m-3) - 4(m-3) = 0 \Rightarrow (m-3)(m-2)(m+2) = 0
+\]
+\[
+\Rightarrow m = \pm2,\ 3
+\]
+elde edilir. O halde diferansiyel denklemin çözümleri $y = e^{2x}, e^{-2x}, e^{3x}$ şeklindedir.
+\end{cozum}
+
+\begin{ornek}[4]
+$5x^2y^2 - 2x^3y^2 = 1$ fonksiyonunun $x\left(\dfrac{dy}{dx}\right) + y = x^3y^3$ fonksiyonunun $0<x<\dfrac52$ aralığında denklemin çözümü olduğunu gösteriniz.
+\end{ornek}
+
+\sayfa{3}
+\begin{cozum}
+$5x^2y^2 - 2x^3y^2 = 1$ fonksiyonunun $x$ e göre türevini alalım.
+\[
+10xy^2 + 10x^2yy' - 6x^2y^2 - 4x^3yy' = 0 \Rightarrow xy'\left(10xy - 4x^2y\right) = 6x^2y^2 - 10xy^2
+\]
+\[
+\Rightarrow xy' = \frac{2xy\left(3xy - 5y\right)}{2xy\left(5 - 2x\right)} \Rightarrow xy' = \frac{3xy - 5y}{5 - 2x}
+\]
+ifadesini diferansiyel denklemde yerine yazalım:
+\[
+\left.\begin{aligned}
+&xy' + y = \frac{3xy - 5y}{5-2x} + y = \frac{3xy - 5y + 5y - 2xy}{5-2x} = \frac{xy}{5-2x}\\
+&5x^2y^2 - 2x^3y^2 = 1 \Rightarrow x^2y^2(5 - 2x) = 1 \Rightarrow 5 - 2x = \frac{1}{x^2y^2}
+\end{aligned}\right\} \Rightarrow
+\]
+\[
+xy' + y = \frac{xy}{\frac{1}{x^2y^2}} \Rightarrow \kutula{xy' + y = x^3y^3}
+\]
+elde edilir. Böylece çözüm olduğu gösterilmiş olur.
+\end{cozum}
+
+\begin{ornek}[5]
+$f(x) = \dfrac{1}{1+x^2}$ nin $(1+x^2)\dfrac{d^2y}{dx^2} + 4x\dfrac{dy}{dx} + 2y = 0$ diferansiyel denkleminin çözümü olduğunu gösteriniz.
+\end{ornek}
+\begin{cozum}
+\[
+y = \frac{1}{1+x^2}, \qquad y' = \frac{-2x}{(1+x^2)^2}, \qquad y'' = \frac{-2(1+x^2)^2 + 8x^2(1+x^2)}{(1+x^2)^4} = \frac{6x^2-2}{(1+x^2)^3}
+\]
+ifadelerini diferansiyel denklemde yerine koyarsak,
+\[
+\frac{(1+x^2)(6x^2-2)}{(1+x^2)^3} + 4x\cdot\left(\frac{-2x}{(1+x^2)^2}\right) + \underset{(1+x^2)}{\frac{2}{1+x^2}} = \frac{6x^2 - 2 - 8x^2 + 2 + 2x^2}{(1+x^2)^2} = 0
+\]
+olduğundan verilen $f(x)$ fonksiyonu diferansiyel denklemin bir çözümüdür.
+\end{cozum}
+
+\begin{ornek}[6]
+Aşağıda verilen diferansiyel denklemleri çözünüz.
+
+\begin{tabular}{@{}ll@{}}
+(a) $4xy\,dx + (x^2+1)\,dy = 0$ & \qquad (c) $y' + y^2\sin x = 0$ \\
+(b) $\operatorname{cosec}y\,dx + \sec x\,dy = 0$ & \qquad (d) $y' = (\cos^2x)(\cos^2 2y)$
+\end{tabular}
+\end{ornek}
+
+\sayfa{4}
+\begin{cozum}
+\textbf{(a)} \ $y(x^2+1) \neq 0$ olmak üzere,
+\[
+\frac{4x}{x^2+1}dx + \frac1y dy = 0 \Rightarrow 2\int\frac{2x\,dx}{x^2+1} + \int\frac1y dy = c_1 \underset{\substack{\downarrow\\ x^2+1=u\\ 2x\,dx=du}}{\Rightarrow} 2\ln(x^2+1) + \ln|y| = c_1
+\]
+\[
+\Rightarrow \ln(x^2+1)^2|y| = c_1 \Rightarrow |y| = \frac{e^{c_1}}{(x^2+1)^2}
+\]
+\[
+\underset{e^{c_1}=c>0}{\Rightarrow} y = \frac{c}{(x^2+1)^2}, \quad c \in \mathbb{R}
+\]
+Şimdi, kaybolma ihtimali olan çözümlere bakalım:
+
+$y(x^2+1) = 0 \Rightarrow y = 0 \rightarrow$ Bu çözümü yukarıda $c = 0$ yazarak elde edebiliriz.
+O halde, çözüm ailesi
+\[
+y = \frac{c}{(x^2+1)^2}, \quad c \in \mathbb{R}
+\]
+şeklindedir.
+
+\textbf{(b)} \ $\operatorname{cosec}y\cdot\sec x \neq 0$ olmak üzere
+\[
+\frac{dx}{\sec x} + \frac{dy}{\operatorname{cosec}y} = 0 \Rightarrow \cos x\,dx + \sin y\,dy = 0 \Rightarrow \int\cos x\,dx + \int\sin y\,dy = c
+\]
+\[
+\Rightarrow \kutula{\sin x - \cos y = c}, \quad c \in \mathbb{R}
+\]
+
+\textbf{(c)} \ $\dfrac{dy}{dx} + y^2\sin x = 0 \Rightarrow dy + y^2\sin x\,dx = 0$ denklemini çözelim.
+
+$y^2 \neq 0$ olmak üzere,
+\[
+\frac{dy}{y^2} + \sin x\,dx = 0 \Rightarrow \int\frac{dy}{y^2} + \int\sin x\,dx = -c \Rightarrow -\frac1y - \cos x = -c \Rightarrow \frac1y + \cos x = c
+\]
+Şimdi, kaybolma ihtimali olan çözümlere bakalım.
+
+$y^2 = 0 \Rightarrow y = 0$ bir çözümdür.
+\sayfa{5}
+O halde, çözüm ailesi
+\[
+\begin{cases}
+\dfrac1y + \cos x = c \ ; & c \in \mathbb{R}\\[2mm]
+y = 0
+\end{cases}
+\]
+şeklindedir.
+
+\textbf{(d)} \ $\dfrac{dy}{dx} = (\cos^2x)(\cos^2 2y) \Rightarrow dy = (\cos^2x)(\cos^2 2y)\,dx$ denklemini çözelim.
+
+$\cos^2 2y \neq 0$ olmak üzere,
+\[
+\frac{dy}{\cos^2 2y} - \cos^2x\,dx = 0 \Rightarrow \int\frac{dy}{\cos^2 2y} - \int\cos^2x\,dx = c_1
+\]
+\[
+\Rightarrow \int\frac{dy}{\cos^2 2y} - \int\frac{\cos 2x + 1}{2}\,dx = c_1 \Rightarrow \frac{\tan 2y}{2} - \frac{\sin 2x}{4} - \frac{x}{2} = c_1
+\]
+\[
+\underset{\substack{\downarrow\\ (2c_1=c)}}{\Rightarrow} 2\tan 2y - \sin 2x - 2x = c, \quad c \in \mathbb{R} \qquad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: denklem 4 ile çarpıldığı için muhtemelen $4c_1 = c$ olmalı.}
+Şimdi, kaybolma ihtimali olan çözümlere bakalım.
+\[
+\cos^2 2y = 0 \Rightarrow 2y = \pm\frac{(2n+1)\pi}{2} \Rightarrow y = \pm\frac{(2n+1)\pi}{4}, \quad \forall n \in \mathbb{N} \rightarrow \text{çözümdür}
+\]
+O halde, çözüm ailesi,
+\[
+\begin{cases}
+2\tan 2y - \sin 2x - 2x = c, & c \in \mathbb{R}\\[1mm]
+y = \pm\dfrac{(2n+1)}{4}\pi, & n \in \mathbb{N}
+\end{cases}
+\]
+şeklindedir.
+\end{cozum}
+
+\sayfa{6}
+\begin{ornek}[7]
+Aşağıdaki başlangıç-değer (Cauchy) problemlerini çözünüz.
+
+(a) $(y+2)\,dx + y(x+4)\,dy = 0$, \quad $y(-3) = -1$
+
+(b) $y' = \dfrac{x(x^2+1)}{4y^3}$, \quad $y(0) = -\dfrac{1}{\sqrt2}$
+
+(c) $(3x+8)(y^2+4)\,dx - 4y(x^2+5x+6)\,dy = 0$, \quad $y(1) = 2$
+\end{ornek}
+\begin{cozum}
+\textbf{(a)} \ $(y+2)(x+4) \neq 0$ olmak üzere,
+\[
+\frac{dx}{x+4} + \frac{y}{y+2}dy = 0 \Rightarrow \int\frac{dx}{x+4} + \int\frac{\overset{\nearrow\, y=y+2-2}{y}}{y+2}dy = c
+\]
+\[
+\Rightarrow \int\frac{dx}{x+4} + \int\left(1 - \frac{2}{y+2}\right)dy = c \Rightarrow \ln|x+4| + y - 2\ln|y+2| = c
+\]
+\[
+\Rightarrow \kutula{y + \ln\frac{|x+4|}{(y+2)^2} = c}, \quad c \in \mathbb{R}
+\]
+Şimdi, kaybolma ihtimali olan çözümlere bakalım.
+
+$(y+2)(x+4) = 0 \Rightarrow y = -2 \rightarrow$ çözümdür.
+
+O halde, çözüm ailesi
+\[
+\begin{cases}
+y + \ln\dfrac{|x+4|}{(y+2)^2} = c\\[2mm]
+y = -2, \ x = -4
+\end{cases}
+\]
+şeklindedir. Şimdi, $y(-3) = -1$ koşulunu sağlayan çözümü bulalım.
+\[
+-1 + \ln\frac{1}{(-1+2)^2} = c \Rightarrow -1 = c
+\]
+\[
+\Rightarrow y + \ln\frac{|x+4|}{(y+2)^2} = -1 \Rightarrow \kutula{e^{-(y+1)}(y+2)^2 = |x+4|} \ /\!/
+\]
+\sayfa{7}
+\textbf{(b)} \ $\dfrac{dy}{dx} = \dfrac{x(x^2+1)}{4y^3} \Rightarrow 4y^3dy - x(x^2+1)\,dx = 0$
+\[
+\Rightarrow 4\int y^3dy - \int x(x^2+1)\,dx = c_1 \underset{\substack{\downarrow\\ x^2+1=u\\ 2x\,dx=du}}{\Rightarrow} 4\frac{y^4}{4} - \frac{(x^2+1)^2}{4} = c_1 \overset{\substack{(4c_1=c)\\ \uparrow}}{\Rightarrow} \kutula{4y^4 - (x^2+1)^2 = c}
+\]
+Şimdi, $y(0) = -\dfrac{1}{\sqrt2}$ koşulunu sağlayan çözümü bulalım.
+\[
+4\cdot\left(-\frac{1}{\sqrt2}\right)^4 - (0+1)^2 = c \Rightarrow c = 0 \Rightarrow 4y^4 - (x^2+1)^2 = 0 \Rightarrow \kutula{y = \pm\sqrt{\frac{x^2+1}{2}}} \ /\!/
+\]
+
+\textbf{(c)} \ $(y^2+4)(x^2+5x+6) \neq 0$ olmak üzere,
+\[
+\frac{3x+8}{x^2+5x+6}dx - \frac{4y}{y^2+4}dy = 0 \underset{\substack{\downarrow\\ \left(\frac{3x+8}{x^2+5x+6} = \frac{1}{x+3} + \frac{2}{x+2}\right)}}{\Rightarrow} \frac{dx}{x+3} + \frac{2\,dx}{x+2} - \frac{4y}{y^2+4}dy = 0
+\]
+\[
+\Rightarrow \int\frac{dx}{x+3} + 2\int\frac{dx}{x+2} - 2\int\frac{2y\,dy}{y^2+4} = c_1 \Rightarrow \ln|x+3| + 2\ln|x+2| - 2\ln|y^2+4| = c_1
+\]
+\[
+\Rightarrow \ln\frac{|x+3|(x+2)^2}{(y^2+4)^2} = c_1 \underset{\substack{\downarrow\\ (e^{c_1}=c)}}{\Rightarrow} \kutula{c\,(y^2+4)^2 = |x+3|(x+2)^2 \quad c \in \mathbb{R}}
+\]
+Şimdi, $y(1) = 2$ koşulunu sağlayan çözümü bulalım.
+\[
+c\,8^2 = 4\cdot9 \Rightarrow c = \frac{9}{16} \Rightarrow \kutula{(x+3)(x+2)^2 = \frac{9}{16}(y^2+4)^2} \ /\!/
+\]
+\end{cozum}
+
+\sayfa{8}
+\begin{ornek}[8]
+Aşağıdaki diferansiyel denklemleri çözünüz.
+
+(a) $(2xy + 3y^2)\,dx - (2xy + x^2)\,dy = 0$
+
+(b) $\left(x^3 + y^2\sqrt{x^2+y^2}\right)dx - \left(xy\sqrt{x^2+y^2}\right)dy = 0$
+
+(c) $(x^2 + 3y^2)\,dx - 2xy\,dy = 0$, \quad $y(2) = 6$
+\end{ornek}
+\begin{cozum}
+$M(x,y) = 2xy + 3y^2$ ve $N(x,y) = 2xy + x^2$ olmak üzere,
+\[
+\left.\begin{aligned}
+M(tx,ty) &= 2\cdot tx\cdot ty + 3\cdot t^2y^2 = t^2\left(2xy + 3y^2\right) = t^2M(x,y)\\
+N(tx,ty) &= 2\cdot tx\cdot ty + t^2x^2 = t^2\left(2xy + x^2\right) = t^2N(x,y)
+\end{aligned}\right\} \Rightarrow \begin{array}{l}\text{2. dereceden}\\ \text{homojen denklem}\end{array}
+\]
+Şimdi, $\dfrac{y}{x} = u$ dönüşümü yapalım.
+\[
+\frac{y}{x} = u \Rightarrow y = ux \Rightarrow y' = u'x + u \Rightarrow \frac{dy}{dx} = \frac{du}{dx}x + u \Rightarrow dy = du\,x + u\,dx
+\]
+\[
+\Rightarrow \left(2x\cdot ux + 3u^2x^2\right)dx - \left(2xux + x^2\right)\left(x\,du + u\,dx\right) = 0
+\]
+\[
+\Rightarrow \left(2x^2u + 3u^2x^2 - 2x^2u^2 - x^2u\right)dx + \left(-2x^3u - x^3\right)du = 0
+\]
+\[
+\Rightarrow \left(x^2u^2 + x^2u\right)dx + \left(-2x^3u - x^3\right)du \Rightarrow x^2\left(u^2+u\right)dx - x^3(2u+1)\,du = 0
+\]
+$(u^2+u)x^3 \neq 0$ olmak üzere,
+\[
+\frac1x dx - \frac{2u+1}{u^2+u}du = 0 \Rightarrow \int\frac1x dx - \int\frac{2u+1}{u^2+u}du = c_1 \Rightarrow \ln|x| - \ln|u^2+u| = c_1
+\]
+\[
+\underset{e^{c_1}=c_2}{\Rightarrow} \left|\frac{x}{u^2+u}\right| = c_2 \Rightarrow \frac{x}{u^2+u} = \overbrace{(\pm c_2)}^{c} \Rightarrow x = c\left(u^2+u\right)
+\]
+\[
+\underset{}{\overset{\frac{y}{x}=u}{\Rightarrow}} x = c\left(\frac{y^2}{x^2} + \frac{y}{x}\right) \qquad c \in \mathbb{R}
+\]
+Kaybolan çözümler: \ $u^2 + u = 0 \Rightarrow u(u+1) = 0 \Rightarrow
+\left.\begin{aligned}&u = 0 \Rightarrow y = 0\\ &u = -1 \Rightarrow y = -x\end{aligned}\right\}$ çözümdür.
+\sayfa{9}
+\textbf{(b)} \ $M(x,y) = \left(x^3 + y^2\sqrt{x^2+y^2}\right)$ ve $N(x,y) = xy\sqrt{x^2+y^2}$ olmak üzere,
+\[
+\left.\begin{aligned}
+M(tx,ty) &= t^3x^3 + t^2y^2\sqrt{t^2(x^2+y^2)} = t^3M(x,y)\\
+N(tx,ty) &= tx\cdot ty\sqrt{t^2(x^2+y^2)} = t^3N(x,y)
+\end{aligned}\right\} \Rightarrow \text{3. dereceden homojen denklem}
+\]
+Şimdi, $\dfrac{y}{x} = u$ dönüşümü yapalım.
+\[
+y = ux \Rightarrow y' = u'x + u \Rightarrow \frac{dy}{dx} = \frac{du}{dx}x + u \Rightarrow dy = x\,du + u\,dx
+\]
+\[
+\left(x^3 + u^2x^2\sqrt{x^2+u^2x^2}\right)dx - \left(xux\sqrt{x^2+u^2x^2}\right)\left(x\,du + u\,dx\right) = 0
+\]
+\[
+\Rightarrow \left(x^3 + u^2x^2\sqrt{x^2+u^2x^2} - x^2u^2\sqrt{x^2+u^2x^2}\right)dx - x^3u\sqrt{x^2+u^2x^2}\,du = 0
+\]
+\[
+\Rightarrow x^3dx - ux^4\sqrt{1+u^2}\,du = 0
+\]
+$x^4 \neq 0$ olmak üzere,
+\[
+\frac1x dx - u\sqrt{1+u^2}\,du = 0 \Rightarrow \int\frac1x dx - \int u\sqrt{1+u^2}\,du = c_1
+\]
+\[
+\Rightarrow \ln|x| - \frac{(1+u^2)^{3/2}}{3} = c_1 \underset{\frac{y}{x}=u}{\Rightarrow} \ln|x| = c_1 + \frac{\left(1+\left(\frac{y}{x}\right)^2\right)^{3/2}}{3}
+\]
+\[
+\Rightarrow 3\ln|x| = 3c_1 + \frac{(x^2+y^2)^{3/2}}{(x^2)^{3/2}} \underset{\substack{\downarrow\\ 3c_1=c}}{\Rightarrow} \kutula{x^3\ln|x^3| = c + (x^2+y^2)^{3/2}} \quad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen $x^3\ln|x^3| = c\,x^3 + (x^2+y^2)^{3/2}$ olmalı ($c$ terimi de $x^3$ ile çarpılmalı).}
+
+\textbf{(c)} \ $M(x,y) = x^2 + 3y^2$ ve $N(x,y) = 2xy$ olmak üzere,
+\[
+\left.\begin{aligned}
+M(tx,ty) &= t^2M(x,y)\\
+N(tx,ty) &= t^2N(x,y)
+\end{aligned}\right\} \Rightarrow \text{2. dereceden homojen denklem}
+\]
+Şimdi, $\dfrac{y}{x} = u$ dönüşümü yapalım.
+\[
+y = ux \Rightarrow dy = x\,du + u\,dx
+\]
+\sayfa{10}
+\[
+\left(x^2 + 3u^2x^2\right)dx - (2xux)\left(u\,dx + x\,du\right) = 0
+\]
+\[
+\Rightarrow \left(x^2 + 3u^2x^2 - 2x^2u^2\right)dx - 2x^3u\,du = 0
+\]
+\[
+\Rightarrow \left(x^2 + u^2x^2\right)dx - 2x^3u\,du = 0 \Rightarrow x^2\left(1+u^2\right)dx - 2x^3u\,du = 0
+\]
+$(1+u^2)x^3 \neq 0$ olmak üzere,
+\[
+\frac1x dx - \frac{2u}{1+u^2}du = c \quad\text{\footnotemark} \Rightarrow \int\frac1x dx - \int\frac{2u}{1+u^2}du = c_1 \Rightarrow \ln|x| - \ln(1+u^2) = c_1
+\]
+\footnotetext{Claude notu: bu adımda sağ taraf muhtemelen $0$ olmalı (integral alındıktan sonra sabit $c_1$ geliyor).}
+\[
+\underset{e^{c_1}=c}{\Rightarrow} \frac{x}{1+u^2} = c \Rightarrow x = c\left(1+u^2\right) \underset{u=\frac{y}{x}}{\Rightarrow} \kutula{x^3 = c\left(x^2+y^2\right) \quad c \in \mathbb{R}}
+\]
+Şimdi, $y(2) = 6$ koşulunu sağlayan çözümü bulalım.
+\[
+8 = c\,(4+36) \Rightarrow c = \frac15 \Rightarrow \kutula{x^3 = \frac15\left(x^2+y^2\right)} \ /\!/
+\]
+\end{cozum}
+
+\end{document}

@@ -1,0 +1,421 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{İşaretler ve Sistemler}{Ders 7 -- Ayrık zamanlı Fourier serileri}{Isaret-ve-Sistemler-ders-7.pdf}
+
+\section{Ayrık Zamanlı Fourier Serileri}
+\sayfa{1}
+(Discrete-Time Fourier Series)
+\[ x[n]=x[n+N],\ \forall n, \qquad N=\frac{2\pi}{\omega_0}, \qquad \omega_0=\frac{2\pi}{N} \]
+Periyodik bir işaret Fourier serisine açılabilir.
+\[ x[n]=\sum_{k=\langle N\rangle} x_k\, e^{jk\omega_0 n} \]
+\[ x_k=\frac{1}{N}\sum_{n=\langle N\rangle} x[n]\, e^{-jk\omega_0 n} \]
+
+$\Rightarrow$ Ayrık zamanlı periyodik bir işaretin Fourier seri açılımı sonlu seri olup, yakınsaklık problemi yoktur.
+
+Reminder: Ayrık zamanlı karmaşık üstel işaretler ($e^{j\omega n}$) $2\pi$'nin katları olan frekanslarda aynıdır.
+
+Temel fonksiyon: $e^{jk\omega_0 n}=\psi_k[n]$, \ $k=0,\mp1,\mp2,\dots$
+
+$\psi_k[n]$, $\omega_0=2\pi/N$ temel frekansının $k\omega_0$ şeklinde katları olan frekanslara sahip olduğundan harmonik olarak ilişkilidir ve burada $N$ farklı işaret vardır.
+
+$\psi_k[n]=\psi_{k+N}[n]$
+
+İspat:
+\[ e^{jk\omega_0 n} \overset{?}{=} e^{j(k+N)\omega_0 n} = e^{jk\omega_0 n}\cdot e^{jN\omega_0 n}
+   \underset{\substack{\uparrow\\ N\omega_0=2\pi}}{=} e^{jk\omega_0 n}\cdot \underbrace{e^{j2\pi n}}_{1} = e^{jk\omega_0 n} \]
+
+\[ \Rightarrow \sum_{k=\langle N\rangle} e^{jk\omega_0 n} = \begin{cases} N, & k=0,\mp N,\mp 2N,\dots\\ 0, & \text{dışında}\end{cases}\quad\text{\footnotemark} \]
+\footnotetext{Claude notu: toplam indisi muhtemelen $n=\langle N\rangle$ olmalı (koşul $k$ üzerinde; aşağıdaki ispat da $n$ üzerinden toplar).}
+Karmaşık üstel işaretler sabit olmadıkça bir periyottaki değerlerinin toplamı sıfırdır.
+
+İspat:
+\begin{align*}
+\sum_{n=q}^{q+N-1} e^{jk\omega_0 n} &= \sum_{n=0}^{N-1} e^{jk\omega_0 (q+n)} = e^{jk\omega_0 q}\sum_{n=0}^{N-1} e^{jk\omega_0 n}\\
+&= e^{jk\omega_0 q}\left[\frac{1-e^{jk\omega_0 N}}{1-e^{jk\omega_0}}\right] \underset{\substack{\uparrow\\ \omega_0 N=2\pi}}{=} 0, \qquad k\neq pN
+\end{align*}
+\[ k=pN \;\longrightarrow\; \sum_{n=q}^{q+N-1} e^{jpN\omega_0 n} = \sum_{n=q}^{q+N-1} e^{j2\pi pn} = \sum_{n=q}^{q+N-1} 1 = N \]
+
+\[ \Rightarrow\ x[n]=\sum_{k=\langle N\rangle} x_k\, e^{jk\omega_0 n} \qquad\longleftarrow\quad e^{-jr\omega_0 n}\ \text{çarpıp, $N$ terimli toplam} \]
+\[ \sum_{n=\langle N\rangle} x[n]e^{-jr\omega_0 n} = \sum_{n=\langle N\rangle}\sum_{k=\langle N\rangle} x_k\, e^{jk\omega_0 n}\cdot e^{-jr\omega_0 n}
+   = \sum_{k=\langle N\rangle} x_k \underbrace{\sum_{n=\langle N\rangle} e^{j(k-r)\omega_0 n}}_{\begin{cases}N, & k=r\\ 0, & \text{dışında}\end{cases}} = x_r\cdot N \]
+\[ x_r=\frac{1}{N}\sum_{n=\langle N\rangle} x[n]\,e^{-jr\omega_0 n} \]
+
+\sayfa{2}
+$\Rightarrow$ Ayrık zamanlı Fourier serisi açılımında, FS katsayıları $x_k$'larda $N$ periyodu ile periyodiktir.
+\[ x_k=x_{k+N} \]
+İspat:
+\begin{align*}
+x[n] &= \sum_{k=\langle N\rangle} x_k\, e^{jk\omega_0 n} = \sum_{k=\langle N\rangle} x_k\, \psi_k[n]\\
+&= x_0\psi_0[n]+x_1\psi_1[n]+\dots+x_{N-1}\psi_{N-1}[n] && \longleftarrow\ k=0,1,2,\dots,N-1\\
+&= x_1\psi_1[n]+\dots+x_{N-1}\psi_{N-1}[n]+x_N\psi_N[n] && \longleftarrow\ k=1,2,\dots,N
+\end{align*}
+$\psi_0[n]=\psi_N[n]$ olduğundan $x_0=x_N$ olmalıdır.
+
+\begin{ornek}
+Ex: $x[n]=\sin 3\omega_0 n$ işaretinin FS katsayılarını bulunuz ve $N=5$ için Fourier spektrumlarını çiziniz.
+\end{ornek}
+\[ \left.\begin{aligned}
+x[n] &= \frac{1}{2j}\left[e^{j3\omega_0 n}-e^{-j3\omega_0 n}\right]\\
+x[n] &= \sum_{k=\langle N\rangle} x_k\, e^{jk\omega_0 n}
+\end{aligned}\right\}\quad k=\mp3 \;\longrightarrow\;
+\begin{aligned}
+x_3 &= \frac{1}{2j}=-j/2\\
+x_{-3} &= -\frac{1}{2j}=j/2
+\end{aligned} \]
+\[ x_k=|x_k|\,e^{j\theta_k} \;\longrightarrow\;
+\begin{cases}
+x_3=-j/2 \;\longrightarrow\; |x_3|=1/2 \ \text{ve}\ \theta_3=-\pi/2\\[1mm]
+x_{-3}=j/2 \;\longrightarrow\; |x_{-3}|=1/2 \ \text{ve}\ \theta_{-3}=\pi/2
+\end{cases} \]
+\[ x_k=x_{k+rN} \xrightarrow[N=5]{} \begin{aligned} &x_3=x_8=x_{13}=\cdots\\ &x_{-3}=x_2=x_7=\cdots \end{aligned} \]
+
+\begin{center}
+\begin{tikzpicture}[x=0.6cm,y=0.75cm,murekkep]
+  \draw[->] (-9,0) -- (15.6,0) node[right] {$k$};
+  \node at (-9.6,0.45) {$\cdots$};
+  \node at (15.4,0.6) {$\cdots$};
+  \foreach \k in {-7,-2,3,8,13} {\draw[thick] (\k,0) -- (\k,1) node[above] {$1/2j$};}
+  \foreach \k in {-8,-3,2,7,12} {\draw[thick] (\k,0) -- (\k,-1) node[below] {$-1/2j$};
+                                  \node[font=\scriptsize,above left] at (\k,0) {$\k$};}
+  \foreach \k in {-6,-5,-4,-1,0,1,4,5,6,9,10,11,14} {\fill (\k,0) circle (1.6pt);}
+  \foreach \k in {-7,-6,-5,-4,-2,-1,0,1,3,4,5,6,8,9,10,11,13,14} {\node[font=\scriptsize,below] at (\k,-0.05) {$\k$};}
+  \node at (4.5,-2.4) {$x_k,\ N=5$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[x=0.95cm,y=1cm,murekkep]
+  \draw[->] (-5.6,0) -- (5.8,0) node[right] {$\omega$};
+  \foreach \k in {-3,-2,2,3} {\draw[thick] (\k,0) -- (\k,1) node[above] {$1/2$};}
+  \foreach \k in {-5,-4,-1,0,1,4,5} {\fill (\k,0) circle (1.6pt);}
+  \node[font=\scriptsize,below] at (-3,0) {$-3\omega_0$};
+  \node[font=\scriptsize,below] at (-2,0) {$-2\omega_0$};
+  \node[font=\scriptsize,below] at (-1,0) {$-\omega_0$};
+  \node[font=\scriptsize,below] at (0,0) {$0$};
+  \node[font=\scriptsize,below] at (1,0) {$\omega_0$};
+  \node[font=\scriptsize,below] at (2,0) {$2\omega_0$};
+  \node[font=\scriptsize,below] at (3,0) {$3\omega_0$};
+  \node at (-5,1.3) {$|x_k|$};
+  \node at (0,-0.9) {Genlik spektrumu};
+\end{tikzpicture}
+
+\medskip
+\begin{tikzpicture}[x=0.95cm,y=0.8cm,murekkep]
+  \draw[->] (-4.8,0) -- (5,0) node[right] {$\omega$};
+  \foreach \k in {-3,2} {\draw[thick] (\k,0) -- (\k,1) node[above] {$\pi/2$};}
+  \foreach \k in {-2,3} {\draw[thick] (\k,0) -- (\k,-1) node[below] {$-\pi/2$};}
+  \foreach \k in {-4,-1,0,1,4} {\fill (\k,0) circle (1.6pt);}
+  \node[font=\scriptsize,below left] at (-3,0) {$-3\omega_0$};
+  \node[font=\scriptsize,above] at (-2,0) {$-2\omega_0$};
+  \node[font=\scriptsize,below] at (-1,0) {$-\omega_0$};
+  \node[font=\scriptsize,below] at (0,0) {$0$};
+  \node[font=\scriptsize,below] at (1,0) {$\omega_0$};
+  \node[font=\scriptsize,below right] at (2,0) {$2\omega_0$};
+  \node[font=\scriptsize,above] at (3,0) {$3\omega_0$};
+  \node at (0,-2.1) {Faz spektrumu};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{3}
+\begin{ornek}
+Ex: $x[n]=1+\sin\left(\dfrac{2\pi}{N}n\right)+3\cos\left(\dfrac{2\pi}{N}n\right)+\cos\left(\dfrac{4\pi}{N}n+\dfrac{\pi}{2}\right)$
+\end{ornek}
+$\omega_0=2\pi/N$
+\[ x[n]=1+\frac{1}{2j}\left[e^{j\omega_0 n}-e^{-j\omega_0 n}\right]+\frac{3}{2}\left[e^{j\omega_0 n}+e^{-j\omega_0 n}\right]+\frac{1}{2}\left[e^{j(2\omega_0 n+\pi/2)}+e^{-j(2\omega_0 n+\pi/2)}\right] \]
+$x_0=1$
+\[ \left.\begin{aligned}
+x_1 &= \frac{1}{2j}+\frac{3}{2}=\frac{3}{2}-\frac{1}{2}j\\[2mm]
+x_{-1} &= -\frac{1}{2j}+\frac{3}{2}=\frac{3}{2}+\frac{1}{2}j
+\end{aligned}\right\}\ x_1^{*}=x_{-1}
+\qquad
+\begin{aligned}
+&\longrightarrow |x_1|=\sqrt{(3/2)^2+(1/2)^2}=\sqrt{10}/2\\
+&\qquad\ \theta_1=\tan^{-1}\left(\frac{-1/2}{3/2}\right)=-\tan^{-1}(1/3)\\
+&\longrightarrow |x_{-1}|=\sqrt{10}/2\\
+&\qquad\ \theta_{-1}=\tan^{-1}(1/3)
+\end{aligned} \]
+\[ \left.\begin{aligned}
+x_2 &= \frac{1}{2}e^{j\pi/2}=\frac{1}{2}j\\[1mm]
+x_{-2} &= \frac{1}{2}e^{-j\pi/2}=-\frac{1}{2}j
+\end{aligned}\right\}\ x_2^{*}=x_{-2}
+\qquad
+\begin{aligned}
+&\longrightarrow |x_2|=|x_{-2}|=1/2\\
+&\qquad\ \theta_2=\pi/2 \qquad \theta_{-2}=-\pi/2
+\end{aligned} \]
+$\Rightarrow$ $x[n]$ işareti reel olduğundan $x_k^{*}=x_{-k}$'dır.
+
+\begin{center}
+\begin{tikzpicture}[x=0.36cm,y=0.75cm,murekkep]
+  \node at (-13,2) {$|x_k|$};
+  \draw[->] (-14,0) -- (24.5,0) node[right] {$k$};
+  \node at (-14,0.6) {$\cdots$}; \node at (24,0.6) {$\cdots$};
+  \foreach \c in {-10,0,10,20} {
+    \draw[thick] (\c-2,0) -- (\c-2,0.5);
+    \draw[thick] (\c-1,0) -- (\c-1,1.58);
+    \draw[thick] (\c,0) -- (\c,1);
+    \draw[thick] (\c+1,0) -- (\c+1,1.58);
+    \draw[thick] (\c+2,0) -- (\c+2,0.5);
+  }
+  \foreach \k in {-7,-6,-5,-4,-3,3,4,5,6,7,13,14,15,16,17} {\fill (\k,0) circle (1.4pt);}
+  \node[font=\scriptsize,above] at (1,1.58) {$\sqrt{10}/2$};
+  \node[font=\scriptsize,above] at (0,1) {$1$};
+  \node[font=\scriptsize,above] at (2,0.5) {$1/2$};
+  \node[font=\scriptsize,above] at (11,1.58) {$\sqrt{10}/2$};
+  \node[font=\scriptsize,above] at (12,0.5) {$1/2$};
+  \foreach \k in {-2,-1,0,1,2} {\node[font=\scriptsize,below] at (\k,0) {$\k$};}
+  \node[font=\scriptsize,below] at (-10,0) {$-N$};
+  \node[font=\scriptsize,below] at (10,0) {$N$};
+  \node[font=\scriptsize,below] at (20,0) {$2N$};
+  \node at (0,-0.9) {Genlik spektrumu};
+\end{tikzpicture}
+
+\begin{tikzpicture}[x=0.36cm,y=0.75cm,murekkep]
+  \node at (-13,1.6) {$\theta_k$};
+  \draw[->] (-14,0) -- (24.5,0) node[right] {$k$};
+  \node at (-14,0.6) {$\cdots$}; \node at (24,0.6) {$\cdots$};
+  \foreach \c in {-10,0,10,20} {
+    \draw[thick] (\c-2,0) -- (\c-2,-1);
+    \draw[thick] (\c-1,0) -- (\c-1,0.45);
+    \fill (\c,0) circle (1.4pt);
+    \draw[thick] (\c+1,0) -- (\c+1,-0.45);
+    \draw[thick] (\c+2,0) -- (\c+2,1);
+  }
+  \foreach \k in {-7,-6,-5,-4,-3,3,4,5,6,7,13,14,15,16,17} {\fill (\k,0) circle (1.4pt);}
+  \node[font=\scriptsize,above] at (2,1) {$\pi/2$};
+  \node[font=\scriptsize,above] at (-1,0.45) {$\tan^{-1}(1/3)$};
+  \node[font=\scriptsize,below] at (-2,-1) {$-\pi/2$};
+  \node[font=\scriptsize,below right] at (1,-0.45) {$-\tan^{-1}(1/3)$};
+  \node[font=\scriptsize,above] at (-8,1) {$\pi/2$};
+  \node[font=\scriptsize,below] at (-12,-1) {$-\pi/2$};
+  \node[font=\scriptsize,above] at (12,1) {$\pi/2$};
+  \node[font=\scriptsize,below] at (8,-1) {$-\pi/2$};
+  \node[font=\scriptsize,above left] at (-2,0) {$-2$};
+  \node[font=\scriptsize,below] at (-1,0) {$-1$};
+  \node[font=\scriptsize,below] at (0,0) {$0$};
+  \node[font=\scriptsize,above] at (1,0) {$1$};
+  \node[font=\scriptsize,below] at (2,0) {$2$};
+  \node[font=\scriptsize,below] at (-10,0) {$-N$};
+  \node[font=\scriptsize,below] at (10,0) {$N$};
+  \node at (4,-2.2) {Faz spektrumu};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{4}
+\begin{ornek}
+Ex:
+\begin{center}
+\begin{tikzpicture}[x=0.42cm,y=0.8cm,murekkep]
+  \draw[->] (-12.5,0) -- (12.8,0);
+  \node at (-13.4,0.3) {$\cdots$}; \node at (13.6,0.3) {$\cdots$};
+  \foreach \c in {-8,0,8} {\foreach \d in {-2,...,2} {\draw[thick] (\c+\d,0) -- (\c+\d,1); \fill (\c+\d,1) circle (1.6pt);}}
+  \foreach \k in {-12,-11,-5,-4,-3,3,4,5,11,12} {\fill (\k,0) circle (1.4pt);}
+  \node[font=\scriptsize,above] at (-2,1) {$1$};
+  \node[font=\scriptsize,below] at (-8,0) {$-N$};
+  \node[font=\scriptsize,below] at (-2,0) {$-N_1$};
+  \node[font=\scriptsize,below] at (0,0) {$0$};
+  \node[font=\scriptsize,below] at (2,0) {$N_1$};
+  \node[font=\scriptsize,below] at (8,0) {$N$};
+\end{tikzpicture}
+\end{center}
+Ayrık zamanlı periyodik dikdörtgen dalga işaretinin FS katsayılarını bulunuz.
+\end{ornek}
+\[ x_k=\frac{1}{N}\sum_{n=\langle N\rangle} x[n]\,e^{-jk\omega_0 n}=\frac{1}{N}\sum_{n=-N_1}^{N_1} e^{-jk\omega_0 n}=\frac{1}{N}\sum_{n=0}^{2N_1} e^{-jk\omega_0 (n-N_1)} \]
+\[ x_k=\frac{1}{N}e^{jk\omega_0 N_1}\sum_{n=0}^{2N_1} e^{-jk\omega_0 n} \qquad\longleftarrow\ \text{Reminder: } \sum_{i=0}^{M} a^i=\frac{1-a^{N+1}}{1-a}\quad\text{\footnotemark} \]
+\footnotetext{Claude notu: üst sınır $M$ olduğuna göre muhtemelen $1-a^{M+1}$ olmalı.}
+\[ x_k=\frac{1}{N}e^{jk\omega_0 N_1}\left[\frac{1-e^{-jk\omega_0(2N_1+1)}}{1-e^{-jk\omega_0}}\right] \qquad\longleftarrow\ \text{Reminder: } 1-e^{-j\theta}=e^{-j\theta/2}\left[e^{j\theta/2}-e^{-j\theta/2}\right] \]
+\[ x_k=\frac{1}{N}e^{jk\omega_0 N_1}\,\frac{e^{-jk\omega_0(N_1+1/2)}\left[e^{jk\omega_0(N_1+1/2)}-e^{-jk\omega_0(N_1+1/2)}\right]}{e^{-jk\omega_0/2}\left[e^{jk\omega_0/2}-e^{-jk\omega_0/2}\right]} \]
+\[ x_k=\frac{1}{N}\,\frac{\sin\bigl(k\omega_0(N_1+1/2)\bigr)}{\sin(k\omega_0/2)}, \qquad k\neq 0,\mp N,\mp 2N,\dots \]
+\[ x_k=\frac{2N_1+1}{N}, \qquad k=0,\mp N,\mp 2N,\dots \]
+
+\subsection{Parseval Teoremi}
+\[ P_x=\frac{1}{N}\sum_{n=\langle N\rangle} |x[n]|^2=\sum_{k=\langle N\rangle} |x_k|^2 \]
+Ayrık zamanlı periyodik bir işaretin ortalama gücü, bütün harmonik bileşenlerin (ki bunlar $N$ tanedir) ortalama güçlerinin toplamına eşittir.
+
+\section{Ayrık Zamanlı Fourier Serisinin Özellikleri}
+\[ x[n]=x[n+N], \qquad \omega_0=\frac{2\pi}{N} \]
+\[ x[n] \xleftrightarrow{\ FS\ } x_k \]
+
+1) \underline{Çarpma:} \quad $x_1[n]\cdot x_2[n] \xleftrightarrow{\ FS\ } \displaystyle\sum_{\ell=\langle N\rangle} x_{1,\ell}\cdot x_{2,k-\ell}$
+
+İspat:
+\begin{align*}
+x_1[n]\,x_2[n] &= \sum_{k=\langle N\rangle} x_{1,k}\,e^{jk\omega_0 n}\sum_{\ell=\langle N\rangle} x_{2,\ell}\,e^{j\ell\omega_0 n}\\
+&= \sum_{k=0}^{N-1}\sum_{\ell=0}^{N-1} x_{1,k}\,x_{2,\ell}\,e^{j(k+\ell)\omega_0 n}
+   \underset{\substack{\uparrow\\ k+\ell=r}}{=} \sum_{k=0}^{N-1}\sum_{r=k}^{k+N-1} x_{1,k}\,x_{2,r-k}\,e^{jr\omega_0 n}\\
+&= \sum_{r=\langle N\rangle}\underbrace{\sum_{k=\langle N\rangle} x_{1,k}\,x_{2,r-k}}_{d_r}\cdot e^{jr\omega_0 n}\\
+&= \sum_{r=\langle N\rangle} d_k\,e^{jr\omega_0 n}\quad\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $d_r$ olmalı.}
+
+\sayfa{5}
+2) \underline{İlk fark (first difference):} \quad $x[n]-x[n-1] \xleftrightarrow{\ FS\ } \left(1-e^{-jk\omega_0}\right)x_k$
+
+İspat:
+\[ x[n-1]=\sum_{k=\langle N\rangle} x_k\,e^{jk\omega_0(n-1)}=e^{-jk\omega_0}\sum_{k=\langle N\rangle} x_k\,e^{jk\omega_0 n}=e^{-jk\omega_0}x[n] \]
+\[ x[n]-x[n-1]=x[n]-e^{-jk\omega_0}x[n]=\left(1-e^{-jk\omega_0}\right)x[n] \xleftrightarrow{\ FS\ } \left(1-e^{-jk\omega_0}\right)x_k \]
+
+\begin{ornek}
+Ex: \hfill FS katsayılarını bulunuz.
+\begin{center}
+\begin{tikzpicture}[x=0.42cm,y=0.6cm,murekkep]
+  \node at (-8,2.6) {$x[n]$};
+  \draw[->] (-9,0) -- (10,0) node[right] {$n$};
+  \node at (-9.6,0.6) {$\cdots$}; \node at (9.6,0.6) {$\cdots$};
+  \foreach \n in {-6,-5,-4,-1,0,1,4,5,6} {\draw[thick] (\n,0) -- (\n,2); \fill (\n,2) circle (1.5pt);}
+  \foreach \n in {-8,-7,-3,-2,2,3,7,8} {\draw[thick] (\n,0) -- (\n,1); \fill (\n,1) circle (1.5pt);}
+  \node[font=\scriptsize,above] at (0,2) {$2$};
+  \node[font=\scriptsize,above] at (-2,1) {$1$};
+  \foreach \n in {-5,0,5} {\node[font=\scriptsize,below] at (\n,0) {$\n$};}
+\end{tikzpicture}
+\end{center}
+\end{ornek}
+$N=5$
+
+\noindent
+\begin{minipage}[c]{0.66\linewidth}
+\centering
+\begin{tikzpicture}[x=0.42cm,y=0.6cm,murekkep]
+  \node at (-8,1.6) {$x_1[n]$};
+  \draw[->] (-9,0) -- (10,0) node[right] {$n$};
+  \node at (-9.6,0.6) {$\cdots$}; \node at (9.6,0.6) {$\cdots$};
+  \foreach \n in {-6,-5,-4,-1,0,1,4,5,6} {\draw[thick] (\n,0) -- (\n,1); \fill (\n,1) circle (1.5pt);}
+  \foreach \n in {-8,-7,-3,-2,2,3,7,8} {\fill (\n,0) circle (1.4pt);}
+  \node[font=\scriptsize,above] at (-1,1) {$1$};
+  \foreach \n in {-5,-1,0,1,5} {\node[font=\scriptsize,below] at (\n,0) {$\n$};}
+\end{tikzpicture}
+
+\begin{tikzpicture}[x=0.42cm,y=0.6cm,murekkep]
+  \node at (-8,1.6) {$x_2[n]$};
+  \draw[->] (-9,0) -- (10,0) node[right] {$n$};
+  \node at (-9.6,0.6) {$\cdots$}; \node at (9.6,0.6) {$\cdots$};
+  \foreach \n in {-8,...,8} {\draw[thick] (\n,0) -- (\n,1); \fill (\n,1) circle (1.5pt);}
+  \node[font=\scriptsize,above] at (-5,1) {$1$};
+  \foreach \n in {-5,0,5} {\node[font=\scriptsize,below] at (\n,0) {$\n$};}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.32\linewidth}
+$\Rightarrow$ $N_1=1$ ve $N=5$ olan periyodik dikdörtgen dalga ($x_1[n]$)
+\end{minipage}
+
+\medskip
+$x[n]=x_1[n]+x_2[n]$
+\[ x_{1,k}=\begin{cases}
+\dfrac{1}{N}\,\dfrac{\sin\bigl(k\omega_0(N_1+1/2)\bigr)}{\sin(k\omega_0/2)}, & k\neq 0,\mp N,\mp 2N,\dots\\[3mm]
+\dfrac{2N_1+1}{N}, & k=0,\mp N,\mp 2N
+\end{cases}
+\ \underset{\substack{\uparrow\\ N=5\\ N_1=1}}{=}\
+\begin{cases}
+\dfrac{1}{5}\,\dfrac{\sin(3\pi k/5)}{\sin(\pi k/5)}, & k\neq 0,\mp5,\dots\\[3mm]
+3/5, & k=0,\mp5,\mp10,\dots
+\end{cases} \]
+\[ x_{2,k}=\frac{1}{N}\sum_{k=\langle N\rangle} x_2[n]\,e^{jk\omega_0 n}\quad\text{\footnotemark}\ \xrightarrow[\substack{k=0\\ N=5}]{}\ x_{2,0}=\frac{1}{5}\sum_{k=0}^{4} x_2[n]=1
+\ \Rightarrow\ x_{2,k}=\begin{cases} 1, & k=0,\mp5,\mp10,\dots\\ 0, & k\neq 0,\mp5,\mp10,\dots\end{cases} \]
+\footnotetext{Claude notu: muhtemelen $\frac{1}{N}\sum_{n=\langle N\rangle} x_2[n]\,e^{-jk\omega_0 n}$ olmalı ($k=0$ için sonuç değişmez).}
+\[ x[n]=x_1[n]+x_2[n] \xleftrightarrow{\ FS\ } x_{1,k}+x_{2,k} \]
+\[ x_k=\begin{cases}
+\dfrac{1}{5}\,\dfrac{\sin(3\pi k/5)}{\sin(\pi k/5)}, & k\neq 0,\mp5,\mp10,\dots\\[3mm]
+8/5, & k=0,\mp5,\mp10,\dots
+\end{cases} \]
+
+\begin{ornek}
+Ex: Bir $x[n]$ işareti, aşağıda verilen özellikler ile belirlenebilir mi?
+\begin{enumerate}[label=\arabic*)]
+\item $N=6$ periyodu ile periyodiktir. \quad {\color{kirmizikalem}\fbox{$\omega_0=2\pi/N=\pi/3$}}
+\item $\displaystyle\sum_{n=0}^{5} x[n]=2$
+\item $\displaystyle\sum_{n=2}^{7} (-1)^n x[n]=1$
+\item $x[n]$, yukarıdaki üç özelliği sağlayan işaretler arasında minimum güce sahiptir.
+\end{enumerate}
+\end{ornek}
+
+\sayfa{6}
+2) $x_k=\dfrac{1}{N}\displaystyle\sum_{n=\langle N\rangle} x[n]\,e^{-jk\omega_0 n}$ olup $x_0=\dfrac{1}{N}\displaystyle\sum_{n=\langle N\rangle} x[n] \;\longrightarrow\; Nx_0=\sum_{n=\langle N\rangle} x[n]$
+
+\quad $Nx_0=2 \;\longrightarrow\; x_0=2/N=1/3$
+
+3) $Nx_k=\displaystyle\sum_{n=\langle N\rangle} x[n]\,e^{-jk\omega_0 n}=1$
+
+\quad $(-1)^n=e^{-j\pi n} \;\longrightarrow\; e^{-j\pi n}=e^{-jk\omega_0 n} \;\longrightarrow\; k=\dfrac{\pi}{\omega_0}=\dfrac{\pi}{\frac{2\pi}{6}}=3$
+
+\quad $x_3=1/6$
+
+4) $P_x=\displaystyle\sum_{k=\langle N\rangle} |x_k|^2=\sum_{k=0}^{5} |x_k|^2 \;\longleftarrow\; x_0=1/3$ ve $x_3=1/6$
+
+\hfill Minimum güçlü olabilmesi için $x_1=x_2=x_4=x_5=0$ seçilir.
+\[ x[n]=\sum_{k=\langle N\rangle} x_k\,e^{jk\omega_0 n}=x_0+x_3\,e^{j3\omega_0 n}\underset{\substack{\uparrow\\ \omega_0=\pi/3}}{=}x_0+x_3\,e^{j\pi n}=\frac{1}{3}+\frac{1}{6}(-1)^n \]
+\begin{center}
+\begin{tikzpicture}[x=0.6cm,y=2.4cm,murekkep]
+  \node at (-4,0.65) {$x[n]$};
+  \draw[->] (-4.5,0) -- (4.8,0) node[right] {$n$};
+  \node at (-4.3,0.12) {$\cdots$}; \node at (4.3,0.12) {$\cdots$};
+  \foreach \n in {-2,0,2} {\draw[thick] (\n,0) -- (\n,0.5); \fill (\n,0.5) circle (1.5pt);}
+  \foreach \n in {-3,-1,1,3} {\draw[thick] (\n,0) -- (\n,0.1667); \fill (\n,0.1667) circle (1.5pt);}
+  \node[font=\scriptsize,above] at (0,0.5) {$1/2$};
+  \node[font=\scriptsize,above] at (1,0.1667) {$1/6$};
+  \foreach \n in {-3,...,3} {\node[font=\scriptsize,below] at (\n,0) {$\n$};}
+\end{tikzpicture}
+\end{center}
+
+\section{Ayrık zamanlı LTI sistemlerin periyodik işaretlere cevabı}
+\begin{center}
+\begin{tikzpicture}[murekkep,baseline=(b.base)]
+  \node[anchor=east] (in) at (0,0) {$Az^n$};
+  \node[draw,thick,minimum height=6mm] (b) at (1.4,0) {$h[n]$};
+  \node[anchor=west] (out) at (2.8,0) {$Az^nH(z)$};
+  \draw[->] (in) -- (b); \draw[->] (b) -- (out);
+\end{tikzpicture}
+, \qquad $H(z)=\displaystyle\sum_{k=-\infty}^{\infty} h[k]\,z^{-k}$
+\end{center}
+\begin{align*}
+y[n]=x[n]*h[n] &= \sum_{k=-\infty}^{\infty} h[k]\,x[n-k]\\
+&= \sum_{k=-\infty}^{\infty} h[k]\,A z^{n-k}=Az^n\underbrace{\sum_{k=-\infty}^{\infty} h[k]\,z^{-k}}_{\triangleq H(z)}=Az^nH(z)
+\;\longrightarrow\;\begin{aligned}[t]&Az^n:\ \text{öz fonksiyon}\\ &\hookrightarrow H(z):\ \text{özdeğer}\end{aligned}
+\end{align*}
+$\Rightarrow z=e^{j\omega}$
+\begin{center}
+\begin{tikzpicture}[murekkep]
+  \node[anchor=east] (in) at (0,0) {$Ae^{j\omega n}$};
+  \node[draw,thick,minimum height=6mm] (b) at (1.4,0) {$h[n]$};
+  \node[anchor=west] (out) at (2.8,0) {$Ae^{j\omega n}H(e^{j\omega})$};
+  \draw[->] (in) -- (b); \draw[->] (b) -- (out);
+\end{tikzpicture}
+\end{center}
+\[ H(e^{j\omega})=\sum_{n=-\infty}^{\infty} h[n]\,e^{-j\omega n}\ :\ \text{Frekans cevabı (frequency response)} \]
+\begin{center}
+\begin{tikzpicture}[murekkep]
+  \node[anchor=east] (in) at (0,0) {$x[n]=\displaystyle\sum_{k=\langle N\rangle} x_k\,e^{jk\omega_0 n}$};
+  \node[draw,thick,minimum height=6mm] (b) at (1.4,0) {$h[n]$};
+  \node[anchor=west] (out) at (2.8,0) {$y[n]=\displaystyle\sum_{k=\langle N\rangle} x_k\,H(e^{jk\omega_0})\,e^{jk\omega_0 n}\underset{\substack{\uparrow\\ y_k\triangleq x_kH(e^{jk\omega_0})}}{=}\sum_{k=\langle N\rangle} y_k\,e^{jk\omega_0 n}$};
+  \draw[->] (in) -- (b); \draw[->] (b) -- (out);
+\end{tikzpicture}
+\end{center}
+
+\sayfa{7}
+\begin{ornek}
+Ex: $h[n]=\alpha^n u[n]$, \ $-1<\alpha<1$ ve $x[n]=\cos\left(\dfrac{2\pi}{N}n\right)$ ise $y[n]=\,?$
+\end{ornek}
+\[ x[n]=\cos\left(\frac{2\pi}{N}n\right)\underset{\substack{\uparrow\\ \frac{2\pi}{N}=\omega_0}}{=}\cos(\omega_0 n)=\frac{1}{2}\left[e^{j\omega_0 n}+e^{-j\omega_0 n}\right] \;\longrightarrow\; x_1=x_{-1}=\frac{1}{2} \]
+\begin{align*}
+H(e^{j\omega}) &= \sum_{n=-\infty}^{\infty} h[n]\,e^{-j\omega n}=\sum_{n=0}^{\infty}\alpha^n e^{-j\omega n}=\sum_{n=0}^{\infty}\left(\alpha e^{-j\omega}\right)^n\\
+&\hphantom{=}\qquad\qquad\longleftarrow\ \text{Reminder: } \sum_{k=0}^{\infty} a^k=\frac{1}{1-a},\ |a|<1\\
+&= \frac{1}{1-\alpha e^{-j\omega}}
+\end{align*}
+\[ y_k=x_k\,H(e^{jk\omega_0}) \;\longrightarrow\;
+\begin{cases}
+y_1=x_1\,H(e^{j\omega_0})=\dfrac{1}{2\left(1-\alpha e^{-j\omega_0}\right)}\\[4mm]
+y_{-1}=x_{-1}\,H(e^{-j\omega_0})=\dfrac{1}{2\left(1-\alpha e^{j\omega_0}\right)}
+\end{cases} \]
+\[ y[n]=\sum_{k=\langle N\rangle} y_k\,e^{jk\omega_0 n}=y_1\,e^{j\omega_0 n}+y_{-1}\,e^{-j\omega_0 n} \]
+\[ y[n]=\frac{1}{2}\left(\frac{1}{1-\alpha e^{-j\omega_0}}\right)e^{j\omega_0 n}+\frac{1}{2}\left(\frac{1}{1-\alpha e^{j\omega_0}}\right)e^{-j\omega_0 n} \]
+\[ \frac{1}{1-\alpha e^{-j\omega_0}}=re^{j\theta} \]
+\[ y[n]=\frac{1}{2}re^{j\theta}e^{j\omega_0 n}+\frac{1}{2}re^{-j\theta}e^{-j\omega_0 n}=\frac{r}{2}\left[e^{j(\omega_0 n+\theta)}+e^{-j(\omega_0 n+\theta)}\right]=r\cos(\omega_0 n+\theta) \]
+
+\bigskip
+Ayrık zamanlı periyodik dikdörtgen dalga işaretinin FS katsayılarını bulunuz.
+\[ x_k=\frac{1}{N}\sum_{n=\langle N\rangle} x[n]\,e^{-jk\omega_0 n}=\frac{1}{N}\sum_{n=-N_1}^{N_1} e^{-jk\omega_0 n}=\frac{1}{N}\sum_{n=0}^{2N_1} e^{-jk\omega_0 (n-N_1)} \]
+\[ x_k=\frac{1}{N}e^{jk\omega_0 N_1}\sum_{n=0}^{2N_1} e^{-jk\omega_0 n} \qquad\longleftarrow\ \text{Reminder: } \sum_{i=0}^{M} a^i=\frac{1-a^{N+1}}{1-a} \]
+\[ x_k=\frac{1}{N}e^{jk\omega_0 N_1}\left[\frac{1-e^{-jk\omega_0(2N_1+1)}}{1-e^{-jk\omega_0}}\right] \qquad\longleftarrow\ \text{Reminder: } 1-e^{-j\theta}=e^{-j\theta/2}\left[e^{j\theta/2}-e^{-j\theta/2}\right] \]
+\[ x_k=\frac{1}{N}e^{jk\omega_0 N_1}\,\frac{e^{-jk\omega_0(N_1+1/2)}\left[e^{jk\omega_0(N_1+1/2)}-e^{-jk\omega_0(N_1+1/2)}\right]}{e^{-jk\omega_0/2}\left[e^{jk\omega_0/2}-e^{-jk\omega_0/2}\right]} \]
+
+\end{document}

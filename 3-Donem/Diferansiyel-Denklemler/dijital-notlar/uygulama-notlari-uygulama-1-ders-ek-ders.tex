@@ -1,0 +1,315 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Diferansiyel Denklemler}{Uygulama 1. ders (ek ders) -- Eğri aileleri ve ayrılabilir denklemler}{uygulama-1-ders-ek-ders.pdf}
+
+\sayfa{1}
+\hfill\fbox{EK-HAFTA}
+\begin{tanim}
+$y = f(x)$ fonksiyonu $x$ değişkeni ve bu fonksiyonun sınırlı sayıda türevleri ile oluşmuş denkleme $n$. mertebeli adi türevli diferansiyel denklem denir ve aşağıdaki şekilde ifade edilir:
+\[
+a_0(x)\frac{d^ny}{dx^n} + a_1(x)\frac{d^{n-1}y}{dx^{n-1}} + \dots + a_{n-1}(x)\frac{dy}{dx} + a_n(x)y = b(x) \ ; \quad a_0 \neq 0
+\]
+\end{tanim}
+Diferansiyel denklemlerin bazı kullanım alanları şu şekildedir:
+\begin{itemize}[label=$\ast$]
+\item Mermi, roket, uydu veya gezegenin hareketini belirleme
+\item Bir elektrik devresindeki yükün veya akımın belirlenmesi
+\item Kimyasal reaksiyon üzerine çalışmalarda
+\end{itemize}
+
+\begin{ornek}
+Newton'un ikinci kanununu kullanarak düz bir çizgi boyunca $F$ kuvvetinin etkisi altında hareket eden $m$ kütleli bir cismin konumunu belirleyen denklemi elde ediniz.
+\end{ornek}
+\begin{cozum}
+Hız ve ivme tanımının $V = \dfrac{dx}{dt}$, \ $a = \dfrac{dV}{dt} = \dfrac{d^2x}{dt^2}$ olduğunu biliyoruz.
+Newton'un ikinci yasası bize şunu söyler: $F(t) = m\cdot a(t)$
+\[
+F(t) = m\cdot a(t) \Rightarrow F(t) = m\cdot\frac{d^2x}{dt^2} \Rightarrow \kutula{\frac{d^2x}{dt^2} = \frac{F(t)}{m}} \quad \text{denklemi elde edilir.}
+\]
+\end{cozum}
+
+\section{Alıştırmalar}
+\begin{ornek}[1]
+Aşağıda verilen eğri ailelerinin diferansiyel denklemlerini bulun.
+
+\begin{tabular}{@{}lll@{}}
+(a) $y = e^{cx}$ & (d) $y = (x-c)^3$ & (g) $y = ax^3 + bx^2 + cx$ \\[1mm]
+(b) $x^2 + cy^2 = 2y$ & (e) $\ln y = ax + by$ & \\[1mm]
+(c) $y = \sin(x+c)$ & (f) $(x-a)^2 + by^2 = 1$ &
+\end{tabular}
+\end{ornek}
+
+\sayfa{2}
+\begin{cozum}
+\textbf{(a)} \ $y = e^{cx} \Rightarrow \dfrac{dy}{dx} = \dfrac{d(e^{cx})}{dx} \Rightarrow y' = ce^{cx} \Rightarrow y' = cy \Rightarrow \kutula{c = \dfrac{y'}{y}}$
+\[
+y' = \frac{y'}{y}e^{\frac{y'}{y}x} \Rightarrow \kutula{y = e^{\frac{y'}{y}x}} \ \underset{\substack{\downarrow\\ \text{her iki taraftan}\\ \text{ln alırsak}}}{\overset{\text{ya da}}{\Rightarrow}} \ \ln y = \frac{y'}{y}x \Rightarrow \kutula{y' = \frac{y\ln y}{x}}
+\]
+
+\textbf{(b)} \ $x^2 + cy^2 = 2y \Rightarrow 2x + 2cyy' = 2y' \Rightarrow c = \dfrac{y' - x}{yy'}$
+\[
+\Rightarrow x^2 + \frac{(y'-x)}{y\cdot y'}y^2 = 2y \Rightarrow \kutula{x^2y' - xy = yy'} \ /\!/
+\]
+
+\textbf{(c)} \ $y = \sin(x+c) \Rightarrow y' = \cos(x+c)$
+\[
+\sin^2(x+c) + \cos^2(x+c) = 1 \Rightarrow \kutula{y^2 + (y')^2 = 1}
+\]
+
+\textbf{(d)}
+\[
+\left.\begin{aligned}
+&y = (x-c)^3 \Rightarrow y' = 3(x-c)^2\\
+&y = (x-c)^3 \Rightarrow y^{\frac13} = x - c \Rightarrow c = x - y^{\frac13}
+\end{aligned}\right\} \Rightarrow \kutula{y' = 3y^{\frac23}}
+\]
+
+\textbf{(e)} \ $\ln y = ax + by \Rightarrow \underbrace{\kutula{\dfrac{y'}{y} = a + by'}}_{(\ast)} \rightarrow$ Buradan bir türev daha alırsak $a$ sabitinden kurtuluruz ve $b$ sabitini bulmuş oluruz.
+\[
+\frac{y''\cdot y - (y')^2}{y^2} = by'' \Rightarrow \kutula{b = \frac{y''y - (y')^2}{y^2y''}} \rightarrow \text{Bunu } (\ast) \text{ da yerine yazarsak,}
+\]
+\[
+a = \frac{y'}{y} - y'\left(\frac{y''y - (y')^2}{y^2y''}\right) \Rightarrow a = \underset{(yy'')}{\frac{y'}{y}} - \frac{y'y''y - (y')^3}{y^2y''} \Rightarrow \kutula{a = \frac{(y')^3}{y''y^2}}
+\]
+O halde,
+\[
+\ln y = \frac{(y')^3x}{y''y^2} + \frac{y''y^2}{y^2y''} - \frac{(y')^2y}{y^2y''} \Rightarrow \ln y = \frac{(y')^3x}{y''y^2} + 1 - \frac{(y')^2y}{y^2y''}
+\]
+\sayfa{3}
+\[
+\Rightarrow (\ln y - 1)y^2y'' = (y')^3x - (y')^2y \Rightarrow \kutula{(\ln y - 1)y^2y'' = (y')^2(y'x - y)} \ /\!/ \quad \text{bulunur.}
+\]
+
+\textbf{(f)} \ $(x-a)^2 + by^2 = 1 \Rightarrow \underbrace{\kutula{2(x-a) + 2byy' = 0}}_{(\ast)}$
+\[
+\Rightarrow 2 + 2by'\cdot y' + 2byy'' = 0 \Rightarrow b(y')^2 + byy'' = -1 \Rightarrow \kutula{b = \frac{-1}{(y')^2 + yy''}}
+\]
+Bulduğumuz $b$ değerini $(\ast)$ da yazarsak,
+\[
+2(x-a) - \frac{2yy'}{(y')^2 + yy''} = 0 \Rightarrow x - a = \frac{yy'}{(y')^2 + yy''} \Rightarrow \kutula{a = x - \frac{yy'}{(y')^2 + y''y}}
+\]
+O halde,
+\[
+\left(x - x + \frac{yy'}{(y')^2 + y''y}\right)^2 - \frac{y^2}{(y')^2 + yy''} = 1 \Rightarrow \frac{y^2(y')^2}{\left((y')^2 + y''y\right)^2} - \frac{y^2}{(y')^2 + yy''} = 1
+\]
+\[
+\Rightarrow y^2(y')^2 - y^2\left((y')^2 + y''y\right) = \left((y')^2 + yy''\right)^2 \Rightarrow \kutula{-y^3y'' = \left((y')^2 + yy''\right)^2} \ /\!/ \quad \text{bulunur}
+\]
+
+\textbf{(g)} \ $y = ax^3 + bx^2 + cx \Rightarrow y' = 3ax^2 + 2bx + c \quad \cdots (\ast)$
+\[
+\Rightarrow y'' = 6ax + 2b \quad \cdots (\ast\ast)
+\]
+\[
+\Rightarrow y''' = 6a \Rightarrow \kutula{a = \frac{y'''}{6}} \rightarrow \text{Bu değeri } (\ast\ast) \text{ da yerine yazalım.}
+\]
+\[
+y'' = y'''x + 2b \Rightarrow \kutula{b = \frac{y'' - y'''x}{2}} \rightarrow \text{Bu değeri } (\ast) \text{ da yerine yazalım.}
+\]
+\[
+y' = \frac{y'''x^2}{2} + y''x - y'''x^2 + c \Rightarrow \kutula{c = y' + \frac{y'''x^2}{2} - y''x}
+\]
+O halde,
+\[
+y = \frac{y'''}{6}x^3 + \frac{y''x^2}{2} - \frac{y'''x^3}{2} + y'x + \frac{y'''x^3}{2} - y''x^2 \Rightarrow \kutula{6y = y'''x^3 - 3y''x^2 + 6y'x} \ /\!/
+\]
+bulunur.
+\end{cozum}
+
+\sayfa{4}
+\begin{ornek}[2]
+Aşağıda verilen diferansiyel denklemleri çözünüz.
+
+(a) $y' = (x^2 + x - 2)\sin 3x$
+
+(b) $y' = \dfrac{1}{4x^3 + x}$
+
+(c) $y' = \dfrac{x}{(x-1)^3}$
+\end{ornek}
+\begin{cozum}
+\textbf{(a)} \ $\dfrac{dy}{dx} = (x^2+x-2)\sin 3x \Rightarrow dy = (x^2+x-2)\sin 3x\,dx$
+\[
+\Rightarrow \int dy = \int(x^2+x-2)\sin 3x\,dx
+\underset{\substack{\downarrow\\ \left(\begin{smallmatrix} x^2+x-2=u \,\Rightarrow\, (2x+1)dx=du\\ \sin 3x\,dx=dv \,\Rightarrow\, -\frac{\cos 3x}{3}=v\end{smallmatrix}\right)}}{\Rightarrow}
+y = -(x^2+x-2)\frac{\cos 3x}{3} + \frac13\int(2x+1)\cos 3x\,dx
+\]
+\[
+\underset{\substack{\downarrow\\ \left(\begin{smallmatrix} u=2x+1 \,\Rightarrow\, 2dx=du\\ \cos 3x\,dx=dv \,\Rightarrow\, \frac{\sin 3x}{3}=v\end{smallmatrix}\right)}}{\Rightarrow}
+y = -(x^2+x-2)\frac{\cos 3x}{3} + \frac19(2x+1)\sin 3x - \frac29\int\sin 3x\,dx
+\]
+\[
+\Rightarrow \kutula{y = -(x^2+x-2)\frac{\cos 3x}{3} + \frac19(2x+1)\sin 3x + \frac{2}{27}\cos 3x + c} \ /\!/
+\]
+
+\textbf{(b)} \ $\dfrac{dy}{dx} = \dfrac{1}{4x^3+x} \Rightarrow dy = \dfrac{dx}{4x^3+x} \Rightarrow \displaystyle\int dy = \int\frac{dx}{4x^3+x}$
+\[
+\frac{1}{4x^3+x} = \frac{1}{x(4x^2+1)} = \underset{(4x^2+1)}{\frac{A}{x}} + \underset{(x)}{\frac{Bx+C}{4x^2+1}} \Rightarrow 1 = A(4x^2+1) + (Bx+C)x
+\]
+\[
+\begin{aligned}
+x = 0 &\Rightarrow \kutula{A = 1}\\
+x^2\text{ li terim: } 0 = 4A + B &\Rightarrow \kutula{B = -4}\\
+x\text{ li terim: } &\ \kutula{0 = C}
+\end{aligned}
+\]
+\sayfa{5}
+\[
+\Rightarrow y = \int\frac1x dx + \int\frac{-4x}{4x^2+1}dx \underset{\substack{4x^2+1=u\\ 8x\,dx=du}}{\Rightarrow} y = \ln|x| - \frac12\int\frac{du}{u} \Rightarrow y = \ln|x| - \frac12\ln|u| + c
+\]
+\[
+\Rightarrow \kutula{y = \ln|x| - \frac12\ln(4x^2+1) + c} \ /\!/
+\]
+
+\textbf{(c)} \ $\dfrac{dy}{dx} = \dfrac{x}{(x-1)^3} \Rightarrow dy = \dfrac{x\,dx}{(x-1)^3} \Rightarrow \displaystyle\int dy = \int\frac{x\,dx}{(x-1)^3} \underset{x-1=u\,\Rightarrow\, dx=du}{\Rightarrow}$
+\[
+\Rightarrow y = \int\frac{u+1}{u^3}du \Rightarrow y = \int\frac{1}{u^2}du + \int\frac{1}{u^3}du \Rightarrow y = -\frac1u - \frac{1}{2u^2} + c
+\]
+\[
+\Rightarrow \kutula{y = \frac{-1}{x-1} - \frac{1}{2(x-1)^2} + c} \ /\!/
+\]
+\end{cozum}
+
+\begin{ornek}[3]
+Aşağıda verilen diferansiyel denklemleri çözünüz.
+
+\begin{tabular}{@{}ll@{}}
+(a) $y' = \dfrac{1}{y - \sqrt{y}}$ & \qquad (d) $y' = \dfrac{1+y^2}{-2\arctan y}$ \\[4mm]
+(b) $y' = \dfrac{1}{y^2(4-y^2)}$ & \qquad (e) $y\cdot\sin y\cdot\cos y\cdot y' = 1$ \\[4mm]
+(c) $y' = e^{y} - 1$ & \qquad (f) $y^2y' + yy' = e^{y}$
+\end{tabular}
+\end{ornek}
+\begin{cozum}
+\textbf{(a)} \ $\dfrac{dy}{dx} = \dfrac{1}{y - \sqrt{y}} \Rightarrow (y - \sqrt{y})\,dy = dx \Rightarrow \displaystyle\int y\,dy - \int\sqrt{y}\,dy = \int dx$
+\[
+\Rightarrow \kutula{\frac{y^2}{2} - \frac23y^{\frac32} + c = x}
+\]
+\sayfa{6}
+\textbf{(b)} \ $\dfrac{dy}{dx} = \dfrac{1}{y^2(4-y^2)} \Rightarrow y^2(4-y^2)\,dy = dx \Rightarrow \displaystyle\int y^2(4-y^2)\,dy = \int dx$
+\[
+\Rightarrow \int 4y^2dy - \int y^4dy = \int dx \Rightarrow \kutula{x = \frac{4y^3}{3} - \frac{y^5}{5} + c} \ /\!/
+\]
+
+\textbf{(c)} \ $\dfrac{dy}{dx} = e^{y} - 1 \Rightarrow \dfrac{dy}{e^{y}-1} = dx \Rightarrow \displaystyle\int\frac{dy}{e^{y}-1} = \int dx \underset{\substack{e^{y}=u\\ e^{y}dy=du}}{\Rightarrow} \int\frac{du}{u(u-1)} = \int dx$
+\[
+\underset{\substack{\downarrow\\ \frac{1}{u(u-1)} = \frac{1}{u-1} - \frac1u}}{\Rightarrow} \int\frac{du}{u-1} - \int\frac{du}{u} = \int dx \Rightarrow x = \ln|u-1| - \ln|u| + c
+\]
+\[
+\Rightarrow \kutula{x = \ln|e^{y}-1| - y + c} \ /\!/
+\]
+
+\textbf{(d)} \ $\dfrac{dy}{dx} = \dfrac{1+y^2}{-2\arctan y} \Rightarrow \dfrac{-2\arctan y\,dy}{1+y^2} = dx \Rightarrow -2\displaystyle\int\frac{\arctan y\,dy}{1+y^2} = \int dx$
+\[
+\underset{\substack{\arctan y=u\\ \frac{dy}{1+y^2}=du}}{\Rightarrow} -2\int u\,du = \int dx \Rightarrow -u^2 + c = x \Rightarrow \kutula{x = -\arctan^2y + c} \ /\!/
+\]
+
+\textbf{(e)} \ $y\sin y\cos y\dfrac{dy}{dx} = 1 \Rightarrow y\sin y\cos y\,dy = dx \Rightarrow \displaystyle\int y\sin y\cos y\,dy = \int dx$
+\[
+\underset{\sin 2y=2\sin y\cos y}{\Rightarrow} \frac12\int y\sin 2y\,dy = x
+\underset{\substack{y=u\,\Rightarrow\, dy=du\\ \sin 2y\,dy=dv\,\Rightarrow\, v=-\frac{\cos 2y}{2}}}{\Rightarrow} x = -\frac14y\cos 2y + \frac14\int\cos 2y\,dy
+\]
+\[
+\Rightarrow \kutula{x = -\frac14y\cos 2y + \frac18\sin 2y + c} \ /\!/
+\]
+\sayfa{7}
+\textbf{(f)} \ $y'(y^2+y) = e^{y} \Rightarrow \dfrac{dy}{dx}(y^2+y) = e^{y} \Rightarrow \dfrac{(y^2+y)\,dy}{e^{y}} = dx$
+\[
+\Rightarrow \int\frac{y^2+y}{e^{y}}dy = \int dx \Rightarrow \underbrace{\int\frac{y^2dy}{e^{y}}}_{I_1} + \underbrace{\int\frac{y\,dy}{e^{y}}}_{I_2} = \int dx
+\]
+\[
+I_1 \text{ için } \left.\begin{aligned}&u = y^2 \Rightarrow du = 2y\,dy\\ &e^{-y}dy = dv \Rightarrow -e^{-y} = v\end{aligned}\right\} \Rightarrow I_1 = -y^2e^{-y} + 2\int\frac{y}{e^{y}}dy = -y^2e^{-y} - 2ye^{-y} - 2e^{-y}
+\]
+\[
+I_2 \text{ için: } \left.\begin{aligned}&u = y \Rightarrow du = dy\\ &e^{-y}dy = dv \Rightarrow -e^{-y} = v\end{aligned}\right\} \Rightarrow I_2 = -ye^{-y} + \int e^{-y}dy = -ye^{-y} - e^{-y}
+\]
+\[
+\Rightarrow \kutula{x = -y^2e^{-y} - 3ye^{-y} - 3e^{-y} + c} \ /\!/
+\]
+\end{cozum}
+
+\begin{ornek}[4]
+$y = 3e^{x} + 4e^{2x} + 2e^{-2x}$ fonksiyonunun $y'' - 3y' + 2y = 24e^{-2x}$ diferansiyel denkleminin bir çözümü olduğunu gösteriniz.
+\end{ornek}
+\begin{cozum}
+\[
+\left.\begin{aligned}
+y' &= 3e^{x} + 8e^{2x} - 4e^{-2x}\\
+y'' &= 3e^{x} + 16e^{2x} + 8e^{-2x}
+\end{aligned}\right\} \Rightarrow
+\]
+\[
+\Rightarrow 3e^{x} + 16e^{2x} + 8e^{-2x} - 3\left(3e^{x} + 8e^{2x} - 4e^{-2x}\right) + 2\left(3e^{x} + 4e^{2x} + 2e^{-2x}\right) =
+\]
+\[
+= 3e^{x} + 16e^{2x} + 8e^{-2x} - 9e^{x} - 24e^{2x} + 12e^{-2x} + 6e^{x} + 8e^{2x} + 4e^{-2x}
+\]
+\[
+= 24e^{-2x} \ /\!/
+\]
+\end{cozum}
+
+\sayfa{8}
+\begin{ornek}[5]
+$y' = 5y - 3$, \ $y(2) = 1$ diferansiyel denklemini çözünüz.
+\end{ornek}
+\begin{cozum}
+\[
+\frac{dy}{dx} = 5y - 3 \Rightarrow \frac{dy}{5y-3} = dx \Rightarrow \int\frac{dy}{5y-3} = \int dx \Rightarrow \frac{\ln|5y-3|}{5} = x + c
+\]
+\[
+\Rightarrow \ln|5y-3| = 5x + 5c_1 \Rightarrow y(x) = \frac{e^{5(x+c_1)} + 3}{5} = \frac{e^{5x}\overbrace{e^{5c_1}}^{c} + 3}{5} \Rightarrow \underset{\substack{\downarrow\\ \text{genel çözüm}}}{\kutula{y(x) = \frac{ce^{5x} + 3}{5}}}
+\]
+\[
+y(2) = 1 \Rightarrow \frac{ce^{10} + 3}{5} = 1 \Rightarrow c = 2e^{-10}
+\]
+Bu durumda, özel çözüm $\Rightarrow \kutula{y = \dfrac{2e^{5x-10} + 3}{5}}$ \ bulunur.
+\end{cozum}
+
+\noindent\textbf{\underline{NOT}}: Verilen bir eğri ailesinin ortogonal (dik) yörüngeleri nasıl bulunur?
+
+Birbirini $90^\circ$ açıyla kesen doğrulara birbirinin ortogonalidir denir. Bu nedenle doğrulardan birinin eğimi $m$ ise buna ortogonal olan diğerinin eğimi $-\dfrac1m$ olacaktır. Tanımı genişletecek olursak, örneğin bir $xy$-düzlemindeki $F(x,y) = c$ eğri ailesinin her bir ailesi, aynı düzlemdeki $G(x,y) = K$ eğri ailesinin her bir eğrisini dik olarak kesiyorsa, bu eğriler birbirinin ortogonalidir. Verilen bir eğri ailesine dik olan eğri ailesini bulmak için şu adımlar izlenmelidir:
+\begin{enumerate}[label=(\arabic*)]
+\item Verilen ifadenin $(F(x,y) = c)$ $x$ e göre türevi alınıp $\dfrac{dy}{dx}$ oluşturulur
+\item Bu iki denklemden ($F(x,y) = c$ ve bunun türevini veren denklem) $C$ yok edilir
+\item İkinci denklemde $\dfrac{dy}{dx}$ yerine $-\dfrac{dx}{dy}$ alınarak elde edilecek diferansiyel denklem çözülür.
+\end{enumerate}
+
+\sayfa{9}
+\begin{ornek}[6]
+$y = cx^4$ eğri ailesinin ortogonal yörüngesini bulunuz.
+\end{ornek}
+\begin{cozum}
+\underline{1. adım}: \ $dy = 4cx^3dx \Rightarrow \dfrac{dy}{dx} = 4cx^3$
+
+\underline{2. adım}:
+\[
+\left.\begin{aligned}
+&y = cx^4 \Rightarrow c = \frac{y}{x^4}\\
+&\frac{dy}{dx} = 4cx^3
+\end{aligned}\right\} \Rightarrow \frac{dy}{dx} = \frac{4y}{x}
+\]
+\underline{3. adım}: \ $-\dfrac{dx}{dy} = \dfrac{4y}{x} \Rightarrow -x\,dx = 4y\,dy \Rightarrow -\displaystyle\int x\,dx = 4\int y\,dy$
+\[
+\Rightarrow 2y^2 = -\frac{x^2}{2} + c_1 \Rightarrow \kutula{4y^2 = -x^2 + 2c_1}
+\]
+\end{cozum}
+
+\begin{ornek}[7]
+$y^2 = x + c$ eğri ailesinin ortogonal yörüngesini bulunuz.
+\end{ornek}
+\begin{cozum}
+\underline{1. adım}: \ $2y\,dy = dx \Rightarrow \dfrac{dy}{dx} = \dfrac{1}{2y}$
+
+\underline{2. adım}: \ Türevi veren denklemde $c$ sabiti yok
+
+\underline{3. adım}: \ $-\dfrac{dx}{dy} = \dfrac{1}{2y} \Rightarrow \dfrac{dy}{2y} = -dx \Rightarrow \dfrac12\displaystyle\int\frac{dy}{y} = -\int dx \Rightarrow \dfrac{\ln|y|}{2} = -x + c_1$
+\[
+\Rightarrow \ln|y| = -2x + \underbrace{2c_1}_{c_2} \Rightarrow y = e^{-2x+c_2} \underset{\substack{\downarrow\\ k=e^{c_2}}}{\Rightarrow} \kutula{y = ke^{-2x}}
+\]
+\end{cozum}
+
+\noindent\textbf{\underline{NOT}}: Verilen bir eğri ailesinin eğik yörüngeleri nasıl bulunur?
+
+Bir $f$ eğri ailesi ile $\theta$ açısı yapan bir $g$ eğri ailesinin denklemini bulalım. $f$ ve $g$ ailelerinin herhangi iki eğrisinin kesiştiği nokta $M(x,y)$ olsun. $f$ ye ait eğrinin $M$ noktasındaki teğeti $x$ eksenini $\beta$ açısı ile kesişsin. $g$ eğri ailesine ait eğrinin $M$ noktasındaki teğetinin $x$ eksenini $\alpha$ açısı ile kestiğini varsayalım.
+
+\end{document}

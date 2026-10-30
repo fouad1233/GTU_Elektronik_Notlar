@@ -1,0 +1,253 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\newcommand\carp[1]{\mathpalette\carpb{#1}}% üstü çizili (iptal edilmiş) terim, / yönünde
+\newcommand\carpb[2]{\tikz[baseline=(cc.base)]{\node[inner sep=0pt](cc){$#1#2$};\draw[line width=0.5pt](cc.south west)--(cc.north east);}}
+\newcommand\carpt[1]{\mathpalette\carptb{#1}}% üstü çizili terim, \ yönünde
+\newcommand\carptb[2]{\tikz[baseline=(cc.base)]{\node[inner sep=0pt](cc){$#1#2$};\draw[line width=0.5pt](cc.north west)--(cc.south east);}}
+\notbilgi{Diferansiyel Denklemler}{14. Hafta Uygulama -- Katlı özdeğerler ve sistemler}{dif15.pdf}
+
+\sayfa{1}
+\hfill\fbox{14. HAFTA}
+\section{Hatırlatma}
+\begin{itemize}[label=$\ast$]
+\item Bu bölümde $\lambda$ özdeğerlerinin katlı olduğu durumu inceleyeceğiz. $\lambda_0$ nın $\Delta(\lambda)$ karakteristik denklemindeki kök sayısına ``cebirsel katı'' denir. $\mathrm{rank}\left(\Delta(\lambda_0)\right) = r$ ve cebirsel katına $p$ dersek $n-r$ sayısına ``geometrik katı'' denir. Her zaman $n-r \le p$ dir.
+\item $n-r = p$ olduğu durumda $\lambda_0$ özdeğerine $n-r$ sayıda lineer bağımsız özvektör karşılık gelir.
+\item $n-r < p$ olduğu durumda defekt $m = p-(n-r)$ olur ve $\lambda_0$ özdeğerine karşılık gelen genel çözüm
+\[
+\begin{bmatrix} y_1(x) \\ y_2(x) \\ \vdots \\ y_n(x) \end{bmatrix} = \left(\begin{bmatrix} \alpha_{1,1} \\ \alpha_{2,1} \\ \vdots \\ \alpha_{n,1} \end{bmatrix} + \begin{bmatrix} \alpha_{1,2} \\ \alpha_{2,2} \\ \vdots \\ \alpha_{n,2} \end{bmatrix}x + \cdots + \begin{bmatrix} \alpha_{1,m+1} \\ \alpha_{2,m+1} \\ \vdots \\ \alpha_{n,m+1} \end{bmatrix}x^m\right)e^{\lambda_0 x}
+\]
+şeklindedir.
+\item Homojen olmayan lineer diferansiyel denklem sistemlerini sabitlerin varyasyonu yöntemi ile çözebiliriz.
+\end{itemize}
+
+\section{Alıştırmalar}
+\begin{ornek}[1]
+\[
+\begin{cases} x' = 3x + y - z \\ y' = x + 3y - z \\ z' = 3x + 3y - z \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+
+\sayfa{2}
+\begin{cozum}
+Öncelikle $\Delta(\lambda)$ determinantından özdeğer ve özvektörleri bulalım.
+\[
+\Delta(\lambda) = \begin{vmatrix} 3-\lambda & 1 & -1 \\ 1 & 3-\lambda & -1 \\ 3 & 3 & -1-\lambda \end{vmatrix} = 0 \Rightarrow (3-\lambda)\left[-(3-\lambda)(1+\lambda)+3\right] - \left[-(1+\lambda)+3\right] - \left[3-3(3-\lambda)\right]
+\]
+\[
+\Rightarrow (3-\lambda)(\lambda^2-2\lambda) + \lambda - 2 - (3\lambda-6) = (3-\lambda)\lambda(\lambda-2) + \lambda - 2 - 3(\lambda-2) = 0
+\]
+\[
+\Rightarrow (\lambda-2)\left[-\lambda^2+3\lambda+1-3\right] = 0 \Rightarrow (\lambda-2)(1-\lambda)(\lambda-2) = 0 \Rightarrow \underbrace{\lambda_1 = 1 \ , \ \lambda_{2,3} = 2}_{\text{özdeğerler}}
+\]
+\[
+\# \quad \lambda_1 = 1 \ \text{ için } : \ \begin{bmatrix} 2 & 1 & -1 \\ 1 & 2 & -1 \\ 3 & 3 & -2 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = 0 \Rightarrow \left.\begin{aligned} 2\alpha + \beta - \gamma &= 0 \\ \alpha + 2\beta - \gamma &= 0 \\ 3\alpha + 3\beta - 2\gamma &= 0 \end{aligned}\right\} \Rightarrow \begin{aligned} \alpha &= \beta \\ \gamma &= 3\alpha \end{aligned}
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = \begin{bmatrix} \alpha \\ \alpha \\ 3\alpha \end{bmatrix} = \underbrace{\begin{bmatrix} 1 \\ 1 \\ 3 \end{bmatrix}}_{\text{özvektör}}\alpha \ \Rightarrow \ \begin{bmatrix} x_1(t) \\ y_1(t) \\ z_1(t) \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \\ 3 \end{bmatrix}e^{t}
+\]
+\# \ $\lambda_{2,3} = 2$ katlı kök olduğu için matrisin rankına bakmalıyız.
+
+cebirsel kat $= p = 2$
+\[
+\begin{bmatrix} 1 & 1 & -1 \\ 1 & 1 & -1 \\ 3 & 3 & -3 \end{bmatrix} \Rightarrow \mathrm{rank} = \underbrace{1}_{=r} \ \Rightarrow \ \text{geometrik kat} = n-r = 3-1 = 2
+\]
+Bu durumda, $n-r=p$ old.dan defekt yoktur ve $\lambda=2$ özdeğerine karşılık gelen 2 lineer bağımsız özvektör vardır.
+
+\sayfa{3}
+\[
+\begin{bmatrix} 1 & 1 & -1 \\ 1 & 1 & -1 \\ 3 & 3 & -3 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = 0 \Rightarrow \alpha + \beta - \gamma = 0 \Rightarrow \gamma = \alpha + \beta \Rightarrow \begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = \begin{bmatrix} \alpha \\ \beta \\ \alpha+\beta \end{bmatrix}
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = \begin{bmatrix} \alpha \\ 0 \\ \alpha \end{bmatrix} + \begin{bmatrix} 0 \\ \beta \\ \beta \end{bmatrix} = \underbrace{\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}\alpha + \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}}_{\text{özvektörler}}\beta
+\]
+\[
+\Rightarrow \begin{bmatrix} x_2(t) \\ y_2(t) \\ z_2(t) \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}e^{2t} \qquad \text{ve} \qquad \begin{bmatrix} x_3(t) \\ y_3(t) \\ z_3(t) \end{bmatrix} = \begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}e^{2t}
+\]
+Bu durumda, genel çözüm,
+\[
+\begin{aligned}[t] x(t) &= c_1e^{t} + c_2e^{2t} \\ y(t) &= c_1e^{t} + c_3e^{2t} \\ z(t) &= 3c_1e^{t} + c_2e^{2t} + c_3e^{2t} \end{aligned} \qquad\qquad c_1, c_2, c_3 \in \mathbb{R}
+\]
+bulunur.
+\end{cozum}
+
+\begin{ornek}[2]
+\[
+\begin{cases} x' = 4x + 3y + z \\ y' = -4x - 4y - 2z \\ z' = 8x + 12y + 6z \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+\begin{cozum}
+Öncelikle $\Delta(\lambda)$ determinantından özdeğer ve özvektörleri bulalım.
+
+\sayfa{4}
+\[
+\Delta(\lambda) = \begin{vmatrix} 4-\lambda & 3 & 1 \\ -4 & -4-\lambda & -2 \\ 8 & 12 & 6-\lambda \end{vmatrix} = 0 \Rightarrow (4-\lambda)\left[-(4+\lambda)(6-\lambda)+24\right] - 3\left[-4(6-\lambda)+16\right] - 48 + 8(4+\lambda) = 0
+\]
+\[
+\Rightarrow (4-\lambda)\lambda(\lambda-2) - 12(\lambda-2) + 8(\lambda-2) = 0 \Rightarrow (\lambda-2)\left(-\lambda^2+4\lambda-4\right) = -(\lambda-2)(\lambda-2)^2 = 0
+\]
+\[
+\Rightarrow \underbrace{\lambda_{1,2,3} = 2}_{} \rightarrow \text{özdeğer}
+\]
+\# \ $\lambda_{1,2,3} = 2$ katlı kök olduğu için matrisin rankına bakmalıyız.
+
+cebirsel kat $= p = 3$
+\[
+\begin{bmatrix} 2 & 3 & 1 \\ -4 & -6 & -2 \\ 8 & 12 & 4 \end{bmatrix} \Rightarrow \mathrm{rank} = r = 1 \Rightarrow \text{geometrik kat} = n-r = 2
+\]
+Bu durumda, $n-r<p$ old.dan defekt vardır. $m = p-(n-r) = 3-2 = 1$ old.dan
+\[
+\begin{bmatrix} x(t) \\ y(t) \\ z(t) \end{bmatrix} = \left(\begin{bmatrix} a \\ b \\ c \end{bmatrix} + \begin{bmatrix} d \\ e \\ f \end{bmatrix}t\right)e^{2t}
+\]
+şeklinde olur. Şimdi denklemde yerine yazalım.
+\[
+\left.\begin{aligned}
+x(t) = (a+dt)\,e^{2t} &\Rightarrow x'(t) = d\,e^{2t} + 2(a+dt)\,e^{2t} \\
+y(t) = (b+et)\,e^{2t} &\Rightarrow y'(t) = e\,e^{2t} + 2(b+et)\,e^{2t} \\
+z(t) = (c+ft)\,e^{2t} &\Rightarrow z'(t) = f\,e^{2t} + 2(c+ft)\,e^{2t}
+\end{aligned}\right\} \Rightarrow
+\]
+\[
+\left.\begin{aligned}
+d\,e^{2t} + 2(a+dt)\,e^{2t} &= 4(a+dt)\,e^{2t} + 3(b+et)\,e^{2t} + (c+ft)\,e^{2t} \\
+e\,e^{2t} + 2(b+et)\,e^{2t} &= -4(a+dt)\,e^{2t} - 4(b+et)\,e^{2t} - 2(c+ft)\,e^{2t} \\
+f\,e^{2t} + 2(c+ft)\,e^{2t} &= 8(a+dt)\,e^{2t} + 12(b+et)\,e^{2t} + 6(c+ft)\,e^{2t}
+\end{aligned}\right\} \Rightarrow
+\]
+
+\sayfa{5}
+Şimdi her tarafı $e^{2t}$ ye bölelim.
+\[
+\left.\begin{aligned}
+d + 2(a+dt) &= 4(a+dt) + 3(b+et) + (c+ft) \\
+e + 2(b+et) &= -4(a+dt) - 4(b+et) - 2(c+ft) \\
+f + 2(c+ft) &= 8(a+dt) + 12(b+et) + 6(c+ft)
+\end{aligned}\right\} \Rightarrow
+\]
+\[
+\left.\begin{aligned}
+d + 2a &= 4a + 3b + c \ \Rightarrow \ d = 2a + 3b + c \\
+e + 2b &= -4a - 4b - 2c \ \Rightarrow \ e = -4a - 6b - 2c \\
+f + 2c &= 8a + 12b + 6c \ \Rightarrow \ f = 8a + 12b + 4c
+\end{aligned}\right\} \Rightarrow \left.\begin{aligned} e &= -2d \\ f &= 4d \\ d &= 2a + 3b + c \end{aligned}\right\} \Rightarrow
+\]
+\[
+\Rightarrow \left.\begin{aligned} a &= c_1 \\ b &= c_2 \\ d &= c_3 \end{aligned} \qquad \begin{aligned} c &= c_3 - 2c_1 - 3c_2 \\ e &= -2c_3 \\ f &= 4c_3 \end{aligned}\right\} \Rightarrow \begin{bmatrix} x(t) \\ y(t) \\ z(t) \end{bmatrix} = \left(\begin{bmatrix} c_1 \\ c_2 \\ c_3 - 2c_1 - 3c_2 \end{bmatrix} + \begin{bmatrix} c_3 \\ -2c_3 \\ 4c_3 \end{bmatrix}t\right)e^{2t}
+\]
+\[
+\Rightarrow \begin{bmatrix} x(t) \\ y(t) \\ z(t) \end{bmatrix} = \left(\begin{bmatrix} 1 \\ 0 \\ -2 \end{bmatrix}c_1 + \begin{bmatrix} 0 \\ 1 \\ -3 \end{bmatrix}c_2 + \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}c_3 + \begin{bmatrix} 1 \\ -2 \\ 4 \end{bmatrix}c_3\,t\right)e^{2t}
+\]
+Bu durumda, genel çözüm,
+\[
+\begin{aligned}[t] x(t) &= c_1e^{2t} + c_3te^{2t} \\ y(t) &= c_2e^{2t} - 2c_3te^{2t} \\ z(t) &= -2c_1e^{2t} - 3c_2e^{2t} + c_3e^{2t} + 4c_3te^{2t} \end{aligned} \qquad\qquad c_1, c_2, c_3 \in \mathbb{R}
+\]
+bulunur.
+\end{cozum}
+
+\sayfa{6}
+\begin{ornek}[3]
+\[
+\begin{cases} x' = 6x - 3y + e^{5t} & \qquad\qquad x(0) = 9 \\[2mm] y' = 2x + y + 4 & \qquad\qquad y(0) = 4 \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+\begin{cozum}
+Öncelikle homojen sistemin çözümünü bulalım.
+
+Homojen sistem :
+\[
+\left.\begin{aligned} x' &= 6x - 3y \\ y' &= 2x + y \end{aligned}\right\} \Rightarrow
+\]
+\[
+\Rightarrow \Delta(\lambda) = \begin{vmatrix} 6-\lambda & -3 \\ 2 & 1-\lambda \end{vmatrix} = 0 \Rightarrow (6-\lambda)(1-\lambda) + 6 = 0 \Rightarrow 6 - 7\lambda + \lambda^2 + 6 = 0
+\]
+\[
+\Rightarrow (\lambda-4)(\lambda-3) = 0 \Rightarrow \lambda_1 = 4 \ , \ \lambda_2 = 3 \ \rightarrow \text{özdeğerler}
+\]
+\[
+\# \quad \lambda_1 = 4 \ \text{ için } \ \begin{bmatrix} 2 & -3 \\ 2 & -3 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \end{bmatrix} = 0 \Rightarrow 2\alpha - 3\beta = 0 \Rightarrow 2\alpha = 3\beta
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \end{bmatrix} = \begin{bmatrix} \alpha \\ \frac{2\alpha}{3} \end{bmatrix} = \underbrace{\begin{bmatrix} 3 \\ 2 \end{bmatrix}}_{\text{özvektör}}\frac{\alpha}{3} \ \Rightarrow \ \begin{bmatrix} x_1(t) \\ y_1(t) \end{bmatrix} = \begin{bmatrix} 3 \\ 2 \end{bmatrix}e^{4t}
+\]
+\[
+\# \quad \lambda_2 = 3 \ \text{ için } \ \begin{bmatrix} 3 & -3 \\ 2 & -2 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \end{bmatrix} = 0 \Rightarrow 3\alpha - 3\beta = 0 \Rightarrow \alpha = \beta
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \end{bmatrix} = \begin{bmatrix} \alpha \\ \alpha \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\alpha \ \Rightarrow \ \begin{bmatrix} x_2(t) \\ y_2(t) \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix}e^{3t}
+\]
+
+\sayfa{7}
+Bu durumda, homojen sistemin genel çözümü,
+\[
+\begin{aligned}[t] x(t) &= 3c_1e^{4t} + c_2e^{3t} \\ y(t) &= 2c_1e^{4t} + c_2e^{3t} \end{aligned} \qquad\qquad c_1, c_2 \in \mathbb{R}
+\]
+bulunur. Şimdi, sabitlerin varyasyonu yöntemini kullanalım.
+\[
+x(t) = 3c_1(t)e^{4t} + c_2(t)e^{3t} \Rightarrow 3c_1'(t)e^{4t} + 12c_1(t)e^{4t} + c_2'(t)e^{3t} + 3c_2(t)e^{3t}
+\]
+\[
+y(t) = 2c_1(t)e^{4t} + c_2(t)e^{3t} \Rightarrow 2c_1'(t)e^{4t} + 8c_1(t)e^{4t} + c_2'(t)e^{3t} + 3c_2(t)e^{3t}
+\]
+Denklemde yerine yazalım.
+{\small
+\[
+\left.\begin{aligned}
+3c_1'(t)e^{4t} + \carp{12c_1(t)e^{4t}} + c_2'(t)e^{3t} + \carpt{3c_2(t)e^{3t}} &= \carp{18c_1(t)e^{4t}} + \carpt{6c_2(t)e^{3t}} - \carp{6c_1(t)e^{4t}} - \carpt{3c_2(t)e^{3t}} + e^{5t} \\
+2c_1'(t)e^{4t} + \carp{8c_1(t)e^{4t}} + c_2'(t)e^{3t} + \carpt{3c_2(t)e^{3t}} &= \carp{6c_1(t)e^{4t}} + \carpt{2c_2(t)e^{3t}} + \carp{2c_1(t)e^{4t}} + \carpt{c_2(t)e^{3t}} + 4
+\end{aligned}\right\}
+\]}
+\[
+\Rightarrow \left.\begin{aligned} 3c_1'(t)e^{4t} + c_2'(t)e^{3t} &= e^{5t} \\ 2c_1'(t)e^{4t} + c_2'(t)e^{3t} &= 4 \end{aligned}\right\} \qquad \text{Gerekli düzenlemeleri yaparsak,}
+\]
+\[
+\Rightarrow c_1'(t)e^{4t} = e^{5t} - 4 \Rightarrow c_1'(t) = e^{t} - 4e^{-4t} \Rightarrow c_1(t) = e^{t} + e^{-4t} + c_1 \ , \quad c_1 : \text{sabit}
+\]
+\[
+\Rightarrow c_2'(t)e^{3t} = 12 - 2e^{5t} \Rightarrow c_2'(t) = 12e^{-3t} - 2e^{2t} \Rightarrow c_2(t) = -4e^{-3t} - e^{2t} + c_2 \ , \quad c_2 : \text{sabit}
+\]
+Bu durumda, genel çözüm
+\[
+\begin{aligned}[t] x(t) &= 3\left(e^{t} + e^{-4t} + c_1\right)e^{4t} + \left(-4e^{-3t} - e^{2t} + c_2\right)e^{3t} \\ y(t) &= 2\left(e^{t} + e^{-4t} + c_1\right)e^{4t} + \left(-4e^{-3t} - e^{2t} + c_2\right)e^{3t} \end{aligned} \qquad\qquad c_1, c_2 \in \mathbb{R}
+\]
+bulunur.
+
+\sayfa{8}
+Şimdi, $x(0)=9$ ve $y(0)=4$ koşulunu sağlayan çözümü bulalım:
+\[
+\left.\begin{aligned}
+x(0)=9 &\Rightarrow 3(2+c_1) - 5 + c_2 = 9 \Rightarrow 3c_1 + c_2 = 8 \\
+y(0)=4 &\Rightarrow 2(2+c_1) - 5 + c_2 = 4 \Rightarrow 2c_1 + c_2 = 5
+\end{aligned}\right\} \Rightarrow \begin{aligned} c_1 &= 3 \\ c_2 &= -1 \end{aligned}
+\]
+Bu durumda, özel çözüm
+\[
+\begin{aligned}[t] x(t) &= 2e^{5t} + 9e^{4t} - e^{3t} - 1 \\ y(t) &= e^{5t} + 6e^{4t} - e^{3t} - 2 \end{aligned}
+\]
+elde edilir.
+\end{cozum}
+
+\begin{ornek}[(ÖDEV 1)]
+\[
+\begin{cases} x' = 6x - 3y + e^{2t} \\ y' = 2x + y - e^{2t} \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+
+\begin{ornek}[(ÖDEV 2)]
+\[
+\begin{cases} x' = x + y - z \\ y' = 2x + 3y - 4z \\ z' = 4x + y - 4z \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+
+\begin{ornek}[(ÖDEV 3)]
+\[
+\begin{cases} x' = -5x - 3y - 3z \\ y' = 8x + 5y + 7z \\ z' = -2x - y - 3z \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+
+\end{document}

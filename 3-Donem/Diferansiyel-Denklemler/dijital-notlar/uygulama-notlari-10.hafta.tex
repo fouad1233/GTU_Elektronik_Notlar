@@ -1,0 +1,185 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\renewcommand\thempfootnote{\alph{mpfootnote}}% kutu içindeki dipnotlar için
+\notbilgi{Diferansiyel Denklemler}{10. Hafta Uygulama -- Mertebe indirgeme yöntemi (bir çözümü verilen denklemler)}{10.hafta.pdf}
+
+\sayfa{1}
+\begin{ornek}[(Soru)]
+$2x^2y'' + 3xy' - y = 0$ \ ; \ $x>0$ denkleminin $y = x^{-1}$ çözümü verilmiş olsun. Genel çözümü bulunuz.
+\end{ornek}
+\begin{cozum}
+$y = u\cdot x^{-1}$ \ ; \ $u = u(x)$ dönüşümü yapalım.
+\[
+y = u\cdot x^{-1} \Rightarrow y' = u'x^{-1} - x^{-2}u \Rightarrow y'' = u''x^{-1} - x^{-2}u' - x^{-2}u' + 2x^{-3}u
+\]
+Denklemde yerine yazarsak,
+\[
+2x^2\left(u''x^{-1} - 2x^{-2}u' + 2x^{-3}u\right) + 3x\left(u'x^{-1} - x^{-2}u\right) - ux^{-1} = 0
+\]
+\[
+\Rightarrow 2xu'' - 4u' + 4x^{-1}u + 3u' - 3x^{-1}u - ux^{-1} = 0 \Rightarrow 2xu'' - u' = 0
+\]
+Şimdi, $u' = v$ dönüşümü yapalım.
+\[
+2xv' - v = 0 \Rightarrow v' - \frac{1}{2x}v = 0 \rightarrow \text{Lineer denklemdir ve } a(x) = -\frac{1}{2x}.
+\]
+integrasyon çarpanı $\Rightarrow I(x) = e^{-\frac12\int\frac1x\,dx} = x^{-\frac12}$
+
+Lineer denklemin her tarafını $x^{-\frac12}$ ile çarpalım.
+\[
+\underbrace{x^{-\frac12}v' - x^{-\frac12}\frac{1}{2x}v}_{} = 0 \Rightarrow \left(x^{-\frac12}v\right)' = 0 \Rightarrow x^{-\frac12}v = c \Rightarrow v = cx^{\frac12}
+\]
+\[
+\Rightarrow u' = cx^{\frac12} \Rightarrow u(x) = c\int x^{\frac12}\,dx \Rightarrow u(x) = \overbrace{\frac{2c}{3}}^{c_1}x^{\frac32} + c_2
+\]
+\[
+\Rightarrow y = \left(c_1x^{\frac32} + c_2\right)x^{-1} \Rightarrow \kutula{y(x) = c_1x^{\frac12} + c_2x^{-1}} \qquad ; \ c_1, c_2 \in \mathbb{R}
+\]
+\end{cozum}
+
+\sayfa{2}
+\begin{ornek}[(Soru)]
+$x^2y'' - x(x+2)y' + (x+2)y = 0$, \ $x>0$ denkleminin $y = x$ verilmiş bir çözümü olsun. Mertebe indirgeme yöntemini kullanarak genel çözümü bulunuz.
+\end{ornek}
+\begin{cozum}
+$y = ux$ \ ; \ $u = u(x)$ dönüşümü yapalım.
+\[
+y = ux \Rightarrow y' = u'x + u \Rightarrow y'' = u''x + u' + u' = u''x + 2u'
+\]
+Denklemde yerine yazarsak,
+\[
+x^2\left(u''x + 2u'\right) - x(x+2)\left(u'x + u\right) + (x+2)ux = 0
+\]
+\[
+\Rightarrow x^3u'' + 2x^2u' - x^3u' - 2x^2u' - x^2u - 2xu + x^2u + 2xu = 0
+\]
+\[
+\Rightarrow x^3u'' - x^3u' = 0 \underset{x>0}{\Rightarrow} u'' - u' = 0
+\]
+Şimdi, $u' = v$ dönüşümü yapalım.
+\[
+v' - v = 0 \rightarrow \text{Lineer denklemdir ve } a(x) = -1 \text{ dir.}
+\]
+integrasyon çarpanı $\Rightarrow I(x) = e^{-\int dx} = e^{-x}$
+
+Lineer denklemin her tarafını $e^{-x}$ ile çarpalım.
+\[
+\underbrace{e^{-x}v' - ve^{-x}}_{} = 0 \Rightarrow \left(e^{-x}\cdot v\right)' = 0 \Rightarrow e^{-x}v = c \Rightarrow v = ce^{x}
+\]
+\[
+\Rightarrow u' = ce^{x} \Rightarrow u(x) = c\int e^{x}\,dx \Rightarrow u(x) = ce^{x} + c_1
+\]
+\[
+\Rightarrow \kutula{y(x) = cxe^{x} + c_1x} \qquad ; \ c, c_1 \in \mathbb{R}
+\]
+\end{cozum}
+
+\sayfa{3}
+\begin{ornek}[(Soru)]
+$(x-1)y'' - xy' + y = 0$ \ ; \ $x>1$ denkleminin $y = e^{x}$ verilmiş bir çözümü olsun. Genel çözümü bulunuz.
+\end{ornek}
+\begin{cozum}
+$y = ue^{x}$ \ ; \ $u = u(x)$ dönüşümü yapalım.
+\[
+y = ue^{x} \Rightarrow y' = u'e^{x} + ue^{x} \Rightarrow y'' = u''e^{x} + u'e^{x} + u'e^{x} + ue^{x}
+\]
+Denklemde yerine yazarsak,
+\[
+(x-1)\left(u''e^{x} + 2u'e^{x} + ue^{x}\right) - x\left(u'e^{x} + ue^{x}\right) + ue^{x} = 0
+\]
+\[
+\Rightarrow xu'' + 2xu' + xu - u'' - 2u' - u - xu' - xu + u = 0
+\]
+\[
+\Rightarrow (x-1)u'' + (x-2)u' = 0
+\]
+Şimdi, $u' = v$ dönüşümü yapalım.
+\[
+(x-1)v' + (x-2)v = 0 \Rightarrow v' + \frac{x-2}{x-1}v = 0 \rightarrow \text{Lineer denklemdir ve } a(x) = \frac{x-2}{x-1}
+\]
+integrasyon çarpanı
+\[
+\Rightarrow I(x) = e^{\int\frac{x-2}{x-1}dx} = e^{\int\left(\frac{x-1}{x-1} - \frac{1}{x-1}\right)dx} = e^{x-\ln(x-1)}
+\]
+Lineer denklemin her tarafını $e^{x-\ln(x-1)}$ ile çarpalım.
+\[
+\left(e^{x-\ln(x-1)}v' + \frac{x-2}{x-1}e^{x-\ln(x-1)}\right) = 0 \Rightarrow \left(e^{x-\ln(x-1)}v\right)' = 0 \Rightarrow e^{x-\ln(x-1)}v = c_1 \quad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen ikinci terim $\frac{x-2}{x-1}e^{x-\ln(x-1)}\,v$ olmalı ($v$ yazılmamış).}
+\[
+\Rightarrow v = c_1e^{\ln(x-1)-x} \Rightarrow v = c_1e^{\ln(x-1)+\ln e^{-x}} \Rightarrow v = c_1e^{\ln(x-1)e^{-x}} \Rightarrow v = c_1e^{-x}(x-1)
+\]
+\[
+\Rightarrow u' = c_1e^{-x}(x-1) \Rightarrow u(x) = c_1\int e^{-x}(x-1)\,dx
+\]
+\[
+\underset{\substack{\downarrow\\ u=x-1\,\Rightarrow\, du=dx\\ dv=e^{-x}dx\,\Rightarrow\, v=-e^{-x}}}{\Rightarrow} u(x) = c_1\left[-e^{-x}(x-1) + \int e^{-x}\,dx\right]
+\]
+\sayfa{4}
+\[
+\Rightarrow u(x) = c_1\left[-e^{-x}(x-1) - e^{-x}\right] \Rightarrow u(x) = c_1\left[-e^{-x}(x-1+1)\right]
+\]
+\[
+\Rightarrow u(x) = -c_1xe^{-x} + c_2
+\]
+\[
+\Rightarrow \kutula{y(x) = -c_1x + c_2e^{x}} \qquad ; \ c_1, c_2 \in \mathbb{R}
+\]
+\end{cozum}
+
+\begin{ornek}[(Soru)]
+$xy'' - y' + 4x^3y = 0$ denkleminin $y = \sin x^2$ \ $(x>0)$ çözümü verilmiş olsun. Genel çözümü bulunuz.
+\end{ornek}
+\begin{cozum}
+$y = u\sin x^2$ \ ; \ $u = u(x)$ dönüşümü yapalım.
+\begin{align*}
+y = u\sin x^2 \Rightarrow y' &= u'\sin x^2 + 2xu\cos x^2 \\
+\Rightarrow y'' &= u''\sin x^2 + 2xu'\cos x^2 + 2xu'\cos x^2 + 2u\left(\cos x^2 - 2x\cdot x\sin x^2\right) \\
+\Rightarrow y'' &= u''\sin x^2 + 4xu'\cos x^2 + 2u\cos x^2 - 4ux^2\sin x^2
+\end{align*}
+Denklemde yerine yazarsak,
+\[
+x\left(u''\sin x^2 + 4xu'\cos x^2 + 2u\cos x^2 - 4ux^2\sin x^2\right) - u'\sin x^2 - 2xu\cos x^2 + 4x^3u\sin x^2 = 0
+\]
+\[
+\Rightarrow xu''\sin x^2 + 4x^2u'\cos x^2 + 2ux\cos x^2 - 4ux^3\sin x^2 - u'\sin x^2 - 2xu\cos x^2 + 4x^3u\sin x^2 = 0
+\]
+\[
+\Rightarrow x\sin x^2\,u'' + \left(4x^2\cos x^2 - \sin x^2\right)u' = 0
+\]
+Şimdi, $u' = v$ dönüşümü yapalım.
+\[
+x\sin x^2\,v' + \left(4x^2\cos x^2 - \sin x^2\right)v = 0
+\]
+\[
+\Rightarrow v' + \left(\frac{4x\cos x^2}{\sin x^2} - \frac1x\right)v = 0 \rightarrow \text{Lineer denklemdir ve } a(x) = \frac{4x\cos x^2}{\sin x^2} - \frac1x \text{ dir.}
+\]
+\sayfa{5}
+integrasyon çarpanı
+\[
+\Rightarrow I(x) = e^{\int\left(\frac{4x\cos x^2}{\sin x^2} - \frac1x\right)dx}
+\underset{\substack{\downarrow\\ x^2=u\\ 2x\,dx=du}}{=} e^{2\int\frac{\cos u}{\sin u}du - \int\frac1x dx}
+= e^{2\ln\sin x^2 - \ln x} = \frac{\sin^2x^2}{x}
+\]
+Lineer denklemin her tarafını $\dfrac{\sin^2x^2}{x}$ ile çarpalım.
+\[
+\frac{\sin^2x^2}{x}v + \frac{\sin^2x^2}{x}\left(\frac{4x\cos x^2}{\sin x^2} - \frac1x\right)v = 0 \Rightarrow \left(\frac{\sin^2x^2}{x}v\right)' = 0 \Rightarrow \frac{\sin^2x^2}{x}v = c_1 \quad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen ilk terim $\frac{\sin^2x^2}{x}v'$ olmalı.}
+\[
+\Rightarrow v = \frac{c_1x}{\sin^2x^2}
+\]
+\[
+\Rightarrow u' = \frac{c_1x}{\sin^2x^2} \Rightarrow u(x) = c_1\int\frac{x\,dx}{\sin^2x^2}
+\underset{\substack{\downarrow\\ x^2=u\\ 2x\,dx=du}}{\Rightarrow} u(x) = \frac{c_1}{2}\int\frac{1}{\sin^2u}\,du
+\]
+\[
+\Rightarrow u(x) = \overbrace{\left(-\frac{c_1}{2}\right)}^{c}\cot u + c_2 \Rightarrow u(x) = c\,\frac{\cos x^2}{\sin x^2} + c_2
+\]
+\[
+\Rightarrow \kutula{y(x) = c\cos x^2 + c_2\sin x^2} \qquad ; \ c, c_2 \in \mathbb{R}
+\]
+\end{cozum}
+
+\end{document}

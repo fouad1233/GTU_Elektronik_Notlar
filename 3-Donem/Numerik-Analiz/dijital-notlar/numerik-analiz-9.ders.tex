@@ -1,0 +1,297 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Nümerik Analiz}{Ders 9 -- Diferansiyel denklemler için sayısal yöntemler: Euler ve yüksek dereceden Taylor yöntemi}{numerik-analiz-9.ders.pdf}
+% Kaynak: tahta fotoğrafları (hocanın tahtaya yazdıkları).
+
+\sayfa{1}
+\section{Diferansiyel Denklemler için Sayısal Yöntemler}
+\begin{itemize}
+  \item Euler Yöntemi
+  \item Yüksek dereceden Taylor Yöntemi
+\end{itemize}
+
+\subsection{Euler Yöntemi}
+\[
+  \begin{array}{c} \text{var} \\ + \\ \text{tek} \end{array}
+  \begin{cases}
+    y' = f(t,y), \\
+    a \le t \le b \\
+    y(a) = \alpha
+  \end{cases}
+\]
+
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, murekkep]
+  \draw[->] (0,0) -- (9,0) node[right] {$t$};
+  \foreach \x in {0.6,1.6,2.6,4.6,5.6,7.6} \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (0.6,-0.15) {$\underline{a = t_0}$};
+  \node[above] at (1.6,0.12) {$t_1$};
+  \node[above] at (2.6,0.12) {$t_2$};
+  \node[above] at (4.6,0.12) {$t_k$};
+  \node[below] at (5.6,-0.15) {$t_{k+1}$};
+  \node[below] at (7.6,-0.15) {$\underline{b = t_N}$};
+  \draw (1.6,-0.2) -- (1.6,-0.35) -- (2.6,-0.35) -- (2.6,-0.2);
+  \node[below] at (2.1,-0.35) {$h$};
+  \node at (3.6,0.3) {$\cdots$};
+  \node at (6.6,0.3) {$\cdots$};
+\end{tikzpicture}
+\end{center}
+
+$N$ parçaya böl.
+
+Adım ölçüsü: \quad $h = \dfrac{b-a}{N} = t_{k+1} - t_k$
+
+\[ t_k = a + kh \qquad k = 0, 1, \dots, N \]
+
+\sayfa{2}
+\[
+  y(t_{k+1}) = \overbrace{y(t_k) + h\,y'(t_k)}^{\text{TAHMİNİ}}
+             + \overbrace{\frac{h^2}{2}\,y''(\xi_k)}^{\text{HATA}}
+\]
+\[ y'(t_k) = f\bigl(t_k, y(t_k)\bigr) \]
+\[ y(t_0) = \alpha \]
+\[
+  y(t_{k+1}) = \underbrace{y(t_k) + h\,f\bigl(t_k, y(t_k)\bigr)}_{\text{TAHMİN}}
+             + \frac{h^2}{2}\,f'(\xi_k)
+  \qquad k = 0, 1, \dots, N-1
+\]
+\[ \underline{\underline{w_k \approx y(t_k)}} \]
+
+\begin{ornek}
+  \[
+    \begin{cases}
+      y' = 1 + \dfrac{y}{t}, & 1 \le t \le 2 \\[2mm]
+      y(1) = 2
+    \end{cases}
+  \]
+  Bu başlangıç değer prob. çözümünün tahmini değerini adım boyu $h = 0.25$ olacak biçimde
+  belirleyiniz.
+\end{ornek}
+\begin{cozum}
+  $f(t,y) = 1 + \dfrac{y}{t}$, \quad $a = 1$, \ $b = 2$, \ $\alpha = 2$, \quad
+  $h = \dfrac{b-a}{N} \Rightarrow N = \dfrac{b-a}{h} = 4$
+
+  \formulkutu[Euler yöntemi]{\begin{aligned}
+    w_0 &= \alpha = 2 \\
+    w_{k+1} &= w_k + 0.25\left(1 + \frac{w_k}{t_k}\right) \\
+    w_{k+1} &= w_k + h\,\underline{f(t_k, w_k)} \\
+    k &= 0, 1, \dots, N-1 \\
+      &= 0, 1, 2, 3
+  \end{aligned}}
+
+  \begin{align*}
+    k = 0, &\quad w_1 = w_0 + 0.25\left(1 + \frac{w_0}{t_0}\right) \\
+    k = 1, &\quad w_2 = w_1 + 0.25\left(1 + \frac{w_1}{t_1}\right) \\
+    k = 2, &\quad w_3 = w_2 + 0.25\left(1 + \frac{w_2}{t_2}\right) \\
+    k = 3, &\quad w_4 = w_3 + 0.25\left(1 + \frac{w_3}{t_3}\right)
+  \end{align*}
+
+  Tam çözüm: \quad
+  $y' - \dfrac{1}{t}\,y = 1 \Rightarrow y(t) = 2x + x\ln|x|$, \quad $y(1) = 2$
+\end{cozum}
+
+\sayfa{3}
+\textit{(Bu sayfa, sayfa 2'deki tahtanın başka bir fotoğrafıdır; içerik aynıdır. Sağdaki panonun
+kısmen görünen bölümü sayfa 4'te tam olarak aktarılmıştır.)}
+
+\sayfa{4}
+\textit{(Soldaki panolar sayfa 2 ile aynı; aşağıda sağdaki pano.)}
+
+\[ \underline{t_k, \quad k = 0, 1, \dots, N-1} \]
+\[ y \in C^{(2)}[a,b]. \qquad t < \xi_k < t_k \]
+\[ y(t) = y(t_k) + y'(t_k)(t - t_k) + \frac{y''(\xi_k)}{2!}\,(t - t_k)^2 \]
+\[ \boxed{t = t_{k+1}} \]
+\[
+  y(t_{k+1}) = y(t_k) + y'(t_k)\underbrace{(t_{k+1} - t_k)}_{h}
+             + \frac{y''(\xi_k)}{2}\,\underbrace{(t_{k+1} - t_k)^2}_{h^2}
+\]
+
+\sayfa{5}
+\textit{(Aynı tahtanın daha erken bir fotoğrafı; kutuda yalnızca genel Euler formülü var:
+$w_0 = \alpha$, \ $w_{k+1} = w_k + h\,\underline{f(t_k, w_k)}$, \ $k = 0, 1, \dots, N-1$.
+Diğer içerik sayfa 2 ve 4 ile aynı.)}
+
+\sayfa{6}
+\textit{(Sayfa 5 ile aynı tahta; yeni içerik yok.)}
+
+\sayfa{7}
+\textit{(Aynı tahtanın daha erken bir fotoğrafı; yeni içerik yok.)}
+
+\sayfa{8}
+\textit{(Sayfa 1'deki tahta ile sayfa 4'teki Taylor panosunun birlikte fotoğrafı; yeni içerik yok.)}
+
+\sayfa{9}
+\textit{(Sağdaki pano: sayfa 1'deki başlık listesi -- Diferansiyel Denklemler için Sayısal
+Yöntemler: Euler Yöntemi, Yüksek dereceden Taylor Yöntemi.)}
+
+\subsection{Yüksek dereceden Taylor Yöntemi}
+\[
+  \begin{cases}
+    y' = f(t,y), & a \le t \le b \\
+    y(a) = \alpha
+  \end{cases}
+\]
+
+\underline{Euler yöntemi} \qquad $y(t_k) = w_k$
+\begin{align*}
+  w_0 &= \alpha \\
+  w_{k+1} &= w_k + h\,f(t_k, w_k), \qquad k = 0, 1, \dots, N-1
+\end{align*}
+
+Sürecin \underline{lokal kesim hatası}, \qquad \fbox{$y(t_k) = y_k$} \quad $k = 0, 1, \dots, N$
+\[
+  \tau_{k+1}(h) = \frac{y_{k+1} - y_k}{h} - y'(t_k) = \frac{y''(\xi_k)}{2}\,h
+\]
+\[
+  \boxed{h = t_{k+1} - t_k} \ \text{(Adım ölçüsü)}, \qquad N = \frac{b-a}{h}
+\]
+
+\[
+  \boxed{y(t_{k+1}) = y(t_k) + h\,y'(t_k) + \frac{h^2}{2}\,y''(\xi_k)}
+\]
+\[
+  \frac{y(t_{k+1}) - y(t_k)}{h} - y'(t_k) = \underline{\frac{h}{2}\,y''(\xi_k)}
+  \qquad t_k < \xi_k < t_{k+1}
+\]
+\[ y \in C^2[a,b] \]
+\[ \left| \frac{y''(\xi_k)}{2} \right| \le M \]
+\[ |\tau_{k+1}(h)| \le \underbrace{M\,h}_{\textstyle O(h)} \]
+
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, murekkep]
+  \draw (0,0) -- (9,0);
+  \foreach \x in {0,1,2,4,5,7,8.5} \draw (\x,0.12) -- (\x,-0.12);
+  \node[below] at (0,-0.15) {$a = t_0$};
+  \node[above] at (1,0.12) {$t_1$};
+  \node[above] at (2,0.12) {$t_2$};
+  \node at (3,0.3) {$\cdots$};
+  \node[above] at (4,0.12) {$t_k$};
+  \node[above] at (5,0.12) {$t_{k+1}$};
+  \node[above] at (7,0.12) {$t_{N-1}$};
+  \node[below] at (8.5,-0.15) {$b = t_N$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{10}
+\begin{multline*}
+  y(t_{k+1}) = y(t_k) + h\,y'(t_k) + \frac{h^2}{2}\,y''(t_k) + \dots + \frac{h^n}{n!}\,y^{(n)}(t_k) \\
+  + \frac{h^{n+1}}{(n+1)!}\,y^{(n+1)}(\xi_k), \qquad t_k \le \xi_k \le t_{k+1}
+\end{multline*}
+\[ y'(t_k) = f(t_k, y_k), \qquad y''(t_k) = \frac{d}{dt}\, f\bigl(t_k, y(t_k)\bigr) \]
+\begin{center}
+  $\displaystyle y^{(n)}(t_k) = \frac{d^n}{dt^n}\, f\bigl(t_k, y(t_k)\bigr)$\footnote{Claude notu:
+  muhtemelen $\frac{d^{n-1}}{dt^{n-1}}$ olmalı (bir alt satırdaki açılımda öyle yazılmış).}
+\end{center}
+\begin{align*}
+  \overset{\fbox{$\scriptstyle w_{k+1}$}}{y(t_{k+1})} = \overset{\fbox{$\scriptstyle w_k$}}{y(t_k)}
+  &+ \Bigl[\, h\,f\bigl(t_k, y(t_k)\bigr) + \frac{h^2}{2}\,\frac{d}{dt} f\bigl(t_k, y(t_k)\bigr) + \dots \\
+  &\qquad + \frac{h^n}{n!}\,\frac{d^{n-1}}{dt^{n-1}} f\bigl(t_k, y(t_k)\bigr) \Bigr]
+     \ \longrightarrow\ T^{(n)}(t_k, w_k) \\
+  &+ \underbrace{\frac{h^{n+1}}{(n+1)!}\,\frac{d^n}{dt^n} f\bigl(\xi_k, y(\xi_k)\bigr)}_{\text{HATA}}
+\end{align*}
+
+\begin{align*}
+  w_0 &= \alpha \\
+  w_{k+1} &= w_k + h\,T^{(n)}(t_k, w_k), \qquad k = 0, 1, \dots, N-1
+\end{align*}
+{\small (Tahtada $T^{(n)}$'deki $(n)$'nin üstüne sonradan ``2'' yazılmış.)}
+
+LKH $\rightarrow$ \ $|\tau_{k+1}(h)| \le M\,h^n$ \qquad $O(h^n)$
+
+$n = 2$ durumunda
+\[ T^{(2)}(t_k, w_k) = f(t_k, w_k) + \frac{h}{2}\,\frac{d}{dt} f(t_k, w_k) \]
+
+\sayfa{11}
+\textit{(Sağdaki pano: sayfa 1'deki başlık listesi, tekrar.)}
+
+\fbox{Yüksek dereceden Taylor Yöntemi}
+\[
+  \begin{cases}
+    y' = f(t,y), & a \le t \le b \\
+    y(a) = \alpha
+  \end{cases}
+\]
+
+\begin{ornek}
+  \[
+    \begin{cases}
+      y' = y - t^2 + 1, & 0 \le t \le 1 \\
+      y(0) = 0.5
+    \end{cases}
+  \]
+  BDP 2. der. Taylor formülünü adım boyu \underline{$h = 0.25$} olarak yaklaşık çözün!
+\end{ornek}
+\begin{cozum}
+  1) \ \underline{$f(t,y) = y - t^2 + 1$}, \quad $a = 0$, \ $b = 1$, \ $\alpha = 0.5$
+  \[ \frac{d}{dt}\, f\bigl(t, y(t)\bigr) = y' - 2t = y - t^2 - 2t + 1 \]
+
+  $N = \dfrac{b-a}{h} = 4$, \qquad $k = 0, 1, 2, 3, 4$ \qquad ($h = 0.25 \rightarrow h = \frac{1}{4}$)
+  \[ t_k = a + kh = 0.25\,k = \frac{k}{4} \]
+
+  $n = 2$ için Taylor formülü
+  \begin{align*}
+    w_0 &= 0.5 \\
+    w_{k+1} &= w_k + 0.25\,T^{(2)}(t_k, w_k)
+  \end{align*}
+\end{cozum}
+
+\sayfa{12}
+\textit{(Sayfa 10'daki tahta; ``$n = 2$ durumunda'' kısmına eklenen satırlar:)}
+\begin{align*}
+  T^{(2)}(t_k, w_k) &= f(t_k, w_k) + \frac{h}{2}\,\frac{d}{dt} f(t_k, w_k) \\
+  &= w_k - t_k^2 + 1 + \frac{h}{2}\left(w_k - t_k^2 - 2t_k + 1\right) \\
+  &= w_k\left(1 + \frac{1}{4}\right) - t_k^2\bigl(\ \dots
+\end{align*}
+Son satır tahtada yarım kalmış.\footnote{Claude notu: $h/2 = 1/8$ olduğundan muhtemelen
+$w_k\left(1 + \frac{1}{8}\right)$ olmalı; sayfa 18'de öyle düzeltilmiş.}
+
+\noindent\sayfa{13}\textit{(Sayfa 11'deki örneğin tahtası; eklenen kısımlar:)}
+\begin{cozum}[(devam)]
+  \[ \fbox{$w_0 = 0.5$} \qquad w_{k+1} = w_k + 0.25\,T^{(2)}(t_k, w_k) \]
+  \[
+    w_{k+1} = w_k + \frac{1}{4}\left(\frac{9}{8}\left(w_k - \frac{k^2}{16} + 1\right)
+              - \frac{k}{16}\right), \qquad k = 0, 1, 2, 3
+  \]
+  {\small (Bu fotoğrafta hocanın kapattığı son kısım, sayfa 21'deki fotoğraftan alındı.)}
+  \begin{align*}
+    k = 0 &\Rightarrow w_1 = 0.9219 \\
+    k = 1 &\Rightarrow w_2 = 1.4292 \\
+    k = 2 &\Rightarrow w_3 = 2.0109 \\
+    k = 3 &\Rightarrow w_4 = 2.6526
+  \end{align*}
+\end{cozum}
+
+\sayfa{14}
+\textit{(Sayfa 11'deki tahtanın daha erken bir fotoğrafı; yeni içerik yok.)}
+
+\sayfa{15}
+\textit{(Sayfa 10 ve sayfa 9'daki tahtaların daha erken bir fotoğrafı; yeni içerik yok.)}
+
+\sayfa{16}
+\textit{(Sayfa 9'daki tahtanın daha erken bir fotoğrafı; yeni içerik yok.)}
+
+\sayfa{17}
+\textit{(Sayfa 10'daki tahtanın başka bir fotoğrafı; yeni içerik yok.)}
+
+\sayfa{18}
+\textit{(Sayfa 10 ve 12'deki tahta; $T^{(2)}$ hesabının tamamlanmış hali:)}
+\begin{align*}
+  \underline{T^{(2)}(t_k, w_k)} &= f(t_k, w_k) + \frac{h}{2}\,\frac{d}{dt} f(t_k, w_k) \\
+  &= w_k - t_k^2 + 1 + \frac{h}{2}\left(w_k - t_k^2 - 2t_k + 1\right) \\
+  &= w_k\left(1 + \frac{1}{8}\right) - t_k^2\left(1 + \frac{1}{8}\right) - t_k\left(\frac{1}{4}\right) + \frac{9}{8} \\
+  &= \frac{9}{8}\,w_k - \frac{9k^2}{8 \cdot 16} - \frac{k}{16} + \frac{9}{8}
+\end{align*}
+
+\sayfa{19}
+\textit{(Sayfa 11'deki tahtanın daha erken bir fotoğrafı; yeni içerik yok.)}
+
+\sayfa{20}
+\textit{(Sayfa 9'daki tahtanın başka bir fotoğrafı; yeni içerik yok.)}
+
+\sayfa{21}
+\textit{(Sayfa 11 ve 13'teki örnek tahtasının daha erken bir fotoğrafı: $k = 0 \Rightarrow w_1$, \dots,
+$k = 3 \Rightarrow w_4$ satırları henüz değersiz; $w_{k+1}$ ifadesinin sonu
+``$\dots - \frac{k}{16}\bigr)$, \ $k = 0, 1, 2, 3$'' sayfa 13'e işlendi.)}
+
+\end{document}

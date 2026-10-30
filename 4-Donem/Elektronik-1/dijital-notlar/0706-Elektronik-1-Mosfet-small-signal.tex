@@ -1,0 +1,231 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik I}{MOSFET small signal -- küçük işaret modeli ve yükselteç yapıları}{0706-Elektronik-1-Mosfet-small-signal.pdf}
+
+\section{Mosfet small signal}
+\sayfa{1}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  % BJT hibrit-pi modeli
+  \node at (-1.2,1) {BJT $\left\{\rule{0pt}{1.1cm}\right.$};
+  \draw (0,2) node[ocirc]{} node[above]{$B$} -- (1,2) to[R, l_=$r_\pi$] (1,0) -- (5,0);
+  \node at (1.45,1.6) {$+$}; \node at (1.6,1) {$V_\pi$}; \node at (1.45,0.4) {$-$};
+  \draw (2.8,2) to[cI, l=$g_mV_\pi$] (2.8,0);
+  \draw (2.8,2) -- (5.6,2) node[ocirc]{} node[right]{$C$};
+  \draw (5,2) to[R, l=$r_o$] (5,0);
+  \draw (2.2,0) -- (2.2,-0.4) node[ocirc]{} node[below]{$E$};
+\end{circuitikz}
+\end{center}
+
+\noindent
+\begin{minipage}[c]{0.55\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  % MOSFET kucuk isaret modeli
+  \draw (0,2) node[ocirc]{} node[above]{$G$} -- (1,2) -- (1,1.6) node[ocirc]{};
+  \draw (1,0.4) node[ocirc]{} -- (1,0) -- (5,0);
+  \node at (0.7,1.4) {$+$}; \node at (0.45,1) {$v_{GS}$}; \node at (0.7,0.6) {$-$};
+  \draw (2.8,2) to[cI, l=$g_mV_{gs}$] (2.8,0);
+  \draw (2.8,2) -- (5.6,2) node[ocirc]{} node[right]{$D$};
+  \draw (5,2) to[R, l=$r_o$] (5,0);
+  \draw (2.2,0) -- (2.2,-0.4) node[ocirc]{} node[below]{$S$};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.42\linewidth}
+\[
+  g_m=\frac{2I_D}{V_{ov}}, \qquad r_o=\frac{V_A}{I_D}
+\]
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[nmos](N){};
+  \draw (N.D) node[above]{$D$}; \draw (N.S) node[below]{$S$};
+  \draw (N.G) ++(-1.2,0) node[left]{$G$} to[short, i={$I_G=0$}] (N.G);
+  \node at (0,-1.4) {nmos};
+  \draw (3,0) node[pmos](P){};
+  \draw (P.D) node[below]{$D$}; \draw (P.S) node[above]{$S$};
+  \draw (P.G) to[short, i={$I_G=0$}] ++(-1.2,0) node[left]{$G$};
+  \node at (3,-1.4) {pmos};
+\end{circuitikz}
+\end{minipage}
+
+\medskip
+\noindent
+\begin{minipage}[t]{0.6\linewidth}
+\begin{itemize}[label=--]
+  \item Common $\overset{\textcolor{murekkep}{\text{Source}}}{\text{emitter}}$
+  \item Common $\overset{\textcolor{murekkep}{\text{Source}\ \text{''}\ R_S}}{\text{emitter with } R_E}$
+  \item Common $\overset{\textcolor{murekkep}{\text{Drain}}}{\text{Collector}}$ (Source Follow)
+  \item Common $\overset{\textcolor{murekkep}{\text{Gate}}}{\text{Base}}$
+\end{itemize}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.36\linewidth}
+Base $\rightarrow$ Gate\\
+Emitter $\rightarrow$ Source\\
+Collector $\rightarrow$ Drain
+\end{minipage}
+
+\section{Common source Amplifier}
+\begin{itemize}[label=--]
+  \item Voltage Amp \quad (High)
+  \item $R_{in}=\infty$ \quad $\}$ Inf
+  \item $R_{out}=r_o\,/\!/\,R_D\,/\!/\,R_L$ \quad $\Big\}$ High\\
+        $R_{out}$ (intrinsic) $=r_o$
+\end{itemize}
+
+\sekilnotu[1]{Ortak kaynaklı yükselteç devresi: $V_{sig}$ kaynağı -- $R_{sig}$ -- kuplaj kondansatörü -- gate; gate'te $R_{G1}$ ($V_{DD}$'ye) ve $R_{G2}$ (toprağa) gerilim bölücüsü; drain $R_D$ üzerinden $V_{DD}$'ye bağlı ve $C_\infty$ ile $R_L$ yüküne kuplajlı; source'ta $R_S$ ve ona paralel $C_\infty$ (bypass) toprağa.}
+
+$\Rightarrow$
+\sekilnotu[1]{Küçük işaret eşdeğeri: $V_{sig}$ -- $R_{sig}$ -- $G$; $G$ ile $S$ arası açık uçlar ($+\ v_{GS}\ -$); $S$ toprağa; $D$ ile toprak arasında $g_mV_{GS}$ bağımlı akım kaynağı (aşağı yönlü), $r_o$, $R_D$ ve $R_L$ paralel; çıkış $v_{out}$ drain'den. Girişe ok: $R_{in}=R_{G1}/\!/R_{G2}$; $R_D$'ye ok: $R_{out}$.}
+\[
+  R_{in}=R_{G1}\,/\!/\,R_{G2} \qquad\qquad R_{out}=r_o\,/\!/\,R_D
+\]
+
+\sayfa{2}
+\[
+  A_v=\frac{v_{out}}{v_{sig}}=\frac{(r_o\,/\!/\,R_D\,/\!/\,R_L)\times -g_mV_{gs}}{V_{sig}}
+\]
+\[
+  V_{gs}=\frac{(R_{G1}\,/\!/\,R_{G2})}{(R_{sig}+R_{G1}\,/\!/\,R_{G2})}\qquad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen sağ tarafta bir $\cdot\,V_{sig}$ çarpanı olmalı.}
+\[
+  \hookrightarrow\ =-(r_o\,/\!/\,R_D\,/\!/\,R_L)\,g_m\cdot\left(\frac{R_{G1}\,/\!/\,R_{G2}}{R_{sig}+R_{G1}\,/\!/\,R_{G2}}\right)
+\]
+\[
+  R_{sig}\approx 0 \qquad A_v=-g_m\,(R_D\,/\!/\,R_L\,/\!/\,r_o)
+\]
+
+\section{Common Source with $R_S$}
+\sekilnotu[2]{Ortak kaynaklı yükselteç ($R_S$'li): $V_{sig}$ -- $R_{sig}$ -- kuplaj kondansatörü -- gate; $R_{G1}$ ($V_{DD}$'ye) ve $R_{G2}$ (toprağa); drain $R_D$ ile $V_{DD}$'ye, $C_\infty$ ile $R_L$ yüküne; source $R_S$ ile doğrudan toprağa (bypass kondansatörü yok).}
+
+\vurgu[pembe]{$V_A=\infty$ \quad Channel length modulation ignore}
+
+\noindent\textbf{T model}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0.4) node[ground]{} to[V, l=$V_{sig}$] (0,2) to[R, l=$R_{sig}$] (3,2) node[circ]{} node[above]{$G$} -- (4.2,2);
+  \draw (3,2) to[R, l_={$R_{G1}/\!/R_{G2}$}] (3,0.4) node[ground]{};
+  \draw (4.2,4) node[circ]{} node[above]{$D$} to[cI, l=$g_mV_{gs}$] (4.2,2) to[R, l=$1/g_m$] (4.2,0.4) to[R, l=$R_S$] (4.2,-1.2) node[ground]{};
+  \node at (5.7,1.6) {$+$}; \node at (5.8,1.2) {$V_{gs}$}; \node at (5.7,0.7) {$-$};
+  \draw (4.2,4) -- (8.6,4) node[right]{$V_{out}$};
+  \draw (6.2,4) to[R, l=$R_D$] (6.2,2.4) node[ground]{};
+  \draw (7.8,4) to[R, l=$R_L$] (7.8,2.4) node[ground]{};
+  \draw[->] (6.9,1.6) node[below]{$R_{out}$} -- (6.5,3.2);
+  \draw[->] (3.5,0.8) node[right]{$\infty$} -- (3.5,1.7);
+\end{circuitikz}
+\end{center}
+\[
+  R_{in}=R_{G1}\,/\!/\,R_{G2}\,/\!/\,\infty=R_{G1}\,/\!/\,R_{G2}
+  \qquad\qquad
+  A_v=\frac{-(R_o\,/\!/\,R_L)\,g_mV_{gs}}{V_{sig}}
+\]
+$R_{sig}\approx 0$ $\curvearrowright$
+\begin{align*}
+  V_{sig} &= V_{gs}+V_{gs}\,g_m\cdot R_s
+  & \Rightarrow\ A_v &= \frac{-(R_o\,/\!/\,R_L)\,g_mV_{gs}}{V_{sig}} \\
+  V_{sig} &= V_{gs}\,(1+g_mR_s)
+  & &= \frac{-(R_o\,/\!/\,R_L)\,g_mV_{gs}}{V_{gs}\,(1+g_mR_s)}
+  \ \approx\ A_v=-\frac{(R_o\,/\!/\,R_L)}{R_s}
+\end{align*}
+
+\sayfa{3}
+\noindent\textbf{$\pi$ model}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0.4) node[ground]{} to[V, l=$V_{sig}$] (0,2) to[R, l=$R_{sig}$] (2,2) -- (4,2) node[ocirc]{};
+  \draw (2,2) to[R, l={$R_{G1}/\!/R_{G2}$}] (2,0.4) node[ground]{};
+  \node at (4.3,2.15) {$+$}; \node at (4.5,1.6) {$V_{gs}$}; \node at (4.3,1.05) {$-$};
+  \draw (4,1.2) node[ocirc]{} -- (6.8,1.2);
+  \draw (5.4,1.2) to[R, l_=$R_S$] (5.4,-0.4) node[ground]{};
+  \draw[->] (6.9,0.3) node[right]{$g_mV_{gs}R_S$} -- (5.6,1.1);
+  \draw (6.8,3) to[cI, l=$g_mV_{gs}$] (6.8,1.2);
+  \draw (6.8,3) -- (10.6,3) node[right]{$V_{out}$};
+  \draw (8.6,3) to[R, l=$R_D$] (8.6,1.4) node[ground]{};
+  \draw (10,3) to[R, l=$R_L$] (10,1.4) node[ground]{};
+  \draw[->] (3.3,2.9) node[left]{$V_{sig}$} -- (3.9,2.2);
+\end{circuitikz}
+\end{center}
+\[
+  V_{sig}=-g_mV_{gs}R_S\ \text{\footnotemark}
+  \qquad\qquad
+  A_v=\frac{V_{out}}{V_{sig}}=\frac{-g_m(R_D\,/\!/\,R_L)V_{gs}}{(1+g_mR_S)\cdot V_{gs}}
+\]
+\[
+  V_{sig}=(1+g_mR_S)V_{gs}
+  \qquad\qquad
+  A_v\cong-\frac{R_D\,/\!/\,R_L}{R_S} \quad (g_mR_S\gg 1)
+\]
+\footnotetext{Claude notu: muhtemelen $V_{sig}=V_{gs}+g_mV_{gs}R_S$ olmalı (alt satırla tutarlı olan budur).}
+
+\section{Common-Gate}
+$V_A=\infty$\\ $r_o=\infty$
+
+\sekilnotu[3]{Ortak geçitli yükselteç: $V_{DD}$'den aşağı yönlü bir akım kaynağı source düğümünü besliyor; source düğümüne $R_{sig}$ üzerinden $v_{sig}$ kaynağı (toprağa) bağlı, oradan bakışta $R_{in}$; gate toprağa bağlı; drain $R_D$ ile toprağa ve $\infty$ kuplaj kondansatörü ile $R_L$ yüküne bağlı, çıkış $v_{out}$, kondansatör tarafından bakışta $R_{out}$.}
+
+\hfill \textbf{T model önerilir}
+
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,3.4) node[ground]{} -- (1.2,3.4) node[ocirc]{} node[above]{$G$};
+  \draw (1.2,2.6) node[ocirc]{} node[left]{$S$} -- (1.2,1.8) -- (3.6,1.8);
+  \draw (3.6,3.6) to[cI, l=$g_mV_{gs}$] (3.6,1.8);
+  \draw (3.6,3.6) -- (8.2,3.6) node[right]{$V_{out}$};
+  \draw (6,3.6) to[R, l=$R_D$] (6,2) node[ground]{};
+  \draw (7.4,3.6) to[R, l=$R_L$] (7.4,2) node[ground]{};
+  \draw (2.2,1.8) to[R, l=$R_{sig}$] (2.2,0.3) -- (2.6,0.3) to[sV, l_=$V_{sig}$] (4.2,0.3) -- (4.6,0.3) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\noindent\textbf{T model}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (2,3.6) to[cI] (2,1.8);
+  \draw (2,3.6) -- (5.6,3.6);
+  \draw (4,3.6) to[R] (4,2) node[ground]{};
+  \draw (5.4,3.6) to[R] (5.4,2) node[ground]{};
+  \draw (0.8,1.8) node[ground]{} -- (2,1.8);
+  \draw (2,1.8) to[R, l_=$1/g_m$] (2,0.2) -- (2.8,0.2) to[R] (2.8,-1.4) -- (3.2,-1.4) to[V, l_=$V_{sig}$] (4.6,-1.4) -- (5,-1.4) node[ground]{};
+  \draw[->] (3.4,0.9) node[right]{$R_{in}$} -- (2.3,0.9);
+\end{circuitikz}
+\end{center}
+\begin{align*}
+  R_{in} &\cong 1/g_m \quad \text{\textcolor{kirmizikalem}{very small}} &
+  R_{sig}=0 \ \Rightarrow\ V_{sig} &= -V_{gs} \\
+  R_{out} &= R_D \quad \text{\textcolor{kirmizikalem}{moderate high}} &
+  V_{out} &= -g_m(R_D\,/\!/\,R_L)V_{gs}
+  \quad\Bigg\}\ A_v=g_m(R_D\,/\!/\,R_L) \\
+  A_v &\Rightarrow \text{high}
+\end{align*}
+
+\sayfa{4}
+\begin{align*}
+  & R_{sig}\neq 0 \\
+  & V_{sig}=-g_mV_{gs}R_{sig}-V_{gs} \\
+  & V_{out}=-g_m\,(R_D\,/\!/\,R_L)\cdot V_{gs}
+\end{align*}
+\[
+  A_v=\frac{V_{out}}{V_{sig}}=
+\]
+
+\section{Common-Drain Amplifier \textcolor{murekkep}{(Source follower)}}
+\sekilnotu[4]{Ortak drain'li yükselteç: $V_{sig}$ -- $R_{sig}$ -- gate; gate'te $R_{G1}$ ($V_{DD}$'ye) ve $R_{G2}$ (toprağa); drain $V_{DD}$'den aşağı yönlü bir akım kaynağı ile besleniyor; source $R_S$ ile toprağa ve $\infty$ kuplaj kondansatörü ile $R_L$ yüküne bağlı, çıkış $V_{out}$.}
+
+\sekilnotu[4]{Küçük işaret eşdeğeri: $V_{sig}$ -- $R_{sig}$ -- $R_G$ (toprağa; $R_{in}=R_G$ oku) -- $G$ ($+$) ve $S$ ($-$) açık uçları arasında $V_{gs}$; kırmızı kutu içinde $g_mV_{gs}$ bağımlı akım kaynağı (aşağı yönlü) ve paralel $r_o$, kutunun üstü (drain) toprağa; kutunun altı (source) çıkış düğümüne iniyor; çıkış düğümünde $R_S$ ve $R_L$ toprağa, $V_{out}$; $r_o$ bir okla çıkış düğümü ile toprak arasına taşınmış olarak tekrar çizilmiş. $R_{out}\cong 1/g_m$.}
+\[
+  R_{in}=R_G \qquad\qquad R_{out}\cong 1/g_m
+\]
+\begin{align*}
+  & V_{out}=g_mV_{gs}\,(R_S\,/\!/\,R_L\,/\!/\,r_o) \\
+  & R_{sig}=0 \\
+  & V_{gs}=V_{sig}-g_mV_{gs}\,(r_o\,/\!/\,R_L\,/\!/\,R_S) \\
+  & V_{sig}=V_{gs}\,\bigl(1+g_m\,(r_o\,/\!/\,R_L\,/\!/\,R_S)\bigr)
+\end{align*}
+\[
+  \Rightarrow\ A_v=\frac{g_mV_{gs}\,(R_L')}{1+g_mV_{gs}\,(R_L')}
+  \ <1 \qquad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: $V_{gs}$'ler sadeleşince muhtemelen $A_v=\dfrac{g_mR_L'}{1+g_mR_L'}$ olmalı.}
+
+% Sayfa 5 boş -- atlandı.
+\end{document}

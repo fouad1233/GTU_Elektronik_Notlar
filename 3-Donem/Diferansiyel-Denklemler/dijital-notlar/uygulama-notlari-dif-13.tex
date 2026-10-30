@@ -1,0 +1,228 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\newcommand\Lk[1]{\mathcal{L}\left[#1\right]}
+\newcommand\iLk[1]{\mathcal{L}^{-1}\left[#1\right]}
+\newcommand\carp[1]{\mathpalette\carpb{#1}}% üstü çizili (iptal edilmiş) terim
+\newcommand\carpb[2]{\tikz[baseline=(cc.base)]{\node[inner sep=0pt](cc){$#1#2$};\draw[line width=0.5pt](cc.south west)--(cc.north east);}}
+\notbilgi{Diferansiyel Denklemler}{12. Hafta Uygulama -- Konvolüsyon ve Laplace dönüşümü}{dif-13.pdf}
+
+\sayfa{1}
+\hfill\fbox{12. HAFTA}
+\section{Hatırlatma}
+\begin{itemize}[label=$\ast$]
+\item Eksponsiyonel dereceli ve her sonlu $0\le x\le b$ aralığında parçalı sürekli $f$ ve $g$ fonksiyonlarının konvolüsyonu
+\[
+f(x)*g(x) = \int_0^x f(z)\,g(x-z)\,dz
+\]
+integrali ile belirlenmiş $f*g$ fonksiyonuna denir.
+
+Ayrıca, $f*g = g*f$ dir.
+\item Eğer $f$ ve $g$ fonksiyonları $e^{at}$ eksponsiyonel dereceli ve her $0\le x\le b$ aralığında parçalı sürekli iki fonksiyon olursa, o halde $f*g$ konvolüsyonun Laplace dönüşümü için
+\[
+\Lk{f*g} = \Lk{f}\cdot\Lk{g}
+\]
+formülü geçerlidir.
+
+Böylece $\iLk{F(s)\cdot G(s)} = \iLk{F(s)} * \iLk{G(s)}$ elde edilir
+\end{itemize}
+
+\section{Alıştırmalar}
+\begin{ornek}[1]
+$H(s) = \dfrac{1}{s^2+5s+6}$ fonksiyonu için $\iLk{H(s)}$ yi
+\begin{enumerate}[label=(\alph*), noitemsep, topsep=2pt]
+\item Basit kesirlere ayırarak
+\item Konvolüsyon kullanarak
+\end{enumerate}
+çözünüz.
+\end{ornek}
+\begin{cozum}
+\textbf{(a)}
+\[
+H(s) = \frac{1}{s^2+5s+6} = \frac{1}{(s+3)(s+2)} = \frac{A}{s+3} + \frac{B}{s+2} \Rightarrow A=-1 \ \text{ ve } \ B=1
+\]
+\[
+\Rightarrow H(s) = \frac{-1}{s+3} + \frac{1}{s+2} \Rightarrow \iLk{H(s)} = -\iLk{\frac{1}{s+3}} + \iLk{\frac{1}{s+2}} \Rightarrow
+\]
+
+\sayfa{2}
+\[
+\Rightarrow \iLk{H(s)} = -e^{-3x} + e^{-2x}
+\]
+\textbf{(b)}
+\[
+H(s) = \frac{1}{s^2+5s+6} = \frac{1}{(s+3)(s+2)} = \frac{1}{s+3}\cdot\frac{1}{s+2}
+\]
+\[
+\Rightarrow \iLk{H(s)} = \mathcal{L}^{-1}\left(\frac{1}{s+3}\right) * \mathcal{L}^{-1}\left(\frac{1}{s+2}\right) \Rightarrow \iLk{H(s)} = e^{-3x} * e^{-2x}
+\]
+\[
+\Rightarrow \iLk{H(s)} = \int_0^x e^{-3z}e^{-2(x-z)}\,dz = e^{-2x}\int_0^x e^{-z}\,dz = -e^{-2x}e^{-z}\Big|_0^x = \underline{-e^{-3x}+e^{-2x}}
+\]
+\end{cozum}
+
+\begin{ornek}[2]
+$H(s) = \dfrac{1}{s(s^2+9)}$ fonksiyonu için $\iLk{H(s)}$ yi
+\begin{enumerate}[label=(\alph*), noitemsep, topsep=2pt]
+\item Basit kesirlere ayırarak
+\item Konvolüsyon kullanarak
+\end{enumerate}
+çözünüz.
+\end{ornek}
+\begin{cozum}
+\textbf{(a)}
+\[
+H(s) = \frac{1}{s(s^2+9)} = \underset{(s^2+9)}{\frac{A}{s}} + \underset{(s)}{\frac{Bs+C}{s^2+9}} \Rightarrow 1 = A(s^2+9) + (Bs+C)s
+\]
+\[
+\Rightarrow A = \frac19 \ , \ B = -\frac19 \ , \ C = 0
+\]
+\[
+\Rightarrow H(s) = \frac19\cdot\frac1s - \frac19\,\frac{s}{s^2+9} \Rightarrow \iLk{H(s)} = \frac19\,\iLk{\frac1s} - \frac19\,\iLk{\frac{s}{s^2+3^2}}
+\]
+\[
+\Rightarrow \iLk{H(s)} = \frac19 - \frac{\cos 3x}{9} = \frac{1-\cos 3x}{9}
+\]
+
+\sayfa{3}
+\textbf{(b)}
+\[
+H(s) = \frac{1}{s(s^2+9)} = \frac1s\cdot\frac{1}{s^2+9} = \frac1s\cdot\frac13\,\frac{3}{s^2+9}
+\]
+\[
+\Rightarrow \iLk{H(s)} = \iLk{\frac1s} * \iLk{\frac13\,\frac{3}{s^2+3^2}} \Rightarrow \iLk{H(s)} = 1 * \frac{\sin 3x}{3}
+\]
+\[
+\Rightarrow \iLk{H(s)} = \int_0^x \frac{\sin 3z}{3}\,dz = -\frac13\,\frac{\cos 3z}{3}\Big|_0^x = \frac{1-\cos 3x}{9}
+\]
+\end{cozum}
+
+\begin{ornek}[3]
+$\dfrac{dy}{dx} - y = e^{3x}$ , \ $y(0)=2$ başlangıç-değer problemini Laplace dönüşümü uygulayarak çözünüz.
+\end{ornek}
+\begin{cozum}
+\[
+y' - y = e^{3x} \Rightarrow \Lk{y'} - \Lk{y} = \Lk{e^{3x}}
+\]
+\[
+\Rightarrow s\Lk{y} - y(0) - \Lk{y} = \frac{1}{s-3} \underset{(y(0)=2)}{\Rightarrow} \Lk{y}(s-1) = \frac{1}{s-3} + 2
+\]
+\[
+\Rightarrow \Lk{y} = \frac{1}{(s-3)(s-1)} + \frac{2}{s-1} \underset{\downarrow}{\Rightarrow} \Lk{y} = \frac12\,\frac{1}{s-3} - \frac12\,\frac{1}{s-1} + \frac{2}{s-1}
+\]
+\[
+\left[ \frac{1}{(s-3)(s-1)} = \frac{A}{s-3} + \frac{B}{s-1} \Rightarrow A = \frac12 \ , \ B = -\frac12 \right]
+\]
+\[
+\Rightarrow y(x) = \frac12\,\iLk{\frac{1}{s-3}} - \frac12\,\iLk{\frac{1}{s-1}} + 2\,\iLk{\frac{1}{s-1}}
+\]
+\[
+\Rightarrow y(x) = \frac{e^{3x}}{2} - \frac{e^{x}}{2} + 2e^{x} \Rightarrow \kutula{y(x) = \frac{3e^{x}+e^{3x}}{2}}
+\]
+\end{cozum}
+
+\sayfa{4}
+\begin{ornek}[4]
+$\dfrac{d^2y}{dx^2} - \dfrac{dy}{dx} - 2y = 18e^{-x}\sin 3x$ \ ; \ $y(0)=0$ , \ $y'(0)=3$ başlangıç-değer problemini Laplace dönüşümü kullanarak çözünüz.
+\end{ornek}
+\begin{cozum}
+\[
+y'' - y' - 2y = 18e^{-x}\sin 3x \Rightarrow \Lk{y''} - \Lk{y'} - 2\Lk{y} = 18\,\Lk{e^{-x}\sin 3x}
+\]
+\[
+\Rightarrow s^2\Lk{y} - \overset{0}{\carp{s\,y(0)}} - y'(0) - s\Lk{y} + \overset{0}{\carp{y(0)}} - 2\Lk{y} = 18\,\Lk{e^{-x}\sin 3x}
+\]
+\[
+\Rightarrow \Lk{y}\,(s^2-s-2) = \frac{18\cdot 3}{(s+1)^2+9} + 3 \Rightarrow \Lk{y} = \frac{54}{(s^2+2s+10)(s^2-s-2)} + \frac{3}{s^2-s-2}
+\]
+\[
+\# \quad \frac{54}{(s^2+2s+10)(s-2)(s+1)} = \underset{(s^2+2s+10)(s+1)}{\frac{A}{s-2}} + \underset{(s^2+2s+10)(s-2)}{\frac{B}{s+1}} + \underset{(s-2)(s+1)}{\frac{Cs+D}{s^2+2s+10}}
+\]
+\[
+\Rightarrow 54 = A(s^2+2s+10)(s+1) + B(s^2+2s+10)(s-2) + (Cs+D)(s-2)(s+1)
+\]
+\[
+B=-2 \ , \qquad A=1 \ , \qquad C=1 \ , \qquad D=-2
+\]
+\[
+\# \quad \frac{3}{(s-2)(s+1)} = \underset{(s+1)}{\frac{E}{s-2}} + \underset{(s-2)}{\frac{F}{s+1}} \Rightarrow 3 = E(s+1) + F(s-2) \Rightarrow E=1 \ , \ F=-1
+\]
+\[
+\Rightarrow y(x) = \iLk{\frac{54}{(s^2+2s+10)(s-2)(s+1)}} + \iLk{\frac{3}{s^2-s-2}}
+\]
+\[
+= \iLk{\frac{1}{s-2}} - 2\,\iLk{\frac{1}{s+1}} + \iLk{\frac{s-2}{s^2+2s+10}} + \iLk{\frac{1}{s-2}} - \iLk{\frac{1}{s+1}}
+\]
+\[
+= e^{2x} - 2e^{-x} + e^{2x} - e^{-x} + \iLk{\frac{s+1-3}{(s+1)^2+3^2}}
+\]
+
+\sayfa{5}
+\[
+\Rightarrow y(x) = 2e^{2x} - 3e^{-x} + \iLk{\frac{s+1}{(s+1)^2+3^2}} - \iLk{\frac{3}{(s+1)^2+3^2}}
+\]
+\[
+\Rightarrow \kutula{y(x) = 2e^{2x} - 3e^{-x} + e^{-x}\cos 3x - e^{-x}\sin 3x}
+\]
+\end{cozum}
+
+\begin{ornek}[5]
+\[
+\begin{cases} \dfrac{d^2y}{dx^2} - 3\,\dfrac{dy}{dx} + 2y = h(x) \\[3mm] y(0)=0 \ , \ y'(0)=0 \end{cases} \ , \qquad h(x) = \begin{cases} 2 \ , & 0<x<4 \\ 0 \ , & x>4 \end{cases}
+\]
+başlangıç-değer problemini Laplace dönüşümü uygulayarak çözünüz.
+\end{ornek}
+\begin{cozum}
+Öncelikle $h(x)$ fonksiyonunun Laplace dönüşümünü hesaplayalım.
+\[
+\Lk{h(x)} = \int_0^\infty e^{-sx}h(x)\,dx = 2\int_0^4 e^{-sx}\,dx = -\frac{2}{s}\,e^{-sx}\Big|_0^4 = -\frac{2e^{-4s}}{s} + \frac{2}{s}
+\]
+\[
+y'' - 3y' + 2y = h(x) \Rightarrow \Lk{y''} - 3\Lk{y'} + 2\Lk{y} = \Lk{h(x)}
+\]
+\[
+\Rightarrow s^2\Lk{y} - \carp{s\,y(0)} - \carp{y'(0)} - 3s\Lk{y} + \carp{3y(0)} + 2\Lk{y} = \Lk{h(x)}
+\]
+\[
+\Rightarrow \Lk{y}\,(s^2-3s+2) = \frac{2}{s}\left(1-e^{-4s}\right) \Rightarrow \Lk{y} = \frac{2}{s(s-2)(s-1)}\left(1-e^{-4s}\right)
+\]
+\[
+\Rightarrow \Lk{y} = \frac{2}{s(s-2)(s-1)} - \frac{2e^{-4s}}{s(s-2)(s-1)} \Rightarrow y(x) = \iLk{\frac{2}{s(s-2)(s-1)}} - \iLk{\frac{2e^{-4s}}{s(s-2)(s-1)}}
+\]
+
+\sayfa{6}
+\[
+\# \quad \frac{2}{s(s-2)(s-1)} = \underset{(s-2)(s-1)}{\frac{A}{s}} + \underset{s(s-1)}{\frac{B}{s-2}} + \underset{s(s-2)}{\frac{C}{s-1}}
+\]
+\[
+\Rightarrow 2 = A(s-2)(s-1) + Bs(s-1) + Cs(s-2)
+\]
+\[
+\Rightarrow A=1 \ , \qquad B=1 \ , \qquad C=-2
+\]
+\[
+\Rightarrow \iLk{\frac{2}{s(s-2)(s-1)}} = \iLk{\frac1s} + \iLk{\frac{1}{s-2}} - 2\,\iLk{\frac{1}{s-1}}
+\]
+\[
+= 1 + e^{2x} - 2e^{x}
+\]
+\[
+\# \quad f(x) = \begin{cases} 0 & 0<x<4 \\ g(x-4) & x>4 \end{cases}
+\qquad \text{o.ü.,} \qquad f(x) = u_4(x)\cdot g(x-a) \quad \text{olduğunu ve}
+\]
+bu sebepten $\Lk{f(x)} = \Lk{u_4(x)\cdot g(x-a)} = e^{-4s}\,\Lk{g(x)}$ olduğunu biliyoruz.
+
+O halde, $\Lk{g(x)} = \dfrac{2}{s(s-2)(s-1)}$ olur. Buradan, $g(x) = 1+e^{2x}-2e^{x}$ elde edilir.
+\[
+\Lk{f(x)} = e^{-4s}\,\Lk{g(x)} \Rightarrow \Lk{f(x)} = e^{-4s}\cdot\frac{2}{s(s-2)(s-1)} \Rightarrow \iLk{\frac{2e^{-4s}}{s(s-2)(s-1)}} = f(x)
+\]
+\[
+\Rightarrow \iLk{\frac{2e^{-4s}}{s(s-2)(s-1)}} = \begin{cases} 0 \ , & 0<x<4 \\ 1+e^{2(x-4)}-2e^{x-4} \ , & x>4 \end{cases} \qquad \text{bulunur.}
+\]
+Bu durumda,
+\[
+y(x) = \begin{cases} 1+e^{2x}-2e^{x} & 0<x<4 \\ (1-e^{-8})e^{2x} + 2\left(e^{-4}-1\right)e^{x} & x>4 \end{cases} \qquad \text{elde edilir.}
+\]
+\end{cozum}
+
+\end{document}

@@ -1,0 +1,195 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Diferansiyel Denklemler}{1.--3. Hafta -- Birinci mertebeden diferansiyel denklemler}{diferansiyel-denklemler-not-part1-ilk-uc-hafta.pdf}
+
+\sayfa{1}
+\section{2- Ayrılabilir denklemler}
+
+$y' = f_1(x)\cdot f_2(y)$ şeklinde veya
+\[
+  M_1(x)\,M_2(y)\,dx + N_2(y)\,N_1(x)\,dy = 0
+\]
+şeklindeki denklemler
+
+Eğer $M_2(y)\cdot N_1(x) \ne 0$ ise
+\[
+  \frac{M_1(x)\,M_2(y)\,dx}{M_2(y)\,N_1(x)} + \frac{N_2(y)\,N_1(x)\,dy}{M_2(y)\,N_1(x)} = 0
+\]
+\[
+  \int \frac{M_1(x)}{N_1(x)}\,dx + \int \frac{N_2(y)}{M_2(y)}\,dy = c, \quad \forall c\in\mathbb{R}
+\]
+
+$M_2(y) = 0$, $N_1(x) = 0$ olduğu durumlar ayrıca kontrol edilmeli
+
+\sayfa{2}
+\section{3- Ayrılabilen denkleme indirgenebilen denklemler}
+
+$y' = f(ax + by + c)$ denklemi\\
+$ax + by + c = z$, \ $z(x)$\\
+dönüşümüyle $z' = a + b\,y' \;\Rightarrow$
+\[
+  y' = \frac{z' - a}{b} \quad \text{olduğuna göre}
+\]
+\[
+  z' = a + b\,f(z) \quad \text{şeklinde}
+\]
+dönüşümünde bir ayrılabilir denklemdir.
+
+\subsection{Aşağıdaki dönüşümler lazım olabilir}
+\begin{align*}
+  \sin 2a &= 2\sin a\,\cos a\\
+  \cos 2a &= \cos^2 a - \sin^2 a\\
+          &= 2\cos^2 a - 1\\
+          &= 1 - 2\sin^2 a\\[1mm]
+  \tan 2a &= \frac{2\tan a}{1 - \tan^2 a} \quad \text{dır}
+\end{align*}
+
+\sayfa{3}
+\section{4- Homojen denklemler}
+
+$y' = f\!\left(\dfrac{y}{x}\right)$ şeklindeki denklemlere homojen denklem denir.
+bu denklem $\dfrac{y}{x} = u$, \ $u(x) = u$, dönüşümü ile ayrılabilir denkleme dönüştürülür.
+\[
+  \frac{y}{x} = u \;\Rightarrow\; y = x\,u \;\longrightarrow\; y' = u + x\cdot u'
+\]
+yerine yazarsak \ $u + x\,u' = f(u)$
+\[
+  x\,\frac{du}{dx} = f(u) - u
+\]
+\[
+  f(u) - u \ne 0 \;\longrightarrow\; \frac{du}{f(u) - u} = \frac{dx}{x}
+\]
+ve bu eşitliği integrallersek çözümünü elde ederiz.
+
+\sayfa{4}
+\section{Lineer Denklemler}
+
+\[
+  y' + a(x)\,y = b(x)
+\]
+denklemi 1. mertebeden lineer dif denklemi olarak adlandırılır
+\[
+  I(x) = e^{\int a(x)\,dx} \;\rightarrow\; \text{integrasyon}
+\]
+çarpanı ile çarparak denklem çözülür
+
+soldaki ifade $\bigl(y\cdot I(x)\bigr)'$ olur
+
+\section{Bernoulli Denklemi}
+\[
+  y' + a(x)\,y = b(x)\,y^n, \qquad n \ne 0, 1 \quad n\in\mathbb{R}
+\]
+
+\underline{1. adım} ifadeyi $y^{-n}$ ile çarpmak
+\[
+  y^{-n}\,y' + a(x)\,y^{1-n} = b(x)
+\]
+
+\underline{2. adım} $z = y^{1-n}$ dönüşümünü yapmak
+\[
+  z' = (1-n)\,y^{-n}\cdot y' \;\Rightarrow\; y^{-n}\cdot y' = \frac{z'}{1-n}
+\]
+\begin{align*}
+  &\Rightarrow\; \frac{z'}{1-n} + a(x)\,z = b\,x \tag*{\footnotemark}\\
+  \noalign{\footnotetext{Claude notu: sağ taraftaki $b\,x$ muhtemelen $b(x)$ olmalı.}\nobreak}
+  &\Rightarrow\; z' + \underbrace{(1-n)\,a(x)}_{A(x)}\,z = \underbrace{(1-n)\,b(x)}_{B(x)}
+\end{align*}
+Bu lineer bir denklemdir
+
+\sayfa{5}
+\section{Riccati Denklemi}
+
+\[
+  y' + a(x)\,y + b(x)\,y^2 = c(x)
+\]
+Bu denklemin bir özel çözümü $y_1(x)$ biliniyorsa ancak çözülebilir
+
+$y = y_1 + z$, \ $z = z(x)$ dönüşümü ile denklem bernoulli denklemine dönüşür,
+
+\sayfa{6}
+\section{Tam diferansiyelli denklem}
+
+Eğer \quad $M(x,y)\,dx + N(x,y)\,dy = 0 \qquad (1)$
+
+$u(x,y)$ fonksiyonunun tam diferansiyeli
+\begin{align*}
+  du(x,y) &= \frac{\partial u}{\partial x}\,dx + \frac{\partial u}{\partial y}\,dy\\
+          &= u_x\,dx + u_y\,dy
+\end{align*}
+şeklinde verilebilir.
+
+Eğer, $u_x = M(x,y)$, \ $u_y = N(x,y)$ olacak şekilde bir $u(x,y)$ fonksiyonu bulunabiliyorsa
+(1) denklemine tam diferansiyelli denklem denir,
+
+\begin{teorem}
+  (1) denkleminin basit bağlantılı bir $D$ bölgesinde tam diferansiyelli olması için
+  \[
+    \frac{\partial M}{\partial y} = \frac{\partial N}{\partial x} \qquad (x,y)\in D \qquad (M_y = N_x)
+  \]
+  koşulunun sağlanması gerek ve yeterdir\\
+  $M_y$ ve $N_x$ \ $D$ de süreklidir
+\end{teorem}
+
+\sayfa{7}
+$u(x,y) = c_1$
+
+\[
+  M(x,y)\,dx + N(x,y)\,dy = 0
+\]
+\[
+  \begin{aligned}
+    u_x &= M(x,y)\\
+    u_y &= N(x,y)
+  \end{aligned}
+  \qquad\qquad du(x,y) = 0
+\]
+\begin{align*}
+  u_x = M(x,y) \;\longrightarrow\; u(x,y) &= \int M(s,y)\,ds + \Phi(y)\\
+  u_y &= \int M_y(s,y)\,ds + \Phi'(y) = N(x,y)\\
+  \Rightarrow\quad \Phi'(y) &= N(x,y) - \int M_y(s,y)\,ds\\
+  \noalign{\stepcounter{footnote}\footnotetext{Claude notu: $\int N(x,y)\,dx$ terimindeki $dx$ muhtemelen $dy$ olmalı.}\nobreak}
+  \Phi(y) &= \int N(x,y)\,dx - \iint M_y(s,y)\,ds\,dy \okunamadi{$+\,c$} \tag*{\footnotemark[\value{footnote}]}
+\end{align*}
+
+kısaca işlem adımları şöyledir\\
+$M$'i integralleyerek $u$ fonksiyonuna ulaşmaya çalışırız. integralleyince $y$'ye bağlı bir hata
+fonksiyonu ortaya çıkmaktadır. Bunu bulmak için $u$'yu $y$'ye göre türevini alırız sonra $N$'e eşitleriz
+oradan da tekrar integral alarak hata terimini tespit ederiz.\\
+veya $N$'den başlayarak işlemlere başlanılabilir o zaman hata fonksiyonu
+
+\sayfa{8}
+$x$'e bağımlı olur,
+
+\section{İntegrasyon çarpanı}
+
+$M(x,y)\,dx + N(x,y)\,dy = 0$ denklemi tam diferansiyel olmasın $(M_y \ne N_x)$.
+Eğer $\mu M(x,y)\,dx + \mu N(x,y)\,dy = 0$ denklemini tam diferansiyelli denklem yapacak şekilde
+bir $\mu \ne 0$ çarpanı bulunabiliyorsa ona integrasyon çarpanı denir.
+
+\begin{itemize}[label=$\bigstar$]
+  \item yalnızca $x$'e bağlı integrasyon çarpanı
+  \[
+    \mu(x) = e^{\int \frac{M_y - N_x}{N}\,dx}
+    \qquad \text{\small ($\tfrac{M_y - N_x}{N}$ $\rightarrow$ bu ifade sadece $x$'e bağlı olmalı)}
+  \]
+  \item yalnızca $y$'ye bağlı integrasyon çarpanı\footnote{Claude notu: aşağıdaki üsteki integral muhtemelen $dy$ ile olmalı.}
+  \[
+    \mu(y) = e^{-\int \frac{M_y - N_x}{M}\,dx}
+    \qquad \text{\small ($\tfrac{M_y - N_x}{M}$ $\rightarrow$ bu ifade sade $y$'ye bağlı olmalı)}
+  \]
+\end{itemize}
+
+\sayfa{9}
+\subsection{(3) Tam diferansiyelin ayrılması}
+
+Bazı tam diferansiyeller aşağıda veriliyor
+\begin{align*}
+  d(xy) &= x\,dy + y\,dx\\
+  y^2\,d\!\left(\frac{x}{y}\right) &= y\,dx - x\,dy\\
+  x^2\,d\!\left(\frac{y}{x}\right) &= x\,dy - y\,dx\\
+  d\bigl(f(x)\bigr) &= F(x)\,dx & F(x) &= f'(x)\\
+  d(x^2) &= 2x\,dx & d(\ln y) &= \frac{1}{y}\,dy
+\end{align*}
+
+\end{document}

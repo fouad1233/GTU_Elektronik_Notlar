@@ -1,0 +1,685 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Olasılık ve Rastgelelik}{Final için not -- Ders 7--12}{Olasilik-Final-icin-Not.pdf}
+
+\sayfa{1}
+\section{Ders 7}
+İki ayrık rasgele değişken $(X,Y)\in\mathcal{X}\times\mathcal{Y}$ ortak okf ile tam olarak tanımlanabilir.
+
+\noindent
+\begin{minipage}[c]{0.44\linewidth}
+$P_{X,Y}(x,y)=P\{X=x,\,Y=y\}$
+
+\textbf{Özellikleri:}
+\begin{enumerate}[nosep,leftmargin=*]
+  \item $P_{X,Y}(x,y)\geq 0$
+  \item $\displaystyle\sum_{(x,y)\in\mathcal{X}\times\mathcal{Y}}P_{X,Y}(x,y)=1$
+\end{enumerate}
+\end{minipage}$\Bigg\}$\hfill
+\begin{minipage}[c]{0.46\linewidth}
+Bir tablo verilirse $P_{X,Y}(x,y)$ Hesaplanmak istenen koşul incelenir, $x$ veya $y$ yerine konarak tablodan değer alınır.
+\end{minipage}
+
+\begin{ornek}
+  $P(X+Y=4)=P_{X,Y}(1,3)+P_{X,Y}(2,2)+P_{X,Y}(3,1)$
+
+  $X\in[1,4]$, \ $Y\in[1,4]$
+\end{ornek}
+
+\subsection{Marjinal okf}
+\[ P_X(x)=\sum_{y\in\mathcal{Y}}P_{X,Y}(x,y) \qquad \text{$\to$ $y$ boyunca toplam} \]
+\[ P_Y(y)=\sum_{x\in\mathcal{X}}P_{X,Y}(x,y) \qquad \text{$\to$ $x$ boyunca toplam} \]
+
+\subsection{Koşullu okf}
+\underline{$X$'in koşullu okf'si:}
+\[ P_{X|Y}(x|y)=\frac{P_{X,Y}(x,y)}{P_Y(y)} \]
+\underline{$Y$'nin koşullu okf'si:}
+\[ P_{Y|X}(y|x)=\frac{P_{X,Y}(x,y)}{P_X(x)} \]
+\underline{Sabit bir $x$ için}
+\[ \sum_{y\in\mathcal{Y}}P_{Y|X}(y|x)=1 \]
+\underline{Zincir kuralı:}
+\[ P_{X,Y}(x,y)=P_X(x)\,P_{Y|X}(y|x) \]
+\underline{Bayes kuralı:}
+\[ P_{X|Y}(x|y)=\frac{P_{Y|X}(y|x)}{\sum_{x'\in\mathcal{X}}P_{Y|X}(y|x')\,P_X(x')}\,P_X(x) \]
+\underline{Bağımsızlık:}
+
+$X$ ve $Y$ ayrık rasgele değişkenleri aşağıdaki şartı sağlıyorsa bağımsızdır
+\[ P_{X,Y}(x,y)=P_X(x)\,P_Y(y) \]
+$X$ ve $Y$ bağımsızsa
+\begin{gather*}
+  P_{Y|X}(y|x)=P_Y(y) \quad\text{ve}\\
+  P_{X|Y}(x|y)=P_X(x)\text{'dir}
+\end{gather*}
+
+\subsection{İki sürekli rasgele değişken: Ortak oyf}
+İki sürekli rasgele değişen $(X,Y)\in\mathbb{R}^2$ ortak oyf $f_{X,Y}(x,y)$ ile tam olarak tanımlanabilir
+\[ P\{(X,Y)\in A\}=\int_{(x,y)\in A}f_{X,Y}(x,y)\,dx\,dy \]
+Örneğin dikdörtgen bir alan için
+\[ P\{a<X\le b,\ c<Y\le d\}=\int_{c}^{d}\int_{a}^{b}f_{X,Y}(x,y)\,dx\,dy \]
+\textbf{Özellikleri:}
+\begin{enumerate}[nosep]
+  \item $f_{X,Y}(x,y)\geq 0$
+  \item $\displaystyle\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx\,dy=1$
+\end{enumerate}
+\vurgu[pembe]{$\star$} Okf bir olasılık değildir.\footnote{Claude notu: muhtemelen ``oyf'' olmalı.} Olasılıkla ilişkisi aşağıdaki gibidir:
+\[ P\{x<X\le x+\Delta x,\ y<Y\le y+\Delta y\}\approx f_{X,Y}(x,y)\,\underset{\text{\scriptsize $\uparrow$ integral}}{\Delta x\,\Delta y} \]
+\begin{ornek}
+  \[ P\Big\{X\ge \tfrac{1}{2}\,Y\Big\}=\int_{\{(x,y):\,x\ge\frac{1}{2}y\}}f_{X,Y}(x,y)\,dx\,dy \qquad \text{İkikatlı integral} \]
+\end{ornek}
+
+\subsection{Marjinal oyf}
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+$X$'in marjinal oyf'si:
+\[ f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy \]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+$Y$'nin marjinal oyf'si:
+\[ f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx \]
+\end{minipage}
+
+\section{Ders 8}
+\underline{$Y$'nin koşullu oyf'si:}
+\[ f_{Y|X}(y|x)=\frac{f_{X,Y}(x,y)}{f_X(x)} \]
+\underline{$X$'in koşullu oyf'si:}
+\[ f_{X|Y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)} \]
+Sabit bir $x$ için $f_{Y|X}(y|x)$ $Y$'nin okf'sidir. $f_{Y|X}(y|x)\geq 0$ ve integrali 1'e eşit.
+\[ \int_{-\infty}^{\infty}f_{Y|X}(y|x)\,dy=1 \]
+\underline{Zincir kuralı:}
+\[ f_{X,Y}(x,y)=f_X(x)\,f_{Y|X}(y|x) \]
+\underline{Bayes kuralı:}
+\[ f_{X|Y}(x|y)=\frac{f_{Y|X}(y|x)}{\int_{-\infty}^{\infty}f_{Y|X}(y|u)\,f_X(u)\,du}\,f_X(x) \]
+\[ f_{X,Y}(x,y)=f_X(x)\,f_Y(y)\ \Rightarrow\ X\text{ ve }Y\text{ bağımsızdır} \]
+$X$ ve $Y$ bağımsızsa
+\[ f_{Y|X}(y|x)=f_Y(y)\ \text{ ve }\ f_{X|Y}(x|y)=f_X(x)\text{'dir} \]
+
+\subsection{Bir ayrık ve bir sürekli rasgele değişken}
+$X$ okf'si $P_X(x)$ olan bir ayrık rasgele değişken olsun. Her $X=x$ için, $P_X(x)\neq 0$ koşullu oyf'si $f_{Y|X}(y|x)$ olan $Y$ sürekli değişkeni olsun.
+\[ \Rightarrow\ f_Y(y)=\sum_{x}f_{Y|X}(y|x)\,P_X(x) \]
+$X$'in $Y$'ye göre sonsal okf'si \okunamadi{delimit} durumunda aşağıdaki gibi bulunabilir.
+\[ P_{X|Y}(x|y)=\frac{f_{Y|X}(y|x)}{f_Y(y)}\,P_X(x)=\frac{f_{Y|X}(y|x)}{\sum_{x'}f_{Y|X}(y|x')\,P_X(x')}\,P_X(x) \]
+
+\subsection{Toplamsal Gauss gürültü kanalı}
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, murekkep]
+  \node at (0,0) {$X$};
+  \draw[-{Stealth}] (0.3,0) -- (1.7,0);
+  \draw (2,0) circle (0.3cm);
+  \draw (1.82,0) -- (2.18,0) (2,-0.18) -- (2,0.18);
+  \draw[-{Stealth}] (2.3,0) -- (3.7,0);
+  \node at (4,0) {$Y$};
+  \draw[-{Stealth}] (2,0.9) -- (2,0.3);
+  \node at (2,1.15) {$Z$};
+\end{tikzpicture}
+\end{center}
+Gönderilen bit ayrık bir rasgele değişken olarak modellenir:
+\[ X=\begin{cases} x_0, & p\ \text{olasılıkla}\\ x_1, & 1-p\ \text{olasılıkla}\end{cases} \]
+\begin{itemize}
+  \item Toplamsal gürültü bir Gauss r.d.'dir \quad $Z\sim N(0,\sigma_Z^2)$
+  \item Alınan işaret $Y=X+Z$ şeklindedir ve burada $X$ ve $Z$ bağımsızdır
+\end{itemize}
+
+\subsection{Ortak bdf (birikimli dağılım fonksiyonu)}
+İki r.d. $(X,Y)$ ortak bdf $F_{X,Y}(x,y)$ ile tam olarak tanımlanabilir.
+\[ F_{X,Y}(x,y)=P\{X\le x,\,Y\le y\},\qquad (x,y)\in(-\infty,\infty) \]
+\textbf{Özellikleri:}
+\begin{itemize}
+  \item $F_{X,Y}(x,y)\geq 0$
+  \item $x_1\le x_2$ ve $y_1\le y_2$ olmak üzere her zaman $F_{X,Y}(x_1,y_1)\le F_{X,Y}(x_2,y_2)$
+  \item $\displaystyle\lim_{x,y\to\infty}F_{X,Y}(x,y)=1$
+  \item $\displaystyle\lim_{y\to\infty}F_{X,Y}(x,y)=F_X(x)$ \ ve \ $\displaystyle\lim_{x\to\infty}F_{X,Y}(x,y)=F_Y(y)$
+  \item $\displaystyle\lim_{y\to-\infty}F_{X,Y}(x,y)=0$ \ ve \ $\displaystyle\lim_{x\to-\infty}F_{X,Y}(x,y)=0$
+\end{itemize}
+\vurgu[pembe]{$\star$} Bir olayın olasılığı ortak bdf ile belirlenebilir
+
+\underline{Örnek:} $\{(x,y): a<x\le b,\ c<y\le d\}$ olayının olasılığı
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, murekkep, >=Stealth]
+  \fill[orange!45!yellow] (1,0.7) rectangle (2.4,1.9);
+  \draw[->] (0,0) -- (3.2,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,2.3) node[above] {$y$};
+  \node[left] at (0,0.7) {$c$};
+  \node[left] at (0,1.9) {$d$};
+  \node[below] at (1,0) {$a$};
+  \node[below] at (2.4,0) {$b$};
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+  P\{a<X\le b,\ c<Y\le d\} &= F_{X,Y}(b,d)-F_{X,Y}(a,d)\\
+  &\quad -F_{X,Y}(b,c)+F_{X,Y}(a,c)
+\end{align*}
+$(X,Y)$ rasgele değişkenleri sürekli ise
+\[ F_{X,Y}(x,y)=\int_{-\infty}^{y}\int_{-\infty}^{x}f_{X,Y}(u,v)\,du\,dv \]
+\[ f_{X,Y}(x,y)=\frac{\partial^2 F_{X,Y}(x,y)}{\partial x\,\partial y} \]
+\[ F_{X,Y}(x,y)=F_X(x)\,F_Y(y) \]
+
+\section{Ders 9}
+\subsection{Bağımsız iki ayrık r.d.'nin toplamı}
+$X$ ve $Y$ bağımsız iki ayrık r.d. ve $W=X+Y$ olsun. $W$'nun dağılımı nedir?
+
+$X\sim P_X(x)$ ve $Y\sim P_Y(y)$ tam sayı-değerli r.d.'ler olsun. Bu durumda toplamlarının okf'si:
+\[ P_W(w)=\sum_{x=-\infty}^{\infty}P_X(x)\,P_Y(w-x) \qquad \left[\begin{array}{l}\text{iki okf'nin ayrık}\\ \text{konvolüsyonudur}\end{array}\right] \]
+$X\sim\mathrm{Poisson}(\lambda_1)$ ve $Y\sim\mathrm{Poisson}(\lambda_2)$ bağımsız iki r.d. ise bunların toplamı $W$'nun okf'sini bulunuz.
+\begin{align*}
+  P_W &= \sum_{x=-\infty}^{\infty}P_X(x)\,P_Y(w-x)\\
+      &= \sum_{x=0}^{w}P_X(x)\,P_Y(w-x)\\
+      &= \sum_{x=0}^{w}\frac{\lambda_1^{x}}{x!}\,e^{-\lambda_1}\cdot\frac{\lambda_2^{(w-x)}}{(w-x)!}\,e^{-\lambda_2}\\
+      &= \frac{(\lambda_1+\lambda_2)^{w}}{w!}\,e^{-(\lambda_1+\lambda_2)}\ \underbrace{\sum_{x=0}^{w}\frac{w!}{x!\,(w-x)!}\Big(\frac{\lambda_1}{\lambda_1+\lambda_2}\Big)^{x}\Big(\frac{\lambda_2}{\lambda_1+\lambda_2}\Big)^{w-x}}_{1}
+\end{align*}
+\[ P_W(w)=\frac{(\lambda_1+\lambda_2)^{w}}{w!}\,e^{-(\lambda_1+\lambda_2)} \]
+
+\subsection{Bağımsız iki sürekli r.d.'nin toplamı}
+\[ f_W(w)=\int_{-\infty}^{\infty}f_X(x)\,f_Y(w-x)\,dx=\int_{-\infty}^{\infty}f_Y(w-x)\,f_X(x)\,dx \]
+\begin{itemize}
+  \item $X\sim N(\mu_1,\sigma_1^2)$ ve $Y\sim N(\mu_2,\sigma_2^2)$ bağımsız olsun.
+  \item $W=X+Y\sim N(\mu_1+\mu_2,\ \sigma_1^2+\sigma_2^2)$ olarak bulunur.
+\end{itemize}
+
+\subsection{Beklenen değer}
+\begin{itemize}
+  \item $X\sim P_X(x)$ ayrık bir r.d. ve $g(x)$, $x$'in bir fonksiyonu olsun.
+\end{itemize}
+\[ E[g(X)]=\sum_{x\in\mathcal{X}}g(x)\,P_X(x) \]
+\begin{itemize}
+  \item Sürekli r.d. $X\sim f_X(x)$ için $g(X)$'in beklentisi
+\end{itemize}
+\[ E[g(X)]=\int_{-\infty}^{\infty}g(x)\,f_X(x)\,dx \]
+Beklenti doğrusaldır
+\[ E[a\,g_1(X)+b\,g_2(X)]=a\,E[g_1(X)]+b\,E[g_2(X)] \]
+$g(x)=c$, bir sabit ise, $E[g(X)]=c$
+\[ \mathrm{Var}(aX+b)=a^2\,\mathrm{Var}(X) \]
+
+\subsection{korelasyon ve kovaryans}
+$(X,Y)\sim f_{X,Y}(x,y)$ ve $g(x,y)$, $x$ ve $y$'nin bir fonksiyonu olsun. $g(X,Y)$'nin beklentisi aşağıdaki gibi tanımlanır.
+\[ E[g(X,Y)]=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x,y)\,f_{X,Y}(x,y)\,dx\,dy \]
+Korelasyon $=E[XY]$
+\[ \mathrm{Cov}(X,Y)=E[XY]-E[X]\,E[Y] \]
+Eğer $X=Y$ ise
+\[ \mathrm{Cov}(X,Y)=\mathrm{Var}(X) \]
+Eğer $\mathrm{Cov}(X,Y)=0$ ise
+
+$X$ ve $Y$ birbirinden ilişkisizdir ve $E[XY]=E[X]\,E[Y]$
+\[ \mathrm{Var}(X)=E[X^2]-(E[X])^2 \]
+\vurgu[pembe]{$\star$} \underline{Korelasyon katsayısı}
+\[ \rho_{X,Y}=\frac{\mathrm{Cov}(X,Y)}{\sqrt{\mathrm{Var}(X)\,\mathrm{Var}(Y)}}=\frac{\mathrm{Cov}(X,Y)}{\sigma_X\,\sigma_Y} \]
+$X$ ve $Y$ ilişkisizse, $\mathrm{Cov}(X,Y)=0$, $\rho_{X,Y}=0$ olur.
+\begin{itemize}
+  \item $-1\le\rho_{X,Y}\le 1$'dir.
+  \item Eğer $\rho_{X,Y}=\pm1$ ise $\dfrac{X-E[X]}{\sigma_X}=\mp\dfrac{Y-E[Y]}{\sigma_Y}$\footnote{Claude notu: muhtemelen $\pm$ olmalı ($\rho=+1$ için işaretler aynıdır).}
+
+  doğrusal bir fonksiyonu ise $\rho_{X,Y}=\pm1$'dir.
+  \item $\rho_{X,Y}$ bize $X$'in $Y$'nin bir doğrusal fonksiyonu olarak ne kadar iyi kestirilebileceğinin bilgisini verir.
+\end{itemize}
+
+\sayfa{2}
+\section{Ders 9 Devamı}
+\subsection{Koşullu beklenti}
+İki sürekli rasgele değişken $(X,Y)\sim f_{X,Y}(x,y)$ olsun
+
+ve
+\[ \underset{\text{\scriptsize $X$'in $Y$'ye göre okf'si}}{f_{X|Y}(x|y)}=\frac{f_{X,Y}(x,y)}{f_Y(y)} \]
+$\Rightarrow$ Herhangi bir $g(x,y)$ fonksiyonun $f_{X|Y}(x|y)$'ye göre beklentisi aşağıdaki gibi tanımlanabilir.
+\[ E[g(X,Y)|Y=y]=\int_{-\infty}^{\infty}g(x,y)\,f_{X|Y}(x|y)\,dx \]
+$g(x,y)=x$
+\[ \Rightarrow\ E[X|Y=y]=\int_{-\infty}^{\infty}x\,f_{X|Y}(x|y)\,dx \]
+
+\subsection{Bir rasgele değişken olarak koşullu beklenti}
+\begin{itemize}
+  \item Koşullu beklenti $E[g(X,Y)|Y=y]$ $y$'nin bir fonksiyonudur. $E[g(X,Y)|Y]$ beklenen değeri $Y$ rasgele değişkenin bir fonksiyonu olduğu için bir rasgele değişkendir.
+\end{itemize}
+$E[X|Y]=Z=\dfrac{1-Y}{2}$'nin oyf'si bulmak için $Y$'nin doğrusal bir fonksiyonun, $Z=aY+b$, okf'si için bulduğumuz formülü kullanabiliriz.
+\[ Z=aY+b\ \Rightarrow\ f_Z=\frac{1}{|a|}\,f_Y\!\left(\frac{z-b}{a}\right) \]
+
+\subsection{Koşullu beklentinin ortalaması}
+\begin{align*}
+  E_Y\big[E[g(X,Y)|Y]\big] &=\\
+  &=\int_{-\infty}^{\infty}E[g(X,Y)|Y=y]\,f_Y(y)\,dy
+\end{align*}
+\begin{ornek}
+  \[ E_Y\Big[\frac{1-Y}{2}\Big]=\int_{0}^{1}\frac{1-y}{2}\,\underbrace{2(1-y)}_{f_Y}\,dy=\frac{1}{3} \]
+\end{ornek}
+
+\subsection{Yenilenen beklenti:}
+\[ E_Y\big[E_{X|Y}[g(X,Y)|Y]\big]=E[g(X,Y)] \]
+Burada $E_{X|Y}$, $f_{X|Y}(x|y)$'ye göre beklentidir.
+
+\subsection{koşullu varyans}
+$(X,Y)$ r.d.'leri için $\{Y=y\}$ olarak verildiğinde $X$'in koşullu varyansı aşağıdaki gibi tanımlanır
+\[ \mathrm{Var}(X|Y)=E[X^2|Y]-\big(E[X|Y]\big)^2 \]
+
+\subsection{Moment üreten fonksiyonlar}
+\begin{itemize}
+  \item Bir $X$ rasgele değişkenin olasılık dağılımına ait dönüşüm aşağıdaki gibi tanımlanır:
+\end{itemize}
+\[ M_X(s)=E[e^{sX}]=\begin{cases}\displaystyle\sum_{x}e^{sx}P_X(x), & X\sim P_X(x)\ \text{ise}\\[4mm] \displaystyle\int_{-\infty}^{\infty}e^{sx}f_X(x)\,dx, & X\sim f_X(x)\ \text{ise}\end{cases} \]
+\begin{itemize}
+  \item Bu dönüşüme moment üreten fonksiyon denir.
+  \item $s=j\omega$ için ($j=\sqrt{-1}$ ve $\omega$ gerçek) dönüşüm, $M_X(j\omega)$ karakteristik fonksiyon adını alır.
+\end{itemize}
+\[ \underbrace{M_X(s)}_{\text{Laplace}}\qquad\qquad \underbrace{M_X(j\omega)}_{\text{Fourier}} \]
+
+\begin{ornek}
+  $X\sim\mathrm{Bern}(p)$ olsun. $P_X(1)=p$, \ $P_X(0)=1-p$
+  \begin{align*}
+    M_X(s)=\,? &= E[e^{sX}]=\sum_{k=0}^{1}e^{sk}P_X(k)\\
+    &= (1-p)+p\,e^{s}
+  \end{align*}
+\end{ornek}
+\begin{ornek}
+  $X\sim\mathrm{Poisson}(\lambda)$, olsun
+  \[ P_X(k)=\frac{\lambda^k}{k!}\,e^{-\lambda},\qquad k=0,1,2,\ldots \]
+  \begin{align*}
+    M_X(s)=E[e^{sX}] &= \sum_{k=0}^{\infty}e^{sk}P_X(k)\\
+    &= \sum_{k=0}^{\infty}e^{sk}\frac{\lambda^k}{k!}\,e^{-\lambda}=e^{-\lambda}\sum_{k=0}^{\infty}\frac{(e^{s}\lambda)^k}{k!}\\
+    &= e^{-\lambda}\,e^{e^{s}\lambda}=\kutula{e^{\lambda\,(e^{s}-1)}}
+  \end{align*}
+\end{ornek}
+\begin{ornek}
+  $X\sim\mathrm{Exp}(\lambda)$ olsun
+  \[ f_X(x)=\begin{cases}\lambda e^{-\lambda x}, & x\ge 0\\ 0, & \text{diğer}\end{cases} \]
+  \begin{align*}
+    M_X(s)=E[e^{sX}] &= \int_{-\infty}^{\infty}e^{sx}f_X(x)\,dx\\
+    &= \int_{0}^{\infty}e^{sx}\lambda e^{-\lambda x}\,dx=\int_{0}^{\infty}\lambda\,e^{(s-\lambda)x}\,dx\\
+    &= \lambda\left(\frac{e^{(s-\lambda)x}}{s-\lambda}\Big|_{0}^{\infty}\right)\qquad s-\lambda<0\\
+    &= \lambda\left(\frac{-1}{s-\lambda}\right)=\frac{\lambda}{\lambda-s}
+  \end{align*}
+\end{ornek}
+\begin{ornek}
+  $X\sim N(\mu,\sigma^2)$ olsun
+  \[ f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+  \begin{align*}
+    M_X(s) &= \int_{-\infty}^{\infty}e^{sx}\,\frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}}\,dx\\
+    &= \int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{x^2-2\mu x-2\sigma^2 s x+\mu^2}{2\sigma^2}}\,dx\\
+    &= e^{\mu s+\frac{\sigma^2 s^2}{2}}\int_{-\infty}^{\infty}\frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{\left(x-(\mu+s\sigma^2)\right)^2}{2\sigma^2}}\,dx\\
+    &= e^{\mu s+\frac{\sigma^2 s^2}{2}}
+  \end{align*}
+\end{ornek}
+
+\subsection{Türev üreten fonksiyonun özellikleri}
+$X\sim P_X(x)$ olsun. $M_X(s)$'nin $s$'ye göre birinci dereceden türevi:
+\begin{align*}
+  M_X^{(1)}(s) &= \frac{d}{ds}M_X(s)=\frac{d}{ds}\sum_{x}e^{sx}P_X(x)\\
+  &= \sum_{x}x\,e^{sx}P_X(x)
+\end{align*}
+Bu türevin $s=0$'daki değeri bize birinci momenti verir.
+\[ M_X^{(1)}(0)=\sum_{x}x\,P_X(x)=E[X] \]
+Türev almayı tekrarlasak
+\begin{gather*}
+  M_X^{(k)}(0)=E[X^k]\\
+  \left.\frac{d^k}{ds^k}M_X(s)\right|_{s=0}=\sum_{x}x^k\,P_X(x)
+\end{gather*}
+
+\section{Ders 10}
+\subsection{Çoklu rasgele değişkenler}
+$X_1,X_2,\ldots,X_n$ aynı olasılık uzayında tanımlanmış rasgele değişkenler olsun
+
+Ayrık ise ortak okf
+\[ P_{X_1,X_2,\ldots,X_n}(x_1,x_2,\ldots,x_n)\quad\text{şeklinde tanımlanır} \]
+Sürekli ise ortak oyf
+\[ f_{X_1,X_2,\ldots,X_n}(x_1,x_2,\ldots,x_n) \]
+\begin{itemize}
+  \item Marjinal oyf (okf)'ler $\{X_1,X_2,\ldots,X_n\}$'nin bir alt kümesinin ortak oyf'sidir.
+  \item $n=3$ için marjinal oyf'ler
+\end{itemize}
+\begin{gather*}
+  f_{X_1}(x_1),\ f_{X_2}(x_2),\ f_{X_3}(x_3),\ f_{X_1,X_2}(x_1,x_2)\\
+  f_{X_1,X_3}(x_1,x_3),\ f_{X_2,X_3}(x_2,x_3)\\
+  f_{X_1,X_2}(x_1,x_2)=\int_{-\infty}^{\infty}f_{X_1,X_2,X_3}(x_1,x_2,x_3)\,dx_3
+\end{gather*}
+\textit{oyf, okf, zincir kuralı, bdf, Bayes de çalışır}
+
+\subsection{Bağımsızlık}
+$X_1,X_2,\ldots,X_n$ rasgele değişkenleri eğer ortak okf/oyf/bdf'leri marjinallerin çarpımı şeklinde yazılabiliyorsa bağımsızdır.
+\[ f_{X_1,\ldots,X_n}(x_1,\ldots,x_n)=\prod_{i=1}^{n}f_{X_i}(x_i) \]
+$X_1,X_2,\ldots,X_n$ rasgele değişkenleri bağımsız ve türdeş dağılımlı, eğer bağımsız ve aynı marjinal dağılım sahiplerse
+\[ f_{X_1,\ldots,X_n}(x_1,\ldots,x_n)=\prod_{i=1}^{n}f_X(x_i) \]
+
+\subsection{Rasgele değişkenlerin istatistiklerinin kestirimi}
+$X$'in ortalamasını kestirmek için
+\[ \bar{x}_n=\frac{1}{n}\sum_{i=1}^{n}x_i \]
+$X$'in ikinci momentini kestirmek için:
+\[ \bar{x}_n^{2}=\frac{1}{n}\sum_{i=1}^{n}x_i^2 \]
+$P(X\in A)$ olasılığını kestirmek için $x_i\in A$ iken $y_i=1$ diğer durumlarda $y_i=0$ olan bir değişken tanımlayalım.
+\[ \overline{P(A)}=\frac{1}{n}\sum_{i=1}^{n}y_i \]
+\begin{itemize}
+  \item $(X,Y)$'nin korelasyonunu kestirmek için
+\end{itemize}
+\[ \bar{C}_n=\frac{1}{n}\sum_{i=1}^{n}x_i\,y_i \]
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Yapıştırılmış slayt parçası: dağılımların $\theta$ parametreleriyle tanımlanması ve Bern, Geom, Binom, Poisson, Unif, Exp, N için parametre tablosu.)}
+
+\subsection{En büyük olabilirlik kestirimi}
+\begin{itemize}
+  \item $X\sim P_X(x;\theta)$ ve $\theta$ parametresi bilinmiyor olsun.
+  \item $\theta$'yı kestirmek için $P_X(x;\theta)$ dağılımından bağımsız ve türdeş üretilmiş eğitim veri kümesi $\{x_i\}_{i=1}^{n}$ kullanalım.
+  \item En büyük olabilirlik kestiriminde eğitim veri kümesini üreten olabilirliği (likelihood) en büyük yapacak şekilde $\theta$ seçilir.
+\end{itemize}
+\begin{align*}
+  L(\theta) &= P_{X_1,X_2,\ldots,X_n}(x_1,x_2,\ldots,x_n;\theta),\\
+  &= \prod_{i=1}^{n}P_X(x_i;\theta)
+\end{align*}
+Daha sıklıkla olabilirliğin logaritması en büyüklenir.
+\[ \ell(\theta)=\ln L(\theta)=\sum_{i=1}^{n}\ln P_X(x_i;\theta) \]
+
+\sayfa{3}
+\section{Ders 10 devamı}
+\begin{ornek}
+  $X\sim\mathrm{Bern}(p)$ ve $p$ parametresi bilinmiyor olsun. $p$'yi $\mathrm{Bern}(p)$ dağılımından bağımsız ve türdeş olarak üretilmiş eğitim veri kümesi $\{x_i\}_{i=1}^{n}$ kullanarak EOK ile bulalım
+  \begin{align*}
+    L(p) &= \prod_{i=1}^{n}\mathrm{Bern}(p)=\prod_{i=1}^{n}p^{x_i}(1-p)^{1-x_i}\\
+    \ell(p) &= \sum_{i=1}^{n}\ln p^{x_i}(1-p)^{1-x_i}\\
+    &= \ln p\sum_{i=1}^{n}x_i+\ln(1-p)\sum_{i=1}^{n}(1-x_i)\\
+    &= n\bar{x}\ln p+(n-n\bar{x})\ln(1-p)
+  \end{align*}
+  Burada $\bar{x}=\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}x_i$
+
+  Olabilirliği en büyük yapan $\hat{p}$'yi bulmak için $\ell(p)$'nin türevini alıp sıfıra eşitleyelim
+  \[ \frac{d\ell(p)}{dp}=\frac{n\bar{x}}{p}-\frac{n-n\bar{x}}{1-p}=0 \]
+  \[ n\bar{x}(1-p)=(n-n\bar{x})\,p \]
+  \[ \hat{p}=\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i \]
+\end{ornek}
+
+\begin{ornek}[(Gauss parametrelerin EOK'si)]
+  $X\sim N(\mu,\sigma^2)$ ve $\theta=(\mu,\sigma^2)$ parametreleri bilinmiyor olsun
+  \begin{align*}
+    L(\mu,\sigma^2) &= \prod_{i=1}^{n}N(\mu,\sigma^2)=\prod_{i=1}^{n}\frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\\
+    \ell(\mu,\sigma^2) &= \sum_{i=1}^{n}\ln\frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{(x_i-\mu)^2}{2\sigma^2}}\\
+    &= \sum_{i=1}^{n}-\frac{1}{2}\ln 2\pi-\frac{1}{2}\ln\sigma^2-\frac{(x_i-\mu)^2}{2\sigma^2}\\
+    &= -\frac{n}{2}\ln 2\pi-\frac{n}{2}\ln\sigma^2-\sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^2}
+  \end{align*}
+  Olabilirliği en büyük yapan $\hat{\mu}$ ve $\hat{\sigma}^2$'yi bulmak için $\ell(\mu,\sigma^2)$'nin $\mu$ ve $\sigma^2$'ye göre kısmi türevlerini alıp sıfıra eşitleyelim!
+  \begin{align*}
+    \frac{\partial\ell(\mu,\sigma^2)}{\partial\mu} &= \sum_{i=1}^{n}\frac{x_i-\mu}{\sigma^2}=0\\
+    \hat{\mu} &= \frac{1}{n}\sum_{i=1}^{n}x_i\\
+    \frac{\partial\ell(\mu,\sigma^2)}{\partial\sigma^2} &= -\frac{n}{2\sigma^2}+\sum_{i=1}^{n}\frac{(x_i-\mu)^2}{2\sigma^4}=0\\
+    \frac{n}{\sigma^2} &= \sum_{i=1}^{n}\frac{(x_i-\mu)^2}{\sigma^4}\qquad\qquad \sigma^2=\frac{1}{n}\sum_{i=1}^{n}(x_i-\hat{\mu})^2
+  \end{align*}
+\end{ornek}
+
+\subsection{Rasgele değişkenlerin toplamının ortalaması}
+$X_1,X_2,\ldots,X_n$ rasgele değişkenlerinin toplamı $Y=\sum_{i=1}^{n}X_i$ olsun. Toplamlarının ortalaması aşağıdaki gibidir:
+\[ E[Y]=E\Big[\sum_{i=1}^{n}X_i\Big]=\sum_{i=1}^{n}E[X_i] \]
+\begin{ornek}
+  Binom rasgele değişkenlerinin ortalaması
+  \[ E[Y]=\sum_{i=1}^{n}E[X_i]=\sum_{i=1}^{n}p=np \]
+\end{ornek}
+
+\subsection{Örnek ortalaması kestiriminin ortalaması}
+$\bar{X}_n=\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}X_i$'dir. Örnek ortalamasının beklentisi:
+\[ E[\bar{X}_n]=E\Big[\frac{1}{n}\sum_{i=1}^{n}X_i\Big]=\frac{1}{n}\sum_{i=1}^{n}E[X_i] \]
+
+\subsection{Rasgele değişkenlerin toplamının varyansı}
+$X_1,X_2,\ldots,X_n$ rasgele değişkenlerin toplamı $Y=\sum_{i=1}^{n}X_i$. Toplamlarının ortalaması\footnote{Claude notu: muhtemelen ``varyansı'' olmalı.} aşağıdaki gibidir.
+\begin{align*}
+  \mathrm{Var}(Y) &= E\big[(Y-E[Y])^2\big]\\
+  &= \sum_{i=1}^{n}\mathrm{Var}(X_i)+\sum_{i=1}^{n}\sum_{j\neq i}\mathrm{Cov}(X_i,X_j)
+\end{align*}
+Eğer rasgele değişkenler bağımsızsa tüm $i\neq j$ için $\mathrm{Cov}(X_i,X_j)=0$ olacağından
+\[ \mathrm{Var}(Y)=\sum_{i=1}^{n}\mathrm{Var}(X_i) \]
+\sekilnotu[3]{Basılı slayt parçası (dijitalleştirilmedi): Binom rasgele değişkeninin varyansı örneği ($X_i$ bağımsız ve türdeş dağılımlı Bern($p$), $Y=\sum X_i$ binom).}
+\begin{ornek}
+  \[ \mathrm{Var}(Y)=\sum_{i=1}^{n}\mathrm{Var}(X_i)=\sum_{i=1}^{n}p(1-p)=np(1-p) \]
+\end{ornek}
+
+\subsection{Örnek ortalaması kestiriminin varyansı}
+\sekilnotu[3]{Basılı slayt parçası (dijitalleştirilmedi): bağımsız ve türdeş dağılımlı $X_1,\ldots,X_n$ için örnek ortalaması $\bar{X}_n=\frac{1}{n}\sum X_i$ tanımı.}
+\[ \mathrm{Var}(\bar{X}_n)=\frac{1}{n^2}\sum_{i=1}^{n}\mathrm{Var}(X_i) \]
+$\mathrm{Var}(X_i)=\mathrm{Var}(X)$, $i=1,\ldots,n$ olduğundan
+\[ \mathrm{Var}(\bar{X}_n)=\frac{\mathrm{Var}(X)}{n} \]
+
+\subsection{Markov eşitsizliği}
+$X\ge0$ rasgele değişkeni pozitif ve sonlu bir ortalaması $E[X]$ olsun. Bu durumda $a>1$ sayısı için
+\[ P\{X\ge aE[X]\}\le\frac{1}{a} \]
+\begin{ornek}
+  $X\ge0$ rasgele değişkeni bir bölgede yaşayan bir insanın yaşı olsun. Bu bölgede yaşayan insanların yaş ortalaması $E[X]=35$ ise nüfusun ne kadarı 70 ve üzerindedir. Cevabı tam bilemeyiz ama nüfusun \okunamadi{yarısından} azı 70 yaş ve üzerindedir diyebiliriz $P\{X\ge70\}\le\dfrac{1}{2}$
+\end{ornek}
+\begin{ornek}
+  $X\ge0$ ve $E[X]=1$ olsun. Markov eşitsizliğine göre
+  \[ P\{X\ge10\}\le\frac{1}{10} \]
+  Şimdi $X$'in bir üstel dağılıma sahip olduğunu kabul edelim. $X\sim\mathrm{Exp}(1)$ ise $E[X]=1$ olur. $P\{X\ge10\}$ olasılığı kesin olarak hesaplayabiliriz.
+  \[ P\{X\ge10\}=e^{-10}\approx4.55\cdot10^{-5}\ll\frac{1}{10} \]
+\end{ornek}
+\begin{itemize}
+  \item Buna rağmen $X$ r.d. hakkında bildiğimiz tek şey ortalaması ise Markov eşitsizliği elde edebileceğimiz en iyi sınırdır.
+\end{itemize}
+
+\subsection{Chebyshev eşitsizliği}
+$X\ge0$ rasgele değişkenin sonlu bir ortalaması $E[X]$ ve varyansı $\sigma_X^2$ olsun. Bu durumda $a>1$ sayısı için:
+\[ P\{|X-E[X]|\ge a\sigma_X\}\le\frac{1}{a^2} \]
+\sekilnotu[3]{Basılı slayt parçası (dijitalleştirilmedi): Örnek -- bir entegre devrenin parametresi $X$ (ortalama $E[X]$, varyans $\sigma_X^2$); $X$ ortalamadan $3\sigma_X$ veya daha fazla uzaksa devre standart dışı; $P\{|X-E[X]|\ge3\sigma_X\}$ nedir?}
+\[ P\{|X-E[X]|\ge3\sigma_X\}\le\frac{1}{9} \]
+\underline{Chebyshev eşitsizliği çok geniş bir sınır verebilir}
+
+$X\ge0$, $E[X]=0$ ve $\sigma_X^2=1$ olsun
+\[ P\{|X|\ge3\}\le\frac{1}{9} \]
+Şimdi $X$'in bir Gauss dağılıma sahip olduğunu kabul edelim. $X\sim N(0,1)$ ise $E[X]=0$ ve $\sigma_X^2=1$'dir. $P\{|X|\ge3\}$ olasılığını kesin olarak hesaplayabiliriz.
+\begin{align*}
+  P\{|X|\ge3\} &= P\{X\ge3\}+P\{X\le-3\}\\
+  &= 2\Phi(-3)=2(1-\Phi(3))\approx2\cdot10^{-3}\ll\frac{1}{9}
+\end{align*}
+Buna rağmen $X$ r.d. hakkında sadece ort ve varyansı biliyorsak chebyshev eşitsizliği elde edebileceğimiz en iyi sınırdır.
+
+\section{Ders 11}
+\subsection{Limit teoremleri}
+\subsection{Büyük sayıların zayıf yasası}
+\sekilnotu[3]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Bu sütunda basılı slayt parçaları: büyük sayıların zayıf yasası teoremi ve Chebyshev ile gösterimi, güvenirlik aralığı, anketör problemi, merkezi limit teoremine giriş; yalnızca el yazısı kısımlar aktarıldı.)}
+
+\subsection{Güvenirlik aralığı}
+\begin{ornek}
+  $\epsilon=0{,}1\sigma_X$ ve $\delta=10^{-3}$ olsun. Bu durumda
+  \[ n=\frac{\sigma_X^2}{\delta\epsilon^2}=\frac{\sigma_X^2}{10^{-3}\cdot0{,}01\cdot\sigma_X^2}=10^{5} \]
+  $10^5$ örnek seçilirse $\bar{X}_n$, $E[X]$'in $\pm0{,}1\sigma_X$ civarında $0{,}999$ güvenirliği ile kalmasını sağlar.
+\end{ornek}
+
+\subsection{Güvenirlik aralığı: Anketör problemi}
+\[ 1-0{,}95=0{,}05 \]
+Chebyshev eşitsizliğini kullanırsak
+\[ P\{|\bar{X}_n-E[X]|\le\epsilon\}\ge1-\delta=1-\frac{\mathrm{Var}(\bar{X}_n)}{\epsilon^2}=1-\frac{\sigma_X^2}{n\epsilon^2} \]
+\begin{itemize}
+  \item Bernoulli r.d.'nin varyansı $\sigma_X^2=p(1-p)$'dir. $p$ parametresini bilmiyoruz ama $p$ 0 ile 1 arasında olduğundan $\sigma_X^2=p(1-p)\le0{,}25$ olacaktır. (Markov).
+\end{itemize}
+Böylece
+\begin{gather*}
+  P\{|\bar{X}_n-p|\le0{,}01\}\ge1-0{,}05\ge1-\frac{0{,}25}{n(0{,}01)^2}\\
+  0{,}05=\frac{0{,}25}{n(0{,}01)^2}\\
+  n=\frac{0{,}25}{0{,}05\,(0{,}01)^2}=5\cdot10^{4}
+\end{gather*}
+
+\subsection{Gauss rasgele değişkenlerinin toplamı}
+Bir Gauss r.d. $X\sim N(\mu,\sigma^2)$ için okf:
+\[ f_X(x)=\frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+Gauss r.d.'lerin bazı kullanışlı özellikleri vardır.
+\begin{itemize}
+  \item Eğer $Y=aX+b$ ise $Y\sim N(a\mu+b,\ a^2\sigma^2)$ olur.
+  \item Eğer $X_1,X_2,\ldots,X_n$ bağımsız ve $X_i\sim N(\mu_i,\sigma_i^2)$ ise $W=\sum_{i=1}^{n}X_i\sim N\Big(\sum_{i=1}^{n}\mu_i,\ \sum_{i=1}^{n}\sigma_i^2\Big)$ olur
+  \item Gaussların ağırlıklandırılmış toplamı $W=\sum_{i=1}^{n}a_iX_i$ da yine bir gausstur.
+\end{itemize}
+
+\sayfa{4}
+\section{Ders 11 devamı}
+\subsection{Standart toplam}
+\[ Z_n=\frac{1}{\underset{\text{\scriptsize $\uparrow$ örnek sayısı}}{\sqrt{n}}}\sum_{i=1}^{n}\left(\frac{X_i-\overset{\text{\scriptsize ortalama}}{E[X]}}{\underset{\text{\scriptsize $\uparrow$ varyans}}{\sigma_X}}\right) \]
+$Z_n$ standard bir r.d.'dir çünkü $E[Z_n]=0$ ve $\sigma_{Z_n}^2=1$
+\begin{itemize}
+  \item $Z_n$ örnek ortalaması $\bar{X}_n=\dfrac{1}{n}\displaystyle\sum_{i=1}^{n}X_i$ cinsinden aşağıdaki gibi yazılabilir:
+\end{itemize}
+
+\subsection{Merkez limit teoremi (MLT)}
+\sekilnotu[4]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Merkezi limit teoremi ve açıklaması basılı; yalnızca el yazısı örnekler aktarıldı.)}
+\begin{ornek}
+  $\mathrm{Bern}\big(\tfrac{1}{2}\big)$ \quad $p=E[X]$ \qquad $\sigma^2=p(1-p)=0{,}25$, \quad $\sigma=0{,}5$
+  \[ Z_n=\frac{1}{\sqrt{n}}\sum_{i=1}^{n}\left(\frac{X_i-\overbrace{E[X]}^{1/2}}{\sigma_X}\right) \]
+  \[ Z_n=\frac{1}{\sqrt{n}}\sum_{i=1}^{n}\left(\frac{X_i-0{,}5}{0{,}5}\right)\text{'nin bdf'si }Z\sim N(0,1)\text{'e yakınsar.} \]
+\end{ornek}
+\begin{ornek}
+  $X_1,X_2,\ldots,X_n$'ler bağımsız ve türdeş dağılımlı tekdüze r.d.'leri, $U[-1,1]$ olsun. Bunların standart toplamı $Z_n=\dfrac{1}{\sqrt{n}}\displaystyle\sum_{i=1}^{n}\left(\dfrac{X_i}{\sqrt{1/3}}\right)$'nin oyf'si $Z\sim N(0,1)$'e yakınsar.
+\end{ornek}
+
+\subsection{MLT ile güvenirlik aralığı}
+\sekilnotu[4]{Basılı slayt parçaları (dijitalleştirilmedi): MLT ile $n$'nin kestirilmesi ($\delta=2\Phi(-\epsilon\sqrt{n}/\sigma_X)$ formülü slaytta kırmızı çerçeveyle işaretlenmiş), $\epsilon=0.1\sigma_X$, $\delta=10^{-3}$ örneği ($n=1089$) ve ``MLT ile güvenilirlik aralığı: Anketör problemi'' slaytı ($n=9604$).}
+
+\section{Ders 12}
+\subsection{Rasgele süreçler}
+\sekilnotu[4]{Basılı slayt parçaları (dijitalleştirilmedi): ``Ayrık zamanlı rasgele süreçler: Örnek'' ($X[n]=Z^n$, $Z\sim U[0,1]$; örnek diziler) ve ``Sürekli zamanlı rasgele süreçler'' ($X(t)=\alpha\cos(\omega t+\Theta)$, $\Theta\sim U[0,2\pi]$; örnek fonksiyonlar).}
+
+\subsection{Ortalama ve özilişki (otokorelasyon) fonksiyonları}
+\begin{itemize}
+  \item \underline{Ortalama fonksiyonu:} $\mu_X(t)=E[X(t)]$, $t\in\mathcal{T}$ için
+  \item \underline{Özilişki/otokorelasyon fonksiyonu:}
+\end{itemize}
+\[ R_X(t_1,t_2)=E[X(t_1)\,X(t_2)] \]
+\begin{itemize}
+  \item \underline{Otokovaryans fonksiyonu:}
+\end{itemize}
+\begin{gather*}
+  C_X(t_1,t_2)=E\big[(X(t_1)-\mu_X(t_1))\,(X(t_2)-\mu_X(t_2))\big]\\
+  \Rightarrow\ C_X(t_1,t_2)=R_X(t_1,t_2)-\mu_X(t_1)\,\mu_X(t_2)
+\end{gather*}
+\begin{ornek}
+  $X(t)=\alpha\cos(\omega t+\Theta)$
+  \begin{align*}
+    \mu_X(t) &= E[\alpha\cos(\omega t+\Theta)]\\
+    &= \int_{0}^{2\pi}\alpha\cos(\omega t+\Theta)\,\underset{\text{\scriptsize $\to$ oyf genliği}}{\frac{1}{2\pi}}\,d\Theta=0
+  \end{align*}
+  \begin{align*}
+    R_X(t_1,t_2) &= E[X(t_1)\,X(t_2)]\\
+    &= \int_{0}^{2\pi}\frac{\alpha^2}{2\pi}\cos(\omega t_1+\Theta)\cos(\omega t_2+\Theta)\,d\Theta\\
+    &= \int_{0}^{2\pi}\frac{\alpha^2}{4\pi}\Big[\cos\big(\omega(t_1+t_2)+2\Theta\big)+\cos\big(\omega(t_1-t_2)\big)\Big]d\Theta\\
+    &= \frac{\alpha^2}{2}\cos\big(\omega(t_1-t_2)\big)
+  \end{align*}
+\end{ornek}
+
+\subsection{Durağan rasgele süreçler}
+\begin{itemize}
+  \item $X(t_1)$ (veya $X[n]$) rasgele sürecinin ortak oyf (okf), bdf gibi tüm sonlu dereceden dağılımları zamanla değişmiyorsa tam anlamda (\textit{kesin}) durağan denir.
+  \item $X(t)$ (veya $X[n]$) rasgele sürecin ortalama ve otokorelasyon fonksiyonları. Zamanla değişmiyorsa geniş anlamda durağandır
+  \item $E[X(t)]=\mu$, zamandan bağımsız
+  \item $R_X(t_1,t_2)$ sadece $\tau=t_2-t_1$, zaman farkın bir fonksiyonudur.
+  \item $E\big[(X(t))^2\big]<\infty$
+\end{itemize}
+Bir süreç tam anlamda durağan ise aynı zamanda geniş anlamda durağandır
+
+\subsection{Gauss rasgele süreçleri}
+\sekilnotu[4]{Basılı slayt parçası (dijitalleştirilmedi): Gauss rasgele süreci tanımı; Gauss sürecinin ortalama ve otokorelasyon fonksiyonuyla istatistiksel olarak tanımlanması; Gauss sürecinde tam ve geniş anlamda durağanlığın aynı olması.}
+
+\subsection{Geniş anlamda durağan sürecin otokorelasyon fonksiyonu}
+\begin{itemize}
+  \item $X(t)$ geniş anlamda durağan bir süreç olsun. Bu durumda otokorelasyon $R_X(t_1,t_2)$, $R_X(\tau)$ olarak ifade edilir.
+\end{itemize}
+\begin{enumerate}
+  \item $R_X(\tau)$ gerçek değerlidir. $R_X(\tau)=R_X(-\tau)$
+  \item $|R_X(\tau)|\le R_X(0)=E[X^2(t)]$, \quad $X(t)$'nin ortalama gücü
+  \item $T\neq0$ için $R_X(T)=R_X(0)$ ise $R_X(\tau)$ periyodik ve dolayısıyla $X(t)$ $T$ ile periyodiktir.
+\end{enumerate}
+\sekilnotu[4]{Basılı slayt parçası (dijitalleştirilmedi): Örnek -- rasgele fazlı periyodik $X(t)=\alpha\cos(\omega t+\theta)$ sürecinin otokorelasyon fonksiyonu da periyodiktir, $R_X(\tau)=\frac{\alpha^2}{2}\cos(\omega\tau)$.}
+\sekilnotu[4]{Basılı slayt (dijitalleştirilmedi): ``Hangi fonksiyon $R_X(\tau)$ olabilir?'' -- 8 grafik: (1) $e^{-\alpha\tau}$ ($\tau\ge0$), (2) $e^{-\alpha|\tau|}$, (3) $\tau=0$'da çukur olan çift bir eğri, (4) $\mathrm{sinc}\,\tau$, (5) $T$ periyotlu üçgen dalga, (6) $2^{-|n|}$, (7) $[-T,T]$ aralığında dikdörtgen, (8) sabit 1. Grafiklerin üzerindeki el yazısı notlar aşağıda.}
+\begin{enumerate}[nosep]
+  \item çift değil, olamaz \ $\times$
+  \item $\tau=0$'da maks değer alır, çifttir \ $\checkmark$
+  \item çifttir ama $\tau=0$'da maks değerini almaz \ $\times$
+  \item $\tau=0$'da maks değer alır, çifttir \ $\checkmark$
+  \item çift, $\tau=0$'da maks, $T$ ile periyodik \ $\checkmark$
+  \item çift, $\tau=0$'da maks \ $\checkmark$
+  \item çift, $\tau=0$'da maks \ $\checkmark$
+  \item çift, $\tau=0$'da maks \ $\checkmark$
+\end{enumerate}
+
+\subsection{Otokorelasyon fonksiyonun yorumu}
+\sekilnotu[4]{Basılı slayt parçası (dijitalleştirilmedi): $R_X(\tau)$ hızlı azalıyorsa örneklerin ilişkisizleşmesi, yavaş azalıyorsa yüksek ilişkili olması; $R_{X_1}(\tau)$ (dar tepe) ve $R_{X_2}(\tau)$ (geniş tepe) grafikleri.}
+
+\sayfa{5}
+\section{Ders 12 devamı}
+\subsection{Güç spektral yoğunluğu}
+Geniş anlamda durağan bir rasgele süreç $X(t)$'nin güç spektral yoğunluğu $R_X(\tau)$'nun Fourier dönüşümüdür.
+\[ S_X(f)=\int_{-\infty}^{\infty}R_X(\tau)\,e^{-j2\pi f\tau}\,d\tau \]
+Ayrık zamanlı bir sürecin $X[n]$, otokorelasyon fonksiyonu aşağıdaki gibi tanımlanır
+\[ R_X[k]=E\big[X[n+k]\,X[n]\big] \]
+ve güç spektral yoğunluğu $R_X[k]$'nın ayrık-zamanlı Fourier dönüşümüdür.
+\[ S_X(e^{j\omega})=\sum_{k=-\infty}^{\infty}R_X[k]\,e^{-j\omega k},\qquad -\pi<\omega<\pi \]
+ters fourier dönüşümü ise
+\begin{gather*}
+  R_X(\tau)=\int_{-\infty}^{\infty}S_X(f)\,e^{j2\pi f\tau}\,df\\
+  R_X[k]=\int_{-\pi}^{\pi}S_X(e^{j\omega})\,e^{j\omega k}\,d\omega
+\end{gather*}
+\textbf{Özellikleri}
+\sekilnotu[5]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Güç spektral yoğunluğunun özellikleri slaytı ve ``Ders 12'' etiketli iki örnek grafik slaytı: $R_X(\tau)=e^{-\alpha|\tau|}$ ve $R_X(\tau)=\frac{\alpha^2}{2}\cos\omega\tau$ için $R_X$ ve $S_X(f)$ grafikleri; yalnızca el yazısı kısımlar aktarıldı.)}
+\begin{ornek}
+  \begin{align*}
+    S_X(f) &= \int_{-\infty}^{\infty}e^{-\alpha|\tau|}\,e^{-j2\pi f\tau}\,d\tau\\
+    &= \int_{-\infty}^{0}e^{\alpha\tau}\,e^{-j2\pi f\tau}\,d\tau+\int_{0}^{\infty}e^{-\alpha\tau}\,e^{-j2\pi f\tau}\,d\tau\\
+    &= \int_{-\infty}^{0}e^{(\alpha-j2\pi f)\tau}\,d\tau+\int_{0}^{\infty}e^{-(\alpha+j2\pi f)\tau}\,d\tau\\
+    &= \frac{1}{\alpha-j2\pi f}\,e^{(\alpha-j2\pi f)\tau}\Big|_{-\infty}^{0}-\frac{1}{\alpha+j2\pi f}\,e^{-(\alpha+j2\pi f)\tau}\Big|_{0}^{\infty}\\
+    &= \frac{1-0}{\alpha-j2\pi f}-\frac{0-1}{\alpha+j2\pi f}=\frac{1}{\alpha-j2\pi f}+\frac{1}{\alpha+j2\pi f}\\
+    S_X(f) &= \frac{2\alpha}{\alpha^2+(2\pi f)^2}
+  \end{align*}
+\end{ornek}
+
+\sekilnotu[5]{Basılı slayt parçası (dijitalleştirilmedi): $R_X[k]=2^{-|k|}$ dizisi ve $S_X(e^{j\omega})=\frac{3}{5-4\cos\omega}$ grafikleri.}
+\begin{align*}
+  S_X(e^{j\omega}) &= \sum_{k=-\infty}^{\infty}R_X[k]\,e^{-j\omega k}=\sum_{k=-\infty}^{\infty}2^{-|k|}\,e^{-j\omega k}\\
+  &= \sum_{k=0}^{\infty}\Big(\frac{1}{2}\Big)^{k}e^{-j\omega k}+\sum_{k=-\infty}^{-1}\Big(\frac{1}{2}\Big)^{-k}e^{-j\omega k}
+\end{align*}
+İkinci toplamda $m=-k$ dönüşümü yapılsın
+\begin{align*}
+  S_X(e^{j\omega}) &= \sum_{k=0}^{\infty}\Big(\frac{1}{2}e^{-j\omega}\Big)^{k}+\sum_{m=1}^{\infty}\Big(\frac{1}{2}e^{j\omega}\Big)^{m}\\
+  &= \frac{1}{1-\frac{1}{2}e^{-j\omega}}+\left(\frac{1}{1-\frac{1}{2}e^{j\omega}}-1\right)\\
+  &= \frac{1}{1-\frac{1}{2}e^{-j\omega}}+\left(\frac{1}{1-\frac{1}{2}e^{j\omega}}-1\right)\\
+  &= \frac{1}{1-\frac{1}{2}e^{-j\omega}}+\frac{\frac{1}{2}e^{j\omega}}{1-\frac{1}{2}e^{j\omega}}\\
+  &= \frac{1-\frac{1}{2}e^{j\omega}+\left(1-\frac{1}{2}e^{-j\omega}\right)\frac{1}{2}e^{j\omega}}{\left(1-\frac{1}{2}e^{-j\omega}\right)\left(1-\frac{1}{2}e^{j\omega}\right)}\\
+  &= \frac{1-\frac{1}{4}}{1-\cos\omega+\frac{1}{4}}=\frac{3}{5-4\cos\omega}
+\end{align*}
+
+\subsection{Beyaz gürültü süreci}
+\sekilnotu[5]{Basılı slayt parçası (dijitalleştirilmedi): beyaz gürültü süreci için $R_X(\tau)=\frac{N}{2}\delta(\tau)$ ve $S_X(f)=\frac{N}{2}$ grafikleri, açıklayıcı maddeler ve beyaz Gauss gürültü süreci (WGN) tanımı. El yazısı not: $S_W(f)=\frac{N}{2}$ ifadesinden okla ``Sürecin gücü''.}
+
+\subsection{Isıl gürültü}
+\sekilnotu[5]{Basılı slayt parçası (dijitalleştirilmedi): $R$ direncindeki ısıl gürültünün, $S_V(f)=2kTR$ güç spektral yoğunluklu beyaz Gauss gürültülü $V(t)$ gerilim kaynağıyla modellenmesi ve devre şeması.}
+\sekilnotu[5]{Basılı slayt parçası (dijitalleştirilmedi): ``Ortak olarak geniş anlamda durağan rasgele süreçler'' -- çapraz-korelasyon $R_{XY}(\tau)$, özelliği $R_{XY}(\tau)=R_{YX}(-\tau)$ ve çapraz-güç spektral yoğunluğu $S_{XY}(f)=\mathcal{F}\{R_{XY}(\tau)\}$. El yazısı eklemeler: $R_{XY}(t_1,t_2)=R_{XY}(t_1+\tau,t_2+\tau)$ ifadesinin sonuna ``$=E[X(t_1)\,Y(t_2)]$'' ve $R_{XY}(\tau)=R_{YX}(-\tau)$ yanına ``$X$ ve $Y$'nin yeri önemlidir.''}
+\begin{ornek}
+  $X(t)=\alpha\cos(\omega t+\Theta)$ ve $Y(t)=\alpha\sin(\omega t+\Theta)$
+  \begin{align*}
+    R_{XY}(t_1,t_2) &= E\big[\alpha^2\cos(\omega t_1+\Theta)\sin(\omega t_2+\Theta)\big]\\
+    &= \frac{\alpha^2}{4\pi}\int_{0}^{2\pi}\Big[\sin\big(\omega(t_1+t_2)+2\Theta\big)-\sin\big(\omega(t_1-t_2)\big)\Big]d\Theta\\
+    &= -\frac{\alpha^2}{2}\sin\big(\omega(t_1-t_2)\big)
+  \end{align*}
+\end{ornek}
+
+\subsection{Doğrusal zamanla-değişmeyen sistemlerin geniş anlamda durağan süreçlere yanıtı}
+$h(t)$ : birim dürtü yanıtı
+
+$H(f)=\Fou{h(t)}$ : frekans yanıtı
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, murekkep, >=Stealth]
+  \node (x) at (0,0) {$X(t)$};
+  \node[draw, minimum width=1.9cm, minimum height=0.9cm] (h) at (3.4,0) {$h(t)$};
+  \node (y) at (6.8,0) {$Y(t)$};
+  \draw[->] (x) -- (h);
+  \draw[->] (h) -- (y);
+\end{tikzpicture}
+\end{center}
+Sistemin çıkışı konvolüsyon ile bulunur
+\begin{align*}
+  Y(t) &= X(t)*h(t)=\int_{-\infty}^{\infty}X(\tau)\,h(t-\tau)\,d\tau\\
+  &= \int_{-\infty}^{\infty}X(t-\tau)\,h(\tau)\,d\tau
+\end{align*}
+\begin{align*}
+  R_{YX}(\tau) &= E\big[Y(\overbrace{t+\tau}^{t_1})\,X(t)\big]\\
+  &= E\left[\int_{-\infty}^{\infty}h(u)\,X(t+\tau-u)\,X(t)\,du\right]\\
+  &= \int_{-\infty}^{\infty}h(u)\,E\big[X(t+\tau-u)\,X(t)\big]\,du\\
+  &= \int_{-\infty}^{\infty}h(u)\,R_X(\tau-u)\,du
+\end{align*}
+\[ R_{YX}(\tau)=h(\tau)*R_X(\tau) \]
+$Y(t)$'nin ortalaması
+\[ E[Y(t)]=E[X(t)]\,H(0) \]
+$Y(t)$'nin otokorelasyonu:
+\begin{align*}
+  R_Y(\tau) &= E[Y(t+\tau)\,Y(t)]\\
+  &= h(-t)*R_{YX}(\tau)\\
+  &= h(-t)*h(\tau)*R_X(\tau)
+\end{align*}
+$Y(t)$'nin güç spektral yoğunluğu
+\[ S_Y(f)=\Fou{R_Y(\tau)} \]
+\[ S_Y(f)=|H(f)|^2\,S_X(f) \]
+
+% Sayfa 6: bos (sadece cizgili kagit), aktarilmadi.
+\end{document}

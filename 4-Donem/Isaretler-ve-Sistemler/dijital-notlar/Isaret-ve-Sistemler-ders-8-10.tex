@@ -1,0 +1,601 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{İşaretler ve Sistemler}{Ders 8--10 -- Sürekli zamanlı Fourier dönüşümü}{Isaret-ve-Sistemler-ders-8-10.pdf}
+
+\section{Sürekli Zamanlı Fourier Transformu (Dönüşümü)}
+\sayfa{1}
+(Continuous-Time Fourier Transform)
+
+Periyodik olmayan (aperiyodik) işaretler için Fourier dönüşümü tanımlıdır.
+\[ X(f)=\Fou{x(t)}=\int_{-\infty}^{\infty} x(t)\,e^{-j2\pi ft}\,dt \]
+\[ x(t)=\iFou{X(f)}=\int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,df \]
+\[ x(t)\ \underset{\mathcal{F}^{-1}}{\overset{\mathcal{F}}{\rightleftarrows}}\ X(f) \]
+$\Rightarrow$ $\omega$ notasyonu:
+\[ X(\omega)=\int_{-\infty}^{\infty} x(t)\,e^{-j\omega t}\,dt \]
+\[ x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)\,e^{j\omega t}\,d\omega, \qquad \omega=2\pi f=2\pi/T \]
+
+$\Rightarrow$ Periyodik olmayan bir işaretin belli bir $T_0$ aralığında Fourier serisi açılımında $T_0$ sonsuza götürüldüğünde ($T_0\to\infty$) Fourier transformu elde edilir.
+\begin{center}
+\begin{tikzpicture}[x=0.6cm,y=0.8cm,murekkep]
+  \draw[->] (-3,0) -- (3,0) node[right] {$t$};
+  \draw[->] (0,-0.2) -- (0,1.6) node[right] {$x(t)$};
+  \draw[thick] (-1,0) -- (-1,1) -- (1,1) -- (1,0);
+  \node[font=\scriptsize,below] at (-1,0) {$-T_1$};
+  \node[font=\scriptsize,below] at (1,0) {$T_1$};
+\end{tikzpicture}
+
+\begin{tikzpicture}[x=0.6cm,y=0.8cm,murekkep]
+  \draw[->] (-8.5,0) -- (8.5,0) node[right] {$t$};
+  \draw[->] (0,-0.2) -- (0,1.6) node[right] {$x_{T_0}(t)$};
+  \foreach \c in {-6,0,6} {\draw[thick] (\c-1,0) -- (\c-1,1) -- (\c+1,1) -- (\c+1,0);}
+  \node at (-8.2,0.4) {$\cdots$}; \node at (8.1,0.4) {$\cdots$};
+  \draw (-6,0.08) -- (-6,-0.08); \draw (6,0.08) -- (6,-0.08);
+  \node[font=\scriptsize,below] at (-6,0) {$-T_0$};
+  \node[font=\scriptsize,below] at (-1,0) {$-T_1$};
+  \node[font=\scriptsize,below] at (1,0) {$T_1$};
+  \node[font=\scriptsize,below] at (6,0) {$T_0$};
+\end{tikzpicture}
+\end{center}
+$T_0\to\infty$ iken $x_{T_0}(t)=x(t)$ dır (herhangi bir sonlu $t$ değeri için)
+\[ \lim_{T_0\to\infty} x_{T_0}(t)=x(t) \]
+\[ x_{T_0}(t)=\sum_{k=-\infty}^{\infty} x_k\,e^{jk\omega_0 t}, \qquad \omega_0=2\pi f_0=\frac{2\pi}{T_0} \]
+\[ x_k=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2} x_{T_0}(t)\,e^{-jk\omega_0 t}\,dt
+\underset{\substack{\uparrow\\ x(t)=\left\{\begin{smallmatrix} x_{T_0}(t), & |t|<T_0/2\\ 0, & |t|>T_0/2\end{smallmatrix}\right.}}{=}
+\frac{1}{T_0}\int_{-T_0/2}^{T_0/2} x(t)\,e^{-jk\omega_0 t}\,dt
+\underset{\substack{\uparrow\\ T_0\to\infty}}{=}
+\frac{1}{T_0}\int_{-\infty}^{\infty} x(t)\,e^{-jk\omega_0 t}\,dt \]
+
+\sayfa{2}
+\noindent
+\begin{minipage}[t]{0.47\linewidth}
+\[ X(f)=\int_{-\infty}^{\infty} x(t)\,e^{-j2\pi ft}\,dt \]
+\[ x_k=\frac{1}{T_0}X(kf_0) \]
+\[ x_{T_0}(t)=\sum_{k=-\infty}^{\infty}\frac{1}{T_0}X(kf_0)\,e^{j2\pi kf_0t} \]
+\[ \Delta f=\frac{1}{T_0} \]
+\[ x_{T_0}(t)=\sum_{k=-\infty}^{\infty} X(k\Delta f)\,e^{j2\pi k\Delta ft}\,\Delta f \]
+\begin{align*}
+x(t) &= \lim_{T_0\to\infty} x_{T_0}(t)\\
+&= \underbrace{\lim_{\Delta f\to0}\sum_{k=-\infty}^{\infty} X(k\Delta f)\,e^{j2\pi k\Delta ft}\,\Delta f}_{X(f)e^{j2\pi ft}\text{'nin altında kalan alan}}
+\end{align*}
+\[ x(t)=\int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,df \]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.06\linewidth}
+\vspace{18mm}\centering
+{\color{kirmizikalem}\fbox{\scriptsize$\begin{array}{@{}c@{}}df=1/T_0\\=f_0\end{array}$}}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.44\linewidth}
+\[ X(\omega)=\int_{-\infty}^{\infty} x(t)\,e^{-j\omega t} \]
+\[ x_k=\frac{1}{T_0}X(k\omega_0) \]
+\[ x_{T_0}(t)=\sum_{k=-\infty}^{\infty}\frac{1}{T_0}X(k\omega_0)\,e^{jk\omega_0t} \]
+\[ \Delta\omega=\frac{2\pi}{T_0} \]
+\[ x_{T_0}(t)=\frac{1}{2\pi}\sum_{k=-\infty}^{\infty} X(k\Delta\omega)\,e^{jk\Delta\omega t}\,\Delta\omega \]
+\[ x(t)=\underbrace{\lim_{\Delta\omega\to0}\frac{1}{2\pi}\sum_{k=-\infty}^{\infty} X(k\Delta\omega)\,e^{jk\Delta\omega t}\,\Delta\omega}_{X(\omega)e^{j\omega t}} \]
+\[ x(t)=\int_{-\infty}^{\infty} X(\omega)\,e^{j\omega t}\,d\omega\quad\text{\footnotemark} \]
+\end{minipage}
+\footnotetext{Claude notu: muhtemelen önünde $\frac{1}{2\pi}$ olmalı: $x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)e^{j\omega t}d\omega$.}
+
+\medskip
+$\Rightarrow$ Fourier dönüşümünün mevcut olma koşulları (Dirichlet condition)
+\begin{enumerate}[label=\arabic*)]
+\item Aperyodik $x(t)$ işareti mutlak integrallenebilir olmalıdır, \ $\displaystyle\int_{-\infty}^{\infty} |x(t)|\,dt<\infty$
+\item Herhangi bir sonlu $t$ aralığında,
+  \begin{itemize}[label=--]
+  \item sonlu sayıda maksimum ve minimum değere sahip olmalıdır.
+  \item sonlu sayıda süreksizliğe ve bu noktalarda sonlu değere sahip olmalıdır.
+  \end{itemize}
+\end{enumerate}
+
+$\Rightarrow$ Frekans spektrumları:
+\[ X(f)=|X(f)|\,e^{j\theta_x(f)} \;\longrightarrow\;
+\begin{aligned}[t] &|X(f)|:\ \text{genlik spektrumu}\\ &\hookrightarrow \theta_x(f):\ \text{faz spektrumu}\end{aligned} \]
+
+\begin{ornek}
+Ex: $x(t)=e^{-at}u(t)$, \ $a>0$ ise $X(f)=\,?$ \ Frekans spektrumlarını çiziniz.
+\end{ornek}
+\[ X(f)=\int_{-\infty}^{\infty} x(t)\,e^{-j2\pi ft}\,dt=\int_{0}^{\infty} e^{-at}\cdot e^{-j2\pi ft}\,dt=\int_{0}^{\infty} e^{-(a+j2\pi f)t}\,dt=\left.\frac{e^{-(a+j2\pi f)t}}{-(a+j2\pi f)}\right|_0^{\infty}=\frac{1}{a+j2\pi f}=\frac{1}{a+j\omega} \]
+\[ |X(f)|=\frac{1}{\sqrt{a^2+(2\pi f)^2}} \]
+\[ \theta_x(f)=-\tan^{-1}(2\pi f/a) \]
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=6.4cm,height=4.2cm,axis lines=middle,xmin=-0.5,xmax=0.55,ymin=0,ymax=1.3,
+    xtick=\empty,ytick={1},yticklabels={$1/a$},xlabel={$f$},ylabel={$|X(f)|$},
+    every axis x label/.style={at={(current axis.right of origin)},anchor=west},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south}]
+  \addplot[domain=-0.5:0.5,samples=80,smooth,thick,murekkep] {1/sqrt(1+(2*pi*x)^2)};
+\end{axis}
+\end{tikzpicture}\hspace{1cm}
+\begin{tikzpicture}
+\begin{axis}[width=6.4cm,height=4.6cm,axis lines=middle,xmin=-1,xmax=1.1,ymin=-1.3,ymax=1.4,
+    xtick=\empty,ytick={-1,1},yticklabels={$-\pi/2$,$\pi/2$},ylabel={$\theta_x(f)$},
+    every axis y label/.style={at={(current axis.above origin)},anchor=south}]
+  \addplot[domain=-1:1,samples=80,smooth,thick,murekkep] {-atan(2*pi*x)/90};
+  \addplot[dashed,kursunkalem,domain=-1:1] {1};
+  \addplot[dashed,kursunkalem,domain=-1:1] {-1};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\sayfa{3}
+\begin{ornek}
+Ex: $x(t)=e^{-a|t|}$, \ $a>0$ ise $X(f)=\,?$
+\end{ornek}
+\begin{align*}
+X(f) &= \int_{-\infty}^{\infty} x(t)\,e^{-j2\pi ft}\,dt
+\underset{\substack{\uparrow\\ x(t)=\left\{\begin{smallmatrix} e^{at}, & t<0\\ e^{-at}, & t>0\end{smallmatrix}\right.}}{=}
+\int_{-\infty}^{0} e^{at}e^{-j2\pi ft}\,dt+\int_{0}^{\infty} e^{-at}e^{-j2\pi ft}\,dt\\
+&= \left.\frac{e^{(a-j2\pi f)t}}{(a-j2\pi f)}\right|_{-\infty}^{0}+\left.e^{-(a+j2\pi f)t}\right|_{0}^{\infty}
+=\frac{1}{a-j2\pi f}+\frac{1}{a+j2\pi f}=\frac{2a}{a^2+(2\pi f)^2}\quad\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: ikinci terimde $-(a+j2\pi f)$ paydası unutulmuş; sonuç doğru.}
+
+\noindent
+\begin{minipage}[c]{0.4\linewidth}
+\[ |X(f)|=\frac{2a}{a^2+(2\pi f)^2} \]
+\[ \theta_x(f)=0 \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.56\linewidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=7cm,height=4.2cm,xmin=-0.5,xmax=0.55,ymin=0,ymax=2.6,
+    xtick=\empty,ytick={2},yticklabels={$2/a$},xlabel={$f$},ylabel={$X(f)$}]
+  \addplot[domain=-0.5:0.5,samples=80,smooth,thick,murekkep] {2/(1+(2*pi*x)^2)};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}
+
+\begin{ornek}
+Ex: $x(t)=\begin{cases} 1, & |t|<\tau/2\\ 0, & \text{dışında}\end{cases}$ \quad dikdörtgen darbe işaretinin FT bulunuz.
+\end{ornek}
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.8cm,murekkep]
+  \draw[->] (-1.6,0) -- (1.8,0) node[right] {$t$};
+  \draw[->] (0,-0.1) -- (0,1.6) node[right] {$x(t)=\Pi\!\left(\frac{t}{\tau}\right)$};
+  \draw[thick] (-0.8,0) -- (-0.8,1) -- (0.8,1) -- (0.8,0);
+  \node[font=\scriptsize,above left] at (0,1) {$1$};
+  \node[font=\scriptsize,below] at (-0.8,0) {$-\tau/2$};
+  \node[font=\scriptsize,below] at (0.8,0) {$\tau/2$};
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+X(f) &= \int_{-\infty}^{\infty} x(t)\,e^{-j2\pi ft}\,dt=\int_{-\tau/2}^{\tau/2} e^{-j2\pi ft}\,dt=\left.\frac{e^{-j2\pi ft}}{-j2\pi f}\right|_{-\tau/2}^{\tau/2}\\
+&= \frac{-1}{j2\pi f}\left[e^{-j2\pi f\tau/2}-e^{+j2\pi f\tau/2}\right]=\frac{1}{\pi f}\sin(\pi f\tau)
+\end{align*}
+
+Reminder: \quad $\operatorname{sinc}(t)=\begin{cases} \dfrac{\sin(\pi t)}{\pi t}, & t\neq0\\[2mm] 1, & t=0\end{cases}$
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=8cm,height=4.4cm,xmin=-3.6,xmax=3.9,ymin=-0.35,ymax=1.25,
+    xtick={-3,-2,-1,1,2,3},ytick={1},xlabel={$t$},ylabel={$\operatorname{sinc}(t)$}]
+  \addplot[domain=-3.5:3.5,samples=200,smooth,thick,murekkep] {sin(deg(pi*x))/(pi*x)};
+  \addplot[only marks,mark=*,mark size=1.5pt,turuncukalem] coordinates {(0,1) (-3,0) (-2,0) (-1,0) (1,0) (2,0) (3,0)};
+  \node at (axis cs:-3.4,0.12) {$\cdots$}; \node at (axis cs:3.6,-0.12) {$\cdots$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\[ X(f)=\frac{1}{\pi f}\sin(\pi f\tau)=\tau\,\frac{\sin(\pi f\tau)}{\pi f\tau}=\tau\operatorname{sinc}(f\tau) \]
+
+\noindent
+\begin{minipage}[c]{0.58\linewidth}
+\centering
+\begin{tikzpicture}
+\begin{axis}[width=9.4cm,height=4.6cm,xmin=-4.4,xmax=4.7,ymin=-0.35,ymax=1.25,
+    xtick={-3,-2,-1,1,2,3,4},xticklabels={$-3/\tau$,$-2/\tau$,$-1/\tau$,$1/\tau$,$2/\tau$,$3/\tau$,$4/\tau$},
+    ytick=\empty,xlabel={$f$},ylabel={$X(f)$},tick label style={font=\scriptsize}]
+  \addplot[domain=-4.2:4.3,samples=200,smooth,thick,murekkep] {sin(deg(pi*x))/(pi*x)};
+  \node at (axis cs:-4.1,0.15) {$\cdots$}; \node at (axis cs:4.4,0.2) {$\cdots$};
+\end{axis}
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\linewidth}
+\centering
+$x(t)=\Pi\!\left(\dfrac{t}{\tau}\right) \xleftrightarrow{\ \mathcal{F}\ } X(f)=\tau\operatorname{sinc}(f\tau)$
+
+\smallskip
+\begin{tikzpicture}[x=1cm,y=0.7cm,murekkep]
+  \draw[->] (-1.4,0) -- (1.6,0) node[right] {$t$};
+  \draw[->] (0,-0.1) -- (0,1.6) node[right] {$x(t)$};
+  \draw[thick] (-0.7,0) -- (-0.7,1) -- (0.7,1) -- (0.7,0);
+  \node[font=\scriptsize,above left] at (0,1) {$1$};
+  \node[font=\scriptsize,below] at (-0.7,0) {$-\tau/2$};
+  \node[font=\scriptsize,below] at (0.7,0) {$\tau/2$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{ornek}
+Ex: $x(t)=\delta(t)$ ise $X(f)=\,?$
+\end{ornek}
+\[ X(f)=\int_{-\infty}^{\infty}\delta(t)\,e^{-j2\pi ft}\,dt=\int_{-\infty}^{\infty}\delta(t)\,e^{-j2\pi f\cdot 0}\,dt=\int_{-\infty}^{\infty}\delta(t)\,dt=1 \]
+\[ x(t)=\delta(t) \xleftrightarrow{\ \mathcal{F}\ } X(f)=1 \]
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.8cm,murekkep]
+  \draw[->] (-1.5,0) -- (1.8,0) node[right] {$t$};
+  \draw[->] (0,-0.1) -- (0,1.7) node[right] {$x(t)$};
+  \draw[->,very thick] (0,0) -- (0,1);
+  \node[font=\scriptsize,left] at (0,0.9) {$1$};
+\end{tikzpicture}
+\hspace{2cm}
+\begin{tikzpicture}[x=1cm,y=0.8cm,murekkep]
+  \draw[->] (-1.8,0) -- (1.8,0) node[right] {$f$};
+  \draw[->] (0,-0.1) -- (0,1.7) node[right] {$X(f)$};
+  \draw[thick] (-1.6,1) -- (1.6,1);
+  \node[font=\scriptsize,above right] at (0,1) {$1$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{4}
+\begin{ornek}
+Ex: $X(f)=\delta(f-f_0)$ ise $x(t)=\,?$
+\end{ornek}
+\[ x(t)=\int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,df=\int_{-\infty}^{\infty}\delta(f-f_0)\,e^{j2\pi ft}\,df=\int_{-\infty}^{\infty}\delta(f-f_0)\,e^{j2\pi f_0t}\,df=e^{j2\pi f_0t}\underbrace{\int_{-\infty}^{\infty}\delta(f-f_0)\,df}_{=1}=e^{j2\pi f_0t} \]
+\begin{ornek}
+Ex: $X(f)=\delta(f)$ ise $x(t)=\,?$
+\end{ornek}
+\[ x(t)=\int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,df=\int_{-\infty}^{\infty}\delta(f)\,e^{j2\pi ft}\,df=\int_{-\infty}^{\infty}\delta(f)\,e^{j2\pi 0t}\,df=\int_{-\infty}^{\infty}\delta(f)\,df=1 \]
+\begin{align*}
+\delta(t) &\xleftrightarrow{\ \mathcal{F}\ } 1\\
+1 &\xleftrightarrow{\ \mathcal{F}\ } \delta(f)\\
+e^{j2\pi f_0t} &\xleftrightarrow{\ \mathcal{F}\ } \delta(f-f_0)\\
+e^{-j2\pi f_0t} &\xleftrightarrow{\ \mathcal{F}\ } \delta(f+f_0)
+\end{align*}
+
+\section{Periyodik işaretlerin Fourier Dönüşümü}
+\[ x(t)=x(t+T),\ \forall t \qquad T=\frac{1}{f_0}=\frac{2\pi}{\omega_0} \]
+\[ x(t)=\sum_{k=-\infty}^{\infty} x_k\,e^{jk\omega_0t}\underset{\substack{\uparrow\\ \omega_0=2\pi f_0}}{=}\sum_{k=-\infty}^{\infty} x_k\,e^{j2\pi kf_0t}=\cdots+x_{-1}e^{-j2\pi f_0t}+x_0+x_1e^{j2\pi f_0t}+x_2e^{j2\pi 2f_0t}+\cdots \]
+\begin{align*}
+x_1e^{+j2\pi f_0t} &\xleftrightarrow{\ \mathcal{F}\ } x_1\,\delta(f-f_0)\\
+x_0 &\xleftrightarrow{\ \mathcal{F}\ } x_0\,\delta(f)\\
+x_2e^{j2\pi 2f_0t} &\xleftrightarrow{\ \mathcal{F}\ } x_2\,\delta(f-2f_0)
+\end{align*}
+\[ x(t)=\sum_{k=-\infty}^{\infty} x_k\,e^{j2\pi kf_0t} \xleftrightarrow{\ \mathcal{F}\ } X(f)=\sum_{k=-\infty}^{\infty} x_k\,\delta(f-kf_0) \]
+\[ x_k=\frac{1}{T_0}\int_{T_0} x(t)\,e^{-jk\omega_0t}\,dt \]
+
+\begin{ornek}
+Ex: $x(t)=\cos 2\pi f_0t$ ise $X(f)=\,?$
+\end{ornek}
+\[ x(t)=\frac{1}{2}\left[e^{j2\pi f_0t}+e^{-j2\pi f_0t}\right] \;\longrightarrow\; x_1=x_{-1}=1/2 \]
+\[ X(f)=\frac{1}{2}\delta(f-f_0)+\frac{1}{2}\delta(f+f_0) \]
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,murekkep]
+  \draw[->] (-2.2,0) -- (2.4,0) node[right] {$f$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[right] {$X(f)$};
+  \draw[->,very thick] (-1.2,0) -- (-1.2,0.8);
+  \draw[->,very thick] (1.2,0) -- (1.2,0.8);
+  \draw (-0.06,0.8) -- (0.06,0.8) node[right,font=\scriptsize] {$1/2$};
+  \node[font=\scriptsize,below] at (-1.2,0) {$-f_0$};
+  \node[font=\scriptsize,below] at (1.2,0) {$f_0$};
+\end{tikzpicture}
+\end{center}
+
+\begin{ornek}
+Ex: $x(t)=\sin 2\pi f_0t$
+\end{ornek}
+\[ \begin{aligned}
+x(t) &= \frac{1}{2j}\left[e^{j2\pi f_0t}-e^{-j2\pi f_0t}\right]\\
+X(f) &= \frac{1}{2j}\left[\delta(f-f_0)-\delta(f+f_0)\right]
+\end{aligned}
+\quad
+\begin{aligned}
+&\longrightarrow x_1=\frac{1}{2j}=\frac{-1}{2}j\\
+&\phantom{\longrightarrow\ } x_{-1}=-\frac{1}{2j}=\frac{1}{2}j
+\end{aligned}
+\ \left.\vphantom{\begin{aligned}a\\[4mm]a\end{aligned}}\right\}\quad
+\begin{aligned}
+&|x_1|=|x_{-1}|=1/2\\
+&\theta_{x_1}=-\pi/2 \quad \theta_{x_{-1}}=\pi/2
+\end{aligned} \]
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=1cm,murekkep,baseline=(current bounding box.center)]
+  \draw[->] (-2,0) -- (2.2,0) node[right] {$f$};
+  \draw[->] (0,-1.2) -- (0,1.4) node[right] {$X(f)$};
+  \draw[->,very thick] (1.1,0) -- (1.1,0.8) node[right,font=\scriptsize] {$1/2j$};
+  \draw[->,very thick] (-1.1,0) -- (-1.1,-0.8) node[right,font=\scriptsize] {$-1/2j$};
+  \node[font=\scriptsize,above] at (-1.1,0) {$-f_0$};
+  \node[font=\scriptsize,below] at (1.1,0) {$f_0$};
+\end{tikzpicture}
+\hspace{1.2cm}
+\begin{tikzpicture}[x=1cm,y=1cm,murekkep,baseline=(current bounding box.center)]
+  \begin{scope}[yshift=1.6cm]
+  \draw[->] (-2,0) -- (2.2,0) node[right] {$f$};
+  \draw[->] (0,-0.1) -- (0,1.3) node[right] {$|X(f)|$};
+  \draw[->,very thick] (-1.1,0) -- (-1.1,0.8);
+  \draw[->,very thick] (1.1,0) -- (1.1,0.8);
+  \draw (-0.06,0.8) -- (0.06,0.8) node[right,font=\scriptsize] {$1/2$};
+  \node[font=\scriptsize,below] at (-1.1,0) {$-f_0$};
+  \node[font=\scriptsize,below] at (1.1,0) {$f_0$};
+  \end{scope}
+  \begin{scope}[yshift=-0.6cm]
+  \draw[->] (-2,0) -- (2.2,0) node[right] {$f$};
+  \draw[->] (0,-1) -- (0,1.2) node[right] {$\theta_x(f)$};
+  \draw[very thick] (-1.1,0) -- (-1.1,0.8) node[left,font=\scriptsize] {$\pi/2$};
+  \draw[very thick] (1.1,0) -- (1.1,-0.8); \fill (1.1,-0.8) circle (1.5pt) node[right,font=\scriptsize] {$-\pi/2$};
+  \node[font=\scriptsize,below left] at (-1.1,0) {$-f_0$};
+  \node[font=\scriptsize,above] at (1.1,0) {$f_0$};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\sayfa{5}
+\begin{ornek}
+Ex: $x(t)=\displaystyle\sum_{k=-\infty}^{\infty}\delta(t-kT_0)$ dürtü katarı işaretinin FT bulunuz.
+\end{ornek}
+\noindent
+\begin{minipage}[c]{0.45\linewidth}
+\centering
+\begin{tikzpicture}[x=0.75cm,y=1cm,murekkep]
+  \draw[->] (-3,0) -- (3.2,0) node[right] {$t$};
+  \draw[->] (0,-0.1) -- (0,1.3) node[right] {$x(t)$};
+  \foreach \k in {-2,-1,0,1,2} {\draw[->,very thick] (\k,0) -- (\k,0.8);}
+  \node at (-2.7,0.5) {$\cdots$}; \node at (2.7,0.5) {$\cdots$};
+  \node[font=\scriptsize,below] at (-2,0) {$-2T_0$};
+  \node[font=\scriptsize,below] at (-1,0) {$-T_0$};
+  \node[font=\scriptsize,below] at (0,0) {$0$};
+  \node[font=\scriptsize,below] at (1,0) {$T_0$};
+  \node[font=\scriptsize,below] at (2,0) {$2T_0$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.53\linewidth}
+Reminder: \ $x_k=\dfrac{1}{T_0}\displaystyle\int_{T_0} x(t)\,e^{-jk\omega_0t}=\dfrac{1}{T_0}$
+\end{minipage}
+\[ X(f)=\sum_{k=-\infty}^{\infty} x_k\,\delta(f-kf_0)=\frac{1}{T_0}\sum_{k=-\infty}^{\infty}\delta(f-kf_0) \]
+\begin{center}
+\begin{tikzpicture}[x=0.75cm,y=1cm,murekkep]
+  \draw[->] (-3.4,0) -- (4,0) node[right] {$f$};
+  \draw[->] (0,-0.1) -- (0,1.3) node[right] {$X(f)$};
+  \foreach \k in {-2,-1,0,1,2,3} {\draw[->,very thick] (\k,0) -- (\k,0.8);}
+  \node at (-3,0.5) {$\cdots$}; \node at (3.6,0.5) {$\cdots$};
+  \node[font=\scriptsize,right] at (0,0.95) {$1/T_0$};
+  \node[font=\scriptsize,below] at (-1,0) {$-f_0$};
+  \node[font=\scriptsize,below] at (0,0) {$0$};
+  \node[font=\scriptsize,below] at (1,0) {$f_0$};
+  \node[font=\scriptsize,below] at (2,0) {$2f_0$};
+\end{tikzpicture}
+\end{center}
+
+\section{Sürekli Zamanlı Fourier Transformunun Özellikleri}
+\[ \begin{aligned} &x(t)\xleftrightarrow{\ \mathcal{F}\ } X(f)\\ &X(f)=\Fou{x(t)}\end{aligned} \qquad,\ x(t):\ \text{aperiyodik işaret} \]
+
+1) Lineerlik: \quad $\alpha x_1(t)+\beta x_2(t) \xleftrightarrow{\ \mathcal{F}\ } \alpha X_1(f)+\beta X_2(f)$
+
+2) Zamanda öteleme: \quad $x(t-t_0) \xleftrightarrow{\ \mathcal{F}\ } e^{-j2\pi ft_0}X(f)$
+\[ \Fou{x(t-t_0)}=\int_{-\infty}^{\infty} x(t-t_0)\,e^{-j2\pi ft}\,dt\underset{\substack{\uparrow\\ t-t_0=\tau}}{=}\int_{-\infty}^{\infty} x(\tau)\,e^{-j2\pi f(\tau+t_0)}\,d\tau=e^{-j2\pi ft_0}\underbrace{\int_{-\infty}^{\infty} x(\tau)\,e^{-j2\pi f\tau}\,d\tau}_{X(f)} \]
+Aperiyodik bir $x(t)$ işareti zamanda ötelendiğinde genlik spektrumu değişmez, faz spektrumu $-2\pi ft_0$ kadar ötelenir.
+
+3) Frekansta öteleme: \quad $x(t)\,e^{j2\pi f_0t} \xleftrightarrow{\ \mathcal{F}\ } X(f-f_0)$
+
+İspat:
+\[ \Fou{x(t)e^{j2\pi f_0t}}=\int_{-\infty}^{\infty} x(t)\,e^{j2\pi f_0t}\,e^{-j2\pi ft}\,dt=\int_{-\infty}^{\infty} x(t)\,e^{-j2\pi(f-f_0)t}\,dt=X(f-f_0) \]
+$x(t)$ işareti $e^{j2\pi f_0t}$ ile çarpıldığında frekans spektrumu $f_0$ kadar ötelenir.
+
+4) Modülasyon: \quad $x(t)\cos 2\pi f_0t \xleftrightarrow{\ \mathcal{F}\ } \dfrac{1}{2}\left[X(f-f_0)+X(f+f_0)\right]$
+\[ x(t)\sin 2\pi f_0t \xleftrightarrow{\ \mathcal{F}\ } \frac{1}{2j}\left[X(f-f_0)-X(f+f_0)\right]=\frac{1}{2}\left[X(f-f_0)\,e^{-j\pi/2}+X(f+f_0)\,e^{j\pi/2}\right] \]
+
+5) Zamanda ölçeklendirme: \quad $x(at) \xleftrightarrow{\ \mathcal{F}\ } \dfrac{1}{|a|}X(f/a)$, \ $a\neq0$
+\quad $\longrightarrow$ \begin{tabular}[t]{@{}l@{}} $a>1$ işaret frekansta (spektrum) genişler.\\ $0<a<1$ işaret frekansta daralır.\end{tabular}
+
+6) Duality: \quad $\begin{aligned}[t] x(t) &\xleftrightarrow{\ \mathcal{F}\ } X(f)\\ X(t) &\xleftrightarrow{\ \mathcal{F}\ } x(-f)\end{aligned}$
+
+İspat:
+\[ x(t)=\iFou{X(f)}=\int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,df \]
+\[ x(-t)=\int_{-\infty}^{\infty} X(f)\,e^{-j2\pi ft}\,df\ \underset{\substack{\uparrow\\ t\to f}}{\Rightarrow}\ x(-f)=\int_{-\infty}^{\infty} X(t)\,e^{-j2\pi ft}\,dt \]
+
+\sayfa{6}
+7) Türev alma: \quad $\dfrac{dx(t)}{dt} \xleftrightarrow{\ \mathcal{F}\ } j2\pi f\,X(f)$
+\[ \frac{d^nx(t)}{dt^n} \xleftrightarrow{\ \mathcal{F}\ } (j2\pi f)^n X(f) \]
+İspat:
+\begin{align*}
+\Fou{\frac{dx(t)}{dt}} &= \mathcal{F}\Bigl\{\frac{d}{dt}\Bigl[\underbrace{\int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,dt}_{x(t)=\iFou{X(f)}}\Bigr]\Bigr\}
+=\mathcal{F}\Bigl\{j2\pi f\underbrace{\int_{-\infty}^{\infty} X(f)\,e^{j2\pi ft}\,dt}_{x(t)}\Bigr\}\\
+&= j2\pi f\,\Fou{x(t)}=j2\pi f\,X(f)\quad\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: integrallerdeki $dt$ muhtemelen $df$ olmalı.}
+
+8) İntegral alma: \quad $\displaystyle\int_{-\infty}^{t} x(\tau)\,d\tau \xleftrightarrow{\ \mathcal{F}\ } \frac{X(f)}{j2\pi f}+\frac{1}{2}X(0)\,\delta(f)$
+
+9) Konvolüsyon: \quad $x_1(t)*x_2(t) \xleftrightarrow{\ \mathcal{F}\ } X_1(f)\cdot X_2(f)$
+
+10) Çarpma: \quad $x_1(t)\cdot x_2(t) \xleftrightarrow{\ \mathcal{F}\ } X_1(f)*X_2(f)$
+
+11) Eşlenik alma (conjugation): \quad $x^*(t) \xleftrightarrow{\ \mathcal{F}\ } X^*(-f)$
+
+$\Rightarrow$ $x(t)$ reel ise FT eşlenik simetriktir.
+\[ x(t)=x^*(t) \xleftrightarrow{\ \mathcal{F}\ } X(f)=X^*(-f) \]
+$\Rightarrow$ $x(t)$ reel ve çift ise FT reel ve çifttir.
+\[ \begin{aligned} x(t)&=x^*(t)\\ x(t)&=x(-t)\end{aligned} \ \xleftrightarrow{\ \mathcal{F}\ }\ \begin{aligned} X^*(f)&=X(f)\\ X(f)&=X(-f)\end{aligned} \]
+$\Rightarrow$ $x(t)$ reel ve tek ise FT sanal ve tektir.
+\[ \begin{aligned} x(t)&=x^*(t)\\ x(t)&=-x(-t)\end{aligned} \ \xleftrightarrow{\ \mathcal{F}\ }\ \begin{aligned} X^*(f)&=-X(f)\\ X(-f)&=-X(f)\end{aligned} \]
+
+\subsection{Parseval teoremi:}
+\[ E_x=\int_{-\infty}^{\infty} |x(t)|^2\,dt=\int_{-\infty}^{\infty} |X(f)|^2\,df \qquad\longleftarrow\ |X(f)|^2:\ \text{Enerji spektral yoğunluğu (energy spectral density)} \]
+İspat:
+\begin{align*}
+\int_{-\infty}^{\infty} |x(t)|^2\,dt &= \int_{-\infty}^{\infty} x(t)\,x^*(t)\,dt=\int_{-\infty}^{\infty} x(t)\left[\int_{-\infty}^{\infty} X^*(f)\,e^{-j2\pi ft}\,df\right]dt\\
+&= \int_{-\infty}^{\infty} X^*(f)\Bigl[\underbrace{\int_{-\infty}^{\infty} x(t)\,e^{-j2\pi ft}\,dt}_{X(f)}\Bigr]df\\
+&= \int_{-\infty}^{\infty} X^*(f)\,X(f)\,df=\int_{-\infty}^{\infty} |X(f)|^2\,df
+\end{align*}
+
+\begin{ornek}
+Ex: $x(t)=A\,\Pi(t/\tau) \xleftrightarrow{\ \mathcal{F}\ } X(f)=A\tau\operatorname{sinc}(f\tau)$ ise $x(t)=\operatorname{sinc}(t\tau)$ işaretinin $\text{FT}=\,?$
+\end{ornek}
+Reminder: \quad $\left.\begin{aligned} x(t)&\longleftrightarrow X(f)\\ X(f)&\longleftrightarrow x(-t)\end{aligned}\right\}$ Duality
+\[ x(t)=A\tau\operatorname{sinc}(t\tau) \xleftrightarrow{\ \mathcal{F}\ } X(f)=A\,\Pi(-f/\tau)\underset{\substack{\uparrow\\ \text{Çift fonksiyon}}}{=}A\,\Pi(f/\tau) \]
+\[ x(t)=\operatorname{sinc}(t\tau) \xleftrightarrow{\ \mathcal{F}\ } X(f)=\frac{1}{\tau}\,\Pi(f/\tau) \]
+
+\sayfa{7}
+\begin{ornek}
+Ex: $x(t)=\dfrac{2}{1+t^2}$ ise $X(\omega)=\,?$
+\end{ornek}
+Reminder: \quad $e^{-a|t|} \longleftrightarrow \dfrac{2a}{a^2+(\omega)^2}$
+\[ x(t)=e^{-|t|} \longleftrightarrow X(\omega)=\frac{2}{1+(\omega)^2} \]
+\[ x(t)=\frac{2}{1+t^2} \longleftrightarrow X(\omega)=e^{-|-\omega|}=e^{-|\omega|}\quad\text{\footnotemark} \]
+\footnotetext{Claude notu: $\omega$ notasyonunda dualite $X(t)\leftrightarrow 2\pi\,x(-\omega)$ verir; muhtemelen $X(\omega)=2\pi e^{-|\omega|}$ olmalı (aşağıdaki $\pi e^{-2\pi|f|}$ sonucuyla da uyumlu).}
+
+\begin{ornek}
+Ex: $\Fou{u(t)}=\,?$
+\end{ornek}
+Reminder: \quad $u(t)=\displaystyle\int_{-\infty}^{t}\delta(\tau)\,d\tau$
+\[ \int_{-\infty}^{t} x(\tau)\,d\tau \xleftrightarrow{\ \mathcal{F}\ } \frac{X(f)}{j2\pi f}+\frac{1}{2}X(0)\,\delta(f) \]
+\[ \Fou{u(t)}\underset{\substack{\uparrow\\ x(t)=\delta(t)\\ X(f)=1}}{=}\frac{1}{j2\pi f}+\frac{1}{2}\delta(f) \]
+
+\begin{ornek}
+\underline{Ör}: \ $x(t)=\dfrac{1}{1+t^2}$ \qquad Find the Fourier Transform.
+\end{ornek}
+\[ e^{-\alpha|t|} \longrightarrow \frac{2\alpha}{\alpha^2+(2\pi f)^2}=\frac{2\alpha}{4\pi^2}\cdot\frac{1}{\frac{\alpha^2}{4\pi^2}+f^2} \]
+\[ \left.\begin{aligned} x(t)&\longrightarrow X(f)\\ X(t)&\longrightarrow x(-f)\end{aligned}\right\}\ \underline{\underline{\text{Duality}}} \]
+\noindent
+\begin{minipage}[t]{0.42\linewidth}
+\[ X(t)=\frac{1}{1+t^2} \xrightarrow{\ \mathcal{F}\ } x(-f) \]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.56\linewidth}
+\[ \frac{2\alpha}{4\pi^2}\,\frac{1}{\frac{\alpha^2}{4\pi^2}+t^2} \xrightarrow{\ \mathcal{F}\ } e^{-\alpha|-f|}=e^{-\alpha|f|} \]
+\[ \frac{1}{\frac{\alpha^2}{4\pi^2}+t^2} \longrightarrow \frac{4\pi^2}{2\alpha}\cdot e^{-\alpha|f|} \]
+\[ \frac{\alpha^2}{4\pi^2}=1 \qquad \alpha^2=4\pi^2 \;\longrightarrow\; \underline{\underline{\alpha=2\pi}} \]
+\end{minipage}
+\[ \frac{1}{1+t^2} \xrightarrow{\ \mathcal{F}\ } \pi\,e^{-2\pi|f|} \]
+
+\begin{ornek}
+Ex: \quad $x(t)=\operatorname{sgn}(t)=\begin{cases} 1, & t>0\\ 0, & t=0\\ -1, & t<0\end{cases}$ \quad ise $X(f)=\,?$
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.7cm,murekkep]
+  \draw[->] (-1.8,0) -- (2,0) node[right] {$t$};
+  \draw[->] (0,-1.4) -- (0,1.6) node[right] {$x(t)$};
+  \draw[line width=3pt,turuncukalem,opacity=0.6] (0,1) -- (1.4,1);
+  \draw[thick] (0,1) -- (1.6,1);
+  \draw[thick] (-1.6,-1) -- (0,-1);
+  \node[font=\scriptsize,left] at (0,1) {$1$};
+  \node[font=\scriptsize,right] at (0,-1) {$-1$};
+\end{tikzpicture}
+\end{center}
+\end{ornek}
+\[ x(t)=\operatorname{sgn}(t)=u(t)-u(-t) \]
+Reminder: \quad $x(at) \longleftrightarrow \dfrac{1}{|a|}X(f/a)$
+\begin{align*}
+\Fou{\operatorname{sgn}(t)} &= \frac{1}{j2\pi f}+\frac{1}{2}\delta(f)-\frac{1}{|-1|}\left[\frac{1}{j2\pi(-f)}+\frac{1}{2}\delta(-f)\right]\\
+&\underset{\substack{\uparrow\\ \delta(f)=\delta(-f)\\ \text{Çift fonksiyon}}}{=}\frac{1}{j2\pi f}+\frac{1}{2}\delta(f)+\frac{1}{j2\pi f}-\frac{1}{2}\delta(f)=\frac{1}{j\pi f}
+\end{align*}
+
+\sayfa{8}
+\begin{ornek}
+Ex: \quad $x(t)=\Lambda(t/\tau)$ üçgen işaretinin FT bulunuz.
+\begin{center}
+\begin{tikzpicture}[x=1.1cm,y=1cm,murekkep]
+  \draw[->] (-1.7,0) -- (1.9,0) node[right] {$t$};
+  \draw[->] (0,-0.1) -- (0,1.5) node[right] {$x(t)=\Lambda(t/\tau)$};
+  \draw[thick] (-1.2,0) -- (0,1) -- (1.2,0);
+  \node[font=\scriptsize,left] at (0,1) {$1$};
+  \node[font=\scriptsize,below] at (-1.2,0) {$-\tau$};
+  \node[font=\scriptsize,below] at (1.2,0) {$\tau$};
+\end{tikzpicture}
+\end{center}
+\end{ornek}
+\[ x(t)=\begin{cases} 1+\dfrac{t}{\tau}, & -\tau<t<0\\[3mm] 1-\dfrac{t}{\tau}, & 0<t<\tau\end{cases} \]
+\noindent
+\begin{minipage}[c]{0.55\linewidth}
+\[ y(t)=\frac{dx(t)}{dt}=\begin{cases} 1/\tau, & -\tau<t<0\\ -1/\tau, & 0<t<\tau\end{cases} \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.42\linewidth}
+\centering
+\begin{tikzpicture}[x=1.1cm,y=0.8cm,murekkep]
+  \draw[->] (-1.7,0) -- (1.9,0) node[right] {$t$};
+  \draw[->] (0,-1.4) -- (0,1.5) node[right] {$y(t)$};
+  \draw[thick] (-1.2,0) -- (-1.2,1) -- (0,1) -- (0,-1) -- (1.2,-1) -- (1.2,0);
+  \node[font=\scriptsize,right] at (0,1) {$1/\tau$};
+  \node[font=\scriptsize,left] at (0,-1) {$-1/\tau$};
+  \node[font=\scriptsize,below] at (-1.2,0) {$-\tau$};
+  \node[font=\scriptsize,above] at (1.2,0) {$\tau$};
+\end{tikzpicture}
+\end{minipage}
+
+Reminder: \quad $\dfrac{dx(t)}{dt} \longleftrightarrow j2\pi f\,X(f) \;\Rightarrow\; Y(f)=j2\pi f\,X(f) \;\longrightarrow\; X(f)=\dfrac{1}{j2\pi f}\,Y(f)$
+
+\noindent
+\begin{minipage}[c]{0.68\linewidth}
+Reminder: \quad $z(t)=A\,\Pi(t/\tau) \xleftrightarrow{\ \mathcal{F}\ } Z(f)=A\tau\operatorname{sinc}(f\tau)$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.3\linewidth}
+\centering
+\begin{tikzpicture}[x=1cm,y=0.6cm,murekkep]
+  \draw[->] (-1.1,0) -- (1.3,0) node[right] {$t$};
+  \draw[->] (0,-0.1) -- (0,1.5);
+  \draw[thick] (-0.6,0) -- (-0.6,1) -- (0.6,1) -- (0.6,0);
+  \node[font=\scriptsize,above right] at (0,1) {$A$};
+  \node[font=\scriptsize,below] at (-0.6,0) {$-\tau/2$};
+  \node[font=\scriptsize,below] at (0.6,0) {$\tau/2$};
+\end{tikzpicture}
+\end{minipage}
+\[ A=1/\tau \;\longrightarrow\; z(t)=\frac{1}{\tau}\,\Pi(t/\tau) \longleftrightarrow Z(f)=\operatorname{sinc}(f\tau) \]
+\[ y(t)=z(t+\tau/2)-z(t-\tau/2) \]
+\[ Y(f)=Z(f)\,e^{j2\pi f\tau/2}-Z(f)\,e^{-j2\pi f\tau/2} \]
+\[ X(f)=\frac{1}{j2\pi f}\,Y(f)=\frac{1}{j2\pi f}\,Z(f)\left[e^{j\pi f\tau}-e^{-j\pi f\tau}\right]=\frac{Z(f)}{\pi f}\sin(\pi f\tau)=Z(f)\,\tau\operatorname{sinc}(f\tau)=\tau\operatorname{sinc}^2(f\tau) \]
+\[ x(t)\triangleq\Lambda(t/\tau) \xleftrightarrow{\ \mathcal{F}\ } X(f)\triangleq\tau\operatorname{sinc}^2(f\tau) \]
+
+\section{10. Hafta}
+\subsection{LTI Sistemlerin Frekans Domeni Analizi}
+\begin{center}
+\begin{tikzpicture}[murekkep]
+  \node[anchor=east] (in) at (0,0) {$x(t)$};
+  \node[draw,thick,minimum height=6mm] (b) at (1.3,0) {$h(t)$};
+  \node[anchor=west] (out) at (2.6,0) {$y(t)$};
+  \draw[->] (in) -- (b); \draw[->] (b) -- (out);
+\end{tikzpicture}
+\end{center}
+\[ y(t)=x(t)*\underset{\substack{\downarrow\\ \text{dürtü cevabı}\\ \text{(impulse response)}}}{h(t)} \xleftrightarrow{\ \mathcal{F}\ } Y(f)=X(f)\,\underset{\substack{\downarrow\\ \text{frekans cevabı}\\ \text{(frequency response)}}}{H(f)} \]
+\[ H(f)=|H(f)|\,e^{j\theta_h(f)} \;\longrightarrow\; \begin{aligned}[t] &|H(f)|:\ \text{genlik cevabı (amplitude response)}\\ &\hookrightarrow \theta_h(f):\ \text{faz cevabı (phase response)}\end{aligned} \]
+\[ |Y(f)|\,e^{j\theta_y(f)}=|X(f)|\,e^{j\theta_x(f)}\,|H(f)|\,e^{j\theta_h(f)} \;\longrightarrow\; \begin{aligned}[t] &|Y(f)|=|X(f)|\,|H(f)|\\ &\hookrightarrow \theta_y(f)=\theta_x(f)+\theta_h(f)\end{aligned} \]
+
+\sayfa{9}
+\begin{ornek}
+Ex: \quad $\begin{aligned} x(t)&=e^{-at}u(t),\ a>0\\ h(t)&=e^{-bt}u(t),\ b>0\end{aligned}$ \qquad ise $y(t)=\,?$
+\end{ornek}
+\[ y(t)=x(t)*h(t)=\mathcal{F}^{-1}\bigl\{Y(f)=X(f)H(f)\bigr\} \]
+Reminder: \quad $e^{-at}u(t) \xleftrightarrow{\ \mathcal{F}\ } \dfrac{1}{a+j2\pi f}$
+\[ Y(f)=\frac{1}{(a+j2\pi f)(b+j2\pi f)}=\frac{A}{a+j2\pi f}+\frac{B}{b+j2\pi f} \qquad\longleftarrow\ A=-B=\frac{1}{b-a} \]
+\[ Y(f)=\frac{1}{b-a}\left[\frac{1}{a+j2\pi f}-\frac{1}{b+j2\pi f}\right] \xleftrightarrow{\ \mathcal{F}^{-1}\ } y(t)=\frac{1}{b-a}\left(e^{-at}u(t)-e^{-bt}u(t)\right) \]
+
+\begin{ornek}
+Ex: $x(t)=h(t)=e^{-at}u(t)$, \ $a>0$ ise $y(t)=\,?$
+\end{ornek}
+\[ Y(f)=\left(\frac{1}{a+j2\pi f}\right)^2 \]
+Reminder: \quad $\begin{aligned}[t] e^{-at}u(t) &\xleftrightarrow{\ \mathcal{F}\ } \frac{1}{a+j2\pi f}\\ x_1(t)*x_2(t) &\xleftrightarrow{\ \mathcal{F}\ } X_1(f)\cdot X_2(f)\end{aligned}$
+\[ y(t)=\mathcal{F}^{-1}\bigl\{X(f)X(f)\bigr\}=x(t)*x(t)=e^{-at}u(t)*e^{-at}u(t) \]
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=1.6cm,murekkep]
+  \draw[->] (-0.8,0) -- (4.2,0) node[right] {$\tau$};
+  \draw[->] (0,-0.1) -- (0,1.3) node[right] {$x(\tau)=e^{-a\tau}u(\tau)$};
+  \draw[thick] (0,0) -- (0,1);
+  \draw[thick,domain=0:3.8,samples=50,smooth] plot (\x,{exp(-1.2*\x)});
+  \node[font=\scriptsize,left] at (0,1) {$1$};
+\end{tikzpicture}
+\hspace{1.5cm}
+\begin{tikzpicture}[x=0.9cm,y=1.6cm,murekkep]
+  \draw[->] (-2.8,0) -- (2.4,0) node[right] {$\tau$};
+  \draw[->] (0,-0.1) -- (0,1.3) node[right] {$x(t-\tau)$};
+  \draw[thick,domain=-2.6:0.8,samples=50,smooth] plot (\x,{exp(1.2*(\x-0.8))});
+  \draw[thick] (0.8,1) -- (0.8,0);
+  \node[font=\scriptsize,below] at (0.8,0) {$t=\tau$};
+\end{tikzpicture}
+\end{center}
+\[ y(t)=x(t)*x(t)=\int_{-\infty}^{\infty} e^{-a\tau}u(\tau)\,e^{-a(t-\tau)}u(t-\tau)\,d\tau=e^{-at}\int_{0}^{t} 1\,d\tau=t\,e^{-at}, \qquad t>0 \]
+\[ t\,e^{-at}u(t) \xleftrightarrow{\ \mathcal{F}\ } \frac{1}{(a+j2\pi f)^2} \]
+
+\begin{ornek}
+Ex: \quad $\begin{aligned} x(t)&=e^{-2t}u(t)\\ y(t)&=e^{-t}u(t)\end{aligned}$ \quad ise sistemin frekans cevabını ve dürtü cevabını bulunuz.
+\end{ornek}
+\[ Y(f)=X(f)H(f) \;\longrightarrow\; H(f)=\frac{Y(f)}{X(f)} \xleftrightarrow{\ \mathcal{F}^{-1}\ } h(t) \]
+\[ H(f)=\frac{\dfrac{1}{1+j2\pi f}}{\dfrac{1}{2+j2\pi f}}=\frac{2+j2\pi f}{1+j2\pi f}=1+\frac{1}{1+j2\pi f} \xleftrightarrow{\ \mathcal{F}^{-1}\ } h(t)=\delta(t)+e^{-t}u(t) \]
+Reminder: \quad $\begin{aligned}[t] 1 &\longleftrightarrow \delta(f)\\ \delta(t) &\longleftrightarrow 1\end{aligned}$
+
+\sayfa{10}
+\begin{ornek}
+Ex: \quad $\dfrac{d^2y(t)}{dt^2}+6\,\dfrac{dy(t)}{dt}+8y(t)=2x(t)$ \quad ile tanımlanan LTI sistemin dürtü cevabını bulunuz.
+\end{ornek}
+\[ (j2\pi f)^2\,Y(f)+6j2\pi f\,Y(f)+8Y(f)=2X(f) \]
+\begin{align*}
+H(f)=\frac{Y(f)}{X(f)} &= \frac{2}{-(2\pi f)^2+6j(2\pi f)+8}\underset{\substack{\uparrow\\ \omega=2\pi f}}{=}
+\underset{\substack{\begin{array}{cc} j\omega & 4\\ j\omega & 2\end{array}}}{\frac{2}{-\omega^2+6j\omega+8}}
+=\frac{2}{(j\omega+4)(j\omega+2)}=\frac{A}{j\omega+4}+\frac{B}{j\omega+2}\\
+&\hspace{9cm} A=-B=-1
+\end{align*}
+\[ H(f)=\frac{1}{j\omega+2}-\frac{1}{j\omega+4} \xleftrightarrow{\ \mathcal{F}^{-1}\ } h(t)=\left(e^{-2t}-e^{-4t}\right)u(t) \]
+
+\end{document}

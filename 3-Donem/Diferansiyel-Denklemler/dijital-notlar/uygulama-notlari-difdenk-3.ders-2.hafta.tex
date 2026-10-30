@@ -1,0 +1,239 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Diferansiyel Denklemler}{2. Hafta Uygulama (3. ders) -- Lineer, Bernoulli ve Riccati denklemleri}{difdenk-3.ders-2.hafta.pdf}
+
+\sayfa{1}
+\hfill\fbox{2. HAFTA}
+\section{Hatırlatma}
+\begin{itemize}[label=$\ast$]
+\item \underline{Lineer Denklemler}: \ $y' + a(x)y = b(x)$ şeklindeki denklem ``1. mertebeden lineer denklem'' olarak adlandırılır. İntegrasyon çarpanı yöntemi ile rahat bir şekilde çözülebilir. Verilen lineer denklem için,
+\[
+I(x) = e^{\int a(x)\,dx}
+\]
+fonksiyonuna integrasyon çarpanı denir. Denklemin her tarafını $I(x)$ ile çarparak diferansiyel denklem çözülür.
+\item \underline{Berneulli Denklemi}: \ $y' + a(x)y = b(x)y^{n}$, \ $n \neq 0,1$ ; $n \in \mathbb{R}$ şeklindeki denkleme ``Berneulli denklemi'' denir. Öncelikle, her tarafı $y^{-n}$ ile çarparak, daha sonra $z = y^{1-n}$ dönüşümü yaparak denklemi lineer denklem formuna dönüştürürüz.
+\item \underline{Riccati Denklemi}: \ $y' + a(x)y + b(x)y^2 = c(x)$ şeklindeki denkleme ``Riccati denklemi'' denir. Denklemin bir özel çözümü $y_1(x)$ biliniyorsa, $y = y_1(x) + z$ ; $z = z(x)$ dönüşümü ile denklem Berneulli denklemine indirgeniyor.
+\end{itemize}
+
+\section{Alıştırmalar}
+\begin{ornek}[1]
+$y' + 2xy = x^3$ denklemini çözünüz.
+\end{ornek}
+\begin{cozum}
+$a(x) = 2x$ ve $b(x) = x^3$ olmak üzere bu bir lineer denklemdir. Öncelikle integrasyon çarpanını bulmalıyız.
+\[
+I(x) = e^{\int 2x\,dx} = e^{2\int x\,dx} = e^{x^2}
+\]
+Şimdi, her tarafı $e^{x^2}$ ile çarpalım.
+\[
+\underbrace{e^{x^2}y' + 2xe^{x^2}y}_{} = e^{x^2}x^3 \Rightarrow \left(e^{x^2}\cdot y\right)' = e^{x^2}x^3 \Rightarrow e^{x^2}y = \int e^{x^2}x^3\,dx
+\]
+\[
+\underset{\substack{x^2=t\\ 2x\,dx=dt}}{\Rightarrow} e^{x^2}y = \frac12\int te^{t}\,dt
+\]
+\[
+\underset{\substack{\downarrow\\ \text{kısmi integrasyon}\\ t=u\,\Rightarrow\, dt=du\\ e^{t}dt=dv\,\Rightarrow\, v=e^{t}}}{\Rightarrow} 2e^{x^2}y = te^{t} - \int e^{t}\,dt \Rightarrow 2e^{x^2}y = x^2e^{x^2} - e^{x^2} + c
+\]
+\[
+\kutula{y = \frac{x^2-1}{2} + ce^{-x^2}, \quad c \in \mathbb{R}}
+\]
+\end{cozum}
+
+\sayfa{2}
+\begin{ornek}[2]
+$\dfrac{dy}{dx} + 3x^2y = x^2$, \ $y(0) = 2$ başlangıç-değer problemini çözünüz.
+\end{ornek}
+\begin{cozum}
+$a(x) = 3x^2$ ve $b(x) = x^2$ olmak üzere bu bir lineer denklemdir.
+Öncelikle integrasyon çarpanını bulmalıyız.
+\[
+I(x) = e^{\int 3x^2\,dx} = e^{x^3}
+\]
+Şimdi, her tarafı $e^{x^3}$ ile çarpalım.
+\[
+\underbrace{e^{x^3}y' + 3x^2e^{x^3}y}_{} = e^{x^3}x^2 \Rightarrow \left(e^{x^3}\cdot y\right)' = e^{x^3}\cdot x^2 \Rightarrow e^{x^3}y = \int e^{x^3}x^2\,dx
+\]
+\[
+\underset{\substack{x^3=t\\ 3x^2dx=dt}}{\Rightarrow} e^{x^3}y = \frac13\int e^{t}\,dt \Rightarrow e^{x^3}y = \frac13e^{x^3} + c \Rightarrow \kutula{y = \frac13 + ce^{-x^3}, \quad c \in \mathbb{R}}
+\]
+Şimdi, $y(0) = 2$ başlangıç koşulunu sağlayan çözümü bulalım.
+\[
+y(0) = 2 \Rightarrow 2 = \frac13 + c \Rightarrow c = \frac53 \Rightarrow \kutula{y = \frac13 + \frac53e^{-x^3}}
+\]
+\end{cozum}
+
+\begin{ornek}[3]
+$e^{x}\left(y - 3(e^{x}+1)^2\right)dx + (e^{x}+1)\,dy = 0$, \ $y(0) = 4$ başlangıç değer problemini çözünüz.
+\end{ornek}
+\begin{cozum}
+\[
+e^{x}\left(y - 3(e^{x}+1)^2\right) + (e^{x}+1)y' = 0 \Rightarrow \frac{e^{x}}{e^{x}+1}y - 3e^{x}(e^{x}+1) + y' = 0
+\]
+\[
+\rightarrow y' + \frac{e^{x}}{e^{x}+1}y = 3e^{x}(e^{x}+1)
+\]
+$a(x) = \dfrac{e^{x}}{e^{x}+1}$ ve $b(x) = 3e^{x}(e^{x}+1)$ olmak üzere bu bir lineer denklemdir.
+
+Öncelikle integrasyon çarpanını bulmalıyız.
+\[
+I(x) = e^{\int\frac{e^{x}}{e^{x}+1}dx} = e^{\ln(e^{x}+1)} = e^{x} + 1
+\]
+\sayfa{3}
+Şimdi, her tarafı $e^{x}+1$ ile çarpalım.
+\[
+\underbrace{(e^{x}+1)\cdot y' + e^{x}y}_{} = (e^{x}+1)^2\,3e^{x} \Rightarrow \left((e^{x}+1)y\right)' = 3e^{x}(e^{x}+1)^2
+\]
+\[
+\Rightarrow (e^{x}+1)y = 3\int e^{x}(e^{x}+1)^2\,dx \underset{\substack{\downarrow\\ e^{x}+1=u\\ e^{x}dx=du}}{=} (e^{x}+1)y = \frac{(e^{x}+1)^3}{3}\cdot 3 + c
+\]
+\[
+\Rightarrow \kutula{y = (e^{x}+1)^2 + c\,(e^{x}+1)^{-1}, \quad c \in \mathbb{R}}
+\]
+Şimdi, $y(0) = 4$ başlangıç koşulunu sağlayan çözümü bulalım.
+\[
+y(0) = 4 \Rightarrow 4 = (1+1)^2 + c\,(1+1)^{-1} \Rightarrow c = 0 \Rightarrow \kutula{y = (e^{x}+1)^2} \ /\!/
+\]
+\end{cozum}
+
+\begin{ornek}[4]
+$\dfrac{dr}{d\theta} + r\tan\theta = \cos^2\theta$, \ $r\!\left(\frac{\pi}{4}\right) = 1$ başlangıç-değer problemini çözünüz. \textbf{(ÖDEV)}
+\end{ornek}
+\begin{cozum}
+$a(\theta) = \tan\theta$ ve $b(\theta) = \cos^2\theta$ olmak üzere bu bir lineer denklemdir. Öncelikle integrasyon çarpanını bulmalıyız.
+\[
+I(\theta) = e^{\int\tan\theta\,d\theta} = e^{-\ln\cos\theta} = \frac{1}{\cos\theta}
+\]
+Şimdi, her tarafı $\dfrac{1}{\cos\theta}$ ile çarpalım.
+\[
+\underbrace{\frac{1}{\cos\theta}\cdot r' + \frac{1}{\cos\theta}\,r\tan\theta}_{} = \cos\theta \Rightarrow \left(\frac{1}{\cos\theta}\cdot r\right)' = \cos\theta \Rightarrow \frac{1}{\cos\theta}\cdot r = \int\cos\theta\,d\theta
+\]
+\[
+\Rightarrow \frac{1}{\cos\theta}\cdot r = \sin\theta + c \Rightarrow \kutula{r = \sin\theta\cos\theta + c\cos\theta} \quad c \in \mathbb{R}
+\]
+\[
+r\!\left(\frac{\pi}{4}\right) = 1 \Rightarrow 1 = \frac{\sqrt2}{2}\cdot\frac{\sqrt2}{2} + c\,\frac{\sqrt2}{2} \Rightarrow c = \frac{1}{\sqrt2} \Rightarrow r = \sin\theta\cos\theta + \frac{\cos\theta}{\sqrt2}
+\]
+\[
+\Rightarrow \kutula{2r = \sin2\theta + \sqrt2\cos\theta} \ /\!/
+\]
+\end{cozum}
+
+\sayfa{4}
+\begin{ornek}[5]
+$(\cos^2x - y\cos x)\,dx - (1 + \sin x)\,dy = 0$ denklemini çözünüz. \textbf{(ÖDEV)}
+
+\underline{İpucu}: \ $a(x) = \dfrac{\cos x}{1+\sin x}$, \ $I(x) = 1 + \sin x$ \qquad Cvp: $\kutula{2(1+\sin x)y = \sin x\cos x + x + c}$
+\end{ornek}
+
+\begin{ornek}[6]
+$\dfrac{dy}{dx} + \dfrac{y}{2x} = \dfrac{x}{y^3}$, \ $y(1) = 2$ başlangıç değer problemini çözünüz.
+\end{ornek}
+\begin{cozum}
+$y' + \dfrac{1}{2x}y = xy^{-3} \rightarrow$ Berneulli Denklemi
+
+Her tarafı $y^3$ ile çarpalım:
+\[
+y^3y' + \frac{1}{2x}y^4 = x
+\]
+Şimdi, $y^4 = z$ dönüşümü yapalım. \ $y^4 = z \Rightarrow 4y^3y' = z'$
+\[
+\frac{z'}{4} + \frac{1}{2x}z = x \Rightarrow z' + \frac{2}{x}z = 4x
+\]
+$a(x) = \dfrac{2}{x}$ ve $b(x) = 4x$ olmak üzere bu bir lineer denklemdir. Öncelikle integrasyon çarpanını bulalım.
+\[
+I(x) = e^{\int\frac{2}{x}dx} = e^{2\ln x} = x^2
+\]
+Her tarafı $x^2$ ile çarpalım
+\[
+\underbrace{x^2z' + 2xz}_{} = 4x^3 \Rightarrow \left(x^2z\right)' = 4x^3 \Rightarrow x^2z = \int 4x^3\,dx \Rightarrow
+\]
+\[
+\Rightarrow x^2z = x^4 + c \Rightarrow \kutula{z = x^2 + cx^{-2}, \ c \in \mathbb{R}} \Rightarrow \kutula{y^4 = x^2 + cx^{-2}, \ c \in \mathbb{R}}
+\]
+Şimdi, $y(1) = 2$ koşulunu sağlayan çözümü bulalım.
+\[
+y(1) = 2 \Rightarrow 16 = 1 + c \Rightarrow c = 15 \Rightarrow \kutula{y^4 = x^2 + 15x^{-2}} \ /\!/
+\]
+\end{cozum}
+
+\sayfa{5}
+\begin{ornek}[7]
+$y' + xy = xy^2$ denklemini çözünüz.
+\end{ornek}
+\begin{cozum}
+Bu bir Berneulli denklemidir. Öncelikle her tarafı $y^{-2}$ ile çarpalım.
+\[
+y^{-2}y' + xy^{-1} = x
+\]
+Şimdi, $z = y^{-1}$ dönüşümü yapalım. \ $z = y^{-1} \Rightarrow z' = -y'y^{-2}$
+\[
+-z' + xz = x \Rightarrow z' - xz = -x
+\]
+$a(x) = -x$ ve $b(x) = -x$ olmak üzere bu bir lineer denklemdir. Öncelikle integrasyon çarpanını bulalım.
+\[
+I(x) = e^{-\int x\,dx} = e^{-\frac{x^2}{2}}
+\]
+Şimdi, her tarafı $e^{-\frac{x^2}{2}}$ ile çarpalım.
+\[
+\underbrace{e^{-\frac{x^2}{2}}z' - e^{-\frac{x^2}{2}}xz}_{} = -x\cdot e^{-\frac{x^2}{2}} \Rightarrow \left(e^{-\frac{x^2}{2}}\cdot z\right)' = -xe^{-\frac{x^2}{2}}
+\]
+\[
+\Rightarrow e^{-\frac{x^2}{2}}z = \int -xe^{-\frac{x^2}{2}}\,dx \underset{-\frac{x^2}{2}=u\,\Rightarrow\, -x\,dx=du}{\Rightarrow} e^{-\frac{x^2}{2}}z = e^{-\frac{x^2}{2}} + c \Rightarrow \kutula{z = 1 + ce^{\frac{x^2}{2}}} \quad c \in \mathbb{R}
+\]
+\[
+\Rightarrow \kutula{\frac1y = 1 + ce^{\frac{x^2}{2}} \quad c \in \mathbb{R}} \quad \text{ve} \quad \kutula{y = 0}
+\]
+\end{cozum}
+
+\begin{ornek}[8]
+$x^2\dfrac{dy}{dx} + xy = \dfrac{y^3}{x}$, \ $y(1) = 1$ başlangıç değer problemini çözünüz. \textbf{(ÖDEV)} \qquad Cvp: $\kutula{y^2 = x^2}$
+\end{ornek}
+
+\begin{ornek}[9]
+$\dfrac{dy}{dx} + y^2 - y = 2$ diferansiyel denkleminin bir özel çözümü $y_1(x) = 2$ olduğu biliniyor. Diferansiyel denklemi çözünüz.
+\end{ornek}
+\begin{cozum}
+Bu bir Riccati denklemidir ve $y = 2 + z$ dönüşümü yapılır.
+\sayfa{6}
+\[
+y = 2 + z \Rightarrow y' = z'
+\]
+\[
+\Rightarrow z' + (2+z)^2 - (2+z) = 2 \Rightarrow z' + 4 + 4z + z^2 - 2 - z = 2
+\]
+\[
+\Rightarrow z' + z^2 + 3z = 0 \Rightarrow z' + 3z = -z^2
+\]
+Her tarafı $z^{-2}$ ile çarpalım.
+\[
+z'z^{-2} + 3z^{-1} = -1
+\]
+Şimdi, $z^{-1} = u$ dönüşümü yapalım. \ $u = z^{-1} \Rightarrow u' = -z^{-2}z'$
+\[
+-u' + 3u = -1 \Rightarrow u' - 3u = 1
+\]
+$a(x) = -3$ ve $b(x) = 1$ olmak üzere bu bir lineer denklemdir.
+
+Öncelikle integrasyon sabitini bulalım.
+\[
+I(x) = e^{\int -3\,dx} = e^{-3x}
+\]
+Şimdi, her tarafı $e^{-3x}$ ile çarpalım.
+\[
+\underbrace{e^{-3x}u' - 3ue^{-3x}}_{} = e^{-3x} \Rightarrow \left(e^{-3x}\cdot u\right)' = e^{-3x} \Rightarrow e^{-3x}\cdot u = \int e^{-3x}\,dx
+\]
+\[
+\Rightarrow e^{-3x}\cdot u = -\frac{e^{-3x}}{3} + c \Rightarrow u = -\frac13 + ce^{3x}
+\]
+\[
+\underset{u=\frac1z}{\Rightarrow} \frac1z = -\frac13 + c_1e^{3x} \underset{\substack{\downarrow\\ 3c_1=c}}{\Rightarrow} z = \frac{3}{ce^{3x}-1} \underset{z=y-2}{\Rightarrow} \kutula{y = \frac{3}{ce^{3x}-1} + 2 \quad c \in \mathbb{R}}
+\]
+Kaybolan çözüm: \ $z = 0 \Rightarrow y - 2 = 0 \Rightarrow \kutula{y = 2}$
+\end{cozum}
+
+\begin{ornek}[10]
+$y' = (1-x)y^2 + (2x-1)y - x$ denkleminin bir özel çözümü $f(x) = 1$ dir. Bu denklemi çözünüz. \textbf{(ÖDEV)}
+\end{ornek}
+
+\end{document}

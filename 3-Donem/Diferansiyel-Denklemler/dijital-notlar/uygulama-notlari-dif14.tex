@@ -1,0 +1,235 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Diferansiyel Denklemler}{13. Hafta Uygulama -- Diferansiyel denklem sistemleri}{dif14.pdf}
+
+\sayfa{1}
+\hfill\fbox{13. HAFTA}
+\section{Hatırlatma}
+\begin{itemize}[label=$\ast$]
+\item Serbest değişken, $y_1 = y_1(x)$ , $y_2 = y_2(x)$ , $\ldots$ , $y_n = y_n(x)$ aranan fonksiyonlar olmak üzere aşağıdaki şekilde homojen diferansiyel denklem sistemini inceleyelim.
+\end{itemize}
+\[
+\begin{cases}
+y_1' = a_{11}y_1 + a_{12}y_2 + \cdots + a_{1n}y_n \\
+y_2' = a_{21}y_1 + a_{22}y_2 + \cdots + a_{2n}y_n \\
+\ \ \vdots \\
+y_n' = a_{n1}y_1 + a_{n2}y_2 + \cdots + a_{nn}y_n
+\end{cases}
+\]
+Bu denklem sistemini çözmek için,
+\[
+\alpha = \begin{bmatrix} \alpha_1 \\ \alpha_2 \\ \vdots \\ \alpha_n \end{bmatrix}
+\quad \text{ve} \quad
+A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & & & \\ a_{n1} & a_{n2} & \cdots & a_{nn} \end{bmatrix}
+\]
+olmak üzere, $(A-\lambda I)\alpha = 0$ denkleminin özdeğer ve özvektörleri bulunur. Karakteristik denklem olan $\Delta(\lambda)$ dan bulunan $\lambda_i$ ler reel sayı ve birbirinden farklı ise temel çözüm
+\[
+\left.
+\begin{aligned}
+y_{1,k}(x) &= \alpha_{1,k}\,e^{\lambda_k x} \\
+y_{2,k}(x) &= \alpha_{2,k}\,e^{\lambda_k x} \\
+&\ \vdots \\
+y_{n,k}(x) &= \alpha_{n,k}\,e^{\lambda_k x}
+\end{aligned}
+\right\}
+\quad \text{şeklindedir}
+\]
+Eğer $\lambda = a+ib$ kompleks kök ise
+\[
+y(t) = \underbrace{\left(\alpha_1 e^{at}\cos bt - \alpha_2 e^{at}\sin bt\right)}_{y_1(t)} + i\,\underbrace{\left(\alpha_1 e^{at}\sin bt + \alpha_2 e^{at}\cos bt\right)}_{y_2(t)}
+\]
+olmak üzere temel çözümler $y_1(t)$ ve $y_2(t)$ dir
+
+Genel çözüm, temel çözümlerin lineer kombinasyonudur.
+
+\sayfa{2}
+\section{Alıştırmalar}
+\begin{ornek}[1]
+\[
+\begin{cases} \dfrac{dx}{dt} = 5x - 2y & \qquad\qquad x = x(t) \\[3mm] \dfrac{dy}{dt} = 4x - y & \qquad\qquad y = y(t) \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+\begin{cozum}
+Öncelikle $\Delta(\lambda)$ determinantından özdeğer ve özvektörleri bulalım.
+\[
+\Delta(\lambda) = \begin{vmatrix} 5-\lambda & -2 \\ 4 & -1-\lambda \end{vmatrix} = 0 \Rightarrow (5-\lambda)(-1-\lambda) + 8 = 0 \Rightarrow -5 - 5\lambda + \lambda + \lambda^2 + 8 = 0
+\]
+\[
+\Rightarrow \lambda^2 - 4\lambda + 3 = 0 \Rightarrow (\lambda-3)(\lambda-1) = 0 \Rightarrow \lambda_1 = 3 \ \text{ ve } \ \lambda_2 = 1 \ \rightarrow \text{özdeğerler}
+\]
+\[
+\# \quad \lambda_1 = 3 \ \text{ için } \ \begin{bmatrix} 2 & -2 \\ 4 & -4 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \end{bmatrix} = 0 \Rightarrow \left.\begin{aligned} 2\alpha - 2\beta &= 0 \\ 4\alpha - 4\beta &= 0 \end{aligned}\right\} \Rightarrow \alpha = \beta
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \end{bmatrix} = \begin{bmatrix} \alpha \\ \alpha \end{bmatrix} = \underbrace{\begin{bmatrix} 1 \\ 1 \end{bmatrix}}_{\text{özvektör}} \alpha \ \Rightarrow \ \begin{bmatrix} x_1(t) \\ y_1(t) \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \end{bmatrix} e^{3t}
+\]
+\[
+\# \quad \lambda_2 = 1 \ \text{ için } \ \begin{bmatrix} 4 & -2 \\ 4 & -2 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \end{bmatrix} = 0 \Rightarrow 4\alpha - 2\beta = 0 \Rightarrow \beta = 2\alpha
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \end{bmatrix} = \begin{bmatrix} \alpha \\ 2\alpha \end{bmatrix} = \underbrace{\begin{bmatrix} 1 \\ 2 \end{bmatrix}}_{\text{özvektör}} \alpha \ \Rightarrow \ \begin{bmatrix} x_1(t) \\ y_1(t) \end{bmatrix} = \begin{bmatrix} 1 \\ 2 \end{bmatrix} e^{t} \quad\text{\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen $x_2(t)$, $y_2(t)$ olmalı.}
+
+\sayfa{3}
+Bu durumda, genel çözüm
+\[
+\begin{bmatrix} x(t) \\ y(t) \end{bmatrix} = c_1\begin{bmatrix} x_1(t) \\ y_1(t) \end{bmatrix} + c_2\begin{bmatrix} x_2(t) \\ y_2(t) \end{bmatrix}
+\]
+\[
+\Rightarrow \begin{bmatrix} x(t) \\ y(t) \end{bmatrix} = c_1\begin{bmatrix} 1 \\ 1 \end{bmatrix}e^{3t} + c_2\begin{bmatrix} 1 \\ 2 \end{bmatrix}e^{t}
+\]
+\[
+\Rightarrow \ \begin{aligned}[t] x(t) &= c_1e^{3t} + c_2e^{t} \\ y(t) &= c_1e^{3t} + 2c_2e^{t} \end{aligned} \qquad\qquad c_1, c_2 \in \mathbb{R}
+\]
+bulunur.
+\end{cozum}
+
+\begin{ornek}[2]
+\[
+\begin{cases} x' = x + z - y & \qquad\qquad x = x(t) \\[2mm] y' = x + y - z & \qquad\qquad y = y(t) \\[2mm] z' = 2x - y & \qquad\qquad z = z(t) \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+\begin{cozum}
+Öncelikle $\Delta(\lambda)$ determinantından özdeğer ve özvektörleri bulalım.
+\[
+\Delta(\lambda) = \begin{vmatrix} 1-\lambda & -1 & 1 \\ 1 & 1-\lambda & -1 \\ 2 & -1 & -\lambda \end{vmatrix} = (1-\lambda)\begin{vmatrix} 1-\lambda & -1 \\ -1 & -\lambda \end{vmatrix} + \begin{vmatrix} 1 & -1 \\ 2 & -\lambda \end{vmatrix} + \begin{vmatrix} 1 & 1-\lambda \\ 2 & -1 \end{vmatrix} = 0
+\]
+\[
+\Rightarrow -(1-\lambda)^2\lambda - (1-\lambda) - \lambda + 2 - 1 - 2(1-\lambda) = 0 \Rightarrow -\lambda(1-\lambda)^2 - 2(1-\lambda) = 0
+\]
+\[
+\Rightarrow (1-\lambda)(\lambda^2-\lambda-2) = 0 \Rightarrow (1-\lambda)(\lambda-2)(\lambda+1) = 0 \Rightarrow \underbrace{\lambda_1=1 \ , \ \lambda_2=2 \ , \ \lambda_3=-1}_{\text{özdeğerler}}
+\]
+
+\sayfa{4}
+\[
+\# \quad \lambda_1 = 1 \ \text{ için } \ \begin{bmatrix} 0 & -1 & 1 \\ 1 & 0 & -1 \\ 2 & -1 & -1 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = 0 \Rightarrow \left.\begin{aligned} -\beta + \gamma &= 0 \\ \alpha - \gamma &= 0 \end{aligned}\right\} \Rightarrow \alpha = \beta = \gamma
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = \begin{bmatrix} \alpha \\ \alpha \\ \alpha \end{bmatrix} = \underbrace{\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}}_{\text{özvektör}} \alpha \ \Rightarrow \ \begin{bmatrix} x_1(t) \\ y_1(t) \\ z_1(t) \end{bmatrix} = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix} e^{t}
+\]
+\[
+\# \quad \lambda_2 = 2 \ \text{ için } \ \begin{bmatrix} -1 & -1 & 1 \\ 1 & -1 & -1 \\ 2 & -1 & -2 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = 0 \Rightarrow \left.\begin{aligned} -\alpha - \beta + \gamma &= 0 \\ \alpha - \beta - \gamma &= 0 \\ 2\alpha - \beta - 2\gamma &= 0 \end{aligned}\right\} \Rightarrow
+\]
+\[
+\Rightarrow \beta = 0 \ , \quad \alpha = \gamma
+\]
+\[
+\Rightarrow \begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = \begin{bmatrix} \alpha \\ 0 \\ \alpha \end{bmatrix} = \underbrace{\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}}_{\text{özvektör}} \alpha \ \Rightarrow \ \begin{bmatrix} x_2(t) \\ y_2(t) \\ z_2(t) \end{bmatrix} = \begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix} e^{2t}
+\]
+\[
+\# \quad \lambda_3 = -1 \ \text{ için } \ \begin{bmatrix} 2 & -1 & 1 \\ 1 & 2 & -1 \\ 2 & -1 & 1 \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = 0 \Rightarrow \left.\begin{aligned} 2\alpha - \beta + \gamma &= 0 \\ \alpha + 2\beta - \gamma &= 0 \\ 2\alpha - \beta + \gamma &= 0 \end{aligned}\right\} \Rightarrow
+\]
+\[
+\Rightarrow \beta = -3\alpha \ , \quad \gamma = -5\alpha \ \Rightarrow \ \begin{bmatrix} \alpha \\ \beta \\ \gamma \end{bmatrix} = \underbrace{\begin{bmatrix} 1 \\ -3 \\ -5 \end{bmatrix}}_{\text{özvektör}} \alpha \ \Rightarrow \ \begin{bmatrix} x_3(t) \\ y_3(t) \\ z_3(t) \end{bmatrix} = \begin{bmatrix} 1 \\ -3 \\ -5 \end{bmatrix} e^{-t}
+\]
+
+\sayfa{5}
+Bu durumda, genel çözüm
+\[
+\begin{bmatrix} x(t) \\ y(t) \\ z(t) \end{bmatrix} = c_1\begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}e^{t} + c_2\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix}e^{2t} + c_3\begin{bmatrix} 1 \\ -3 \\ -5 \end{bmatrix}e^{-t}
+\]
+\[
+\Rightarrow \ \begin{aligned}[t] x(t) &= c_1e^{t} + c_2e^{2t} + c_3e^{-t} \\ y(t) &= c_1e^{t} - 3c\,e^{-t}\ \text{\footnotemark} \\ z(t) &= c_1e^{t} + c_2e^{2t} - 5c_3e^{-t} \end{aligned} \qquad\qquad c_1, c_2, c_3 \in \mathbb{R}
+\]
+\footnotetext{Claude notu: muhtemelen $-3c_3e^{-t}$ olmalı.}
+bulunur.
+\end{cozum}
+
+\begin{ornek}[3]
+\[
+\begin{cases} \dfrac{dx}{dt} = x - 4y & \qquad\qquad x = x(t) \\[3mm] \dfrac{dy}{dt} = x + y & \qquad\qquad y = y(t) \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+\begin{cozum}
+Öncelikle $\Delta(\lambda)$ determinantından özdeğer ve özvektörleri bulalım.
+\[
+\Delta(\lambda) = \begin{vmatrix} 1-\lambda & -4 \\ 1 & 1-\lambda \end{vmatrix} = (1-\lambda)^2 + 4 = 0 \Rightarrow (\lambda-1)^2 = -4 \Rightarrow \lambda - 1 = \pm 2i
+\]
+\[
+\Rightarrow \lambda = 1 \pm 2i \ \rightarrow \text{özdeğerler}
+\]
+\[
+\# \quad \lambda = 1+2i \ \text{ için } \ \begin{bmatrix} -2i & -4 \\ 1 & -2i \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \end{bmatrix} = 0 \Rightarrow \left.\begin{aligned} -2i\alpha - 4\beta &= 0 \\ \alpha - 2i\beta &= 0 \end{aligned}\right\} \Rightarrow
+\]
+\[
+\Rightarrow \alpha = 2i\beta \ \Rightarrow \ \begin{bmatrix} \alpha \\ \beta \end{bmatrix} = \begin{bmatrix} 2i\beta \\ \beta \end{bmatrix} = \begin{bmatrix} 2i \\ 1 \end{bmatrix}\beta = \underbrace{\left(\begin{bmatrix} 0 \\ 1 \end{bmatrix} + i\begin{bmatrix} 2 \\ 0 \end{bmatrix}\right)}_{\text{özvektör}}\beta
+\]
+
+\sayfa{6}
+\[
+\begin{bmatrix} x(t) \\ y(t) \end{bmatrix} = \left(\begin{bmatrix} 0 \\ 1 \end{bmatrix} + i\begin{bmatrix} 2 \\ 0 \end{bmatrix}\right)\underbrace{e^{(1+2i)t}}_{e^{t}(\cos 2t + i\sin 2t)}
+\]
+\[
+\Rightarrow \begin{bmatrix} x(t) \\ y(t) \end{bmatrix} = \Biggl(\underbrace{\begin{bmatrix} 0 \\ 1 \end{bmatrix}e^{t}\cos 2t - \begin{bmatrix} 2 \\ 0 \end{bmatrix}e^{t}\sin 2t}_{\begin{bmatrix} x_1(t) \\ y_1(t) \end{bmatrix}}\Biggr) + i\Biggl(\underbrace{\begin{bmatrix} 0 \\ 1 \end{bmatrix}e^{t}\sin 2t + \begin{bmatrix} 2 \\ 0 \end{bmatrix}e^{t}\cos 2t}_{\begin{bmatrix} x_2(t) \\ y_2(t) \end{bmatrix}}\Biggr)
+\]
+Bu durumda, genel çözüm
+\[
+\begin{aligned}[t] x(t) &= -2c_1e^{t}\sin 2t + 2c_2e^{t}\cos 2t \\ y(t) &= c_1e^{t}\cos 2t + c_2e^{t}\sin 2t \end{aligned} \qquad\qquad c_1, c_2 \in \mathbb{R}
+\]
+bulunur.
+\end{cozum}
+
+\begin{ornek}[4]
+\[
+\begin{cases} \dfrac{dx}{dt} = 4x - 2y & \qquad\qquad x = x(t) \\[3mm] \dfrac{dy}{dt} = 5x + 2y & \end{cases}
+\]
+sistemini çözünüz.
+\end{ornek}
+\begin{cozum}
+Öncelikle $\Delta(\lambda)$ determinantından özdeğer ve özvektörleri bulalım.
+\[
+\Delta(\lambda) = \begin{bmatrix} 4-\lambda & -2 \\ 5 & 2-\lambda \end{bmatrix} = 0 \Rightarrow (4-\lambda)(2-\lambda) + 10 = 0 \Rightarrow \lambda^2 - 6\lambda + 18 = 0
+\]
+\[
+\Rightarrow (\lambda-3)^2 = -9 \Rightarrow \lambda - 3 = \pm 3i \ \Rightarrow \ \underbrace{\lambda = 3 \mp 3i}_{\text{özdeğerler}}
+\]
+
+\sayfa{7}
+\[
+\# \quad \lambda = 3+3i \ \text{ için } \ \begin{bmatrix} 1-3i & -2 \\ 5 & -1-3i \end{bmatrix}\begin{bmatrix} \alpha \\ \beta \end{bmatrix} = 0 \Rightarrow \left.\begin{aligned} (1-3i)\alpha - 2\beta &= 0 \\ 5\alpha - (1+3i)\beta &= 0 \end{aligned}\right\} \Rightarrow
+\]
+\[
+\Rightarrow \beta = \frac{1-3i}{2}\,\alpha \Rightarrow \begin{bmatrix} \alpha \\ \beta \end{bmatrix} = \begin{bmatrix} 1 \\ \frac12 - \frac32 i \end{bmatrix}\alpha = \left(\begin{bmatrix} 1 \\ \frac12 \end{bmatrix} + \begin{bmatrix} 0 \\ -\frac32 \end{bmatrix}i\right)\alpha
+\]
+\[
+\Rightarrow \left(\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \end{bmatrix}i\right) \rightarrow \text{özvektör}
+\]
+\[
+\begin{bmatrix} x(t) \\ y(t) \end{bmatrix} = \left(\begin{bmatrix} 2 \\ 1 \end{bmatrix} + \begin{bmatrix} 0 \\ -3 \end{bmatrix}i\right)\underbrace{e^{(3+3i)t}}_{e^{3t}(\cos 3t + i\sin 3t)}
+\]
+\[
+= \underbrace{\begin{bmatrix} 2 \\ 1 \end{bmatrix}e^{3t}\cos 3t - \begin{bmatrix} 0 \\ -3 \end{bmatrix}e^{3t}\sin 3t}_{\begin{bmatrix} x_1(t) \\ y_1(t) \end{bmatrix}} + i\Biggl(\underbrace{\begin{bmatrix} 0 \\ -3 \end{bmatrix}e^{3t}\cos 3t + \begin{bmatrix} 2 \\ 1 \end{bmatrix}e^{3t}\sin 3t}_{\begin{bmatrix} x_2(t) \\ y_2(t) \end{bmatrix}}\Biggr)
+\]
+Bu durumda, genel çözüm
+\[
+\begin{aligned}[t] x(t) &= 2c_1e^{3t}\cos 3t + 2c_2e^{3t}\sin 3t \\ y(t) &= c_1e^{3t}\cos 3t + 3c_1e^{3t}\sin 3t - 3c_2e^{3t}\cos 3t + c_2e^{3t}\sin 3t \end{aligned}
+\]
+bulunur.
+\end{cozum}
+
+\sayfa{8}
+\begin{ornek}[(ÖDEV)]
+\[
+\begin{cases} \dfrac{dx}{dt} = x + 2y & \qquad\qquad x = x(t) \\[3mm] \dfrac{dy}{dt} = 3x + 2y & \qquad\qquad y = y(t) \end{cases}
+\]
+sistemini çözünüz.
+
+\underline{Cvp}: \ $x(t) = 2c_1e^{4t} + c_2e^{-t}$ \ , \ $y(t) = 3c_1e^{4t} - c_2e^{-t}$
+\end{ornek}
+
+\begin{ornek}[(ÖDEV)]
+\[
+\begin{cases} \dfrac{dx}{dt} = 3x - 2y & \qquad\qquad x = x(t) \\[3mm] \dfrac{dy}{dt} = 2x + 3y & \qquad\qquad y = y(t) \end{cases}
+\]
+sistemini çözünüz.
+
+\underline{Cvp}: \ $x(t) = e^{3t}\left(c_1\cos 2t + c_2\sin 2t\right)$ \ , \ $y(t) = e^{3t}\left(c_1\sin 2t - c_2\cos 2t\right)$
+\end{ornek}
+
+\end{document}

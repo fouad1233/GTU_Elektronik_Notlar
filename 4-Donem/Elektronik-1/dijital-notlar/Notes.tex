@@ -1,0 +1,469 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+% üstü çizili (sadeleşen) terim
+\newcommand\sil[1]{\tikz[baseline=(s.base)]{\node[inner sep=0.6pt](s){$#1$};\draw[line width=0.5pt](s.south west)--(s.north east);}}
+% dalgalı ayırma çizgisi
+\newcommand\dalgali{\par\noindent\tikz\draw[morkalem, line width=0.6pt, domain=0:16.5, samples=120] plot (\x, {0.07*sin(\x*120)});\par}
+\begin{document}
+\notbilgi{Elektronik I}{Notes -- BJT küçük işaret modelleri ve ortak emetörlü yükselteç}{Notes.pdf}
+
+\sayfa{1}
+\noindent
+\begin{minipage}[c]{0.44\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,3.6) -- (2,3.6) to[short, -o] (3,3.6) node[right]{C};
+  \draw (0,3.6) to[cisource, l_=$\alpha i_e$, a^=$(g_m v_\pi)$] (0,2);
+  \draw (-1.2,2) node[left]{B} to[short, o-*] (0,2);
+  \draw (0,2) to[R, l_=$r_e$, i>^=$i_e$] (0,0) -- (2,0);
+  \draw (2,3.6) to[R, l=$r_o$] (2,0);
+  \draw (1,0) to[short, -o] (1,-0.7) node[below]{E};
+  \node[anchor=west, font=\Large] at (3.1,2.6) {T Model};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.54\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,2) to[short, i>^=$i_B$, -o] (1.4,2) node[above right]{B} -- (1.6,2);
+  \draw (1.6,2) to[R, l=$r_\pi$] (1.6,0) -- (5.4,0);
+  \node at (1.2,1.55) {$+$}; \node at (1.05,1.0) {$V_\pi$}; \node at (1.2,0.45) {$-$};
+  \draw (4,2) to[cisource, l_=$g_m v_\pi$] (4,0);
+  \draw (4,2) -- (5.4,2) to[R, l=$r_o$] (5.4,0);
+  \draw (5.4,2) to[short, -o, i<^=$i_C$] (6.2,2) node[right]{C};
+  \draw (3,0) to[short, -o, i>^=$i_E$] (3,-0.8) node[below]{E};
+  \node[anchor=west, font=\Large] at (4.6,-0.9) {$\pi$ model};
+\end{circuitikz}
+\end{minipage}
+
+\medskip
+\noindent
+\begin{minipage}[t]{0.42\linewidth}
+$r_o \rightarrow \dfrac{V_A}{I_C}$ \qquad $g_m \rightarrow \dfrac{I_C}{V_T}$
+
+\medskip
+$r_e = \dfrac{V_T}{I_E} = 1/g_m$
+
+\medskip
+$\kutula{r_\pi = (\beta+1)\, r_e}$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.56\linewidth}
+\vspace{-4mm}
+\begin{align*}
+  i_B &= \frac{V_\pi}{r_\pi} & i_B &= \frac{i_C}{\beta} \\
+  i_B + i_C &= i_E & i_E &= \frac{\beta+1}{\beta} \cdot i_C \\
+  & & (\beta+1)\, i_B &= i_E
+\end{align*}
+\[
+  r_\pi\, \underbrace{i_B}_{\frac{i_E}{\beta+1}} = \sil{i_E} \cdot r_e \qquad\quad r_\pi = r_e\,(\beta+1)
+\]
+\end{minipage}
+
+\dalgali
+
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[sV, l_=$V_{sig}$] (0,1.5) to[R, l=$R_{sig}$] (1.9,1.5)
+        to[C, l=$C_{C1}$] (3.1,1.5) -- (4.6,1.5) node[npn, anchor=B](Q){};
+  \draw (3.8,1.5) to[R, l_=$R_{B1}$, *-] (3.8,3.2) node[vcc]{$V_{CC}$};
+  \draw (3.8,1.5) to[R, l=$R_{B2}$] (3.8,0) node[ground]{};
+  \draw (Q.C) -- ++(0,0.3) coordinate(cn) to[R, l=$R_C$] ++(0,1.6) node[vcc]{$V_{CC}$};
+  \draw (cn) to[C, l=$C_{C2}$] ++(2.2,0) coordinate(o) to[short, *-o] ++(1.2,0) node[right]{$v_{out}$};
+  \draw (o) to[R, l=$R_L$\ \ Load] ++(0,-1.6) node[ground]{};
+  \draw (Q.E) -- ++(0,-0.3) coordinate(en) to[R, l=$R_E$] ++(0,-1.5) node[ground]{};
+  \draw (en) to[short, *-] ++(1.4,0) to[C, l=$C_E$] ++(0,-1.5) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\noindent
+\begin{minipage}[c]{0.6\linewidth}
+$C_{C1},\ C_{C2},\ C_E$ high values
+\end{minipage}\hfill
+\begin{minipage}[c]{0.38\linewidth}
+\[ A_v = \frac{v_o}{v_i} = \,? \]
+\end{minipage}
+
+\subsection{in DC}
+\noindent
+\begin{minipage}[c]{0.48\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,3.2) node[vcc]{$V_{CC}$} to[R, l=$R_{B1}$] (0,1.6) to[R, l=$R_{B2}$] (0,0) node[ground]{};
+  \draw (0,1.6) to[short, *-] (1.6,1.6) node[npn, anchor=B](Q1){};
+  \draw (Q1.C) to[R, l_=$R_C$] ++(0,1.4) node[vcc]{};
+  \draw (Q1.E) to[R, l=$R_E$] ++(0,-1.4) node[ground]{};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[V, l_=$V_{Th}$] (0,1.5) to[R, l=$R_{Th}$] (2,1.5)
+        -- (2.3,1.5) node[npn, anchor=B](Q2){};
+  \draw (Q2.C) to[R, l_=$R_C$] ++(0,1.5) node[vcc]{$V_{CC}$};
+  \draw (Q2.E) to[R, l=$R_E$] ++(0,-1.5) node[ground]{};
+\end{circuitikz}
+\end{minipage}
+
+\subsection{AC}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[sV] (0,1.5) to[R, l=$R_{sig}$] (2,1.5)
+        -- (4,1.5) node[npn, anchor=B](Q){};
+  \node[above, color=murekkep] at (3.75,1.5) {B};
+  \draw (3,1.5) to[R, l_=$R_{B1}$, *-] (3,3) node[ground, rotate=180]{};
+  \draw (3,1.5) to[R, l=$R_{B2}$] (3,0) node[ground]{};
+  \draw (Q.C) -- ++(0,0.2) coordinate(cn) to[R, l_=$R_C$] ++(0,1.4) node[ground, rotate=180]{};
+  \node[above left] at (cn) {C};
+  \draw[line width=1.2pt] (cn) -- ++(1.6,0) coordinate(o);
+  \draw (o) to[short, -o] ++(1.4,0) node[right]{$v_{out}$};
+  \draw (o) to[R, l=$R_L$, *-] ++(0,-1.5) node[ground]{};
+  \draw (Q.E) node[below left]{E} -- ++(0,-0.2) -- ++(1.3,0) -- ++(0,-1.1) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\subsection{Small signal circuit}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt, scale=0.92, transform shape]
+  \draw (-1.0,0) node[ground]{} to[sV, l=$V_{sig}$] (-1.0,1.6) to[R, l=$R_{sig}$] (0.8,1.6) -- (4.4,1.6);
+  \draw (2.3,1.6) to[R, l_=$R_{B1}\parallel R_{B2}$, *-] (2.3,0) node[ground]{};
+  \node[kirmizikalem] at (2.75,1.25) {$+$}; \node[kirmizikalem] at (2.95,0.8) {$V_\pi$}; \node[kirmizikalem] at (2.75,0.3) {$-$};
+  \draw[kirmizikalem, -{Latex[length=2mm]}] (1.85,-0.9) -- (1.85,0.2) -- (2.15,0.2);
+  \node[below, kirmizikalem] at (1.85,-0.9) {$R_{in}$};
+  \draw (4.4,1.6) node[circ]{} node[above]{B\ \ $i_B$};
+  \draw (4.4,1.6) -- (5.2,1.6) to[R, l_=$r_\pi$] (5.2,0) -- (9.4,0);
+  \node at (5.55,1.2) {\small$+$}; \node at (5.75,0.8) {$V_\pi$}; \node at (5.55,0.35) {\small$-$};
+  \draw (6.6,0) to[short, *-] (6.6,-0.4) node[ground]{} node[left]{E};
+  \draw (8,1.6) to[cisource, l_=$g_m V_\pi$] (8,0);
+  \draw (8,1.6) -- (9.4,1.6) to[R, l=$r_o$] (9.4,0);
+  \draw (9.4,1.6) to[short, i<^=$i_c$] (10.6,1.6) node[circ]{} node[above right]{C} -- (12.6,1.6) node[above, kirmizikalem]{$V_{out}$};
+  \draw (10.6,1.6) to[R, l=$R_C$] (10.6,0) node[ground]{};
+  \draw (12.6,1.6) to[R, l=$R_L$] (12.6,0) node[ground]{};
+  \node[kirmizikalem] at (11.6,-0.75) {$\underbrace{\hspace{2.4cm}}_{R_L'}$};
+  \draw[kirmizikalem, -{Latex[length=2mm]}] (11.1,-1.6) -- (11.1,0.3) -- (10.8,0.3);
+  \node[below, kirmizikalem] at (11.1,-1.6) {$R_{out}$};
+  \node[kirmizikalem, align=left, anchor=west] at (12.3,-1.7) {(Load\\ \ yük)};
+  % eşdeğer direnç (kırmızı ek)
+  \begin{scope}[kirmizikalem]
+    \draw (4.6,-1.0) node[left]{$V_\pi$} to[R, l=$R_{B1}\parallel R_{B2}\parallel r_\pi$, o-] (4.6,-2.6) node[ground]{};
+    \node[anchor=west] at (4.8,-0.8) {$\downarrow$ eq};
+  \end{scope}
+\end{circuitikz}
+\end{center}
+\[
+  \textcolor{kirmizikalem}{R_{in} = R_{B1} \parallel R_{B2} \parallel r_\pi}
+\]
+
+\sayfa{2}
+\noindent
+\begin{minipage}[c]{0.46\linewidth}
+$R_{out} = R_C \parallel r_o$
+\[ A_v = \frac{v_{out}}{v_{in}} = \frac{v_{out}}{v_{sig}} = \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.52\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,1.6) to[cisource, l_=$I_1$] (0,0) -- (3,0);
+  \draw (0,1.6) -- (3,1.6) -- (3.8,1.6) node[right]{$v_{out}$};
+  \draw (1.5,0) to[R, l_=$R_{out}$, i>^=$I_{R_o}$] (1.5,1.6);
+  \draw (3,0) to[R, l_=$R_L$, i>^=$I_{R_L}$] (3,1.6);
+  \draw (0.7,0) -- (0.7,-0.3) node[ground]{};
+\end{circuitikz}
+\end{minipage}
+
+\noindent
+\begin{minipage}[c]{0.5\linewidth}
+\formulkutu{v_{out} = -R_L' \cdot V_\pi g_m}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.48\linewidth}
+$I_1$ sabit
+\[ \underset{R_o\downarrow}{\phantom{x}} \qquad \underset{\uparrow}{I_{R_o}} + \underset{\downarrow}{I_{R_L}} = I_1 \]
+\end{minipage}
+
+\[
+  v_\pi = \left( \frac{R_{B1} \parallel R_{B2} \parallel r_\pi}{r_\pi \parallel R_{B1} \parallel R_{B2} + R_{sig}} \right) v_{sig}
+\]
+\[
+  \frac{v_{out} = -g_m R_L' \cdot \left( \dfrac{R_{B1} \parallel R_{B2} \parallel r_\pi}{r_\pi \parallel R_{B1} \parallel R_{B2} + R_{sig}} \right) \sil{v_{sig}}}
+       {v_{in} = \sil{v_{sig}}}
+\]
+\[
+  A_v = -g_m R_L' \left( \frac{R_{B1} \parallel R_{B2} \parallel r_\pi}{r_\pi \parallel R_{B1} \parallel R_{B2} + R_{sig}} \right)
+\]
+\[
+  \text{if } R_{sig} \approx 0 \;\Longrightarrow\; A_v = -g_m R_L'
+\]
+
+\subsection{Properties}
+\tikz[baseline=(t.base)]\node[draw=kirmizikalem, rounded corners=8pt, inner sep=4pt](t){High voltage gain};
+
+\medskip
+$\rightarrow$ Moderate Input Resistance $\Rightarrow R_{B1} \parallel R_{B2} \parallel r_\pi$
+
+$\rightarrow$ \hspace{2.2em}''\hspace{2.2em} High output Res $\rightarrow R_C \parallel r_o$
+
+\medskip
+$R_{in}$ büyük olsun isteriz ki singal zayıflamasın girişte voltaj düşümünü en aza indirgemek için
+
+\subsection{Common Emitter Amp.\ with \texorpdfstring{$R_E$}{RE}}
+\noindent
+\begin{minipage}[c]{0.74\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[sV] (0,1.5) to[R, l=$R_{sig}$] (1.9,1.5)
+        to[C, l=$C_{C1}$] (3.1,1.5) -- (4.6,1.5) node[npn, anchor=B](Q){};
+  \draw (3.8,1.5) to[R, l_=$R_{B1}$, *-] (3.8,3.2) node[vcc]{};
+  \draw (3.8,1.5) to[R, l=$R_{B2}$] (3.8,0) node[ground]{};
+  \draw (Q.C) -- ++(0,0.3) coordinate(cn) to[R, l=$R_C$] ++(0,1.6) node[vcc]{$V_{CC}$};
+  \draw (cn) to[C, l=$C_{C2}$] ++(2.2,0) coordinate(o) -- ++(1.2,0) node[right]{$v_{out}$};
+  \draw (o) to[R, l=$R_L$, *-] ++(0,-1.6) node[ground]{};
+  \draw (Q.E) to[R, l=$R_E$] ++(0,-1.6) node[ground]{};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.24\linewidth}
+\underline{AC}
+\end{minipage}
+
+\subsection{DC}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,3.2) node[vcc]{} to[R, l=$R_{B1}$] (0,1.6) to[R, l=$R_{B2}$] (0,0) node[ground]{};
+  \draw (0,1.6) to[short, *-] (1.6,1.6) node[npn, anchor=B](Q1){};
+  \draw (Q1.C) to[R, l_=$R_C$] ++(0,1.4) node[vcc]{};
+  \draw (Q1.E) to[R, l=$R_E$] ++(0,-1.4) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\sayfa{3}
+\subsection{AC}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (-0.8,0) node[ground]{} to[sV, l=$V_{sig}$] (-0.8,1.5) to[R, l=$R_{sig}$] (1.2,1.5)
+        -- (3.6,1.5) node[npn, anchor=B](Q){};
+  \draw (2.8,1.5) to[R, l_=$R_{B2}\parallel R_{B1}$, *-] (2.8,0) node[ground]{};
+  \draw (Q.E) to[R, l=$R_E$] ++(0,-1.5) node[ground]{};
+  \draw (Q.C) -- ++(0,0.3) coordinate(cn) -- ++(1.2,0) coordinate(a) -- ++(1.2,0) coordinate(b)
+        -- ++(1,0) node[right]{$v_{out}$};
+  \draw (a) to[R, l=$R_C$, *-] ++(0,-1.5) node[ground]{};
+  \draw (b) to[R, l=$R_L$, *-] ++(0,-1.5) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (-1.0,0) node[ground]{} to[sV, l=$V_{sig}$] (-1.0,1.6) to[R, l=$R_{sig}$] (0.8,1.6) -- (4.2,1.6);
+  \draw (2.6,1.6) node[above]{B} to[R, l_=$R_{B2}\parallel R_{B1}$, *-] (2.6,0) node[ground]{};
+  \draw[-{Latex[length=2mm]}] (2.15,-0.9) -- (2.15,0.15) -- (2.4,0.15);
+  \node[below] at (2.15,-0.9) {$R_{in}$};
+  \draw (4.2,3.2) to[cisource, l=$g_m v_\pi$] (4.2,1.6);
+  \draw (4.2,1.6) to[R, l=$r_e\ \downarrow i_e$, *-] (4.2,0) -- (6.2,0);
+  \node at (3.85,1.25) {\small$+$}; \node at (3.6,0.8) {$V_\pi$}; \node at (3.85,0.3) {\small$-$};
+  \draw (4.2,3.2) -- (6.2,3.2) to[R, l=$r_o$] (6.2,0);
+  \draw (5.2,0) to[short, *-] (5.2,-0.2) node[right]{E} to[R, l=$R_e$] (5.2,-1.8) node[ground]{};
+  \draw (6.2,3.2) -- (8.8,3.2) node[circ]{} node[right]{$v_{out}$};
+  \draw (7.6,3.2) to[R, l=$R_C$, *-] (7.6,1.7) node[ground]{};
+  \draw (8.8,3.2) to[R, l=$R_L$] (8.8,1.7) node[ground]{};
+  \draw[-{Latex[length=2mm]}] (8.2,1.2) -- (8.2,2.1) -- (7.85,2.1);
+  \node[below] at (8.2,1.2) {$R_{out}$};
+  \draw (8.3,2.35) ellipse (1.5 and 1.45);
+  \draw[-{Latex[length=2mm]}] (9.4,1.2) -- (9.7,0.7) node[below right]{$R_L'$};
+\end{circuitikz}
+\end{center}
+
+\begin{align*}
+  R_{in} &= R_{B2} \parallel R_{B1} \parallel \bigl( (\beta+1)(R_e + r_e) \bigr) \\
+  R_{out} &= R_C \parallel (r_o + R_e)
+\end{align*}
+
+\bigskip
+$V_A = \infty,\ r_o = \infty$
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (-1.0,0) node[ground]{} to[sV, l=$V_{sig}$] (-1.0,1.6) to[R, l=$R_{sig}$] (0.8,1.6) -- (2.6,1.6);
+  \draw (2.6,1.6) to[short, i>^=$i_B$] (4.2,1.6);
+  \draw (2.6,1.6) node[above left]{B} to[R, l_=$\underbrace{R_{B2}\parallel R_{B1}}_{R_B}$, *-] (2.6,0) node[ground]{};
+  \draw[-{Latex[length=2mm]}] (2.15,-0.9) -- (2.15,0.15) -- (2.4,0.15);
+  \node[below] at (2.15,-0.9) {$R_{in}$};
+  \draw (4.2,3.2) to[cisource, l=$g_m v_\pi$] (4.2,1.6);
+  \draw[-{Latex[length=2mm]}] (4.3,1.6) -- (5.1,1.6) node[right]{$v_B$};
+  \draw (4.2,1.6) to[R, l=$r_e\ \downarrow i_e$, *-] (4.2,0) -- (5.2,0);
+  \node at (3.85,1.25) {\small$+$}; \node at (3.6,0.8) {$V_\pi$}; \node at (3.85,0.3) {\small$-$};
+  \draw (5.2,0) to[short, *-] (5.2,-0.2) node[left]{E} to[R, l=$R_e$] (5.2,-1.8) node[ground]{};
+  \node at (6.1,-0.35) {\small$+$}; \node at (6.4,-0.75) {$V_x$}; \node at (6.1,-1.4) {\small$-$};
+  \draw (4.2,3.2) -- (8.8,3.2) node[circ]{} node[right]{$v_{out}$};
+  \draw (7.6,3.2) to[R, l=$R_C$, *-] (7.6,1.7) node[ground]{};
+  \draw (8.8,3.2) to[R, l=$R_L$] (8.8,1.7) node[ground]{};
+  \draw[-{Latex[length=2mm]}] (8.2,1.2) -- (8.2,2.1) -- (7.85,2.1);
+  \node[below] at (8.2,1.2) {$R_{out}$};
+  \draw (8.3,2.35) ellipse (1.5 and 1.45);
+\end{circuitikz}
+\end{center}
+
+\noindent
+\begin{minipage}[c]{0.62\linewidth}
+\[ i_B = (\beta+1)\, i_e \footnotemark \]
+\begin{align*}
+  R_{in} &= R_B \parallel \bigl( (\beta+1)(r_e + R_e) \bigr) \\
+  R_{out} &= R_C
+\end{align*}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.36\linewidth}
+akım kay.\ $\rightarrow$ açık d.
+
+voltaj kay.\ $\rightarrow$ kısa d.
+\end{minipage}
+\footnotetext{Claude notu: muhtemelen $i_e = (\beta+1)\, i_B$ olmalı.}
+
+\medskip
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+\[ A_v = \frac{v_{out}}{v_{in}} = \]
+\[ v_{out} = -g_m V_\pi\, (R_C \parallel R_L) \]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\begin{align*}
+  v_B &= v_\pi + v_x \\
+  v_B &= v_\pi + i_e R_e \\
+  v_B &= v_\pi + \bigl( (i_B + g_m v_\pi)\, R_e \bigr)
+\end{align*}
+\end{minipage}
+
+\sayfa{4}
+\noindent
+\begin{minipage}[t]{0.36\linewidth}
+\tikz[baseline=(t.base)]\node[draw, rounded corners=8pt, inner sep=3pt](t){$R_{sig} = 0$};
+
+$v_{sig} = v_b$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.62\linewidth}
+\vspace{-2mm}
+\begin{align*}
+  v_B &= v_\pi + i_B R_e + \frac{v_\pi \sil{R_e}}{\sil{R_e}} \\
+  &= \text{\okunamadi{$2v_\pi$}}
+\end{align*}
+\end{minipage}
+
+\begin{align*}
+  v_x &= i_e R_e \\
+  &= (g_m v_\pi + i_B)\, R_e \\
+  i_B = \frac{V_\pi}{r_\pi} \qquad\qquad &= \Bigl( g_m v_\pi + \frac{V_\pi}{r_\pi} \Bigr) R_e \\
+  &= \Bigl( \frac{V_\pi}{r_e} + \frac{V_\pi}{r_\pi} \Bigr) R_e \\
+  &= \kutula{\frac{v_\pi}{r_e} \cdot R_E}
+\end{align*}
+
+\begin{align*}
+  \frac{v_{out}}{v_{in}} &= \frac{-g_m \sil{V_\pi}\, (R_C \parallel R_L)}{\sil{V_\pi} \left( 1 + \dfrac{R_e}{r_e} \right)} \\[2mm]
+  \frac{v_{out}}{v_{in}} &= \frac{-g_m\, (R_C \parallel R_L)}{r_e \left( 1 + \dfrac{R_E}{r_e} \right)}\footnotemark \\[2mm]
+  &\cong -\frac{(R_C \parallel R_L)}{r_e + R_e} \\[2mm]
+  A_v &\cong -\frac{R_C \parallel R_L}{R_E + r_e}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen paydaki $r_e$ olmadan, yani $\dfrac{-g_m (R_C \parallel R_L)}{1 + R_E/r_e}$ olmalı; $g_m = 1/r_e$ ile bir sonraki satır elde edilir.}
+
+\subsection{Common-Base Amplifier}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (2,2) node[npn](Q){};
+  \draw (Q.B) -- ++(-0.7,0) -- ++(0,-1.1) node[ground]{};
+  \draw (Q.C) -- ++(0,0.3) coordinate(cn) to[R, l=$R_C$] ++(0,1.6) node[vcc]{$V_{CC}$};
+  \draw (cn) to[C, l=$C_{C2}$] ++(2.2,0) coordinate(o) -- ++(0.6,0) node[right]{$v_{out}$};
+  \draw (o) to[R, l=$R_L$, *-] ++(0,-1.6) node[ground]{};
+  \draw (Q.E) -- ++(0,-0.3) coordinate(en) to[I] ++(0,-1.6) node[vee]{};
+  \node[anchor=east] at ($(en)+(-0.45,-1.45)$) {\okunamadi{}};
+  \draw (en) to[short, *-] ++(1.4,0) to[C, l=$C_{C1}$] ++(0,-1.6) to[R, l_=$R_{sig}$] ++(2.2,0) coordinate(s);
+  \draw (s) to[sV, l=$V_{sig}$] ++(0,-1.6) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\sayfa{5}
+\subsection{AC}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \begin{scope}[kirmizikalem]
+    \draw (0,4) -- (2.6,4);
+    \draw (0,4) to[cisource, l=$\alpha i_E$] (0,2.4);
+    \draw (0,2.4) -- (-0.9,2.4) node[above]{B} -- (-0.9,2.1) node[ground]{};
+    \draw (0,2.4) to[R, l=$r_e\ \downarrow i_e$, *-] (0,0.6) -- (2.6,0.6);
+    \draw (2.6,4) to[R, l=$r_o$] (2.6,0.6);
+  \end{scope}
+  \draw (2.6,4) -- (6,4) node[right]{$v_{out}$\quad cap kısa devre};
+  \draw (3.9,4) to[R, l=$R_C$, *-] (3.9,2.4) node[ground]{};
+  \draw (5.3,4) to[R, l=$R_L$, *-] (5.3,2.4) node[ground]{};
+  \draw (1.3,0.6) to[short, *-] (1.3,-0.2) node[left, kirmizikalem]{E} to[R, l=$R_{sig}$] (2.9,-0.2)
+        to[sV, l=$V_{sig}$] (2.9,-1.8) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\subsection{Common-Collector Amplifier (Emitter-Follower)}
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[sV] (0,1.5) to[R, l=$R_{sig}$] (1.6,1.5) to[C] (2.8,1.5)
+        -- (4.4,1.5) node[npn, anchor=B](Q){};
+  \draw (3.4,1.5) to[R, l_=$R_{B1}$, *-] (3.4,3.4) -| (Q.C);
+  \draw[-{Latex[length=2mm]}] (3.4,3.4) -- (6.6,3.4) node[right]{$V_{CC}$};
+  \draw (3.4,1.5) to[R, l=$R_{B2}$] (3.4,0) node[ground]{};
+  \draw (Q.E) -- ++(0,-0.3) coordinate(en) to[R, l=$R_E$] ++(0,-1.5) node[ground]{};
+  \draw (en) to[C, l=$C_C$, *-] ++(2.4,0) coordinate(o) to[R, l=$R_L$] ++(0,-1.5) node[ground]{};
+  \draw[-{Latex[length=2mm]}] ($(en)+(0.15,0.15)$) to[out=90, in=180] ($(en)+(1.3,1.35)$)
+        node[right, align=left]{Output\\(Emitter)};
+\end{circuitikz}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{0.36\linewidth}
+\underline{DC}
+
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[V, l_=$V_{Th}$] (0,1.4) to[R, l_=$R_{Th}$] (0,2.8)
+        -- (0.9,2.8) node[npn, anchor=B](Q3){};
+  \draw (Q3.C) -- ++(0,0.6) node[vcc]{$V_{CC}$};
+  \draw (Q3.E) to[R, l=$R_E$] ++(0,-1.5) node[ground]{};
+\end{circuitikz}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.62\linewidth}
+\underline{AC}
+
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[sV] (0,1.5) to[R, l=$R_{sig}$] (1.4,1.5) -- (3,1.5) node[npn, anchor=B](Q4){};
+  \draw (2,1.5) to[R, l_=$R_{B1}$, *-] (2,3.2) -| (Q4.C);
+  \draw (2,3.2) -- (4.6,3.2) -- (4.6,3.0) node[ground]{};
+  \draw (2,1.5) to[R, l=$R_{B2}$] (2,0) node[ground]{};
+  \draw (Q4.E) -- ++(0,-0.2) coordinate(e4) -- ++(2.6,0) node[right]{$v_{out}$};
+  \draw (e4) to[R, l=$R_E$, *-] ++(0,-1.4) node[ground]{};
+  \draw ($(e4)+(1.5,0)$) to[R, l=$R_L$, *-] ++(0,-1.4) node[ground]{};
+\end{circuitikz}
+\end{minipage}
+
+\begin{center}
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,0) node[ground]{} to[sV] (0,1.5) to[R, l=$R_{sig}$] (1.3,1.5) -- (3.6,1.5) node[npn, anchor=B](Q5){};
+  \draw (1.5,1.5) to[R, l=$R_{B1}\parallel R_{B2}$, *-] (1.5,0) node[ground]{};
+  \draw (Q5.C) -- ++(0,1.0) -- ++(1.2,0) -- ++(0,-0.2) node[ground]{};
+  \draw (Q5.E) -- ++(0,-0.2) coordinate(e5) -- ++(2.6,0) node[right]{$v_{out}$};
+  \draw (e5) to[R, l=$R_E$, *-] ++(0,-1.4) node[ground]{};
+  \draw ($(e5)+(1.5,0)$) to[R, l=$R_L$, *-] ++(0,-1.4) node[ground]{};
+\end{circuitikz}
+\end{center}
+
+\sayfa{6}
+\noindent
+\begin{minipage}[c]{0.24\linewidth}
+$V = I R$
+\end{minipage}\hfill
+\begin{minipage}[c]{0.74\linewidth}
+\centering
+\begin{circuitikz}[line width=0.6pt]
+  \draw (0,2) -- (1.5,2) to[R, l_=$r_\pi$] (1.5,0) -- (4.4,0);
+  \node at (1.9,1.55) {$+$}; \node at (2.05,1.0) {$V_\pi$}; \node at (1.9,0.45) {$-$};
+  \draw (4.4,2) to[cisource, l=$g_m v_\pi$] (4.4,0);
+  \draw (4.4,2) -- (6.4,2) to[R, l=$r_o$] (6.4,0) -- (4.4,0);
+  \draw (6.4,2) to[short, -*] (7.0,2) node[right]{C};
+  \draw (3,0) to[short, -o] (3,-0.6) node[left]{E};
+\end{circuitikz}
+\end{minipage}
+
+\begin{align*}
+  & \Bigl( g_m v_\pi + \frac{v_\pi}{r_\pi} \Bigr) R_L' \\
+  & = R_L' \cdot V_\pi \Bigl( g_m + \frac{1}{r_\pi} \Bigr)
+\end{align*}
+
+\end{document}
