@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net" modified="2024-05-21T17:56:10.350Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="dFWvcj0IvKeHDg9oIMw1" version="24.4.0" type="google">
+  <diagram name="Sayfa -1" id="aj0CQ7z4-Rrv4p2lwn8O">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fCWu-p1Cj_rTBmTW1EzA-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="INya1LLgOjMMZELCUvYN-5" target="INya1LLgOjMMZELCUvYN-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="INya1LLgOjMMZELCUvYN-5" value="Yürüme Filtresi&lt;div&gt;(Alçak Geçiren filtre)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="358" y="176" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fCWu-p1Cj_rTBmTW1EzA-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="INya1LLgOjMMZELCUvYN-6" target="INya1LLgOjMMZELCUvYN-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="INya1LLgOjMMZELCUvYN-6" value="Koşma filtresi&lt;div&gt;(Bant geçiren filtre)&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="190" y="176" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fCWu-p1Cj_rTBmTW1EzA-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.75;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="INya1LLgOjMMZELCUvYN-11" target="INya1LLgOjMMZELCUvYN-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="INya1LLgOjMMZELCUvYN-11" value="FFT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="358" y="280" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="fCWu-p1Cj_rTBmTW1EzA-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="INya1LLgOjMMZELCUvYN-13" target="INya1LLgOjMMZELCUvYN-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="INya1LLgOjMMZELCUvYN-13" value="FFT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="190" y="280" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="INya1LLgOjMMZELCUvYN-18" value="&lt;b&gt;Enerji Karşılaştırıcı&lt;/b&gt;&lt;div&gt;(Sinyalin DC bileşeni hesaba katılmaz.)&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Eğer yürüme filtresinden geçen sinyalin enerjisi daha yüksekse o zaman yürüme aktivesidir,&lt;/div&gt;&lt;div&gt;tam tersi ise koşma aktivesidir.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="248.5" y="380" width="170" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="fCWu-p1Cj_rTBmTW1EzA-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fCWu-p1Cj_rTBmTW1EzA-1" target="INya1LLgOjMMZELCUvYN-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fCWu-p1Cj_rTBmTW1EzA-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="fCWu-p1Cj_rTBmTW1EzA-1" target="INya1LLgOjMMZELCUvYN-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="fCWu-p1Cj_rTBmTW1EzA-1" value="&lt;b&gt;El Hareketi Ax Verisi&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="266" y="88" width="135" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" modified="2024-04-05T19:36:08.672Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="nzXE95mleFGCUDUhocXt" version="24.2.2" type="google">
+  <diagram name="Sayfa -1" id="uaWb-xbV9-lWN3wwMGte">
+    <mxGraphModel grid="1" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="827" pageHeight="1169" background="none" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="IauxGuVWraOBfGgjzhLv-10" value="SSB demodulation" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="40" y="50" width="520" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="IauxGuVWraOBfGgjzhLv-10" source="IauxGuVWraOBfGgjzhLv-1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="480" y="90" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-9" value="m&lt;sub&gt;demodulated&lt;/sub&gt;(t)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="IauxGuVWraOBfGgjzhLv-8">
+          <mxGeometry x="-0.2411" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-1" value="LPF&lt;div&gt;BG = f&lt;sub&gt;m&lt;/sub&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="IauxGuVWraOBfGgjzhLv-10">
+          <mxGeometry x="241" y="50" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="IauxGuVWraOBfGgjzhLv-10" source="IauxGuVWraOBfGgjzhLv-2" target="IauxGuVWraOBfGgjzhLv-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-2" value="" style="verticalLabelPosition=bottom;verticalAlign=top;html=1;shape=mxgraph.flowchart.or;" vertex="1" parent="IauxGuVWraOBfGgjzhLv-10">
+          <mxGeometry x="160" y="70" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-3" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="IauxGuVWraOBfGgjzhLv-10" target="IauxGuVWraOBfGgjzhLv-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="30" y="89.73000000000002" as="sourcePoint" />
+            <mxPoint x="150" y="90" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="60" y="89.73000000000002" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-4" value="y&lt;font size=&quot;1&quot;&gt;&lt;sub&gt;SSB&lt;/sub&gt; (t)&lt;/font&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" connectable="0" vertex="1" parent="IauxGuVWraOBfGgjzhLv-3">
+          <mxGeometry x="-0.1927" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-6" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="IauxGuVWraOBfGgjzhLv-10" source="IauxGuVWraOBfGgjzhLv-7" target="IauxGuVWraOBfGgjzhLv-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="179.73" y="190" as="sourcePoint" />
+            <mxPoint x="179.73" y="130" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="IauxGuVWraOBfGgjzhLv-7" value="cos(2πf&lt;sub&gt;c&lt;/sub&gt;t)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="IauxGuVWraOBfGgjzhLv-10">
+          <mxGeometry x="121" y="190" width="120" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
