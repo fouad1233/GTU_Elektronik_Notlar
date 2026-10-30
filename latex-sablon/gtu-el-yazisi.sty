@@ -1,0 +1,732 @@
+%% =====================================================================
+%%  gtu-el-yazisi.sty
+%%  GTÜ Elektronik Mühendisliği -- el yazısı görünümlü ders notu şablonu
+%%  (Handwritten-look template for digitised lecture notes)
+%%
+%%  Derleme / build : XeLaTeX  ->  latex-sablon/derle.sh dosya.tex
+%%  Fontlar / fonts : Shantell Sans (gövde), Caveat (başlıklar) -- SIL OFL 1.1
+%% =====================================================================
+\NeedsTeXFormat{LaTeX2e}[2022/06/01]
+\ProvidesPackage{gtu-el-yazisi}[2026/10/29 v1.0 GTU el yazisi ders notu sablonu]
+
+%% ---------------------------------------------------------------------
+%% 0. Motor kontrolü / engine check
+%% ---------------------------------------------------------------------
+\RequirePackage{iftex}
+\iftutex\else
+  \PackageError{gtu-el-yazisi}
+    {Bu paket XeLaTeX ile derlenmelidir / XeLaTeX required}
+    {Lutfen latex-sablon/derle.sh ile derleyin (pdfLaTeX desteklenmez).}
+  \expandafter\endinput
+\fi
+
+%% ---------------------------------------------------------------------
+%% 1. Seçenekler / options
+%%    kagit    = kareli | cizgili | noktali | duz     (varsayılan: kareli)
+%%    kalem    = ince | normal                        (gövde font kalınlığı)
+%%    etiket   = tr | en                              (kutu etiketlerinin dili)
+%%    numarali                                        (bölüm numaraları açık)
+%%    fontpath = <klasör>/                            (fontlar başka yerdeyse)
+%% ---------------------------------------------------------------------
+\newif\ifgtu@en
+\newif\ifgtu@numarali
+\ExplSyntaxOn
+\tl_new:N \g__gtu_kagit_tl
+\tl_new:N \g__gtu_fontpath_tl
+\tl_new:N \g__gtu_kalem_tl
+\keys_define:nn { gtu }
+  {
+    kagit    .choices:nn  = { kareli , cizgili , noktali , duz }
+                            { \tl_gset:Nn \g__gtu_kagit_tl {#1} } ,
+    kagit    .initial:n   = kareli ,
+    kalem    .choices:nn  = { ince , normal }
+                            { \tl_gset:Nn \g__gtu_kalem_tl {#1} } ,
+    kalem    .initial:n   = ince ,
+    etiket   .choices:nn  = { tr , en }
+                            { \str_if_eq:nnTF {#1} { en } { \gtu@entrue } { \gtu@enfalse } } ,
+    etiket   .initial:n   = tr ,
+    numarali .code:n      = \gtu@numaralitrue ,
+    numarali .value_forbidden:n = true ,
+    fontpath .tl_gset:N   = \g__gtu_fontpath_tl ,
+  }
+\ProcessKeyOptions [ gtu ]
+\ExplSyntaxOff
+
+%% ---------------------------------------------------------------------
+%% 2. Matematik paketleri (euler, fontspec'ten ÖNCE yüklenmeli)
+%%    Euler: Hermann Zapf'ın el yazısından esinlenen matematik fontu.
+%%    Yunan harfleri, \sum \prod \int \oint \infty \partial buradan gelir.
+%% ---------------------------------------------------------------------
+\PassOptionsToPackage{table}{xcolor}
+\RequirePackage{amsmath,amssymb,mathtools}
+\RequirePackage{euler}
+\RequirePackage[no-math]{fontspec}
+
+%% ---------------------------------------------------------------------
+%% 3. Fontlar / fonts
+%% ---------------------------------------------------------------------
+\ExplSyntaxOn
+\tl_new:N \l__gtu_up_tl
+\tl_new:N \l__gtu_it_tl
+\tl_new:N \l__gtu_bf_tl
+\tl_new:N \l__gtu_bfit_tl
+\tl_new:N \l__gtu_pathopt_tl
+\bool_new:N \l__gtu_found_bool
+\str_if_eq:VnTF \g__gtu_kalem_tl { normal }
+  {
+    \tl_set:Nn \l__gtu_up_tl   { ShantellSans-Regular.ttf }
+    \tl_set:Nn \l__gtu_it_tl   { ShantellSans-Italic.ttf }
+    \tl_set:Nn \l__gtu_bf_tl   { ShantellSans-Bold.ttf }
+    \tl_set:Nn \l__gtu_bfit_tl { ShantellSans-BoldItalic.ttf }
+  }
+  {
+    \tl_set:Nn \l__gtu_up_tl   { ShantellSans-Light.ttf }
+    \tl_set:Nn \l__gtu_it_tl   { ShantellSans-LightItalic.ttf }
+    \tl_set:Nn \l__gtu_bf_tl   { ShantellSans-SemiBold.ttf }
+    \tl_set:Nn \l__gtu_bfit_tl { ShantellSans-SemiBoldItalic.ttf }
+  }
+\msg_new:nnnn { gtu } { font-yok }
+  {
+    El~yazisi~fontlari~bulunamadi~(\l__gtu_up_tl).~
+    Fonts~not~found.~Belgeyi~latex-sablon/derle.sh~ile~derleyin~veya~
+    \token_to_str:N \usepackage[fontpath=<yol>/latex-sablon/fonts/]{gtu-el-yazisi}~
+    kullanin.
+  }
+  { derle.sh~TTFONTS~degiskenini~ayarlar;~elle~derlerken~fontpath~verin. }
+% Font arama sırası: fontpath seçeneği -> kpathsea (derle.sh TTFONTS) ->
+% göreli klasörler (./fonts, ../latex-sablon/fonts, ...).
+\tl_if_empty:NTF \g__gtu_fontpath_tl
+  {
+    \IfFontExistsTF { \l__gtu_up_tl }
+      { \bool_set_true:N \l__gtu_found_bool }
+      {
+        \clist_map_inline:nn
+          {
+            ./fonts/ , ./latex-sablon/fonts/ , ../latex-sablon/fonts/ ,
+            ../../latex-sablon/fonts/ , ../../../latex-sablon/fonts/ ,
+            ../../../../latex-sablon/fonts/ , ../../../../../latex-sablon/fonts/
+          }
+          {
+            \file_if_exist:nT { ##1 \l__gtu_up_tl }
+              {
+                \tl_set:Nn \l__gtu_pathopt_tl { Path = ##1 , }
+                \bool_set_true:N \l__gtu_found_bool
+                \clist_map_break:
+              }
+          }
+      }
+  }
+  {
+    \tl_set:Nx \l__gtu_pathopt_tl { Path = \g__gtu_fontpath_tl , }
+    \bool_set_true:N \l__gtu_found_bool
+  }
+\bool_if:NF \l__gtu_found_bool { \msg_error:nn { gtu } { font-yok } }
+
+% Gövde: Shantell Sans (Arrow Type) -- "irregular" alternatif harfler (rlig)
+% sayesinde aynı harf her seferinde biraz farklı görünür. fi/fl bitişik
+% harfleri Türkçe (i/ı) için kapalı.
+\use:x
+  {
+    \exp_not:N \setmainfont { \l__gtu_up_tl }
+      [
+        \l__gtu_pathopt_tl
+        ItalicFont     = \l__gtu_it_tl ,
+        BoldFont       = \l__gtu_bf_tl ,
+        BoldItalicFont = \l__gtu_bfit_tl ,
+        Ligatures      = { TeX , NoCommon } ,
+        Language       = Turkish ,
+        Scale          = 0.95
+      ]
+    \exp_not:N \setsansfont { \l__gtu_up_tl }
+      [
+        \l__gtu_pathopt_tl
+        ItalicFont     = \l__gtu_it_tl ,
+        BoldFont       = \l__gtu_bf_tl ,
+        BoldItalicFont = \l__gtu_bfit_tl ,
+        Ligatures      = { TeX , NoCommon } ,
+        Language       = Turkish ,
+        Scale          = 0.95
+      ]
+    \exp_not:N \newfontfamily \exp_not:N \gtubaslikfont { Caveat-Bold.ttf }
+      [ \l__gtu_pathopt_tl Ligatures = { TeX , NoCommon } , Scale = 1.2 ]
+    \exp_not:N \newfontfamily \exp_not:N \gtuincefont { Caveat-Medium.ttf }
+      [ \l__gtu_pathopt_tl Ligatures = { TeX , NoCommon } , Scale = 1.2 ]
+  }
+% kağıt türü çizim makrosu
+\cs_gset:Npx \gtu@kagitciz { \exp_not:c { gtu@kagit@ \g__gtu_kagit_tl } }
+\ExplSyntaxOff
+% euler+fontspec, 'operators' matematik fontunu OT1/<gövde fontu> yapar; bu
+% şekiller yoktur. Uyarı vermeden Computer Modern'e yönlendir.
+\begingroup\edef\x{\endgroup
+  \noexpand\DeclareFontFamily{OT1}{\rmdefault}{}%
+  \noexpand\DeclareFontShape{OT1}{\rmdefault}{m}{up}{<->ssub*cmr/m/n}{}%
+  \noexpand\DeclareFontShape{OT1}{\rmdefault}{m}{n}{<->ssub*cmr/m/n}{}%
+  \noexpand\DeclareFontShape{OT1}{\rmdefault}{m}{it}{<->ssub*cmr/m/it}{}%
+  \noexpand\DeclareFontShape{OT1}{\rmdefault}{b}{up}{<->ssub*cmr/bx/n}{}%
+  \noexpand\DeclareFontShape{OT1}{\rmdefault}{b}{n}{<->ssub*cmr/bx/n}{}%
+  \noexpand\DeclareFontShape{OT1}{\rmdefault}{bx}{up}{<->ssub*cmr/bx/n}{}%
+  \noexpand\DeclareFontShape{OT1}{\rmdefault}{bx}{n}{<->ssub*cmr/bx/n}{}}\x
+
+%% ---------------------------------------------------------------------
+%% 4. Matematik de el yazısıyla: mathastext Latin harfleri, rakamları ve
+%%    + - = < > ( ) [ ] / gibi işaretleri gövde fontundan alır.
+%% ---------------------------------------------------------------------
+\RequirePackage[italic,decimalcomma]{mathastext}
+% Bazı işlemciler de el yazısı fonttan (XeTeX \Umathchardef):
+\Umathchardef\pm     = 2 \symmtoperatorfont "00B1
+\Umathchardef\times  = 2 \symmtoperatorfont "00D7
+\Umathchardef\div    = 2 \symmtoperatorfont "00F7
+\Umathchardef\approx = 3 \symmtoperatorfont "2248
+\Umathchardef\neq    = 3 \symmtoperatorfont "2260 \let\ne\neq
+\Umathchardef\leq    = 3 \symmtoperatorfont "2264 \let\le\leq
+\Umathchardef\geq    = 3 \symmtoperatorfont "2265 \let\ge\geq
+
+%% ---------------------------------------------------------------------
+%% 5. Sayfa düzeni, renkler, grafik paketleri
+%% ---------------------------------------------------------------------
+\RequirePackage[a4paper,left=25mm,right=15mm,top=20mm,bottom=20mm,
+                headheight=15pt,headsep=5mm,footskip=9mm]{geometry}
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{calc,patterns,shapes.symbols,arrows.meta,positioning}
+\RequirePackage{tikzpagenodes}
+\RequirePackage{eso-pic}
+\RequirePackage[skins,breakable]{tcolorbox}
+\RequirePackage[american,RPvoltages]{circuitikz}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\RequirePackage{siunitx}
+\RequirePackage{steinmetz}
+\RequirePackage{booktabs,array,tabularx,multirow}
+\RequirePackage{enumitem}
+\RequirePackage[explicit]{titlesec}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage{caption}
+\RequirePackage{ragged2e}
+
+% --- Mürekkep renkleri / ink colours ---------------------------------
+\definecolor{murekkep}{HTML}{1B3A8C}      % mavi tükenmez kalem (gövde)
+\definecolor{kirmizikalem}{HTML}{BE2A2A}  % kırmızı kalem (başlıklar)
+\definecolor{yesilkalem}{HTML}{1E7A46}
+\definecolor{morkalem}{HTML}{6A3D9A}
+\definecolor{turuncukalem}{HTML}{D2601A}
+\definecolor{kursunkalem}{HTML}{5F6670}   % kurşun kalem grisi
+\definecolor{cozumrengi}{HTML}{0F7C8C}
+\definecolor{linkrengi}{HTML}{0060C8}
+% fosforlu kalemler / highlighters
+\definecolor{gtufosfor-sari}{HTML}{FFEE70}
+\definecolor{gtufosfor-pembe}{HTML}{FFB8DC}
+\definecolor{gtufosfor-yesil}{HTML}{BDF5A6}
+\definecolor{gtufosfor-mavi}{HTML}{AEE3FF}
+\definecolor{gtufosfor-turuncu}{HTML}{FFCC8A}
+% kağıt / paper
+\definecolor{kagitrengi}{HTML}{FFFEFA}
+\definecolor{karerengi}{HTML}{CFE0F1}
+\definecolor{noktarengi}{HTML}{A7C2DF}
+\definecolor{kenarrengi}{HTML}{EBA3A3}
+\definecolor{notsarisi}{HTML}{FFF3A6}
+
+%% ---------------------------------------------------------------------
+%% 6. Etiketler (tr / en)
+%% ---------------------------------------------------------------------
+\ifgtu@en
+  \def\gtu@lbl@tanim{Definition}\def\gtu@lbl@teorem{Theorem}
+  \def\gtu@lbl@ornek{Example}\def\gtu@lbl@cozum{Solution}
+  \def\gtu@lbl@dikkat{Caution!}\def\gtu@lbl@ozet{Summary}
+  \def\gtu@lbl@sekil{Figure}\def\gtu@lbl@orijinalnotta{in the original notes}
+  \def\gtu@lbl@okunamadi{illegible}\def\gtu@lbl@s{p.}
+  \def\gtu@lbl@orj{orig.}\def\gtu@lbl@orijinal{Original notes}
+\else
+  \def\gtu@lbl@tanim{Tanım}\def\gtu@lbl@teorem{Teorem}
+  \def\gtu@lbl@ornek{Örnek}\def\gtu@lbl@cozum{Çözüm}
+  \def\gtu@lbl@dikkat{Dikkat!}\def\gtu@lbl@ozet{Özet}
+  \def\gtu@lbl@sekil{Şekil}\def\gtu@lbl@orijinalnotta{orijinal notta}
+  \def\gtu@lbl@okunamadi{okunamadı}\def\gtu@lbl@s{s.}
+  \def\gtu@lbl@orj{orj.}\def\gtu@lbl@orijinal{Orijinal not}
+\fi
+\ifgtu@en\else
+  \renewcommand\figurename{Şekil}
+  \renewcommand\tablename{Tablo}
+  \renewcommand\contentsname{İçindekiler}
+  \renewcommand\refname{Kaynaklar}
+  \renewcommand\listfigurename{Şekil Listesi}
+  \renewcommand\listtablename{Tablo Listesi}
+  \renewcommand\appendixname{Ek}
+\fi
+\def\today{\number\day~\ifcase\month\or Ocak\or Şubat\or Mart\or Nisan\or
+  Mayıs\or Haziran\or Temmuz\or Ağustos\or Eylül\or Ekim\or Kasım\or
+  Aralık\fi\space\number\year}
+
+%% ---------------------------------------------------------------------
+%% 7. Paragraf düzeni: el yazısı gibi sola yaslı, hecelemesiz
+%% ---------------------------------------------------------------------
+\linespread{1.046}                    % satır aralığı = 5 mm (bir kare)
+\setlength\topskip{5mm}
+\setlength\parindent{0pt}
+\setlength\parskip{2mm plus 1pt}
+\setlength\RaggedRightRightskip{0pt plus 1fil}% el yazısı: boşluklar esnemez
+\relpenalty=9000 \binoppenalty=9500 % satır içi formüller bölünmesin
+\frenchspacing
+\raggedbottom
+\clubpenalty=4000 \widowpenalty=4000
+\g@addto@macro\@parboxrestore{\RaggedRight}% minipage/parbox da sola yaslı
+\AtBeginDocument{%
+  \RaggedRight
+  \ifcsname l@nohyphenation\endcsname \language=\csname l@nohyphenation\endcsname \fi
+  \color{murekkep}\let\default@color\current@color
+  \pgfmathsetseed{4242}}
+
+%% ---------------------------------------------------------------------
+%% 8. Elle çizilmiş çizgiler (TikZ): her kenar ayrı, hafif eğri ve
+%%    köşelerde biraz taşan bir kalem darbesi olarak çizilir.
+%% ---------------------------------------------------------------------
+\def\gtu@tasma{0.9mm}   % köşelerde taşma
+\def\gtu@egri{0.9pt}    % eğrilik
+\tikzset{
+  gtu tasma/.code={\def\gtu@tasma{#1}},
+  gtu egri/.code={\def\gtu@egri{#1}},
+  gtu el/.style={line cap=round, line join=round,
+    to path={\pgfextra{%
+        \pgfmathsetlengthmacro\gtu@ra{\gtu@egri*rand}%
+        \pgfmathsetlengthmacro\gtu@rb{\gtu@egri*rand}%
+        \pgfmathsetlengthmacro\gtu@rc{\gtu@tasma*(0.25+0.75*rnd)}%
+        \pgfmathsetlengthmacro\gtu@rd{\gtu@tasma*(0.25+0.75*rnd)}}%
+      ($(\tikztostart)!-\gtu@rc!(\tikztotarget)$)
+      .. controls ($(\tikztostart)!0.3!(\tikztotarget)+(\gtu@ra,\gtu@rb)$)
+              and ($(\tikztostart)!0.7!(\tikztotarget)+(\gtu@rb,-\gtu@ra)$) ..
+      ($(\tikztotarget)!-\gtu@rd!(\tikztostart)$) \tikztonodes}},
+  gtu kalem/.style={gtu el, line width=0.75pt},
+  gtu ikinci/.style={gtu el, line width=0.35pt, opacity=0.55},
+  gtu bant/.style={fill=gray!40, fill opacity=0.4, draw=gray!50,
+    draw opacity=0.35, line width=0.2pt, minimum width=13mm,
+    minimum height=3.8mm, inner sep=0pt},
+}
+% \gtu@dortgen{renk}{GB köşe}{KD köşe} : iki geçişli eskiz dikdörtgen
+\newcommand\gtu@dortgen[3]{%
+  \draw[gtu kalem,#1] (#2) to (#2-|#3) (#2-|#3) to (#3) (#3) to (#3-|#2) (#3-|#2) to (#2);
+  \draw[gtu ikinci,#1] (#2) to (#2-|#3) (#2-|#3) to (#3) (#3) to (#3-|#2) (#3-|#2) to (#2);}
+% bant parçası (selobant)
+\newcommand\gtu@bant[2]{\node[gtu bant, rotate=#2] at (#1) {};}
+
+% tcolorbox kutuları: dolgu "underlay"de (metnin altında), elle çizilmiş
+% çerçeve ve etiket "overlay"de (en üstte) çizilir. Etiket üst çizgideki
+% bir boşluğa yazılır -- öğrencinin kutuya başlık yazması gibi.
+\def\gtu@dolgu#1{\ifx\relax#1\relax\else
+  \fill[#1] (frame.south west) rectangle (frame.north east);\fi}
+% \gtu@cerceve{renk}{parça u/f/m/l}{çift 0/1}
+\def\gtu@cerceve#1#2#3{%
+  \def\gtu@etiketvar{0}%
+  \ifx\gtu@kutuetiketi\@empty\else
+    \if#2u\def\gtu@etiketvar{1}\fi
+    \if#2f\def\gtu@etiketvar{1}\fi
+  \fi
+  \ifnum\gtu@etiketvar=1
+    \node[anchor=west,inner xsep=1.2mm,inner ysep=0.6mm,text=#1,font=\gtubaslikfont\large]
+      (gtuE) at ([xshift=3mm]frame.north west) {\gtu@kutuetiketi};
+  \fi
+  \gtu@cerceve@gec{gtu kalem}{#1}{#2}{0pt}%
+  \gtu@cerceve@gec{gtu ikinci}{#1}{#2}{0pt}%
+  \ifnum#3=1 \gtu@cerceve@gec{gtu kalem,line width=0.45pt}{#1}{#2}{1.8pt}\fi}
+\def\gtu@cerceve@gec#1#2#3#4{%
+  \coordinate (gtuGB) at ([shift={(#4,#4)}]frame.south west);
+  \coordinate (gtuKD) at ([shift={(-#4,-#4)}]frame.north east);
+  \draw[#1,#2] (gtuGB|-gtuKD) to (gtuGB);
+  \draw[#1,#2] (gtuKD) to (gtuKD|-gtuGB);
+  \if#3u\gtu@ust{#1}{#2}\fi
+  \if#3f\gtu@ust{#1}{#2}\fi
+  \if#3u\draw[#1,#2] (gtuGB) to (gtuGB-|gtuKD);\fi
+  \if#3l\draw[#1,#2] (gtuGB) to (gtuGB-|gtuKD);\fi}
+\def\gtu@ust#1#2{%
+  \ifnum\gtu@etiketvar=1
+    \draw[#1,#2] (gtuGB|-gtuKD) to ([xshift=-0.4mm]gtuE.west|-gtuKD);
+    \draw[#1,#2] ([xshift=0.4mm]gtuE.east|-gtuKD) to (gtuKD);
+  \else
+    \draw[#1,#2] (gtuGB|-gtuKD) to (gtuKD);
+  \fi}
+
+%% ---------------------------------------------------------------------
+%% 9. Kağıt arka planı: kareli / çizgili / noktalı / düz + kırmızı kenar
+%% ---------------------------------------------------------------------
+\newcommand\gtu@kagit@kareli{%
+  \draw[karerengi,line width=0.25pt,step=5mm,shift={(0,\paperheight)}]
+    (0,-\paperheight) grid (\paperwidth,0);}
+\newcommand\gtu@kagit@cizgili{%
+  \draw[karerengi,line width=0.35pt,ystep=5mm,xstep=\paperwidth,
+    shift={(0,\paperheight)}] (0,-\paperheight) grid (\paperwidth,-25mm);}
+\newcommand\gtu@kagit@noktali{%
+  \draw[noktarengi,line width=0.9pt,dash pattern=on 0pt off 5mm,
+    line cap=round,xstep=5mm,ystep=\paperheight,shift={(0,\paperheight)}]
+    (0,-\paperheight) grid (\paperwidth,0);}
+\newcommand\gtu@kagit@duz{}
+\newcommand\gtu@arkaplan{%
+  \put(0,0){\begin{tikzpicture}[inner sep=0pt]
+    \useasboundingbox (0,0) rectangle (\paperwidth,\paperheight);
+    \fill[kagitrengi] (0,0) rectangle (\paperwidth,\paperheight);
+    \gtu@kagitciz
+    \draw[kenarrengi,line width=0.6pt] (20mm,0) -- (20mm,\paperheight);
+  \end{tikzpicture}}}
+\AddToShipoutPictureBG{\gtu@arkaplan}
+
+%% ---------------------------------------------------------------------
+%% 10. Başlıklar / headings
+%% ---------------------------------------------------------------------
+\newsavebox\gtu@kutu
+% altı elle çizilmiş başlık
+\newcommand\gtu@altcizgili[2]{% #1 renk, #2 metin
+  \sbox\gtu@kutu{#2}%
+  \ifdim\wd\gtu@kutu>\dimexpr\linewidth-3em\relax
+    \parbox[t]{\dimexpr\linewidth-3em}{\RaggedRight#2\par\vspace{-0.9ex}%
+      \tikz\draw[gtu kalem,#1,line width=1pt] (0,0) to (\linewidth,0.5pt);}%
+  \else
+    \tikz[baseline=(t.base)]{\node[inner sep=0pt](t){\usebox\gtu@kutu};
+      \draw[gtu kalem,#1,line width=1pt] ([yshift=-1.4mm]t.south west)
+        to ([yshift=-1.1mm,xshift=3mm]t.south east);
+      \draw[gtu ikinci,#1] ([yshift=-1.9mm,xshift=1mm]t.south west)
+        to ([yshift=-1.6mm,xshift=2mm]t.south east);}%
+  \fi}
+\titleformat{\section}[hang]
+  {\gtubaslikfont\LARGE\color{kirmizikalem}}
+  {\thesection}{0.5em}{\gtu@altcizgili{kirmizikalem}{#1}}
+\titleformat{\subsection}[hang]
+  {\gtubaslikfont\Large\color{murekkep}}
+  {\thesubsection}{0.5em}{\gtu@vurgukutu{gtufosfor-yesil}{#1}}
+\titleformat{\subsubsection}[hang]
+  {\gtubaslikfont\large\color{morkalem}}
+  {\thesubsubsection}{0.5em}{{\normalfont→}\ #1}
+\titleformat{\paragraph}[runin]
+  {\gtubaslikfont\color{kirmizikalem}}{\theparagraph}{0.5em}{#1}
+\titlespacing*{\section}{0pt}{5mm plus 1mm}{3mm}
+\titlespacing*{\subsection}{0pt}{4mm plus 1mm}{2mm}
+\titlespacing*{\subsubsection}{0pt}{3mm plus 1mm}{1.5mm}
+\titlespacing*{\paragraph}{0pt}{2mm}{0.6em}
+\ifgtu@numarali\setcounter{secnumdepth}{3}\else\setcounter{secnumdepth}{0}\fi
+
+%% ---------------------------------------------------------------------
+%% 11. \vurgu{...}  fosforlu kalem (satır sonlarında bölünebilir)
+%% ---------------------------------------------------------------------
+\ExplSyntaxOn
+\seq_new:N \l__gtu_vurgu_seq
+\seq_new:N \l__gtu_vurgu_out_seq
+\tl_new:N \l__gtu_vurgu_acc_tl
+\int_new:N \l__gtu_vurgu_cnt_int
+\int_new:N \l__gtu_vurgu_tmp_int
+\box_new:N \l__gtu_vurgu_box
+\cs_new_protected:Npn \__gtu_vurgu_say:n #1
+  {
+    \regex_count:nnN { \cM\$ } {#1} \l__gtu_vurgu_tmp_int
+    \int_add:Nn \l__gtu_vurgu_cnt_int { \l__gtu_vurgu_tmp_int }
+    \regex_count:nnN { \c{\(} | \c{\)} } {#1} \l__gtu_vurgu_tmp_int
+    \int_add:Nn \l__gtu_vurgu_cnt_int { \l__gtu_vurgu_tmp_int }
+  }
+\cs_new_protected:Npn \__gtu_vurgu_kelime:nn #1#2
+  {
+    \hbox_set:Nn \l__gtu_vurgu_box {#2}
+    \mode_leave_vertical:
+    \rlap { \color {#1} \rule [ -0.24em ] { \box_wd:N \l__gtu_vurgu_box } { 1.04em } }
+    \box_use_drop:N \l__gtu_vurgu_box
+  }
+\cs_new_protected:Npn \__gtu_vurgu_bosluk:n #1
+  {
+    \group_begin:
+    \color {#1}
+    \tex_leaders:D \tex_hrule:D height 0.8em depth 0.24em
+      \tex_hskip:D \tex_fontdimen:D 2 \tex_font:D
+        plus \tex_fontdimen:D 3 \tex_font:D minus \tex_fontdimen:D 4 \tex_font:D
+    \group_end:
+  }
+\cs_new_protected:Npn \gtu_vurgu:nn #1#2
+  {
+    \seq_set_split:Nnn \l__gtu_vurgu_seq { ~ } {#2}
+    \seq_remove_all:Nn \l__gtu_vurgu_seq { }
+    \seq_clear:N \l__gtu_vurgu_out_seq
+    \tl_clear:N \l__gtu_vurgu_acc_tl
+    \int_zero:N \l__gtu_vurgu_cnt_int
+    \seq_map_inline:Nn \l__gtu_vurgu_seq
+      {
+        \tl_if_empty:NTF \l__gtu_vurgu_acc_tl
+          { \tl_set:Nn \l__gtu_vurgu_acc_tl {##1} }
+          { \tl_put_right:Nn \l__gtu_vurgu_acc_tl { ~ ##1 } }
+        \__gtu_vurgu_say:n {##1}
+        \int_if_even:nT { \l__gtu_vurgu_cnt_int }
+          {
+            \seq_put_right:NV \l__gtu_vurgu_out_seq \l__gtu_vurgu_acc_tl
+            \tl_clear:N \l__gtu_vurgu_acc_tl
+            \int_zero:N \l__gtu_vurgu_cnt_int
+          }
+      }
+    \tl_if_empty:NF \l__gtu_vurgu_acc_tl
+      { \seq_put_right:NV \l__gtu_vurgu_out_seq \l__gtu_vurgu_acc_tl }
+    \mode_leave_vertical:
+    \seq_map_indexed_inline:Nn \l__gtu_vurgu_out_seq
+      {
+        \int_compare:nNnT {##1} > { 1 } { \__gtu_vurgu_bosluk:n {#1} }
+        \__gtu_vurgu_kelime:nn {#1} {##2}
+      }
+  }
+\NewDocumentCommand \vurgu { O{sari} +m }
+  { \gtu_vurgu:nn { gtufosfor-#1 } {#2} }
+% tek parça (bölünmeyen) fosfor kutusu -- başlıklar için
+\cs_new_protected:Npn \gtu@vurgukutu #1#2
+  { \__gtu_vurgu_kelime:nn {#1} {#2} }
+\ExplSyntaxOff
+
+%% ---------------------------------------------------------------------
+%% 12. Kutular / boxes (tcolorbox + elle çizilmiş çerçeve)
+%% ---------------------------------------------------------------------
+\newcommand\gtu@etiketmetni[2]{#1\if\relax\detokenize{#2}\relax\else\ #2\fi}
+% küçük uyarı üçgeni simgesi
+\newcommand\gtu@ucgen[1][1]{\tikz[baseline=-0.1em,scale=#1,gtu tasma=0.25mm,gtu egri=0.3pt]{%
+  \draw[gtu el,line width=0.8pt,turuncukalem] (0,0) to (0.55em,0.95em);
+  \draw[gtu el,line width=0.8pt,turuncukalem] (0.55em,0.95em) to (1.1em,0);
+  \draw[gtu el,line width=0.8pt,turuncukalem] (1.1em,0) to (0,0);
+  \node[inner sep=0pt,text=turuncukalem,font=\gtubaslikfont\scriptsize,scale=#1] at (0.55em,0.33em) {!};}}
+% küçük kurşun kalem simgesi
+\newcommand\gtu@kalemikon{\tikz[baseline=0pt,rotate=30,line width=0.5pt]{%
+  \draw[kursunkalem,fill=yellow!60!orange!70] (0,0) rectangle (1.25em,0.36em);
+  \draw[kursunkalem,fill=orange!25] (1.25em,0) -- (1.65em,0.18em) -- (1.25em,0.36em) -- cycle;
+  \fill[kursunkalem] (1.53em,0.125em) -- (1.65em,0.18em) -- (1.53em,0.235em) -- cycle;
+  \draw[kursunkalem,fill=pink!70] (-0.25em,0) rectangle (0,0.36em);}}
+
+\tcbset{
+  gtu etiket/.store in=\gtu@kutuetiketi,
+  gtu temel/.style={enhanced, breakable, frame hidden, interior hidden,
+    boxrule=0pt, arc=0pt, outer arc=0pt, boxsep=0pt,
+    left=3.5mm, right=3.5mm, top=2.5mm, bottom=2.5mm,
+    before skip=4mm plus 1mm minus 1mm, after skip=3mm plus 1mm minus 1mm,
+    colupper=murekkep, fontupper=\normalfont, halign=flush left,
+    parbox=false, before upper={\setlength{\parskip}{1.5mm plus 1pt}},
+    gtu etiket={}},
+  gtu baslikli/.style n args={3}{% #1 renk, #2 dolgu, #3 çift(0/1)
+    gtu temel, top=4mm,
+    underlay={\gtu@dolgu{#2}},
+    overlay unbroken={\gtu@cerceve{#1}{u}{#3}},
+    overlay first={\gtu@cerceve{#1}{f}{#3}},
+    overlay middle={\gtu@cerceve{#1}{m}{#3}},
+    overlay last={\gtu@cerceve{#1}{l}{#3}}},
+}
+\NewTColorBox{tanim}{ O{} }{gtu baslikli={yesilkalem}{yesilkalem!6}{0},
+  gtu etiket={\gtu@etiketmetni{\gtu@lbl@tanim}{#1}}}
+\NewTColorBox{teorem}{ O{} }{gtu baslikli={kirmizikalem}{kirmizikalem!5}{1},
+  gtu etiket={\gtu@etiketmetni{\gtu@lbl@teorem}{#1}}}
+\NewTColorBox{ornek}{ O{} }{gtu baslikli={morkalem}{morkalem!4}{0},
+  gtu etiket={\gtu@etiketmetni{\gtu@lbl@ornek}{#1}}}
+\NewTColorBox{dikkat}{ O{} }{gtu baslikli={turuncukalem}{turuncukalem!8}{0},
+  gtu etiket={\gtu@ucgen\ \gtu@etiketmetni{\gtu@lbl@dikkat}{#1}}}
+% Çözüm: solda köşeli parantez benzeri çizgi + "Çözüm:" başlangıcı
+\def\gtu@koseli#1{%
+  \coordinate (gtuU) at ([xshift=1.2mm,yshift=-0.5mm]frame.north west);
+  \coordinate (gtuA) at ([xshift=1.2mm,yshift=0.5mm]frame.south west);
+  \draw[gtu kalem,cozumrengi,line width=0.9pt] (gtuU) to (gtuA);
+  \if#1u\draw[gtu kalem,cozumrengi,line width=0.9pt,gtu tasma=0.3mm] (gtuU) to ++(2.5mm,0);
+        \draw[gtu kalem,cozumrengi,line width=0.9pt,gtu tasma=0.3mm] (gtuA) to ++(2.5mm,0);\fi
+  \if#1f\draw[gtu kalem,cozumrengi,line width=0.9pt,gtu tasma=0.3mm] (gtuU) to ++(2.5mm,0);\fi
+  \if#1l\draw[gtu kalem,cozumrengi,line width=0.9pt,gtu tasma=0.3mm] (gtuA) to ++(2.5mm,0);\fi}
+\NewTColorBox{cozum}{ O{} }{gtu temel, left=6mm, right=1mm, top=1.2mm, bottom=1.2mm,
+  before skip=2.5mm plus 1mm, after skip=3mm plus 1mm,
+  underlay unbroken={\gtu@koseli{u}}, underlay first={\gtu@koseli{f}},
+  underlay middle={\gtu@koseli{m}}, underlay last={\gtu@koseli{l}},
+  before upper={\setlength{\parskip}{1.5mm plus 1pt}%
+    {\gtubaslikfont\large\color{cozumrengi}\gtu@etiketmetni{\gtu@lbl@cozum}{#1}:}\ }}
+% Özet: yapışkan not kâğıdı + selobant
+\def\gtu@yapiskan#1{%
+  \fill[black!18,opacity=0.5] ([shift={(0.8mm,-0.8mm)}]frame.south west) rectangle ([shift={(0.8mm,-0.8mm)}]frame.north east);
+  \fill[notsarisi] (frame.south west) rectangle (frame.north east);
+  \draw[gtu el,line width=0.4pt,olive!70!black,opacity=0.6] (frame.north west) to (frame.south west);
+  \draw[gtu el,line width=0.4pt,olive!70!black,opacity=0.6] (frame.north east) to (frame.south east);
+  \if#1u\draw[gtu el,line width=0.4pt,olive!70!black,opacity=0.6] (frame.south west) to (frame.south east);\fi
+  \if#1l\draw[gtu el,line width=0.4pt,olive!70!black,opacity=0.6] (frame.south west) to (frame.south east);\fi
+  \if#1u\gtu@bant{[yshift=-0.8mm]frame.north}{-3}\fi
+  \if#1f\gtu@bant{[yshift=-0.8mm]frame.north}{-3}\fi}
+\NewTColorBox{ozet}{ O{} }{gtu temel, left=5mm, right=5mm, top=5mm, bottom=3.5mm,
+  before skip=6mm plus 1mm, after skip=4mm plus 1mm,
+  underlay unbroken={\gtu@yapiskan{u}}, underlay first={\gtu@yapiskan{f}},
+  underlay middle={\gtu@yapiskan{m}}, underlay last={\gtu@yapiskan{l}},
+  before upper={\setlength{\parskip}{1.5mm plus 1pt}%
+    {\gtubaslikfont\large\color{kirmizikalem}\gtu@altcizgili{kirmizikalem}{\gtu@etiketmetni{\gtu@lbl@ozet}{#1}}}\par\smallskip}}
+
+%% ---------------------------------------------------------------------
+%% 13. Formül kutuları
+%%     \formulkutu[not]{...}  ortalanmış, kırmızı çift çerçeveli formül
+%%     \kutula{...}           matematik içinde (align vb.) çerçeve
+%% ---------------------------------------------------------------------
+\NewDocumentCommand\formulkutu{ o m }{%
+  \[\tikz[baseline=(gtuF.base)]{%
+      \node[inner xsep=3.5mm,inner ysep=2.6mm,fill=gtufosfor-sari!35](gtuF){$\displaystyle #2$};
+      \gtu@dortgen{kirmizikalem}{gtuF.south west}{gtuF.north east}
+      \draw[gtu el,kirmizikalem,line width=0.5pt] ([shift={(-1.6pt,-1.6pt)}]gtuF.south west)
+        to ([shift={(1.6pt,-1.6pt)}]gtuF.south east);
+      \IfValueT{#1}{\node[overlay,anchor=west,font=\gtubaslikfont,text=kirmizikalem,
+        align=left] at ([xshift=3mm]gtuF.east) {$\leftarrow$ #1};}}\]}
+% kutu içindeki dipnotlar (tcolorbox = minipage): \itshape'siz işaret
+\renewcommand\thempfootnote{\alph{mpfootnote}}
+\newcommand\kutula[1]{\mathpalette\gtu@kutula{#1}}
+\newcommand\gtu@kutula[2]{\tikz[baseline=(gtuK.base)]{%
+  \node[inner xsep=2.2pt,inner ysep=2.4pt](gtuK){$\m@th#1#2$};
+  \draw[gtu kalem,kirmizikalem,gtu tasma=0.6mm] (gtuK.south west) to (gtuK.south east);
+  \draw[gtu kalem,kirmizikalem,gtu tasma=0.6mm] (gtuK.south east) to (gtuK.north east);
+  \draw[gtu kalem,kirmizikalem,gtu tasma=0.6mm] (gtuK.north east) to (gtuK.north west);
+  \draw[gtu kalem,kirmizikalem,gtu tasma=0.6mm] (gtuK.north west) to (gtuK.south west);}}
+
+%% ---------------------------------------------------------------------
+%% 14. İşaretleyiciler: \sekilnotu, \sayfa, \okunamadi
+%% ---------------------------------------------------------------------
+% \sekilnotu[orijinal sayfa]{açıklama} -- çizilemeyen şekiller için yer tutucu
+\NewDocumentCommand\sekilnotu{ o +m }{%
+  \par\vspace{2mm}%
+  {\centering
+  \begin{tikzpicture}
+    \node[text width=0.8\linewidth,align=center,inner sep=3.5mm,minimum height=18mm,
+      pattern=north east lines,pattern color=kursunkalem!14](gtuS){%
+      \gtu@kalemikon\hspace{0.4em}{\gtubaslikfont\color{kursunkalem}\gtu@lbl@sekil:}\ #2\par
+      {\small\itshape\color{kursunkalem}(\gtu@lbl@orijinalnotta\IfValueT{#1}{, \gtu@lbl@s~#1})}};
+    \draw[gtu kalem,kursunkalem,dash pattern=on 3pt off 2.2pt]
+      (gtuS.south west) to (gtuS.south east) (gtuS.south east) to (gtuS.north east)
+      (gtuS.north east) to (gtuS.north west) (gtuS.north west) to (gtuS.south west);
+  \end{tikzpicture}\par}%
+  \vspace{2mm}}
+% \sayfa{n} -- orijinal notun n. sayfasının başladığı yer (sol kenar boşluğu)
+\tikzset{gtu sayfa etiketi/.style={shape=signal,signal to=east,signal pointer angle=110,
+  draw=kursunkalem,fill=white,line width=0.4pt,text=kursunkalem,
+  font=\gtuincefont\footnotesize,inner xsep=1.6pt,inner ysep=0.8pt,anchor=east}}
+\newcommand\gtu@sayfaisareti[1]{%
+  \tikz[remember picture,overlay,baseline=0pt]{%
+    \node[gtu sayfa etiketi] at ([xshift=-6.5mm]current page text area.west|-0,0.33em)
+      {\gtu@lbl@orj\ \gtu@lbl@s\,#1};}}
+\NewDocumentCommand\sayfa{ m }{%
+  \ifvmode\noindent\fi\gtu@sayfaisareti{#1}\ignorespaces}
+% \okunamadi{tahmin} -- okunamayan kısım (tahmin yoksa boş bırakın)
+\NewDocumentCommand\okunamadi{ m }{%
+  \ifmmode\text{\gtu@okunamadi{#1}}\else\gtu@okunamadi{#1}\fi}
+\newcommand\gtu@okunamadi[1]{{\tikz[baseline=(gtuO.base)]{%
+  \node[inner xsep=2pt,inner ysep=1.2pt,draw=kursunkalem!80,dash pattern=on 1.5pt off 1pt,
+    rounded corners=2pt,line width=0.4pt,text=kursunkalem](gtuO){%
+    \textcolor{kirmizikalem}{\textbf{?}}\,%
+    \if\relax\detokenize{#1}\relax\textit{\gtu@lbl@okunamadi}\else\textit{#1}\fi};}}}
+
+%% ---------------------------------------------------------------------
+%% 15. Not bilgisi, uyarı kutusu, üst/alt bilgi
+%% ---------------------------------------------------------------------
+\newif\ifgtu@notbilgi
+\def\gtu@ders{}\def\gtu@konu{}
+\newcommand\gtu@uyarimetni{%
+  {\gtubaslikfont\color{kirmizikalem}UYARI\quad}Bu belge, el yazısı ders notlarından
+  Claude (Anthropic) yardımıyla dijitale aktarılmıştır. Yardımcı kaynak olarak
+  hazırlanmıştır; hata veya eksik içerebilir. Lütfen orijinal notları ve ders
+  kaynaklarını esas alın.\par\smallskip
+  {\gtubaslikfont\color{kirmizikalem}NOTICE\quad}\textit{This document was transcribed
+  from handwritten lecture notes with the help of Claude (Anthropic). It is meant as a
+  supplementary resource and may contain errors or omissions. Always check against
+  the original notes and official course material.}}
+\newcommand\uyarikutusu{%
+  \begin{tcolorbox}[gtu temel, unbreakable, left=15mm, right=4mm, top=2.5mm, bottom=2.5mm,
+      before skip=3mm, after skip=5mm, fontupper=\small,
+      before upper={\setlength{\parskip}{0pt}},
+      underlay={\gtu@dolgu{turuncukalem!9}},
+      overlay unbroken={\gtu@cerceve{kirmizikalem}{u}{0}\node at ([xshift=7.5mm]frame.west) {\gtu@ucgen[2.2]};},
+      ]
+    \gtu@uyarimetni
+  \end{tcolorbox}}
+\newcommand\gtu@dosyayazi[1]{\detokenize{#1}}
+\NewDocumentCommand\notbilgi{ o m m m }{%
+  \gdef\gtu@ders{#2}\gdef\gtu@konu{#3}%
+  \hypersetup{pdftitle={#2 -- #3},pdfsubject={#3}}%
+  \global\gtu@notbilgitrue
+  \thispagestyle{gtuilk}%
+  \par\noindent
+  \begin{tikzpicture}
+    \node[anchor=north west,inner xsep=5mm,inner ysep=3.5mm,text width=\linewidth-10mm,
+      align=left,fill=kagitrengi](gtuNB){%
+      \makebox[\linewidth][r]{\gtuincefont\small\color{kursunkalem}GTÜ · Elektronik Mühendisliği}\par
+      \vspace{-1.2mm}%
+      {\gtubaslikfont\fontsize{24pt}{29pt}\selectfont\color{kirmizikalem}#2\par}%
+      \vspace{0.6mm}%
+      {\gtubaslikfont\Large\color{murekkep}#3\par}%
+      \vspace{1.6mm}%
+      {\small\color{kursunkalem}\gtu@lbl@orijinal: \gtu@dosyayazi{#4}%
+        \IfValueT{#1}{\quad·\quad#1}\par}};
+    \gtu@dortgen{murekkep}{gtuNB.south west}{gtuNB.north east}
+    \pgfresetboundingbox
+    \useasboundingbox (gtuNB.south west) rectangle (gtuNB.north east);
+    \gtu@bant{[shift={(3mm,-1.5mm)}]gtuNB.north west}{-35}
+    \gtu@bant{[shift={(-3mm,-1.5mm)}]gtuNB.north east}{35}
+  \end{tikzpicture}\par
+  \uyarikutusu}
+% \notbilgi kullanılmazsa: ilk sayfanın üstüne küçük uyarı + derleme hatası
+\newcommand\gtu@yedekuyari{%
+  \put(25mm,\dimexpr\paperheight-4mm\relax){\begin{tikzpicture}
+    \node[anchor=north west,text width=166mm,inner sep=1.5mm,fill=turuncukalem!9,
+      draw=kirmizikalem,font=\fontsize{6.5}{7.5}\selectfont,align=left]{\gtu@uyarimetni};
+  \end{tikzpicture}}}
+\AtBeginDocument{\AddToShipoutPictureFG*{\ifgtu@notbilgi\else\gtu@yedekuyari\fi}}
+\AtEndDocument{\ifgtu@notbilgi\else
+  \PackageError{gtu-el-yazisi}{\string\notbilgi{Ders}{Konu}{dosya} kullanilmadi
+    (zorunlu uyari kutusu)}{Belgenin basina \string\notbilgi\space ekleyin.}\fi}
+
+\newcommand\gtu@altbilgimetni{{\fontsize{7.5}{9}\selectfont\color{kursunkalem}%
+  Claude ile dijitalleştirildi · hata içerebilir\ \ /\ \ Digitised with Claude
+  · may contain errors}}
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand\headrulewidth{0pt}
+\renewcommand\footrulewidth{0pt}
+\fancyhead[L]{\gtuincefont\small\color{kursunkalem}\gtu@ders}
+\fancyhead[R]{\gtuincefont\small\color{kursunkalem}\gtu@konu}
+\fancyfoot[L]{\gtu@altbilgimetni}
+\fancyfoot[R]{\gtubaslikfont\small\color{murekkep}\thepage\,/\,\pageref*{LastPage}}
+\fancypagestyle{gtuilk}{\fancyhf{}%
+  \fancyfoot[L]{\gtu@altbilgimetni}%
+  \fancyfoot[R]{\gtubaslikfont\small\color{murekkep}\thepage\,/\,\pageref*{LastPage}}}
+
+%% ---------------------------------------------------------------------
+%% 16. Listeler, tablolar, şekil yazıları
+%% ---------------------------------------------------------------------
+\setlist{itemsep=1pt,parsep=0pt,topsep=2pt,partopsep=0pt}
+\setlist[itemize]{leftmargin=1.5em}
+\setlist[itemize,1]{label={\textcolor{kirmizikalem}{\textbullet}}}
+\setlist[itemize,2]{label={\textcolor{yesilkalem}{–}}}
+\setlist[itemize,3]{label={\textcolor{morkalem}{→}}}
+\setlist[enumerate]{leftmargin=1.8em}
+\setlist[enumerate,1]{label={\textcolor{kirmizikalem}{\arabic*)}},ref=\arabic*}
+\setlist[enumerate,2]{label={\textcolor{yesilkalem}{\alph*)}},ref=\alph*}
+\setlist[enumerate,3]{label={\textcolor{morkalem}{\roman*)}},ref=\roman*}
+\renewcommand\arraystretch{1.25}
+\arrayrulecolor{murekkep}
+\setlength\heavyrulewidth{0.9pt}\setlength\lightrulewidth{0.5pt}
+\DeclareCaptionFont{gtukirmizi}{\color{kirmizikalem}}
+\DeclareCaptionFont{gtumavi}{\color{murekkep}}
+\captionsetup{font={small,gtumavi},labelfont={bf,gtukirmizi},labelsep=colon,skip=4pt,
+  hypcap=false}
+
+%% ---------------------------------------------------------------------
+%% 17. Devre, grafik, birim ayarları
+%% ---------------------------------------------------------------------
+\ctikzset{bipoles/thickness=1.1}
+\pgfplotsset{every axis/.append style={
+    axis lines=middle, axis line style={-{Stealth[length=2.2mm]},line width=0.7pt},
+    tick style={line width=0.5pt}, tick label style={font=\small},
+    label style={font=\small},
+    xlabel style={at={(ticklabel* cs:1)},anchor=west},
+    ylabel style={at={(ticklabel* cs:1)},anchor=south},
+    no markers, clip=false},
+  every axis plot/.append style={line width=1pt},
+  cycle list={{kirmizikalem},{yesilkalem},{morkalem},{turuncukalem},{murekkep}}}
+\sisetup{output-decimal-marker={,},per-mode=symbol,group-minimum-digits=4}
+% Laplace / Fourier kısayolları
+\newcommand\Lap[1]{\mathcal{L}\left\{#1\right\}}
+\newcommand\iLap[1]{\mathcal{L}^{-1}\left\{#1\right\}}
+\newcommand\Fou[1]{\mathcal{F}\left\{#1\right\}}
+\newcommand\iFou[1]{\mathcal{F}^{-1}\left\{#1\right\}}
+\newcommand\donusum{\;\longleftrightarrow\;}
+
+%% ---------------------------------------------------------------------
+%% 18. hyperref (en son)
+%% ---------------------------------------------------------------------
+\RequirePackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=linkrengi,urlcolor=linkrengi,
+  citecolor=linkrengi,filecolor=linkrengi,bookmarksnumbered=true,
+  pdfcreator={XeLaTeX + gtu-el-yazisi.sty},
+  pdfkeywords={GTÜ, Elektronik Mühendisliği, ders notu, Claude}}
+
+\endinput

@@ -1,0 +1,127 @@
+% ornek.tex -- gtu-el-yazisi şablonu için 2 sayfalık örnek
+% Derleme: latex-sablon/derle.sh latex-sablon/ornek.tex
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+
+\begin{document}
+
+\notbilgi[2023--24 Güz $\cdot$ örnek sayfa]{Devre Analizi I}{6. Hafta -- RC Devreleri ve Fazörler}{devre1_hafta6_notlar.pdf}
+
+\section{Birinci Dereceden RC Devresi}
+\sayfa{1}
+\begin{minipage}[c]{0.52\linewidth}
+  Anahtar $t=0$ anında kapatılıyor; kondansatör başlangıçta boş, yani $v_C(0^-)=0$.
+  \vurgu{Kondansatör gerilimi ani olarak değişemez}, bu yüzden $v_C(0^+)=v_C(0^-)$.
+\end{minipage}\hfill
+\begin{minipage}[c]{0.44\linewidth}
+  \centering
+  \begin{circuitikz}[line width=0.7pt]
+    \draw (0,0) to[V, l=$V_s$] (0,2.2)
+          to[cspst, l={$t=0$}] (2.2,2.2)
+          to[R, l=$R$, i>^=$i(t)$] (4.4,2.2)
+          to[C, l_=$C$, v^=$v_C(t)$] (4.4,0) -- (0,0);
+  \end{circuitikz}
+\end{minipage}
+
+KGY (Kirchhoff Gerilim Yasası) çevreye uygulanırsa:
+\begin{align}
+  V_s &= R\,i(t) + v_C(t), \qquad i(t) = C\,\frac{dv_C}{dt} \\
+  \Rightarrow\quad RC\,\frac{dv_C}{dt} + v_C &= V_s \qquad (t \ge 0)
+\end{align}
+
+\begin{tanim}[(Zaman sabiti)]
+  $\tau = RC$ devrenin \textbf{zaman sabitidir}; birimi saniyedir:
+  $[\si{\ohm}]\cdot[\si{\farad}] = [\si{\second}]$. Büyük $\tau$ $\Rightarrow$ yavaş şarj.
+\end{tanim}
+
+\formulkutu[ezberle!]{v_C(t) = V_s\left(1 - e^{-t/\tau}\right), \qquad t \ge 0}
+
+\begin{ornek}[1]
+  $R = \qty{10}{\kilo\ohm}$, $C = \qty{4,7}{\micro\farad}$ ve $V_s = \qty{12}{\volt}$ ise
+  $t = \qty{47}{\milli\second}$ anında $v_C$ kaç volttur?
+\end{ornek}
+\begin{cozum}
+  $\tau = RC = (10\cdot10^{3})(4{,}7\cdot10^{-6}) = \qty{47}{\milli\second}$, yani $t = \tau$:
+  \[ v_C(\tau) = 12\,\bigl(1 - e^{-1}\bigr) \approx 12 \times 0{,}632
+     = \kutula{\qty{7,59}{\volt}} \]
+\end{cozum}
+
+\noindent
+\begin{minipage}[c]{0.36\linewidth}
+  \centering
+  \begin{tabular}{cc}
+    \toprule
+    $t$ & $v_C / V_s$ \\ \midrule
+    $\tau$  & \%63,2 \\
+    $2\tau$ & \%86,5 \\
+    $3\tau$ & \%95,0 \\
+    $5\tau$ & \%99,3 \\ \bottomrule
+  \end{tabular}
+  \captionof{table}{Şarj yüzdeleri}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.6\linewidth}
+  \centering
+  \begin{tikzpicture}
+    \begin{axis}[width=7.4cm, height=4cm, xmin=0, xmax=5.4, ymin=0, ymax=1.18,
+        xlabel={$t/\tau$}, ylabel={$v_C/V_s$}, xtick={1,2,3,4,5},
+        ytick={0.632,1}, yticklabels={$0{,}632$,$1$}]
+      \addplot[domain=0:5.2, samples=60, smooth] {1-exp(-x)};
+      \addplot[dashed, kursunkalem, line width=0.6pt] coordinates {(0,0.632) (1,0.632) (1,0)};
+    \end{axis}
+  \end{tikzpicture}
+\end{minipage}
+
+\begin{dikkat}
+  $5\tau$ sonra kondansatör ``dolmuş'' kabul edilir, ama matematiksel olarak
+  $v_C$ hiçbir zaman tam $V_s$ olmaz (asimptot). Sınavda \vurgu[pembe]{başlangıç koşulunu
+  $v_C(0^+)$ yazmayı unutma!}
+\end{dikkat}
+
+\section{Fazörler ve Empedans}
+\sayfa{2}
+Sinüzoidal kararlı halde her işaret bir fazörle gösterilir:
+$v(t) = V_m\cos(\omega t + \phi) \donusum \mathbf{V} = V_m\phase{\phi}$, burada $\omega = 2\pi f$.
+Empedanslar: $Z_R = R$, \ $Z_L = j\omega L$, \ $Z_C = \dfrac{1}{j\omega C} = -\dfrac{j}{\omega C}$.
+
+\begin{teorem}[(Thevenin)]
+  Doğrusal iki uçlu her devre, bir $\mathbf{V}_{th}$ kaynağı ile seri bir $Z_{th}$ empedansına
+  eşdeğerdir: $\mathbf{V}_{th}$ açık devre gerilimi, $Z_{th} = \mathbf{V}_{th}/\mathbf{I}_{kd}$.
+\end{teorem}
+
+Düğüm gerilimleri yöntemi (matris biçimi), $\alpha$, $\beta$, $\theta$ gibi açılar derece cinsinden:
+\[
+  \begin{bmatrix}
+    \dfrac{1}{R_1} + \dfrac{1}{R_2} & -\dfrac{1}{R_2} \\[2mm]
+    -\dfrac{1}{R_2} & \dfrac{1}{R_2} + j\omega C
+  \end{bmatrix}
+  \begin{bmatrix} \mathbf{V}_1 \\ \mathbf{V}_2 \end{bmatrix}
+  =
+  \begin{bmatrix} \mathbf{I}_s \\ 0 \end{bmatrix},
+  \qquad
+  \Delta = \det(\mathbf{Y}) \neq 0
+\]
+
+\sekilnotu[3]{Hocanın tahtaya çizdiği fazör diyagramı: $\mathbf{V}_R$, $\mathbf{V}_L$ ve
+$\mathbf{V}_C$ vektörleri, aralarında $90^\circ$ faz farkı}
+
+\subsection{Laplace ile bağlantı}
+$s = j\omega$ konursa empedanslar Laplace düzlemine taşınır: $Z_L(s) = sL$, $Z_C(s) = 1/(sC)$.
+\[
+  \Lap{e^{-at}u(t)} = \int_{0}^{\infty} e^{-at} e^{-st}\,dt = \frac{1}{s+a}, \qquad
+  \Fou{\delta(t)} = 1, \qquad \sum_{n=0}^{\infty} x^n = \frac{1}{1-x}\ (|x|<1)
+\]
+Hoca burada bir şey daha ekledi: \okunamadi{rezonans frekansı} için
+$\omega_0 = 1/\sqrt{LC}$ ve kalite faktörü $Q = \omega_0 L / R$ \okunamadi{}.
+
+\textit{English note from the lecture:} ``The phasor method is valid only in sinusoidal steady
+state; transients must be handled in the time domain or with the Laplace transform.''
+
+\begin{ozet}
+  \begin{itemize}
+    \item RC şarj: $v_C(t) = V_s(1-e^{-t/\tau})$, \ $\tau = RC$, \ $5\tau$'da $\approx$ \%99.
+    \item Fazör: $\cos(\omega t+\phi) \to 1\phase{\phi}$; türev $\to$ $j\omega$ ile çarpma.
+    \item $Z_L = j\omega L$ (gerilim akımdan $90^\circ$ önde), $Z_C = 1/(j\omega C)$ ($90^\circ$ geride).
+  \end{itemize}
+\end{ozet}
+
+\end{document}
