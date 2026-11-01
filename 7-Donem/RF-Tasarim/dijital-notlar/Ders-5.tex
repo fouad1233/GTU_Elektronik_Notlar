@@ -1,0 +1,192 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Desensitization, Intermodulation, IIP3, Noise}{Ders-5.pdf}
+
+\sayfa{1}
+\section{(3) Desensizitation}
+\elcizimi[0.7]{sekiller/Ders-5-s1-1.png}[1]
+\[ x(t) = \underbrace{A_1\cos\omega_1t}_{\text{desired input signal}} + \underbrace{A_2\cos\omega_2t}_{\text{unwanted signal}} \]
+\[ \Rightarrow\; y = a_1x+a_2x^2+a_3x^3 \]
+\begin{align*}
+y(t) &= a_1(A_1\cos\omega_1t+A_2\cos\omega_2t)+a_2(A_1\cos\omega_1t+A_2\cos\omega_2t)^2\\
+&\quad +a_3(A_1\cos\omega_1t+A_2\cos\omega_2t)^3
+\end{align*}
+\[ {}= a_1A_1\cos\omega_1t + a_1A_2\cos\omega_2t \]
+\elcizimi[0.45]{sekiller/Ders-5-s1-2.png}[1]
+\[ {}+ a_2\left[A_1^2\cos^2\omega_1t + A_2^2\cos^2\omega_2t\right] + 2a_2A_1A_2\underbrace{(\cos\omega_1t)(\cos\omega_2t)}_{\cos(\omega_1+\omega_2)t+\cos(\omega_2-\omega_1)t} \]
+\elcizimi[0.65]{sekiller/Ders-5-s1-3.png}[1]
+\begin{align*}
+{}+a_3\Big[&A_1^3\cos^3\omega_1t+A_2^3\cos^3\omega_2t\\
+&+3A_1\cos\omega_1t\cdot A_2^2\underbrace{\cos^2\omega_2t}_{1+\cos2\omega_2t}+3A_2\cos\omega_2t\cdot A_1^2\cos^2\omega_1t\Big]
+\end{align*}
+\[ \frac34a_3A_1^3\cos\omega_1t+\frac{A_1^3}{4}\cos3\omega_1t \]
+\[ \begin{array}{l}\cos\omega_2t\\ \cos3\omega_2t\end{array}
+\qquad
+\left\{\begin{array}{l}\cos\omega_1t\\ +\cos(2\omega_2-\omega_1)t\\ +\cos(2\omega_2+\omega_1)t\end{array}\right.
+\qquad
+\left\{\begin{array}{l}\cos\omega_2t\\ +\cos(2\omega_1-\omega_2)t\\ +\cos(2\omega_1+\omega_2)t\end{array}\right. \]
+\[ \kutula{n\omega_1\pm m\omega_2,\quad n+|m|=3} \]
+\[ \frac34a_3A_1^3\cos\omega_1t+\frac{3A_1A_2^2}{2}a_3\cos\omega_1t \]
+\elcizimi[0.95]{sekiller/Ders-5-s1-4.png}[1]
+
+\sayfa{2}
+\[ \text{Gain:}\quad \frac{\left(a_1A_1-\frac32a_3A_1A_2^2\right)\cos\omega_1t}{A_1\cos\omega_1t}\ \Big\}\ A_2\uparrow\uparrow \]
+No signal appears at the output
+
+\subsection{Ex}
+\elcizimi[0.85]{sekiller/Ders-5-s2-1.png}[2]
+Vericinin ikinci harmoniğine kadar bastırılmalıdır ki \quad bu alıcı
+
+doyma \okunamadi{olmaması}
+
+\elcizimi[0.6]{sekiller/Ders-5-s2-2.png}[2]
+\begin{align*}
+P_2 - 10\,\mathrm{dB} &\le P_{1dB}\\
+P_2 - 10 &\le -25\,\mathrm{dBm}\\
+P_2 &\le -15\,\mathrm{dBm}
+\end{align*}
+en az 45 dB bastırılmalıdır.
+
+\medskip
+\noindent 0 dBm \quad 1 mwatt\\
+10 dBm \quad 10 mvat\\
+$10\log\left(\dfrac{1\,\mathrm{W}}{10^{-3}}\right) = 30$ dBm
+
+\section{(4) Intermodulation}
+\elcizimi[0.45]{sekiller/Ders-5-s2-3.png}[2]
+\begin{align*}
+x_1(t) &= A_1\cos\omega_1t\\
+x_2(t) &= A_2\cos\omega_2t\\
+x(t) = x_1(t)+x_2(t) &= A_1\cos\omega_1t+A_2\cos\omega_2t
+\end{align*}
+\[ y(t) = a_1x + a_2x^2 + a_3x^3 \]
+\[ y(t) = a_1(\underbrace{A_1\cos\omega_1t}_{\omega_1} + A_2\cos\omega_2t) \]
+\elcizimi[0.4]{sekiller/Ders-5-s2-4.png}[2]
+\[ {}+a_2\Big[\underbrace{A_1^2\cos^2\omega_1t}_{\substack{\mathrm{DC}\\2\omega_1}}+\underbrace{A_2^2\cos^2\omega_2t}_{\substack{\mathrm{DC}\\2\omega_2}}+\underbrace{2A_1A_2\cos\omega_1t\cos\omega_2t}_{\substack{\omega_2-\omega_1\\\omega_2+\omega_1}}\Big] \]
+\begin{align*}
+{}+a_3\Big[&\underbrace{A_1^3\cos^3\omega_1t}_{\substack{\omega_1\\3\omega_1}}+\underbrace{A_2^3\cos^3\omega_2t}_{\substack{\omega_2\\3\omega_2}}\\
+&+\underbrace{3A_1\cos\omega_1t\,A_2^2\cos^2\omega_2t}_{\substack{\omega_1\\2\omega_2-\omega_1\\2\omega_2+\omega_1}}+\underbrace{3A_2\cos\omega_2t\,A_1^2\cos^2\omega_1t}_{\substack{\omega_2\\2\omega_1+\omega_2\\2\omega_1-\omega_2}}\Big]
+\end{align*}
+
+\sayfa{3}
+\begin{align*}
+2\omega_2-\omega_1 &= 2\cdot(2{,}1\,\mathrm{G})-1{,}9\,\mathrm{G} = 2{,}3\,\mathrm{G} \quad \text{düşmüyor}\\
+2\omega_1-\omega_2 &= 2\cdot(1{,}9\,\mathrm{G})-2{,}1 = 1{,}7\,\mathrm{G} \;\to\; \text{In band}
+\end{align*}
+\elcizimi[0.95]{sekiller/Ders-5-s3-1.png}[3]
+\[ A_{IM3} = \frac34a_3A_1^2A_2\left[\cos(2\omega_1-\omega_2)t\right] \]
+\[ A_1 = A_2 = A \;\to\; A_{IM3} = \frac34a_3A^3 \]
+if system linear $\to a_1A$\\
+Intermodulation product $\to \frac34a_3A^3$
+\[ |IM3| = \frac{\frac34a_3A^3}{a_1A} = \frac34\left|\frac{a_3}{a_1}\right|A^2 \]
+\elcizimi[0.75]{sekiller/Ders-5-s3-2.png}[3]
+\[ A_{IIP3} \Rightarrow 20\log(|a_1|A_{IIP3}) = 20\log\left(\frac34|a_3|A_{IIP3}^3\right) \]
+\[ \kutula{A_{IIP3} = \sqrt{\frac43\left|\frac{a_1}{a_3}\right|}} \]
+\[ A_{1dB} = \sqrt{0{,}145\left|\frac{a_1}{a_3}\right|} \]
+\[ A_{IIP3}(\mathrm{dB}) - A_{1dB}(\mathrm{dB}) = 9{,}6\ \mathrm{dB} \]
+if $A_{IIP3}\uparrow \to$ more linear System.
+
+\sayfa{4}
+\elcizimi[0.9]{sekiller/Ders-5-s4-1.png}[4]
+\begin{align*}
+\frac{A_{out,int}(\omega_1,\omega_2)}{A_{out}(IM3)} &= \frac{a_1A_{int}}{\frac34a_3A_{int}^3} = \underbrace{\frac{a_1}{\frac34a_3}}_{A_{IIP3}^2}\cdot\frac{1}{A_{int}^2}\\
+&= \frac{A_{IIP3}^2}{A_{int}^2}
+\end{align*}
+\[ A_{IIP3}^2 = \frac{A_{out,int}(\omega_1,\omega_2)}{A_{out}(IM3)}\,A_{int}^2 \]
+\begin{align*}
+20\log(A_{IIP3}) &= 20\log(A_{int})\\
+&\quad + \frac12\Big[20\log A_{out,int}(\omega_1,\omega_2) - 20\log A_{out}(IM3)\Big]
+\end{align*}
+
+\subsection{Ex:}
+\[ \left.\begin{array}{l} A_{in,S} = 1\,\mu\mathrm{V}\\ A_{in,int} = 1\,\mathrm{mV}\\ P_{IIP3} = -10\,\mathrm{dBm}\end{array}\right\}\qquad \text{Find}\quad \frac{A_{o,S}}{A_{o,IM3}} = ? \]
+$Z = 50\,\Omega$
+
+\elcizimi[0.85]{sekiller/Ders-5-s4-2.png}[4]
+\[ 10\log\left(\frac{P_{IIP3}}{10^{-3}}\right) = -10\ \mathrm{dBm} \]
+\[ P_{IIP3} = \frac{A_{IIP3}^2}{Z} \]
+\[ A_{IIP3} = 70\ \mathrm{mV} \]
+\begin{align*}
+A_{IIP3}^2 &= \frac{A_{out,int}(\omega_1,\omega_2)}{A_{o,IM3}}\cdot A_{in,int}^2\\
+&= \frac{a_1A_{in,int}}{A_{o,IM3}}\cdot A_{in,int}^2
+\end{align*}
+\[ A_{IIP3}^2 = \frac{a_1A_{in,int}^3}{A_{o,IM3}} \]
+\[ A_{IIP3}^2 = \frac{a_1A_{in,int}^3}{A_{o,IM3}}\cdot\frac{A_{in,S}}{A_{in,S}} = \kutula{\frac{A_{o,S}}{A_{o,IM3}}}\cdot\frac{A_{in,int}^3}{A_{in,S}} \]
+\begin{align*}
+\frac{A_{o,S}}{A_{o,IM3}} &= A_{IIP3}^2\cdot\frac{A_{in,S}}{A_{in,int}^3}\\
+&= (70\,\mathrm{mV})^2\cdot\frac{1\,\mu\mathrm{V}}{(1\,\mathrm{mV})^3} = 4{,}9 \;\to\; \approx 13{,}8\,\mathrm{dB}
+\end{align*}
+
+\sayfa{5}
+\subsection{Ex}
+\elcizimi[0.9]{sekiller/Ders-5-s5-1.png}[5]
+\elcizimi[0.6]{sekiller/Ders-5-s5-2.png}[5]
+Compute IIP3 of the amplifier such that IM3 product falling at $\omega_1$ ($\to A_{o,IM3}$ ??) is 20 dB below the desired signal ? ($\to A_{o,S}$)
+\[ \overbrace{\frac{A_{o,S}}{A_{o,IM3}}}^{\text{sorulan}} \Rightarrow 20\,\mathrm{dB} \;\Rightarrow\; \frac{A_{o,S}}{A_{o,IM3}} = 10 \]
+\[ 20\log A_{sig}(\omega_1) - 2\,\mathrm{dB} = 20\log A_{sig_{BPF}}(\omega_1) \]
+\begin{align*}
+20\log\frac{A_{sig}(\omega_1)}{A_{sig_{BPF}}(\omega_1)} = 2 \;\Rightarrow\;&\\
+\frac{A_{sig}(\omega_1)}{A_{sig_{BPF}}(\omega_1)} &= \frac{0{,}1\,\mathrm{mV}}{A_{sig_{BPF}}(\omega_1)} = 10^{2/20}
+\end{align*}
+\[ A_{sig_{BPF}}(\omega_1) = 0{,}079\ \mathrm{mV} \quad (V_1) \]
+\begin{align*}
+20\log\underbrace{A_{int}(\omega_2)}_{10\,\mathrm{mV}} - 17\,\mathrm{dB} &= 20\log A_{int_{BPF}}(\omega_2)\\
+&\to A_{int_{BPF}}(\omega_2) = 1{,}412\,\mathrm{mV} \quad (V_2)\\
+20\log A_{int}(\omega_3) - 37\,\mathrm{dB} &= 20\log A_{int_{BPF}}\\
+&\to A_{int_{BPF}}(\omega_3) = \underset{0{,}141\,\mathrm{mV}}{14{,}12\,\mu\mathrm{V}} \quad (V_3)
+\end{align*}
+\[ A_{o,S} = a_1\cdot V_1 \qquad A_3(\omega_3) = A_2(\omega_2) = A \]
+\[ A_{o,IM3} = \frac34a_3A^3 \qquad = \frac34a_3A_2^2A_3 = \frac34a_3V_2^2V_3 \]
+but $A_2(\omega_2) \neq A_3(\omega_3)$\\
+$V_2 \neq V_3$
+\[ \underset{(\mathrm{dB})}{A_{o,sig}} - \underset{(\mathrm{dB})}{A_{o,IM3}} = 20\,\mathrm{dB} \]
+\[ 20\log|a_1V_1| - 20\log\left|\frac34a_3V_2^2V_3\right| = 20\log10 \]
+
+\sayfa{6}
+\[ \frac{a_1V_1}{\frac34a_3V_2^2V_3} = 10 \;\Rightarrow\; \frac{a_1}{a_3} = 26{,}6\cdot10^{-6} \]
+\begin{align*}
+A_{IIP3} &= \sqrt{\frac43\left|\frac{a_1}{a_3}\right|} = \sqrt{\frac43\left|26{,}6\times10^{-6}\right|}\\
+&= 5{,}95\ \mathrm{mV} \approx 15{,}5\ \mathrm{dBm}
+\end{align*}
+
+\subsection{Ex:}
+\vurgu[turuncu]{Çalışma sorusu}
+\[ \left.\begin{array}{l} a_1 = 10\\ A_{in,int} = 10\,\mathrm{mV}\\ A_{IIP3} = 80\,\mathrm{mV}\end{array}\right\}\qquad \begin{array}{l} IM3 = ?\\ A_{o,IM3} = ?\end{array} \]
+
+\section{Cascaded Nonlinear Stages}
+\elcizimi[0.7]{sekiller/Ders-5-s6-1.png}[6]
+\begin{align*}
+y_1(t) &= a_1x(t)+a_2x^2(t)+a_3x^3(t)\\
+y_2(t) &= b_1y_1(t)+b_2y_1^2(t)+b_3y_1^3(t)
+\end{align*}
+\[ \frac{1}{A_{IIP3\,(total)}^2} = \frac{1}{A_{IIP3,1}^2} + \frac{a_1^2}{A_{IIP3,2}^2} \qquad \text{($a_1^2 \to$ gain of the first stage)} \]
+\[ \star\quad A_{IIP3,2} > A_{IIP3,1} \;\to\; \text{More linear system} \]
+2. amplifier linearlığının ilkinden daha iyi olmalıdır.
+
+\section{Noise}
+\[ P_{ave,n} = \lim_{T\to\infty}\frac1T\int_0^T n^2(t)\,dt \]
+\elcizimi[0.5]{sekiller/Ders-5-s6-2.png}[6]
+
+\sayfa{7}
+PSD: Power spectral density $[\mathrm{V^2/Hz}]$ \quad $S_n(f)$
+
+\elcizimi[0.7]{sekiller/Ders-5-s7-1.png}[7]
+\[ P_{ave} = \int_0^\infty S_n(f)\,df \]
+
+\section{Device Noise}
+\elcizimi[0.5]{sekiller/Ders-5-s7-2.png}[7]
+
+\section{Resistor Noise:}
+\elcizimi[0.9]{sekiller/Ders-5-s7-3.png}[7]
+$1{,}38\times10^{-23}$ J/K\\
+$k$: Boltzmann sabiti\\
+$T$ = (kelvin) sıcaklık
+
+\section{MOS Transistor Noise}
+\elcizimi[0.5]{sekiller/Ders-5-s7-4.png}[7]
+$\gamma$ : noise coefficient
+
+\elcizimi[0.45]{sekiller/Ders-5-s7-5.png}[7]
+
+\end{document}

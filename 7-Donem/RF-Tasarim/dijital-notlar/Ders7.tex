@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Receiver Noise Floor, Sensitivity, DR ve SFDR}{Ders7.pdf}
+
+\sayfa{1}
+\elcizimi[0.4]{sekiller/Ders7-s1-1.png}[1]
+
+\[ \text{Input noise power}\quad \frac{\overline{v_{\mathrm{in},n}^2}}{R_{\mathrm{in}}} = \frac{kTR_s}{R_{\mathrm{in}}} = kT \ \text{in 1Hz BW} \]
+
+in $B$ Bandwidth \qquad $kTB$
+
+\elcizimi[0.7]{sekiller/Ders7-s1-2.png}[1]
+
+\begin{align*}
+F &= \frac{\text{Total noise power including }R_s}{A_v^2\cdot\text{Noise from only }R_s} \\
+&= \frac{\overline{v_{n,\mathrm{out}}^2}}{A_v^2}\cdot\frac{1}{4kTR_s}
+\end{align*}
+
+\[ F_1 = \frac{N_{o1} + \overbrace{G_1kTB}^{\text{girişteki gürültü}}}{G_1\cdot kTB} \]
+
+\formulkutu{N_{o1} = (F_1-1)\,G_1\,kTB}
+
+\elcizimi[0.7]{sekiller/Ders7-s1-3.png}[1]
+
+$\updownarrow$ Added Noise
+
+\[ N_i = \frac{\text{Total noise power at output}}{G_1G_2} \]
+
+$N_i$ : input referred total noise
+
+\section{Receiver noise Floor}
+
+\[ F = \frac{N_o + G\,kTB}{G}\cdot\frac{1}{kTB} \]
+
+\[ \tikz[baseline=(sX.base)]{\node[inner sep=2pt](sX){$N_o = (F-1)\,kTB\cdot G$}; \draw[kirmizikalem,line width=0.8pt] (sX.south west) -- (sX.north east); \draw[kirmizikalem,line width=0.8pt] (sX.north west) -- (sX.south east);} \]
+
+\[ F\,kTB = \frac{N_o}{G} + kTB = \text{noise Floor} \]
+
+\[ \text{noise floor} = F\cdot kTB \]
+
+$F \leftarrow$ Noise factor, \quad $k \leftarrow$ Boltzman constant, \quad $T \leftarrow$ temperature
+
+\sayfa{2}
+\section{Receiver SNR \& Noise}
+
+\elcizimi[0.45]{sekiller/Ders7-s2-1.png}[2]
+\elcizimi[0.35]{sekiller/Ders7-s2-2.png}[2]
+\elcizimi[0.45]{sekiller/Ders7-s2-3.png}[2]
+
+\[ \underline{\mathrm{SNR}_{\mathrm{out}} < \mathrm{SNR}_{\mathrm{in}}} \]
+
+output noise = input Noise + $N_A$
+
+\[ \text{noise floor} = F\,kTB = \underbrace{10\log F}_{NF} + \underbrace{10\log k\overset{25^\circ}{T}}_{-174\ \mathrm{dBm/Hz}} + 10\log B \]
+
+\[ \text{noise floor} = -174\,\frac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log\underset{10^6}{B} + NF \]
+
+\elcizimi[0.7]{sekiller/Ders7-s2-4.png}[2]
+
+\begin{align*}
+\text{Output referred total noise} &= F\,kTB\cdot G \\
+&= NF - 174\,\frac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log B + 10\log G
+\end{align*}
+
+\begin{ornek}
+\elcizimi[0.4]{sekiller/Ders7-s2-5.png}[2]
+\end{ornek}
+
+\[ \text{noise floor} = F\,kTB = -174\,\frac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log(10\cdot 10^6) + \overbrace{10}^{NF} \]
+
+\[ = -174 + 70 + 10 = -94\ \mathrm{dBm} \]
+
+\[ N_{\mathrm{out},t} = -94 + 16 = -78\ \mathrm{dBm} \]
+
+\sayfa{3}
+\begin{ornek}
+\elcizimi[0.5]{sekiller/Ders7-s3-1.png}[3]
+\end{ornek}
+
+Calculate NF total
+
+\[ F = F_1 + \frac{F_2-1}{G_1} \qquad \leftarrow \text{Skaler olmalı} \]
+
+\[ = 10^{3/10} + \frac{10^{12/10}\footnotemark - 1}{10^{12/10}} = 2{,}57 \]
+\footnotetext{Claude notu: pay kısmındaki üs muhtemelen $10/10$ olmalı (mikserin NF'i 10 dB); 2,57 sonucu bu okumayla uyumlu.}
+
+\[ NF = 10\log F = 10\log(2{,}57) = 4{,}1\ \mathrm{dB} \]
+
+\underline{Calculate Noise floor ($B = 5\,$MHz)}
+
+\[ \text{Noise floor} = -174\,\frac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log(5\cdot 10^6) + 4{,}1 \]
+
+\[ \text{Noise floor} = -102{,}9\ \mathrm{dBm} \]
+
+\section{Sensitivity and Dynamic Range}
+
+Sensitivity is the minimum\textsuperscript{input} signal which can be detected with the acceptable output SNR.
+
+\elcizimi[0.45]{sekiller/Ders7-s3-2.png}[3]
+
+\[ NF = \frac{(\mathrm{SNR})_{\mathrm{in}}}{(\mathrm{SNR})_{\mathrm{out}}} = \frac{P_{\mathrm{sig,in}}/P_{n,\mathrm{in}}}{\mathrm{SNR}_{\mathrm{out}}} \]
+
+\[ P_{\mathrm{sig,in}} = \underbrace{P_{n,\mathrm{in}}}_{\substack{kTB\\ \text{if } R_s = R_{\mathrm{in}}}}\cdot F\cdot \mathrm{SNR}_{\mathrm{out}} \]
+
+\[ P_{\mathrm{sig,in}} = \underbrace{kTB\cdot F}_{\substack{\text{noise}\\ \text{floor}}}\cdot \mathrm{SNR}_{\mathrm{out}} \]
+
+\formulkutu{P_{\mathrm{sig,in(min)}}\Big|_{\mathrm{dB}} = \text{noise floor}_{\mathrm{dB}} + \mathrm{SNR}_{\mathrm{out,dB}}}
+
+\sayfa{4}
+\[ \underbrace{P_{\mathrm{sig,in(min)}}\Big|_{\mathrm{dB}}}_{\text{sensitivity}} = -174\,\frac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log B + NF + \mathrm{SNR}_{\mathrm{out}}\Big|_{\mathrm{dB}} \]
+
+\begin{ornek}
+A GSM receiver has $\mathrm{SNR}_{\mathrm{out(min)}} = 12$ dB \\
+channel $BW = 20$ khz \\
+$NF = 9$ dB
+
+what is the minimum acceptable signal power ?
+\end{ornek}
+
+\[ P_{\mathrm{sig,in(min)}} = -174\,\frac{\mathrm{dBm}}{\mathrm{Hz}} + \underbrace{10\log(20\cdot 10^3)}_{53\footnotemark} + 9 + 12 \]
+\footnotetext{Claude notu: $10\log(20\cdot 10^3)\approx 43$ dB'dir; 53 dB, 200 kHz'lik bant genişliğine karşılık gelir (GSM kanalı 200 kHz).}
+
+\[ = -112 + 12 = -100\ \mathrm{dBm} \]
+
+\elcizimi[0.45]{sekiller/Ders7-s4-1.png}[4]
+
+\section{Dynamic Range}
+
+\elcizimi[0.45]{sekiller/Ders7-s4-2.png}[4]
+
+\[ DR = IP_{1\mathrm{dB}} - \underbrace{P_{\mathrm{sig,in(min)}}\Big|_{\mathrm{dB}}}_{\substack{MDS\\ \text{Minimum detectable}\\ \text{signal}}} = IP_{1\mathrm{dB}} - MDS \]
+
+\section{SFDR}
+\subsection{Spur-free Dynamic Range}
+
+\elcizimi[0.35]{sekiller/Ders7-s4-3.png}[4]
+\elcizimi[0.65]{sekiller/Ders7-s4-4.png}[4]
+
+\[ \mathrm{SFDR} = P_{\mathrm{sig,desired}} - P_{\mathrm{spur(max)}} \]
+
+\sayfa{5}
+\elcizimi[0.8]{sekiller/Ders7-s5-1.png}[5]
+
+\elcizimi[0.5]{sekiller/Ders7-s5-2.png}[5]
+
+\[ \mathrm{SFDR} = \frac{2\left(P_{\mathrm{IIP3}} + 174 - NF - 10\log B\right)}{3} - \mathrm{SNR}_{\mathrm{out(min)}} \]
+
+\end{document}

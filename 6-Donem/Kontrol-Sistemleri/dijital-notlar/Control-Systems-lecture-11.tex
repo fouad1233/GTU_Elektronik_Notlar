@@ -137,7 +137,7 @@ Departure angle from poles?
 (arrow from the underlined term:) $\pi-\tan^{-1}\!\left(\tfrac{2}{1}\right)$
 \end{minipage}
 
-\sekilnotu[2]{Root-locus sketch (Im up, Re right). On the real axis, left to right: an o (zero), an x, an x and an x at the origin. Two complex zeros (o) above and below the real axis, with real part between the first and second x; the upper one is labelled ``s'' in red (trial point). Orange dashed lines run from the upper complex zero to the other zeros and poles, with angles marked: $\phi_3$ at the leftmost zero, $\theta_3$ at the first x, $\theta_2$ at the second x, $\theta_1$ at the origin, and $\phi_2$ at the lower complex zero. Blue: thick real-axis segments from the leftmost zero to the first x (arrow pointing left) and from the second x to the origin, plus a blue loop with arrows from the upper complex zero, crossing the real axis between the second x and the origin, down to the lower complex zero.}
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-11-s2-1.png}[2]
 
 \[\begin{aligned}
  &\phi_1+\phi_2+\phi_3-\theta_1-\theta_2-\theta_3=180 \\
@@ -160,7 +160,7 @@ I) \quad $s=\mbox{\tikz[baseline=(X.base)]{\node[inner sep=0pt](X){$\sigma$};\dr
 \left\{\begin{array}{l} 2\omega=0 \\ k-\omega^2=0 \end{array}\right.
 \ \Rightarrow\ \left\{\begin{array}{l} \omega=0 \\ k=\omega^2=0 \end{array}\right. \]
 \[ s^3+2s^2+3s+6+k=0 \]
-\sekilnotu[2]{Small sketch: Im and Re axes with a circular arc in the left half-plane that meets the Im axis above and below the origin and crosses the negative real axis; arrowheads at both Im-axis ends of the arc, each with a short straight segment continuing toward the right half-plane.}
+\elcizimi[0.35]{sekiller/Control-Systems-lecture-11-s2-2.png}[2]
 
 \sayfa{3}II) characteristic eq
 
@@ -205,7 +205,7 @@ Method II) \quad Substitute $s$ as $s=\sigma+j\omega$ in the characteristic equa
 \[ \hookrightarrow\ \text{mag} = |G(s)H(s)| = \frac{1}{k} \]
 \[ \hookrightarrow\ \text{phase: } \angle\, G(s)H(s) = 180(2i+1) \]
 
-\sekilnotu[3]{Root-locus sketch for an example with $n=2$, $m=2$ (red note at the left). Real axis, left to right: o, o, x, x (the right-hand x on the Im axis). Thick red segments between the two o's (with a red x mark and small arrows at the break-in point, labelled ``break in'') and between the two x's (with red up/down arrows at the break-out point, labelled ``Break out'' plus a short illegible note). A large orange circle passes through the break-in and break-out points. Orange labels: ``$k=\infty$'' at the second o, ``$k=0$'' at both x's, ``$k=100$'' with an arrow at a point on the upper right of the circle, ``$k\uparrow$'' with an arrow near the break-out point; a dashed orange line rises from the left x to the circle and continues as a dashed line to the Im axis.}
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-11-s3-1.png}[3]
 
 \sayfa{4}$\displaystyle |G(s)H(s)| = \frac{\prod_{i=1}^{m} l_i}{\prod_{j=1}^{n} l_j}$
 
@@ -243,7 +243,7 @@ $\left\{\begin{array}{l} n=3 \\ m=0 \end{array}\right.$ \qquad $\left\{\begin{ar
 \textcolor{kirmizikalem}{$-\angle s-\angle s{+}1-\angle s{+}2=$ total phase}
 \end{minipage}
 
-\sekilnotu[4]{Root-locus sketch for $G(s)=k/(s(s+1)(s+2))$ (right side of the page). Poles (x) at $-2$, $-1$ and $0$ (labels ``$-2$'', ``$-1$''); thick red segment on the real axis to the left of $-2$ (arrow pointing left) and between $-1$ and $0$. Orange branches leave the real axis between $-1$ and $0$ and cross the Im axis at $\pm j\sqrt{2}$ (orange labels ``$j\sqrt2$'', ``$-j\sqrt2$'', note ``$k=6$''). Red dash-dot asymptote lines labelled ``$\sigma+1-\frac{\omega}{\sqrt3}=0$'' (upper) and ``$\sigma+1+\frac{\omega}{\sqrt3}=0$'' (lower); blue labels ``$j\sqrt3$'' and ``$-j\sqrt3$'' with arrows to the points where they cross the Im axis. Purple lines/arcs around the dominant-pole region near the origin.}
+\elcizimi[0.6]{sekiller/Control-Systems-lecture-11-s4-1.png}[4]
 
 \[ \text{angles of asymptotes} = \frac{\pm180(2i+1)}{n-m} = \pm60(2i+1)
    \quad \begin{array}{l} \to 60 \\ \to -60 \\ \searrow 180 \end{array} \]

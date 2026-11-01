@@ -6,7 +6,7 @@
 \sayfa{1}
 \okunamadi{In ac}
 
-\sekilnotu[1]{Elle çizilmiş BJT fark yükselteci (küçük sinyal): üstte $V_{CC}$, iki $R_C$ (üstlerinde yukarı oklar); her $R_C$'nin yanında aşağı yönlü $\frac{I}{2}\alpha$; sol kolektörde aşağı oklu $\frac{\alpha\Delta i}{2}$, sağ kolektörde yukarı oklu $\frac{\alpha\Delta i}{2}$; iki transistör arasında $Q_1 \equiv Q_2$. Sol bazda $\frac{v_i}{2}$ kaynağı ve altında ``small signal'', sağ bazda kırmızı kalemle $\frac{v_i}{2}$ ve karalanmış bir işaret; sol emiterde $I/2$. Ortak emiter düğümünde aşağı oklu $I$ akım kaynağı ve ona paralel $R_{EE}$, alt uç $-V_{EE}$.}
+\elcizimi[0.6]{sekiller/Ders7-s1-1.png}[1]
 \begin{align*}
 v_1 &= V_{CC} - \frac{\alpha R_C I}{2} - \frac{\alpha\,\Delta i}{2}\footnotemark \\
 v_2 &= V_{CC} - \frac{\alpha R_C I}{2} + \frac{\alpha\,\Delta i}{2}
@@ -15,7 +15,7 @@ v_2 &= V_{CC} - \frac{\alpha R_C I}{2} + \frac{\alpha\,\Delta i}{2}
 \formulkutu{v_D = v_2 - v_1 = \alpha\,\Delta i\, R_C}
 \[ \Delta i = g_m v_i \]
 
-\sekilnotu[1]{Elle çizilmiş BJT fark yükselteci (fark modu): üstte $V_{CC}$, iki $R_C$ (üzerlerinden dolanan birer tel); kolektör akımları ilk çizimdeki gibi ($\frac{I}{2}\alpha$ ve $\frac{\alpha\Delta i}{2}$); $Q_1 \equiv Q_2$. Sol bazda $\frac{v_{id}}{2}$, sağ bazda $\frac{v_{id}}{2}$ kaynağı; sol emiterde $I/2$; iki emiter arasında kırmızı kalemle kıvrık bir ok ve ``0V virtual ground''. Ortak emiter düğümünden yalnızca $R_{EE}$ ile toprağa gidiliyor (akım kaynağı yok).}
+\elcizimi[0.55]{sekiller/Ders7-s1-2.png}[1]
 \[ \Delta i = g_m v_{id} \]
 \[ \left.\begin{aligned} v_2 &= \frac{g_m v_{id}}{2}\,R_C \\ v_1 &= -\frac{g_m v_{id}}{2}\,R_C \end{aligned}\right\} \; v_d = g_m v_{id} R_C = v_2 - v_1 \]
 \formulkutu{A_d = g_m R_C = \frac{v_d}{v_{id}}}
@@ -28,8 +28,8 @@ $A_d \rightarrow$ \textit{differential}
 soğukta kazanç artar
 
 \section{Effect of $r_o$?}
-\sekilnotu[2]{Elle çizilmiş BJT fark yükselteci, her transistörün kolektör--emiter ucuna paralel $r_o$ ile: üstte iki $R_C$ (üzerlerinden dolanan teller); her $R_C$'nin yanında aşağı yönlü $\frac{I}{2}\alpha$; sol kolektörde aşağı oklu $\frac{\alpha\Delta i}{2}$, sağ kolektörde yukarı oklu $\frac{\alpha\Delta i}{2}$; sol bazda $v_i$ ve altında ``small signal'', sol emiterde $I/2$; sağ bazda $-\frac{v_{id}}{2}$. Ortak emiter düğümüne ``0'' yazılmış (anahtar benzeri bir çizgiyle gösterilmiş); düğümden aşağı kesik bir dikey çizgi ve yanda $R_{EE}$ ile toprak.}
-\sekilnotu[2]{Yan yana iki ayrı yarım devre: her biri üstte $R_C$ (üzerinden dolanan tel), BJT'nin kolektör--emiterine paralel $r_o$, emiter toprağa. Sol yarım devrenin bazı soldan $\frac{v_{id}}{2}$ ile, sağ yarım devrenin (ayna çizim) bazı sağdan $-\frac{v_{id}}{2}$ ile sürülüyor.}
+\elcizimi[0.6]{sekiller/Ders7-s2-1.png}[2]
+\elcizimi[0.65]{sekiller/Ders7-s2-2.png}[2]
 \[ v_1 = -\frac{v_{id}}{2}\,g_m\,(r_o \parallel R_C) \qquad\qquad v_2 = \frac{v_{id}}{2}\,g_m\,(r_o \parallel R_C) \]
 \begin{align*}
 v_d = g_m\,(R_C \parallel r_o)\,v_{id} \;\Rightarrow\; A_d = \frac{v_d}{v_{id}} &= g_m\,(R_C \parallel r_o) \\
@@ -37,10 +37,10 @@ v_d = g_m\,(R_C \parallel r_o)\,v_{id} \;\Rightarrow\; A_d = \frac{v_d}{v_{id}} 
 \end{align*}
 
 \sayfa{3}
-\sekilnotu[3]{Elle çizilmiş BJT fark yükselteci (fark modu, bir önceki sayfadakiyle aynı): üstte iki $R_C$, kolektör akımları $\frac{I}{2}\alpha$ ve $\frac{\alpha\Delta i}{2}$, $Q_1 \equiv Q_2$; sol bazda kırmızı okla $\frac{v_{id}}{2}$, sağ bazda $\frac{v_{id}}{2}$; sol emiterde $I/2$; iki emiter arasında kırmızı kıvrık ok ve ``0V virtual ground''; ortak emiter düğümünden $R_{EE}$ ile toprağa. Kırmızı kalemle, sol emiter düğümünden başlayıp (ok ucu içeri bakıyor) devrenin altından dolanarak sağ emiter düğümüne (ok ucu içeri bakıyor) giden ve ortasında ``$R_{id}$'' yazan bir yol çizilmiş.}
-\sekilnotu[3]{Kırmızı kalemle çizilmiş dikdörtgen: üst kenarda iki açık uç arasında ``$R_1 + R_2$''; alt kenarda seri bağlı $R_1$ ve $R_2$, ikisinin ortasında toprak sembolü.}
+\elcizimi[0.6]{sekiller/Ders7-s3-1.png}[3]
+\elcizimi[0.45]{sekiller/Ders7-s3-2.png}[3]
 \[ R_{id} = 2(\beta + 1)(r_e + R_E) \]
-\sekilnotu[3]{Alt kısımda üç küçük çizim: (solda) kolektöründe direnç, emiterinde $R_E$ olan bir BJT; bazdan içeri bakan ok ve ``$R_{in}$''; (ortada) içeri doğru ok ve ``B'' harfi; (sağda) üstte ``E'' harfi, altına doğru seri $r_e$ ve $R_E$ dirençleri ve toprak.}
+\elcizimi[0.6]{sekiller/Ders7-s3-3.png}[3]
 
 \sayfa{4}
 \section{CMRR and Common mode operation}

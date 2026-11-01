@@ -17,7 +17,7 @@ $x$: output $2^{\mathrm{nd}}$ order D.E.
 
 $u$: input
 
-\sekilnotu[1]{Sketch of a curve: axes with $x$ on the vertical axis and $t$ on the horizontal axis. The orange curve starts at a positive value on the $x$-axis, rises quickly to a peak (overshoot), dips slightly and then settles to a constant steady-state value.}
+\elcizimi[0.45]{sekiller/Control-Systems-lecture-5-s1-1.png}[1]
 
 \begin{align*}
 x &= y_1 & \dot{y}_1 &= \dot{x} = y_2\\
@@ -35,7 +35,7 @@ $y_1,\,y_2$ (circled): state variables
 \]
 \footnotetext{Claude notu: muhtemelen input olmalı.}
 
-\sekilnotu[1]{Triangle diagram with three nodes: D.E. (top), S.S. (bottom left) and T.F. (bottom right), connected by curved arrows. The arrow between D.E. and S.S. is labelled ``state variable''; the arrows between D.E. and T.F. are labelled $\mathcal{L}$ and $\mathcal{L}^{-1}$; S.S. and T.F. are connected by arrows in both directions.}
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-5-s1-2.png}[1]
 
 \[
 \dot{\vec{X}} = A\,\vec{X}+\vec{B}\,u
@@ -322,9 +322,9 @@ G(s)=\frac{Y(s)}{U(s)}=C(sI-A)^{-1}B+D
 \]
 
 \sayfa{6}
-\sekilnotu[6]{Triangle diagram with D.E. at the top, S.S. at the bottom left and T.F. at the bottom right, connected by curved arrows: D.E. $\to$ S.S. labelled ``state variable''; D.E. $\to$ T.F. labelled $\mathcal{L}$; T.F. $\to$ D.E. labelled $\mathcal{L}^{-1}$; T.F. $\to$ S.S. labelled ``Signal flow graph''; S.S. $\to$ T.F. labelled ``Equation''.}
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-5-s6-1.png}[6]
 
-\sekilnotu[6]{Block diagram: $R(s)$ enters a summing junction (+ from $R(s)$, $-$ from the feedback), followed by a block $\frac{1}{s}$ (its output labelled $x_1$), then a block $\frac{10}{s+5}$ (its output labelled $x_2$), then the output $Y(s)$. The feedback path starts at the output $x_2$, passes through a block $\frac{1}{s+1}$ (its output labelled $x_3$) and returns to the negative input of the summing junction.}
+\elcizimi[0.8]{sekiller/Control-Systems-lecture-5-s6-2.png}[6]
 
 \[
 \frac{Y(s)}{X(s)}=\frac{1}{s}\ \to\ \text{integration}
@@ -355,13 +355,13 @@ x_2=sx_3+x_3 & 10x_1=sx_2+5x_2 & sx_1=R-x_3\\
 \begin{Bmatrix}1\\0\\0\end{Bmatrix}r
 \]
 
-\sekilnotu[6]{Block diagram: $R(s)$ enters a summing junction (+), followed by a block $as+b$, then a block $\frac{1}{s^2}$, then the output $Y(s)$. The output is fed back to the summing junction.}
+\elcizimi[0.8]{sekiller/Control-Systems-lecture-5-s6-3.png}[6]
 
 \[
 \frac{as+b}{s^2}=\frac{a}{s}+\frac{b}{s^2}=\frac{1}{s}\left(a+\frac{b}{s}\right)
 \]
 
-\sekilnotu[6]{Block diagram: $R(s)$ enters a first summing junction (+ from $R(s)$, $-$ on the lower input; feedback line not drawn). Its output (labelled $R-x_1$) splits into two parallel paths: an upper block $a$ and a lower block $\frac{b}{s}$ (its output labelled $x_2$). Both are added in a second summing junction, followed by a block $\frac{1}{s}$ (its output labelled $x_1$) and the output $Y(s)$.}
+\elcizimi[0.85]{sekiller/Control-Systems-lecture-5-s6-4.png}[6]
 
 \[
 \frac{x_2}{R-x_1}=\frac{b}{s}\quad(1)\qquad\qquad sx_2=b(R-x_1)

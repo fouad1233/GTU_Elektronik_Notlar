@@ -1,0 +1,176 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Receiver architectures (heterodyne, image frequency)}{Ders-10.pdf}
+
+\sayfa{1}
+\begin{ornek}
+$\eta_T=0{,}5\ \to$ microstrip antenna efficiency\\
+$G_T=11\,\mathrm{dB}\ \to$ antenna gain\\
+$P_{in}=40\,\mathrm{W}$ (input power before antenna)\\
+$T_x$ power density (fall as $1/d^2$)
+\end{ornek}
+
+1) $P_{in}=\ldots\ldots$ ?? [dBm]
+\[ P_{in\,dBm}=10\log\left(\frac{P_{in}}{10^{-3}}\right)=46\,\mathrm{dBm} \qquad (P_{in}=40) \]
+\[ P_{T\,dBm}=P_{in\,dBm}-\underbrace{\eta_{T\,dB}}_{\frac{10\log(0{,}5)}{3\,\mathrm{dB}}} \]
+
+2) $P_T=?$ [dBm]
+\[ P_T=P_{in}\cdot\eta_T=40\cdot 0{,}5=20\,\mathrm{W} \]
+\[ P_{T\,dBm}=10\log\left(\frac{20}{10^{-3}}\right)=43\,\mathrm{dBm} \]
+
+c) $d=5\,\mathrm{km}\ \to P_D=?$
+
+\elcizimi[0.4]{sekiller/Ders-10-s1-1.png}[1]
+
+\elcizimi[0.6]{sekiller/Ders-10-s1-2.png}[1]
+\[ P_D=\frac{P_T\cdot G_T}{4\pi d^2} \]
+\[ P_D=\frac{20\cdot 10^{11/10}}{4\pi\,(5\cdot 10^3)^2}=1{,}603\ \mu\mathrm{W/m^2} \]
+
+d) $A_R=6\,\mathrm{cm^2}\ \to P_R=?$
+\[ P_R=P_D\cdot A_R=1{,}603\ \mu\mathrm{W/m^2}\cdot(6\,\mathrm{cm^2}) \]
+\[ =1{,}603\ \mu\mathrm{W/m^2}\,(6\cdot 10^{-4})\,\mathrm{m^2} \]
+\[ =P_R=962\,\mathrm{pW} \]
+
+e) Alıcıdaki gürültü:\\
+$N_R=100\,\mathrm{fW}\ \to SNR_R=?$
+\[ SNR=\frac{P_R}{N_R}=\frac{962\,\mathrm{pW}}{100\,\mathrm{fW}}=9618\ \to SNR_{dB}=39{,}7\,\mathrm{dB} \]
+
+\sayfa{2}
+\section{Design Architecture of Receivers}
+
+\elcizimi[0.9]{sekiller/Ders-10-s2-1.png}[2]
+
+Band $\to$ frequency allocated for specific application
+
+Channel $\to$ '' '' '' '' user
+
+\elcizimi[0.55]{sekiller/Ders-10-s2-2.png}[2]
+
+\elcizimi[0.6]{sekiller/Ders-10-s2-3.png}[2]
+
+Off-chip filter $\to$ eğer filtrenin keskin olmasını istersek
+
+\elcizimi[0.65]{sekiller/Ders-10-s2-4.png}[2]
+
+Narrowband sharp roll-off filter is not possible
+
+\sayfa{3}
+\section{GSM 900 band}
+
+Uplink band \& channels.
+
+\elcizimi[0.7]{sekiller/Ders-10-s3-1.png}[3]
+
+Downlink band \& channels
+
+\elcizimi[0.75]{sekiller/Ders-10-s3-2.png}[3]
+
+\elcizimi[0.75]{sekiller/Ders-10-s3-3.png}[3]
+
+\subsection{Down Conversion}
+
+$x(t)=A\cos(\omega_{RF}t)$ \quad (input)
+
+$c(t)=B\cos(\omega_{LO}t)$ \quad (LO)
+
+\elcizimi[0.35]{sekiller/Ders-10-s3-4.png}[3]
+
+\[ \text{\okunamadi{r}}(t)=y(t)=x(t)\,c(t)=A\cos(\omega_{RF}t)\,B\cos(\omega_{LO}t) \]
+\[ =\frac{AB}{2}\left\{\cos\bigl((\omega_{RF}+\omega_{LO})t\bigr)+\cos\bigl((\omega_{RF}-\omega_{LO})t\bigr)\right\} \]
+$\omega_{RF}\pm\omega_{LO}$
+
+\elcizimi[0.8]{sekiller/Ders-10-s3-5.png}[3]
+
+\elcizimi[0.5]{sekiller/Ders-10-s3-6.png}[3]
+
+\elcizimi[0.6]{sekiller/Ders-10-s3-7.png}[3]
+
+\elcizimi[0.5]{sekiller/Ders-10-s3-8.png}[3]
+
+\elcizimi[0.6]{sekiller/Ders-10-s3-9.png}[3]
+
+\sayfa{4}
+\section{Heterodyne Receivers}
+
+\elcizimi[0.9]{sekiller/Ders-10-s4-1.png}[4]
+
+$\omega_{RF}-\omega_{LO}=\omega_{IF}\neq 0\ \to$ Heterodyne
+
+$\omega_{IF}=0\ \to$ Homodyne
+
+\elcizimi[0.5]{sekiller/Ders-10-s4-2.png}[4]
+
+\elcizimi[0.5]{sekiller/Ders-10-s4-3.png}[4]
+
+1- Tunable IF Filter, constant LO
+
+2 $\to$ Constant IF Filter, Tunable LO
+
+\elcizimi[0.4]{sekiller/Ders-10-s4-4.png}[4]
+
+SAW filter\\
+IF = 70 MHz\\
+BW = 100 MHz
+
+\begin{center}
+\begin{tabular}{@{}c@{\ }c@{\ }c@{\ }c@{\ }c@{}}
+$\omega_{RF}$ & $-$ & $\omega_{LO}$ & $=$ & $\omega_{IF}$\\
+$\downarrow$ & & $\downarrow$ & & constant\\
+960 & & 890 & & 70\\
+965 & & 895 & & 70
+\end{tabular}
+\end{center}
+
+\textbf{High side injection}\\
+\textbf{Low side injection}
+
+\elcizimi[0.35]{sekiller/Ders-10-s4-5.png}[4]
+\[ \to\ \omega_{IF}=\omega_{LO}-\omega_{RF} \]
+\[ \to\ \omega_{IF}=\omega_{RF}-\omega_{LO} \]
+
+\elcizimi[0.65]{sekiller/Ders-10-s4-6.png}[4]
+
+\sayfa{5}
+\elcizimi[0.85]{sekiller/Ders-10-s5-1.png}[5]
+
+\elcizimi[0.85]{sekiller/Ders-10-s5-2.png}[5]
+
+Spectrum Inversion
+
+High-side Injection
+
+\subsection{Image Frequency: Hayal Frekans}
+
+\elcizimi[0.9]{sekiller/Ders-10-s5-3.png}[5]
+
+\elcizimi[0.85]{sekiller/Ders-10-s5-4.png}[5]
+\[ \omega_{IM}-\omega_{LO}=\omega_{IF} \]
+\[ \omega_{LO}-\omega_{RF}=\omega_{IF} \]
+
+\subsection{2 scenarios}
+
+1) $\omega_{LO}$ far from $\omega_{RF}$ and high $\omega_{IF}$
+
+\elcizimi[0.7]{sekiller/Ders-10-s5-5.png}[5]
+
+\sayfa{6}
+IF bölgesi
+
+\elcizimi[0.8]{sekiller/Ders-10-s6-1.png}[6]
+
+2) $\omega_{LO}$ close to $\omega_{RF}$ and low $\omega_{IF}$
+
+\elcizimi[0.6]{sekiller/Ders-10-s6-2.png}[6]
+
+$\omega_{IF2}<\omega_{IF1}$
+
+\elcizimi[0.55]{sekiller/Ders-10-s6-3.png}[6]
+
+\subsection{Dual Conversion Receiver}
+
+\elcizimi[0.9]{sekiller/Ders-10-s6-4.png}[6]
+
+\elcizimi[0.9]{sekiller/Ders-10-s6-5.png}[6]
+
+\end{document}

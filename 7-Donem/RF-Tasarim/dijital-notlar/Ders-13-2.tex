@@ -1,0 +1,148 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Faz kaydırma, Hartley/Weaver, image rejection}{Ders-13-2.pdf}
+
+\sayfa{1}
+\section{$90^\circ$ Phase Shift}
+
+\begin{align*}
+A(t)\cos\!\big(\omega_c t+\phi(t)+90^\circ\big) &= A(t)\left\{\frac{e^{j[\omega_c t+\phi(t)-90^\circ]}}{2}+\frac{e^{-j[\omega_c t+\phi(t)-90^\circ]}}{2}\right\}\\
+&= A(t)\left\{-j\,\underbrace{\frac{e^{j[\omega_c t+\phi(t)]}}{2}}_{\textcolor{kirmizikalem}{\text{positive freq}}}+j\,\underbrace{\frac{e^{-j[\omega_c t+\phi(t)]}}{2}}_{\textcolor{kirmizikalem}{\text{Negative freq}}}\right\}\\
+&= A(t)\cdot\sin[\omega_c t+\phi(t)]
+\end{align*}
+
+\elcizimi[0.45]{sekiller/Ders-13-2-s1-1.png}[1]
+
+\subsection{Hilbert Transform}
+
+\elcizimi[0.35]{sekiller/Ders-13-2-s1-2.png}[1]
+
+\[ H(j\omega) = -j\,\mathrm{sgn}(\omega) \]
+\[ \mathrm{sgn}(\omega) = \begin{cases} 1 & ,\ \omega>0\\ 0 & ,\ \omega=0\\ -1 & ,\ \omega<0 \end{cases} \]
+\[ I(t)+jQ(t) \]
+
+\section{Implementation of $90^\circ$ phase shift}
+
+\subsection{(1) RC-CR Network}
+
+\elcizimi[0.42]{sekiller/Ders-13-2-s1-3.png}[1]
+
+\sayfa{2}
+\elcizimi[0.55]{sekiller/Ders-13-2-s2-1.png}[2]
+
+Ama sadece merkez frekansında 90 derece.
+
+\subsection{(2) Quadrature down Conversion}
+
+\elcizimi[0.5]{sekiller/Ders-13-2-s2-2.png}[2]
+
+1) $\omega_0>\omega_{RF}$ $\rightarrow$ High Injection
+
+\elcizimi[0.9]{sekiller/Ders-13-2-s2-3.png}[2]
+
+\sayfa{3}
+\noindent\textcolor{kirmizikalem}{\underline{2) $\omega_0<\omega_{RF}$ Low injection}}
+
+\elcizimi[0.9]{sekiller/Ders-13-2-s3-1.png}[3]
+
+\begin{tabular}{@{}l@{\qquad}l}
+\textcolor{kirmizikalem}{\underline{High side}} & $+\omega_c \rightarrow$ Clk \\
+ & $-\omega_c \rightarrow$ AClk
+\end{tabular}
+
+\medskip
+
+\begin{tabular}{@{}l@{\qquad}l}
+\textcolor{kirmizikalem}{\underline{Low side}} & $+\omega_c \rightarrow$ AClk \\
+ & $-\omega_c \rightarrow$ Clk
+\end{tabular}
+
+\section{Image Reject Receivers (Hartley Architecture)}
+
+\elcizimi[0.95]{sekiller/Ders-13-2-s3-2.png}[3]
+
+for channel $\rightarrow$ low side
+
+for image $\rightarrow$ high side
+
+\sayfa{4}
+\begin{align*}
+x_{in}(t) &= \frac{A_{sig}}{2}\cos[\omega_{RF}+\phi_{sig}]+\frac{A_{im}}{2}\cos(\omega_{im}+\phi_{IM})\\[6pt]
+x_A(t) &= \frac{A_{sig}}{2}\cos\big[\underbrace{(\omega_{RF}-\omega_{LO})}_{\omega_{IF}}t+\phi_{sig}\big]+\frac{A_{im}}{2}\,\overset{\textcolor{kirmizikalem}{\cos[(\omega_{LO}-\omega_{im})t+\phi_{im}]}}{\cos\big[\underbrace{(\omega_{im}-\omega_{LO})}_{-\omega_{IF}}t+\phi_{im}\big]}\\[8pt]
+x_B(t) &= -\frac{A_{sig}}{2}\sin\big[\underbrace{(\omega_{RF}-\omega_{LO})}_{\omega_{IF}}t+\phi_{sig}\big]-\overset{\textcolor{kirmizikalem}{+\sin[(\omega_{LO}-\omega_{im})t+\phi_{IM}]}}{\frac{A_{im}}{2}\sin\big[\underbrace{(\omega_{im}-\omega_{LO})}_{-\omega_{IF}}t+\phi_{IM}\big]}\\[6pt]
+&\quad\downarrow\ 90^\circ\ \text{phase shift}\\[2pt]
+x_C(t) &= +\frac{A_{sig}}{2}\cos\big[(\omega_{RF}-\omega_{LO})t+\phi_{sig}\big]-\frac{A_{im}}{2}\cos\big[(\omega_{LO}-\omega_{im})t+\phi_{im}\big]
+\end{align*}
+\[ \textcolor{kirmizikalem}{x_A(t)+x_B(t)}\footnotemark = A_{sig}\cos[\omega_{IF}t+\phi_{sig}] \]
+\footnotetext{Claude notu: muhtemelen $x_A(t)+x_C(t)$ olmalı.}
+
+\section{Weaver Architecture}
+
+\subsection{Çalışma sorusu}
+
+\elcizimi[0.8]{sekiller/Ders-13-2-s4-1.png}[4]
+
+\begin{align*}
+x_{sig,out}(t) &= \frac{A_{sig}}{2}\cos[(\omega_{RF}-\omega_{LO})t+\phi_{sig}]\\
+&\quad+\frac{A_{sig}}{2}(1+\varepsilon)\cos[(\omega_{RF}-\omega_{LO})t+\phi_{sig}+\Delta\theta]\\
+x_{im,out}(t) &= \frac{A_{im}}{2}(1+\varepsilon)\cos[(\omega_{im}-\omega_{LO})t+\phi_{im}+\Delta\theta]\\
+&\quad+\frac{A_{im}}{2}\cos[(\omega_{LO}-\omega_{im})t+\phi_{IM}]
+\end{align*}
+
+In case of phase and gain mismatch (error)
+
+Image can not remove completely
+
+\section{Measure of Image Rejection}
+
+\textcolor{kirmizikalem}{IRR : Image Rejection Ratio}
+
+\[ \left.\frac{P_{im}}{P_{sig}}\right|_{out} = \frac{A_{im}^{2}}{A_{sig}^{2}}\,\frac{(1+\varepsilon)^{2}-2(1+\varepsilon)\cos\Delta\theta+1}{(1+\varepsilon)^{2}+2(1+\varepsilon)\cos\Delta\theta+1} \]
+
+\[ A_{im}=A_{sig}\ \rightarrow\quad \text{for}\ \left.\begin{matrix}\Delta\theta\ll 1\\ \varepsilon\ll 1\end{matrix}\right\}\rightarrow\ \mathrm{IRR}=\frac{4}{\varepsilon^{2}+\Delta\theta^{2}} \]
+
+\sayfa{5}
+\section{Weaver Architecture for Image Rejection}
+
+\elcizimi[0.95]{sekiller/Ders-13-2-s5-1.png}[5]
+
+ikinci imageden kurtulmak için son kısmı zero if kullanılabilir
+
+\section{Double quadrature Down Conversion}
+
+\elcizimi[0.95]{sekiller/Ders-13-2-s5-2.png}[5]
+
+\section{Dual Band Receiver for Weaver Architecture}
+
+B. Razavi ``A 900MHz/1800MHz Architecture for Dual Band Application''
+
+\elcizimi[0.95]{sekiller/Ders-13-2-s5-3.png}[5]
+
+\sayfa{6}
+\elcizimi[0.95]{sekiller/Ders-13-2-s6-1.png}[6]
+
+\section{Dual Band Receiver Example}
+
+\elcizimi[0.8]{sekiller/Ders-13-2-s6-2.png}[6]
+
+\[ \left.\begin{aligned} 5{,}2-3{,}8&=1{,}4\\ 3{,}8-2{,}4&=1{,}4 \end{aligned}\right\}\ \omega_{IF1} \]
+\[ \omega_{IF2}=1{,}4-1{,}4=0 \]
+
+\begin{ornek}[Soru]
+We have signal of $-85$ dBm at 2,4 GHz and $-10$ dBm at 5,2 GHz as interferer.
+What is the amount of rejection in BPF$_1$ at 5,2 GHz for SNR $=20$ dB \& IRR $=45$ dB
+\end{ornek}
+
+\elcizimi[0.5]{sekiller/Ders-13-2-s6-3.png}[6]
+
+\begin{gather*}
+\mathrm{SNR}\big|_{\mathrm{dB}}=S_{\mathrm{dBm}}-\overset{I_{\mathrm{dBm}}}{N_{\mathrm{dBm}}}\ge 20\,\mathrm{dB}\\
+-85-N_{\mathrm{dBm}}\ge 20\,\mathrm{dB}\\
+N_{\mathrm{dBm}}\le -105\,\mathrm{dBm}\\
+S_{int}\big|_{\mathrm{dBm}}-|BPF|_{\mathrm{dB}}-|IRR|_{\mathrm{dB}}=N_{\mathrm{dBm}}\le -105\,\mathrm{dBm}\\
+-10\,\mathrm{dBm}-|BPF_1|_{\mathrm{dB}}-45\le -105\,\mathrm{dBm}\\
+|BPF_1|\ge 50\,\mathrm{dB}
+\end{gather*}
+
+\end{document}

@@ -1,0 +1,315 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Ders 3: LNA, mikser, osilatör, PA, modülasyon, S-parametreleri}{Ders3.pdf}
+
+\sayfa{1}
+\section{LNA}
+\elcizimi[0.5]{sekiller/Ders3-s1-1.png}[1]
+
+\[ N_o = N_i\,G + N_A \]
+
+\[ \mathrm{SNR}_i > \mathrm{SNR}_o \]
+
+Low Noise Figure \quad $\displaystyle \mathrm{NF}_{\mathrm{dB}}\footnotemark = \frac{\mathrm{SNR}_i}{\mathrm{SNR}_o} = \mathrm{SNR}_i[\mathrm{dB}] - \mathrm{SNR}_o[\mathrm{dB}]$
+\footnotetext{Claude notu: muhtemelen $F=\mathrm{SNR}_i/\mathrm{SNR}_o$ ve $\mathrm{NF}_{\mathrm{dB}}=10\log F$ olmalı.}
+
+\subsection{istenilenler}
+\begin{itemize}[label={},leftmargin=1em]
+\item Linearity
+\item Low power consumption
+\item Low area \quad $''$
+\item Gain [$S_{21}$]
+\item Matching
+\end{itemize}
+
+\[ \mathrm{NF} = 10\log F \]
+$F$: Noise factor \\
+$\mathrm{NF}$: Noise figure
+
+\section{Mixers}
+\subsection{Upconversion}
+\elcizimi[0.45]{sekiller/Ders3-s1-2.png}[1]
+
+\elcizimi[0.7]{sekiller/Ders3-s1-3.png}[1]
+
+\subsection{Down conversion}
+\elcizimi[0.5]{sekiller/Ders3-s1-4.png}[1]
+
+\elcizimi[0.55]{sekiller/Ders3-s1-5.png}[1]
+
+\[ g(t) = \cos 2\pi f_0 t \;\rightarrow\; G(f) = \Fou{g(t)} = \int_{-\infty}^{\infty} \cos 2\pi f_0 t \; e^{-j2\pi f t}\, dt \]
+
+\sayfa{2}
+\[ = \int_{-\infty}^{\infty} \frac{e^{j2\pi f_0 t} + e^{-j2\pi f_0 t}}{2}\, e^{-j2\pi f t}\, dt\ \text{\okunamadi{+}} \]
+\[ = \frac12 \left\{ \int_{-\infty}^{\infty} e^{j2\pi f_0 t}\, e^{-j2\pi f t}\, dt + \int_{-\infty}^{\infty} e^{-j2\pi f_0 t}\, e^{-j2\pi f t}\, dt \right\} \]
+\[ = \frac12 \left[ \delta(f-f_0) + \delta(f+f_0) \right] \]
+
+\elcizimi[0.4]{sekiller/Ders3-s2-1.png}[2]
+
+\[ \Longrightarrow \]
+
+\elcizimi[0.45]{sekiller/Ders3-s2-2.png}[2]
+
+\[ g(t) = \cos 2\pi f_0 t \]
+\[ \sigma^2 = E\left[g^2(t)\right] - E^2\left[g(t)\right] \]
+
+\elcizimi[0.5]{sekiller/Ders3-s2-3.png}[2]
+
+\[ y_{RF}(t) = x(t)\left[\cos 2\pi f_{LO} t\right] \]
+\[ Y(f) = X(f) \circledast \frac12\left[\delta(f-f_{LO}) + \delta(f+f_{LO})\right] \]
+\[ = \left[X(f-f_{IF}) + X(f+f_{IF})\right] \circledast \frac12\left[\delta(f-f_{LO}) + \delta(f+f_{LO})\right] \]
+\begin{align*}
+&= \frac12\Bigl[\underbrace{X(f-f_{IF}-f_{LO})}_{\substack{f-[f_{IF}+f_{LO}]\\ \text{\textcircled{1}}}} + \underbrace{X(f-f_{IF}+f_{LO})}_{\substack{f-[f_{IF}-f_{LO}]\\ \text{\textcircled{3}}}}\\
+&\qquad + \underbrace{X(f+f_{IF}-f_{LO})}_{\substack{f-[f_{LO}-f_{IF}]\\ \text{\textcircled{2}}}} + \underbrace{X(f+f_{IF}+f_{LO})}_{\substack{f-[-f_{LO}-f_{IF}]\\ \text{\textcircled{4}}}}\Bigr]
+\end{align*}
+
+\elcizimi[0.8]{sekiller/Ders3-s2-4.png}[2]
+
+\sayfa{3}
+\[ x(t) = \cos 2\pi f_1 t \quad\rightarrow\quad f_1 = \qty{100}{\mega\hertz} \quad\rightarrow\quad BW = \qty{10}{\mega\hertz} \]
+\[ \text{\okunamadi{l}}(t) = \cos 2\pi f_2 t \quad\rightarrow\quad f_2 = \qty{2}{\giga\hertz} \]
+
+oluşacak frekanslar: \qty{2,1}{\giga\hertz} ve \qty{1,9}{\giga\hertz}
+
+\section{Osilatörler \& VCO (Voltage controlled oscilator)}
+\elcizimi[0.45]{sekiller/Ders3-s3-1.png}[3]
+
+\elcizimi[0.75]{sekiller/Ders3-s3-2.png}[3]
+
+$\star$ Frequency stability, phase Noise
+
+Osilatör
+
+\elcizimi[0.4]{sekiller/Ders3-s3-3.png}[3]
+
+kristal osilatörlerin beslemeye ihtiyacı \okunamadi{yoktur}
+
+VCO gerilim kontrollü osilatör
+
+\elcizimi[0.7]{sekiller/Ders3-s3-4.png}[3]
+
+\sayfa{4}
+\subsection{Osilatör çeşitleri}
+\begin{itemize}[label=$\rightarrow$,leftmargin=2em]
+\item VCO
+\item TCXO (Temperature controlled Osc.) \\ $\hookrightarrow$ sıcak kontrollü, geri besleme ile sıcaklık etkisini minimize eder
+\item OCXO (Oven Controlled Osc.) \\ fırın kontrollü
+\end{itemize}
+
+\section{PLL (Phase Locked loop)}
+\elcizimi[0.9]{sekiller/Ders3-s4-1.png}[4]
+
+\section{Power Amplifier}
+\elcizimi[0.9]{sekiller/Ders3-s4-2.png}[4]
+
+\begin{itemize}[label={},leftmargin=1em]
+\item Gain
+\item (Max) Output power
+\item Bandwidth
+\item Power efficiency \quad (PAE) \quad Power added efficiency
+\item Linearity
+\item I/O Matching
+\end{itemize}
+
+A, AB, B, C $\rightarrow$ Linear \\
+F, E $\rightarrow$ High power efficiency \\
+D $\rightarrow$ Low freq
+
+\sayfa{5}
+\elcizimi[0.85]{sekiller/Ders3-s5-1.png}[5]
+
+\section{Modulation}
+\[
+\begin{array}{@{}l@{\quad}l@{}}
+\text{BPSK:} & \text{`0'}\ \rightarrow\ \sqrt{E_s}\cos 2\pi f t\\
+ & \text{`1'}\ \rightarrow\ -\sqrt{E_s}\cos 2\pi f t
+\end{array}
+\]
+
+\elcizimi[0.45]{sekiller/Ders3-s5-2.png}[5]
+
+\[
+\begin{array}{@{}l@{\quad}l@{\quad}l@{}}
+\text{QPSK:} & \text{`00'} & \rightarrow\ \sqrt{E_s}\cos 2\pi f t + \sqrt{E_s}\sin 2\pi f t\\
+ & \text{`01'} & \\
+ & \text{`10'} & \rightarrow\\
+ & \text{`11'} &
+\end{array}
+\]
+
+\elcizimi[0.95]{sekiller/Ders3-s5-3.png}[5]
+
+\sayfa{6}
+\elcizimi[0.45]{sekiller/Ders3-s6-1.png}[6]
+
+\elcizimi[0.35]{sekiller/Ders3-s6-2.png}[6]
+
+\section{AM (Amplitude Modulation)}
+\elcizimi[0.45]{sekiller/Ders3-s6-3.png}[6]
+
+high Freq RF signal
+
+\elcizimi[0.45]{sekiller/Ders3-s6-4.png}[6]
+
+\elcizimi[0.4]{sekiller/Ders3-s6-5.png}[6]
+
+\[ x_{AM}(t) = \left[1 + a\,x_m(t)\right] A_c \cos\left(2\pi f_c t + \phi_c\right) \]
+normalizasyon için \\
+$\rightarrow\ {=}\ A_m\cos(2\pi f_m t + \phi_m)$ olsun
+
+\elcizimi[0.6]{sekiller/Ders3-s6-6.png}[6]
+
+\sayfa{7}
+\section{Frequency Modulation (FM)}
+\[ x_{FM}(t) = A_c\cos\left[\omega_c(t)\cdot t + \phi_c\right] \]
+\[ \omega_i(t) = \omega_c + k_f\cdot A_m\sin(2\pi f_m t) \]
+
+\[ BW_{FM} = 2(1+k_f)f_m \]
+\[ \underbrace{k_f \ll 1 \quad BW_{FM} \approx 2 f_m}_{\mathrm{NBFM}} \]
+\[ k_f = \frac{f_m}{f_c} \qquad \begin{matrix} 3\ \mathrm{kHz}\\ 1\ \mathrm{MHz} \end{matrix} \]
+88 -- 108 MHz radyo
+
+\elcizimi[0.4]{sekiller/Ders3-s7-1.png}[7]
+
+\elcizimi[0.7]{sekiller/Ders3-s7-2.png}[7]
+
+\elcizimi[0.85]{sekiller/Ders3-s7-3.png}[7]
+
+\section{Phase Modulation}
+\[ x_{PM}(t) = A_c\cos\left(\omega_c t + x_m(t)\right) \]
+\[ x_m(t) = A_m\cos 2\pi f_m t \]
+
+\elcizimi[0.6]{sekiller/Ders3-s7-4.png}[7]
+
+\elcizimi[0.55]{sekiller/Ders3-s7-5.png}[7]
+
+\[
+\begin{array}{@{}l@{}}
+\text{`0'} \rightarrow 0\\
+\text{`1'} \rightarrow \cos 2\pi f t
+\end{array}
+\]
+\[
+\begin{array}{@{}l@{}}
+\text{`0'} \rightarrow \cos 2\pi f_0 t\\
+\text{`1'} \rightarrow \cos(2\pi f_0 t + 180^\circ)
+\end{array}
+\]
+
+\sayfa{8}
+\elcizimi[0.35]{sekiller/Ders3-s8-1.png}[8]
+
+\okunamadi{}
+
+\section{Linearity}
+\elcizimi[0.5]{sekiller/Ders3-s8-2.png}[8]
+
+\[ y = a\,x \]
+\elcizimi[0.55]{sekiller/Ders3-s8-3.png}[8]
+
+\[ y = ax + bx^2 + cx^3 + \cdots \]
+
+\elcizimi[0.4]{sekiller/Ders3-s8-4.png}[8]
+\[ x(t) = \cos 2\pi f_0 t \]
+
+\[ y = ax \;\Longrightarrow \]
+\elcizimi[0.45]{sekiller/Ders3-s8-5.png}[8]
+
+\[ y = ax + bx^2 + \cdots \;\Longrightarrow \]
+\elcizimi[0.5]{sekiller/Ders3-s8-6.png}[8]
+
+\sayfa{9}
+\section{Non-Linearity Problems}
+\begin{itemize}[label=--,leftmargin=1.5em]
+\item Gain Compression
+\item Intermodulation
+\item Desensitization
+\end{itemize}
+
+\section{Phasor}
+\okunamadi{*S}
+
+\begin{align*}
+& x(t) = A\cos(\omega t+\phi) && = \mathrm{Re}\left\{A\cos(\omega t+\phi) + j\sin(\omega t+\phi)\right\}\\
+& X = Ae^{j\phi} && = \mathrm{Re}\left\{Ae^{j(\omega t+\phi)}\right\}\\
+& && = \mathrm{Re}\left\{A\cdot e^{j\omega t}e^{j\phi}\right\} = \mathrm{Re}\left\{e^{j\omega t}\cdot X\right\}
+\end{align*}
+\[ v(t) = 2\cos(\omega t + 30^\circ) \rightarrow V = 2e^{j30^\circ} \]
+
+\section{Impedance}
+\[ R = \frac{V}{I} \;\Rightarrow\; Z(f) = \frac{V(f)}{I(f)} = R + jX \]
+\[
+\begin{array}{@{}l@{\quad}l@{}}
+R \rightarrow & Z = R\\
+L \rightarrow & Z_L = j\omega L\\
+C \rightarrow & Z_C = \dfrac{1}{j\omega C}
+\end{array}
+\]
+
+\subsection{Admittance}
+\[ Y = \frac{1}{Z} \]
+
+\section{Reflection, Transmission \& matching}
+\elcizimi[0.45]{sekiller/Ders3-s9-1.png}[9]
+
+\elcizimi[0.6]{sekiller/Ders3-s9-2.png}[9]
+\[ P_{in} = P_{ref} + P_{abs} \]
+
+\sayfa{10}
+\section{Matching}
+\elcizimi[0.55]{sekiller/Ders3-s10-1.png}[10]
+
+\qty{50}{\ohm}
+
+Power handling \quad \qty{30}{\ohm}
+
+\elcizimi[0.5]{sekiller/Ders3-s10-2.png}[10]
+
+\elcizimi[0.5]{sekiller/Ders3-s10-3.png}[10]
+
+\qty{53,5}{\ohm} $\rightarrow$ \okunamadi{seçer}
+
+\section{Ödev}
+\textcircled{1}
+
+\elcizimi[0.85]{sekiller/Ders3-s10-4.png}[10]
+
+\textcircled{2}
+
+\elcizimi[0.75]{sekiller/Ders3-s10-5.png}[10]
+
+\sayfa{11}
+\section{Attenuator (zayıflatıcı)}
+\elcizimi[0.4]{sekiller/Ders3-s11-1.png}[11]
+
+\elcizimi[0.85]{sekiller/Ders3-s11-2.png}[11]
+
+\begin{tabular}{@{}l@{\qquad}l@{}}
+Step Attenuator & 1 dB $\rightarrow$ 0 $\sim$ 30 dB\\
+ & 2 dB $\rightarrow$ 0 $\sim$ 40 dB
+\end{tabular}
+
+Amfiyi doyurmadan linear bölgede çalışması için
+
+Fixed Attention
+
+\section{S-parameters}
+\elcizimi[0.85]{sekiller/Ders3-s11-3.png}[11]
+
+\[ \begin{bmatrix} V_1^-\\ V_2^- \end{bmatrix} = \begin{bmatrix} S_{11} & S_{12}\\ S_{21} & S_{22} \end{bmatrix} \begin{bmatrix} V_1^+\\ V_2^+ \end{bmatrix} \]
+\begin{align*}
+V_1^- &= S_{11}V_1^+ + S_{12}V_2^+\\
+V_2^- &= S_{21}V_1^+ + S_{22}V_2^+
+\end{align*}
+\[ S_{11} = \left.\frac{V_1^-}{V_1^+}\right|_{V_2^+=0} \qquad \text{shows the accuracy of input matching} \]
+$V_1^-$ ne kadar küçükse yansıma o kadar azdır
+
+$S_{11} \leq -15$ dB den küçükse
+
+\sayfa{12}
+\[ S_{22} = \left.\frac{V_2^-}{V_2^+}\right|_{V_1^+=0} \qquad \begin{array}{l}\text{Shows the accuracy of output matching}\\ S_{22} \leq -15\ \mathrm{dB}\end{array} \]
+\[ S_{12} = \left.\frac{V_1^-}{V_2^+}\right|_{V_1^+=0} \qquad \begin{array}{l}\text{Reverse Isolation}\\ \text{çıkıştan girişe gelen sinyal}\end{array} \]
+\[ S_{21} = \left.\frac{V_2^-}{V_1^+}\right|_{V_2^+=0} \qquad \text{Gain} \]
+
+\end{document}

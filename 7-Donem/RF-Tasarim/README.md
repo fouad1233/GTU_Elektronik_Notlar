@@ -10,27 +10,27 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [7. Dönem](../README.md) · 2024–2025 Güz | ELM667 | RF System Design for Communications | 13 ders notu · 6 ders tekrarı · 3 sınav çalışması · 8 ödev · 1 proje |
+| [7. Dönem](../README.md) · 2024–2025 Güz | ELM667 | RF System Design for Communications | 13 ders notu · 6 ders tekrarı · 15 dijital not · 3 sınav çalışması · 8 ödev · 1 proje |
 
-**Bu sayfada:** [Ders Notları](#ders-notları) · [Ders Tekrarı](#ders-tekrarı) · [Final/Vize Çalışması](#finalvize-çalışması) · [Ödevler](#ödevler) · [Projeler](#projeler)
+**Bu sayfada:** [Ders Notları](#ders-notları) · [Ders Tekrarı](#ders-tekrarı) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması) · [Ödevler](#ödevler) · [Projeler](#projeler)
 
 ## Ders Notları
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Ders1](ders-notlari/Ders1.pdf) | PDF | 7 s. |
-| [Ders3](ders-notlari/Ders3.pdf) | PDF | 12 s. · 7,7 MB |
-| [Ders 4](ders-notlari/Ders-4.pdf) | PDF | 8 s. · 8,2 MB |
-| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 7 s. |
-| [Ders6](ders-notlari/Ders6.pdf) | PDF | 10 s. · 7,0 MB |
-| [Ders7](ders-notlari/Ders7.pdf) | PDF | 5 s. |
-| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 5 s. |
-| [Ders9](ders-notlari/Ders9.pdf) | PDF | 3 s. |
-| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 7 s. |
-| [Ders 11](ders-notlari/Ders-11.pdf) | PDF | 9 s. |
-| [Ders 12](ders-notlari/Ders-12.pdf) | PDF | 8 s. · 6,2 MB |
-| [Ders 13-2](ders-notlari/Ders-13-2.pdf) | PDF | 7 s. · 7,5 MB |
-| [Ders 13](ders-notlari/Ders-13.pdf) | PDF | 7 s. · 7,7 MB |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Ders1](ders-notlari/Ders1.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders1.pdf) |
+| [Ders3](ders-notlari/Ders3.pdf) | PDF | 12 s. · 7,7 MB | [PDF](dijital-notlar/Ders3.pdf) |
+| [Ders 4](ders-notlari/Ders-4.pdf) | PDF | 8 s. · 8,2 MB | [PDF](dijital-notlar/Ders-4.pdf) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders-5.pdf) |
+| [Ders6](ders-notlari/Ders6.pdf) | PDF | 10 s. · 7,0 MB | [PDF](dijital-notlar/Ders6.pdf) |
+| [Ders7](ders-notlari/Ders7.pdf) | PDF | 5 s. | [PDF](dijital-notlar/Ders7.pdf) |
+| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 5 s. | [PDF](dijital-notlar/Ders-8.pdf) |
+| [Ders9](ders-notlari/Ders9.pdf) | PDF | 3 s. | [PDF](dijital-notlar/Ders9.pdf) |
+| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders-10.pdf) |
+| [Ders 11](ders-notlari/Ders-11.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-11.pdf) |
+| [Ders 12](ders-notlari/Ders-12.pdf) | PDF | 8 s. · 6,2 MB | [PDF](dijital-notlar/Ders-12.pdf) |
+| [Ders 13-2](ders-notlari/Ders-13-2.pdf) | PDF | 7 s. · 7,5 MB | [PDF](dijital-notlar/Ders-13-2.pdf) |
+| [Ders 13](ders-notlari/Ders-13.pdf) | PDF | 7 s. · 7,7 MB | [PDF](dijital-notlar/Ders-13.pdf) |
 
 ## Ders Tekrarı
 
@@ -43,13 +43,37 @@
 | [Ders6 tekrari](ders-tekrari/Ders6-tekrari.pdf) | PDF | 10 s. · 7,0 MB |
 | [Ders7 tekrari](ders-tekrari/Ders7-tekrari.pdf) | PDF | 5 s. |
 
+## Dijital Notlar (LaTeX)
+
+El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: [latex-sablon](../../latex-sablon/README.md).
+
+> **Uyarı:** Dijital notlar, el yazısı notlardan Claude (Anthropic) yardımıyla oluşturulmuştur; yardımcı kaynak olarak hazırlanmıştır ve hata içerebilir. Orijinal notları ve resmi ders kaynaklarını esas alın.
+
+| Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
+|---|---|---|---|
+| [Ders1](ders-notlari/Ders1.pdf) <sub>Ders Notları</sub> | Ders 1: RF'ye giriş ve temel kavramlar | [PDF](dijital-notlar/Ders1.pdf) · 13 s. | [.tex](dijital-notlar/Ders1.tex) |
+| [Ders3](ders-notlari/Ders3.pdf) <sub>Ders Notları</sub> | Ders 3: LNA, mikser, osilatör, PA, modülasyon, S-parametreleri | [PDF](dijital-notlar/Ders3.pdf) · 19 s. | [.tex](dijital-notlar/Ders3.tex) |
+| [Ders 4](ders-notlari/Ders-4.pdf) <sub>Ders Notları</sub> | Smith Chart, Power ve Linearity | [PDF](dijital-notlar/Ders-4.pdf) · 12 s. | [.tex](dijital-notlar/Ders-4.tex) |
+| [Ders 5](ders-notlari/Ders-5.pdf) <sub>Ders Notları</sub> | Desensitization, Intermodulation, IIP3, Noise | [PDF](dijital-notlar/Ders-5.pdf) · 11 s. | [.tex](dijital-notlar/Ders-5.tex) |
+| [Ders6](ders-notlari/Ders6.pdf) <sub>Ders Notları</sub> | Noise, Noise Figure, Cascaded Stages, Noise Floor | [PDF](dijital-notlar/Ders6.pdf) · 16 s. | [.tex](dijital-notlar/Ders6.tex) |
+| [Ders7](ders-notlari/Ders7.pdf) <sub>Ders Notları</sub> | Receiver Noise Floor, Sensitivity, DR ve SFDR | [PDF](dijital-notlar/Ders7.pdf) · 8 s. | [.tex](dijital-notlar/Ders7.tex) |
+| [Ders 8](ders-notlari/Ders-8.pdf) <sub>Ders Notları</sub> | Modulation Concepts, PAPR, ACPR, EVM, MER | [PDF](dijital-notlar/Ders-8.pdf) · 7 s. | [.tex](dijital-notlar/Ders-8.tex) |
+| [Ders9](ders-notlari/Ders9.pdf) <sub>Ders Notları</sub> | RF Link, Antenna Gain, Path Loss, Link Margin | [PDF](dijital-notlar/Ders9.pdf) · 6 s. | [.tex](dijital-notlar/Ders9.tex) |
+| [Ders 10](ders-notlari/Ders-10.pdf) <sub>Ders Notları</sub> | Receiver architectures (heterodyne, image frequency) | [PDF](dijital-notlar/Ders-10.pdf) · 12 s. | [.tex](dijital-notlar/Ders-10.tex) |
+| [Ders 11](ders-notlari/Ders-11.pdf) <sub>Ders Notları</sub> | Dual conversion, zero-IF, sliding IF ve dual band alıcılar | [PDF](dijital-notlar/Ders-11.pdf) · 14 s. | [.tex](dijital-notlar/Ders-11.tex) |
+| [Ders 12](ders-notlari/Ders-12.pdf) <sub>Ders Notları</sub> | Direct conversion alıcı, dezavantajları, I/Q mismatch | [PDF](dijital-notlar/Ders-12.pdf) · 13 s. | [.tex](dijital-notlar/Ders-12.tex) |
+| [Ders 13-2](ders-notlari/Ders-13-2.pdf) <sub>Ders Notları</sub> | Faz kaydırma, Hartley/Weaver, image rejection | [PDF](dijital-notlar/Ders-13-2.pdf) · 10 s. | [.tex](dijital-notlar/Ders-13-2.tex) |
+| [Ders 13](ders-notlari/Ders-13.pdf) <sub>Ders Notları</sub> | Faz kaydırma, Hartley/Weaver, image rejection | [PDF](dijital-notlar/Ders-13.pdf) · 10 s. | [.tex](dijital-notlar/Ders-13.tex) |
+| [Not](vize-calismasi/Not.pdf) <sub>Final/Vize Çalışması</sub> | Vize çalışması: Doğrusal olmama, gürültü, dinamik aralık | [PDF](dijital-notlar/vize-calismasi-Not.pdf) · 30 s. | [.tex](dijital-notlar/vize-calismasi-Not.tex) |
+| [Notes](vize-calismasi/Notes.pdf) <sub>Final/Vize Çalışması</sub> | Vize çalışması: Doğrusal olmama ve gürültü (özet) | [PDF](dijital-notlar/vize-calismasi-Notes.pdf) · 5 s. | [.tex](dijital-notlar/vize-calismasi-Notes.tex) |
+
 ## Final/Vize Çalışması
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Ders soruları / Ders Sorulari](ders-sorulari/Ders-Sorulari.pdf) | PDF | 20 s. · 8,1 MB |
-| [Vize çalışması / Not](vize-calismasi/Not.pdf) | PDF | 13 s. · 14,0 MB |
-| [Vize çalışması / Notes](vize-calismasi/Notes.pdf) | PDF | 4 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Ders soruları / Ders Sorulari](ders-sorulari/Ders-Sorulari.pdf) | PDF | 20 s. · 8,1 MB |  |
+| [Vize çalışması / Not](vize-calismasi/Not.pdf) | PDF | 13 s. · 14,0 MB | [PDF](dijital-notlar/vize-calismasi-Not.pdf) |
+| [Vize çalışması / Notes](vize-calismasi/Notes.pdf) | PDF | 4 s. | [PDF](dijital-notlar/vize-calismasi-Notes.pdf) |
 
 ## Ödevler
 
@@ -86,4 +110,4 @@
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *RF System Design for Communications (ELM667)* — Semester 7, Fall 2024–25. RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project. This page lists: 13 lecture notes, 6 lecture reviews, 3 exam-prep files, 8 assignments, 1 project. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *RF System Design for Communications (ELM667)* — Semester 7, Fall 2024–25. RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project. This page lists: 13 lecture notes, 6 lecture reviews, 15 digital notes, 3 exam-prep files, 8 assignments, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

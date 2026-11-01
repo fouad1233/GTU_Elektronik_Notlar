@@ -2,11 +2,11 @@
 
 # GTÜ Elektronik Mühendisliği Ders Notları
 
-![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 2899](https://img.shields.io/badge/dosya-2899-6e7781) ![dijital not: 187](https://img.shields.io/badge/dijital%20not-187-e36209)
+![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 3510](https://img.shields.io/badge/dosya-3510-6e7781) ![dijital not: 203](https://img.shields.io/badge/dijital%20not-203-e36209)
 
 Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının **7 dönemine** (2021–2022 Güz – 2024–2025 Güz) ait ders notları, çıkmış sorular, ödevler, laboratuvar raporları ve projeler.
 
-Bu depo, GTÜ Elektronik Mühendisliği mezunu **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)) tarafından hazırlanmıştır. Notların çoğu tablette tutulmuş el yazısı notlardır; önemli bir kısmının LaTeX ile yazılmış, okunması ve aranması kolay **dijital versiyonları** da vardır. Toplam **46 ders**, **2899 dosya** (763 PDF), **187 dijital not** ve **25 proje** bulunur. Tüm içerik öğrenciler için **ücretsizdir**: dilediğiniz gibi indirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz. Faydalı olduysa depoya ⭐ vermeyi unutmayın.
+Bu depo, GTÜ Elektronik Mühendisliği mezunu **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)) tarafından hazırlanmıştır. Notların çoğu tablette tutulmuş el yazısı notlardır; önemli bir kısmının LaTeX ile yazılmış, okunması ve aranması kolay **dijital versiyonları** da vardır. Toplam **46 ders**, **3510 dosya** (779 PDF), **203 dijital not** ve **25 proje** bulunur. Tüm içerik öğrenciler için **ücretsizdir**: dilediğiniz gibi indirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz. Faydalı olduysa depoya ⭐ vermeyi unutmayın.
 
 *English speakers: see the [English section](#english) at the end of this page.*
 
@@ -124,8 +124,8 @@ Tablolardaki sayılar yaklaşık belge sayısıdır: bir lab, ödev veya proje k
 | Ders | Kod | İçerik |
 |---|---|---|
 | [Görüntü İşleme](7-Donem/Goruntu-Isleme/) | ELM463 | 11 ders notu · 11 dijital not · 2 ödev · 6 lab · 1 proje |
-| [Haberleşme için RF Sistem Tasarımı](7-Donem/RF-Tasarim/) | ELM667 | 13 ders notu · 6 ders tekrarı · 3 sınav çalışması · 8 ödev · 1 proje |
-| [Makine Öğrenmesinin Temelleri](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 ders notu · 10 dijital not · 1 sınav çalışması · 5 ödev · 1 proje |
+| [Haberleşme için RF Sistem Tasarımı](7-Donem/RF-Tasarim/) | ELM667 | 13 ders notu · 6 ders tekrarı · 15 dijital not · 3 sınav çalışması · 8 ödev · 1 proje |
+| [Makine Öğrenmesinin Temelleri](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 ders notu · 11 dijital not · 1 sınav çalışması · 5 ödev · 1 proje |
 
 ## Dijital (LaTeX) notlar
 
@@ -158,7 +158,8 @@ El yazısı notların bir kısmı, okunması ve içinde arama yapılması kolay 
 | 6. Dönem | [Sayısal Haberleşme](6-Donem/Sayisal-Haberlesme/README.md#dijital-notlar-latex) | 14 |
 | 6. Dönem | [Sayısal İşaret İşlemenin Temelleri](6-Donem/Sayisal-Isaret-Isleme/README.md#dijital-notlar-latex) | 13 |
 | 7. Dönem | [Görüntü İşleme](7-Donem/Goruntu-Isleme/README.md#dijital-notlar-latex) | 11 |
-| 7. Dönem | [Makine Öğrenmesinin Temelleri](7-Donem/Makine-Ogrenmesi/README.md#dijital-notlar-latex) | 10 |
+| 7. Dönem | [Haberleşme için RF Sistem Tasarımı](7-Donem/RF-Tasarim/README.md#dijital-notlar-latex) | 15 |
+| 7. Dönem | [Makine Öğrenmesinin Temelleri](7-Donem/Makine-Ogrenmesi/README.md#dijital-notlar-latex) | 11 |
 
 **Derleme:** `.tex` dosyalarını kendiniz derlemek için XeLaTeX (ör. TeX Live) gerekir; şablon, fontlar ve betik [`latex-sablon/`](latex-sablon/README.md) klasöründedir:
 
@@ -227,7 +228,7 @@ Hatalı bir not, eksik bir dosya ya da kırık bir bağlantı görürseniz [issu
 
 ## English
 
-**GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 2899 files (763 PDFs), 187 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
+**GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 3510 files (779 PDFs), 203 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
 
 ### How to use
 
@@ -296,8 +297,8 @@ Every semester and course folder has a README that links every file. Counts in t
 | [6](6-Donem/) | [Fundamentals of Digital Signal Processing](6-Donem/Sayisal-Isaret-Isleme/) | ELM367 | 14 lecture notes · 13 digital notes · 3 assignments |
 | [6](6-Donem/) | [Digital Signal Processing Laboratory](6-Donem/Sayisal-Isaret-Isleme-Lab/) | ELM368 | 6 labs · 1 project |
 | [7](7-Donem/) | [Image Processing](7-Donem/Goruntu-Isleme/) | ELM463 | 11 lecture notes · 11 digital notes · 2 assignments · 6 labs · 1 project |
-| [7](7-Donem/) | [RF System Design for Communications](7-Donem/RF-Tasarim/) | ELM667 | 13 lecture notes · 6 lecture reviews · 3 exam-prep files · 8 assignments · 1 project |
-| [7](7-Donem/) | [Fundamentals of Machine Learning](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 lecture notes · 10 digital notes · 1 exam-prep file · 5 assignments · 1 project |
+| [7](7-Donem/) | [RF System Design for Communications](7-Donem/RF-Tasarim/) | ELM667 | 13 lecture notes · 6 lecture reviews · 15 digital notes · 3 exam-prep files · 8 assignments · 1 project |
+| [7](7-Donem/) | [Fundamentals of Machine Learning](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 lecture notes · 11 digital notes · 1 exam-prep file · 5 assignments · 1 project |
 
 ### Digital (LaTeX) notes
 

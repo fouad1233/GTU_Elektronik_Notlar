@@ -15,7 +15,7 @@ H(f)=\begin{cases}
 \end{cases}
 \]
 
-\sekilnotu[1]{RC filtresi: $|H(f)|$ grafiği (dikey eksen $|H(f)|$, yatay eksen el yazısında ``$t$'' diye etiketlenmiş, muhtemelen $f$). Mavi dikdörtgen spektrum: yükseklik 1, $-\frac{1}{2T}$ ile $\frac{1}{2T}$ arasında ($r=0$). Koyu kırmızı ($r=0{,}5$, yaklaşık $\pm\frac{3}{4T}$'de sıfır) ve turuncu ($r=1$, $\pm\frac{1}{T}$'de sıfır) kosinüs biçimli eğriler, orijinde tepe değeri 1. Eksen işaretleri: $-\frac{1}{T},-\frac{3}{4T},-\frac{1}{2T},-\frac{1}{4T},\frac{1}{4T},\frac{1}{2T},\frac{3}{4T},\frac{1}{T}$. $\frac{1}{2T}$ altında süslü parantez: $W_0=R_s/2$. Mor etiketler: $r=0$, $r=0{,}5$, $r=1$.}
+\elcizimi[0.8]{sekiller/Ders-11-s1-1.png}[1]
 
 \[ W_0=\frac{R_s}{2}=\frac{1}{2T}\qquad \text{min Nyquist BW for rectangular spectrum} \]
 \[ W-W_0=\text{Aşırı BG (Excess BW)} \]
@@ -36,10 +36,10 @@ $\rightarrow$ Band geçiren Haberleşme
 
 \[ h(t)=2W_0\,\mathrm{sinc}(2W_0t)\,\frac{\cos[2\pi(W-W_0)t]}{1-[4(W-W_0)t]^2}\qquad \text{azalma hızı }\frac{1}{t^3} \]
 
-\sekilnotu[1]{$h(t)$ grafiği (dikey eksen etiketi ``$h(t)\,2W_0$'' gibi, muhtemelen $h(t)/2W_0$). Siyah eğri $r=0$ (sinc), mavi eğri $r=1$, koyu kırmızı eğri $r=0{,}5$. $t=0$'da tepe; ana lob $-T$ ile $T$ arasında. Turuncu kesikli çizgilerle sıfır geçişleri $-2T,-T,T,2T,3T$ işaretli. $r=1$ ve $r=0{,}5$ eğrileri yan loblarda çok daha küçük genlikli (daha hızlı sönümlenir).}
+\elcizimi[0.85]{sekiller/Ders-11-s1-2.png}[1]
 
 \sayfa{2}
-\sekilnotu[2]{$P_b$ -- $E_b/N_0$ (dB) grafiği: dikey eksen $P_b$ (işaretler yukarıdan aşağıya $10^{-3}$ (üstteki okunaksız), $10^{-4}$, $10^{-5}$; $10^{-4}$ seviyesinde kesikli yatay çizgi), yatay eksen $E_b/N_0$ (dB), işaretler 10 ve 12. Siyah eğri 10 dB'de neredeyse dikey olarak iner. Kırmızı eğri sağa kaymış, sonra yatay bir tabana oturur. Kırmızı etiket: ``Degredation due to ISI (SAK)''; siyah etiket: ``semboller arası karışım'' (ok SAK'a); ``Error floor (hata katı)'' (ok yatay bölüme); ``gücü belli bir süre sonra ne kadar \okunamadi{artırsanız artırın}''.}
+\elcizimi[0.75]{sekiller/Ders-11-s2-1.png}[2]
 
 Çözüm $\rightarrow$ equalization
 
@@ -61,7 +61,7 @@ H(f)=H_t(f)\,\underset{\text{channel}}{H_c(f)}\,
 $R=2400$ bits/s\\
 RC 100\% excess BW ($r=1$)
 
-\sekilnotu[2]{Dört seviyeli PAM darbe dizisi: sıfır ekseni üzerinde ardışık dört dikdörtgen darbe; $00\to +A$, $01\to -A$, $10\to +2A$, $11\to -2A$ (her darbenin altında yukarı ok ve ikili kodu yazılı).}
+\elcizimi[0.55]{sekiller/Ders-11-s2-2.png}[2]
 \end{ornek}
 
 \[ M=2^k=4\ \Rightarrow\ k=2\ \text{bits/symbol (pulse)} \]
@@ -82,7 +82,7 @@ Sıfır SAK için 2. Nyquist kriteri:
 ``1'' $\rightarrow h(t)$\\
 ``0'' $\rightarrow -h(t)$
 
-\sekilnotu[3]{$h(t)$ grafiği: dikey eksen $h(t)$, yatay eksen işaretleri $-3T,-2T,-T,0,T,2T,3T,4T$; dikey eksende $\frac{4}{\pi}$ ve 1 işaretli, 1 seviyesinde kesikli yatay çizgi. Turuncu eğri $h(t)$: $t=T/2$'de tepe değeri $\frac{4}{\pi}$, $t=0$ ve $t=T$'de değeri 1, $-T$ ve $2T$'de sıfır, sonra küçük yan loblar. Koyu kırmızı eğri $h(t-T)$ (okla etiketli): turuncu eğrinin $T$ kadar sağa kaymış hali, $t=T$ ve $t=2T$'de değeri 1 (kesikli dikey çizgiler bu noktalardan eksene iner). $t=T$'deki kesişim noktasına küçük bir etiketli ok var (``$h(0)$'' ya da ``$h(T)$'' gibi okunuyor).}
+\elcizimi[0.7]{sekiller/Ders-11-s3-1.png}[3]
 
 Her iki darbe $+$ $\Rightarrow$ Örnek $=2$\\
 '' '' '' $-$ $\Rightarrow$ '' $=-2$\\
@@ -112,7 +112,7 @@ h(t)\xrightarrow{\ \mathcal{F}\ } H(f)&=\frac{2}{R_s}\cos\!\left(\frac{\pi f}{R_
 \end{align*}
 
 \sayfa{4}
-\sekilnotu[4]{Duobinary filtre genlik cevabı: dikey eksen $|H(f)|$, yatay eksen $f$; $f=0$'da tepe yapan yarım kosinüs kemeri, yanında ``$2T\cos(\pi fT)$''. Eksenin altında sol uçta $-\frac{R_s}{2}=-\frac{1}{2T}$, sağ uçta $\frac{R_s}{2}=\frac{1}{2T}$ (kemer bu noktalarda sıfıra iner). Sağ üstte ``kosinüs filtresi'' etiketi.}
+\elcizimi[0.9]{sekiller/Ders-11-s4-1.png}[4]
 
 RC darbesinden daha az BG'ye sahip\\
 bu filtre $\dfrac{1}{t^2}$ ile azalmakta \qquad senkronizasyon hataları\\

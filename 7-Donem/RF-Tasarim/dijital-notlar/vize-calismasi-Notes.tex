@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Vize çalışması: Doğrusal olmama ve gürültü (özet)}{Notes.pdf}
+
+\sayfa{1}
+\begin{gather*}
+P_{ave} = \underbrace{V_{rms}}_{\frac{|V|}{\sqrt{2}}}\ \underbrace{I_{rms}}_{\frac{|I|}{\sqrt{2}}}\cos(\phi) \qquad \phi=\theta_V-\theta_I\\
+S = \frac{1}{2}(V\cdot I^{*}) = (V_{rms}\cdot I_{rms}^{*})\\
+P_L = \frac{1}{8}\,\frac{|V_s|^2}{R_s}
+\end{gather*}
+
+\section{Drawbacks of Nonlinearity}
+\section{\textcircled{1} Harmonic distortion}
+\begin{gather*}
+y = a_1x + a_2x^2 + a_3x^3\\
+(\cos\omega t)^2 = \frac{1}{2}(1+\cos 2\omega t)\\
+(\cos\omega t)^3 = \frac{1}{4}(3\cos\omega t+\cos 3\omega t)
+\end{gather*}
+
+\section{\textcircled{2} Gain compression}
+\[ \mathrm{Gain} = \frac{V_{out}(\text{fundamental})}{V_{in}} = \frac{a_1A+\frac{3a_3A^3}{4}}{A} \]
+\[ \mathrm{Gain} = a_1+\frac{3}{4}a_3A^2 \]
+1) $a_1>0,\ a_3<0 \to \mathrm{Gain}=a_1-\frac{3}{4}|a_3|A^2 \to v_{in}$
+
+\section{\textcircled{3} Desensitization}
+\elcizimi[0.45]{sekiller/vize-calismasi-Notes-s1-1.png}[1]
+\begin{gather*}
+x(t) = A_1\cos\omega_1 t + A_2\cos\omega_2 t\\
+y = a_1x+a_2x^2+a_3x^3\\
+\cos a\cdot\cos b = \frac{\cos(a+b)+\cos(a-b)}{2}\\
+\frac{3}{4}a_3A_1^3\cos\omega_1 t + \frac{3A_1A_2^2}{2}\,a_3\cos\omega_1 t
+\end{gather*}
+\begin{align*}
+y(t)_{\mathrm{BPF}} &= \frac{3}{4}a_3A_1^3\cos\omega_1 t + \frac{3A_1A_2^2}{2}\,a_3\cos\omega_1 t\\
+&\quad + a_1A_1\cos\omega_1 t
+\end{align*}
+if $A_2$ small
+
+ignore $\frac{3}{4}a_3A_1^3$
+\[ \mathrm{Gain} = \frac{a_1A_1-\frac{3}{2}|a_3|A_1A_2^2}{A_1}\ \Big\}\ A_2\!\uparrow\!\uparrow \qquad \text{No signal appears at output} \]
+
+\section{Ex:}
+\begin{gather*}
+P_{Tx} = 1\,\mathrm{W} = 30\,\mathrm{dBm}\\
+P_1-10 < -25\\
+P_1 < -15
+\end{gather*}
+
+\sayfa{2}
+\elcizimi[0.5]{sekiller/vize-calismasi-Notes-s2-1.png}[2]
+2. harmonik 45 dBm bastırılmalıdır
+
+\section{\textcircled{4} Intermodulation}
+\elcizimi[0.5]{sekiller/vize-calismasi-Notes-s2-2.png}[2]
+\begin{gather*}
+A_{IM3} = \frac{3}{4}a_3A_1^2A_2\ \left(\cos(2\omega_1-\omega_2)t\right)\\
+A_1=A_2=A \Rightarrow A_{IM3} = \frac{3}{4}a_3A^3
+\end{gather*}
+system linear $\to a_1A$
+
+Intermodulation products $\to \dfrac{3}{4}a_3A^3$
+\[ \mathrm{IM3} = \frac{\frac{3}{4}a_3A^3}{a_1A} = \frac{3}{4}\left|\frac{a_3}{a_1}\right|A^2 \]
+\[ A_{IIP3} = 20\log(|a_1|A_{IIP3}) = 20\log\left(\frac{3}{4}|a_3|A_{IIP3}^3\right) \]
+\formulkutu{A_{IIP3}=\sqrt{\frac{4}{3}\left|\frac{a_1}{a_3}\right|}}
+\begin{gather*}
+A_{1\mathrm{dB}} = \sqrt{0{,}145\left|\frac{a_1}{a_3}\right|}\\
+A_{IIP3}(\mathrm{dB})-A_1(\mathrm{dB}) = 9{,}6\ \mathrm{dB}
+\end{gather*}
+$A_{IIP3}\uparrow \to$ more linear system
+\elcizimi[0.7]{sekiller/vize-calismasi-Notes-s2-3.png}[2]
+\elcizimi[0.85]{sekiller/vize-calismasi-Notes-s2-4.png}[2]
+\[ \frac{A_{out,int}(\omega_1,\omega_2)}{A_{out}(IM3)} = \frac{a_1A_{int}}{\frac{3}{4}a_3A_{int}^3} = \frac{a_1}{\frac{3}{4}a_3A_{int}^2} = \frac{A_{IIP3}^2}{A_{int}^2} \]
+\formulkutu[önemli]{A_{IIP3}^2 = \frac{A_{out,int}(\omega_1,\omega_2)}{A_{out}(IM3)}\,A_{int}^2}
+
+\sayfa{3}
+\section{Noise}
+\section{Resistor Noise:}
+\elcizimi[0.8]{sekiller/vize-calismasi-Notes-s3-1.png}[3]
+$1{,}38\times10^{-23}$ J/K
+
+$k$: Boltzmann sabiti
+
+$T$ = (kelvin) sıcaklık
+
+\section{MOS Transistor Noise}
+\elcizimi[0.75]{sekiller/vize-calismasi-Notes-s3-2.png}[3]
+\elcizimi[0.45]{sekiller/vize-calismasi-Notes-s3-3.png}[3]
+
+\end{document}

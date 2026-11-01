@@ -1,0 +1,525 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Final çalışma notları}{Final-notu.pdf}
+
+\sayfa{1}
+\textbf{Ders6}
+
+\section{Karar ağaçları (Decision tree)}
+
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s1-1.png}[1]
+
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s1-2.png}[1]
+
+Amaç en sonda verileri homojen olarak ayırmak
+
+\subsection{Saflık ölçütleri (Impurity measures):}
+
+\elcizimi[0.45]{sekiller/final-calismasi-Final-notu-s1-3.png}[1]
+
+$p_i=\dfrac{N_i}{N}$
+
+en saf durum tek bir olasılığın 1 kalması
+
+\textbf{Entropy:} \quad $I_{\mathrm{entropy}} = -\sum_{i=1}^{k} p_i \log p_i$
+
+\textbf{Gini Sabiti:} \quad $I_{\mathrm{Gini}} = 1-\sum_{i=1}^{k} p_i^{2}$
+
+0 ile $1-\frac{1}{k}$ arasında değerler alır
+
+Tek bir sınıf varsa entropy'nin çok sınıf varsa max olur
+
+dallanırken max entropy nerdeyse ordan devam et
+\[ \sum_{j=1}^{N} w_j I_j \qquad w_j=\frac{N_j}{N} \]
+\[ \varepsilon = \varepsilon_k - \varepsilon_{k-1} \]
+
+while $\varepsilon > \gamma$ threshold dallan
+\[ L(\theta|x)=\sum_{j=1}^{N} w_j I_j + \underbrace{M\,\lambda\cdot f(\gamma)}_{\text{overfittingi engeller}} \]
+\okunamadi{yaprak sayısı, $\lambda$ = katsayı}
+
+\subsection{Regresyon ağaçları}
+
+\elcizimi[0.45]{sekiller/final-calismasi-Final-notu-s1-4.png}[1]
+
+Metrik olarak varyans kullanılabilir veya $L_1$ kullanılabilir. (Goodness of split)
+
+$L_1$ norm aykırı değerlere hassasiyeti az
+
+\elcizimi[0.35]{sekiller/final-calismasi-Final-notu-s1-5.png}[1]
+
+\subsection{Avantajları}
+\begin{itemize}
+  \item Basittir. Görsel temsili kolaydır
+  \item Açıklanması en kolay makine öğrenmesi
+  \item Hem sınıflandırma hem regresyon için kullanılabilir
+  \item Doğrusal olmayan ilişkileri bulabilir
+\end{itemize}
+
+\subsection{Dezavantajları}
+
+\textbf{Overfitting:} Çok sayıda düğümden oluşuyor ise overfitting olabilir
+
+\textbf{Kararsızlık:} Verilerdeki ufak değişiklik tamamen farklı bir ağaç oluşmasına neden olabilir
+
+\textbf{Çözüm:}
+1- overfitting için budama yapılabilir
+
+\textbf{Ön budama:} önceden max derinlik vererek ağacın uzaması engellenir
+
+\textbf{Son budama:} Tam gelişmiş ağaçtan önemli katkı sağlamayan dallar kaldırılır
+
+\sayfa{2}
+\section{Ensemble Learning}
+
+\subsection{Bagging}
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s2-1.png}[2]
+
+100 tane karar ağacı alırım, yeni bir örnek geldiği zaman ortalama yapıyorum böylece kestirimcinin varyansı küçülür.
+
+\textbf{Baggingte} olan eğitim seti alt eğitim setlerine bölünür. Her veri setiyle Model eğitilir, böylece alt veri setleri kadar model oluşturulur. Tahminlerin birleştirilmesi aşamasında regresyon ağaçları için ortalama alınırken sınıflandırma ağaçlarında sonuçlar oylama ile belirlenir.
+
+\subsection{Boosting}
+
+\textbf{Boosting:} Verinin özel bir bölgesine oturan daha iyi bir sınıflandırıcı varsa bu şekilde \okunamadi{yapılabilir}
+
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s2-2.png}[2]
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s2-3.png}[2]
+
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (2. Yükseltme (Boosting) yazısı, kdnuggets.com'dan alıntı); dijitalleştirilmedi.}
+
+\sayfa{3}
+\section{Adaboost}
+
+$f_i(x),\ i\in\{0,\dots,M\}$ \quad (Aynı modelin parametrelerini değiştirip linear kombinasyonlarını kullanıyoruz)
+\[ y=\sum_{i=1}^{M} w_i f_i(x) \]
+
+verinin hangi bölgesinde hangi fonksiyon daha iyi
+\[ L(\theta|X)=\sum_{t=1}^{N} w_t\,(\hat{r}^t-r^t)^2 \]
+$\uparrow$ risk gibi
+
+Bu modelde eğitim kümesi önce zayıf öğrenici ile eğitilir. Eğitim sonrası yanlış olarak tahminlenen örnekler bu algoritma için önemlidir. Bir sonraki eğitimde ilk tahminlemede yanlış öğrenilen eğitim verilerine daha fazla öncelik verilerek yani ağırlıkları arttırılarak tekrar eğitilir.
+
+\textbf{Ders7}
+
+\section{Boyut Azaltma}
+
+\subsection{(1) Feature selection}
+\[ \{x^t, r^t\}_{t=1}^{N} \]
+\[ x^t_{N_1\times 1} \to x^t_{N_2\times 1} \qquad N_2<N_1 \]
+
+\subsection{(2) Subset Selection}
+\noindent $F=\emptyset$\\
+while not converge:\\
+\hspace*{2em}for $x_i\notin F$\\
+\hspace*{4em}$F_i \leftarrow F\cup x_i$\\
+\hspace*{4em}$L_i(x|F_i)$\\
+\hspace*{2em}$i=\arg\min L_i(x|F_i)$\\
+\hspace*{2em}$F\leftarrow F_i$
+
+\subsection{(3) PCA (Principle component Analysis)}
+
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s3-1.png}[3]
+
+\subsection{Feature Embedding}
+\[ WDW^T = X\cdot X^T \]
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s3-2.png}[3]
+
+\subsection{Singular Value Decomposition}
+\textbf{SVD:} $X=[\,x_1\ x_2\ \cdots\ x_N\,]_{N\times d}$
+\[ = \underbrace{V}_{N\times r}\ \underbrace{\Lambda}_{r\times r}\ \underbrace{W^T}_{r\times d} \]
+
+\subsection{LDA (Linear discriminant Analysis)}
+
+\elcizimi[0.7]{sekiller/final-calismasi-Final-notu-s3-3.png}[3]
+
+\begin{align*}
+z &= w^T x\\
+m_1 &= \frac{\sum_t w^T x^t r^t}{\sum_t r^t} = w^T\vec{m}_1\\
+m_2 &= \frac{\sum_t w^T x^t (1-r^t)}{\sum_t (1-r^t)} = w^T\vec{m}_2\\
+s_1^2 &= \sum_t (w^T x^t - m_1)^2 r^t\\
+s_2^2 &= \sum_t (w^T x^t - m_2)^2 (1-r^t)\\
+J(w) &= \frac{(m_1-m_2)^2}{s_1^2+s_2^2} = \frac{(w^T\vec{m}_1 - w^T\vec{m}_2)^2}{s_1^2+s_2^2}\\
+&= \frac{w^T(\vec{m}_1-\vec{m}_2)(\vec{m}_1-\vec{m}_2)^T w}{s_1^2+s_2^2}\\
+&= \frac{w^T S_B w}{s_1^2+s_2^2}
+\end{align*}
+
+\sayfa{4}
+\begin{align*}
+s_1^2 &= \sum_t (w^T x^t - m_1)^2 r^t\\
+&= w^T S_1 w \qquad S_1=\sum_t (x^t-\vec{m}_1)(x^t-\vec{m}_1)^T r^t\\
+s_1^2+s_2^2 &= w^T S_W w = \vec{w}^T(S_1+S_2)\,w\\
+J(w) &= \frac{w^T S_B w}{w^T S_W w}\\
+\frac{\partial J(w)}{\partial w} &= 0\\
+&= \frac{w^T(\vec{m}_1-\vec{m}_2)}{w^T S_W w}
+\end{align*}
+
+\textbf{Ders8}
+
+\elcizimi[0.45]{sekiller/final-calismasi-Final-notu-s4-1.png}[4]
+
+\[ \vec{w}^T x + b = \hat{r}^t \]
+\[ L(\theta|X)=\sum_{t=1}^{N}(\hat{r}^t-r^t)^2 \]
+türevini alıp 0'a eşitlenerek regresyon
+
+\subsection{Başka yöntem}
+
+\elcizimi[0.7]{sekiller/final-calismasi-Final-notu-s4-2.png}[4]
+
+\subsection{Sigmoid}
+\[ \sigma(z)=\frac{1}{1+e^{-z}} \]
+
+\elcizimi[0.45]{sekiller/final-calismasi-Final-notu-s4-3.png}[4]
+
+Bu sefer iteratif olarak ilerliyoruz
+
+gradient descent
+\[ w_i \leftarrow w_i - l\,\frac{\partial J}{\partial w_i} \]
+$J$: maliyet fonksiyonu, $l$: \okunamadi{lr}
+
+\elcizimi[0.45]{sekiller/final-calismasi-Final-notu-s4-4.png}[4]
+
+\subsection{Back Propagation}
+\[ \hat{y}_i=\sigma(z_i)=\frac{1}{1+e^{-z_i}} \qquad z_i=w^T\cdot x_i+b \]
+\[ J(w)=-\frac{1}{N}\sum_{i=0}^{N}\underbrace{y_i\log(\hat{y}_i)+(1-y_i)\log(1-\hat{y}_i)}_{\text{cross entropy}} \]
+\[ \frac{\partial J(w)}{\partial w}=\frac{\partial J(w)}{\partial \hat{y}_i}\cdot\frac{\partial \hat{y}_i}{\partial z_i}\cdot\frac{\partial z_i}{\partial w} \]
+\okunamadi{}
+\[ \frac{\partial J(w)}{\partial \hat{y}_i}=\frac{-y_i}{\hat{y}_i}+\frac{1-y_i}{1-\hat{y}_i} \qquad \frac{\partial \hat{y}_i}{\partial z_i}=\hat{y}_i(1-\hat{y}_i) \]
+\[ \frac{\partial z_i}{\partial w}=x_i \]
+\[ \frac{\partial J(w)}{\partial w}=\frac{1}{N}\sum_{i=1}^{N}(\hat{y}_i-y_i)\,x \]
+sonra bunu ekleyeceğiz, geri \okunamadi{yayıyoruz}
+\[ \frac{\partial J(w)}{\partial b}=\frac{1}{N}\sum_{i=1}^{N}(\hat{y}_i-y_i) \]
+\[ x=\{x^t,r^t\}_{t=1}^{M} \qquad P(c_0)=\hat{y}_i,\quad P(c_1)=(1-\hat{y}_i) \]
+
+\elcizimi[0.7]{sekiller/final-calismasi-Final-notu-s4-5.png}[4]
+
+\sayfa{5}
+\section{Activation layers}
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s5-1.png}[5]
+
+\subsection{(1) softmax}
+\[ \mathrm{softmax}=\frac{e^{z_i}}{\sum_{j=1}^{c} e^{z_j}} \qquad \text{olasılık dağılımı} \]
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s5-2.png}[5]
+
+Sonsuza giderken türev 0 o yüzden iyi çalışmaz. Bu yüzden genelde softmax en son katmanda kullanılır
+
+\subsection{(2) Relu}
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s5-3.png}[5]
+
+$a=b$ şeklinde gösteriyoruz (non-linear)
+
+negatif tarafta yine türev 0, dead neuron sorununa yol açıyor (Vanishing gradient)
+
+\subsection{(3) Leaky Relu}
+
+\elcizimi[0.35]{sekiller/final-calismasi-Final-notu-s5-4.png}[5]
+
+non linearity
+
+\subsection{(4) tanh}
+\[ \tanh=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}} \]
+bunda da türevler $+\infty$, $-\infty$ da 0'a yaklaşıyor
+
+\sekilnotu[5]{Tanh fonksiyonunun basılı grafiği (ekran görüntüsü); dijitalleştirilmedi.}
+
+\textbf{Ders9}
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s5-5.png}[5]
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s5-6.png}[5]
+
+tek bir layer kullanmaz
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s5-7.png}[5]
+
+kernel size, filtre sayısı
+
+Feature extraction için çok kullanılır
+
+Odaklanıp işimize yarayacağımız verilerin her şeyi bundan değil.
+
+\sayfa{6}
+\elcizimi[0.7]{sekiller/final-calismasi-Final-notu-s6-1.png}[6]
+
+\begin{enumerate}[label=(\arabic*)]
+  \item feature extraction: Öznitelik çıkarma
+  \item Özniteliklerin konumlarından bağımsız
+  \item Less parameters \\ eğitimi \okunamadi{} göre daha zor
+\end{enumerate}
+
+\subsection{Transfer learning}
+
+Elimizdeki veriler ne kadar kaliteliyse o kadar kolay sınıflandırıcımız olur. Yolo feature extraction'ı çok iyi yapıyor ve iyi parçalara ayırıyor
+
+\subsection{Time series prediction}
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s6-2.png}[6]
+
+\subsection{Patlayan Gradyan (Exploding Gradient):}
+
+Geri yayılım sırasında gradyanlar çok büyük değerlere ulaşır ve bu durum ağırlıkların aşırı güncellenmesine neden olur. Modelin kararsız hale gelmesine yol açar. Eğitim süreci başarısız olur
+
+\subsection{Yok olan Gradyan (Vanishing Gradient):}
+
+Geriye yayılım sırasında gradyanlar çok küçük değerlere düşer. Bu durumda ağırlıklar güncellenemez ve model, özellikle uzun dizilerde zaman bağımlılıklarını öğrenemez.
+
+Nedeni ise RNN geri yayılım sırasında zincir kuralını kullanır. Bu süreçte zincirleme türev alınır:
+\[ \frac{\partial L}{\partial W}=\prod_t \frac{\partial h_t}{\partial h_{t-1}} \]
+
+\subsection{LSTM}
+
+\elcizimi[0.75]{sekiller/final-calismasi-Final-notu-s6-3.png}[6]
+
+\subsection{Encoding}
+
+ham bir veriyi sayıya çevirmek
+
+kedi : 0 \quad köpek 1
+
+One hot Encoding
+
+R:0 \quad G:1 \quad B:2
+\begin{align*}
+R&=[1,0,0]\\
+G&=[0,1,0]\\
+B&=[0,0,1]
+\end{align*}
+
+\sayfa{7}
+Ali topu at\\
+$\hookrightarrow$ tokenization
+
+Al/i /to/pu/ /a/t/
+
+gözetimsiz olarak entropy kullanılır
+
+king - man = queen - woman
+
+en basit şekilde nasıl vektöre çeviririm
+
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s7-1.png}[7]
+
+\fbox{TF-IDF}
+
+$TF(t,d)$
+
+$IDF(t)$
+
+Termfreq (TF)
+
+bazı çok kullanılan kelimeler var
+
+\subsection{NLP (Natural language processing)}
+
+Tokenization
+
+Morfolojik gitmek istersek (\okunamadi{eke} göre)
+
+Benim adım Mehmet.
+
+Kelimelere bölerek word piece
+
+$\hookrightarrow$ Morfolojik gramere göre
+
+\elcizimi[0.6]{sekiller/final-calismasi-Final-notu-s7-2.png}[7]
+
+Türkçede 10000 kelime
+
+10.000
+
+ahmed $\to$ 1000
+\[ \begin{bmatrix}0\\0\\0\\0\\1\\0\\0\end{bmatrix} \]
+One hot encoding
+
+\subsection{TF-IDF}
+
+Elimizde dokümanlar var
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s7-3.png}[7]
+
+Bow TF
+
+Tüm dökümanlarda iki kelime aynı frekansla geçmemeli
+
+\subsection{Word2Vec}
+
+\textbf{CBOW} \quad Continuous Bag of Words
+
+\elcizimi[0.8]{sekiller/final-calismasi-Final-notu-s7-4.png}[7]
+
+\textbf{Skip gram / n-gram} \quad \textbf{2 gram iki komşuluk}
+
+tersten de yapabiliriz
+
+\elcizimi[0.75]{sekiller/final-calismasi-Final-notu-s7-5.png}[7]
+
+\subsection{Global vectors for word Representation (Glove)}
+\[ J=\sum_{i,j} f(x_{ij})\left(w_i^{T}\,\tilde{w}_j+b_i+\tilde{b}_j-\log X_{ij}\right)^{2} \]
+i'inci döküman, j'inci kelimenin geçme frekansı
+
+bunu bulmaya çalışıyoruz, kelimenin ağırlığı
+
+\elcizimi[0.45]{sekiller/final-calismasi-Final-notu-s7-6.png}[7]
+
+\textbf{Static embedding}
+
+Covid geldi yeni kelime
+
+\textbf{Benim adım Mehmet / Seq 2 Seq} \quad $\checkmark$ Supervised
+
+\elcizimi[0.8]{sekiller/final-calismasi-Final-notu-s7-7.png}[7]
+
+\textbf{My name is Mehmet} \quad \textbf{sonraki güncellemede LSTM}
+
+$w_1\ \tilde{w}_2\ \tilde{w}_3\ \hat{w}_4$
+
+Bu metin kısa olmadıktan sonra context'i yakalayamıyor.
+
+\sayfa{8}
+\section{Attention Mechanism}
+
+\elcizimi[0.8]{sekiller/final-calismasi-Final-notu-s8-1.png}[8]
+
+kelimeleri hidden layerle çarpıyoruz
+
+$w\cdot h \xrightarrow{\text{softmax}} [\alpha_1,\alpha_2,\dots,\alpha_{100}]$
+
+hangi kelime ne kadar önemli.
+
+Sonra döngü yerine MLP koyuyoruz
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s8-2.png}[8]
+
+paralelde çalışabiliyor
+
+\elcizimi[0.8]{sekiller/final-calismasi-Final-notu-s8-3.png}[8]
+
+\textbf{BERT:} Sadece Encoder, kelimeleri öğrenebilen
+
+BERT NLP'nin \okunamadi{gelişimi}
+
+BERT: Bidirectional Encoder Representations from Transformers
+
+\subsection{ELMO: Embeddings from language model}
+
+context mekanizmasıyla
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s8-4.png}[8]
+
+\subsection{RNN}
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s8-5.png}[8]
+
+\elcizimi[0.45]{sekiller/final-calismasi-Final-notu-s8-6.png}[8]
+
+\[ \text{(1)}\quad [B\ ;\ A]\begin{bmatrix}x_t\\h_i\end{bmatrix}=\begin{bmatrix}1&1&1\\2&1&1\end{bmatrix}\begin{bmatrix}3\\0\\0\end{bmatrix}=\begin{bmatrix}3\\6\end{bmatrix} \]
+\[ C\,h_i=[\,3\,]=y_i \]
+\[ \text{(2)}\quad \begin{bmatrix}1&1&-1\\2&1&1\end{bmatrix}\begin{bmatrix}4\\3\\6\end{bmatrix}=\begin{bmatrix}1\\17\end{bmatrix} \]
+\[ y_2=16 \]
+
+MSE = ?
+\[ \hat{y}=f\!\left(C\,A\begin{bmatrix}x\\h\end{bmatrix}\right) \]
+\[ L=(\hat{y}-y)^2 \]
+
+\sayfa{9}
+I run
+
+I university bus run
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s9-1.png}[9]
+
+$Q$ = Query \qquad attention $= \mathrm{softmax}\!\left(\dfrac{k^{T}\cdot Q}{\sqrt{d_k}}\right)V$ \quad (key'in boyutu)
+
+$k$ = key
+
+$V$ = Value
+
+$W_Q\cdot w=q_1\,q_2$\\
+$W_K\cdot w=k_1\,k_2$\\
+$W_V\cdot w=v_1\,v_2$
+
+\elcizimi[0.8]{sekiller/final-calismasi-Final-notu-s9-2.png}[9]
+
+Bunun adı self attention
+
+Makalelerde böyle görürsünüz
+
+\elcizimi[0.4]{sekiller/final-calismasi-Final-notu-s9-3.png}[9]
+
+$\to$ Multihead ile olabilir
+
+Q: Ne aradığımız
+
+k: Ne ile ilgili
+
+V: Neyi kullanacağız
+
+\elcizimi[0.8]{sekiller/final-calismasi-Final-notu-s9-4.png}[9]
+
+bunu $\times\ W_1 \to$ positional encoding matris
+\[ x_I + W_1 x_I = \bar{x}_I \]
+positional embedding
+
+\elcizimi[0.85]{sekiller/final-calismasi-Final-notu-s9-5.png}[9]
+
+\elcizimi[0.85]{sekiller/final-calismasi-Final-notu-s9-6.png}[9]
+
+\sayfa{10}
+\[ P(s_{t+1}, r_{t+1} \mid s_t, a_t) \]
+
+\elcizimi[0.65]{sekiller/final-calismasi-Final-notu-s10-1.png}[10]
+
+ve aksiyon \okunamadi{seçmeyi öğrenmeli}
+
+\elcizimi[0.35]{sekiller/final-calismasi-Final-notu-s10-2.png}[10]
+
+- Model tabanlı
+
+Modelsiz
+
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s10-3.png}[10]
+
+Exploration
+
+Exploitation
+
+\okunamadi{Dilemması}
+
+\[ V(s)=E\{G_t\mid S_t\} \]
+\[ G_t=\sum_{n=1} r_{t+n} \]
+\[ V(s)=E\{G_t\mid S_t\} \qquad \text{nasıl hesaplanır} \]
+
+$s_0, a_0, r_1, s_1, a_1, r_2, \cdots$
+
+Gelecekte alacağım ödüllerin toplamı
+\[ V(s)=E\{G_t\mid S_t\} \]
+\[ Q(s,a)=E\{G_t\mid s_t,a\} \]
+
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s10-4.png}[10]
+
+\[ \text{(1)}\quad \boxed{\begin{array}{l}Q(s_1,a_1)=0\\Q(s_1,a_2)=0\end{array}} \]
+
+\textbf{SARSA} \quad $0<\alpha<1$
+\[ Q(s_1,a_1)=Q(s_1,a_1)+\alpha\bigl(r+V(s_2)-Q(s_1,a_1)\bigr) \]
+reward \quad $\nearrow$ \okunamadi{$Q(s_2,a_2)$}
+\[ =2 \]
+
+Policy gradient theorem
+
+Actor critic (value, policy birleşimi)
+
+Bunun dışında
+
+Multi agent reinforcement learning
+
+\[ G_t=\sum_{n=1}^{T}\gamma^{n-1}r_{t+n}=r_{t+1}+\gamma r_{t+2}+\gamma^{2}r_{t+3} \]
+\[ 0<\gamma\le 1 \qquad\qquad =r_{t+1}+G_{t+1} \]
+\[ V(s_t)=r_{t+1}+V(s_{t+1}) \]
+
+\end{document}

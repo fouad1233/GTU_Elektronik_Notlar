@@ -9,11 +9,11 @@
 
 \subsection{Düz Tepeli örnekleme (Flat top sampling) (FTS)}
 
-\sekilnotu[1]{Blok diyagram: soldan giriş çizgisi, ortada ``FTS ($\tau$)'' kutusu, sağa çıkış çizgisi; kırmızı not ``Flattop sampling'' kutuya işaret ediyor. Kutunun üstünde yüksekliği 1, genişliği $\tau$ olan dikdörtgen darbe çizilmiş. Kutunun altında ``Clock \quad $f_s \geq 2 f_m$'' kutusu, yukarı okla FTS kutusuna bağlı.}
+\elcizimi[0.55]{sekiller/Ders-5-s1-1.png}[1]
 
-\sekilnotu[1]{$x(t)$ eğrisi ve üzerinde düz tepeli (dikdörtgen) darbeler, kırmızı; genlikleri $x(0)$, $x(T_s)$, $x(2T_s)$, $x(3T_s)$. Zaman ekseninde $0$, $\tau$, $T_s$, $T_s+\tau$, $2T_s$, $2T_s+\tau$, $3T_s$, $3T_s+\tau$ işaretli; $\tau$ aralığı çift yönlü okla gösterilmiş, altına ``$\tau$ genişlikli darbe'' yazılmış. Kırmızı not: $\ast$ tepeyi takip etmiyor.}
+\elcizimi[0.6]{sekiller/Ders-5-s1-2.png}[1]
 
-\sekilnotu[1]{Başlık: Sample and hold circuit (örnekle ve tut devresi). $x(t)$ eğrisi ve altında düz tepeli darbeler; eksende $0$, $\tau$, $T_s$, $2T_s$, $\dots$, $kT_s$ işaretli.}
+\elcizimi[0.55]{sekiller/Ders-5-s1-3.png}[1]
 
 $x_s(t)$: Darbe Genlik mod (DGM)\\
 \hspace*{2em}Pulse amplitude mod
@@ -26,9 +26,9 @@ Discrete time analog modulation
 
 \subsection{Sample/ Hold (Dump) circuit}
 
-\sekilnotu[1]{Kesikli çizgili kutu (FTS): solda $x(t)$ girişi, $t=nT_s$ anında kapanan anahtar; ardından toprağa bağlı kondansatör ve onunla paralel ikinci anahtar ($t=nT_s+\tau$ anında kapanıyor); çıkış $x_s(t)$. Notlar: ``$nT_s$ anında hemen kapanıp açılıyor'' (birinci anahtar), ``$\tau$ saniye sonra bu anahtar kapanıyor ve gerilim sıfır oluyor'' (ikinci anahtar).}
+\elcizimi[0.85]{sekiller/Ders-5-s1-4.png}[1]
 
-\sekilnotu[1]{Blok diyagram: $x(t)$ girişi çarpıcıya ($\otimes$) girer, çarpıcıya alttan $x_\delta(t)=\sum_n \delta(t-nT_s)$ uygulanır; çarpıcı çıkışı $g(t)$; ardından içinde yüksekliği 1, genişliği $\tau$ olan $q(t)$ darbesi bulunan blok; çıkış $x_s(t)$. Bloğun altında $q(t) \donusum Q(f)$ yazıyor.}
+\elcizimi[0.8]{sekiller/Ders-5-s1-5.png}[1]
 
 \begin{align*}
 g(t) &= x(t)\, x_\delta(t) = \sum_n x(nT_s)\, \underline{\delta(t-nT_s)}\\
@@ -47,18 +47,18 @@ X_s(f) &= Q(f)\,\Bigl[f_s \sum_n X(f-nf_s)\Bigr]
 \[ \hookrightarrow\ \tau\,\operatorname{sinc}(f\tau)\, e^{-j2\pi f \tau/2} \]
 \[ X_s(f) = \underbrace{f_s\, Q(f)\, X(f)}_{!!} + Q(f)\cdot f_s \sum_{n\neq 0} X(f-nf_s) \]
 
-\sekilnotu[2]{Frekans ekseninde dikdörtgen: $-f_m$ ile $f_m$ arasında yükseklik $T_s$; yanında ``alçak geçiren'' yazıyor.}
+\elcizimi[0.4]{sekiller/Ders-5-s2-1.png}[2]
 
 \vurgu[turuncu]{Equalizing LPF (Dengeleyici AGF)}
 \[ x_s(t) \longrightarrow \underbrace{\boxed{H_{eq}(f)=\frac{1}{Q(f)}} \longrightarrow \boxed{\begin{matrix}\text{Ideal LPF}\\ \text{Gain}=T_s\\ \text{BW}=f_m\end{matrix}}}_{} \longrightarrow x(t) \]
 
 \[ H_{eq}(f) = \begin{cases} \dfrac{T_s}{Q(f)} & |f|\le f_m\\[1ex] 0 & \text{else} \end{cases} \]
 
-\sekilnotu[2]{$|Q(f)| = \tau\,|\operatorname{sinc}(f\tau)|$ grafiği: sinc genliği, ana lob tepesi $\tau$; sıfır geçişleri $-1/\tau$ ve $1/\tau$; eksende $-1/\tau$, $-f_m$, $f_m$, $1/\tau$ işaretli. $-f_m$ ve $f_m$ noktalarında kırmızı kesikli dikey çizgiler, ana lobun $|f|\le f_m$ aralığındaki tepe kısmı kırmızı kesikli çizilmiş ve kırmızı okla sağdaki $|H_{eq}(f)|$ grafiğine bağlanmış.}
+\elcizimi[0.6]{sekiller/Ders-5-s2-2.png}[2]
 
 \[ H_{eq}(f) = \begin{cases} \dfrac{T_s}{Q(f)} & |f|\le f_m\\[1ex] 0 & \text{else} \end{cases} \]
 
-\sekilnotu[2]{$|H_{eq}(f)|$ grafiği: $-f_m$ ile $f_m$ arasında, ortası çukur dikdörtgen benzeri yanıt (merkezde minimum değer $T_s/\tau$, kenarlara doğru yükseliyor), dışarısı sıfır; yatay eksen $f$, işaretler $-f_m$ ve $f_m$.}
+\elcizimi[0.55]{sekiller/Ders-5-s2-3.png}[2]
 
 \[ H_{eq}(f) = \frac{T_s}{Q(f)} = \frac{T_s}{\tau\,\operatorname{sinc}(f\tau)}\,\underline{e^{\,j2\pi f \tau/2}}\,,\quad |f|\le f_m \]
 \hspace*{3em}$\hookrightarrow$ advance in time $\rightarrow$ $h_{eq}(t)$ is not causal
@@ -70,24 +70,24 @@ $\downarrow$
 
 \sayfa{3}
 \subsection{Reminder}
-\sekilnotu[3]{Üçgen darbe: tepe yüksekliği $A$ ($t=0$'da), taban $-T$ ile $T$ arasında; yatay eksen $t$, işaretler $-T$, $0$, $T$.}
+\elcizimi[0.4]{sekiller/Ders-5-s3-1.png}[3]
 \[ A\,\Lambda\!\left(\frac{t}{T}\right) \overset{\mathcal{F}}{\longleftrightarrow} A\,T\,\operatorname{sinc}^2(fT) \]
 
 \begin{ornek}[(2004 Midterm Ex.Q.)]
 A PAM signal is produced as shown in the figure below. a) If the bandwidth of $x(t)$ is 1\,kHz, what is the maximum value of $T_s$ to obtain $x(t)$ without distortion at the receiver? b) For $T_s=T_s(\max)$, sketch PAM demodulator. Find the transfer function of demodulator.
 
-\sekilnotu[3]{Blok diyagram: $x(t)$ girişi çarpıcıya ($\otimes$) girer, çarpıcıya alttan $\sum_n \delta(t-nT_s)$ uygulanır; çarpıcı çıkışı $q(t)$ bloğuna gider, çıkış $x_{PAM}(t)$. Sağda $q(t)$ grafiği: $t=0$'dan $0{,}2T_s$'e uzanan üçgen darbe, tepe noktası $t=0{,}1T_s$ anında ve yüksekliği $0{,}1T_s$; eksen işaretleri $0$, $0{,}1T_s$, $0{,}2T_s$.}
+\elcizimi[0.9]{sekiller/Ders-5-s3-2.png}[3]
 \end{ornek}
 
 \begin{cozum}
-\sekilnotu[3]{Aynı blok diyagram yeniden çizilmiş: $x(t) \to \otimes \to q(t) \to x_{PAM}(t)$, çarpıcıya alttan $\sum_n \delta(t-nT_s)$.}
+\elcizimi[0.7]{sekiller/Ders-5-s3-3.png}[3]
 
 a) $\mathrm{BW}\{x(t)\} = 1\ \mathrm{kHz} = f_m$\\
 \hspace*{1.2em}$f_s \ge 2f_m = 2\ \mathrm{kHz}$\\
 \hspace*{1.2em}$T_s \le \dfrac{1}{2f_m} = 0{,}5\ \mathrm{msec}$\\
 \hspace*{1.2em}$T_s(\max) = 0{,}5\ \mathrm{msec}$
 
-\sekilnotu[3]{$q(t)$ grafiği (sağda): $t=0$'dan $0{,}2T_s$'e kadar üçgen darbe, tepe yüksekliği $0{,}1T_s$ ($t=0{,}1T_s$ anında); eksen işaretleri $0$, $0{,}1T_s$, $0{,}2T_s$.}
+\elcizimi[0.4]{sekiller/Ders-5-s3-4.png}[3]
 
 b)
 \[ x_{pam}(t) \longrightarrow \boxed{H_{eq}(f)=\frac{1}{Q(f)}} \longrightarrow \boxed{\begin{matrix}\text{Ideal}\\ \text{LPF}\\ \mathrm{BW}=f_m\end{matrix}} \longrightarrow x(t) \]
@@ -103,13 +103,13 @@ H_{eq}(f) &= \frac{T_s\, e^{j2\pi f\, 0{,}1T_s}}{0{,}01\,T_s^2\operatorname{sinc
 \end{cozum}
 
 \sayfa{4}
-\sekilnotu[4]{$g(t)$ grafiği (dikey eksen $g(t)$, yatay eksen $t$): bir periyotluk sinüs benzeri eğri ($t=0$'dan başlayıp pozitif tepeye çıkar, sıfırdan geçer, negatif tepeye iner ve tekrar sıfıra döner). Eğri üzerinde turuncu, eşit aralıklı altı impuls oku: üçü pozitif (yukarı ok), üçü negatif (aşağı ok); okların boyu eğrinin değerini izliyor.}
+\elcizimi[0.65]{sekiller/Ders-5-s4-1.png}[4]
 
-\sekilnotu[4]{Aynı $g(t)$ eğrisi; bu kez aynı altı örnekleme anında turuncu dikdörtgen (düz tepeli) darbeler: üçü pozitif, üçü negatif.}
+\elcizimi[0.65]{sekiller/Ders-5-s4-2.png}[4]
 
-\sekilnotu[4]{$x_{PWM}$ grafiği: sabit yükseklikli, genişlikleri farklı dört dikdörtgen darbe (ilki $y$ ekseninde ve dar, sonra orta, en geniş ve tekrar daha dar); yatay eksen zaman.}
+\elcizimi[0.6]{sekiller/Ders-5-s4-3.png}[4]
 
-\sekilnotu[4]{$x_{PPM}(t)$ grafiği: ilk darbe $y$ ekseninde ve daha geniş; devamında sabit genişlikli dar darbeler, konumları kaydırılmış; referans konumlar kesikli dikey çizgilerle işaretli.}
+\elcizimi[0.6]{sekiller/Ders-5-s4-4.png}[4]
 
 $x_{PPM}(t)$: Pulse Width modulation\footnote{Claude notu: muhtemelen Pulse Position modulation olmalı.}
 
@@ -127,15 +127,15 @@ PPM: Pulse Position Modulation (Darbe Pozisyon Modülasyonu)
 \item At the receiver, PAM signals are separated by synchronization
 \end{itemize}
 
-\sekilnotu[6]{$x_a(t)$ grafiği: $\mathrm{BW}\{x_a(t)\}=B\ \mathrm{Hz}$; çan benzeri $x_a(t)$ eğrisi ve $0$, $T_s$, $2T_s$ anlarında turuncu dikdörtgen (PAM) darbeler.}
+\elcizimi[0.5]{sekiller/Ders-5-s6-1.png}[6]
 
-\sekilnotu[6]{$x_b(t)$ grafiği: $\mathrm{BW}\{x_b(t)\}=B\ \mathrm{Hz}$; azalan $x_b(t)$ eğrisi ve $T_s/2$ ile $3T_s/2$ anlarında kırmızı taralı dikdörtgen (PAM) darbeler.}
+\elcizimi[0.5]{sekiller/Ders-5-s6-2.png}[6]
 
-\sekilnotu[6]{Çoklayıcı: $x_1(t)$ girişi A noktasına ($[0,T_s/2]$ aralığı), $x_2(t)$ girişi B noktasına ($[T_s/2,T_s]$ aralığı) bağlı; dönen anahtar ($f_s$, not: $f_s\ge 2B$) çıkışı ``FTS ($\tau$)'' bloğuna verir; bloğa alttan ``TDM Clock, $f_p=2f_s$'' bloğu bağlı; çıkış $v(t)$. Altta $0$, $T_s/2$, $T_s$, $3T_s/2$, $2T_s$ anlarında impuls dizisi (``for N signals, $f_p=Nf_s$'').}
+\elcizimi[0.6]{sekiller/Ders-5-s6-3.png}[6]
 
-\sekilnotu[6]{$v(t)$ grafiği: PAM darbeleri sırayla $x_a(t)$ (turuncu) ve $x_b(t)$ (kırmızı) darbeleri olarak birbirini izliyor.}
+\elcizimi[0.4]{sekiller/Ders-5-s6-4.png}[6]
 
-\sekilnotu[6]{Ayırıcı: $v(t)$ girişi dönen anahtara ($f_s$) girer; anahtar A ve B kollarına bağlanır. A kolu: $x_a(t) \to [H_{eq}'(f)] \to x_1(t-T_0)$; B kolu: $x_b(t) \to [H_{eq}'(f)] \to x_2(t-T_0)$.}
+\elcizimi[0.9]{sekiller/Ders-5-s6-5.png}[6]
 
 FDM $\times$ TDM
 

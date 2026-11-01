@@ -11,14 +11,14 @@ The ability of the system follow the given instruction can be used as a measure 
 
 $\ast$ Common input: step, ramp, parabolic
 \[ u(t)=1 \qquad,\qquad r(t)=t \qquad,\qquad P(t)=t^{2} \]
-\sekilnotu[1]{Three small sketches under the equations, each with axes: step (constant level), ramp (straight line rising from the origin) and parabola (convex curve rising from the origin). Orange note under the step sketch: ``tracking systems''. At the right, a sketch of a ground antenna (red circle) with orbit arcs: an orange low arc labelled ``LEO'', dashed higher arcs labelled ``35 750 km'' and ``Geo'', and ``sat'' at the satellite.}
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-9-s1-1.png}[1]
 
 $\ast$ Comparison of accuracy is possible by using the \vurgu{steady-state error} magnitude!!
 
 if $\zeta<1$ in a second o.s
-\sekilnotu[1]{Two stacked sketches against t. Upper: c(t), an underdamped step response with overshoot that oscillates and settles to a constant value. Lower: e(t), the error, starting at a peak and oscillating about zero while decaying.}
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-9-s1-2.png}[1]
 
-\sekilnotu[1]{Feedback block diagram: R(s) enters a summing junction (plus on the input, minus on the feedback); the junction output goes through block G(s) to the output C(s); a feedback path from the output through block H(s) returns to the junction. An arrow from the junction output carries the annotation given next.}
+\elcizimi[0.6]{sekiller/Control-Systems-lecture-9-s1-3.png}[1]
 \[ E(s)=R(s)-C(s)H(s) \]
 \[ \frac{C(s)}{R(s)}=\frac{G(s)}{1+G(s)H(s)} \]
 \begin{align*}
@@ -40,7 +40,7 @@ Stability $\rightarrow$ CLP $\checkmark$
 
 \hspace*{5.6em}OLP
 
-\sekilnotu[2]{s-plane sketch: horizontal axis Re (arrow), vertical axis Im drawn as a thick line. Right half-plane bounded by red dashes and labelled ``Zone 1'' (red), with ``unstable'' and an arrow at the bottom right; two crosses (poles) in the right half-plane close to the Im axis, one above and one below the Re axis. Left half-plane bounded by blue dashes and labelled ``Zone III'' (blue), with ``stable'' (blue) at the bottom left. The Im axis is coloured orange, labelled ``Zone II'' with an arrow to ``marginally stable'' below it. A purple arrow from the origin towards the lower left is labelled ``Zone IV''.}
+\elcizimi[0.6]{sekiller/Control-Systems-lecture-9-s2-1.png}[2]
 
 \underline{Zone I} :
 \begin{align*}
@@ -48,7 +48,7 @@ Stability $\rightarrow$ CLP $\checkmark$
 &\text{FVT}=\lim_{s\to0}sG(s)=\lim_{s\to0}\frac{s}{s-2}=0\quad\times\ \text{wrong}
 \end{align*}
 but
-\sekilnotu[2]{Sketch of c(t) against t: a curve starting at the origin and growing upward exponentially (convex).}
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-9-s2-2.png}[2]
 
 \underline{For Zone II}
 \begin{align*}
@@ -56,31 +56,31 @@ but
 &s_{1,2}=\pm j\sqrt{2}\\
 &\text{FVT}:\ \lim_{s\to0}sG(s)=\lim_{s\to0}\frac{s}{s^{2}+2}=0\quad\times
 \end{align*}
-\sekilnotu[2]{Sketch of a sustained sinusoidal oscillation of constant amplitude about the time axis, with dashed horizontal lines marking the upper and lower amplitude levels.}
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-9-s2-3.png}[2]
 
 \underline{Zone III}
 \begin{align*}
 &\text{T.F}=G(s)=\frac{1}{s+2}\qquad\Rightarrow\ s=-2\\
 &\text{FVT}:\ \lim_{s\to0}\frac{s}{s+2}=0
 \end{align*}
-\sekilnotu[2]{Sketch labelled $e^{-2t}$: a decaying exponential starting high at t=0 and approaching zero along the time axis.}
+\elcizimi[0.3]{sekiller/Control-Systems-lecture-9-s2-4.png}[2]
 
 \sayfa{3}
 \underline{Zone IV} :
-\sekilnotu[3]{s-plane sketch (Im vertical axis, Re horizontal axis) with a cross (pole) at the origin; label ``pole Location''.}
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-9-s3-1.png}[3]
 \begin{align*}
 &\text{TF}=\frac{1}{s}\\
 &\text{FVT}=\lim_{s\to0}s\,\frac{1}{s}=1\\
 &\lambda=0\\
 &e^{\lambda t}=e^{0t}=1
 \end{align*}
-\sekilnotu[3]{Sketch with vertical and horizontal axes: a constant level (horizontal line above the time axis) starting at the vertical axis.}
+\elcizimi[0.35]{sekiller/Control-Systems-lecture-9-s3-2.png}[3]
 
-\sekilnotu[3]{Block diagram: R(s) (plus) enters a summing junction (minus on the feedback), E(s) leaves the junction into block G(s), output C(s); unity feedback path from the output straight back to the junction.}
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-9-s3-3.png}[3]
 \[ \frac{C(s)}{R(s)}=\frac{G(s)}{1+G(s)} \]
 $G(s)$: open loop TF for \vurgu{unity} feedback
 \[ \frac{E(s)}{R(s)}=\frac{1}{1+G(s)} \]
-\sekilnotu[3]{Two block diagrams joined by the sign $\equiv$. Left: R (plus) into a summing junction (minus on the feedback), E after the junction, block G(s), output C, feedback block H(s) from the output back to the junction. Right: R(s) (plus) into a summing junction, one block labelled ``Ge'', output C(s), unity feedback path.}
+\elcizimi[0.85]{sekiller/Control-Systems-lecture-9-s3-4.png}[3]
 \[ G(s)=\frac{k\,(T_as+1)(T_bs+1)\cdots(T_ms+1)}{s^{N}(T_1s+1)(T_2s+1)\cdots(T_ps+1)} \]
 $P_{1,\ldots,N}=0\ \leftarrow$ N multiplicity $\rightarrow$ integrator
 
@@ -143,9 +143,9 @@ Type & step & ramp & parabolic\\
 \end{center}
 
 \underline{Example} :
-\sekilnotu[5]{Block diagram: R(s) (plus) into a summing junction (minus on the feedback), then a block k, then a block 1/(s(s+1)(s+2)), output C(s); unity feedback path from the output back to the junction.}
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-9-s5-1.png}[5]
 \[ \text{OL T.F}=\frac{k}{s(s+1)(s+2)}\qquad\text{Type 1 system} \]
-\sekilnotu[5]{s-plane sketch (Im vertical axis, Re horizontal axis) with a cross at the origin.}
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-9-s5-2.png}[5]
 \[ \frac{E(s)}{R(s)}=\frac{1}{1+G(s)} \]
 \[ e_{ss}=\lim_{s\to0}\frac{sR(s)}{1+G(s)} \]
 \begin{align*}
@@ -184,8 +184,8 @@ $k=6$ is the max possible $k$ here !!!
 so max $e_{ss}=0{,}33$ because the system have to be stable because final value theorem is not working with unstable systems.
 
 \section{Steady state error for disturbance}
-\sekilnotu[6]{Block diagram: the input (plus) enters a first summing junction (minus on the feedback from the output); block G$_1$(s) labelled ``controller block''; its output (plus) enters a second summing junction where the disturbance D(s) (plus) enters from above; then block G$_2$(s) labelled ``plant''; output C(s); unity feedback path from the output back to the first junction.}
-\sekilnotu[6]{Sketch labelled ``plane'': side view of a tail/wing with a movable control surface labelled ``ruben'' (ruder) and a smaller ``trim tab'' on it.}
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-9-s6-1.png}[6]
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-9-s6-2.png}[6]
 \begin{align*}
 &C(s)=\left[E(s)G_1(s)+D(s)\right]G_2(s)\\
 &E(s)=R(s)-C(s)\Rightarrow C(s)=R(s)-E(s)\\

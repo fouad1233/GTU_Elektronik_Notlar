@@ -6,7 +6,7 @@
 \sayfa{1}
 \section{Positive Feedback architecture}
 
-\sekilnotu[1]{Two feedback loops drawn as block diagrams. Top: $R$ enters a summing junction marked $+$ (input) and $+$ (feedback input from below); then block $k$, then block $G(s)$, output $C(s)$; the output is fed back to the junction. Next to it: $k>0$. Bottom: $R(s)$ enters a summing junction (sign mark at the top hard to read, $-$ at the feedback input); then block $k'$, then block $G(s)$, output $C(s)$; output fed back to the junction. Next to it: $k'<0$. Red label under the feedback path: ``negative feedback''.}
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-12-s1-1.png}[1]
 
 \[
 \frac{C(s)}{R(s)} = \frac{k\,G(s)}{1 - k\,G(s)H(s)}
@@ -24,7 +24,7 @@ G(s)H(s) = \overbrace{\frac{1}{k}}^{\text{positive}} + 0j
 
 positive feedback
 
-\sekilnotu[1]{Real-axis sketches for the positive-feedback case. Upper $s$-plane: on the real axis, left to right, a pole $\times$, a zero $\circ$, a pole $\times$ and a pole $\times$ at the origin. Red thick line on the real axis to the left of the first pole, between the zero and the second pole, and from the origin to the right; the arcs at the second pole and at the origin are marked $-180^\circ$. Red arrow pointing to the right-hand red segment: ``acceptable zone''. Lower $s$-plane (axis labelled $\mathrm{Re}$): similar pole--zero pattern $\times\ \circ\ \times\ \times$ (last pole at the origin) with the red marking only partly drawn.}
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-12-s1-2.png}[1]
 
 (2) Departure angles from \textit{complex} poles\\
 arrival \quad '' \quad to \textit{complex} zero
@@ -50,7 +50,7 @@ p_1 &= -3\\
 p_{2,3} &= -1 \pm j
 \end{align*}
 
-\sekilnotu[2]{$s$-plane with the imaginary axis labelled $\mathrm{Im}$ (marks $+j$ and $-j$) and the real axis with marks: pole $\times$ at $-3$, zero $\circ$ at $-2$, tick at $-1$. A thick red line runs along the real axis from the left end through the pole and the zero to the right end. Complex poles $\times$ at $-1\pm j$ with red dashed horizontal lines from them to the imaginary axis (at $\pm j$). Orange arcs leave the two complex poles and meet on the real axis just to the right of $-1$; red arrow pointing up at that point, red label ``break in point''. A few small orange annotations near the poles are illegible.}
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-12-s2-1.png}[2]
 
 \noindent branches: 3\\
 $n-m = 3-1 = 2$\\
@@ -89,7 +89,7 @@ k = -\frac{(s+3)(s^2+2s+2)}{(s+2)}
 \medskip
 \noindent if its negative feedback
 
-\sekilnotu[3]{$s$-plane: real axis with pole $\times$ at $-3$, zero $\circ$ at $-2$ and mark $-1$; complex poles $\times$ at $-1\pm j$ (imaginary axis to the right). Red arrow on the real axis from the pole at $-3$ to the zero at $-2$. Red dashed vertical line (asymptote) crossing the real axis at about $-1{,}5$, with a small red label at its lower end (probably $-1{,}5$); red curved branches come down from above to the upper complex pole and up from below to the lower complex pole, following the dashed line.}
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-12-s3-1.png}[3]
 
 \[
 \text{centroid} = \frac{\sum \text{real part poles} - \sum \text{real part of zeroes}}{n-m} = -1{,}5
@@ -99,15 +99,15 @@ k = -\frac{(s+3)(s^2+2s+2)}{(s+2)}
 Negative feedback
 \end{ornek}
 
-\sekilnotu[3]{Two $s$-plane sketches side by side. Left: two real poles $\times$ left of the imaginary axis; thick red segment between the two poles and a thick red vertical line through the middle of that segment, extending up and down. Right: zero $\circ$ on the real axis, complex poles $\times$ above and below the real axis to the right of the zero (imaginary axis further right); a red arc leaves the upper pole, curves to the left, crosses the real axis to the left of the zero and returns to the lower pole (arrows on the arc); on the real axis a red arrow points left from the crossing point and a red segment with arrow leads right from the crossing point to the zero.}
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-12-s3-2.png}[3]
 
 \noindent\textbf{Pozitive feedback}
 
-\sekilnotu[3]{Two $s$-plane sketches side by side. Left: two real poles $\times$ left of the imaginary axis; thick red line on the real axis to the left of the left pole (arrow pointing left) and from the right pole to the right through the imaginary axis to the right end; nothing between the two poles. Right: zero $\circ$ on the real axis, complex poles $\times$ above and below the real axis to the right of the zero, close to the imaginary axis; red arcs from the poles curve to the real axis just left of the imaginary axis; thick red line on the real axis from the zero to the right with arrows pointing left (towards the zero) and right.}
+\elcizimi[0.95]{sekiller/Control-Systems-lecture-12-s3-3.png}[3]
 
 \noindent\textbf{Negative feedback}
 
-\sekilnotu[3]{Root-locus sketch with real-axis marks $-5$, $-4$, $-2{,}5$, $-1$, $0$ (poles $\times$ at $-5$, $-4$, $-1$ and $0$). Two red dashed asymptote lines cross at $-2{,}5$ (one rising to the right, one falling to the right). Thick red segments on the real axis between $-5$ and $-4$ and between $-1$ and $0$; red curved branches with arrows leave these segments, the left pair bending towards the left asymptote directions and the right pair towards the right asymptote directions.}
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-12-s3-4.png}[3]
 
 \begin{gather*}
 \frac{\pm 180(2i+1)}{n-m}\\
@@ -119,7 +119,7 @@ centroid $=-2{,}5$
 \sayfa{4}
 \noindent Pozitif f\okunamadi{}
 
-\sekilnotu[4]{$s$-plane with axes labelled $\mathrm{Im}$ (top) and $\mathrm{Re}$ (right end of the real axis). Four poles $\times$ on the real axis, the last one at the origin and the other three at negative real values. Thick red line on the real axis to the left of the leftmost pole (arrow pointing left), between the second and third poles (arrows pointing towards each other) and from the origin to the right end. At the point between the second and third poles a red vertical line with arrows pointing up and down.}
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-12-s4-1.png}[4]
 
 \[
 \frac{\pm 360\,i}{4} = \pm 90\,i
@@ -127,13 +127,13 @@ centroid $=-2{,}5$
 
 \section{Compensator design}
 
-\sekilnotu[4]{$s$-plane with a pole $\times$ on the negative real axis and a pole $\times$ at the origin; thick red segment between them with an arrow pointing right. Red branches: an arc on the left (from the left pole up-left and down-left, arrows on the ends) and a vertical arc just left of the origin (arrow pointing up at the top end, down at the bottom end). Two orange crosses mark the ``desired dominant poles'' (one above, one below the real axis, left of the imaginary axis, not on the locus); a black dashed line from the upper one towards the origin with the angle $\theta$ marked at its end.}
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-12-s4-2.png}[4]
 
 \noindent specific ``$k$'' which renders the system unstable
 
 \noindent 4 seperate roots of ch.e.q.
 
-\sekilnotu[4]{$s$-plane. Thick red segment on the negative real axis ending at a pole $\times$ labelled $-p$; zero $\circ$ labelled $-2$ with a red arrow pointing left; pole $\times$ at the origin. Red arcs leave the pole at $-p$ to the upper left and lower left (arrows), black arcs leave the origin to the upper right and lower right (lower one with a red arrow). Label to the right of the axis: $k=0$.}
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-12-s4-3.png}[4]
 
 \[
 1 + \frac{k\,(s+2)}{s^3\,(s+p)^3}
@@ -142,7 +142,7 @@ centroid $=-2{,}5$
 \theta = \cos^{-1}\zeta \qquad \text{damping ratio}
 \]
 
-\sekilnotu[4]{$s$-plane. Real-axis marks, left to right: red $\circ$ at the far left labelled $-z_2$; blue $\times$ labelled $-p_3$; $\circ$ labelled $-z_1$; $\times$ labelled $-p_2$; $\times$ labelled $p_1$ (at the origin, on the imaginary axis). A test point $s$ above the axis (label hard to read) is joined by a blue dash-dotted line to the blue pole $-p_3$, with the angle $10^\circ$ marked there, and by red lines to $-z_1$, $-p_2$ and $p_1$, with the angles $\phi_1$, $\theta_2$, $\theta_1$ marked at those points.}
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-12-s4-4.png}[4]
 
 \noindent $\searrow\ \dfrac{1}{s+p_3} \rightarrow$ delayed integrator
 
@@ -162,7 +162,7 @@ F(s) = \frac{s+a}{s+b} = \frac{R\,e^{i\phi}}{M\,e^{i\theta}} = \left(\frac{R}{M}
 \sayfa{5}
 \noindent if $\beta = 150^\circ$ \quad $\dfrac{30^\circ}{180^\circ}$
 
-\sekilnotu[5]{$s$-plane. Real-axis marks, left to right: red $\circ$ labelled $-z_2$ (far left); $\circ$ labelled $-z_1$; $\times$ labelled $-p_2$; $\times$ at the origin labelled $p_1$. An orange test point $s$ above the axis is joined by a red dashed line to $-z_2$ (angle $30^\circ$ marked in red) and by black dashed lines to $-z_1$, $-p_2$ and $p_1$, with the angles $\phi$, $\theta_2$, $\theta_1$ marked at those points.}
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-12-s5-1.png}[5]
 
 \[
 \underbrace{(s+z_2)}_{\text{derivative operator}}\ \frac{(s+z_1)}{(s+p_1)(s+p_2)}
@@ -170,7 +170,7 @@ F(s) = \frac{s+a}{s+b} = \frac{R\,e^{i\phi}}{M\,e^{i\theta}} = \left(\frac{R}{M}
 
 \noindent Its unuseless itself so we have to add a pole
 
-\sekilnotu[5]{Same sketch with an extra red pole $\times$ at the far left labelled $-p_3$; the red zero $\circ$ labelled $-z_2$ now lies to the right of it, with a red arrow pointing at it and the red label ``New $z_2$''. Red dashed lines join the orange test point $s$ to $-p_3$ and $-z_2$, black dashed lines join it to $-z_1$, $-p_2$ and $p_1$; angles $\phi$, $\theta_2$, $\theta_1$ marked.}
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-12-s5-2.png}[5]
 
 \[
 \frac{s+z_2}{s+p_3} \underset{\lim z_2\to 0}{=} \frac{s}{s+p_3} = 1 - \frac{p_3}{s+p_3}
@@ -179,7 +179,7 @@ F(s) = \frac{s+a}{s+b} = \frac{R\,e^{i\phi}}{M\,e^{i\theta}} = \left(\frac{R}{M}
 
 \section{Adding poles}
 
-\sekilnotu[5]{Four root-locus sketches (three in the first row, one in the second). (a) One pole $\times$ labelled $p_1$ on the negative real axis near the imaginary axis; red thick line on the real axis from the left end to the pole. (b) Two poles $\times$ ($p_1$ the right one); red thick segment between them and a red vertical line through its midpoint. (c) Three poles $\times$ ($p_1$ the rightmost); red thick line from the left end to the leftmost pole, red dashed lines from the middle pole going up-right and down-right, and red curved branches that leave between the two right poles and bend into the right half-plane (arrows pointing right). (d) Four poles $\times$ on the negative real axis in two pairs; red thick segments between poles 1--2 and 3--4; red arcs: the left pair bends to the left (up and down), the right pair bends to the right across the imaginary axis.}
+\elcizimi[0.95]{sekiller/Control-Systems-lecture-12-s5-3.png}[5]
 
 \noindent by adding poles the locus plot move to right, systems get more unstable. \hfill (lag compensator)
 

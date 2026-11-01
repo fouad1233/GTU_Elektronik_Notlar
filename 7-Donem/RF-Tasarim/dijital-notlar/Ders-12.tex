@@ -1,0 +1,193 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Direct conversion alıcı, dezavantajları, I/Q mismatch}{Ders-12.pdf}
+
+\sayfa{1}
+\section{Direct Conversion Receiver}
+``Zero-IF'' or ``homodyne''
+
+\elcizimi[0.6]{sekiller/Ders-12-s1-1.png}[1]
+
+$\rightarrow$ One step Conversion
+
+Özellikleri
+\begin{itemize}[label=$\checkmark$]
+\item No image
+\item Simple design process
+\item Mixing spurs are reduced
+\end{itemize}
+
+\begin{ornek}
+\textbf{FSK Direct Conversion Receiver}
+\[ x_{FSK}(t) = A_0\cos[(\omega_c + a\omega_1)t],\quad a = \pm 1 \]
+\elcizimi[0.5]{sekiller/Ders-12-s1-2.png}[1]
+\elcizimi[0.65]{sekiller/Ders-12-s1-3.png}[1]
+\begin{align*}
+x_{BB,I} &= A_0\cos[(\omega_c + a\omega_1)t]\cdot B\cos\omega_0 t\\
+&= \overset{\scriptstyle A_1}{\frac{A_0 B}{2}}\bigl[\cos(2\omega_c + a\omega_1)t + \cos a\omega_1 t\bigr] \;\xrightarrow{\text{LPF}}\; x_{BB,I} = A_1\cos a\omega_1 t\\
+x_{BB,Q} &= A_0\cos[(\omega_c + a\omega_1)t]\cdot B\sin\omega_0 t\\
+&= \frac{A_0 B}{2}\bigl[\sin(2\omega_c + a\omega_1)t - \sin a\omega_1 t\bigr]\\
+&\hookrightarrow\; x_{BB,Q} = -A_1\sin a\omega_1 t
+\end{align*}
+\end{ornek}
+
+\sayfa{2}
+Anlamak için 2 bit gönderdiğimizi düşünelim
+\elcizimi[0.4]{sekiller/Ders-12-s2-1.png}[2]
+\elcizimi[0.55]{sekiller/Ders-12-s2-2.png}[2]
+
+Şimdi bunları bir demodülatöre sokuyoruz
+\elcizimi[0.9]{sekiller/Ders-12-s2-3.png}[2]
+
+\section{Drawbacks of Direct Conversion Receivers}
+\subsection{(1) LO Leakage}
+\elcizimi[0.9]{sekiller/Ders-12-s2-4.png}[2]
+
+To minimize LO leakage
+\begin{enumerate}[label=\arabic*)]
+\item Differential Oscillator
+\item Symmetric layout for Oscillator
+\end{enumerate}
+\elcizimi[0.35]{sekiller/Ders-12-s2-5.png}[2]
+
+\subsection{(2) DC offset}
+\elcizimi[0.6]{sekiller/Ders-12-s2-6.png}[2]
+
+DC offsetten kurtulmalıyız
+
+\sayfa{3}
+\begin{ornek}
+\elcizimi[0.65]{sekiller/Ders-12-s3-1.png}[3]
+LO leakage at the input of LNA is $-60$ dBm
+\[ -60 + 30 + 40 = 10\ \mathrm{dBm} \;\rightarrow\; V_{DC} \approx 1\,\mathrm{V} \]
+\end{ornek}
+
+\subsection{Solving DC Offset}
+\elcizimi[0.5]{sekiller/Ders-12-s3-2.png}[3]
+\elcizimi[0.4]{sekiller/Ders-12-s3-3.png}[3]
+\[ f_c = \frac{1}{2\pi R C} \]
+\elcizimi[0.45]{sekiller/Ders-12-s3-4.png}[3]
+\[ m = \frac{f_2 - f_1}{f_c} \]
+modulation index (FSK)
+
+Bunun başka dezavantajı var
+\elcizimi[0.65]{sekiller/Ders-12-s3-5.png}[3]
+\elcizimi[0.5]{sekiller/Ders-12-s3-6.png}[3]
+\elcizimi[0.4]{sekiller/Ders-12-s3-7.png}[3]
+
+\begin{cozum}[1]
+\elcizimi[0.7]{sekiller/Ders-12-s3-8.png}[3]
+\[ I_F = \frac{-g_{mF}\,V_{out}}{1 + sC_1R_1} \]
+\[ \frac{V_{out}(s)}{V_{in}(s)} = \frac{g_{m1}R_0(R_1C_1 s + 1)}{1 + g_{mF}R_0 + sR_1C_1} \]
+\end{cozum}
+
+\sayfa{4}
+\elcizimi[0.5]{sekiller/Ders-12-s4-1.png}[4]
+
+\begin{cozum}[2]
+\elcizimi[0.65]{sekiller/Ders-12-s4-2.png}[4]
+\end{cozum}
+
+Drawback of Direct conversion Receivers
+
+\subsection{(3) Even Order Distorsion}
+\[ 2\omega_2 - \omega_1 \rightarrow 3^{rd}\ \text{order distortion} \]
+\[ \omega_2 - \omega_1 \rightarrow 2^{nd}\ \text{(Even)} \]
+\elcizimi[0.45]{sekiller/Ders-12-s4-3.png}[4]
+\elcizimi[0.35]{sekiller/Ders-12-s4-4.png}[4]
+
+\begin{cozum}
+\begin{itemize}[label=$\checkmark$]
+\item High IIP2
+\item Differential Mixer
+\item Mixer layout should be symmetrical
+\end{itemize}
+\end{cozum}
+\elcizimi[0.9]{sekiller/Ders-12-s4-5.png}[4]
+
+\sayfa{5}
+\subsection{(4) Flicker noise}
+\elcizimi[0.7]{sekiller/Ders-12-s5-1.png}[5]
+\[
+\begin{array}{@{}l@{\quad}l@{}}
+f_{BW} & : \text{Half of RF channel Band width}\\
+S_{1/f}(f) = \dfrac{a}{f} & : \text{PSD of flicker noise}\\
+S_{th}(f) = S_{th} & : \text{PSD of thermal noise}\\
+f_c & : \text{corner frequency}
+\end{array}
+\]
+
+We ignore noise effect below $\dfrac{f_{BW}}{1000}$ since they vary slowly
+
+\[ S_{1/f}(f) = \frac{a}{f} \;\rightarrow\; S_{1/f}(f_c) = \frac{a}{f_c} = S_{th} \;\rightarrow\; a = f_c S_{th} \]
+\[ P_{n1} = \int_{\frac{f_{BW}}{1000}}^{f_c} \frac{a}{f}\,df + \int_{f_c}^{f_{BW}} S_{th}\,df \]
+\[ = \underset{f_c S_{th}}{a}\,\ln\frac{1000 f_c}{f_{BW}} + (f_{BW} - f_c)S_{th} \]
+\formulkutu[önemli]{P_{n1} = \left(5{,}9 + \ln\frac{f_c}{f_{BW}}\right) f_c S_{th} + f_{BW}\cdot S_{th}}
+
+\[ \text{In the absence of flicker noise} = \kutula{P_{n2} \approx S_{th}\cdot f_{BW}} \]
+
+\subsubsection{Flicker noise Penalty}
+\hfill $\downarrow\downarrow$ azaltmak istiyoruz
+\formulkutu[önemli]{\frac{P_{n1}}{P_{n2}} = 1 + \left(5{,}9 + \ln\frac{f_c}{f_{BW}}\right)\cdot\frac{f_c}{f_{BW}}}
+
+\sayfa{6}
+\begin{ornek}
+\elcizimi[0.5]{sekiller/Ders-12-s6-1.png}[6]
+
+Flicker noise penalty
+\[ \rightarrow P_{n1} = \int_{\frac{f_{BW}}{1000}}^{100\,\mathrm{kHz}} \frac{a}{f}\,df + \text{\textit{sonrasında işaret yok}} \]
+\textit{$\rightarrow$ normalde $f_c$ ana bant bitiyor} \quad \okunamadi{fc gözükmüyor} \quad \okunamadi{Bu} formülü uygularken dikkat edin
+\[ = \int_{27\,\mathrm{Hz}}^{100\,\mathrm{kHz}} \frac{f_c S_{th}}{f}\,df = 8{,}2\,\overset{\scriptstyle 100\mathrm{k}}{f_c}\,S_{th} \]
+\[ P_{n2} = \overset{\scriptstyle 100\,\mathrm{kHz}}{f_c}\,S_{th} = 100\mathrm{k}\,S_{th} \]
+\[ \frac{P_{n1}}{P_{n2}} = \frac{8{,}2\cdot f_c\cdot S_{th}}{S_{th}\cdot f_c} = 8{,}2 \]
+\end{ornek}
+
+\subsection{I/Q Mismatch (Drawbacks of Quadrature Downconversion)}
+\okunamadi{(up)}
+
+\elcizimi[0.7]{sekiller/Ders-12-s6-2.png}[6]
+
+Phase \& gain Error
+
+\sayfa{7}
+\elcizimi[0.65]{sekiller/Ders-12-s7-1.png}[7]
+\[ \varepsilon \rightarrow \text{gain error} \qquad \theta \rightarrow \text{phase error} \]
+
+\[ x_{in}(t) = a\cos\omega_c t + b\sin\omega_c t \;\rightarrow\; \text{QPSK signal} \]
+\begin{align*}
+x_{LO,I}(t) &= 2\left(1 + \tfrac{\varepsilon}{2}\right)\cos\left(\omega_c t + \tfrac{\theta}{2}\right)\\
+x_{LO,Q}(t) &= 2\left(1 - \tfrac{\varepsilon}{2}\right)\sin\left(\omega_c t - \tfrac{\theta}{2}\right)
+\end{align*}
+When $\varepsilon = 0,\ \theta = 0$
+\[ \rightarrow\ x_{BB,I}(t) = a,\qquad x_{BB,Q}(t) = b \]
+
+\subsubsection{Outputs}
+\begin{align*}
+x_{BB,I}(t) &= a\left(1 + \tfrac{\varepsilon}{2}\right)\cos\left(\tfrac{\theta}{2}\right) - b\left(1 + \tfrac{\varepsilon}{2}\right)\sin\left(\tfrac{\theta}{2}\right) \;\longrightarrow\\
+x_{BB,Q}(t) &= -a\left(1 - \tfrac{\varepsilon}{2}\right)\sin\left(\tfrac{\theta}{2}\right) + b\left(1 - \tfrac{\varepsilon}{2}\right)\cos\left(\tfrac{\theta}{2}\right) \;\longrightarrow
+\end{align*}
+
+\subsubsection{Only gain mismatch ($\theta = 0$)}
+\begin{align*}
+x_{BB,I}(t) &= a\left(1 + \tfrac{\varepsilon}{2}\right)\\
+x_{BB,Q}(t) &= b\left(1 - \tfrac{\varepsilon}{2}\right)
+\end{align*}
+\elcizimi[0.4]{sekiller/Ders-12-s7-2.png}[7]
+
+\subsubsection{Only phase mismatch ($\varepsilon = 0$)}
+\begin{align*}
+x_{BB,I}(t) &= a\cos\left(\tfrac{\theta}{2}\right) - b\sin\left(\tfrac{\theta}{2}\right)\\
+x_{BB,Q}(t) &= -a\sin\left(\tfrac{\theta}{2}\right) + b\cos\left(\tfrac{\theta}{2}\right)
+\end{align*}
+\elcizimi[0.4]{sekiller/Ders-12-s7-3.png}[7]
+\elcizimi[0.35]{sekiller/Ders-12-s7-4.png}[7]
+
+\sayfa{8}
+Bunu çözmek için ne yapmak gerekiyor
+\subsection{Solutions of I/Q Mismatch}
+\elcizimi[0.8]{sekiller/Ders-12-s8-1.png}[8]
+
+\noindent\fbox{\begin{tabular}{@{}l@{}}\underline{I/Q}\\ Mismatch penalty\end{tabular}}
+
+\end{document}

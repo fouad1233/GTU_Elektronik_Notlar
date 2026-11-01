@@ -55,7 +55,7 @@ Kodlayıcı $(-1),(-0{,}5),(0{,}5),(1)$ genliklerini sırasıyla $00, 01, 10$ ve
 \end{center}
 
 \sayfa{2}
-\sekilnotu[2]{Sayfa 1'deki blok diyagramın aynısı: $x(t)$ girişi, çarpıcı ($\sum_n\delta(t-nT_s)$ ile çarpım), $h(t)$, kuantalayıcı, kodlayıcı, darbe üretici, çıkış $y(t)$; ara işaretler $x_s(t)$, $x_p(t)$ (turuncu not: düz tepeli örnekleme işareti), $x_q(t)$, $x_c(t)$.}
+\elcizimi[0.9]{sekiller/Ders-7-s2-1.png}[2]
 \begin{align*}
 x_s(t) &= x(t)\cdot\sum_n \delta(t-nT_s)=\sum_n x(nT_s)\,\delta(t-nT_s)\\
 x_p(t) &= x_s(t)*h(t)=\sum_n x(nT_s)\,h(t-nT_s)\\
@@ -89,11 +89,8 @@ kod & \textcolor{murekkep}{11} & \textcolor{murekkep}{11} & \textcolor{murekkep}
 \end{center}
 
 \sayfa{3}
-\sekilnotu[3]{Dört grafik alt alta, ortak zaman ekseni; $nT_s$ anlarından sarı kesikli düşey çizgiler grafikleri hizalıyor.
-(1) $x(t)$: turuncu kosinüs, $t=0$'da $1$, $T_0/2$'de $-1$, $T_0$'da $1$; $\pm1$ seviyelerinde siyah kesikli yatay çizgiler; eksende $T_s=T_0/12$, $2T_s$, $T_0/4$, $T_0/2$, $3T_0/4$, $T_0$ işaretli.
-(2) $x_p(t)$: aynı kosinüs üzerinde, her $nT_s$ ($n=0,\dots,12$) anında başlayan ve $T_s/2$ süren mavi dikdörtgen (düz tepeli) darbeler; yükseklikler $x(nT_s)$: $1;\ 0{,}87;\ 0{,}5;\ 0;\ -0{,}5;\ -0{,}87;\ -1;\ -0{,}87;\ -0{,}5;\ 0;\ 0{,}5;\ 0{,}87;\ 1$ ($n=3$ ve $n=9$'da darbe yok); düşey eksende $1,\ 0{,}87,\ 0{,}5,\ -0{,}5,\ -0{,}87,\ -1$; zaman ekseninde $T_s/2,\ T_s,\ 2T_s,\ T_0/4,\ 4T_s,\dots,12T_s$.
-(3) $x_q(t)$: aynı konumlarda mavi darbeler, yükseklikler $x_q(nT_s)$: $1;\ 1;\ 0{,}5;\ -0{,}5;\ -0{,}5;\ -1;\ -1;\ -1;\ -0{,}5;\ -0{,}5;\ 0{,}5;\ 1;\ 1$; düşey eksende $1,\ 0{,}5,\ -0{,}5,\ -1$.
-(4) $y(t)$: kırmızı, $\pm5$\,V genlikli tam dikdörtgen darbeler, her bit $T_s/2$ süreli; bitler darbelerin üstünde yazılı: 1 1 1 1 1 0 0 1 0 1 0 0 0 0 0 0 0 1 0 1 1 0 1 1 1 1 (yani 11 11 10 01 01 00 00 00 01 01 10 11 11); düşey eksende $5$\,V ve $-5$\,V; yatay eksende $T_s, 2T_s,\dots,12T_s$ (işaret yaklaşık $13T_s$'de biter), eksen etiketi $y(t)$ (muhtemelen $t$).}
+\elcizimi[0.9]{sekiller/Ders-7-s3-1.png}[3]
+\elcizimi[0.9]{sekiller/Ders-7-s3-2.png}[3]
 
 \sayfa{4}
 c) $f_0=1$ kHz \qquad $f_s=\dfrac{1}{T_s}=\dfrac{1}{T_0/12}=12f_0=12$ kHz
@@ -111,7 +108,7 @@ $R_b=n f_s=2\cdot 12\mathrm{k}=24\mathrm{k}$ bit/sn
 \[ n\uparrow\ \Rightarrow\ \mathrm{BG}\uparrow \]
 veya $x_p$'yi küçültürüz
 
-\sekilnotu[4]{Pozitif tepeli, sonra negatife inen bir dalga biçimi (yatay eksen üzerinde); tepe civarında üç kırmızı düşey çizgi (birbirine yakın örnekler).}
+\elcizimi[0.35]{sekiller/Ders-7-s4-1.png}[4]
 2 örnek arasındaki fark \\
 Differential PCM (DPCM)
 
@@ -122,28 +119,28 @@ $f_s \gg f_N$ \quad $(f_s=4f_N)$
 DPCM'e göre daha basit ve \okunamadi{ucuz}
 
 \section{Delta modülatör}
-\sekilnotu[4]{Delta modülatör blok diyagramı. $x(t)$ ($+$) toplayıcıya girer; toplayıcının $-$ girişine geri besleme sinyali $\hat{x}_q(t)$ (estimate signal) gelir. Toplayıcı çıkışı $d(t)$ kutuya girer (kutu üstünde not: Delta modülatör karşılaştırıcı; kutu içinde turuncu iki seviyeli basamak karakteristik, iki seviyede de $\Delta$ işareti). Kutu çıkışı $d_q(t)$, ardından $f_s$ ile etiketli anahtar (örnekleyici), çıkış $d_q(k)$ (mavi not: DM'li işaret). Geri besleme: kutu çıkışından aşağı inen hat, sola bakan üçgen blok (altında: Integrator and amplifier) ve oradan toplayıcının $-$ girişine dönen hat. Altta kırmızı not: birim basamak fonksiyon (küçük basamak çizimi ve yukarı ok). Sol altta $\hat{x}_q(t)$: basamaklı (merdiven) küçük dalga; sağ altta $d_q(k)$ ekseni üzerinde düşey çizgi dizisi (ikili darbe katarı).}
+\elcizimi[0.9]{sekiller/Ders-7-s4-2.png}[4]
 
 \sayfa{5}
 Hata işareti: $d(t)=x(t)-\hat{x}_q(t)$ \quad (Fark)
 \[ \text{Eğer } d(t)\ \begin{cases} \ge 0, & d_q(t)=\Delta \\ <0, & d_q(t)=-\Delta \end{cases} \]
 
 \section{Delta demodülatör}
-\sekilnotu[5]{Delta demodülatör blok diyagramı: giriş $d_q(k)$, önünde dikdörtgen bulunan üçgen blok (altında: İntegral alıcı ve kuvvetlendirici), çıkışı $\hat{x}_q(t)$, ardından AGF yazan kutu, çıkış $x(t)$.}
+\elcizimi[0.6]{sekiller/Ders-7-s5-1.png}[5]
 örneklemenin tersi alçak geçiren filtredir
 
 PCM sabit telefon haberleşmesinde, Delta Modülatörü apartman telefonunda
 
-\sekilnotu[5]{Granular noise ve slope overload noise grafiği: yatay eksen $t$, düşey eksende $\hat{x}_q(t)$ etiketi ve küçük $\Delta$ basamağı. Kırmızı eğri $x(t)$ soldan yükselip tepede düzleşiyor, sonra aşağı iniyor; mavi merdiven biçimli $\hat{x}_q(t)$ $\Delta$'lık basamaklarla yükseliyor, tepede küçük salınımlar yapıyor, inişte geride kalıyor. Turuncu notlar: tepe düzlüğü üstünde parantezle Granular noise (GN): Boşta çalışma gürültüsü ($\Delta$ büyük); sağdaki inişte parantezle $\Delta$ küçükse gelen sinyali yakalayamaz; slope overload noise (SON): Eğim sınırlaması gürültüsü.}
+\elcizimi[0.85]{sekiller/Ders-7-s5-2.png}[5]
 \[ \mathrm{GN}\downarrow\ \Rightarrow\ \Delta\downarrow\ \Rightarrow\ \mathrm{SON}\uparrow\ \rightarrow\ \Delta_{opt}\ \rightarrow\ \text{Adaptive DM (ADM)} \]
 \hspace*{8.2cm}'' DPCM (ADPCM)
 
-\sekilnotu[5]{$d(t)$ grafiği (turuncu, basamaklı): başlangıçta yüksek pozitif değerden basamak basamak azalır, sıfır civarında küçük kare dalga gibi salınır, sonra basamak basamak negatife iner; yatay eksen $t$.}
+\elcizimi[0.6]{sekiller/Ders-7-s5-3.png}[5]
 Aslında işaretin türevini yolluyoruz
 
 $\Delta$ maksimum eğime eşit olursa
 
-\sekilnotu[5]{$x(t)$ ve $\hat{x}_q(t)$ etiketli S biçimli eğri: sıfırdan yükselip tepeye oturuyor; $t$ ekseninde $0$ ve $T_s$; $T_s$ anında eksenden eğriye düşey süslü parantez, etiketi $\Delta T$ gibi okunuyor.}
+\elcizimi[0.5]{sekiller/Ders-7-s5-4.png}[5]
 
 \sayfa{6}
 \[ \mathrm{maks}\,|\dot{x}(t)|\ \le\ \overset{\text{\scriptsize $\hat{x}_q(t)$'nin takip edebileceği max eğim}}{\frac{\Delta}{T_s}} \]

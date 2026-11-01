@@ -1,0 +1,477 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Vize çalışması: Doğrusal olmama, gürültü, dinamik aralık}{Not.pdf}
+
+\sayfa{1}
+\begin{gather*}
+v = A\cos\omega t\\
+\frac{A^2}{2} = \frac{1}{T}\int_0^T v^2(t)\,dt = V_{\mathrm{rms}}^2\\
+P = \frac{A^2}{2R}
+\end{gather*}
+
+\section{Power and Phasor}
+\begin{align*}
+P_{avg} &= \frac{|V|}{\sqrt{2}}\cdot\frac{|I|}{\sqrt{2}}\cos(\phi) \qquad \phi=\theta_V-\theta_I\\
+&= V_{\mathrm{rms}}\cdot I_{\mathrm{rms}}\cos(\phi)
+\end{align*}
+
+\section{Complex power}
+\begin{align*}
+S &= \underbrace{P}_{\text{aktif güç (W)}} + j\underbrace{Q}_{\text{reaktif güç (VAR)}}\\
+&= \tfrac{1}{2}\,(V\cdot I^{*}) = V_{\mathrm{rms}}I_{\mathrm{rms}}^{*}\\
+|S| &= \text{görünür güç}
+\end{align*}
+
+\section{Maximum power}
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s1-1.png}[1]
+\[ Z_s = Z_L^{*} \;\Rightarrow\; P_L = \frac{1}{8}\,\frac{|V_s|^2}{R_s} \]
+
+\section{\textcircled{1} Harmonic distortion}
+\[ y = a_1x + a_2x^2 + a_3x^3 \]
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s1-2.png}[1]
+\begin{align*}
+x(t) &= A\cos\omega t\\
+y(t) &= a_1 A\cos\omega t + a_2 (A\cos\omega t)^2 + a_3 (A\cos\omega t)^3\\
+(A\cos\omega t)^2 &= \frac{A^2}{2}(1+\cos 2\omega t)\\
+(A\cos\omega t)^3 &= \frac{A^3}{4}(3\cos\omega t+\cos 3\omega t)\\
+y(t) &= a_1 A\cos\omega t + a_2\frac{A^2}{2}(1+\cos(2\omega t))\\
+&\quad + a_3\frac{A^3}{4}(3\cos\omega t+\cos 3\omega t)
+\end{align*}
+\elcizimi[0.8]{sekiller/vize-calismasi-Not-s1-3.png}[1]
+\begin{align*}
+y(t) &= \frac{a_2A^2}{2} + \left(a_1A+\frac{3a_3A^3}{4}\right)\cos\omega t\\
+&\quad + \frac{a_2A^2}{2}\cos 2\omega t + \frac{a_3A^3}{4}\cos 3\omega t
+\end{align*}
+
+\sayfa{2}
+BPF \quad $a_1A+\dfrac{3a_3}{4}A^3$ geçer
+
+\section{\textcircled{2} Gain compression}
+\[ V_{out} = \underbrace{-\sqrt{2k\,\tfrac{W}{L}\,I_B}\,R_D}_{a_1}\,V_{in} + \underbrace{\frac{2k^{3/2}}{8\sqrt{I_B}}\,R_D}_{\frac{3a_3}{4}}\,V_{in}^3 \]
+$a_1, a_3$ have different signs
+
+Most of the time \quad $a_1\cdot a_3<0$
+\[ \mathrm{Gain} = \frac{V_{out}(\text{fundamental})}{V_{in}} = \frac{a_1A+\frac{3a_3}{4}A^3}{A} \]
+\begin{align*}
+V_{out} &= a_1V_{in}+\frac{3a_3}{4}V_{in}^3\\
+\mathrm{Gain} &= \frac{V_{out}}{V_{in}} = \frac{a_1A+\frac{3a_3}{4}A^3}{A}
+\end{align*}
+\[ \Rightarrow\ \mathrm{gain} = a_1+\frac{3}{4}a_3A^2 \]
+\begin{enumerate}[label=\arabic*)]
+\item $a_1>0,\ a_3<0 \to \mathrm{Gain}=a_1-\frac{3}{4}|a_3|A^2 \to v_{in}$ \qquad gain girişe bağlı.
+\item $\mathrm{Gain}\propto A^2$
+\end{enumerate}
+girişin genliği çok yükselirse kazanç düşer
+
+\section{\textcircled{3} Desensitization}
+\elcizimi[0.6]{sekiller/vize-calismasi-Not-s2-1.png}[2]
+\[ x_i(t) = \underbrace{A_1\cos\omega_1 t}_{\text{desired input signal}} + \underbrace{A_2\cos\omega_2 t}_{\text{unwanted signal}} \]
+\[ y = a_1x+a_2x^2+a_3x^3 \]
+\begin{align*}
+y(t) &= a_1A_1\cos\omega_1 t + a_1A_2\cos\omega_2 t\\
+&\quad + a_2\left[A_1^2\cos^2\omega_1 t + A_2^2\cos^2\omega_2 t\right]\\
+&\quad + 2a_2A_1A_2\underbrace{(\cos\omega_1 t)(\cos\omega_2 t)}_{\cos(\omega_1+\omega_2)t+\cos(\omega_2-\omega_1)t}
+\end{align*}
+\elcizimi[0.45]{sekiller/vize-calismasi-Not-s2-2.png}[2]
+\elcizimi[0.75]{sekiller/vize-calismasi-Not-s2-3.png}[2]
+
+\sayfa{3}
+\begin{align*}
+&+a_3\Big[A_1^3\cos^3\omega_1 t + A_2^3\cos^3\omega_2 t + 3A_1\cos\omega_1 t\cdot\underbrace{A_2^2\cos^2\omega_2 t}_{1+\cos 2\omega_2 t}\\
+&\qquad + 3A_2\cos\omega_2 t\cdot A_1^2\cos^2\omega_1 t\Big]
+\end{align*}
+\[ \frac{3}{4}a_3A_1^3\cos\omega_1 t + \frac{A_1^3}{4}\cos 3\omega_1 t \]
+\[
+\begin{array}{c}\cos\omega_2 t\\ +\\ \cos 3\omega_2 t\end{array}
+\qquad
+\begin{array}{c}\cos\omega_1 t\\ +\\ \cos(2\omega_2-\omega_1)t\\ +\\ \cos(2\omega_2+\omega_1)t\end{array}
+\qquad
+\begin{array}{c}\cos\omega_2 t\\ +\\ \cos(2\omega_1-\omega_2)t\\ +\\ \cos(2\omega_1+\omega_2)t\end{array}
+\]
+\formulkutu{\begin{gathered} n\omega_1+m\omega_2\\ n+|m|=3 \end{gathered}}
+
+gelen sinyal
+\[ \frac{3}{4}a_3A_1^3\cos\omega_1 t + \frac{3A_1A_2^2}{2}\,a_3\cos\omega_1 t \]
+\elcizimi[0.9]{sekiller/vize-calismasi-Not-s3-1.png}[3]
+$\omega_1$ frekansında olan sinyal:
+\[ a_1A_1\cos\omega t + \frac{3}{4}a_3A_1^3\cos\omega_1 t + \frac{3A_1A_2^2}{2}\,a_3\cos\omega_1 t \]
+\[ \text{Gain:}\ \frac{\left(a_1A_1-\frac{3}{2}|a_3|A_1A_2^2\right)\cos\omega_1 t}{A_1\cos\omega t}\ \Big\}\ A_2\!\uparrow\!\uparrow \qquad \text{No signal appears at the output} \]
+
+\section{Ex}
+\elcizimi[0.75]{sekiller/vize-calismasi-Not-s3-2.png}[3]
+Vericinin ikinci harmoniğine kadar bastırılmalıdır ki bu alıcı \okunamadi{doyuma uğramasın}
+
+\elcizimi[0.45]{sekiller/vize-calismasi-Not-s3-3.png}[3]
+\begin{gather*}
+P_2-10\,\mathrm{dB} < P_{1\mathrm{dB}}\\
+P_2-10 < -25\ \mathrm{dB}\\
+P_2 < -15\ \mathrm{dBm}
+\end{gather*}
+en az 45 dB bastırılmalıdır.
+\begin{gather*}
+0\ \mathrm{dBm}\quad 1\ \mathrm{mWatt}\\
+10\ \mathrm{dBm}\quad 10\ \mathrm{mWatt}\\
+10\log\left(\frac{1\,\mathrm{W}}{10^{-3}}\right) = 30\ \mathrm{dBm}
+\end{gather*}
+
+\sayfa{4}
+\section{\textcircled{4} Intermodulation}
+\begin{gather*}
+A_{IM3} = \frac{3}{4}a_3A_1^2A_2\ \cos(2\omega_1-\omega_2)t\\
+A_1=A_2=A \Rightarrow A_{IM3} = \frac{3}{4}a_3A^3
+\end{gather*}
+if system linear $\Rightarrow a_1A$
+
+Intermodulation products $\Rightarrow \dfrac{3}{4}a_3A^3$
+\[ \mathrm{IM3} = \frac{\frac{3}{4}a_3A^3}{a_1A} = \frac{3}{4}\left|\frac{a_3}{a_1}\right|A^2 \]
+\[ A_{IIP3} \Rightarrow 20\log(|a_1|A_{IIP3}) = 20\log\left(\frac{3}{4}|a_3|A_{IIP3}^3\right) \]
+\formulkutu{A_{IIP3}=\sqrt{\frac{4}{3}\left|\frac{a_1}{a_3}\right|}}
+\begin{gather*}
+A_{1\mathrm{dB}} = \sqrt{0{,}145\left|\frac{a_1}{a_3}\right|}\\
+A_{IIP3}(\mathrm{dB})-A_1(\mathrm{dB}) = 9{,}6\ \mathrm{dB}
+\end{gather*}
+if $A_{IIP3}\uparrow$ more linear system
+\elcizimi[0.7]{sekiller/vize-calismasi-Not-s4-1.png}[4]
+\[ \frac{A_{out,int}(\omega_1,\omega_2)}{A_{out}(IM3)} = \frac{a_1A_{int}}{\frac{3}{4}a_3A_{int}^3} = \frac{a_1\footnotemark}{\frac{3}{4}a_3A_{int}^2} = \frac{A_{IIP3}^2}{A_{int}^2} \]
+\footnotetext{Kırmızı kalemle $a_1$ üzerine $A_{IIP3}^2$ yazılmış.}
+\[ A_{IIP3}^2 = \frac{A_{out,int}(\omega_1,\omega_2)}{A_{out}(IM3)}\,A_{int}^2 \]
+\[ 20\log(A_{IIP3}) = 20\log(A_{int}) + \frac{1}{2}\Big[20\log A_{out,int}(\omega_1,\omega_2) - 20\log A_{out}(IM3)\Big] \]
+
+\section{Ex}
+\[ P=\frac{V^2}{R} \]
+\[ 10\log\Big(\underbrace{\frac{\overset{W}{P_{IIP3}}}{10^{-3}}}_{-1}\Big) = -10\ \mathrm{dBm} \]
+\[ \Rightarrow P_{IIP3} = 10^{-4}\ \mathrm{W} = 0{,}1\ \mathrm{mW} \]
+\[ P_{IIP3} = \frac{A_{IIP3}^2}{2} \qquad \sqrt{A_{IIP3}^2} = \sqrt{10^{-4}\cdot 50} \]
+\[ A_{IIP3} = 70\ \mathrm{mV} \]
+
+\sayfa{5}
+\begin{align*}
+A_{IIP3}^2 &= \frac{A_{out,int}(\omega_1,\omega_2)}{A_{o,IM3}}\cdot A_{in,int}^2\\
+A_{IIP3}^2 &= \frac{a_1A_{in,int}}{A_{o,IM3}}\cdot A_{in,int}^2 = \frac{a_1A_{in,int}^3}{A_{o,IM3}}\\
+A_{IIP3}^2 &= \overbrace{\frac{a_1A_{in,int}^3}{A_{o,IM3}}\cdot\frac{A_{in,s}}{A_{in,s}}}^{A_{o,s}} = \kutula{\frac{A_{o,s}}{A_{o,IM}}}\cdot\frac{A_{in,int}^3}{A_{in,s}}
+\end{align*}
+\[ \frac{A_{o,s}}{A_{o,IM3}} = A_{IIP3}^2\cdot\frac{A_{in,s}}{A_{in,int}^3} = (70\,\mathrm{mV})^2\cdot\frac{1\,\mathrm{mV}}{(1\,\mathrm{mV})^3} = 4{,}9 \;\longrightarrow\; \simeq 13{,}8\ \mathrm{dB} \]
+
+\section{Ex}
+\elcizimi[0.9]{sekiller/vize-calismasi-Not-s5-1.png}[5]
+Compute IIP3 of the amplifier such that IM3 product falling at $\omega_3$ is 20 dB below the desired signal ? \quad ($\to A_{o,IM3}$ ??, \ $\to A_{o,s}$)
+\[ \frac{A_{o,s\mathrm{dB}}}{A_{o,IM3\mathrm{dB}}} = 20\,\mathrm{dB} \;\Rightarrow\; \frac{A_{o,s}}{A_{o,IM3}} = 10 \]
+\[ 20\log A_{sig}(\omega_1) - 2\,\mathrm{dB} = 20\log A_{sig_{BPF}}(\omega_1) \]
+\[ 20\log\frac{A_{sig}}{A_{sig_{BPF}}} = 2 \;\Rightarrow\; \frac{A_{sig}}{A_{sig_{BPF}}} = 10^{1/10} = \frac{0{,}1\cdot10^{-3}\ \mathrm{V}}{A_{sig_{BPF}}} \]
+\[ A_{sig_{BPF}}(\omega_1) = 0{,}079\ \mathrm{mV} = \textcircled{$V_1$} \]
+\begin{align*}
+20\log\frac{A_{int}(\omega_2)}{10\,\mathrm{mV}} - 17\,\mathrm{dB} &= 20\log A_{int_{BPF}}(\omega_2)\\
+&\Rightarrow A_{int_{BPF}}(\omega_2) = 1{,}412\ \mathrm{mV}\ \ \textcircled{$V_2$}
+\end{align*}
+\[ \ldots\ A_{int_{BPF}}(\omega_3) = 0{,}141\ \mathrm{mV}\ \ \textcircled{$V_3$} \]
+
+\sayfa{6}
+\[ \underset{(\mathrm{dB})}{A_{o,sig}} - \underset{(\mathrm{dB})}{A_{o,IM3}} = 20\ \mathrm{dB} \]
+\begin{gather*}
+A_{o,s} = a_1V_1\\
+A_{o,IM3} = \frac{4}{3}a_3A_2^2A_3\footnotemark = \frac{3}{4}a_3V_2^2V_3
+\end{gather*}
+\footnotetext{Claude notu: muhtemelen $\frac{3}{4}$ olmalı.}
+\[ \Rightarrow\ 20\log(a_1V_1) - 20\log\left|\frac{3}{4}a_3V_2^2V_3\right| = 20\log 10 \]
+\[ \frac{a_1V_1}{\frac{3}{4}a_3V_2^2V_3} = 10 \;\Rightarrow\; \frac{a_1}{a_3} = 26{,}6\cdot10^{-6} \]
+\[ A_{IIP3} = \sqrt{\frac{4}{3}\left|\frac{a_1}{a_3}\right|} = \sqrt{\frac{4}{3}\left|26{,}6\cdot10^{-6}\right|} = 5{,}95\ \mathrm{mV} \approx 15{,}5\ \mathrm{dBm} \]
+
+\section{Ex:}
+\[ \left.\begin{array}{l} a_1 = 10\\ A_{in,int} = 10\ \mathrm{mV}\\ A_{IIP3} = 80\ \mathrm{mV}\end{array}\right\}\ \begin{array}{l}\mathrm{IM3}=\,?\\ A_{o,IM3}=\,?\end{array} \]
+\begin{gather*}
+A_{IIP3} = \sqrt{\frac{4}{3}\left|\frac{a_1}{a_3}\right|}\\
+80\cdot10^{-3} = \sqrt{\frac{4}{3}\cdot\frac{10}{a_3}}\\
+a_3 = \frac{4\cdot10}{3\cdot(80\cdot10^{-3})^2} = \kutula{2083}\\
+\mathrm{IM3} = \frac{\frac{3}{4}a_3A^3}{a_1A} = \frac{\frac{3}{4}(2083)(10\cdot10^{-3})^2}{10} = \kutula{0{,}0156}
+\end{gather*}
+\begin{align*}
+A_{o,IM3} &= \frac{3}{4}a_3A^3 = 0{,}001562\ \mathrm{V}\\
+&= 1{,}562\ \mathrm{mV}
+\end{align*}
+
+\sayfa{7}
+\section{Noise}
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s7-1.png}[7]
+\[ P_{ave} = \lim_{T\to\infty}\int_0^T n^2(t)\,dt = E\left[n^2(t)\right]\footnotemark \]
+\footnotetext{Claude notu: muhtemelen integralin önünde $\frac{1}{T}$ çarpanı olmalı.}
+\[ \underbrace{\sigma^2}_{P_{AC}} = \underbrace{E[n^2]}_{P_{ave}} - \underbrace{E^2[n]}_{P_{DC}} \]
+\[ P_{ave} = P_{AC} + P_{DC} \]
+\elcizimi[0.4]{sekiller/vize-calismasi-Not-s7-2.png}[7]
+\elcizimi[0.45]{sekiller/vize-calismasi-Not-s7-3.png}[7]
+\[ P_{ave} = \int_0^\infty S_n(f)\,df \]
+\elcizimi[0.8]{sekiller/vize-calismasi-Not-s7-4.png}[7]
+
+\section{Input referred Noise}
+\elcizimi[0.35]{sekiller/vize-calismasi-Not-s7-5.png}[7]
+\begin{gather*}
+\Rightarrow P_{out} = P_{in}\cdot G\\
+N_{out} = N_{in}\cdot G + N_A
+\end{gather*}
+\elcizimi[0.8]{sekiller/vize-calismasi-Not-s7-6.png}[7]
+\formulkutu[önemli]{\begin{gathered} A_v = \frac{v_{out}}{v_{in}}\\[4pt] A_{vt} = \frac{v_{out}}{v_s} = \overbrace{\frac{v_{out}}{v_{in}}}^{A_v}\cdot\frac{v_{in}}{v_s} \end{gathered}}
+
+\section{How to find input referred Noise}
+\section{Ex:}
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s7-7.png}[7]
+\begin{gather*}
+\overline{v_{n,out_1}^2} + \overline{v_{n,out_2}^2} + \overline{v_{n,out_3}^2} + \cdots = \overline{v_{n,out_{total}}^2}\\
+\overline{v_{n,input}^2} = \frac{\overline{v_{n,out(total)}^2}}{A_{vt}^2}
+\end{gather*}
+
+\section{\textcircled{1} Cancel sources (gerilim kaynağı kısa, akım kaynağı açık devre)}
+$v_s \to$ short
+
+$I_B \to$ open
+\elcizimi[0.4]{sekiller/vize-calismasi-Not-s7-8.png}[7]
+\elcizimi[0.65]{sekiller/vize-calismasi-Not-s7-9.png}[7]
+\begin{gather*}
+\Rightarrow \overline{v_{n,out,1}^2} = \overline{i_n^2}\cdot r_o^2 \qquad \overline{i_n^2} = 4kT\gamma g_m\\
+\overline{v_{n,out,1}^2} = r_o^2\,4kT\gamma g_m
+\end{gather*}
+
+\textcircled{2}
+\elcizimi[0.55]{sekiller/vize-calismasi-Not-s7-10.png}[7]
+\[ \overline{v_{n,out2}^2} = \overline{v_{n,R_s}^2}\,\underbrace{(g_mr_o)^2}_{\text{Transistor gain}} = 4kTR_s\,(g_mr_o)^2 \]
+
+\section{\textcircled{3} Sum of squares}
+\begin{align*}
+\overline{v_{n,out(total)}^2} &= \overline{v_{n,out1}^2} + \overline{v_{n,out2}^2}\\
+&= r_o^2\,4kT\gamma g_m + (g_mr_o)^2\,4kTR_s
+\end{align*}
+\[ \textcircled{4}\quad \overline{v_{in,n}^2} = \frac{\overline{v_{n,out(total)}^2}}{A_{vt}^2} = \frac{r_o^2\,4kT\gamma g_m + (g_mr_o)^2\,4kTR_s}{(g_mr_o)^2} \]
+\[ \overline{v_{in,n}^2} = \underbrace{\frac{4kT\gamma}{g_m}}_{\substack{\text{amplifierden girişe}\\ \text{yansıyan gürültü}}} + \underbrace{4kTR_s}_{\substack{\text{kaynağın}\\ \text{gürültüsü}}} \]
+To decrease $\overline{v_{in,n}^2}$, increase $g_m$
+
+genellikle amplifierlar 10,15 dB üstü tasarlanır ki gürültüsü az olsun
+
+\sayfa{8}
+\section{Noise Figure (NF) / Noise Factor (F)}
+\[ NF = 10\log(F) \]
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s8-1.png}[8]
+\begin{gather*}
+SNR_{in} = \frac{P_{s,in}}{P_{n,in}}\\
+SNR_{out} = \frac{P_{s,out}}{P_{n,out}} = \frac{P_{s,out}}{P_{n,in}\cdot G + P_{n,A}}\\
+SNR_{in} > SNR_{out}
+\end{gather*}
+\formulkutu[önemli]{F = \frac{SNR_{in}}{SNR_{out}} > 1}
+\formulkutu[önemli]{NF = 10\log F = \underset{\mathrm{dB}}{SNR_{in}} - \underset{\mathrm{dB}}{SNR_{out}} > 0\,\mathrm{dB}}
+\formulkutu[önemli]{\text{good LNA} \to NF: 0\sim 2\,\mathrm{dB}}
+\elcizimi[0.8]{sekiller/vize-calismasi-Not-s8-2.png}[8]
+\begin{gather*}
+SNR_{in} = \frac{P_{s,in}}{P_{n,in}}\\
+P_{s,in} \to v_{in} = \frac{R_{in}}{R_{in}+R_s}\,v_s\\
+P_{s,in} = \frac{v_{in}^2}{R_{in}} = \frac{\left(\frac{R_{in}}{R_{in}+R_s}\right)^2 v_s^2}{R_{in}}
+\end{gather*}
+\elcizimi[0.85]{sekiller/vize-calismasi-Not-s8-3.png}[8]
+\begin{gather*}
+v_{n,in} = \frac{R_{in}}{R_{in}+R_s}\,v_{n,R_s}\\
+P_{n,in} = \frac{\overline{v_{n,in}^2}}{R_{in}} = \frac{\left(\frac{R_{in}}{R_{in}+R_s}\right)^2\overline{v_{n,R_s}^2}}{R_{in}}
+\end{gather*}
+\[ SNR_{in} = \frac{\dfrac{\left(\frac{R_{in}}{R_{in}+R_s}\right)^2 v_s^2}{R_{in}}}{\dfrac{\left(\frac{R_{in}}{R_{in}+R_s}\right)^2\overline{v_{n,R_s}^2}}{R_{in}}} = \frac{v_s^2}{\overline{v_{n,R_s}^2}} \]
+sadece kaynağa bağlı
+\[ SNR_{out} = \frac{P_{s,out}}{P_{n,out}} \]
+
+\[ \text{What is}\ SNR_{out} = ?\ = \frac{P_{s,out}}{P_{n,out}} \]
+\[ P_{s,out} = \left[V_s\left(\frac{R_{in}}{R_{in}+R_s}\right)\right]^2\cdot A_v^2 = v_s^2\left(\frac{R_{in}}{R_{in}+R_s}\right)^2A_v^2 \]
+\sekilnotu[8]{Basılı gürültü modeli şeması ($V_s$, $R_s$, $\overline{v_n^2}$, $\overline{i_n^2}$, gürültüsüz $A_v$ kutusu, $R_{in}$); el yazısıyla $\overline{v_{n,R_s}^2}$ kaynağı eklenmiş}
+\subsection*{\textcircled{1} Noise coming from $R_s$ ($\overline{v_n^2}=0,\ \overline{I_n^2}=0$)}
+\[ \overline{v_{n,out_1}^2} = \overline{v_{n,R_s}^2}\left(\frac{R_{in}}{R_s+R_{in}}\right)^2A_v^2 \]
+\subsection*{\textcircled{2} Noise coming from $\overline{v_n^2}$ ($\overline{v_{n,R_s}^2}=0,\ \overline{I_n^2}=0$)}
+\[ \overline{v_{n,out_2}^2} = \overline{v_n^2}\left(\frac{R_{in}}{R_s+R_{in}}\right)^2A_v^2 \]
+\subsection*{\textcircled{3} Noise coming from $\overline{i_n^2}$ ($\overline{v_n^2}=0,\ \overline{v_{n,R_s}^2}=0$)}
+\[ \overline{v_{n,out_3}^2} = \overline{i_n^2}\,R_s^2\left(\frac{R_{in}}{R_{in}+R_s}\right)^2A_v^2 \]
+\elcizimi[0.7]{sekiller/vize-calismasi-Not-s8-4.png}[8]
+\elcizimi[0.3]{sekiller/vize-calismasi-Not-s8-5.png}[8]
+\[ SNR_{out} = \frac{V_s^2}{\overline{v_{n,R_s}^2} + \overline{v_n^2} + \overline{i_n^2}R_s^2} \]
+\[ F = \frac{SNR_{in}}{SNR_{out}} = \frac{v_s^2/\overline{v_{n,R_s}^2}}{v_s^2\Big/\left(\overline{v_{n,R_s}^2}+\overline{v_n^2}+\overline{i_n^2}\cdot R_s^2\right)} \]
+\[ F = \frac{\overline{v_{n,R_s}^2} + \overline{v_n^2} + \overline{i_n^2}R_s^2}{\overline{v_{n,R_s}^2}} \]
+\formulkutu[önemli]{F = 1 + \frac{\overbrace{\overline{v_n^2}+\overline{i_n^2}R_s^2}^{\text{input referred noise}}}{\underbrace{\overline{v_{n,R_s}^2}}_{\text{source noise}}}}
+\formulkutu[önemli]{\begin{gathered} A_v = \frac{v_{out}}{v_{in}}\\[4pt] A_{vt} = \frac{v_{out}}{v_s} = \frac{v_{out}}{v_{in}}\cdot\frac{v_{in}}{v_s} \end{gathered}}
+\begin{align*}
+F &= \frac{A_{vt}^2}{A_{vt}^2}\left(\frac{\overline{v_{n,R_s}^2}+\overline{v_n^2}+\overline{i_n^2}\cdot R_s^2}{\overline{v_{n,R_s}^2}}\right)\\
+&= \frac{\overline{v_{n,out}^2}}{A_{vt}^2}\cdot\frac{1}{\overline{v_{n,R_s}^2}}
+\end{align*}
+\formulkutu[önemli]{F = \frac{\overline{v_{n,out}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s}}
+
+\sayfa{9}
+\section{Ex:}
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s9-1.png}[9]
+\[ F = \frac{\overline{v_{n,out}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s} \]
+\formulkutu{A_{vt} = \frac{R_P}{R_S+R_P}}
+\[ \overline{v_{n,out(total)}^2} \to R_s\ (V_s=0) \]
+\elcizimi[0.4]{sekiller/vize-calismasi-Not-s9-2.png}[9]
+\[ \overline{v_{n,out_1}^2} = \left(\frac{R_P}{R_P+R_s}\right)^2\overline{v_{n,R_s}^2} \]
+\[ R_P\ (V_s=0) \to \]
+\elcizimi[0.3]{sekiller/vize-calismasi-Not-s9-3.png}[9]
+\[ \overline{v_{n,out_2}^2} = \left(\frac{R_s}{R_s+R_P}\right)^2\overline{v_{n,R_P}^2} \]
+\begin{align*}
+\overline{v_{n,out(total)}^2} &= \left(\frac{R_s}{R_P+R_s}\right)^2\underbrace{\overline{v_{n,R_P}^2}}_{4kTR_P} + \left(\frac{R_P}{R_P+R_s}\right)^2\underbrace{\overline{v_{n,R_s}^2}}_{4kTR_s}\\
+&= 4kT\,\frac{R_sR_P^2+R_PR_s^2}{(R_P+R_s)^2} = 4kT\,\frac{R_sR_P(R_s+R_P)}{(R_s+R_P)^2}
+\end{align*}
+\[ \overline{v_{n,out(total)}^2} = 4kT\,\underbrace{\frac{R_sR_P}{R_s+R_P}}_{R_s\parallel R_P} \]
+\begin{align*}
+F &= \frac{\overline{v_{n,out}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s}\\
+&= \frac{R_s+R_P}{R_P} = 1+\frac{R_s}{R_P}
+\end{align*}
+$R_P\uparrow\!\uparrow \to F\approx 1$ gürültüsüz
+
+$R_P \gg R_s \to$ No noise effect coming from $R_P$
+
+Çalışma sorusuna bak\\ Ders 6
+
+\section{Noise in Cascaded Stages}
+\elcizimi[0.9]{sekiller/vize-calismasi-Not-s9-4.png}[9]
+\begin{align*}
+F_{total} &= 1 + (F_1-1) + \frac{F_2-1}{G_1} + \frac{F_3-1}{G_1G_2}\\
+&\quad + \frac{F_4-1}{G_1G_2G_3} + \cdots + \frac{F_n-1}{G_1G_2\cdots G_{n-1}}
+\end{align*}
+\[ F_{total} = \underbrace{F_1}_{\text{Dominant } F} + \frac{F_2-1}{\underbrace{G_1}_{\approx{>}10\,\mathrm{dB}}} + \frac{F_3-1}{G_1G_2} \]
+mutlaka girişte düşük gürültülü ve NF düşük olan amplifier seçilmeli
+
+\section{Ex:}
+\elcizimi[0.45]{sekiller/vize-calismasi-Not-s9-5.png}[9]
+\[ NF_t = ?? \]
+\[ F_1 = 10^{\frac{2}{10}} = 1{,}58 \qquad F_2 = 10^{\frac{10}{10}} = 10 \qquad G_1 = 10 \]
+\[ F_t = F_1 + \frac{F_2-1}{G_1} = 1{,}58 + \frac{10-1}{10} = 2{,}48 \]
+\[ NF_t = 10\log F_t = 3{,}95\ \mathrm{dB} \]
+
+\section{Noise in passive Reciprocal Circuit}
+\section{Reciprocity}
+\elcizimi[0.6]{sekiller/vize-calismasi-Not-s9-6.png}[9]
+\[ S = \begin{bmatrix} S_{11} & S_{12}\\ S_{21} & S_{22} \end{bmatrix} \qquad \overset{\text{Reciprocity}}{S_{12} = S_{21}} \]
+$\leftarrow$ pasif devrelerde olabiliyor
+\begin{gather*}
+S_{11} \to \text{Return loss}\\
+S_{22} \to \text{Output Return loss}\\
+S_{21} \to \text{Gain}\\
+S_{12} \to \text{Isolation}
+\end{gather*}
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s9-7.png}[9]
+\[ \overline{v_n^2} = 4kT\,\underbrace{\mathrm{Re}\{Z_{out}\}}_{R_{out}} \]
+\[ \overline{v_{n,out}^2} = \overline{v_n^2}\left(\frac{R_L}{R_L+R_{out}}\right)^2 - 4kTR_{out}\left(\frac{R_L}{R_L+R_{out}}\right)^2\footnotemark \]
+\footnotetext{Claude notu: muhtemelen ikinci terimden önceki işaret $-$ değil $=$ olmalı.}
+
+\sayfa{10}
+\elcizimi[0.85]{sekiller/vize-calismasi-Not-s10-1.png}[10]
+\[ \left.\begin{array}{l}
+R_s = R_{in} \Rightarrow \dfrac{R_{in}}{R_s+R_{in}} = \dfrac{1}{2}\\
+\text{Input matched}\\
+P_{in} = \dfrac{v_{in}^2}{R_{in}} = \dfrac{v_s^2}{4R_{in}}\\
+v_{in} = V_s\left(\dfrac{R_{in}}{R_s+R_{in}}\right)
+\end{array}\right\}\ \begin{array}{l} R_L = R_{out}\\ \text{Output matched}\end{array} \]
+\[ P_{out} = \frac{(A_v\cdot V_s)^2}{2(R_L+R_{out})} = \frac{(A_vV_s)^2}{4R_L} \]
+\[ \frac{P_{out}}{P_{in}} = G \]
+\[ G = \frac{\dfrac{(A_vV_s)^2}{4R_L}}{\dfrac{V_s^2}{4R_{in}}} = \kutula{A_v^2\,\frac{R_{in}}{R_L} = G} \]
+\formulkutu[önemli]{\overset{\text{zayıflama}}{L} = \frac{1}{G} = \frac{1}{A_v^2}\cdot\frac{R_L}{R_s}}
+\begin{align*}
+F &= \frac{\overline{v_{n,out}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s}\\
+&= \frac{4kTR_{out}\left(\frac{R_L}{R_L+R_{out}}\right)^2}{\left(\frac{A_v}{2}\right)^2}\cdot\frac{1}{4kTR_s}\\
+&= \frac{\frac{4kTR_L}{4}}{\left(\frac{A_v}{2}\right)^2}\cdot\frac{1}{4kTR_s} \Rightarrow \kutula{\frac{1}{A_v^2}\cdot\frac{R_L}{R_s} = F}
+\end{align*}
+\[ A_{vt} = \overbrace{\frac{V_o}{V_{in}}}^{A_v}\,\overbrace{\frac{V_{in}}{V_s}}^{1/2} = \frac{A_v}{2} \]
+
+\section{Ex:}
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s10-2.png}[10]
+\[ F_t = ? \]
+\begin{align*}
+F_t &= F_1 + \frac{F_2-1}{G_1} = L + \frac{F_2-1}{\frac{1}{L}}\\
+&= L + LF_2 - L = LF_2 = F_{total}
+\end{align*}
+\[ \left.\begin{array}{l} F_1 = L\\ G_1 = \dfrac{1}{L}\end{array}\right\} \]
+\formulkutu{NF_t = L_{\mathrm{dB}} + NF_2}
+Noise figure artırır
+
+\section{Noise power in Rx input}
+\elcizimi[0.6]{sekiller/vize-calismasi-Not-s10-3.png}[10]
+\[ \overline{v_{n,in}^2} = \underbrace{\left(\frac{R_{in}}{R_{in}+R_s}\right)^2}_{\frac{1}{4}}\cdot\underbrace{\overline{v_s^2}}_{4kTR_s} = kTR_s \]
+\[ \frac{\overline{v_{n,in}^2}}{R_{in}} = \frac{kTR_s}{\underbrace{R_{in}}_{R_{in}=R_s}} = kT \qquad (1\,\mathrm{Hz\ BW}) \]
+1Hz'lik bantta kT kadar gürültü gücü bulunur
+\[ P_{n,in} = kTB\ \ \left(\text{Input noise power in bandwidth } B\right) \]
+
+\section{Receive Noise Floor}
+Noise floor = Receiver input equivalent noise
+\elcizimi[0.55]{sekiller/vize-calismasi-Not-s10-4.png}[10]
+$N_o$: output noise power excluding $R_s$ \quad kaynak gürültü düşünülmediğinde
+\[ F = \frac{\overline{v_{n,out}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s} \]
+\begin{align*}
+F &= \frac{\text{Total output noise power including } R_s}{G\,(\text{Noise power from } R_s \text{ only})}\\
+&= \frac{N_o+GkTB}{GkTB} = F
+\end{align*}
+\[ \overset{\text{???}}{\text{Input noise}} = kTB + \frac{N_o}{G} = \underbrace{FkTB}_{\text{Noise floor}} \]
+\elcizimi[0.85]{sekiller/vize-calismasi-Not-s10-5.png}[10]
+
+\sayfa{11}
+\section{Receiver noise Floor}
+\[ F = \frac{N_o+GkTB}{G}\cdot\frac{1}{kTB} \]
+\[ \text{Noise floor} = FkTB = \frac{N_o}{G} + kTB \]
+\section{Receiver SNR \& Noise}
+\elcizimi[0.45]{sekiller/vize-calismasi-Not-s11-1.png}[11]
+\elcizimi[0.9]{sekiller/vize-calismasi-Not-s11-2.png}[11]
+\[ SNR_{out} < SNR_{in} \]
+output noise = input noise $+\, N_A$
+\[ \text{Noise floor} = FkTB = \underbrace{10\log F}_{NF} + \underbrace{10\log kT}_{-174\,\mathrm{dBm/Hz}} + 10\log B \]
+\[ \underset{(\mathrm{dB})}{\text{Noise floor}} = -174\,\tfrac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log B + NF \]
+\elcizimi[0.9]{sekiller/vize-calismasi-Not-s11-3.png}[11]
+\[ \underset{\text{total noise}}{\text{Output referred}} = FkTBG = NF - 174 + 10\log B + 10\log G \]
+
+\section{Ex:}
+\elcizimi[0.45]{sekiller/vize-calismasi-Not-s11-4.png}[11]
+\begin{align*}
+\text{noise floor} = FkTB &= -174\,\tfrac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log(10\cdot10^6) + 10\\
+&= -174 + 70 + 10 = -94\ \mathrm{dBm}
+\end{align*}
+\[ N_{out,t} = -94 + 16 = -78\ \mathrm{dBm} \]
+
+\section{Ex:}
+\elcizimi[0.7]{sekiller/vize-calismasi-Not-s11-5.png}[11]
+\section{Calculate NF total}
+\begin{align*}
+F &= F_1 + \frac{F_2-1}{G_1} \qquad \text{Skaler almalı}\\
+&= 10^{3/10} + \frac{10^{12/10}-1\footnotemark}{10^{12/10}} = 2{,}57
+\end{align*}
+\footnotetext{Claude notu: muhtemelen paydaki üs $10/10$ olmalı ($F_2=10$).}
+\[ NF = 10\log(F) = 10\log(2{,}57) = 4{,}1\ \mathrm{dB} \]
+Calculate Noise floor \quad $B = 5\,\mathrm{MHz}$
+\begin{align*}
+\text{Noise floor} &= -174\,\tfrac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log(5\cdot10^6) + 4{,}1\\
+&= -102{,}9\ \mathrm{dBm}
+\end{align*}
+
+\section{Sensitivity and Dynamic Range}
+Sensitivity is the minimum which can be detected at output \quad $P$[dBm]
+\elcizimi[0.85]{sekiller/vize-calismasi-Not-s11-6.png}[11]
+\[ F = \frac{SNR_{in}}{SNR_{out}} = \frac{\dfrac{P_{sig,in}}{P_{n,in}}}{SNR_{out}} = \frac{P_{sig,in}}{P_{n,in}\cdot SNR_{out}} \]
+\[ P_{sig,in} = \underbrace{P_{n,in}}_{\substack{kTB\\ \text{if } R_s=R_{in}}}\cdot F\cdot SNR_{out} \]
+\[ P_{sig,in} = \underbrace{kTB\cdot F}_{\text{Noise floor}}\cdot SNR_{out} \]
+\[ P_{sig,in(min)}\Big|_{\mathrm{dB}} = \text{noise floor}_{\mathrm{dB}} + SNR_{out,\mathrm{dB}} \]
+\[ \underbrace{P_{sig,in(min)}\Big|_{\mathrm{dB}}}_{\text{sensitivity}} = -174\,\tfrac{\mathrm{dBm}}{\mathrm{Hz}} + 10\log B + NF + SNR_{out}\Big|_{\mathrm{dB}} \]
+
+\sayfa{12}
+\section{Ex:}
+A GSM receiver has $SNR_{out(\mathrm{min})} = 12\,\mathrm{dB}$
+
+channel BW $= 200\,\mathrm{kHz}$
+
+$NF = 9\,\mathrm{dB}$
+
+what is the minimum acceptable signal power ?
+\begin{align*}
+P_{sig,in(\mathrm{min})} &= -174\,\tfrac{\mathrm{dBm}}{\mathrm{Hz}} + \underbrace{10\log(200\cdot10^3)}_{53} + 9 + 12\\
+&= -112 + 12 = -100\ \mathrm{dBm}
+\end{align*}
+\elcizimi[0.5]{sekiller/vize-calismasi-Not-s12-1.png}[12]
+
+\section{Dynamic Range}
+\elcizimi[0.7]{sekiller/vize-calismasi-Not-s12-2.png}[12]
+\[ DR = IP_{1\mathrm{dB}} - \underbrace{P_{sig,in(\mathrm{min})}\Big|_{\mathrm{dB}}}_{\substack{MDS\\ \text{Minimum detectable signal}}} = IP_{1\mathrm{dB}} - MDS \]
+
+\section{SFDR}
+\section{Spur-free Dynamic Range}
+\elcizimi[0.8]{sekiller/vize-calismasi-Not-s12-3.png}[12]
+\[ SFDR = P_{sig,desired} - P_{spur}(\mathrm{max}) \]
+\elcizimi[0.7]{sekiller/vize-calismasi-Not-s12-4.png}[12]
+\elcizimi[0.4]{sekiller/vize-calismasi-Not-s12-5.png}[12]
+\[ SFDR = \frac{2\left(P_{IIP3}+174-NF-10\log B\right)}{3} - SNR_{out}(\mathrm{min}) \]
+
+\end{document}

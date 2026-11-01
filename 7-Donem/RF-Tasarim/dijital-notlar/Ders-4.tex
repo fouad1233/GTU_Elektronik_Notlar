@@ -1,0 +1,222 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Smith Chart, Power ve Linearity}{Ders-4.pdf}
+
+\sayfa{1}
+\section{Smith Chart}
+\elcizimi[0.62]{sekiller/Ders-4-s1-1.png}[1]
+\[ Z = R + jX \]
+$Z_0$ normalize \quad $Z_0 = \qty{50}{\ohm}$
+
+\elcizimi[0.5]{sekiller/Ders-4-s1-2.png}[1]
+\sekilnotu[1]{Basılı normalize empedans Smith abağı (Figure 6-42); dijitalleştirilmedi.}
+
+\[ Z_{in} = R + j\underbrace{\omega X_{im}}_{X} \]
+
+\begin{itemize}
+\item Impedance matching
+\item Finding transmission line length
+\item Finding the value of L or C used for matching
+\item Finding reflection coefficient of both load or source
+\item Converting Z to admittance Y
+\item Finding VSWR (Voltage Standing wave ratio)
+\end{itemize}
+
+\section{Softwares}
+\begin{enumerate}[label=\arabic*-]
+\item (Keysight) \underline{ADS} Advance Design System \\ \hspace*{1.2em} EM simulation
+\item (Cadence\textsuperscript{NI}) AWR \quad \vurgu[turuncu]{(1--2: çip düzeyinde tasarım)}
+\item CST (Dassault) \quad Özellikle anten tasarımcıları için
+\item HFSS (Ansys)
+\end{enumerate}
+
+\section{Measurement Devices}
+\begin{enumerate}[label=\arabic*)]
+\item \underline{Spectrum Analyzer}: \underline{(Frequency Range) (10\,Hz--13\,GHz)} \quad frekans güçlerini \dots
+\item \underline{Signal Analyser}: \\ Spectrum Analyser'a ilaveten demodulation yapılabilir
+\end{enumerate}
+
+\sayfa{2}
+\begin{enumerate}[label=\arabic*),start=3]
+\item Network Analyzer: \\ S param \quad $f$-domain or Smith chart
+\item Signal generater: yüksek frekanslı sinyal üretir
+\item Microwave/RF power Meter
+\end{enumerate}
+
+\section{Instantaneous Power (anlık güç)}
+\elcizimi[0.7]{sekiller/Ders-4-s2-1.png}[2]
+\[ p(t) = v(t)\,i(t) = \frac{v^2(t)}{R} \]
+Bizim için ortalama güç önemli
+\[ P_{ave} = \frac{1}{T}\int_0^T p(t)\,dt = \frac{1}{R}\,\underline{\frac{1}{T}\int_0^T v^2(t)\,dt} \]
+\[ \langle v^2(t)\rangle = \frac{1}{T}\int_0^T v^2(t)\,dt \qquad \text{$v^2(t)$'nin ortalaması} \]
+\[ \sqrt{\langle v^2(t)\rangle} = V_{rms} \text{ (root mean square)} \]
+\[ v(t) = \underset{A}{2}\cos(\omega t) \]
+\[ \langle v^2(t)\rangle = \frac{1}{T}\int_0^T v^2(t)\,dt = \frac{A^2}{2} \]
+\[ R = 50\,\Omega \Rightarrow P_{avg} = \frac{\langle v^2(t)\rangle}{R} = \frac{A^2}{2\cdot 50} = \frac{1}{25}\ \mathrm{W} \]
+
+\section{Power \& Phasor}
+\elcizimi[0.4]{sekiller/Ders-4-s2-2.png}[2]
+\begin{align*}
+V &= |V|e^{j\theta_V} \to v(t) = |V|\cos(\omega t + \theta_V)\\
+I &= |I|e^{j\theta_I} \to i(t) = |I|\cos(\omega t + \theta_I)\\
+Z = \frac{V}{I} &= \frac{|V|e^{j\theta_V}}{|I|e^{j\theta_I}} = \frac{|V|}{|I|}e^{j(\theta_V-\theta_I)}
+\end{align*}
+
+\sayfa{3}
+\begin{align*}
+Z = R &\Rightarrow I = \frac{V}{Z} = \frac{|V|e^{j\theta_V}}{R} = \frac{|V|}{R}e^{j\theta_V}\\
+Z = j\omega L = \omega L\cdot e^{j90^\circ} &\Rightarrow I = \frac{V}{Z} = \frac{|V|e^{j\theta_V}}{\omega L\,e^{j90^\circ}}\\
+&= \frac{|V|}{\omega L}e^{j(\theta_V-90^\circ)}
+\end{align*}
+akım, gerilime göre $90^\circ$ derece geridedir
+
+\elcizimi[0.9]{sekiller/Ders-4-s3-1.png}[3]
+
+\begin{align*}
+p(t) &= v(t)\,i(t)\\
+&= |V||I|\cos(\omega t+\theta_V)\cos(\omega t+\theta_I)\\
+&= \frac{|V||I|}{2}\Big\{\cos(2\omega t+\theta_V+\theta_I)+\cos(\theta_V-\theta_I)\Big\}
+\end{align*}
+\begin{align*}
+P_{avg} &= \frac{1}{T}\int_0^T p(t)\,dt = \frac{|V||I|}{2}\cos(\theta_V-\theta_I)\\
+&= \frac{|V|}{\sqrt2}\,\frac{|I|}{\sqrt2}\cos(\phi) \qquad \phi \equiv \theta_V-\theta_I
+\end{align*}
+\formulkutu{P_{ave} = V_{rms}I_{rms}\cdot\cos(\phi)}
+
+$Z = L \;\to\; P_{ave} = 0$ \quad $\longrightarrow$ \okunamadi{Nasıl olabilir} (reaktif güç var)
+
+$Z = R \;\to\; P_{ave} = V_{RMS}\cdot I_{RMS}$
+
+\section{Complex Power}
+\begin{align*}
+V &= |V|e^{j\theta_V} & V_{rms} &= \frac{|V|}{\sqrt2}e^{j\theta_V}\\
+I &= |I|e^{j\theta_I} & I_{rms} &= \frac{|I|}{\sqrt2}e^{j\theta_I}
+\end{align*}
+\[ S = P + jQ \]
+\begin{align*}
+S &= \frac12\left(V\cdot I^*\right) \text{ or } \left(V_{rms}\cdot I_{rms}^*\right)\\
+&= \frac12\left(|V|e^{j\theta_V}\,|I|e^{-j\theta_I}\right) = \frac12|V||I|e^{j(\theta_V-\theta_I)}\\
+&= \underbrace{\frac12|V||I|\cos(\theta_V-\theta_I)}_{P} + j\,\underbrace{\frac12|V||I|\sin(\theta_V-\theta_I)}_{Q}
+\end{align*}
+
+\sayfa{4}
+\noindent P: average power or active Power \quad $P = \mathrm{Real}\{S\}$ \hfill [watt -- W]\\
+Q: reactive power \quad $Q = \mathrm{Imag}\{S\}$ \hfill [VAR] Voltage Amper Reactive
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{l c c c}
+ & \underline{Z} & \underline{P} & \underline{Q}\\
+Resistor & \shortstack{$R$\\$\theta_V=\theta_I=0$} & \shortstack{$P=\dfrac{|V|^2}{R}>0$\\absorbs power} & $0$\\
+Inductor & \shortstack{$j\omega L$\\$\theta_V-\theta_I=90^\circ$} & $0$ & \shortstack{$\dfrac{j|V|^2}{\omega L}>0$\\absorbs power (VAR)}\\
+Capacitor & \shortstack{$\dfrac{1}{j\omega C}$\\$\theta_V-\theta_I=-90^\circ$} & $0$ & \shortstack{$-j|V|^2\omega C<0$\\generate VAR}\\
+\end{tabular}
+\end{center}
+
+\section{HW (1)}
+\noindent 1) $v(t) = 2\cos(\omega t+30)$ \\ \hspace*{1.2em} $Z = 5 + j10$ \\ \hspace*{1.2em} Find $I$ and $P_{ave}$
+
+\noindent 2)
+\elcizimi[0.55]{sekiller/Ders-4-s4-1.png}[4]
+Find $S=?$
+
+\section{Maximum Power}
+\elcizimi[0.5]{sekiller/Ders-4-s4-2.png}[4]
+\begin{align*}
+P_{ave}(load) = P_L &= \frac12\mathrm{Re}\{V_L I^*\}\\
+&= \frac12\mathrm{Re}\left\{\overbrace{\frac{Z_L}{Z_s+Z_L}V_s}^{V_L}\left(\frac{V_s}{Z_s+Z_L}\right)^{*}\right\}\\
+&= \frac12\mathrm{Re}\left\{V_s\cdot V_s^*\cdot\frac{Z_L}{Z_s+Z_L}\cdot\frac{1}{Z_s^*+Z_L^*}\right\}
+\end{align*}
+
+\sayfa{5}
+\[ {}= \frac12\,\frac{|V_s|^2}{|Z_s+Z_L|^2}\cdot\mathrm{Re}\{Z_L\} \]
+\[ P_L = \frac12\,\frac{|V_s|^2}{|R_s+jX_s+R_L+jX_L|^2}\cdot R_L \]
+maximize etmek için $Z_s = Z_L^*$
+\[ Z_s = Z_L^* \Rightarrow P_L = \frac12\,\frac{|V_s|^2}{|R_s+jX_s+R_s-jX_s|^2}\cdot R_s \]
+\[ {}= \frac12\,\frac{|V_s|^2}{|2R_s|^2}\cdot R_s \]
+\[ P_L = \frac18\,\frac{|V_s|^2}{R_s} \qquad \text{yükteki max power kaynağa bağlı} \]
+
+\elcizimi[0.5]{sekiller/Ders-4-s5-1.png}[5]
+
+\section{Kuvvetlendiriciler}
+\subsection{MOS transistörler}
+\elcizimi[0.5]{sekiller/Ders-4-s5-2.png}[5]
+\[ I_D = k\,\frac{W}{L}\,(V_{GS}-V_T)^2 \qquad \text{sat mı (lineer mi?)} \]
+\elcizimi[0.55]{sekiller/Ders-4-s5-3.png}[5]
+\elcizimi[0.8]{sekiller/Ders-4-s5-4.png}[5]
+
+\sayfa{6}
+\section{Linearity}
+\elcizimi[0.55]{sekiller/Ders-4-s6-1.png}[6]
+\[ y = ax + bx^2 + cx^3 + \cdots \qquad \text{(non linear)} \]
+\[ x \ll\ \text{(çok küçük)}\ \Rightarrow\ bx^2+cx^3 \approx 0 \]
+
+\subsection{Ex}
+\elcizimi[0.45]{sekiller/Ders-4-s6-2.png}[6]
+\begin{align*}
+V_{out} &= V_{DD} - k\frac{W}{L}(V_{GS}-V_T)^2\cdot R_L\\
+&= \mathrm{DC} + a_2 V_{gs}^2
+\end{align*}
+
+\subsection{Differential Pair}
+\elcizimi[0.4]{sekiller/Ders-4-s6-3.png}[6]
+\begin{align*}
+V_{out} &= -\sqrt{2k\frac{W}{L}I_D}\cdot R_D\cdot V_{in} + \frac{2k^{3/2}}{8\sqrt{I_D}}\,R_D V_{in}^3\\
+&= a_1\cdot V_{in} + a_3 V_{in}^3
+\end{align*}
+\elcizimi[0.55]{sekiller/Ders-4-s6-4.png}[6]
+
+\section{Drawbacks of Nonlinearity}
+\subsection{(1) Harmonic Distortion}
+\[ y = a_1x + a_2x^2 + a_3x^3 \]
+\elcizimi[0.5]{sekiller/Ders-4-s6-5.png}[6]
+
+\sayfa{7}
+\begin{align*}
+x(t) &= A\cos\omega t\\
+y(t) &= a_1A\cos\omega t + a_2(A\cos\omega t)^2 + a_3(A\cos\omega t)^3\\
+(A\cos\omega t)^2 &= \frac{A^2}{2}(1+\cos 2\omega t)\\
+(A\cos\omega t)^3 &= \frac{A^3}{4}(3\cos\omega t+\cos 3\omega t)\\
+y(t) &= a_1A\cos\omega t + a_2\frac{A^2}{2}(1+\cos(2\omega t)) + a_3\frac{A^3}{4}(3\cos\omega t+\cos 3\omega t)
+\end{align*}
+\elcizimi[0.9]{sekiller/Ders-4-s7-1.png}[7]
+\begin{align*}
+y(t) &= \frac{a_2A^2}{2} + \left(a_1A+\frac{3a_3A^3}{4}\right)\cos\omega t\\
+&\quad + \underbrace{\frac{a_2A^2}{2}\cos 2\omega t}_{\text{2nd harmonic}} + \underbrace{\frac{a_3A^3}{4}\cos 3\omega t}_{\text{3rd}}
+\end{align*}
+\elcizimi[0.9]{sekiller/Ders-4-s7-2.png}[7]
+\elcizimi[0.55]{sekiller/Ders-4-s7-3.png}[7]
+
+\section{(2) Gain compression}
+\[ V_{out} = \underbrace{-\sqrt{2k\frac{W}{L}I_D}\,R_D V_{in}}_{a_1} + \frac{2k^{3/2}}{8\sqrt{I_D}}\,R_D V_{in}^3 \]
+$a_1, a_3$ have different signs\\
+Most of the time \quad $\kutula{a_1\cdot a_3<0}$
+\[ \mathrm{Gain} = \frac{V_{out}\,\text{(fundamental)}}{V_{in}} = \frac{a_1A+\frac{3a_3A^3}{4}}{A} \]
+
+\sayfa{8}
+\[ \mathrm{Gain} = a_1 + \frac34 a_3A^2 \]
+\begin{enumerate}[label=\arabic*)]
+\item $a_1>0$, $a_3<0 \;\Rightarrow\; \mathrm{Gain} = a_1 - \frac34|a_3|A^2$
+\item $\mathrm{Gain} \propto A^2$
+\end{enumerate}
+girişin genliği çok yükselirse kazanç düşer.
+
+\subsection{(2) Gain Compression}
+\elcizimi[0.85]{sekiller/Ders-4-s8-1.png}[8]
+A$_{-1dB}$ or P$_{1dB}$ $\leftarrow$ sistemin linear davranışından 1db düştüğü nokta
+\[
+\begin{array}{rl}
+\text{(1)} & 10\log|a_1P_{1dB}| \to 20\log|a_1A_{-1dB}|\\
+-\ \text{(2)} & 10\log\left|a_1P_{1dB}+\tfrac34a_3P_{1dB}^{3}\right|\\ \hline
+ & 1\,\mathrm{dB}
+\end{array}
+\]
+\[ P_{1dB} = \sqrt{0{,}145\left|\frac{a_1}{a_3}\right|} \qquad\to\ a_3 = 0 \ \to\ P_{1dB}\to\infty \]
+
+\[ P_{1dB}\qquad \frac{|a_1|\,\mathrlap{\diagup}P_1}{\left|a_1+\frac34a_3P_1^2\right|\,\mathrlap{\diagup}P_1} = 1\ \ ??\qquad 1\,\mathrm{dB}=10^{1} \]
+\[ \frac{a_1}{a_1+\frac34a_3P_1^2} = 10 \]
+\[ a_1 = 10a_1 + \frac{15}{2}a_3P_1^2 \]
+\[ \frac{-18a_1}{15a_3} = P_1^2 \qquad P_1 \]
+
+\end{document}

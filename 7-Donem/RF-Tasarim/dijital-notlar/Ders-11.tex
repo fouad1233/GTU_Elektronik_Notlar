@@ -1,0 +1,200 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Dual conversion, zero-IF, sliding IF ve dual band alıcılar}{Ders-11.pdf}
+
+\sayfa{1}
+\elcizimi[0.9]{sekiller/Ders-11-s1-1.png}[1]
+
+Sondaki Amp'nin lineerliği en büyük olmalı
+\[ \mathrm{IIP}_3 > \mathrm{IIP}_2 > \mathrm{IIP}_1 \]
+\[ \mathrm{IIP1}_3 > \mathrm{IIP1}_2 > \mathrm{IIP1}_1 \]
+
+\[
+\left.\begin{aligned}
+x_{LO}(t) &= A_{LO1}\cos(2\pi f_{LO1}t)\\
+&\quad + A_2\cos(2\pi\, 2f_{LO1}t)\\
+&\quad + \cdots\cos(2\pi\cdots f_{LO1}t)
+\end{aligned}\right\}
+\qquad \overset{\text{mixing spurs}}{f_{in} \pm m f_{LO1}\ (\text{expected spurs freq})}
+\]
+
+\[ f_{in} \pm m f_{LO1} \pm n f_{LO2} \rightarrow \text{expected mixing spurs in dual conversion} \]
+
+\begin{ornek}
+\elcizimi[0.55]{sekiller/Ders-11-s1-2.png}[1]
+\begin{align*}
+f_{IF1} &= |f_{in} - f_{LO1}| = \qty{2,4}{\giga\hertz} - \qty{1,98}{\giga\hertz} = \qty{420}{\mega\hertz}\\
+f_{IF2} &= |f_{IF1} - f_{LO2}| = 420 - 400 = \qty{20}{\mega\hertz}
+\end{align*}
+$f_{LO2}$ ($2^{nd}$ harmonic) $= \qty{800}{\mega\hertz}$
+
+\elcizimi[0.35]{sekiller/Ders-11-s1-3.png}[1]
+\[ \overset{f_{in}}{\qty{2,8}{\giga\hertz}} - \overset{f_{LO1}}{\qty{1,98}{\giga\hertz}} - \overset{f_{LO2}(2^{nd})}{\qty{800}{\mega\hertz}} = \qty{20}{\mega\hertz} \quad \text{\textit{aynı}} \]
+\end{ornek}
+
+\noindent dBc, carrier'e göre
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{c|cccccc}
+$n f_{LO} \backslash m f_{RF}$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ \\ \hline
+$0$ & & & & & & \\ \hline
+$1$ & & $0$ & $-20$ & $-30$ & $-40$ & \\ \hline
+$2$ & & & & & & \\ \hline
+$3$ & & & & & & \\ \hline
+$4$ & & & $-60$ & $-80$ & $-70$ & \\
+\end{tabular}
+\end{center}
+\begin{align*}
+f_{RF} &= \qty{2}{\giga\hertz}\\
+f_{LO} &= \qty{1,9}{\giga\hertz}\\
+f_{IF} &= \qty{100}{\mega\hertz}
+\end{align*}
+
+\sayfa{2}
+\section{Dual Conversion receivers}
+
+\subsection{Disadvantages:}
+\begin{itemize}
+\item 2 tane local oscillators
+\item More mixing spurs
+\item Several passive filters
+\end{itemize}
+
+\subsection{Advantages:}
+\begin{itemize}
+\item Robust\\
+clear choice for high sensitive radio receivers
+\item High dynamic Range
+\item Power consumption is lower
+\item Secondary Image frequency
+\end{itemize}
+
+\elcizimi[0.45]{sekiller/Ders-11-s2-1.png}[2]
+\elcizimi[0.65]{sekiller/Ders-11-s2-2.png}[2]
+
+havadan sızdığı engellemek için sistem tasarımında dikkat veya sistemden ortaya çıkabilir.
+
+\subsection{Removing Secondary Image}
+\elcizimi[0.45]{sekiller/Ders-11-s2-3.png}[2]
+\elcizimi[0.35]{sekiller/Ders-11-s2-4.png}[2]
+
+\underline{Zero-IF (Homodyne)}
+\[ \omega_{IF2} = 0 = |\omega_{IF1} - \omega_{LO2}| \]
+\[ \omega_{LO2} = \omega_{IF1} \]
+\elcizimi[0.8]{sekiller/Ders-11-s2-5.png}[2]
+
+\sayfa{3}
+eğer simetrik değilse
+\elcizimi[0.45]{sekiller/Ders-11-s3-1.png}[3]
+\elcizimi[0.5]{sekiller/Ders-11-s3-2.png}[3]
+
+\section{Quadrature Signals \& Quadrature Down conversion}
+\[ \cos 2\pi f_0 t = \frac{e^{j2\pi f_0 t}}{2} + \frac{e^{-j2\pi f_0 t}}{2} \;\overset{F}{\longrightarrow}\; \frac12\bigl[\delta(f-f_0)+\delta(f+f_0)\bigr] \;\rightarrow\; \text{real} \]
+\hfill $\downarrow$ 90$^\circ$ phase shift
+\[ \sin 2\pi f_0 t = j\,\frac{e^{-j2\pi f_0 t}}{2} - j\,\frac{e^{j2\pi f_0 t}}{2} \;\overset{F}{\longrightarrow}\; \frac{j}{2}\bigl[-\delta(f-f_0)+\delta(f+f_0)\bigr] \;\rightarrow\; \text{Imag.} \]
+
+\elcizimi[0.9]{sekiller/Ders-11-s3-3.png}[3]
+
+\begin{align*}
+\cos(\omega_c t - 90^\circ) &= \frac{e^{j(\omega_c t-90)}}{2} + \frac{e^{-j(\omega_c t-90)}}{2}\\
+&= \frac{e^{j\omega_c t}}{2}\,e^{-j90} + \frac{e^{-j\omega_c t}}{2}\,e^{j90}
+\end{align*}
+\[ e^{-j90} = \cos 90 - j\sin 90 = -j \]
+\[ e^{j90} = \cos 90 + j\sin 90 = j \]
+\[ = -j\,\frac{e^{j\omega_c t}}{2} + j\,\frac{e^{-j\omega_c t}}{2} = \sin(\omega_c t) \]
+
+\elcizimi[0.4]{sekiller/Ders-11-s3-4.png}[3]
+
+\noindent Positive frequency \quad $+90^\circ$ Clkwise\\
+Negative \quad $''$ \quad\quad $+90^\circ$ Aclkwise
+
+\sayfa{4}
+\elcizimi[0.35]{sekiller/Ders-11-s4-1.png}[4]
+\elcizimi[0.5]{sekiller/Ders-11-s4-2.png}[4]
+\elcizimi[0.5]{sekiller/Ders-11-s4-3.png}[4]
+\elcizimi[0.4]{sekiller/Ders-11-s4-4.png}[4]
+\elcizimi[0.35]{sekiller/Ders-11-s4-5.png}[4]
+\elcizimi[0.8]{sekiller/Ders-11-s4-6.png}[4]
+
+\sayfa{5}
+\elcizimi[0.35]{sekiller/Ders-11-s5-1.png}[5]
+\elcizimi[0.35]{sekiller/Ders-11-s5-2.png}[5]
+\elcizimi[0.5]{sekiller/Ders-11-s5-3.png}[5]
+\elcizimi[0.85]{sekiller/Ders-11-s5-4.png}[5]
+
+\section{Zero-(Second) IF Heterodyne Receiver}
+\elcizimi[0.8]{sekiller/Ders-11-s5-5.png}[5]
+
+\sayfa{6}
+\elcizimi[0.35]{sekiller/Ders-11-s6-1.png}[6]
+\[ x_{BB,I}(t) - j\,x_{BB,Q} \]
+\elcizimi[0.9]{sekiller/Ders-11-s6-2.png}[6]
+
+\section{Sliding IF Receiver}
+\elcizimi[0.6]{sekiller/Ders-11-s6-3.png}[6]
+
+\begin{align*}
+f_{LO2} &= \tfrac{1}{2}f_{LO1}\\
+\text{(zero-IF)}\quad |f_{in} - f_{LO1} - f_{LO2}| &= 0\\
+f_{in} - f_{LO1} - \tfrac{1}{2}f_{LO1} &= 0 \quad\Rightarrow\quad f_{LO1} = \tfrac{2}{3}f_{in}\\
+&\Rightarrow\quad f_{IF1} = \tfrac{1}{3}f_{in}
+\end{align*}
+
+\elcizimi[0.9]{sekiller/Ders-11-s6-4.png}[6]
+
+\sayfa{7}
+\elcizimi[0.55]{sekiller/Ders-11-s7-1.png}[7]
+
+Both BPF and LNA reject the Image
+
+\begin{ornek}
+\[ f_{LO2} = \tfrac{1}{4} f_{LO1} \]
+\[ |f_{in} - f_{LO1} - f_{LO2}| = 0 \]
+\[ f_{in} - f_{LO1} - \tfrac{1}{4} f_{LO1} = 0 \;\rightarrow\; f_{LO1} = \tfrac{4}{5} f_{in} \;\rightarrow\; f_{IF1} = \tfrac{1}{5} f_{in} \]
+\elcizimi[0.55]{sekiller/Ders-11-s7-2.png}[7]
+\end{ornek}
+
+RF bandına LO yaklaşınca image rejection zor olur
+
+1/8 gibi bir şey kullanma \quad image rejection zor olur
+
+\elcizimi[0.55]{sekiller/Ders-11-s7-3.png}[7]
+
+\section{Dual Band Receiver}
+\elcizimi[0.5]{sekiller/Ders-11-s7-4.png}[7]
+
+\sayfa{8}
+\elcizimi[0.9]{sekiller/Ders-11-s8-1.png}[8]
+
+802.11g \quad \textit{(Wi-Fi standardı)}
+\begin{align*}
+\div 2 &= ?\\
+\div 4 &= ?
+\end{align*}
+
+\elcizimi[0.55]{sekiller/Ders-11-s8-2.png}[8]
+
+$\div 2$
+
+\elcizimi[0.7]{sekiller/Ders-11-s8-3.png}[8]
+
+$\div 4$
+
+\elcizimi[0.9]{sekiller/Ders-11-s8-4.png}[8]
+
+\begin{ornek}
+\textit{Çalışma sorusu} \quad 802.11a, $\div 8$ structure sliding Receiver
+
+\elcizimi[0.6]{sekiller/Ders-11-s8-5.png}[8]
+
+\begin{enumerate}[label=\arabic*)]
+\item Image Band?
+\item Mixing spurs in results of mixing with $3^{rd}$ harmonic of the first LO\\
+\& $3^{rd}$ harmonic of second LO
+\end{enumerate}
+\[ f_{in} - \overset{\scriptstyle 3=?}{n}\,f_{LO1} - f_{LO2} = 0 \]
+\[ f_{in} - f_{LO1} - n\,f_{LO2} = 0 \]
+\end{ornek}
+
+\end{document}

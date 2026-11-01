@@ -1,0 +1,75 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Modulation Concepts, PAPR, ACPR, EVM, MER}{Ders-8.pdf}
+
+\sayfa{1}
+Ders 6'daki \okunamadi{çözüm}
+\subsection{Ex:}
+\elcizimi[0.95]{sekiller/Ders-8-s1-1.png}[1]
+$A_{IIP3} = 80\,\mathrm{mV} \;\to\;$ Find $A_o(IM3) = ?$ \qquad $IM3 = ?$
+\[ IM3 = \frac{\frac34a_3A_{int}^3}{a_1A_{int}} = \frac{A_o(IM3)}{A_{o,int}} \]
+\[ A_{IIP3}^2 = \frac{A_{out}(\omega_1,\omega_2)}{A_{out}(IM3)}\,A_{int}^2 \]
+\[ \Rightarrow A_{out}(IM3) = \frac{\overbrace{A_{out}(\omega_1,\omega_2)}^{a_1A_{in,int}}\,A_{in,int}^2}{A_{IIP3}^2} = \frac{a_1\,\overbrace{A_{in,int}}^{10\,\mathrm{mV}}{}^{3}}{A_{IIP3}^2} \]
+\[ A_{out}(IM3) = 1{,}56\cdot10^{-3}\ \mathrm{V} \]
+\[ IM3 = \frac{1{,}56\cdot10^{-3}}{\underbrace{10\cdot10\cdot10^{-3}}_{a_1\cdot A_{in,int}}} = 0{,}0156 \]
+
+\section{Modulation Concepts:}
+\elcizimi[0.95]{sekiller/Ders-8-s1-2.png}[1]
+
+\sayfa{2}
+\elcizimi[0.95]{sekiller/Ders-8-s2-1.png}[2]
+\elcizimi[0.8]{sekiller/Ders-8-s2-2.png}[2]
+\elcizimi[0.4]{sekiller/Ders-8-s2-3.png}[2]
+
+\section{Modulation Concepts:}
+\subsection{1-Detectability}
+\elcizimi[0.42]{sekiller/Ders-8-s2-4.png}[2]
+\elcizimi[0.75]{sekiller/Ders-8-s2-5.png}[2]
+
+\sayfa{3}
+\subsection{2) Band width Efficiency}
+\[ \eta = \frac{\text{transmission bitrate (bps)}}{\text{transmission BW (Hz)}} = \frac{\mathrm{bit}/\mathrm{sec}}{\mathrm{Hz}} \]
+\elcizimi[0.7]{sekiller/Ders-8-s3-1.png}[3]
+\[ R_b = \frac{1}{T_b} = \text{data rate (1/sec) bps} \]
+
+\subsection{3) Max channel capacity (Shannon)}
+\[ C = \overset{(\omega)}{B}\cdot\log_2\left(1+\underbrace{\mathrm{SNR}}_{\mathrm{received}}\right) \]
+
+\subsection{4) Power Efficiency}
+\elcizimi[0.6]{sekiller/Ders-8-s3-2.png}[3]
+$\mathrm{SNR}_1 < \mathrm{SNR}_2$\\
+$M_1$ power efficient
+
+\elcizimi[0.5]{sekiller/Ders-8-s3-3.png}[3]
+
+\subsection{5) Peak to Average Ratio}
+(tepe gücünün ortalama güce oranı)
+\[ \mathrm{PAPR} = \frac{\text{Power of signal when carrier is at }\overbrace{\text{peak}}^{\text{maksimum güç}}}{\text{average power of the carrier}} \]
+\begin{align*}
+\mathrm{PAPR}_{AM} &= 4{,}26\,\mathrm{dB}\\
+\mathrm{PAPR}_{FM} &= 3\,\mathrm{dB}
+\end{align*}
+
+\subsection{6) Adjacent channel interference (ACI)}
+$\to$ komşu kanalda girişimi\\
+Adjacent channel Power Ratio (ACPR)
+\[ \mathrm{ACPR} = \frac{\text{Power in adjacent channel}}{\text{Power in main channel}} \]
+\vurgu[pembe]{Ne kadar küçükse o kadar iyi}
+
+\sayfa{4}
+\elcizimi[0.5]{sekiller/Ders-8-s4-1.png}[4]
+
+\subsection{7) Implementation Margin}
+Theoretically to achive any BER \quad required SNR $= A$\\
+practically \quad '' \quad '' \quad $A + k$ $\to$ implementing margin
+
+\subsection{8) Error vector Magnitude (EVM)}
+\elcizimi[0.6]{sekiller/Ders-8-s4-2.png}[4]
+\elcizimi[0.6]{sekiller/Ders-8-s4-3.png}[4]
+\[ \mathrm{EVM} = \sqrt{\frac{\frac1N\sum_{i=1}^{N}\left(\Delta I_i^2+\Delta Q_i^2\right)}{X_{max}^2}} \]
+
+\subsection{9) Modulation Error Rate (MER)}
+\[ \mathrm{MER} = \frac{\frac1N\sum_{i=1}^{N}\left(I_i^2+Q_i^2\right)}{\frac1N\sum_{i=1}^{N}\left(\Delta I_i^2+\Delta Q_i^2\right)} = \frac{\text{Average signal power}}{\text{Average error power}} \]
+
+\end{document}

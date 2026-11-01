@@ -45,9 +45,9 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | [Ders2](ders-notlari/Ders2.pdf) | Olasılık teorisi, rastgele değişkenler ve prosesler | [PDF](dijital-notlar/Ders2.pdf) · 14 s. | [.tex](dijital-notlar/Ders2.tex) |
 | [Ders3](ders-notlari/Ders3.pdf) | Temel işaretler, Fourier dönüşümü, örnekleme | [PDF](dijital-notlar/Ders3.pdf) · 16 s. | [.tex](dijital-notlar/Ders3.tex) |
 | [Ders 4](ders-notlari/Ders-4.pdf) | Örnekleme teoremi ve örnekleme türleri | [PDF](dijital-notlar/Ders-4.pdf) · 14 s. | [.tex](dijital-notlar/Ders-4.tex) |
-| [Ders 5](ders-notlari/Ders-5.pdf) | Düz tepeli örnekleme, PAM/PWM/PPM, TDM ve PCM | [PDF](dijital-notlar/Ders-5.pdf) · 9 s. | [.tex](dijital-notlar/Ders-5.tex) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | Düz tepeli örnekleme, PAM/PWM/PPM, TDM ve PCM | [PDF](dijital-notlar/Ders-5.pdf) · 13 s. | [.tex](dijital-notlar/Ders-5.tex) |
 | [Ders 6](ders-notlari/Ders-6.pdf) | PCM, kuantalama, hat kodları ve delta modülasyonu | [PDF](dijital-notlar/Ders-6.pdf) · 10 s. | [.tex](dijital-notlar/Ders-6.tex) |
-| [Ders 7](ders-notlari/Ders-7.pdf) | PCM sistemi örneği | [PDF](dijital-notlar/Ders-7.pdf) · 8 s. | [.tex](dijital-notlar/Ders-7.tex) |
+| [Ders 7](ders-notlari/Ders-7.pdf) | PCM sistemi örneği | [PDF](dijital-notlar/Ders-7.pdf) · 9 s. | [.tex](dijital-notlar/Ders-7.tex) |
 | [Ders 8](ders-notlari/Ders-8.pdf) | Temel band haberleşmesi, Matched Filter, Correlator | [PDF](dijital-notlar/Ders-8.pdf) · 11 s. | [.tex](dijital-notlar/Ders-8.tex) |
 | [Ders 9](ders-notlari/Ders-9.pdf) | İkili işaretleşmede hata olasılığı ve MAP kriteri | [PDF](dijital-notlar/Ders-9.pdf) · 11 s. | [.tex](dijital-notlar/Ders-9.tex) |
 | [Ders 10](ders-notlari/Ders-10.pdf) | Matched filter, SAK ve 1. Nyquist kriteri | [PDF](dijital-notlar/Ders-10.pdf) · 9 s. | [.tex](dijital-notlar/Ders-10.tex) |

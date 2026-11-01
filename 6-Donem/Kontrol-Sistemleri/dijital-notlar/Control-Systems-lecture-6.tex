@@ -21,7 +21,7 @@ Differential equations:
 \textit{$x_h$: homogenous solution, due to I.C $\Rightarrow$ transient response;\quad $x_p$: particular solution, due to external excitation.}
 
 To check stability we have to check the homogen solution.
-\sekilnotu[1]{Ball resting on top of a hatched dome-shaped hill, arrow $x$ above the ball, label ``I.C''.}
+\elcizimi[0.3]{sekiller/Control-Systems-lecture-6-s1-1.png}[1]
 or it can be unstable due to resonans, $r=\varepsilon\sin\omega t$.
 \[ \text{To get } x_h(t)\ \to\ \begin{cases} T\dot{x}+x=0\\ \ddot{x}+a_1\dot{x}+a_2x=0 \end{cases} \]
 
@@ -237,7 +237,8 @@ if $\zeta<1 \Rightarrow$ complex conjugate poles \textit{(always oscillatory)}
 (sorry) if $\zeta=1 \Rightarrow$ repeated real valued poles
 
 if $\zeta>1 \Rightarrow$ seperate and real valued poles \qquad overdamped system
-\sekilnotu[6]{Small sketches to the right of the three cases. (1) s-plane with Re and Im axes and four poles ($\times$) in the left half-plane, two complex-conjugate pairs above and below the Re axis. (2) Time response t: damped sinusoid oscillating inside a decaying exponential envelope. (3) Arrow from ``repeated real valued poles'' to a small plot of a monotonically decaying curve starting at a vertical axis.}
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-6-s6-1.png}[6]
+\elcizimi[0.37]{sekiller/Control-Systems-lecture-6-s6-2.png}
 
 Homework (homogen solution)
 
@@ -298,11 +299,11 @@ III) $(\zeta>1)$
 \zeta>1:\quad s_{1,2}&=\underbrace{-\zeta\omega_n}_{\text{Re distinct}}\pm\sqrt{\zeta^2-1}\footnotemark
 \end{align*}
 \footnotetext{Claude notu: muhtemelen $\pm\,\omega_n\sqrt{\zeta^2-1}$ olmalı.}
-\sekilnotu[7]{s-plane sketch: vertical axis Im labelled $j\omega_d$ (frequency of oscillator), horizontal axis Re labelled $\zeta\omega_n$ (damping, decay rate). Poles ($\times$) to the left of the Im axis: several complex-conjugate pairs above and below the Re axis, and real poles $s_2$, $s_{1,2}$ (repeated) and $s_1$ on the Re axis. Annotations: ``decay rate becomes bigger $\to$ faster decay'' (arrow pointing left), ``larger damping, decay rate is higher'', ``decays faster''.}
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-6-s7-1.png}[7]
 
 \sayfa{8}
 If poles are CC $\to$ response is oscillatory and decaying
-\sekilnotu[8]{Time-response sketch with horizontal t axis and vertical amplitude axis: three damped oscillations of different decay rate and frequency starting from the origin. Black: large amplitude, slow oscillation, slow decay; red: faster oscillation and faster decay; blue: smallest amplitude, fastest decay. Dashed envelope curves (red and black) above and below the axis show the exponential decay.}
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-6-s8-1.png}[8]
 for $\times\ \omega_d=0$ \quad no oscillating frequency; decays at the same time
 
 for $\zeta>1$

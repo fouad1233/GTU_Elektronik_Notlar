@@ -1,0 +1,345 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Noise, Noise Figure, Cascaded Stages, Noise Floor}{Ders6.pdf}
+
+\sayfa{1}
+\section{Noise}
+
+\elcizimi[0.45]{sekiller/Ders6-s1-1.png}[1]
+\elcizimi[0.45]{sekiller/Ders6-s1-2.png}[1]
+
+\[ P_{\mathrm{ave}} = \lim_{T\to\infty} \int_0^T n^2(t)\,dt = E\left[n^2(t)\right] \]
+
+\[ \underbrace{\sigma^2}_{P_{\mathrm{AC}}} = \underbrace{E\left[n^2\right]}_{P_{\mathrm{ave}}} - \underbrace{E^2\left[n\right]}_{P_{\mathrm{DC}}} \]
+
+\[ P_{\mathrm{ave}} = P_{\mathrm{AC}} + P_{\mathrm{DC}} \]
+
+\elcizimi[0.45]{sekiller/Ders6-s1-3.png}[1]
+\elcizimi[0.45]{sekiller/Ders6-s1-4.png}[1]
+
+\[ P_{\mathrm{ave}} = \int_0^\infty S_n(f)\,df \]
+
+\elcizimi[0.8]{sekiller/Ders6-s1-5.png}[1]
+
+\section{Input referred Noise}
+
+\elcizimi[0.35]{sekiller/Ders6-s1-6.png}[1]
+
+\[ \Rightarrow\quad \begin{aligned} P_{\mathrm{out}} &= P_{\mathrm{in}}\cdot G \\ N_{\mathrm{out}} &= N_{\mathrm{in}}\cdot G + N_A \end{aligned} \]
+
+\sayfa{2}
+\elcizimi[0.9]{sekiller/Ders6-s2-1.png}[2]
+
+\section{How to find input referred Noise}
+
+\begin{ornek}
+\elcizimi[0.6]{sekiller/Ders6-s2-2.png}[2]
+\end{ornek}
+
+\[ \overline{v_{n,\mathrm{out}1}^2} + \overline{v_{n,\mathrm{out}2}^2} + \overline{v_{n,\mathrm{out}3}^2} + \cdots = \overline{v_{n,\mathrm{out(total)}}^2} \]
+
+\[ \overline{v_{n,\mathrm{input}}^2} = \frac{\overline{v_{n,\mathrm{out(total)}}^2}}{A_{vt}^2} \]
+
+\textbf{(1)} Cancel sources (gerilim kısa devre, akım açık)
+
+$v_s \rightarrow$ short
+
+$I_B \rightarrow$ open
+
+\elcizimi[0.35]{sekiller/Ders6-s2-3.png}[2]
+\elcizimi[0.55]{sekiller/Ders6-s2-4.png}[2]
+
+\[ \overline{i_n^2} = 4kT\gamma g_m \]
+
+\begin{align*}
+\rightarrow\ \overline{v_{\mathrm{out},1}^2} &= \overline{i_n^2}\cdot r_o^2 \\
+\overline{v_{\mathrm{out},1}^2} &= r_o^2\,4kT\gamma g_m
+\end{align*}
+
+\textbf{(2)}
+
+\elcizimi[0.55]{sekiller/Ders6-s2-5.png}[2]
+
+\[ \overline{v_{n,\mathrm{out}2}^2} = \overline{v_{n,R_s}^2}\,\overbrace{(g_m r_o)^2}^{\text{Transistor gain}} = 4kTR_s\,(g_m r_o)^2 \]
+
+\textbf{(3)} Sum of squares
+
+\begin{align*}
+\overline{v_{n,\mathrm{out(total)}}^2} &= \overline{v_{n,\mathrm{out}1}^2} + \overline{v_{n,\mathrm{out}2}^2} \\
+&= r_o^2\,4kT\gamma g_m + (g_m r_o)^2\,4kTR_s
+\end{align*}
+
+\sayfa{3}
+\begin{align*}
+\text{\textbf{(4)}}\quad \overline{v_{\mathrm{in},n}^2} &= \frac{\overline{v_{n,\mathrm{out(total)}}^2}}{A_{vt}^2} \\
+&= \frac{r_o^2\,4kT\gamma g_m + (g_m r_o)^2\,4kTR_s}{(g_m r_o)^2}
+\end{align*}
+
+\formulkutu{\overline{v_{\mathrm{in},n}^2} = \underbrace{\frac{4kT\gamma}{g_m}}_{\substack{\text{amplifikatörden}\\ \text{girişe yansıyan}\\ \text{gürültü}}} + \underbrace{4kTR_s}_{\text{kaynağın gürültüsü}}}
+
+to decrease $\overline{v_{\mathrm{in},n}^2}$, increase $g_m$
+
+genellikle amplifierlar 10,15 dB üstü tasarlanır ki gürültüsü az olsun.
+
+\section{Noise Figure (NF)\textsuperscript{dB}}
+\subsection{Noise Factor (F)}
+
+\formulkutu{NF = 10\log(F)}
+
+\elcizimi[0.4]{sekiller/Ders6-s3-1.png}[3]
+
+\[ \mathrm{SNR}_{\mathrm{in}} = \frac{P_{s,\mathrm{in}}}{P_{n,\mathrm{in}}} \]
+
+\[ \mathrm{SNR}_{\mathrm{out}} = \frac{P_{s,\mathrm{out}}}{P_{n,\mathrm{out}}} = \frac{P_{s,\mathrm{out}}}{P_{n,\mathrm{in}}\cdot G + P_{n,A}} \]
+
+\[ \mathrm{SNR}_{\mathrm{in}} > \mathrm{SNR}_{\mathrm{out}} \]
+
+\[ \kutula{F = \frac{\mathrm{SNR}_{\mathrm{in}}}{\mathrm{SNR}_{\mathrm{out}}}} > 1 \]
+
+\formulkutu{\begin{aligned} NF &= 10\log\left[\frac{\mathrm{SNR}_{\mathrm{in}}}{\mathrm{SNR}_{\mathrm{out}}}\right] \\ NF &= \mathrm{SNR}_{\mathrm{in,dB}} - \mathrm{SNR}_{\mathrm{out,dB}} > 0\,\mathrm{dB} \end{aligned}}
+
+$\star$ good LNA $\rightarrow$ NF: $0\sim 2$ dB
+
+\sayfa{4}
+\elcizimi[0.9]{sekiller/Ders6-s4-1.png}[4]
+
+\[ \mathrm{SNR}_{\mathrm{in}} = \frac{P_{s,\mathrm{in}}}{P_{n,\mathrm{in}}} \]
+
+\[ P_{s,\mathrm{in}} \;\rightarrow\; v_{\mathrm{in}} = \frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\,v_s \]
+
+\formulkutu{P_{s,\mathrm{in}} = \frac{v_{\mathrm{in}}^2}{R_{\mathrm{in}}} = \frac{\left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2 \cdot v_s^2}{R_{\mathrm{in}}}}
+
+\elcizimi[0.8]{sekiller/Ders6-s4-2.png}[4]
+
+\[ \rightarrow\; v_{n,\mathrm{in}} = \frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\cdot v_{n,R_s} \]
+
+\[ P_{n,\mathrm{in}} = \frac{\overline{v_{n,\mathrm{in}}^2}}{R_{\mathrm{in}}} = \frac{\left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2\,\overline{v_{n,R_s}^2}}{R_{\mathrm{in}}} \]
+
+\[ \mathrm{SNR}_{\mathrm{in}} = \frac{\dfrac{\left(\dfrac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2\cdot v_s^2}{R_{\mathrm{in}}}}{\dfrac{\left(\dfrac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)\footnotemark\,\overline{v_{n,R_s}^2}}{R_{\mathrm{in}}}} = \frac{v_s^2}{\overline{v_{n,R_s}^2}} \quad \leftarrow\ \text{sadece kaynağa bağlı} \]
+\footnotetext{Claude notu: paydadaki $\left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)$ çarpanının karesi alınmamış; muhtemelen $(\cdots)^2$ olmalı.}
+
+\[ \mathrm{SNR}_{\mathrm{in}} = \frac{v_s^2}{\overline{v_{n,R_s}^2}} \]
+
+\[ \mathrm{SNR}_{\mathrm{out}} = \frac{P_{s,\mathrm{out}}}{P_{n,\mathrm{out}}} \]
+
+\elcizimi[0.8]{sekiller/Ders6-s4-3.png}[4]
+
+\[ P_{s,\mathrm{out}} = \left[ v_s \left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right) \right]^2 \cdot A_v^2 = v_s^2 \left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2 \cdot A_v^2 \]
+
+\sayfa{5}
+$P_{n,\mathrm{out}}$
+
+\textbf{(1)} Noise coming from $R_s$ \quad ($\overline{v_n^2}=0$, $\overline{i_n^2}\to\infty$)
+
+\elcizimi[0.35]{sekiller/Ders6-s5-1.png}[5]
+
+\[ \overline{v_{n,\mathrm{out}1}^2} = \overline{v_{n,R_s}^2}\cdot\left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2\cdot A_v^2 \]
+
+\textbf{(2)} Noise coming from $\overline{v_n^2}$ \quad ($\overline{v_{n,R_s}}=0$, $\overline{i_n^2}\to\infty$)
+
+\elcizimi[0.38]{sekiller/Ders6-s5-2.png}[5]
+
+\textbf{(3)} Noise coming from $i_n^2$ \quad ($\overline{v_n^2}=0$, $\overline{v_{n,R_s}^2}=0$)
+
+\elcizimi[0.5]{sekiller/Ders6-s5-3.png}[5]
+
+\[ \overline{v_{n,\mathrm{out}3}^2} = \overline{i_n^2}\,R_s^2\left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2\cdot A_v^2 \]
+
+\[ \mathrm{SNR}_{\mathrm{out}} = \frac{P_{s,\mathrm{out}}}{P_{n,\mathrm{out}}} = \frac{v_s^2\left(\dfrac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2\cdot A_v^2}{\left[\overline{v_{n,R_s}^2}+\overline{v_n^2}+\overline{i_n^2}R_s^2\right]\left(\dfrac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2 A_v^2} \]
+
+\formulkutu{\mathrm{SNR}_{\mathrm{out}} = \frac{v_s^2}{\overline{v_{n,R_s}^2}+\overline{v_n^2}+\overline{i_n^2}\cdot R_s^2}}
+
+\[ F = \frac{\mathrm{SNR}_{\mathrm{in}}}{\mathrm{SNR}_{\mathrm{out}}} = \frac{v_s^2\big/\overline{v_{n,R_s}^2}}{v_s^2\big/\left(\overline{v_{n,R_s}^2}+\overline{v_n^2}+\overline{i_n^2}\cdot R_s^2\right)} \]
+
+\[ F = \frac{\overline{v_{n,R_s}^2}+\overline{v_n^2}+\overline{i_n^2}R_s^2}{\overline{v_{n,R_s}^2}} \]
+
+\formulkutu{F = 1 + \frac{\overbrace{\overline{v_n^2}+\overline{i_n^2}R_s^2}^{\text{input referred noise}}}{\underbrace{\overline{v_{n,R_s}^2}}_{\text{source noise}}}}
+
+\formulkutu{\begin{aligned} A_v &= \frac{v_{\mathrm{out}}}{v_{\mathrm{in}}} \\ A_{vt} &= \frac{v_{\mathrm{out}}}{v_s} = \overbrace{\frac{v_{\mathrm{out}}}{v_{\mathrm{in}}}}^{A_v}\cdot\frac{v_{\mathrm{in}}}{v_s} \end{aligned}}
+
+\[ F = \frac{A_{vt}^2}{A_{vt}^2}\left(\frac{\overline{v_{n,R_s}^2}+\overline{v_n^2}+\overline{i_n^2}\cdot R_s^2}{\overline{v_{n,R_s}^2}}\right) \]
+
+\[ = \frac{\overline{v_{n,\mathrm{out}}^2}}{A_{vt}^2}\cdot\frac{1}{\overline{v_{n,R_s}^2}} \]
+
+\formulkutu{\Rightarrow\; F = \frac{\overline{v_{n,\mathrm{out}}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s}}
+
+\sayfa{6}
+\begin{ornek}
+\elcizimi[0.45]{sekiller/Ders6-s6-1.png}[6]
+\end{ornek}
+
+\[ F = \frac{\overline{v_{n,\mathrm{out}}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s} \]
+
+\formulkutu{A_{vt} = \frac{R_P}{R_s+R_P}}
+
+\[ \overline{v_{n,\mathrm{out(total)}}^2} \;\rightarrow\; \underset{(v_s=0)}{R_s} \;\longrightarrow \]
+
+\elcizimi[0.4]{sekiller/Ders6-s6-2.png}[6]
+
+\[ \overline{v_{n,\mathrm{out}1}^2} = \left(\frac{R_P}{R_P+R_s}\right)^2 \overline{v_{n,R_s}^2} \]
+
+\[ \underset{(v_s=0)}{R_P} \;\rightarrow \]
+
+\elcizimi[0.35]{sekiller/Ders6-s6-3.png}[6]
+
+\[ \overline{v_{n,\mathrm{out}2}^2} = \left(\frac{R_s}{R_s+R_P}\right)^2 \cdot \overline{v_{n,R_P}^2} \]
+
+\begin{align*}
+\overline{v_{n,\mathrm{out(total)}}^2} &= \left(\frac{R_s}{R_P+R_s}\right)^2 \cdot \underbrace{\overline{v_{n,R_P}^2}}_{4kTR_P} + \left(\frac{R_P}{R_P+R_s}\right)^2 \cdot \underbrace{\overline{v_{n,R_s}^2}}_{4kTR_s} \\
+&= 4kT\,\frac{R_sR_P^2 + R_PR_s^2}{(R_P+R_s)^2} = 4kT\,\frac{R_sR_P(R_s+R_P)}{(R_s+R_P)^2}
+\end{align*}
+
+\formulkutu{\overline{v_{n,\mathrm{out(total)}}^2} = 4kT\,\underbrace{\frac{R_sR_P}{R_s+R_P}}_{R_s/\!/R_P}}
+
+\[ F = \frac{\overbrace{4kT\left(\dfrac{R_sR_P}{R_s+R_P}\right)}^{\overline{v_{n,\mathrm{out}}^2}}}{\underbrace{\dfrac{R_P^2}{(R_s+R_P)^2}}_{A_{vt}^2}} \cdot \frac{1}{4kTR_s} \]
+
+\formulkutu{F = \frac{R_s+R_P}{R_P} = 1 + \frac{R_s}{R_P}}
+
+$R_P \uparrow\uparrow \;\longrightarrow\; F \approx 1$ \quad görültüsüz
+
+$R_P \gg R_s \rightarrow$ No noise effect coming from $R_P$
+
+\sayfa{7}
+\begin{ornek}
+\elcizimi[0.45]{sekiller/Ders6-s7-1.png}[7]
+\end{ornek}
+
+\[ F = \frac{\overline{v_{n,\mathrm{out}}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s} = \,? \]
+
+\section{Noise in Cascaded Stages}
+
+\elcizimi[0.9]{sekiller/Ders6-s7-2.png}[7]
+
+$\rightarrow$ skaler işlem yapın dB değil!
+
+$\kutula{\text{Friis' Formula}}$
+
+\begin{align*}
+F_{\mathrm{(total)}} &= 1 + (F_1 - 1) + \frac{F_2-1}{G_1} + \frac{F_3-1}{G_1G_2} \\
+&\quad + \frac{F_4-1}{G_1G_2G_3} + \cdots + \frac{F_n-1}{G_1G_2\cdots G_{n-1}}
+\end{align*}
+
+\[ F_{\mathrm{(total)}} = \underbrace{F_1}_{\text{Dominant } F} + \frac{F_2-1}{\underbrace{G_1}_{\approx\,>10\,\mathrm{dB}}} + \frac{F_3-1}{G_1G_2} \]
+
+mutlaka girişte düşük gürültülü ve NF düşük olan amplifier seçilmeli
+
+\begin{ornek}
+\elcizimi[0.4]{sekiller/Ders6-s7-3.png}[7]
+\end{ornek}
+
+$NF_t = ?$
+
+\[ \kutula{F_t = F_1 + \frac{F_2-1}{G_1}} = 1{,}58 + \frac{10-1}{10} = 1{,}58 + 0{,}9 = 2{,}48 \]
+
+\begin{align*}
+F_1 &= 10^{\frac{NF_1}{10}} = 1{,}58 \\
+F_2 &= 10^{\frac{NF_2}{10}} = 10 \\
+G_1 &= 10^{10/10} = 10
+\end{align*}
+
+\[ \longrightarrow\; NF_t = 10\log F_t = 10\log(2{,}48) = 3{,}95\ \mathrm{dB} \]
+
+\sayfa{8}
+\section{Noise in Passive Reciprocal Circuit}
+\subsection{Reciprocity}
+
+\elcizimi[0.45]{sekiller/Ders6-s8-1.png}[8]
+
+\[ S = \begin{bmatrix} S_{11} & S_{12} \\ S_{21} & S_{22} \end{bmatrix} \]
+
+$S_{11} \rightarrow$ Return loss
+
+$S_{22} \rightarrow$ Output Return loss
+
+$S_{21} \rightarrow$ Gain
+
+$S_{12} \rightarrow$ Isolation
+
+\underline{Reciprocity} \quad $\leftarrow$ pasif devrelerde olabiliyor
+\[ S_{12} = S_{21} \]
+
+\elcizimi[0.45]{sekiller/Ders6-s8-2.png}[8]
+
+\[ \overline{v_n^2} = 4kT\,\underbrace{\mathrm{Re}\{Z_{\mathrm{out}}\}}_{R_{\mathrm{out}}} \]
+
+\[ \overline{v_{n,\mathrm{out}}^2} = \overline{v_n^2}\left(\frac{R_L}{R_L+R_{\mathrm{out}}}\right)^2 \]
+
+\[ \overline{v_{n,\mathrm{out}}^2} = 4kTR_{\mathrm{out}}\left(\frac{R_L}{R_L+R_{\mathrm{out}}}\right)^2 \]
+
+\elcizimi[0.7]{sekiller/Ders6-s8-3.png}[8]
+
+\noindent $R_s = R_{\mathrm{in}}$ \quad Input matched \hfill $R_L = R_{\mathrm{out}}$ \quad output matched
+
+\[ \frac{R_{\mathrm{in}}}{R_s+R_{\mathrm{in}}} = \frac{1}{2} \]
+
+\[ P_{\mathrm{in}} = \frac{V_{\mathrm{in}}^2}{R_{\mathrm{in}}} = \frac{V_s^2}{4R_{\mathrm{in}}} \]
+
+\sayfa{9}
+\[ P_{\mathrm{out}} = \frac{(A_v\cdot V_s)^2}{4R_L} \]
+
+\[ \frac{P_{\mathrm{out}}}{P_{\mathrm{in}}} = G \]
+
+\[ G = \frac{\dfrac{(A_v\cdot V_s)^2}{4R_L}}{\dfrac{V_s^2}{4R_{\mathrm{in}}}} = \kutula{A_v^2\cdot\frac{R_s}{R_L} = G} \]
+
+\formulkutu[Pasif devrelerde]{\underbrace{L}_{\text{Zayıflatma}} = \frac{1}{G} = \frac{1}{A_v^2}\cdot\frac{R_L}{R_s}}
+
+\begin{align*}
+NF &= \frac{\overline{v_{n,\mathrm{out}}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s} = \frac{\dfrac{4kTR_L}{4}}{\left(\dfrac{A_v}{2}\right)^2}\cdot\frac{1}{4kTR_s} \\
+&\Rightarrow\; \kutula{NF = \frac{1}{A_v^2}\cdot\frac{R_L}{R_s}}
+\end{align*}
+
+\[ A_{vt} = \overbrace{\left(\frac{v_o}{v_{\mathrm{in}}}\right)}^{A_v}\overbrace{\left(\frac{v_{\mathrm{in}}}{v_s}\right)}^{1/2} = \frac{A_v}{2} \]
+
+\elcizimi[0.8]{sekiller/Ders6-s9-1.png}[9]
+
+\begin{ornek}
+\elcizimi[0.5]{sekiller/Ders6-s9-2.png}[9]
+\end{ornek}
+
+$F_t = ?$
+
+\begin{align*}
+F_t &= F_1 + \frac{F_2-1}{G_1} = L + \frac{F_2-1}{\frac{1}{L}} \\
+&= L + LF_2 - L = LF_2 = F_{\mathrm{total}}
+\end{align*}
+
+\[ \left.\begin{aligned} F_1 &= L \\ G_1 &= \frac{1}{L} \end{aligned}\right\} \]
+
+\formulkutu[Noise figürü arttırır]{NF_t = L_{\mathrm{dB}} + NF_2}
+
+ters olması daha iyi
+
+Onun yerine dar bantlı amfi \okunamadi{seç}
+
+\sayfa{10}
+\section{Noise power in Rx input}
+
+\elcizimi[0.45]{sekiller/Ders6-s10-1.png}[10]
+
+\[ \overline{v_{\mathrm{in},n}^2} = \underbrace{\left(\frac{R_{\mathrm{in}}}{R_{\mathrm{in}}+R_s}\right)^2}_{1/4}\cdot\underbrace{\overline{v_s^2}}_{4kTR_s} = kTR_s \]
+
+\[ \frac{\overline{v_{n,\mathrm{in}}^2}}{R_{\mathrm{in}}} = \frac{kTR_s}{\underbrace{R_{\mathrm{in}}}_{R_{\mathrm{in}}=R_s}} = kT \quad (1\,\mathrm{Hz},\ BW) \]
+
+1Hz'lik bantta kT kadar power bulunur
+
+\[ P_{\mathrm{in}} = kTB \quad (\text{Input noise power in bandwith } B) \]
+
+\section{Receive Noise Floor}
+
+Noise floor = Receiver input equivalent noise
+
+\elcizimi[0.5]{sekiller/Ders6-s10-2.png}[10]
+
+$N_o$ : output noise power \underline{exluding} $R_s$.
+
+kaynak \okunamadi{düşünülmediğindeki} gürültü
+
+\begin{align*}
+F &= \frac{\overline{v_{n,\mathrm{input}}^2}}{A_{vt}^2}\cdot\frac{1}{4kTR_s} = \frac{\text{Total output noise power including }R_s}{G\cdot(\text{Noise power from }R_s\text{ only})} \\
+&= \frac{N_o + G\,(\kutula{kTB})}{G\cdot kTB} = F
+\end{align*}
+
+\[ \Rightarrow\; \text{Input noise} = kTB + \frac{N_o}{G} = \underbrace{FkTB}_{\text{Noise Floor}} \]
+
+\end{document}
