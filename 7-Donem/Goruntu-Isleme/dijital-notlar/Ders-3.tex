@@ -1,0 +1,176 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Ders 3: Unsharp masking, gradyan, histogram işleme}{Ders-3.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 9) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\section{Unsharp masking}
+\[
+\underset{\text{mask}}{f_s(x,y)} = f(x,y) - \overset{\text{yumuşatılmış fotoğraf}}{\bar{f}(x,y)}
+\]
+
+$\rightarrow$ keskinleştirilmiş maske
+\begin{align*}
+g(x,y) &= f(x,y) + f_s(x,y)\\
+ &= f(x,y) + f(x,y) - \bar{f}(x,y)
+\end{align*}
+
+\sekilnotu[1]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+$\rightarrow f(x,y)$ \\
+$\bar{f}(x,y)$ \\
+$f_s$ göstermek için yapmış renkleri \\
+$\rightarrow g(x,y)$ \quad unsharp mask
+
+\[
+f_{hb} = \overset{A>1}{A}\, f(x,y) - \bar{f}(x,y) \qquad \text{\textcolor{kirmizikalem}{yanlış}}
+\]
+\[
+\overset{\text{kitap}}{f_{Hb}} = f(x,y) + k\, f_s(x,y), \qquad k>0
+\]
+
+\sayfa{2}
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+sobel
+
+\noindent
+\begin{tabular}{|c|}\hline 1 \\ \hline 0 \\ \hline $-1$ \\ \hline\end{tabular}
+\quad dikey yönde $x$'e göre türev \qquad\qquad
+\begin{tabular}{|c|c|c|}\hline 1 & 0 & $-1$ \\ \hline\end{tabular}
+
+\medskip
+\noindent
+\begin{tabular}{|c|c|c|}\hline $1/3$ & $1/3$ & $1/3$ \\ \hline 0 & 0 & 0 \\ \hline $-1/3$ & $-1/3$ & $-1/3$ \\ \hline\end{tabular}
+\quad $\rightarrow$ yukarı ve aşağının ortalamasını alalım türev alırken böylece gürültüden daha az etkilenir
+
+\medskip
+\noindent
+\begin{tabular}{|c|c|c|}\hline 1 & 0 & $-1$ \\ \hline 1 & 0 & $-1$ \\ \hline 1 & 0 & $-1$ \\ \hline\end{tabular}
+
+\medskip
+\noindent
+\begin{tabular}{|c|c|c|}\hline 1 & 2 & 1 \\ \hline 0 & 0 & 0 \\ \hline $-1$ & $-1$ & $-1$ \\ \hline\end{tabular}
+\quad $x$ yönde türev alır \hfill $y$ yönde
+
+\sayfa{3}
+\sekilnotu[3]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+$x$ ve $y$ yöndeki sobel uygulayıp toplarsak
+
+\section{Gradient of $f(x,y)$}
+\[
+\nabla f = \begin{bmatrix} G_x \\ G_y \end{bmatrix}
+= \begin{bmatrix} \dfrac{\partial f}{\partial x} \\[1ex] \dfrac{\partial f}{\partial y} \end{bmatrix}
+\]
+\[
+\text{magnitude of } \nabla f = \left[ \left(\frac{\partial f}{\partial x}\right)^2 + \left(\frac{\partial f}{\partial y}\right)^2 \right]^{1/2}
+\approx \left|\frac{\partial f}{\partial x}\right| + \left|\frac{\partial f}{\partial y}\right|
+\]
+
+olasılık yoğunluk fonksiyonu \\
+eğrinin alanı 1'in altında
+
+\sayfa{4}
+\sekilnotu[4]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\section{Histogram Processing}
+gray levels are in $[0, L-1]$
+
+\underline{histogram}: $h(r_k) = n_k$ $\rightarrow$ piksel sayısı
+
+$r_k = k^{\mathrm{th}}$ graylevel \qquad $0, 1, \dots, 255$
+
+\[ n = \sum_{k=0}^{L-1} n_k = M \times N \]
+
+Normalize histogram \qquad $p(r_k) = n_k / n$ \qquad\qquad pdf'e benzer
+
+\elcizimi[0.5]{sekiller/Ders-3-s4-1.png}[4]
+
+\sayfa{5}
+\section{Histogram Equalization}
+\elcizimi[0.6]{sekiller/Ders-3-s5-1.png}[5]
+
+$s = T(r)$
+\[ s = T(r) = \int_0^r p_r(w)\,dw \]
+\[ \int_0^r p(x)\,dx \]
+
+\elcizimi[0.3]{sekiller/Ders-3-s5-2.png}[5]
+
+Ex:
+
+\noindent
+\begin{tabular}{|cccc|}\hline 0 & 3 & 3 & 1 \\ 1 & 3 & 1 & 3 \\ 0 & 3 & 3 & 3 \\ 1 & 1 & 1 & 0 \\ \hline\end{tabular}
+
+\bigskip
+\noindent
+\begin{tabular}{c|c|c|c|c|c}
+$r$ & $h_r$ & $p_r$ & $T(r)$ & $s$ & $p_s$ \\ \hline
+0 & 3 & $3/16$ & $3/16$ & 1 & 0 \\
+1 & 6 & $6/16$ & $9/16$ & 2 & $3/16$ \\
+2 & 0 & 0 & $9/16$ & 2 & $6/16$ \\
+3 & 7 & $7/16$ & $16/16$ & 3 & $7/16$
+\end{tabular}
+
+gezerken üç ile çarpalım ki 0 1 arası sıkışmasın
+
+$\rightarrow$ uniform çıkmadı tam çünkü \underline{continuos değil}
+
+\bigskip
+\noindent
+\begin{tabular}{|cccc|}\hline 1 & 3 & & 2 \\ 2 & 3 & 2 & 3 \\ 1 & 3 & 3 & 3 \\ 2 & 2 & 2 & 1 \\ \hline\end{tabular}
+
+\sayfa{6}
+\sekilnotu[6]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\section{Histogram Matching}
+\elcizimi[0.5]{sekiller/Ders-3-s6-1.png}[6]
+
+\elcizimi[0.45]{sekiller/Ders-3-s6-2.png}[6]
+
+\elcizimi[0.45]{sekiller/Ders-3-s6-3.png}[6]
+
+\sayfa{7}
+\[ s = T(r) = \int_0^r p_r(w)\,dw \qquad\qquad s = G(z) = \int_0^z p_z(w)\,dw \]
+\begin{center}$\longleftrightarrow$ ikisi aynı dağılım\end{center}
+\[ s = G(z) = T(r) \]
+\begin{align*}
+G(z) &= T(r)\\
+z &= G^{-1}(T(r))
+\end{align*}
+
+\elcizimi[0.8]{sekiller/Ders-3-s7-1.png}[7]
+
+\elcizimi[0.35]{sekiller/Ders-3-s7-2.png}[7]
+
+Input
+
+\noindent
+\begin{tabular}{|ccccc|}\hline 0 & 1 & 1 & 0 & 0 \\ 1 & 1 & 0 & 0 & 1 \\ 2 & 2 & 5 & 6 & 7 \\ 5 & 5 & 7 & 6 & 6 \\ 7 & 6 & 7 & 7 & 7 \\ \hline\end{tabular}
+
+\elcizimi[0.7]{sekiller/Ders-3-s7-3.png}[7]
+
+\sayfa{8}
+\noindent
+\begin{tabular}{c|c|c|c|c|c|c}
+$r$ & $h(r)$ & $p_r$ & $T(r)$ & $G(z)$ & $p_z$ & $z$ \\ \hline
+\vurgu[pembe]{0} & 5 & 5/25 & \vurgu[pembe]{5/25} & 0/25 & 0/25 & 2 \\
+1 & 5 & 5/25 & 10/25 & 2/25 & 2/25 & 3 \\
+\vurgu[turuncu]{2} & 2 & 2/25 & \vurgu[turuncu]{12/25} & \vurgu[pembe]{5/25} & 3/25 & 3 \\
+3 & 0 & 0/25 & 12/25 & \vurgu[turuncu]{10/25} & 5/25 & 3 \\
+4 & 0 & 0/25 & 12/25 & \vurgu[mavi]{15/25} & 5/25 & 3 \\
+\vurgu[mavi]{5} & 3 & 3/25 & \vurgu[mavi]{15/25} & \vurgu[sari]{20/25} & 5/25 & 4 \\
+6 & 4 & 4/25 & \vurgu[sari]{19/25} & 23/25 & 3/25 & 5 \\
+7 & 6 & 6/25 & \vurgu[yesil]{25/25} & \vurgu[yesil]{25/25} & 2/25 & 7
+\end{tabular}
+
+\bigskip
+Output
+
+\noindent
+\begin{tabular}{|ccccc|}\hline 2 & 3 & 3 & 2 & 2 \\ 3 & 3 & 2 & 2 & 3 \\ 3 & 3 & 4 & 5 & 7 \\ 4 & 4 & 7 & 5 & 5 \\ 7 & 5 & 7 & 7 & 7 \\ \hline\end{tabular}
+
+\sekilnotu[8]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\end{document}

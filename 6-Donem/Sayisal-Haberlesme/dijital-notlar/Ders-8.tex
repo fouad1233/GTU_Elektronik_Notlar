@@ -1,0 +1,209 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Temel band haberleşmesi, Matched Filter, Correlator}{Ders-8.pdf}
+
+\sayfa{1}
+\textbf{Ders8}
+
+\section{Temel Band haberleşmesi}
+\elcizimi[0.9]{sekiller/Ders-8-s1-1.png}[1]
+
+\elcizimi[0.9]{sekiller/Ders-8-s1-2.png}[1]
+
+\[
+\begin{array}{l}
+z = a_i + n_0 \\
+\downarrow \qquad\ \hookrightarrow\ \sim N(0,\sigma_0^2) \\
+\sim N(a_i,\sigma_0^2)
+\end{array}
+\]
+\[ f(n_0) = \frac{1}{\sqrt{2\pi}\,\sigma_0}\,\exp\left\{-\frac{1}{2}\left(\frac{n_0}{\sigma_0}\right)^2\right\} \]
+
+Eğer $s_1$ iletilirse
+\[
+\begin{gathered}
+z = a_1 + n_0 \qquad \hookrightarrow\ \sim N(a_1,\sigma_0^2) \\
+\Rightarrow\ f(z|s_1)=\frac{1}{\sqrt{2\pi}\,\sigma_0}\,\exp\left\{-\frac{(z-a_1)^2}{2\sigma_0^2}\right\}
+\end{gathered}
+\]
+
+\sayfa{2}
+Eğer $s_2$ iletilirse
+\[
+\begin{gathered}
+z = a_2 + n_0 \qquad \hookrightarrow\ \sim N(a_2,\sigma_0^2) \\
+\Rightarrow\ f(z|s_2)=\frac{1}{\sqrt{2\pi}}\footnotemark\,\exp\left\{-\frac{(z-a_2)^2}{2\sigma_0^2}\right\}
+\end{gathered}
+\]
+\footnotetext{Claude notu: payda muhtemelen $\sqrt{2\pi}\,\sigma_0$ olmalı.}
+
+\elcizimi[0.9]{sekiller/Ders-8-s2-1.png}[2]
+
+$s_1(t)$ iletilmiş olsun : Doğru karar $(z>\gamma_0)$
+\[ \text{Hata :}\ P(h|s_1)=P(z<\gamma_0)=\int_{-\infty}^{\gamma_0} f(z|s_1)\,dz \]
+$s_2(t)$ iletilmiş olsun doğru karar: $(z<\gamma_0)$
+\[ \text{Hata :}\ P(h|s_2)=P(z>\gamma_0)=\int_{\gamma_0}^{\infty} f(z|s_2)\,dz \]
+
+\[ \underset{\text{\scriptsize Bit hata olasılığı}}{P_b}=\sum_{i=1}^{2}P(h|s_i)P(s_i)=P(h|s_1)P(s_1)+P(h|s_2)P(s_2) \]
+
+\underline{Eşit olasılıklı işaretler}: $P(s_1)=P(s_2)=\dfrac{1}{2}$ \\
+(Equally likely)
+
+\[ \Rightarrow \gamma_0=\frac{a_1+a_2}{2} \qquad \Rightarrow \text{Simetriden dolayı,} \]
+\[ P(h|s_1)=P(h|s_2) \]
+\[ \Rightarrow P_b=P(h|s_1)=P(h|s_2) \]
+\[ P_b=P(h|s_2)=\int_{\gamma_0}^{\infty} f(z|s_2)\,dz=\frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{\frac{a_1+a_2}{2}}^{\infty} e^{-\frac{(z-a_2)^2}{2\sigma_0^2}}\,dz \]
+
+\[ \begin{aligned} Q(x)&=P(X>x) \\ X&\sim N(0,1) \end{aligned} \]
+\elcizimi[0.4]{sekiller/Ders-8-s2-2.png}[2]
+
+\sayfa{3}
+\[ \begin{aligned} Q(x)&=P(X>x)=\int_{x}^{\infty} f_X(x)\,dx \\ &=\frac{1}{\sqrt{2\pi}}\int_{x}^{\infty} e^{-t^2/2}\,dt\,,\quad x\ge 0 \end{aligned} \]
+
+Table B.1, Page 1045
+\[ Q(0)=0{,}5 \]
+\[ Q(-x)=1-Q(x) \]
+
+\[
+\begin{aligned}
+P_b&=P(h|s_2)=\int_{\gamma_0}^{\infty} f(z|s_2)\,dz=\frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{\frac{a_1+a_2}{2}}^{\infty} e^{-\frac{(z-a_2)^2}{2\sigma_0^2}}\,dz \\
+&=\frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{\frac{a_1-a_2}{2\sigma_0}}^{\infty} e^{-\frac{t^2}{2}}\,\sigma_0\,dt=Q\!\left(\frac{a_1-a_2}{2\sigma_0}\right)
+\end{aligned}
+\]
+
+\[
+\begin{aligned}
+\frac{z-a_2}{\sigma_0}&=t \\
+z&=\sigma_0 t+a_2 \\
+dz&=\sigma_0\,dt
+\end{aligned}
+\]
+\[ z=\frac{a_1+a_2}{2}\ \rightarrow\ t=\frac{\frac{a_1+a_2}{2}-a_2}{\sigma_0}=\frac{a_1-a_2}{2\sigma_0} \]
+\[ z=\infty\ \rightarrow\ t=\infty \]
+
+\formulkutu{P_b=Q\left(\frac{a_1-a_2}{2\sigma_0}\right)}
+
+bu \okunamadi{oran} ne kadar artarsa o kadar $P_b$ azalır
+
+\section{Karşılayıcı Filtre (Matched Filter - MF)}
+\begin{itemize}
+\item MF provides max SNR at its output for a given transmitted waveform
+\end{itemize}
+
+\elcizimi[0.8]{sekiller/Ders-8-s3-1.png}[3]
+
+\[ \mathrm{SNR}=\left(\frac{S}{N}\right)_{t=T}=\frac{a^2}{\underset{N_0/2}{\sigma_0^2}}=\frac{2E_s}{N_0}\qquad \text{eğer } h(t)=s(T-t),\ 0\le t\le T \]
+\[ E_s=\int_0^T |s(t)|^2\,dt \]
+
+\sayfa{4}
+\[ z(t)=r(t)\circledast h(t)=\underbrace{s(t)\circledast h(t)}_{a(t)}+\underbrace{n(t)\circledast h(t)}_{n_0(t)} \]
+
+\[ z(T)=a(T)+n_0(T) \]
+\[ \begin{array}{l} z=a+n_0 \\ \qquad\ \hookrightarrow\ N(0,\sigma_0^2) \end{array} \]
+
+\[ \mathrm{SNR}=\left(\frac{S}{N}\right)_{T}=\frac{a^2}{\sigma_0^2} \]
+
+\[ a(t)=\iFou{A(f)}=\int_{-\infty}^{\infty}S(f)H(f)e^{j2\pi fT}\,df \]
+\[ \rightarrow a=a(T) \]
+
+\elcizimi[0.85]{sekiller/Ders-8-s4-1.png}[4]
+
+\[ P_{n_0}=\sigma_0^2=\int_{-\infty}^{\infty}S_{n_0}(f)\,df=\frac{N_0}{2}\int_{-\infty}^{\infty}|H(f)|^2\,df \]
+
+\[ \mathrm{SNR}=\frac{a^2}{\sigma_0^2}=\frac{\left|\int_{-\infty}^{+\infty}S(f)H(f)e^{j2\pi fT}\,df\right|^2}{\frac{N_0}{2}\int_{-\infty}^{\infty}|H(f)|^2\,df} \]
+
+Cauchy-Schwarz eşitsizliği
+\[ \left|\int_{-\infty}^{\infty}f_1(x)f_2(x)\,dx\right|^2\le\int_{-\infty}^{\infty}|f_1(x)|^2dx\int_{-\infty}^{\infty}|f_2(x)|^2dx \]
+\[ \hookrightarrow\ f_1(x)=k\cdot f_2^{*}(x)\qquad\text{\okunamadi{şartı}} \]
+
+\[ \begin{aligned} f_1(x)&=H(f)\\ f_2(x)&=S(f)e^{j2\pi fT} \end{aligned} \]
+\[ \Rightarrow\ \mathrm{SNR}\le\frac{\int_{-\infty}^{\infty}|H(f)|^2df\int_{-\infty}^{\infty}|S(f)|^2df}{\frac{N_0}{2}\int_{-\infty}^{\infty}|H(f)|^2df} \]
+
+\[ \mathrm{SNR}\le\frac{2}{N_0}\underbrace{\int_{-\infty}^{\infty}|S(f)|^2\,df}_{E_s}\ \Rightarrow\ \mathrm{SNR}\le\frac{2E_s}{N_0} \]
+
+SNR'ın maksimum değeri \okunamadi{budur}
+
+\sayfa{5}
+Biz max bulmak istiyoruz $\rightarrow \mathrm{SNR}=\dfrac{2E_s}{N_0}$ olması için
+\[ \begin{aligned} f_1(x)&=k\,f_2^{*}(x) \\ H(f)&=k\,S^{*}(f)\,e^{-j2\pi fT} \end{aligned} \]
+\[ \downarrow \]
+\[ h(t)=k\int_{-\infty}^{\infty}\underbrace{S^{*}(f)\,e^{-j2\pi fT}}\,e^{j2\pi ft}\,df \]
+\[ =k\left[\underbrace{\int_{-\infty}^{\infty}S(f)\,e^{j2\pi f\underbrace{(T-t)}_{t'}}\,df}_{s(t')}\right]^{*} \]
+\[ h(t)=k\cdot s^{*}(t')=k\cdot s^{*}(T-t)\ \rightarrow\ \kutula{h(t)=s^{*}(T-t)} \]
+\[ h(t)=s(T-t)\ \rightarrow\ \mathrm{SNR}=\frac{2E_s}{N_0} \]
+
+\elcizimi[0.5]{sekiller/Ders-8-s5-1.png}[5]
+
+\elcizimi[0.55]{sekiller/Ders-8-s5-2.png}[5]
+
+\elcizimi[0.6]{sekiller/Ders-8-s5-3.png}[5]
+
+\sayfa{6}
+\section{İlişkilendirici (Correlator)}
+
+\elcizimi[0.9]{sekiller/Ders-8-s6-1.png}[6]
+
+\[ z_1(t)=r(t)\circledast h(t)=\int_0^t r(z)\,h(t-z)\,dz \]
+\[ z_1(t)=\int_0^t r(z)\,s\bigl(T-(t-z)\bigr)\,dz \]
+\[ z_1(T)=\int_0^T r(z)\,s(z)\,dz=z(T) \]
+
+\[ z_2(t)=\int_0^t r(z)\,s(z)\,dz \]
+\[ z_2(T)=\int_0^T r(z)\,s(z)\,dz=z(T) \]
+\textit{[Kırmızı yaylı okla $z_1(T)$ ve $z_2(T)$ satırları birbirine bağlanmış.]}
+
+\textbf{Örnek:}
+
+\elcizimi[0.4]{sekiller/Ders-8-s6-2.png}[6]
+
+$r(t)=s(t)$ \qquad (no noise)
+
+\elcizimi[0.9]{sekiller/Ders-8-s6-3.png}[6]
+
+\sayfa{7}
+MF: $z_1(t)=r(t)\circledast h(t)=s(t)\circledast s(t)$
+
+\elcizimi[0.9]{sekiller/Ders-8-s7-1.png}[7]
+
+$\Rightarrow z_1(t)$
+
+\elcizimi[0.55]{sekiller/Ders-8-s7-2.png}[7]
+
+\section{İlişkilendirici}
+\[ z_2(t)=\int_0^t \underbrace{r(z)}_{s(z)}\,s(z)\,dz=\int_0^t s^2(z)\,dz \quad \begin{cases} =0, & t<0 \\ & 0<t<T \end{cases} \]
+\[ =\int_0^t A^2\,dz=A^2t,\quad 0<t<T \]
+\[ =\int_0^T A^2\,dz=A^2T,\quad t>T \]
+
+\elcizimi[0.6]{sekiller/Ders-8-s7-3.png}[7]
+
+\[ z_2(T)=z(T)=A^2T \]
+
+\elcizimi[0.6]{sekiller/Ders-8-s7-4.png}[7]
+
+\sayfa{8}
+\[ h(t)=s_1(T-t)-s_2(T-t) \]
+
+\elcizimi[0.6]{sekiller/Ders-8-s8-1.png}[8]
+
+\[ P_b=Q\left(\frac{a_1-a_2}{2\sigma_0}\right) \qquad\qquad \left(\frac{a_1-a_2}{\sigma_0}\right)^2=\frac{(a_1-a_2)^2}{\sigma_0^2} \]
+
+\[ \left(\frac{S}{N}\right)_T=\frac{a^2}{\sigma_0^2}=\frac{2\overbrace{E_s}^{\text{\scriptsize $s(t)$'nin enerjisi}}}{N_0} \]
+$\leftarrow$ $h(t)$ tek $s(t)$'yi karşıladığı için
+
+\[ \left(\frac{S}{N}\right)_T=\frac{(a_1-a_2)^2}{\sigma_0^2}=\frac{2\overbrace{E_d}^{\substack{\text{\scriptsize Fark işaretin enerjisi}\\ \text{\scriptsize (Difference signal)}}}}{N_0} \]
+$\leftarrow$ $h(t)$ \ $s_1(t)-s_2(t)$'yi karşılıyor
+
+\[ E_d=\int_0^T\bigl[s_1(t)-s_2(t)\bigr]^2dt=\underbrace{\int_0^T s_1^2(t)\,dt}_{\substack{E_b:\ \text{bit başına}\\ \text{energy per bit}}}+\underbrace{\int_0^T s_2^2(t)\,dt}_{E_b}-2\underbrace{\int_0^T s_1(t)s_2(t)\,dt}_{\rho\cdot E_b} \]
+
+\[ \rho=\frac{1}{E_b}\int_0^T s_1(t)s_2(t)\,dt \]
+$\downarrow$ \underline{karşı-ilişki katsayısı} \\
+(Normalized cross correlation coefficient) \\
+$-1\le\rho\le 1$
+
+\textit{[Ok, ``(Normalized cross correlation coefficient)'' ifadesinden $\rho\cdot E_b$ ifadesine gidiyor.]}
+
+\[ E_d=2E_b-2\rho E_b=2E_b(1-\rho) \]
+
+\[ \begin{aligned} P_b&=Q\left(\frac{a_1-a_2}{2\sigma_0}\right)=Q\left(\sqrt{\frac{2E_d}{4N_0}}\right) \\ &=Q\left(\sqrt{\frac{E_d}{2N_0}}\right)=Q\left(\sqrt{\frac{E_b}{N_0}(1-\rho)}\right) \end{aligned} \]
+
+\end{document}

@@ -1,0 +1,137 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{FIR filtre tipleri ve tasarımı, STFT}{Dsp-ders-10.pdf}
+
+\sayfa{1}
+\section{Tip 2}
+
+\[ H(e^{j\omega}) = e^{-j\omega\frac{M}{2}} \sum_{n=0}^{\frac{M-1}{2}} \underbrace{h[n]\Big[2\cos\Big(\omega n - \omega\frac{M}{2}\Big)\Big]}_{A \gtrless 0} \]
+
+\[ \angle H(e^{j\omega}) = \begin{cases} -\omega\dfrac{M}{2}, & A>0 \\[6pt] -\omega\dfrac{M}{2}+\pi, & A<0 \end{cases} \]
+
+\elcizimi[0.55]{sekiller/Dsp-ders-10-s1-1.png}[1]
+
+\elcizimi[0.55]{sekiller/Dsp-ders-10-s1-2.png}[1]
+
+\[ |H(e^{j\omega})|\Big|_{\omega=0} = \Big|\sum_{n=0}^{\frac{M-1}{2}} 2h[n]\Big| \]
+
+\[ |H(e^{j\omega})|\Big|_{\omega=\pi} = \Big|\sum_{n=0}^{\frac{M-1}{2}} h[n]\,\underset{\cos\left(\frac{\pi}{2}(2n-M)\right)}{\cos\Big(\pi n - \frac{\pi}{2}M\Big)}\Big| = 0 \]
+
+$\star$ M tip 2'de tektir.
+
+çift $-$ tek $=$ tek
+
+\[ \begin{gathered} 1 \\ 2 \\ 3 \\ 4 \\ 5 \end{gathered} \]
+
+\section{Bant söndüren}
+
+$\omega=0$ da ve $\pi$ de $|H(e^{j\omega})|>0$
+
+\elcizimi[0.3]{sekiller/Dsp-ders-10-s1-3.png}[1]
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{l|c|c|c|c}
+ & LP & HP & BP & BS (Band stop) \\
+\hline
+Type I & $\checkmark$ & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+\hline
+Type II & $\checkmark$ & $\times$ & $\checkmark$ & $\times$ \\
+\hline
+Type III & $\times$ & $\times$ & $\checkmark$ & $\times$ \\
+\hline
+Type IV & $\times$ & $\checkmark$ & $\checkmark$ & $\times$ \\
+\end{tabular}
+\end{center}
+
+\sayfa{2}
+artık $H(e^{j\omega})$, $h[n]$ \okunamadi{ta sağlayacağız}
+
+\elcizimi[0.75]{sekiller/Dsp-ders-10-s2-1.png}[2]
+
+\elcizimi[0.62]{sekiller/Dsp-ders-10-s2-2.png}[2]
+
+\sayfa{3}
+\section{Filter Specifications}
+
+\elcizimi[0.95]{sekiller/Dsp-ders-10-s3-1.png}[3]
+
+\begin{align*}
+\Omega &= F_s\,\omega & \Omega &= 2\pi F \\
+F &= F_s \cdot f & \omega &= 2\pi f
+\end{align*}
+
+\formulkutu{\omega = \frac{F}{F_s}\, 2\pi}
+
+\section{Tip 1}
+
+\[ h[n] = h[M-n] \qquad M \text{ even (çift)} \]
+
+\[ H(e^{j\omega}) = e^{-j\omega\frac{M}{2}} \Big( \sum_{k=0}^{M/2} a_k \cos\omega k \Big) \]
+
+\[ a_0 = h[M/2] \]
+
+\[ a_k = 2h[M/2 - k] \qquad k = 1,\ldots,M/2 \]
+
+\underline{Tip 1 için}
+\[ H(e^{j\omega}) = e^{-j\omega\frac{M}{2}} \Big( \sum_{m=0}^{M/2} a_m \cos\omega m \Big) \]
+
+\sayfa{4}
+\elcizimi[0.65]{sekiller/Dsp-ders-10-s4-1.png}[4]
+
+\[ \underset{\text{k noktasındaki}}{\text{Hata}} = \big| D(e^{j\omega_k}) - H(e^{j\omega_k}) \big| \]
+
+\[ \begin{array}{c} \text{minimize} \\ \text{etme gerek} \end{array} \sum_{k=0}^{I} \big( D(e^{j\omega_k}) - H(e^{j\omega_k}) \big)^2 \]
+
+kare işlemi yüksek hataları güçlendirir, onlara önem verir
+
+\elcizimi[0.55]{sekiller/Dsp-ders-10-s4-2.png}[4]
+
+\[ \Longrightarrow \min \sum_{k=0}^{I} W(\omega_k)\big( D(e^{j\omega_k}) - H(e^{j\omega_k}) \big)^2 \]
+
+\[ e(\omega_i) = W(\omega_i)\big[ H(\omega_i) - D(\omega_i) \big] \]
+
+\[ \omega_i = \quad i = 0,\ldots,I \]
+
+\begin{align*}
+E &= \sum_{i=0}^{I} |e(\omega_i)|^2 \\
+&= \sum_{i=0}^{I} \Big[ W(\omega_i)\big[H(\omega_i) - D(\omega_i)\big] \Big]^2 \\
+&= \sum_{i=0}^{I} \Big[ \underbrace{\sum_{m=0}^{M/2} W(\omega_i)\, e^{-j\omega_i \frac{M}{2}} \cos(\omega_i m)\, a_m - W(\omega_i) D(\omega_i)}_{e_i} \Big]^2
+\end{align*}
+
+\sayfa{5}
+Minimize $E$
+\[ {}= e_0^2 + e_1^2 + \cdots + e_I^2 = \underbrace{[e_0\ \ e_1\ \ \cdots\ \ e_I]}_{e^T} \underbrace{\begin{bmatrix} e_0 \\ e_1 \\ \vdots \\ e_I \end{bmatrix}}_{e} \]
+
+\[ {}= e^T \cdot e \]
+
+\[ e_i = \big[\, W(\omega_i)\, e^{-j\omega_i\frac{M}{2}}, \;\; W(\omega_i)\, e^{-j\omega_i\frac{M}{2}} \cos(\omega_i 1) \,\big] \underbrace{\begin{bmatrix} a_0 \\ a_1 \\ \vdots \\ a_I \end{bmatrix}}_{a\ \text{vektörü}} - \underbrace{W(\omega_i) D(\omega_i)}_{d_i\ \text{diyelim}} \]
+
+\[ h_i = \begin{bmatrix} 1 \\ \cos(\omega_i) \\ \cos(2\omega_i) \\ \cos(3\omega_i) \\ \vdots \\ \cos\big(\frac{M}{2}\omega_i\big) \end{bmatrix} \]
+
+\[ e_i = W(\omega_i)\, e^{-j\omega_i\frac{M}{2}}\, h_i^T \cdot a - d_i \]
+
+\[ e = \begin{bmatrix} e_0 \\ e_1 \\ \vdots \\ e_I \end{bmatrix}\footnotemark \underbrace{\begin{bmatrix} W(\omega_0)\, e^{-j\omega_0\frac{M}{2}}\, h_0^T \\ W(\omega_1)\, e^{-j\omega_1\frac{M}{2}}\, h_1^T \\ \vdots \\ W(\omega_I)\, e^{-j\omega_I\frac{M}{2}}\, h_I^T \end{bmatrix}}_{H\ \text{vektörü}} a - \overbrace{\begin{bmatrix} d_0 \\ d_1 \\ d_2 \\ \vdots \\ d_I \end{bmatrix}}^{d} \]
+\footnotetext{Claude notu: iki köşeli parantez arasında muhtemelen ``$=$'' olmalı.}
+
+\[ e = H\, a - d \]
+
+\begin{align*}
+\underline{\text{minimize}}\ E &= e^T \cdot e = (H\cdot a - d)^T (H\cdot a - d) \\
+&= a^T H^T H a - \underbrace{a^T}_{a^T} H^T \underbrace{d}_{b} - d^T H a + d^T d \\
+&= a^T H^T H a - 2a^T H^T d + d^T d
+\end{align*}
+
+\[ a^T b = b^T a \quad \checkmark \]
+
+\[ \begin{bmatrix} x_1 & x_2 \end{bmatrix} \begin{bmatrix} y_1 \\ y_2 \end{bmatrix} = \begin{bmatrix} y_1 & y_2 \end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix} \]
+
+\[ \frac{\partial E}{\partial a} = 0 \qquad\qquad \frac{\partial E}{\partial a} = 2H^T H a - 2H^T d \]
+
+\[ H^T H a = H^T d \;\Longrightarrow\; \kutula{a = (H^T H)^{-1} H^T d} \]
+
+\sayfa{6}
+Eğer $M$'yi çok kısıtlı tutarsanız filtrenizin çözünürlüğü düşük
+
+\end{document}

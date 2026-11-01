@@ -1,0 +1,154 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Görüntü iyileştirme: yoğunluk dönüşümleri ve uzamsal filtreler}{Ders2.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 3, 4) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\underline{Image depth}: Bir piksel ifade etmek için kullanılan bit sayısı
+
+\underline{Image Enhancement}: Process an image to obtain an image that is more \underline{suitable} than the original image for a \underline{specific application}
+
+\noindent $f(x,y)$ \\ $g(x,y)$
+\[ g(x,y) = T\bigl[f(x,y)\bigr] \]
+\elcizimi[0.6]{sekiller/Ders2-s1-1.png}[1]
+
+kare olması gerekmez
+
+\elcizimi[0.3]{sekiller/Ders2-s1-2.png}[1]
+
+Operation on $1\times1$ neighborhood
+
+-- $g(x,y)$ depends only on the value of $f$ at $(x,y)$
+\begin{align*}
+g(x,y) &= T\bigl[f(x,y)\bigr]\\
+s &= T[r]
+\end{align*}
+\elcizimi[0.45]{sekiller/Ders2-s1-3.png}[1]
+
+\sayfa{2}
+\elcizimi[0.7]{sekiller/Ders2-s2-1.png}[2]
+
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+karanlık görüntüyü aydınlatır (karanlık bölgeyi daha iyi görmemizi sağlar)
+
+logaritmayı yüksek bileşenleri bastırmak için kullanırız.
+
+\sayfa{5}
+\elcizimi[0.85]{sekiller/Ders2-s5-1.png}[5]
+
+\noindent for $x=0$ to $M-1$\\
+\hspace*{1.5em} for $y=0$ to $N-1$\\
+\hspace*{3em} $g(x,y)=T\bigl[f(x,y)\bigr]$
+
+\[
+\begin{array}{@{}l@{\quad}c@{\qquad\quad}l@{}}
+r & 300 & \\[2pt]
+ & \dfrac{-100}{\min} & {\color{turuncukalem}400}\\[6pt]
+ & \underbrace{r-(-100)}_{r-\min}=r+100 & {\color{turuncukalem}0}
+\end{array}
+\]
+\[
+\underset{\text{arası}}{0\ 1}\ \left\{\dfrac{r-\min}{\max}\cdot 255\right\}\begin{matrix}255\\0\end{matrix}
+\]
+
+\sekilnotu[5]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+bu korelasyon işlemi konvülasyondan farkı ters alma yoktur. Simetrik olursa korelasyon ve konvülasyonun farkı kalmaz
+
+\sayfa{6}
+konvülasyon
+
+\noindent
+\begin{tabular}{@{}l *{11}{c}@{}}
+$x[n]$ & & & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+$h[n]$ & & & 5 & 4 & 3 & & & & & & \\
+ & {\color{turuncukalem}3} & {\color{turuncukalem}4} & {\color{turuncukalem}\textcircled{5}} & & & & & & & & \\
+{\color{turuncukalem}$x[n]*h[n]$} & & & {\color{turuncukalem}5} & {\color{turuncukalem}14} & {\color{turuncukalem}26} & & & & & & \\
+\end{tabular}
+
+Görüntünün dışında kalan pikselleri 0 olarak kabul edin projede.
+
+Mesela bu maskeyi düşünelim
+
+\elcizimi[0.3]{sekiller/Ders2-s6-1.png}[6]
+
+\noindent for $x=0$ to $M-1$\\
+\hspace*{1.5em} for $y=0$ to $N-1$\\
+\hspace*{3em} $g(x,y)=T\bigl[f(x,y)\bigr]$
+
+\elcizimi[0.4]{sekiller/Ders2-s6-2.png}[6]
+
+{\color{turuncukalem}
+\noindent $g(x,y)=0$\\
+for $s=-1$ to $+1$\\
+\hspace*{1.5em} for $t=-1$ to $+1$\\
+\hspace*{4em} $g(x,y)=g(x,y)+f(x+s,y+t)$\\
+\hspace*{3em} $g(x,y)=\dfrac{g(x,y)}{9}$\par}
+
+{\color{kirmizikalem}
+\noindent if $x+s<0 \mathbin{|\!|} x+s>M-1$\\
+\hspace*{3em} $\mathbin{|\!|}\ y+t<0 \mathbin{|\!|} y+t>N-1$ \ yapma\\
+else:\par}
+
+\formulkutu[önemli]{g(x,y)=\sum_{s=-1}^{1}\sum_{t=-1}^{1} f(x+s,\,y+s\footnotemark)\,w(s,t)}
+\footnotetext{Claude notu: muhtemelen $f(x+s,y+t)$ olmalı.}
+
+\sayfa{7}
+\sekilnotu[7]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+pencere içindeki değerleri sıralıyorum küçükten büyüğe doğru ve ortanca değeri alıyoruz
+
+En küçüğü alsa min, en büyüğü alsa max, k'nıncı
+
+\sayfa{8}
+alsa k'nıncı filtre
+
+Başka filtreye bakalım
+
+\[
+\begin{array}{|c|c|c|}\hline 1&2&1\\\hline 2&4&2\\\hline 1&2&1\\\hline\end{array}
+\qquad \text{ortadaki değerin ağırlığı daha fazla}
+\]
+
+\noindent Bölmeden girişe uyguladığını düşünelim\\
+\hspace*{2em} $255\times16$ oldu
+
+\noindent Bu yüzden filtre başta 16'ya bölünmeli\\
+\hspace*{2em} maskenin toplamı bir olmalıdır
+
+\section{Sharpening Spatial Filters}
+keskinleştirme detayları daha fazla görünür hale getirmek için
+
+\[ \nabla^2 f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} \qquad \text{Laplacian} \]
+\[ \frac{\partial^2 f}{\partial x^2} = f(x+1,y) + f(x-1,y) - 2f(x,y) \]
+\[ \frac{\partial^2 f}{\partial y^2} = f(x,y+1) + f(x,y-1) - 2f(x,y) \]
+
+\[
+\begin{array}{|c|c|c|}\hline 0&1&0\\\hline 1&-4&1\\\hline 0&1&0\\\hline\end{array}
+\qquad
+\begin{array}{@{}l@{\ \ }r@{}} \min & -4\times255\\ \max & 4\times255 \end{array}
+\]
+
+\[ g(x,y) = f(x,y) - \nabla^2 f(x,y) \]
+\[
+\begin{array}{|c|c|c|}\hline 0&0&0\\\hline 0&1&0\\\hline 0&0&0\\\hline\end{array}
+-
+\begin{array}{|c|c|c|}\hline 0&1&0\\\hline 1&-4&1\\\hline 0&1&0\\\hline\end{array}
+=
+\begin{array}{|c|c|c|}\hline 0&-1&0\\\hline -1&5&-1\\\hline 0&-1&0\\\hline\end{array}
+\]
+
+\sayfa{9}
+Böyle yapanlar da var
+
+\[
+\begin{array}{|c|c|c|}\hline 1&1&1\\\hline 1&-8&1\\\hline 1&1&1\\\hline\end{array}
+\]
+
+\sekilnotu[9]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\[ f(x+1)-f(x) \]
+
+\end{document}

@@ -1,0 +1,181 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Quiz çözümü, FIR/IIR filtre tasarımı}{Dsp-ders-11.pdf}
+
+\sayfa{1}
+\section{Quiz çözümü}
+
+\elcizimi[0.65]{sekiller/Dsp-ders-11-s1-1.png}[1]
+
+\[ V(e^{j\omega}) = X(e^{j2\omega}) \]
+
+\[ V(z) = X(z^2) \]
+
+\elcizimi[0.8]{sekiller/Dsp-ders-11-s1-2.png}[1]
+
+\elcizimi[0.8]{sekiller/Dsp-ders-11-s1-3.png}[1]
+
+\[ v[n] = \cos\Big(\frac{\pi}{8}n\Big) + \cos\Big(\frac{7\pi}{8}n\Big) \]
+
+\[ H(e^{j\omega}) = e^{-j2\omega} - e^{-j3\omega} = 2j\, e^{-j\frac{5}{2}\omega} \left( \frac{e^{j\frac{1}{2}\omega} - e^{-j\frac{1}{2}\omega}}{2j} \right) \]
+
+\[ {}= \underbrace{e^{j\frac{\pi}{2}}\, e^{-j\frac{5}{2}\omega}}_{e^{-j\left(\frac{5}{2}\omega - \frac{\pi}{2}\right)}}\; 2\sin\Big(\frac{\omega}{2}\Big) \]
+
+\[ |H(e^{j\omega})| = 2\left|\sin\frac{\omega}{2}\right| \]
+
+\[ \angle H(e^{j\omega}) = -\frac{5}{2}\omega + \frac{\pi}{2} \qquad 0 < \omega < \pi \]
+
+\elcizimi[0.3]{sekiller/Dsp-ders-11-s1-4.png}[1]
+
+\elcizimi[0.65]{sekiller/Dsp-ders-11-s1-5.png}[1]
+
+\sayfa{2}
+\section{FIR Filter Design Using windows}
+
+\textcircled{1} start with \underline{desired} freq response $H_d(\omega)$
+
+\textcircled{2} compute IDTFT $\{H_d(\omega)\} = h_d[n]$
+
+\textcircled{3} $h[n] = h_d[n]\,w[n]$
+
+\[ \left.\begin{array}{l} H(e^{j\omega}) \\ H(\omega) \end{array}\right\} \text{Ayrık} \qquad\qquad \left.\begin{array}{l} H(\Omega) \\ H(j\Omega) \end{array}\right\} \text{sürekli} \]
+
+\elcizimi[0.98]{sekiller/Dsp-ders-11-s2-1.png}[2]
+
+\elcizimi[0.98]{sekiller/Dsp-ders-11-s2-2.png}[2]
+
+\sayfa{3}
+\elcizimi[0.3]{sekiller/Dsp-ders-11-s3-1.png}[3]
+
+\elcizimi[0.7]{sekiller/Dsp-ders-11-s3-2.png}[3]
+
+Fig 4.14
+
+Üçgen kullanıldığında side loblar daha az, main lobe ne kadar \okunamadi{durursa dahiyiği}
+
+\noindent 1- shape $\nearrow$ main lobe\\
+\hspace*{3.6em}$\rightarrow$ side lobe \textcircled{1}
+
+2- size $\rightarrow$ main lobe \textcircled{2}
+
+DTFT \quad DFT $\rightarrow$ kullanılıyorsa periyodik var sayılıyor
+
+\elcizimi[0.35]{sekiller/Dsp-ders-11-s3-3.png}[3]
+
+\elcizimi[0.4]{sekiller/Dsp-ders-11-s3-4.png}[3]
+
+resolüsyon bileşenlerin birbirine karışması
+
+\sayfa{4}
+\section{IIR Filter Design}
+
+\elcizimi[0.45]{sekiller/Dsp-ders-11-s4-1.png}[4]
+
+\textcircled{1} Given set of digital filter specs
+
+\textcircled{2} \fbox{Transform} specs to analog filter specs
+
+\textcircled{3} Design analog filter $H_a(s)$
+
+\textcircled{4} \fbox{Transform} $H(s) \rightarrow H(z)$
+
+\section{Impulse Invariance}
+
+$h_a(t)$
+
+$h_d[n]$
+
+$h_d[n] = h_a(t)\big|_{t=nT}$
+
+$H(z) = \mathcal{Z}[h_d[n]]$
+
+\underline{Ex:}
+\[ H_a(s) = \frac{A}{s+a} \]
+\[ h_a(t) = A e^{-at} u(t) \]
+\[ h_d[n] = A e^{-aTn} \]
+
+\underline{Ex:}
+\[ H_a(s) = \frac{A}{s+a} \]
+\[ h_a(t) = A e^{-at} u(t) \]
+\[ h_d[n] = A e^{-aTn} u(nT) \]
+\[ {}= A (e^{-aT})^n u[n] \;\Longrightarrow\; H(z) = \frac{A}{1 - e^{-aT} z^{-1}} \]
+
+\[ H_a(s) = \frac{Y(s)}{X(s)} = \frac{\sum_{k=0}^{M} b_k s^k}{\sum_{k=0}^{N} a_k s^k} \]
+
+\[ H_{LP}(s) = \frac{1}{s^3 + 2s^2 + 2s + 1} = \frac{Y(s)}{X(s)} \]
+
+\sayfa{5}
+\[ y'''(t) + 2y''(t) + 2y'(t) + y(t) = x(t) \]
+
+\elcizimi[0.45]{sekiller/Dsp-ders-11-s5-1.png}[5]
+
+\section{The Filter Design by Approximation of Derivation}
+
+\[ \frac{dy(t)}{dt}\Big|_{t=nT} = \frac{y(nT) - y((n-1)T)}{T} = \frac{y[n] - y[n-1]}{T} \]
+
+\elcizimi[0.25]{sekiller/Dsp-ders-11-s5-2.png}[5]
+
+\elcizimi[0.42]{sekiller/Dsp-ders-11-s5-3.png}[5]
+
+\begin{align*}
+\frac{d^2 y(t)}{dt^2}\Big|_{t=nT} &= \frac{d}{dt}\Big(\frac{dy(t)}{dt}\Big)\Big|_{t=nT} = \frac{y(nT) - 2y((n-1)T) + y((n-2)T)}{T^2} \\
+&= \frac{y[n] - 2y[n-1] + y[n-2]}{T^2}
+\end{align*}
+
+\elcizimi[0.55]{sekiller/Dsp-ders-11-s5-4.png}[5]
+
+\elcizimi[0.35]{sekiller/Dsp-ders-11-s5-5.png}[5]
+
+\[ s = \frac{1 - z^{-1}}{T} \]
+
+\sayfa{6}
+\[ H(z) = H_a(s)\Big|_{s \leftarrow \frac{1-z^{-1}}{T}} \]
+
+\[ s = \frac{1 - z^{-1}}{T} \;\Longrightarrow\; z = \frac{1}{1 - sT} \]
+
+\elcizimi[0.62]{sekiller/Dsp-ders-11-s6-1.png}[6]
+
+\[ z = \underset{1}{r}\, e^{j\omega} \]
+
+\[ s = \sigma + j\Omega \]
+
+$s = j\Omega$ sınır
+
+\[ z = \frac{1}{1 - sT}\Big|_{s=j\Omega} = \frac{1}{1 - j\Omega T}\cdot\frac{1 + j\Omega T}{1 + j\Omega T} \]
+
+\[ {}= \frac{1}{1 + \Omega^2 T^2} + j\,\frac{\Omega T}{1 + \Omega^2 T^2} \]
+
+Burada sınırda bir kutup orda ($z$'de) nerede $\nearrow$
+
+\begin{align*}
+\Omega = 0 &\Longrightarrow z = 1 \\
+\Omega = \frac{1}{T} &\Longrightarrow z = \frac{1}{2} + \frac{1}{2}j \\
+\Omega = \infty &\Longrightarrow \frac{1}{T}\footnotemark
+\end{align*}
+\footnotetext{Claude notu: $\Omega \to \infty$ için $z \to 0$ beklenir; muhtemelen $z = 0$ olmalı.}
+
+Çok iyi bir yöntem değilmiş.
+
+\section{IIR Filter Design by the Bilinear Transformation}
+
+\[ s = \frac{2}{T}\,\frac{1 - z^{-1}}{1 + z^{-1}} \;\Longrightarrow\; z = \frac{1 - s\frac{T}{2}}{1 + s\frac{T}{2}}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $z = \dfrac{1 + sT/2}{1 - sT/2}$ olmalı.}
+
+\[ H_a(s)\Big|_{s \leftarrow \frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}} = H(z) \]
+
+\[ \Omega = \frac{2}{T}\tan\Big(\frac{\omega}{2}\Big) \]
+
+\[ \omega = 2\tan^{-1}\Big(\frac{\Omega T}{2}\Big) \]
+
+\elcizimi[0.28]{sekiller/Dsp-ders-11-s6-2.png}[6]
+
+\elcizimi[0.3]{sekiller/Dsp-ders-11-s6-3.png}[6]
+
+\[ \Omega_1 = \frac{2}{T}\tan\Big(\frac{\omega_1}{2}\Big) k_1 \]
+
+\[ \Omega_2 = \frac{2}{T}\tan\Big(\frac{\omega_2}{2}\Big) k_2 \]
+
+\[ H_a(s)\Big|_{s \leftarrow \frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}} \]
+
+\end{document}

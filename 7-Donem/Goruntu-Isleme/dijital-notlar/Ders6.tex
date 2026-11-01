@@ -1,0 +1,122 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Frekans Bölgesinde Filtreleme (Gauss, Laplacian, Homomorphic)}{Ders6.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 5, 6, 8--10) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\section{\okunamadi{ortala}}
+\[
+f(x)=\frac{1}{\sqrt{2\pi}\,\sigma}\,\exp\!\left(-\frac{x^{2}}{2\sigma^{2}}\right)
+\qquad \sigma{\uparrow}\ \text{genişler}
+\]
+\[
+F(u)=\sqrt{\frac{\pi}{a}}\;e^{-\pi^{2}u^{2}/a}
+\qquad \sigma{\uparrow}\ \text{daralır}
+\]
+\[
+a=\frac{1}{2\sigma^{2}}
+\]
+\elcizimi[0.75]{sekiller/Ders6-s1-1.png}[1]
+\elcizimi[0.4]{sekiller/Ders6-s1-2.png}[1]
+\[ f * h \donusum F\cdot H \]
+\elcizimi[0.4]{sekiller/Ders6-s1-3.png}[1]
+
+\section{Laplacian:}
+\[
+\nabla^{2}f(x,y)=\frac{\partial^{2}f}{\partial x^{2}}+\frac{\partial^{2}f}{\partial y^{2}}
+\]
+\[
+\nabla^{2}f(x,y)\donusum \alpha\cdot-(u^{2}+v^{2})\,F(u,v)
+\]
+\[ u=0,\ v=0 \Rightarrow 0 \]
+\[ u=1,\ v=1 \Rightarrow 2 \]
+uzak noktalar çok hızlı artar
+
+\sayfa{2}
+\[ g(x,y)=f(x,y)-\nabla^{2}f(x,y) \]
+\begin{align*}
+G(u,v) &= F(u,v)+\alpha\,(u^{2}+v^{2})\,F(u,v)\\
+&= F(u,v)\underbrace{\left[1+\alpha\,(u^{2}+v^{2})\right]}_{\substack{H(u,v)\\ \uparrow\ \text{filtre}}}
+\end{align*}
+Bazen Frekansta daha hızlı yapılabiliyor işlemler
+\elcizimi[0.85]{sekiller/Ders6-s2-1.png}[2]
+\elcizimi[0.45]{sekiller/Ders6-s2-2.png}[2]
+
+\sayfa{3}
+DC piksel değerleri ile alakalıdır
+\sekilnotu[3]{Bu sayfa basılı materyal içeriyor (Şekil 4.31, kitaptan); dijitalleştirilmedi.}
+\elcizimi[0.85]{sekiller/Ders6-s3-1.png}[3]
+
+\section{Zero padding}
+\[ H[k]\qquad k=0,1,2 \]
+\[ F[k]\qquad k=0,\ldots,99 \]
+\[ a+b-1=102\ \text{noktalı fourier alınmalı} \]
+\[ f(x,y)\qquad 100\times100 \]
+\[ F(u,v)\qquad 100\times100 \]
+\[ G(u,v)=F(u,v)\,H(u,v)\qquad \text{(ayrık DFT;\ DTFT de sürekli)} \]
+\[ g(x,y)=f(x,y)*h(x,y) \]
+\elcizimi[0.3]{sekiller/Ders6-s3-2.png}[3]
+\okunamadi{kalanlara} 0 dolduruyoruz
+\begin{enumerate}[label=\arabic*-]
+\item Çarpılmak için boyutlar aynı olmalıdır \quad $H(u,v)\ \ 3\times3$
+\item $a+b-1$ noktalı DFT alıp işlemleri yapıyoruz
+\end{enumerate}
+
+\sayfa{4}
+\elcizimi[0.6]{sekiller/Ders6-s4-1.png}[4]
+\sekilnotu[4]{Bu sayfa basılı materyal içeriyor (Şekil 4.37 ve 4.38, kitaptan); dijitalleştirilmedi.}
+
+\section{Unsharp masking}
+\begin{align*}
+g_{\mathrm{mask}} &= f(x,y)-f_{\mathrm{LP}}(x,y)\\
+G_{\mathrm{mask}} &= F(u,v)-F(u,v)\,H_{\mathrm{LP}}(u,v)\\
+G_{\mathrm{mask}} &= F(u,v)\underbrace{\left(1-H_{\mathrm{LP}}(u,v)\right)}_{H_{\mathrm{HP}}(u,v)}
+\end{align*}
+\begin{align*}
+g(x,y) &= f(x,y)+k\,g_{\mathrm{mask}}(x,y)\\
+G(u,v) &= F(u,v)\left[1+k\,H_{\mathrm{HP}}(u,v)\right]
+\end{align*}
+
+\sayfa{7}
+\elcizimi[0.8]{sekiller/Ders6-s7-1.png}[7]
+impulse olduğun için yine sinc'tir
+\sekilnotu[7]{Bu sayfa basılı materyal içeriyor (Bölüm 4.8.2 Butterworth Lowpass Filters, Şekil 4.43 ve 4.44, kitaptan); dijitalleştirilmedi.}
+
+\sayfa{11}
+\section{Unsharp masking}
+\[ g_{\mathrm{mask}}=f(x,y)-f_{\mathrm{LP}}(x,y) \]
+\begin{align*}
+G_{\mathrm{mask}}(u,v) &= F(u,v)-F(u,v)\cdot H_{\mathrm{LP}}(u,v)\\
+&= F(u,v)\left[1-H_{\mathrm{LP}}(u,v)\right]\\
+&= F(u,v)\,H_{\mathrm{HP}}(u,v)
+\end{align*}
+\[ g(x,y)=f(x,y)+k\cdot g_{\mathrm{mask}}(x,y) \]
+\begin{align*}
+G(u,v) &= F(u,v)+k\,F(u,v)\,H_{\mathrm{HP}}(u,v)\\
+&= F(u,v)\left[\underbrace{1}_{\text{ofset var}}+k\,H_{\mathrm{HP}}(u,v)\right]
+\end{align*}
+keskinleştirme yaparken dc'yi korumalısın
+
+\section{Homomorphic Filtering}
+\[
+\begin{array}{ccccc}
+f(x,y) & = & i(x,y) & \cdot & r(x,y)\\
+\parbox[t]{3.4cm}{\centering\scriptsize ışık miktarı ve nesnenin yansıtma soğurma} & & \text{\scriptsize illumination} & & \text{\scriptsize reflection}
+\end{array}
+\]
+\begin{align*}
+\ln f(x,y) &= \ln i(x,y)+\ln r(x,y)\\
+F\bigl(\ln f(x,y)\bigr) &= F\bigl(\ln(i(x,y))\bigr)+F\bigl(\ln r(x,y)\bigr)\\
+z(u,v) &= F_i(u,v)+F_r(u,v)
+\end{align*}
+yüksek frekans malzemeye karşılık geliyor demekki yüksek frekansları elemeyeceğiz
+
+\okunamadi{apply filter}
+\[ z(u,v)\,H(u,v)=F_i(u,v)\cdot H(u,v)+F_r(u,v)\,H(u,v) \]
+$\downarrow$ IFFT\\
+$\hookrightarrow e^{\cdots}$
+
+\elcizimi[0.4]{sekiller/Ders6-s11-1.png}[11]
+
+\end{document}

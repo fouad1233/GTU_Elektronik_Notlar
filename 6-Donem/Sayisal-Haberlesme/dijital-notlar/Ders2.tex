@@ -1,0 +1,398 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Olasılık teorisi, rastgele değişkenler ve prosesler}{Ders2.pdf}
+
+\sayfa{1}
+\section{Olasılık teorisi, Rastgele Değişkenler ve Rastgele Prosesler}
+
+\vurgu[turuncu]{Deney (experiement)}: Zar atışı
+
+\vurgu[turuncu]{Sonuç (outcome)}
+
+\vurgu[turuncu]{Örnek uzayı (sample space)} : $S=\{1,2,3,4,5,6\}$
+
+\vurgu[turuncu]{Olay (event)} : $A=\{\text{Çift sayılar}\}=\{2,4,6\}$
+
+$A\subset S$
+
+\elcizimi[0.45]{sekiller/Ders2-s1-1.png}[1]
+
+\begin{align*}
+P(\overset{\text{olay}}{A}) &= \sum_{\forall s_i\in A} P(s_i) = P(2)+P(4)+P(6)\\
+&= \frac16+\frac16+\frac16 = \frac36 = \frac12
+\end{align*}
+
+Eşit olasılıklı sonuçlar için
+\[ P(A)=\frac{|A|}{|S|}=\frac{\text{A'nın eleman sayısı}}{\text{S'nin \ '' \ ''}}=\frac{3}{6}=\frac{1}{2} \]
+
+Bir olayın olması için olaydaki tek bir sonucun olması yeterli.
+
+Kesin olay (Certain event) $=S \rightarrow P(S)=1$
+
+İmkansız olay (Impossible event) $=\emptyset \rightarrow P(\emptyset)=0$
+
+\elcizimi[0.3]{sekiller/Ders2-s1-2.png}[1]
+
+\begin{align*}
+&P(A\cup B)=P(A)+P(B)-P(A\cap B)\\
+&A\cap B=\emptyset \Rightarrow A\ \text{ve}\ B\ \text{kesişimsiz olaylar}\\
+&\qquad\text{(mutually exclusive, disjoint)}
+\end{align*}
+
+\begin{align*}
+A\cap B=\emptyset \Rightarrow P(A\cup B) &= P(A)+P(B)-P(\underbrace{A\cap B}_{0})\\
+P(A\cup B) &= P(A)+P(B)
+\end{align*}
+
+$A'=\{a \mid a\in S,\ a\notin A\}$ \quad uzayın A dışındaki tüm elemanlar
+\[ A\cup A'=S \]
+\[ A\cap A'=\emptyset \]
+
+\sayfa{2}
+\begin{align*}
+S &= A\cup A'\\
+P(S) &= P(A\cup A') = P(A)+P(A')-P(\underbrace{A\cap A'}_{\emptyset})\\
+1 &= P(A)+P(A')\\
+\Rightarrow\ P(A') &= 1-P(A)
+\end{align*}
+
+\[ A \overset{\text{Bağımsızsa (independent)}}{\perp\!\!\!\perp} B \iff P(A\cap B)=P(A)\cdot P(B) \]
+
+\section{Rastgele Değişken (RD)}
+$X(s)$ : RD
+
+\elcizimi[0.9]{sekiller/Ders2-s2-1.png}[2]
+
+\[ \overset{\text{Rastgele değişken}}{X}(s)=x \]
+$x$ : $X$ RD'nin belli bir değeri.
+
+örnek $Y$, $y$
+
+\section{Olasılık Dağılım Fonksiyonu (ODF)}
+Cumulative Distribution function - CDF
+\[ F_X(x)=\overset{\text{olasılık}}{P}(X\le x) \]
+
+\elcizimi[0.5]{sekiller/Ders2-s2-2.png}[2]
+
+\begin{itemize}
+\item $F_X(-\infty)=0$
+\item $F_X(+\infty)=1$
+\item $0\le F_X(x)\le 1$
+\item $x_1\le x_2 \Rightarrow F_X(x_1)\le F_X(x_2)$ \hfill Azalmayan fonksiyon (Nondecreasing function)
+\end{itemize}
+
+\section{Olasılık Yoğunluk Fonk. (OYF)}
+Probability Density Function (PDF)
+
+Bir rastgele değişkenin belli bir bölgede olmasının olasılığını, altında kalan alanla gösteren fonksiyona denir.
+
+$f_X(x)$ OYF
+
+\sayfa{3}
+\begin{align*}
+P(X\in A) &= \int_{A} f_X(x)\,dx\\
+P(X\le x) &= \int_{-\infty}^{x} \overset{\text{OYF}}{f_X(t)}\,dt = \overset{\text{ODF}}{F_X(x)}
+\end{align*}
+
+\[ f_X(x)=\frac{d}{dx}F_X(x) \]
+
+\begin{itemize}
+\item $\displaystyle\int_{-\infty}^{\infty} f_X(x)\,dx=1$
+\item $\forall x\quad f_X(x)\ge 0$ \hfill azalmayan fonksiyonun türevi pozitiftir
+\end{itemize}
+
+\[ \text{1)}\quad P(X\le a)=\int_{-\infty}^{a} f_X(u)\,du=F_X(a) \]
+
+\elcizimi[0.5]{sekiller/Ders2-s3-1.png}[3]
+
+\begin{align*}
+\text{2)}\quad P(\underbrace{X>a}_{A}) &= \int_{a}^{\infty} f_X(u)\,du = 1-\underbrace{\int_{-\infty}^{a} f_X(u)\,du}_{P(A')}\\
+&= 1-F_X(a)
+\end{align*}
+
+\elcizimi[0.5]{sekiller/Ders2-s3-2.png}[3]
+
+\begin{align*}
+\text{3)}\quad P(a<X\le b) &= \int_{a}^{b} f_X(u)\,du = \int_{-\infty}^{b} f_X(u)\,du-\int_{-\infty}^{a} f_X(u)\,du\\
+&= F_X(b)-F_X(a)
+\end{align*}
+
+\elcizimi[0.5]{sekiller/Ders2-s3-3.png}[3]
+
+\sayfa{4}
+\section{Düzgün Dağılım (Uniform distribution)}
+
+\[ f_X(x)=\begin{cases} \dfrac{1}{b-a}, & a<x<b\\[4pt] 0, & \text{diğer} \end{cases} \]
+
+\elcizimi[0.5]{sekiller/Ders2-s4-1.png}[4]
+
+\[ F_X(x)=\int_{-\infty}^{x} f_X(u)\,du \]
+
+\[ \textcolor{kirmizikalem}{\underline{\text{1. bölge}}}\ :\ x<a\footnotemark \Rightarrow f_X(x)=0 \Rightarrow F_X(x)=0 \]
+\footnotetext{Claude notu: orijinalde siyah kalemle $x<0$ yazılmış, turuncu kalemle $x<a$ olarak düzeltilmiş.}
+
+\begin{align*}
+\textcolor{kirmizikalem}{\underline{\text{2. bölge}}}\ :\ a<x<b \Rightarrow F_X(x) &= \int_{-\infty}^{x} f_X(u)\,du = \int_{a}^{x}\frac{1}{b-a}\,du\\
+&= \left.\frac{u}{b-a}\right|_{a}^{x}\\
+&= \frac{x-a}{b-a}
+\end{align*}
+
+\begin{align*}
+\textcolor{kirmizikalem}{\underline{\text{3. bölge}}}\ :\ x>b \Rightarrow F_X(x) &= \int_{-\infty}^{x} f_X(u)\,du = \int_{a}^{b}\frac{1}{b-a}\,du\\
+&= \left.\frac{u}{b-a}\right|_{a}^{b} = \frac{b-a}{b-a}=1
+\end{align*}
+
+\[ F_X(x)=\begin{cases} 0, & x<a\\[2pt] \dfrac{x-a}{b-a}, & a<x<b\\[4pt] 1, & x\ge b \end{cases} \]
+
+\elcizimi[0.5]{sekiller/Ders2-s4-2.png}[4]
+
+\section{Normal Dağılım (Gauss)}
+
+\[ f_X(x)=\frac{1}{\sqrt{2\pi}\,\sigma_X}\,e^{-\frac{(x-\mu_X)^2}{2\sigma_X^2}} = N(\mu_X,\sigma_X^2) \]
+
+$\mu_X$ : ortalama değer (mean)
+
+$\sigma_X$ : Standart sapma
+
+$\sigma_X^2$ = Varyans
+
+\sayfa{5}
+\elcizimi[0.55]{sekiller/Ders2-s5-1.png}[5]
+
+\[ F_X(x)=\int_{-\infty}^{x} f_X(u)\,du=\frac{1}{\sqrt{2\pi}\,\sigma_X}\int_{-\infty}^{x} e^{-\frac{(u-\mu_X)^2}{2\sigma_X^2}}\,du \]
+
+\section{Standart Gauss Dağılımı}
+
+\[ N(0,1):\quad f_X(x)=\frac{1}{\sqrt{2\pi}}\,e^{-\frac{x^2}{2}} \]
+
+\elcizimi[0.5]{sekiller/Ders2-s5-2.png}[5]
+
+\[ Q(x)=P(X>x)=\int_{x}^{\infty} f_X(t)\,dt=\frac{1}{\sqrt{2\pi}}\int_{x}^{\infty} e^{-\frac{t^2}{2}}\,dt\ ,\quad x\ge 0 \]
+
+S 104\okunamadi{5} Table B1 $x\ge 0$ \hfill Q tablosu
+
+\[ Q(0)=0.5 \]
+\[ Q(-x)=1-Q(x) \]
+
+\[ \frac{u-\mu_X}{\sigma_X}=t \]
+\[ u=t\sigma_X+\mu_X \qquad du=\sigma_X\,dt \]
+\begin{align*}
+u=-\infty &\rightarrow t=-\infty\\
+u=x &\rightarrow t=\frac{x-\mu_X}{\sigma_X}
+\end{align*}
+
+\begin{align*}
+F_X(x) &= \int_{-\infty}^{x} f_X(u)\,du = \frac{1}{\sqrt{2\pi}\,\sigma_X}\int_{-\infty}^{x} e^{-\frac{(u-\mu_X)^2}{2\sigma_X^2}}\,du\\
+&= \frac{1}{\sqrt{2\pi}\,\sigma_X}\int_{-\infty}^{\frac{x-\mu_X}{\sigma_X}} e^{-\frac{t^2}{2}}\,\sigma_X\,dt\\
+&= \kutula{1-\frac{1}{\sqrt{2\pi}}\underbrace{\int_{\frac{x-\mu_X}{\sigma_X}}^{\infty} e^{-t^2/2}\,dt}_{Q\left(\frac{x-\mu_X}{\sigma_X}\right)}} = 1-Q\left(\frac{x-\mu_X}{\sigma_X}\right)
+\end{align*}
+
+\sayfa{6}
+\section{Beklenen Değer (Expectation)}
+
+\[ \mu_X=E[X]=\int_{-\infty}^{+\infty} x\,f_X(x)\,dx \]
+$\hookrightarrow$ X'in beklenen değeri (ortalaması)
+
+\[ \underbrace{E[X^n]}_{\text{X'in n. momenti}}=\int_{-\infty}^{+\infty} x^n f_X(x)\,dx \]
+
+\[ E[g(x)]=\int_{-\infty}^{+\infty} g(x)\,f_X(x)\,dx \]
+
+\begin{align*}
+&g(X)=(X-\mu_X)^2 \Rightarrow \sigma_X^2=E\left[(X-\mu_X)^2\right]=\int_{-\infty}^{\infty}(x-\mu_X)^2 f_X(x)\,dx\\
+&\qquad\qquad = \underbrace{\int x^2 f_X(x)\,dx}_{=\,E[X^2]} + \mu_X^2\underbrace{\int f_X(x)\,dx}_{1} - 2\mu_X\underbrace{\int x f_X(x)\,dx}_{\mu_X}
+\end{align*}
+
+\[ \sigma_X^2=E[X^2]-\mu_X^2=E[X^2]-(E[X])^2 \]
+
+\section{karekteristik fonk}
+
+\[ \phi_X(\omega)=E\left[e^{j\omega X}\right]=\int_{-\infty}^{+\infty} e^{j\omega x} f_X(x)\,dx \]
+
+\[ \kutula{E[X^n]=(-j)^n\left.\frac{d^n\phi_X(\omega)}{d\omega^n}\right|_{\omega=0}} \]
+
+$e^{\omega x}$ olduğunda moment üreten fonksiyon deniyor
+
+Son zamanlarda
+
+Moment üreten fonk (MÜF):
+\[ M_X(s)=E\left[e^{sX}\right]=\int_{-\infty}^{\infty} e^{sx} f_X(x)\,dx \qquad \searrow\ \text{laplace dönüşümü} \]
+
+\[ E[X^n]=\left.\frac{d^n}{ds^n}M_X(s)\right|_{s=0} \]
+
+\textcolor{kirmizikalem}{Örnek:} Düzgün dağılım
+
+\elcizimi[0.45]{sekiller/Ders2-s6-1.png}[6]
+
+\sayfa{7}
+\begin{align*}
+\mu_X=E[X] &= \int_{-\infty}^{\infty} x f_X(x)\,dx\\
+&= \int_{a}^{b} x\,\frac{1}{b-a}\,dx = \frac{1}{b-a}\left.\frac{x^2}{2}\right|_{a}^{b}\\
+&= \frac{b^2-a^2}{2(b-a)} = \frac{a+b}{2}
+\end{align*}
+
+\begin{align*}
+E[X^2] &= \int_{-\infty}^{\infty} x^2 f_X(x)\,dx = \int_{a}^{b} x^2\,\frac{1}{b-a}\,dx = \frac{1}{b-a}\left.\frac{x^3}{3}\right|_{a}^{b}\\
+&= \frac{b^3-a^3}{3(b-a)} = \frac{a^2+ab+b^2}{3}
+\end{align*}
+
+\begin{align*}
+\sigma_X^2 &= E[X^2]-\mu_X^2 = \frac{a^2+ab+b^2}{3}-\left(\frac{a+b}{2}\right)^2\\
+&= \underset{(4)}{\frac{a^2+ab+b^2}{3}} - \underset{(3)}{\frac{a^2+b^2+2ab}{4}}\\
+&= \frac{a^2-2ab+b^2}{12} = \frac{(b-a)^2}{12}
+\end{align*}
+
+\formulkutu[önemli]{\begin{aligned}\mu_X&=\frac{a+b}{2}\\ \sigma_X^2&=\frac{(b-a)^2}{12}\end{aligned}}
+
+\section{Rastgele Prosesler (Random, stochastic)}
+
+\elcizimi[0.9]{sekiller/Ders2-s7-1.png}[7]
+
+RP : $X(s,t)=X(t)$
+
+$\hookrightarrow$ örnek fonksiyonlar topluluğu.
+
+$X(t_k)=X_{t_k}=X_k$ \quad RD
+
+\sayfa{8}
+\[ E[X_{t_k}]=\int_{-\infty}^{\infty} x_{t_k}\cdot f_{X_{t_k}}(x_{t_k})\,dx_{t_k}=\mu_{X_{t_k}}\qquad\text{RP'in beklenen değeri.} \]
+
+RP'in özilişki (auto correlation) fonk
+
+\begin{align*}
+R(t_1,t_2) &= E[\underbrace{X(t_1)X(t_2)}_{x_{t_1}\cdot x_{t_2}}]\\
+&= \int_{-\infty}^{\infty}\!\int_{-\infty}^{\infty} x_{t_1}\cdot x_{t_2}\,\underbrace{f_X(x_{t_1},x_{t_2})}_{\substack{x_{t_1}\ \text{ve}\ x_{t_2}\\ \text{RP'lerinin ortak OYF}\\ \text{(joint PDF)}}}\,dx_{t_1}\,dx_{t_2}
+\end{align*}
+
+\section{Stasyonerlik}
+
+\textcolor{kirmizikalem}{-- Sıkı Stasyoner (SS)} \quad : Bütün momentler zamana bağlı değil
+
+Strict sense stationary (SSS)
+
+\textcolor{kirmizikalem}{-- Gevşek Stasyoner (GS)} \quad : ilk 2 moment zamana bağlı değil
+
+Wide sense stationary (WSS)
+
+Bir RP aşağıdaki şartları sağlıyorsa GS'dir
+
+\[ \text{1)}\quad E[X(t)]=\mu_X=\text{sabit} \]
+\[ \text{2)}\quad R_X(t_1,t_2)=R_X(\underbrace{t_1-t_2}_{\tau})=R_X(\tau)=E[X(t)\,X(t-\tau)] \]
+2.moment $\tau=t_1-t_2$ ye bağlı.
+
+Process \qquad SS $\Rightarrow$ GS
+
+\qquad\qquad\qquad\quad $\not\Leftarrow$
+
+\qquad\qquad\qquad\quad $\Leftarrow$ Gauss RP sağlar
+
+Haberleşme sistemlerinde GS önemli:
+
+\section{Özellikler}
+
+\begin{itemize}
+\item $R_X(-\tau)=R_X(\tau)$ \quad çift fonk.
+\item $R_X(0)\ge|R_X(\tau)|$ $\hookrightarrow$ complex sayılar için
+\item $R_X(0)=E\left[|X(t)|^2\right]$ \quad Güç
+\end{itemize}
+
+Rastgele Processler Güç işaretleridir burda istatistiksel ortalama alınıyor
+
+\sayfa{9}
+\begin{itemize}
+\item $R_X(\tau)\overset{F}{\longleftrightarrow}S_X(f)$ \quad GYF \quad güç yoğunluk fonksiyonu
+\end{itemize}
+
+\section{GYF}
+
+RP Güç işareti $\rightarrow$ GYF, $S_X(f)$
+
+\begin{itemize}
+\item $R_X(\tau)\overset{F}{\longleftrightarrow}S_X(f)$ \quad $\dfrac{\text{Watt}}{\text{Hertz}}$
+\item $S_X(f)\ge 0$ \quad (Reel değerli)
+\end{itemize}
+
+\begin{itemize}
+\item Prosesin ortalama gücü
+\[ P_X=R_X(0)=\int_{-\infty}^{+\infty} S_X(f)\,df \]
+\item Reel değerli $X(t)$ RP için $S_X(-f)=S_X(f)$
+\end{itemize}
+
+\section{Beyaz Gürültü RP}
+(White Noise RP)
+
+\[ n(t)\rightarrow S_n(f)=\frac{N_0}{2}=\text{sabit}\qquad \frac{\text{Watt}}{\text{Hz}}\quad \forall f \]
+
+\elcizimi[0.85]{sekiller/Ders2-s9-1.png}[9]
+
+\[ R_n(\tau)=\frac{N_0}{2}\,\delta(\tau) \]
+
+\elcizimi[0.6]{sekiller/Ders2-s9-2.png}[9]
+
+Gücü sonsuz
+
+Gerçekte gücü sonsuz güce sahip işaret yok
+
+Bütün frekanslarda olduğu için Beyaz gürültü denir.
+
+(Prizma)
+
+\sayfa{10}
+\elcizimi[0.9]{sekiller/Ders2-s10-1.png}[10]
+
+\[ \underbrace{r(t_k)}_{\substack{\text{Gauss}\\ \text{RD}}} = \underbrace{s(t_k)}_{\substack{a_i\\ \text{Deterministic}}} + \underbrace{n(t_k)}_{n} \ \rightarrow\ \text{Gauss R.D} \]
+
+\[ \underset{\substack{\downarrow\\ N(a,\sigma_n^2)}}{z}=a+n\ \rightarrow\ N(0,\sigma_n^2) \]
+
+\[ f_n(n)=\frac{1}{\sqrt{2\pi}\,\sigma_n}\,e^{-\frac{n^2}{2\sigma_n^2}} \]
+
+\elcizimi[0.3]{sekiller/Ders2-s10-2.png}[10]
+
+\[ f_z(z)=\frac{1}{\sqrt{2\pi}\,\sigma_n}\,e^{-\frac{(z-a)^2}{2\sigma_n^2}} \]
+
+\elcizimi[0.45]{sekiller/Ders2-s10-3.png}[10]
+
+Alıcı alırken $z$ pozitif mi negatif mi diye bakıyor
+
+$s(t)$ pozitifken \quad $z(t)$'nin negatif olma olasılığını
+
+'' \quad negatifken \quad '' \quad pozitif \quad '' \quad ''
+
+bulup toplayıp ikiye bölerek yapıyor
+
+\section{LZD sistemler}
+
+\elcizimi[0.35]{sekiller/Ders2-s10-4.png}[10]
+
+\begin{align*}
+y(t) &= x(t)\otimes h(t)\\
+&= \int_{-\infty}^{\infty} x(\tau)\,h(t-\tau)\,d\tau
+\end{align*}
+
+\begin{tabular}{@{}p{0.4\textwidth}l@{}}
+$X(t)$ RP & $Y(t)$ RP\\[4pt]
+$S_X(f)$ & $S_Y(f)=S_X(f)\,|H(f)|^2$
+\end{tabular}
+
+\section{İşaretler ve Sistemler}
+
+$(-T/2,\ T/2)$ arasında harcanan enerji
+\[ E_X^T=\int_{-T/2}^{T/2}|x(t)|^2\,dt \]
+
+\sayfa{11}
+güç \quad $P_X^T=\dfrac{E_X^T}{T}$
+
+\[ E_X=\lim_{T\to\infty} E_X^T=\lim_{T\to\infty}\int_{-T/2}^{T/2}|x(t)|^2\,dt=\int_{-\infty}^{\infty}|x(t)|^2\,dt \]
+
+\[ P_X=\lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}|x(t)|^2\,dt \]
+
+\begin{align*}
+E_X<\infty &\Rightarrow x(t)\ \text{enerji işareti}\\
+P_X<\infty &\Rightarrow \text{''}\ \text{güç işareti}
+\end{align*}
+
+\[ x(t)\ \text{periyodik}\ \Rightarrow\ P_X=\frac{1}{T_0}\int_{T_0}|x(t)|^2\,dt \]
+
+\[ x(t)=\begin{cases}A\cos(2\pi f_0 t)\\ A\sin(2\pi f_0 t)\end{cases}\Rightarrow\ P_X=\frac{A^2}{2}\ \text{watt} \]
+
+\end{document}

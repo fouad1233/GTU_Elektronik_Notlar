@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Karar ağaçları, regresyon ağaçları, ensemble learning}{Ders6.pdf}
+
+\sayfa{1}
+\section{Karar ağaçları , Regresyon ağaçları}
+\subsection{Decision tree}
+ifle yapmaya çalışalım
+
+\elcizimi[0.6]{sekiller/Ders6-s1-1.png}[1]
+
+\elcizimi[0.55]{sekiller/Ders6-s1-2.png}[1]
+
+Sınır değerleri nasıl belirleyeceğimizi bulalım
+
+En sonda amaç homojen olarak verileri ayırmak, olabildiğince tek bir sınıf istiyorum
+\[ p_i = \frac{N_i}{N} \]
+
+\subsection{Impurity measures:}
+\elcizimi[0.5]{sekiller/Ders6-s1-3.png}[1]
+
+en saf durum tek bir olasılığın 1 kalanın 0 olması
+
+\subsection{Entropy:}
+\[ I_{\mathrm{entropy}} = -\sum_{i=1}^{K} p_i \log p_i \]
+$\rightarrow$ tek bir sınıf varsa minimum\\
+çok sınıf varsa maksimum
+
+\subsection{Gini Sabiti:}
+\elcizimi[0.45]{sekiller/Ders6-s1-4.png}[1]
+\[ \frac{A}{A+B} \]
+
+\sayfa{2}
+Bizim uygulamada
+\[ I_{\mathrm{Gini}} = 1 - \sum_{i=1}^{K} p_i^2 \]
+0 ile $1 - \frac{1}{N^2}$ arasında
+
+dallanırken max entropy nerdeyse ordan devam et\\
+CART
+\[ \sum_{j=1}^{N} w_j I_j \qquad w_j = \frac{N_j}{N} \]
+\[ \varepsilon = \varepsilon_k - \varepsilon_{k-1} \]
+while $\varepsilon > \overset{\text{threshold}}{\delta}$
+
+\elcizimi[0.45]{sekiller/Ders6-s2-1.png}[2]
+
+\[ \mathcal{L}(\theta \mid X) = \sum_{j=1}^{N} w_j I_j + \underbrace{\overset{\text{yaprak sayısı}}{M} \cdot \overset{\text{kat sayısı}}{\lambda}}_{\textcolor{kirmizikalem}{\text{overfittingi engeller}}} \quad \to \lambda \cdot f(x) \]
+
+\section{Regresyon ağaçları}
+\elcizimi[0.5]{sekiller/Ders6-s2-2.png}[2]
+
+Metrik olarak varyans \okunamadi{kullanabiliriz}, veya $L_1$ kullanılabilir.\\
+(Goodness of split)
+
+En büyük sıkıntısı overfitting dalın en alt yaprağına indiğimiz için
+
+\sayfa{3}
+$L_1$ norm aykırı değerlere hassasiyeti az
+
+\elcizimi[0.3]{sekiller/Ders6-s3-1.png}[3]
+
+\section{Ensemble Learning}
+\subsection{Bagging}
+\elcizimi[0.4]{sekiller/Ders6-s3-2.png}[3]
+
+100 tane karar ağacı alırım, yeni bir örnek geldiği zaman oylama yapıyorum böylece kestirimcinin varyansı küçülür.
+
+Random forest
+
+\subsection{Boosting:}
+Verinin özel bir bölgesine outputta daha iyi bir sınıflandırıcı varsa bu şekilde yaklaşabilir
+
+\elcizimi[0.6]{sekiller/Ders6-s3-3.png}[3]
+
+\elcizimi[0.5]{sekiller/Ders6-s3-4.png}[3]
+
+\subsection{Adaboost}
+\[ f_i(x),\ i \in \{0, \ldots, M\} \]
+\[ y = \sum_{i=1}^{M} w_i f_i(x) \]
+verinin hangi bölgesinde hangi fonksiyon daha iyi
+
+Aynı modelin parametrelerini değiştirip lineer kombinasyonlarını kullanıyoruz
+
+\sayfa{4}
+\[ \mathcal{L}(\theta \mid X) = \sum_{t=1}^{N} \underset{\text{risk gibi}}{w_t}\,(\hat r^t - r^t)^2 \]
+haftaya feature selection ve dimension reduction işleyeceğiz
+
+\end{document}

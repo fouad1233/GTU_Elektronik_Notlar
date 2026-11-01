@@ -10,9 +10,9 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [7. Dönem](../README.md) · 2024–2025 Güz | ELM472 | Fundamentals of Machine Learning | 11 ders notu · 1 sınav çalışması · 5 ödev · 1 proje |
+| [7. Dönem](../README.md) · 2024–2025 Güz | ELM472 | Fundamentals of Machine Learning | 11 ders notu · 10 dijital not · 1 sınav çalışması · 5 ödev · 1 proje |
 
-**Bu sayfada:** [Genel](#genel) · [Ders Notları](#ders-notları) · [Final/Vize Çalışması](#finalvize-çalışması) · [Ödevler](#ödevler) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları) · [Kaynak Kitaplar](#kaynak-kitaplar)
+**Bu sayfada:** [Genel](#genel) · [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması) · [Ödevler](#ödevler) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları) · [Kaynak Kitaplar](#kaynak-kitaplar)
 
 ## Genel
 
@@ -22,19 +22,38 @@
 
 ## Ders Notları
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Ders 1](ders-notlari/Ders-1.pdf) | PDF | 1 s. |
-| [Ders 2](ders-notlari/Ders-2.pdf) | PDF | 9 s. |
-| [Ders3](ders-notlari/Ders3.pdf) | PDF | 7 s. |
-| [Ders 4](ders-notlari/Ders-4.pdf) | PDF | 6 s. |
-| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 3 s. |
-| [Ders6](ders-notlari/Ders6.pdf) | PDF | 4 s. |
-| [Ders7](ders-notlari/Ders7.pdf) | PDF | 5 s. |
-| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 8 s. |
-| [Ders 9](ders-notlari/Ders-9.pdf) | PDF | 4 s. |
-| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 4 s. |
-| [Ders11](ders-notlari/Ders11.pdf) | PDF | 6 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Ders 1](ders-notlari/Ders-1.pdf) | PDF | 1 s. |  |
+| [Ders 2](ders-notlari/Ders-2.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-2.pdf) |
+| [Ders3](ders-notlari/Ders3.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders3.pdf) |
+| [Ders 4](ders-notlari/Ders-4.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders-4.pdf) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 3 s. | [PDF](dijital-notlar/Ders-5.pdf) |
+| [Ders6](ders-notlari/Ders6.pdf) | PDF | 4 s. | [PDF](dijital-notlar/Ders6.pdf) |
+| [Ders7](ders-notlari/Ders7.pdf) | PDF | 5 s. | [PDF](dijital-notlar/Ders7.pdf) |
+| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Ders-8.pdf) |
+| [Ders 9](ders-notlari/Ders-9.pdf) | PDF | 4 s. | [PDF](dijital-notlar/Ders-9.pdf) |
+| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 4 s. | [PDF](dijital-notlar/Ders-10.pdf) |
+| [Ders11](ders-notlari/Ders11.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders11.pdf) |
+
+## Dijital Notlar (LaTeX)
+
+El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: [latex-sablon](../../latex-sablon/README.md).
+
+> **Uyarı:** Dijital notlar, el yazısı notlardan Claude (Anthropic) yardımıyla oluşturulmuştur; yardımcı kaynak olarak hazırlanmıştır ve hata içerebilir. Orijinal notları ve resmi ders kaynaklarını esas alın.
+
+| Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
+|---|---|---|---|
+| [Ders 2](ders-notlari/Ders-2.pdf) | Metrikler, mesafe ölçüleri, sınıflandırma ölçütleri | [PDF](dijital-notlar/Ders-2.pdf) · 12 s. | [.tex](dijital-notlar/Ders-2.tex) |
+| [Ders3](ders-notlari/Ders3.pdf) | Supervised learning, regresyon, MLE, MMSE ve MAP | [PDF](dijital-notlar/Ders3.pdf) · 7 s. | [.tex](dijital-notlar/Ders3.tex) |
+| [Ders 4](ders-notlari/Ders-4.pdf) | Parametrik kestirim, MLE, Gaussian Mixtures, EM | [PDF](dijital-notlar/Ders-4.pdf) · 8 s. | [.tex](dijital-notlar/Ders-4.tex) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | Naive Bayes, kernel density ve k-nn | [PDF](dijital-notlar/Ders-5.pdf) · 3 s. | [.tex](dijital-notlar/Ders-5.tex) |
+| [Ders6](ders-notlari/Ders6.pdf) | Karar ağaçları, regresyon ağaçları, ensemble learning | [PDF](dijital-notlar/Ders6.pdf) · 5 s. | [.tex](dijital-notlar/Ders6.tex) |
+| [Ders7](ders-notlari/Ders7.pdf) | Feature selection, PCA, SVD, LDA ve kümeleme | [PDF](dijital-notlar/Ders7.pdf) · 5 s. | [.tex](dijital-notlar/Ders7.tex) |
+| [Ders 8](ders-notlari/Ders-8.pdf) | Perceptron, backpropagation, aktivasyon ve PyTorch | [PDF](dijital-notlar/Ders-8.pdf) · 9 s. | [.tex](dijital-notlar/Ders-8.tex) |
+| [Ders 9](ders-notlari/Ders-9.pdf) | CNN, RNN/LSTM, encoding ve TF-IDF | [PDF](dijital-notlar/Ders-9.pdf) · 6 s. | [.tex](dijital-notlar/Ders-9.tex) |
+| [Ders 10](ders-notlari/Ders-10.pdf) | NLP: Tokenization, TF-IDF, Word2Vec | [PDF](dijital-notlar/Ders-10.pdf) · 6 s. | [.tex](dijital-notlar/Ders-10.tex) |
+| [Ders11](ders-notlari/Ders11.pdf) | RNN, attention ve pekiştirmeli öğrenme | [PDF](dijital-notlar/Ders11.pdf) · 7 s. | [.tex](dijital-notlar/Ders11.tex) |
 
 ## Final/Vize Çalışması
 
@@ -87,4 +106,4 @@ Derste kullanılan kaynaklar (kitapların kendisi telif hakları nedeniyle depod
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Fundamentals of Machine Learning (ELM472)* — Semester 7, Fall 2024–25. Supervised and unsupervised learning, regression and classification, Bayesian decision theory, dimensionality reduction, clustering and anomaly detection, and an introduction to neural networks. This page lists: 11 lecture notes, 1 exam-prep file, 5 assignments, 1 project. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Fundamentals of Machine Learning (ELM472)* — Semester 7, Fall 2024–25. Supervised and unsupervised learning, regression and classification, Bayesian decision theory, dimensionality reduction, clustering and anomaly detection, and an introduction to neural networks. This page lists: 11 lecture notes, 10 digital notes, 1 exam-prep file, 5 assignments, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

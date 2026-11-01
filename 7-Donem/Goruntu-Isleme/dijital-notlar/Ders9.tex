@@ -1,0 +1,171 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Hough dönüşümü ve bağlı bileşenler}{Ders9.pdf}
+
+\sayfa{1}
+\section{Hough Transform}
+Input : binary image $(0,1)$ \quad [edge map]
+
+\elcizimi[0.35]{sekiller/Ders9-s1-1.png}[1]
+
+$y_i=a\,x_i+b$ \hfill $b$ 0 olursa $y$ merkezden geçer
+
+\[ b=-a\,x_i+y_i \]
+
+\elcizimi[0.4]{sekiller/Ders9-s1-2.png}[1]
+
+doğru $a$'yı bildiğinde aynı $b$'de yoğunlaşma olacak
+
+$x_i=1,\ y_i=1$
+\begin{align*}
+b&=-a\,x_i+y_i\\
+b&=-a+1\\
+a=-2&\Rightarrow b=3\\
+a=-1&\Rightarrow b=2
+\end{align*}
+\begin{center}
+\begin{tabular}{r|r}
+$a$ & $b$\\\hline
+$-2$ & $3$\\
+$-1$ & $2$\\
+$0$ & $1$\\
+$1$ & $0$\\
+$2$ & $-1$\\
+$3$ & $-2$
+\end{tabular}
+\end{center}
+
+\section{Örnek:}
+\elcizimi[0.5]{sekiller/Ders9-s1-3.png}[1]
+
+2 tane line var
+
+\elcizimi[0.5]{sekiller/Ders9-s1-4.png}[1]
+
+{\color{murekkep}
+$x_i=2,\ y_i=3$
+\begin{align*}
+b&=-a\,x_i+y_i\\
+b&=-2a+3
+\end{align*}}
+
+{\color{yesilkalem}
+$x_i=4,\ y_i=1$
+\[ b=-4a+1 \]}
+
+$x_i=5,\ y_i=0$
+\[ b=-5a \]
+
+{\color{turuncukalem}
+$x_i=2,\ y_i=2$
+\begin{align*}
+b&=-a\,x_i+y_i\\
+b&=-2a+2
+\end{align*}
+\begin{tabular}{r|r}
+$a$ & $b$\\\hline
+$-2$ & $6$\\
+$-1$ & $4$\\
+$0$ & $2$\\
+$1$ & $0$\\
+$2$ & $-2$\\
+$3$ & $-4$
+\end{tabular}}
+
+{\color{morkalem}
+$x_i=4,\ y_i=4$
+\begin{align*}
+b&=-a\,x_i+y_i\\
+b&=-4a+4
+\end{align*}
+\begin{tabular}{r|r}
+$a$ & $b$\\\hline
+$-2$ & $12$\\
+$-1$ & $8$\\
+$0$ & $4$\\
+$1$ & $0$\\
+$2$ & $-4$
+\end{tabular}}
+
+\sayfa{2}
+eğimi 3 yaparsak 3'ün üstü line olur
+
+\elcizimi[0.4]{sekiller/Ders9-s2-1.png}[2]
+
+$a\to-\infty,\infty$ sıkıntı
+
+peki hangi sıklıkla
+
+$a$ lineer olsa da ona göre açı lineer değil
+
+\elcizimi[0.5]{sekiller/Ders9-s2-2.png}[2]
+
+{\color{turuncukalem}$\rho=x\cos\theta+y\sin\theta$}
+
+$y=ax+b$
+
+\elcizimi[0.35]{sekiller/Ders9-s2-3.png}[2]
+
+$\rho$ ve $\theta$ aşağıdaki gibi
+
+$\theta$ $-90\div 90$ aralığında
+
+Fig 10.32
+
+\sayfa{3}
+\elcizimi[0.5]{sekiller/Ders9-s3-1.png}[3]
+
+\sekilnotu[3]{Bu sayfa basılı materyal içeriyor (Şekil 10.33 ve 10.34: Hough dönüşümü parametre uzayı örnekleri); dijitalleştirilmedi.}
+
+{\color{kirmizikalem}$\rho=y\sin\theta$}
+
+tüm $\theta$'larda $\rho=0$
+
+$-90$ \qquad $90$
+
+$\leftarrow 90^\circ$
+
+\begin{dikkat}
+Sınavda çıkar
+\end{dikkat}
+
+\sayfa{4}
+Daire için
+\[ (x-c_1)^2+(y-c_2)^2=c_3^2 \]
+
+\section{Connected Component}
+\elcizimi[0.4]{sekiller/Ders9-s4-1.png}[4]
+
+Haralick
+
+\elcizimi[0.4]{sekiller/Ders9-s4-2.png}[4]
+
+\elcizimi[0.45]{sekiller/Ders9-s4-3.png}[4]
+
+\elcizimi[0.8]{sekiller/Ders9-s4-4.png}[4]
+
+\elcizimi[0.4]{sekiller/Ders9-s4-5.png}[4]
+
+\sayfa{5}
+\elcizimi[0.4]{sekiller/Ders9-s5-1.png}[5]
+
+\section{Recursive Connected Component labeling}
+\noindent while end of image is reached\\
+\hspace*{1.5em}do\{ continue to scan image until\\
+\hspace*{4em}an unlabeled ``1'' pixel is reached.\\
+\hspace*{3em}if (not end of image)\{\\
+\hspace*{6em}assign a new label to the pixel\\
+\hspace*{6em}recursively assign same label to\\
+\hspace*{6em}``1'' neighbors \}
+
+\elcizimi[0.35]{sekiller/Ders9-s5-2.png}[5]
+
+soldan sağa\\
+yukarıdan aşağıya
+
+\elcizimi[0.45]{sekiller/Ders9-s5-3.png}[5]
+
+\elcizimi[0.4]{sekiller/Ders9-s5-4.png}[5]
+
+\end{document}

@@ -1,0 +1,304 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Frekans yanıtı, DTFT ve Z dönüşümü}{Dsp-ders-4.pdf}
+
+\sayfa{1}
+\elcizimi[0.55]{sekiller/Dsp-ders-4-s1-1.png}[1]
+
+\[ \begin{aligned} H(e^{j\omega}) &= |H(e^{j\omega})|\,e^{j\theta} \\ \theta &= \angle H(e^{j\omega}) \end{aligned} \]
+
+\[ \cos(\omega_0 n) = \tfrac12 e^{j\omega_0 n} + \tfrac12 e^{-j\omega_0 n} \]
+\[ y[n] = \tfrac12 e^{j\omega_0 n} H(e^{j\omega_0}) + \tfrac12 e^{-j\omega_0 n} H(e^{-j\omega_0}) \]
+
+\elcizimi[0.4]{sekiller/Dsp-ders-4-s1-2.png}[1]
+
+\formulkutu[önemli]{\begin{aligned} h[n]\ \text{reel} \;\Rightarrow\; H(e^{j\omega}) &= H^{*}(e^{-j\omega}) \\ H(e^{-j\omega}) &= H^{*}(e^{j\omega}) \end{aligned}}
+
+\[ \begin{aligned}
+h[n]\ \text{reel} \;\Rightarrow\; y[n] &= \tfrac12 e^{j\omega_0 n} H(e^{j\omega_0}) + \tfrac12 e^{-j\omega_0 n} H^{*}(e^{j\omega_0}) \\
+&= \tfrac12 e^{j\omega_0 n} |H(e^{j\omega_0})|\,e^{j\theta_0} + \tfrac12 e^{-j\omega_0 n} |H(e^{j\omega_0})|\,e^{-j\theta_0} \\
+&= |H(e^{j\omega_0})| \left[ \frac{e^{j(\omega_0 n+\theta_0)} + e^{-j(\omega_0 n+\theta_0)}}{2} \right] \\
+&= |H(e^{j\omega_0})| \cos(\omega_0 n+\theta_0)
+\end{aligned} \]
+
+\[ x[n] = \cos(0{,}1\pi n) + \cos(0{,}4\pi n) + \cos(0{,}6\pi n) \]
+\[ y[n] = 0{,}8\cos(0{,}1\pi n+\theta_1) + 0{,}2\cos(0{,}4\pi n+\theta_2) + 0\cdot\cos(0{,}6\pi n+\theta_3) \]
+
+\elcizimi[0.45]{sekiller/Dsp-ders-4-s1-3.png}[1]
+
+\[ |H(e^{j\frac{\pi}{2}})|\cos\!\Big(\tfrac{\pi}{2}n + \angle H(e^{j\frac{\pi}{2}})\Big) \]
+
+\[ x[n] = \cos\!\Big(\tfrac{\pi}{2}n\Big) \]
+\[ h[n] = \delta[n] - \delta[n-1] \]
+\begin{dikkat}
+Sakın ha $y[n]=\cos\!\big(\tfrac{\pi}{2}n\big)-\cos\!\big(\tfrac{\pi}{2}(n-1)\big)$
+\end{dikkat}
+\[ y[n] = \,? \]
+
+\[ \begin{aligned}
+H(e^{j\omega}) &= 1 - e^{-j\omega} = 2j\,\frac{e^{-j\omega/2}\left(e^{j\omega/2}-e^{-j\omega/2}\right)}{2j} \\
+&= j\,e^{-j\omega/2}\,2\sin(\omega/2)
+\end{aligned} \]
+\[ |H(e^{j\omega})| = 2\left|\sin(\omega/2)\right| \]
+\[ \angle H(e^{j\omega}) = \begin{cases} \dfrac{\pi}{2} - \dfrac{\omega}{2}, & 0<\omega<\pi \\[4pt] \dfrac{\pi}{2} - \dfrac{\omega}{2} + \pi, & -\pi<\omega<0 \end{cases} \]
+
+\elcizimi[0.45]{sekiller/Dsp-ders-4-s1-4.png}[1]
+
+\sayfa{2}
+\[ y[n] = \sqrt{2}\cos\!\Big(\tfrac{\pi}{2}n + \tfrac{\pi}{4}\Big) \]
+
+\elcizimi[0.45]{sekiller/Dsp-ders-4-s2-1.png}[2]
+\[ y[n] = \tfrac13 x[n] + \tfrac13 x[n-1] + \tfrac13 x[n-2] \]
+
+\[ h[n] = \tfrac13\delta[n] + \tfrac13\delta[n-1] + \tfrac13\delta[n-2] \]
+
+\[ \begin{aligned}
+H(e^{j\omega}) &= \tfrac13 + \tfrac13 e^{-j\omega} + \tfrac13 e^{-j2\omega} \\
+&= \sum_{k=0}^{2} \tfrac13 e^{-j\omega k}
+\end{aligned} \]
+
+\formulkutu[önemli]{\sum_{k=N_1}^{N_2} a^k = \frac{a^{N_1}-a^{N_2+1}}{1-a}}
+
+\[ \begin{aligned}
+&= \tfrac13\,\frac{(e^{-j\omega})^{0}-(e^{-j\omega})^{2+1}}{1-e^{-j\omega}} \\
+&= \tfrac13\,\frac{1-e^{-j3\omega}}{1-e^{-j\omega}} \;\overset{\text{\scriptsize ikisini eşit bölse}}{=}\; \tfrac13\,\frac{e^{-j\frac32\omega}\left(e^{j\frac32\omega}-e^{-j\frac32\omega}\right)}{e^{-j\frac{\omega}{2}}\left(e^{j\frac{\omega}{2}}-e^{-j\frac{\omega}{2}}\right)} \\
+&= \tfrac13\,e^{-j\omega}\,\frac{\sin\frac32\omega}{\sin\frac{\omega}{2}}
+\end{aligned} \]
+
+\begin{dikkat}
+Her zaman sin hale getir
+\end{dikkat}
+
+\[ |H(e^{j\omega})| = \tfrac13\left|\frac{\sin\frac32\omega}{\sin\frac{\omega}{2}}\right| \]
+\[ \angle H(e^{j\omega}) = -\omega + \pi \quad \text{(negatif olduğunda)} \]
+
+\elcizimi[0.8]{sekiller/Dsp-ders-4-s2-2.png}[2]
+
+\elcizimi[0.8]{sekiller/Dsp-ders-4-s2-3.png}[2]
+
+\sayfa{3}
+\elcizimi[0.6]{sekiller/Dsp-ders-4-s3-1.png}[3]
+
+\elcizimi[0.4]{sekiller/Dsp-ders-4-s3-2.png}[3]
+\[ y[n] = \begin{cases} 0, & n<0 \\ ?, & n\geq 0 \end{cases} \]
+
+\elcizimi[0.6]{sekiller/Dsp-ders-4-s3-3.png}[3]
+
+\[ y[n] = \sum_{k} h[k]\,x[n-k] \]
+system is causal $\Rightarrow h[n]=0,\quad n<0$
+
+\[ \begin{aligned}
+&= \sum_{k=-\infty}^{\infty} h[k]\,e^{j\omega(n-k)}\,u[n-k] \\
+&= \sum_{k=0}^{\infty} h[k]\,e^{j\omega(n-k)}\,u[n-k]
+\end{aligned} \]
+$h[n]$ casual
+
+\formulkutu[önemli]{u[n-k]=0,\quad \begin{matrix} n-k<0 \\ k>n \end{matrix}}
+
+\[ \begin{aligned}
+y[n] &= \sum_{k=0}^{n} h[k]\,e^{j\omega(n-k)} \\
+&= \sum_{k=0}^{\infty} h[k]\,e^{-j\omega k}\,e^{j\omega n} - \sum_{k=n+1}^{\infty} h[k]\,e^{-j\omega k}\,e^{j\omega n} \\
+&= \underbrace{e^{j\omega n}H(e^{j\omega})}_{\text{steady state cevabı}} - \sum_{k=n+1}^{\infty} h[k]\,e^{-j\omega k}\,e^{j\omega n}
+\end{aligned} \]
+
+\[ y[n] = y_{ss}[n] + y_{tr}[n] \]
+
+\[ \begin{aligned}
+y[n] &= y_{ss}[n] + y_{tr}[n] \\
+y_{ss}[n] &= e^{j\omega n}H(e^{j\omega}) \\
+y_{tr}[n] &= -\sum_{k=n+1}^{\infty} h[k]\,e^{-j\omega k}\,e^{j\omega n}
+\end{aligned} \]
+
+\sayfa{4}
+\elcizimi[0.7]{sekiller/Dsp-ders-4-s4-1.png}[4]
+
+Filtrenin genişliği $m+1$
+
+\[ \begin{aligned}
+y_{tr}[0] &= -\sum_{k=1}^{\infty} (\ \ \ \ \ ) \neq 0 \\
+y_{tr}[1] &= -\sum_{k=2}^{\infty} (\text{-- --}) \neq 0 \\
+y_{tr}[2] &= -\sum_{k=3}^{\infty} (\text{-- -- --}) \neq 0 \\
+&\ \ \vdots \\
+y_{tr}[m-1] &= -\sum_{k=m}^{\infty} (\text{-- -- --}) \neq 0 \\
+y_{tr}[m] &= \sum_{k=m+1}^{\infty} (\text{-- -- --}) = 0 \\
+y_{tr}[m+1] &= \sum_{k=m+2}^{\infty} (\text{-- -- --}) = 0
+\end{aligned} \]
+
+pencere genişliği $-1$'e kadar 0'dan farklı;
+
+pencere genişliği ne kadar dar olursa o kadar pencere genişliği dar olur
+
+\[ h[n] = \tfrac13\delta[n] + \tfrac13\delta[n-1] + \tfrac13\delta[n-2] \]
+
+$x[n]=1$ olsaydı, $y[n]=1$ olurdu
+
+\[ x[n] = 1\cdot u[n] \]
+\[ y[n] = 0, \quad n<0 \]
+\[ \left.\begin{aligned} y[0] &= \tfrac13 \\ y[1] &= \tfrac23 \end{aligned}\right\} \text{Transient iki örnek \okunamadi{sürdü}} \]
+\[ y[2] = 1 \]
+\[ y[3] = 1 \]
+
+\begin{dikkat}
+pencere genişliği eksi 1'i kadar
+\end{dikkat}
+
+\vurgu[pembe]{Peki transient kararlı mı ??}
+
+\[ \begin{aligned}
+|y_{tr}[n]| &= \left|\sum_{k=n+1}^{\infty} h[k]\,e^{-j\omega k}\,e^{j\omega n}\right| \\
+&\le \sum_{k=n+1}^{\infty} |h[k]|\,\left|e^{-j\omega k}\,e^{j\omega n}\right| \\
+&\le \sum_{k=n+1}^{\infty} |h[k]| \le \sum_{k=0}^{\infty} |h[k]|
+\end{aligned} \]
+
+\sayfa{5}
+Sistem kararlı ise transient'i de kararlıdır.
+
+\section{3. bölüm}
+
+\[ X(e^{j\omega}) = \sum_{n=-\infty}^{\infty} x[n]\,e^{-j\omega n} \]
+\[ X(z) = \sum_{n=-\infty}^{\infty} x[n]\,z^{-n} \]
+
+\[ z = re^{j\omega}\ \Big| \]
+\[ \begin{aligned}
+&= \sum_{n=-\infty}^{\infty} x[n]\,(re^{j\omega})^{-n} \\
+&= \sum_{n=-\infty}^{\infty} \left[x[n]\,r^{-n}\right] e^{-j\omega n}
+\end{aligned} \]
+
+z dönüşümü $x[n]r^{-n}$'in Fourier Transform \\
+kararlılık analizi için kullanılır \\
+$z = re^{j\omega}$
+
+\elcizimi[0.35]{sekiller/Dsp-ders-4-s5-1.png}[5]
+
+\elcizimi[0.4]{sekiller/Dsp-ders-4-s5-2.png}[5]
+
+$r=1$ için z transformu ile \okunamadi{Fourier} dönüşümü aynıdır
+
+\elcizimi[0.6]{sekiller/Dsp-ders-4-s5-3.png}[5]
+
+Sonuç, birim çemberin üzerindeyse sistem kararlıdır
+
+\[ \begin{aligned} x[n] &\donusum X(z) \\ h[n] &\donusum H(z) \\ y[n] &\donusum Y(z) \end{aligned} \]
+
+\[ X(z) = \frac{P(z)}{Q(z)} \quad \text{(rasyonel)} \]
+
+$P(z)$'nin kökleri $X(z)$ sıfırı \\
+$Q(z)$'nin kökleri kutup
+
+\sayfa{6}
+\begin{ornek}[1]
+$x[n]=a^n u[n]$, \quad $X(z)=\,?$
+\end{ornek}
+
+\[ \begin{aligned}
+X(z) &= \sum_{n=-\infty}^{\infty} a^n u[n]\cdot z^{-n} \\
+&= \sum_{n=-\infty}^{\infty} \left(\frac{a}{z}\right)^{n} u[n] \\
+&= \frac{1}{1-\frac{a}{z}} \qquad \left|\frac{a}{z}\right|<1 \qquad |z|>|a|
+\end{aligned} \]
+{\small $\displaystyle\sum_{n=0}^{\infty} a^n$}
+
+\[ X(z) = \frac{1}{1-az^{-1}} \]
+
+\[ \begin{aligned}
+X(z) &= \frac{1}{1-az^{-1}} \ \to\ \text{negatif form} \\
+&= \frac{z}{z-a}
+\end{aligned} \]
+
+\begin{dikkat}
+\okunamadi{mutlaka} bu forma getir.
+\end{dikkat}
+
+sıfırda bir sıfırı var \okunamadi{baştan göremedik}
+
+\elcizimi[0.65]{sekiller/Dsp-ders-4-s6-1.png}[6]
+
+\begin{ornek}[2]
+$x[n] = -a^n u[-n-1]$
+\end{ornek}
+
+\[ \begin{aligned}
+X(z) &= \sum_{n=-\infty}^{\infty} -a^n u[-n-1]\,z^{-n} \\
+&= \sum_{n=-\infty}^{-1} -\left(\frac{a}{z}\right)^{n} = \sum_{n=1}^{\infty} -\left(\frac{a}{z}\right)^{-n} = \sum_{n=0}^{\infty} -\left(\frac{a}{z}\right)^{-n} - [-1]
+\end{aligned} \]
+
+\formulkutu[önemli]{\sum_{n=0}^{\infty} a^n = \frac{1}{1-a} \qquad |a|<1}
+
+\[ \begin{aligned}
+&= 1 - \sum_{n=0}^{\infty} \left(\frac{z}{a}\right)^{n} \\
+&= 1 - \frac{1}{1-\frac{z}{a}} \qquad \begin{matrix} |a|<1 \\ \left|\frac{z}{a}\right|<1 \end{matrix} \\
+&= 1 - \frac{a}{a-z} = \frac{-z}{a-z} \\
+&= \frac{z}{z-a} \qquad \begin{matrix} \left|\frac{z}{a}\right|<1 \\ |z|<a \end{matrix}
+\end{aligned} \]
+
+z dönüşümü ROC'la birlikte anlamlıdır
+
+\elcizimi[0.55]{sekiller/Dsp-ders-4-s6-2.png}[6]
+
+\sayfa{7}
+\begin{ornek}[3]
+$x[n] = \left(\tfrac12\right)^{n} u[n] + \left(-\tfrac13\right)^{n} u[n]$
+\end{ornek}
+
+\[ X(z) = \frac{z}{z-\frac12} + \frac{z}{z+\frac13} = \frac{2z\left(z-\frac{1}{12}\right)}{\left(z-\frac12\right)\left(z+\frac13\right)} \qquad |z|>\tfrac12 \]
+
+\elcizimi[0.9]{sekiller/Dsp-ders-4-s7-1.png}[7]
+
+\begin{ornek}[4]
+$x[n] = \left(-\tfrac13\right)^{n} u[n] - \left(\tfrac12\right)^{n} u[-n-1]$
+\end{ornek}
+
+\[ X(z) = \underset{|z|>\frac13}{\frac{z}{z+\frac13}} + \underset{|z|<\frac12}{\frac{z}{z-\frac12}} = \underset{\frac13<|z|<\frac12}{\frac{2z\left(z-\frac{1}{12}\right)}{\left(z-\frac12\right)\left(z+\frac13\right)}} \]
+
+\elcizimi[0.5]{sekiller/Dsp-ders-4-s7-2.png}[7]
+
+\sayfa{8}
+\begin{ornek}[5]
+$x[n] = \left(-\tfrac12\right)^{n} u[n] - \left(\tfrac13\right)^{n} u[-n-1]$
+\end{ornek}
+
+\[ X(z) = \underset{|z|>\frac12}{\frac{z}{z+\frac12}} + \underset{|z|<\frac13}{\frac{z}{z-\frac13}} \]
+
+ROC yok \\
+hiç bir zaman çakışmaz
+
+\begin{ornek}[6]
+\[ x[n] = \begin{cases} a^{n}, & 0\leq n\leq N-1 \\ 0, & \text{o.w.} \end{cases} \]
+\end{ornek}
+
+\[ \begin{aligned}
+X(z) &= \sum_{0}^{N-1} a^n z^{-n} = 1 + az^{-1} + a^2 z^{-2} + \cdots + a^{N-1} z^{-(N-1)} \\
+&= 1 + \frac{a}{z} + \frac{a^2}{z^2} + \cdots + \frac{a^{N-1}}{z^{N-1}}
+\end{aligned} \]
+
+$z=0$'da toplam sonsuz
+
+z hariç her yerde z dönüşümü vardır
+
+\[ \frac{1-a^{N}}{1-az^{-1}}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen pay $1-a^{N}z^{-N}$ olmalı.}
+
+\begin{ornek}[7]
+\[ x[n] = \begin{cases} a^{n}, & -N\leq n\leq 0 \\ 0, & \text{o.w} \end{cases} \]
+\end{ornek}
+
+\[ X(z) = 1 + a^{-1}z + a^{-2}z^{2} + \cdots + a^{-N}z^{N} \]
+
+$z=\infty$ için $\infty$ olur
+
+$z\neq\infty$ için z dönüşümü vardır
+
+\elcizimi[0.45]{sekiller/Dsp-ders-4-s8-1.png}[8]
+
+\[ H(z) = K\,\frac{z}{\left(z-\frac12\right)(z+2)} \]
+\okunamadi{Köksal'ın} K'sı :)
+
+\[ |z|>2 \quad \checkmark \to \text{causal} \]
+\[ \tfrac12<|z|<2 \quad \checkmark\ \text{stable.} \]
+\[ |z|<\tfrac12 \quad \text{ne nedensel ne kararlıdır} \]
+
+kararlı ise ROC birim çemberi içermeli
+
+$\star$ Sorunun \okunamadi{içinde} nedensel derse sağ yanlıdır
+
+\end{document}

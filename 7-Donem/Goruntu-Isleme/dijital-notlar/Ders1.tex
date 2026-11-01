@@ -1,0 +1,77 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Giriş, görüntü gösterimi ve PGM formatı (Ders 1)}{Ders1.pdf}
+
+\sayfa{1}
+\noindent Image restoration\\
+\hspace*{4em}enhancement $\leftarrow$ ilk bir kaç hafta bunla uğraşacağız\\
+\hspace*{4em}Segmentation\\
+\hspace*{4.5em}Analyzis\\
+\hspace*{0.5em}Feature Extraction\\
+\hspace*{6em}Segmentation
+
+\elcizimi[0.55]{sekiller/Ders1-s1-1.png}[1]
+
+\noindent $(i,j)$ \qquad\quad for $i=0,\dots,M-1$\\
+\hspace*{9em}for $j=0,\ \longrightarrow\ N-1$
+
+\elcizimi[0.5]{sekiller/Ders1-s1-2.png}[1]
+
+Bu derste aksi belirtmedikçe (0,255) arasında \okunamadi{varsayacağız}
+
+\elcizimi[0.25]{sekiller/Ders1-s1-3.png}[1]
+\elcizimi[0.4]{sekiller/Ders1-s1-4.png}[1]
+
+\underline{boyutunu} bilmeliyiz görüntümüz,
+
+\sayfa{2}
+\elcizimi[0.35]{sekiller/Ders1-s2-1.png}[2]
+
+$100 \times 100 \;\nearrow\;$ string ifade ederse
+
+$10\,000 \times 4$ byte \quad 40 kb
+
+byte byte saklayabiliriz \quad o zaman her piksel bir byte ile ifade edilir.
+
+\underline{\underline{.pgm}} $\rightarrow$ ile nasıl gösteririz???
+
+\noindent Magic number\\
+\hspace*{1em}P2 $\rightarrow$ string demek\\
+\hspace*{1em}P5 $\rightarrow$ binary\\
+\hspace*{1em}Biz binary ile çalışacağız\\
+\hspace*{1em}başlık kısmı string (header)
+
+\noindent P2\\
+\# my.pgm \quad $\nearrow$ bunu görsek bunu dikkate almayacağız\\
+\fbox{24 \ 7} $\rightarrow$ boyutu\\
+\fbox{15}\\
+$\downarrow$ Önce yükseklik sonra genişlik \quad (Önce satır-sonra sütun)\\
+$\downarrow$ 0'dan 15'e kadar\\
+Ama derste sadece 255 yapacağız
+
+\noindent image processing place com\\
+irfan view
+
+\sayfa{3}
+\elcizimi[0.62]{sekiller/Ders1-s3-1.png}[3]
+
+\elcizimi[0.37]{sekiller/Ders1-s3-2.png}[3]
+
+\section{Connectivity (bağlılık)}
+
+\elcizimi[0.37]{sekiller/Ders1-s3-3.png}[3]
+
+0,1 şeklinde düşünüyoruz
+
+\elcizimi[0.48]{sekiller/Ders1-s3-4.png}[3]
+
+Manhattan distance
+
+Manhattan böyle
+
+\elcizimi[0.42]{sekiller/Ders1-s3-5.png}[3]
+
+kitabın 3. bölümünden
+
+\end{document}

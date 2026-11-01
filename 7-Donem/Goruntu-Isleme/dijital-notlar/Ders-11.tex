@@ -1,0 +1,131 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Morphological Image Processing (devam)}{Ders-11.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 2, 7) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\section{Conditional dilation}
+\[ A \oplus_C B = (A \oplus B) \cap C \]
+
+(c)
+
+\[ A = C \circ D \qquad \text{(opening)} \qquad \leftarrow \text{D büyük olsun} \]
+
+\elcizimi[0.85]{sekiller/Ders-11-s1-1.png}[1]
+
+Connected component bulmak için
+\[ X_k = (X_{k-1} \oplus B) \cap A \]
+\[ k = 1,2,\dots \]
+$X_0$ ihtiyaç var, objenin üzerindeki herhangi bir nokta
+
+\sekilnotu[1]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+$\rightarrow$ 8 komşuluk
+
+dilation and intersection
+
+$X_0$ bulmak için etiketlemenin herhangi bir noktası
+
+\sayfa{3}
+$x$ bir değişken
+\[ f(x) \]
+\[ f_x(z) = f(z-x) \qquad \text{translation by x} \]
+\[ (f+y)(z) = f(z)+y \qquad \text{offset by y} \]
+\[ f_x + y \]
+
+\elcizimi[0.7]{sekiller/Ders-11-s3-1.png}[3]
+
+\[ D[g] \qquad D[f] \]
+
+$g$ and $f$ are signals with domain $D[g]$ and $D[f]$ we say that $g$ is beneath of (altında) $f$, if
+
+1) $D[g] \subseteq D[f]$
+
+2) $g(x) \le f(x)$ for any $x \in D[g]$
+
+Then we write $g \ll f$
+
+\elcizimi[0.5]{sekiller/Ders-11-s3-2.png}[3]
+
+$\rightarrow g \ll f$
+
+\elcizimi[0.8]{sekiller/Ders-11-s3-3.png}[3]
+
+\sayfa{4}
+\[ (f \wedge g)(x) = \min\{f(x), g(x)\} \quad \text{for } x \in D[f] \cap D[g] \]
+\[ (f \vee g)(x) = \begin{cases}
+\max\{f(x), g(x)\} & \text{for } x \in D[g] \cap D[f]\\
+f(x) & \text{for } x \in D[f] \text{ and } x \notin D[g]\\
+g(x) & \text{for } x \in D[g] \text{ and } x \notin D[f]\\
+\text{not defined} & \text{for } x \notin D[g] \text{ and } x \notin D[f]
+\end{cases} \]
+
+\elcizimi[0.85]{sekiller/Ders-11-s4-1.png}[4]
+
+\section{Reflection of h}
+\[ \hat{h}(x) = -h(-x) \]
+
+\elcizimi[0.35]{sekiller/Ders-11-s4-2.png}[4]
+
+\[ (f \ominus g)(x) = \max\{y : g_x + y \ll f\} \]
+
+\elcizimi[0.7]{sekiller/Ders-11-s4-3.png}[4]
+
+\sayfa{5}
+\elcizimi[0.3]{sekiller/Ders-11-s5-1.png}[5]
+
+\begin{align*}
+(f \oplus g)(x) &= \min\{y : (\hat{g})_x + y \gg f\}\\
+&= \overset{\text{max}}{\bigvee}\{f_x + g(x) : x \in D[g]\}
+\end{align*}
+
+\elcizimi[0.9]{sekiller/Ders-11-s5-2.png}[5]
+
+\begin{align*}
+f \circ g &= (f \ominus g) \oplus g\\
+f \bullet g &= (f \oplus g) \ominus g\\
+(f \circ g) \circ g &= f \circ g
+\end{align*}
+
+\begin{align*}
+\text{Grad}(f) &= f \oplus g - f \ominus g\\
+\text{Top-Hat}(f) &= f - f \circ g
+\end{align*}
+
+\elcizimi[0.5]{sekiller/Ders-11-s5-3.png}[5]
+
+opening olayı background estimation olarak yarar
+
+$f \circ g$ background
+
+$\swarrow$ arkası karanlık üstü beyaz şeyler için
+
+\sekilnotu[5]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\sayfa{6}
+\[ \text{Bottom Hat}(f) = f - f \bullet g\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $f \bullet g - f$ olmalı.}
+
+$\downarrow$ Gradient
+\[ A \oplus B - A \ominus B \]
+
+Morphological laplacian
+\[ \frac{1}{2}(A \oplus B + A \ominus B - 2A) \]
+\[ \frac{1}{2}\Big(\underbrace{(A \oplus B - A)}_{\text{türev}} - \underbrace{(A - A \ominus B)}_{\text{türev}}\Big) \]
+
+$\downarrow$ smoothing
+\[ (A \circ B) \bullet B \]
+
+\elcizimi[0.45]{sekiller/Ders-11-s6-1.png}[6]
+
+minimum
+\[ \frac{A - A \ominus B}{A \oplus B - A \ominus B} \;\Big\}\; \text{normalizasyon gibi} \]
+$\searrow$ B biraz büyük seçilmeli
+
+contrast stretching local
+
+erosion karanlık alanları büyütüyor
+
+\sekilnotu[6]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\end{document}

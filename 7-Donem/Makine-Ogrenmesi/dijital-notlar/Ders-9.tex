@@ -1,0 +1,119 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{CNN, RNN/LSTM, encoding ve TF-IDF}{Ders-9.pdf}
+
+\sayfa{1}
+\elcizimi[0.25]{sekiller/Ders-9-s1-1.png}[1]
+$\underset{\text{4096'lık}}{64\times 64}$ $\rightarrow$ MLP Multilayer Perceptron
+
+\textcolor{turuncukalem}{feature'ın yerine hassas bir ağırlıklarımız var}
+
+\elcizimi[0.25]{sekiller/Ders-9-s1-2.png}[1]
+$\leftarrow$ türev edge detection
+
+\elcizimi[0.3]{sekiller/Ders-9-s1-3.png}[1]
+bunlar konumdan bağımsız.
+
+\elcizimi[0.25]{sekiller/Ders-9-s1-4.png}[1]
+
+\elcizimi[0.4]{sekiller/Ders-9-s1-5.png}[1]
+bu \okunamadi{W'lar} falan çalışıyor
+
+\elcizimi[0.85]{sekiller/Ders-9-s1-6.png}[1]
+featureları çıkarıyor \hfill fully connected layer
+
+$\begin{bmatrix} -1 & 0 \\ 0 & 1 \end{bmatrix}$ \quad tek bir layer kullanılmaz
+
+Pooling Layers $\rightarrow$ \begin{tabular}[c]{@{}l@{}}Max Pooling\\ Avg Pooling\end{tabular}
+
+\elcizimi[0.25]{sekiller/Ders-9-s1-7.png}[1]
+Feature extraction için çok kullanılır
+
+Odaklanıp işimize yarayacağımız verilerin her şeyi zaten değil.
+
+kernel size \quad filtre sayısı
+
+\sayfa{2}
+\elcizimi[0.7]{sekiller/Ders-9-s2-1.png}[2]
+
+\textcircled{1} feature extraction: Öznitelik çıkarma
+
+\textcircled{2} Özniteliklerin konumlarından bağımsız
+
+\textcircled{3} Less parameters
+
+eğitimi \okunamadi{ANN'ye} göre daha zor
+
+\section{Transfer Learning}
+Elimizdeki veriler ne kadar kaliteli ise o kadar kolay sınıflandırıcımız olur.
+
+Yolo feature extraction'ı çok iyi yapıyor ve iyi parçalara ayırıyor
+
+\elcizimi[0.4]{sekiller/Ders-9-s2-2.png}[2]
+
+katmanlar arası isterseniz aktivation atabilirsiniz ama çok \okunamadi{kullanılmıyor}.
+
+\section{Explainable AI}
+\elcizimi[0.3]{sekiller/Ders-9-s2-3.png}[2]
+time series prediction\\
+Recurrent neural network (RNN)
+
+\elcizimi[0.55]{sekiller/Ders-9-s2-4.png}[2]
+
+Vanishing Gradient
+
+$W_k = \gamma\,\uparrow\downarrow$ \okunamadi{} \quad Exploding Gradient
+
+sağdan sola, soldan sağa mı sıra da önemli
+
+Türkçedeki yüklem,
+
+Bidirectional mimariler var
+
+nlp\\
+ses analizi
+
+\sayfa{3}
+\elcizimi[0.7]{sekiller/Ders-9-s3-1.png}[3]
+
+Cell falan da var
+
+\section{Encoding}
+ham bir veriyi sayıya çevirmek
+
+kedi: 0\\
+köpek: 1
+
+One hot Encoding
+
+R: 0 \quad G: 1 \quad B: 2
+\begin{gather*}
+R=[1,0,0]\\
+G=[0,1,0]\\
+B=[0,0,1]
+\end{gather*}
+
+Ali topa at
+
+$\rightarrow$ tokenization
+
+Al/i/ /to/pa/ /at/.
+
+gözetimsiz olarak entropy kullandılar.
+
+$\text{king}-\text{man} = \text{queen}-\text{woman}$
+
+en basit şekilde nasıl vektöre çeviririm
+
+\sayfa{4}
+\elcizimi[0.4]{sekiller/Ders-9-s4-1.png}[4]
+
+\formulkutu{\text{TF-IDF}}
+\[ \mathrm{TF}(t,d) \]
+\[ \mathrm{IDF}(t) \]
+Term freq (TF)
+
+bazı çok kullanılan kelimeler var
+
+\end{document}

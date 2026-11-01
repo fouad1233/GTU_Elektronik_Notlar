@@ -1,0 +1,136 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{NLP: Tokenization, TF-IDF, Word2Vec}{Ders-10.pdf}
+
+\sayfa{1}
+\section{NLP (Natural language processing)}
+\subsection{Tokenization}
+
+\underline{My}\textsubscript{\scriptsize token} \underline{name} \underline{is} \underline{Mehmed}\textcircled{.}\textcolor{kirmizikalem}{\,?}
+
+Morfolojik gitmek istersek (şekle göre)
+
+Benim adım Mehmet.
+
+\textcolor{turuncukalem}{Ben-im ad-ım}
+
+$\uparrow$ kelimelere bölerek word piece
+
+$\rightarrow$ Morfolojik gramere göre
+
+Türkçede 10000 kelime
+
+\quad 10 000
+
+\quad ahmed $\to$ 2000
+\[ \text{\small one hot encoding}\qquad \begin{bmatrix}0\\0\\0\\0\\1\\0\\0\end{bmatrix} \]
+
+Elimizde dokümanlar var
+
+\elcizimi[0.45]{sekiller/Ders-10-s1-1.png}[1]
+
+TF\\
+{\small Term frequency}
+
+Tüm dokümanlarda iki kelime aynı frekansla geçmemeli
+
+\underline{TF-IDF} $\to$ baskınlığı azaltmak için
+
+\section{Word2Vec}
+\subsection{CBOW}
+Continuous Bag of Words
+
+% (şekil içindeki not: Embedding vektörü, kaçlık vektör istiyorsan yapabilirim)
+\elcizimi[0.9]{sekiller/Ders-10-s1-2.png}[1]
+
+\sayfa{2}
+\section{Skip gram / n-gram}
+\textcolor{kirmizikalem}{2 gram iki komşuluk}
+
+tersten de yapabilirim
+
+\elcizimi[0.7]{sekiller/Ders-10-s2-1.png}[2]
+
+\section{Global vectors for word Representation (Glove)}
+\[
+J=\sum_{i,j} f(x_{ij})\Bigl(\underbrace{w_i^T}_{\substack{\text{\scriptsize bunu bulmaya}\\ \text{\scriptsize çalıştığımız}\\ \text{\scriptsize kelimenin}\\ \text{\scriptsize ağırlığı}}}\,\widetilde{w}_j+b_i+\widetilde{b}_j-\underbrace{\log X_{ij}}_{\substack{\text{\scriptsize i'ninci doküman}\\ \text{\scriptsize j'inci kelimenin}\\ \text{\scriptsize geçme frekansı}}}\Bigr)^2
+\]
+
+\medskip
+{\color{kirmizikalem}\noindent\rule{0.55\linewidth}{0.6pt}}
+\medskip
+
+% (şekil içindeki not: apple = t1+t2; app/le, t1 t2, subword; word embedding; Fast Text)
+\elcizimi[0.45]{sekiller/Ders-10-s2-2.png}[2]
+
+\section{Static embedding}
+\textcolor{kirmizikalem}{Covid geldi yeni kelime}
+
+\section{Benim adım Mehmet / Seq 2Seq}
+\textcolor{kirmizikalem}{$\swarrow$ Supervised}
+
+\elcizimi[0.5]{sekiller/Ders-10-s2-3.png}[2]
+
+encoder
+
+\textcolor{kirmizikalem}{\underline{RNN}} $\to$ exploding vanishing \qquad unutma fazla \okunamadi{hatırlama}
+
+\begin{tabular}{c@{\quad}c@{\quad}c@{\quad}c}
+\textcolor{kirmizikalem}{My} & \textcolor{kirmizikalem}{name} & \textcolor{kirmizikalem}{is} & \textcolor{kirmizikalem}{Mehmet}\\
+$\widetilde{w}_1$ & $\widetilde{w}_2$ & $\widetilde{w}_3$ & $\widetilde{w}_4$
+\end{tabular}
+\qquad sonraki güncellemede LSTM
+
+Bu metin kısa olmadıktan sonra context'i yakalayamıyor.
+
+\textcolor{kirmizikalem}{\underline{decoder}}
+
+\elcizimi[0.4]{sekiller/Ders-10-s2-4.png}[2]
+
+\sayfa{3}
+\section{Attention Mechanism}
+% (şekil içindeki not: Context, metni temsil edecek gibi, s_1 h)
+\elcizimi[0.7]{sekiller/Ders-10-s3-1.png}[3]
+
+kelimeleri hidden layerle çarpıyoruz
+
+softmax $\downarrow$ \quad $w\cdot h$
+\[ [\alpha_1,\alpha_2,\dots,\alpha_{100}] \]
+
+hangi kelime ne kadar önemli
+
+sonra dönmek yerine MLP koyuyoruz
+
+\elcizimi[0.5]{sekiller/Ders-10-s3-2.png}[3]
+
+paralelde çalışabiliyor
+
+\textcolor{kirmizikalem}{\underline{Encoding:}} \hspace{5em} \textcolor{kirmizikalem}{\underline{Decoder:}} \hspace{2em} \textcolor{kirmizikalem}{GPT sadece decoder}
+
+% (şekil içindeki notlar: input encoding; output input embedding; Dynamic Embedding)
+\elcizimi[0.85]{sekiller/Ders-10-s3-3.png}[3]
+
+\fbox{\begin{minipage}{0.42\linewidth}
+ali kopu at
+
+a/li/ /ko/pu/ /at/
+
+arada hataları düzeltmek için token \okunamadi{sığıyor}
+\end{minipage}}
+
+\medskip
+\textsuperscript{2019}\underline{BERT}: Sadece Encoder , kelimeleri ayırabilirsin
+
+\hspace*{1.5em}BERT NLP'nin YOLO'su
+
+BERT : Bidirectional Encoder Representations from Transformers
+
+\sayfa{4}
+\underline{ELMO}: Embeddings from language model
+
+context mekanizması yok
+
+\elcizimi[0.5]{sekiller/Ders-10-s4-1.png}[4]
+
+\end{document}

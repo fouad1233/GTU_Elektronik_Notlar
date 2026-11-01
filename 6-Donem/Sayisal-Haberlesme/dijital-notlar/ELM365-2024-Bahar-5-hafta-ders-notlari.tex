@@ -1,0 +1,185 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Örnekle-tut, PAM/PWM/PPM, TDM ve PCM}{ELM365-2024-Bahar-5-hafta-ders-notlari.pdf}
+
+\sayfa{1}
+\section{Sample and Hold Operation (Örnekle ve tut işlemi)}
+\subsection{Flat Top Sampling (FTS)}
+(Düz Tepeli Örnekleme)
+
+\underline{Sample and Hold Operation}
+
+Flat Top Sampling (FTS)
+
+\elcizimi[0.45]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s1-1.png}[1]
+\elcizimi[0.6]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s1-2.png}[1]
+
+\vurgu{$x_s(t)$: Pulse Amplitude Modulation (PAM)}
+
+\underline{Discrete time analog modulation}
+
+\vurgu{Sample / Hold (Dump) circuit} \quad (Örnekle ve tut devresi)
+
+\elcizimi[0.55]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s1-3.png}[1]
+\elcizimi[0.6]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s1-4.png}[1]
+
+\sayfa{2}
+\[ y(t)=x(t)\,x_\delta(t)=\sum_n x(nT_s)\,\delta(t-nT_s) \]
+\begin{center}
+$x_s(t)=q(t)\circledast y(t)=$ \vurgu{$\displaystyle\sum_n x(nT_s)\,q(t-nT_s)$}
+\end{center}
+\[ x_s(t)=q(t)\circledast\left[x(t)\,x_\delta(t)\right]=q(t)\circledast\left[\sum_n x(nT_s)\,\delta(t-nT_s)\right]=\sum_n x(nT_s)\,q(t-nT_s) \]
+\[ X_s(f)=Q(f)\cdot\left[X(f)\circledast X_\delta(f)\right]=Q(f)\cdot\left[X(f)\circledast f_s\sum_n\delta(f-nf_s)\right] \]
+\formulkutu{X_s(f)=Q(f)\cdot\left[f_s\sum_n X(f-nf_s)\right]}
+\[ \hookrightarrow\ \tau\,\mathrm{sinc}(f\tau)\cdot e^{-j2\pi f\frac{\tau}{2}} \]
+\[ X_s(f)=\underbrace{f_s\,Q(f)\,X(f)}_{\textbf{!}}+Q(f)\cdot f_s\sum_{n\neq0}X(f-nf_s) \]
+
+\elcizimi[0.25]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s2-1.png}[2]
+Equalizing LPF (Dengeleyici AGF)
+
+\elcizimi[0.6]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s2-2.png}[2]
+\[ H_{eq}(f)=\begin{cases}\dfrac{T_s}{Q(f)} & |f|\le f_m\\[4pt] 0 & \text{else}\end{cases} \]
+\[ |H_{eq}(f)|=\begin{cases}\dfrac{T_s}{|Q(f)|} & |f|\le f_m\\[4pt] 0 & \text{else}\end{cases} \]
+\elcizimi[0.95]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s2-3.png}[2]
+\[ H_{eq}(f)=\frac{T_s}{Q(f)}=\frac{T_s}{\tau\,\mathrm{sinc}(f\tau)}\,e^{j2\pi f\frac{\tau}{2}},\qquad |f|\le f_m \]
+$\hookrightarrow$ \vurgu{advance in time $\rightarrow$ $h_{eq}(t)$ is not causal}
+
+For this reason, $H_{eq}'(f)=H_{eq}(f)\cdot e^{-j2\pi fT_x}$ is chosen
+\[ h_{eq}'(t)=h_{eq}(t-T_x)\qquad T_x=\frac{\tau}{2}+T_D \]
+\elcizimi[0.45]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s2-4.png}[2]
+
+\sayfa{3}
+\textbf{Reminder:}
+\elcizimi[0.2]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s3-1.png}[3]
+\[ A\cdot\Lambda\!\left(\frac{t}{T}\right)\overset{F}{\longleftrightarrow}AT\,\mathrm{Sinc}^2(fT) \]
+
+\begin{ornek}[(2004 Midterm Ex. Q.)]
+A PAM signal is produced as shown in the figure below. a) If the bandwidth of $x(t)$ is 1 kHz, what is the maximum value of $T_s$ to obtain $x(t)$ without distortion at the receiver? b) For $T_s=T_s(\max)$, sketch PAM demodulator. Find the transfer function of demodulator.
+\end{ornek}
+\elcizimi[0.5]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s3-2.png}[3]
+\elcizimi[0.4]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s3-3.png}[3]
+
+a) $BW\{x(t)\}=1\ \mathrm{kHz}=f_m$\\
+\hspace*{1.2em}$f_s\ge 2f_m=2\ \mathrm{kHz}$\\
+\hspace*{1.2em}$T_s\le\dfrac{1}{2f_m}=0.5\ \mathrm{msec}$\\
+\hspace*{1.2em}$T_s(\max)=0.5\ \mathrm{msec}$
+
+b)
+\elcizimi[0.5]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s3-4.png}[3]
+\[ H_{eq}(f)=\begin{cases}\dfrac{T_s}{Q(f)} & |f|\le f_m\\[4pt] 0 & |f|>f_m\end{cases} \]
+
+\[ Q(f)=0.1T_s\times0.1T_s\,\mathrm{Sinc}^2(0.1T_sf)\,e^{-j2\pi f\,0.1T_s} \]
+\[ =0.01\,T_s^2\,\mathrm{Sinc}^2(0.1T_sf)\,e^{-j2\pi f\,0.1T_s} \]
+\[ H_{eq}(f)=\frac{T_s\,e^{+j2\pi f\,0.1T_s}}{0.01\,T_s^2\,\mathrm{Sinc}^2(0.1T_sf)} \]
+\[ =\begin{cases}\dfrac{2\times10^{5}\,e^{j2\pi f\,5\times10^{-5}}}{\mathrm{Sinc}^2(5\times10^{-5}f)} & |f|\le 1\ \mathrm{kHz}\\[6pt] 0 & \text{else} \end{cases} \]
+
+\sayfa{4}
+\sekilnotu[4]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Basılı şekil: PAM, PWM ve PPM dalga biçimleri.)}
+
+\textbf{PAM}
+
+\textbf{PWM}: Pulse Width Modulation (Darbe Genişlik Modülasyonu)
+
+\textbf{PPM}: Pulse Position Modulation (Darbe Pozisyon Modülasyonu)
+
+\sayfa{5}
+\section{Time Division Multiplexing (TDM)}
+Zaman Bölmeli Çoklama (ZBÇ)
+\begin{itemize}
+\item Multiple PAM signals are transmitted without overlapping.
+\item At the receiver, PAM signals are separated by synchronization.
+\end{itemize}
+\elcizimi[0.95]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s5-1.png}[5]
+\elcizimi[0.7]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s5-2.png}[5]
+
+FDM x TDM
+
+Advantages: 1) Easier to implement. 2) Less crosstalk than FDM
+
+Disadvantages: 1) strict synchronization
+
+Çok kaynaklı (Multi-source) $\longrightarrow$ Multiplexing (Çoklama)
+
+Çok kullanıcılı (Multi-user) $\longrightarrow$ Multiple Access (Çoklu Erişim)
+
+$\hookrightarrow$ TDMA, FDMA
+
+\sayfa{6}
+\section{Pulse Code Modulation (PCM)}
+(Darbe Kod Modülasyonu - DKM)
+
+\elcizimi[0.7]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s6-1.png}[6]
+
+$x(t)$ analog signal
+
+\vurgu[yesil]{$x_p=\mathrm{maks}\,|x(t)|$} \quad Peak value (Tepe değer)
+
+Kuantalayıcı adımı $=$ \vurgu[yesil]{$\Delta v=\dfrac{2x_p}{L}$} $\longrightarrow$ Kuantalayıcıdaki seviye sayısı (\# of levels in quantizer)
+
+(Quantizer step)
+
+\elcizimi[0.7]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s6-2.png}[6]
+$L=7$
+
+Assume $\Delta v=1$ V
+\begin{center}
+\begin{tabular}{rcl}
+$x(t)$ & & $x_q(t)$\\
+1,03 V & $\longrightarrow$ & 1 V\\
+1,40 V & $\longrightarrow$ & 1 V\\
+0,55 V & $\longrightarrow$ & 1 V\\
+2,25 V & $\longrightarrow$ & 2 V\\
+$-3{,}1$ V & $\longrightarrow$ & $-3$ V
+\end{tabular}
+\end{center}
+
+\elcizimi[0.7]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s6-3.png}[6]
+$L=8$ (mid-rise quantizer)
+
+Assume $\Delta v=1$ V
+\begin{center}
+\begin{tabular}{rl}
+$x(t)$ & $x_q(t)$\\
+1,03 V & 1,5 V\\
+0,55 V & 0,5 V\\
+$-3{,}1$ V & $-3{,}5$ V
+\end{tabular}
+\end{center}
+
+* Each sample is approximated with a quantized value, the approximation will result in an error less than $\Delta v/2$ in the positive direction or $-\Delta v/2$ in the negative \okunamadi{direction}
+
+$\therefore$ Quantization error range: $(-\Delta v/2,\ \Delta v/2)$
+
+\sayfa{7}
+\[ \underbrace{x_q(t)}_{\text{Kuantalanmış işaret}}=\underbrace{x(t)}_{\text{Analog işaret}}+\overbrace{q(t)}^{\text{Kuantalama gürültüsü (Quantization noise)}} \]
+$q$ is uniform in $[-\Delta v/2,\ \Delta v/2]$
+
+Average quantization noise power $=N_q=E[q^2]$
+
+(Ort. kuantalama gürültüsü gücü)
+
+\subsection{Reminder}
+$X$, RD $[a,b]$ düzgün d.
+\elcizimi[0.35]{sekiller/ELM365-2024-Bahar-5-hafta-ders-notlari-s7-1.png}[7]
+\[ \mu_x=\frac{a+b}{2} \qquad \sigma_x^2=\frac{(b-a)^2}{12} \]
+\[ \sigma_q^2=E\left[(q-\underbrace{\mu_q}_{0})^2\right]=E[q^2]=N_q \]
+\[ N_q=\frac{\left[\Delta v/2-(-\Delta v/2)\right]^2}{12}=\frac{\Delta v^2}{12} \]
+\[ \Delta v=\frac{2x_p}{L}\ \longrightarrow\ \kutula{N_q=\frac{\Delta v^2}{12}=\frac{x_p^2}{3L^2}} \]
+
+İşaretin gücü $=S_o=\langle x^2(t)\rangle=P_x$
+
+Gürültünün gücü $=N_o=N_q$
+
+İşaretin Gürültüye Oranı (İGO)\\
+Signal-to-Noise Ratio (SNR)
+
+\formulkutu{\mathrm{SNR}=\frac{S_o}{N_o}=\frac{P_x}{x_p^2}\cdot3L^2}
+$\hookrightarrow$ Signal-to-Quantization Noise Ratio (SQNR)
+
+\sekilnotu[7]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Basılı şekil ve tablo: kuantalama aralıkları, doğal/kuantalanmış örnek değerleri, kod numaraları ve PCM dizisi.)}
+Quantization intervals
+
+* Each sample is quantized to the middle of the quantization interval.
+
+\end{document}

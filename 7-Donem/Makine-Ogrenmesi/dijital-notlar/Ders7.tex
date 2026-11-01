@@ -1,0 +1,130 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Feature selection, PCA, SVD, LDA ve kümeleme}{Ders7.pdf}
+
+\sayfa{1}
+hiperspektral \okunamadi{görüntüleme}
+
+220 dalga boyu \okunamadi{her} kanal
+
+Verinin boyutunu azaltmak için
+
+\section{\textcircled{1} Feature selection}
+\[ \{x^t, r^t\}_{t=1}^{N} \]
+\[ x^t_{N_1\times 1} \;\to\; x^t_{N_2\times 1} \qquad N_2 < N_1 \]
+
+\subsection{Subset Selection}
+\[ F = \emptyset \]
+
+\noindent while not converge:\\
+\hspace*{1.5em} for $x_i \notin F$\\
+\hspace*{3em} $F_i \leftarrow F \cup x_i$\\
+\hspace*{3em} $\mathcal{L}_i(x \mid F_i)$\\
+\hspace*{1.5em} $i = \arg\min \mathcal{L}_i(x_i \mid F_i)$\\
+\hspace*{1.5em} $F \leftarrow F_i$
+
+Başka bir yöntem var. \textcolor{kirmizikalem}{O da PCA}
+
+\elcizimi[0.5]{sekiller/Ders7-s1-1.png}[1]
+
+regresyonu $\displaystyle\sum_{t=1}^{N} (\hat r^t - r^t)^2$
+
+\elcizimi[0.35]{sekiller/Ders7-s1-2.png}[1]
+
+\[ \textcolor{turuncukalem}{(Xz)^T (Xz) = z^T\, \underset{\text{bunu max yapıyoruz}}{\underbrace{X^T X}_{\Sigma}}\, z} \]
+
+\sayfa{2}
+\[ z_1 = \underset{z}{\arg\max}\Bigl(\underbrace{z^T\Sigma z - \alpha(z_1^T z_1 - 1)}_{\textcolor{turuncukalem}{\mathcal{L}(z \mid x)}}\Bigr) \]
+\[ \textcolor{turuncukalem}{\frac{\partial \mathcal{L}}{\partial z} = 0} \]
+\[ \text{\textcircled{1}}\ \kutula{\frac{\vec{x_i} - \vec{\mu}}{\Sigma}} \qquad \text{\textcircled{2}}\ [\min, \max] \]
+\begin{align*}
+2\Sigma z - 2\alpha z &= 0 \\
+2\Sigma z &= 2\alpha z
+\end{align*}
+\[ \kutula{\Sigma z = \alpha z} \]
+\begin{align*}
+z^T \Sigma z &= z^T \alpha z \\
+&= \alpha\, z^T \cdot z = \alpha
+\end{align*}
+\[ \begin{array}{l} z_1\,\Sigma z_1 = \alpha_1^2 \\ z_2\,\Sigma z_2 = \alpha_2^2 \end{array} \qquad \kutula{\begin{matrix}\lambda_1\\ \lambda_2\end{matrix}} \]
+\[ x_{N\times 1} \]
+\[ z_2 = \underset{z}{\arg\max}\Bigl(z^T\Sigma z - \alpha(z^T z - 1) - \beta(z^T \cdot z_1)\Bigr) \]
+\begin{align*}
+z_1^T\ \big/\ \ 2\Sigma z - 2\alpha z - \beta z_1 &= 0 \\
+2 z_1^T \Sigma z - 2\alpha z_1^T z - \beta z_1^T z_1 &= 0 \\
+2 z_1^T \Sigma z - 2\alpha z_1^T \cdot z &= \beta \\
+2 z_1^T \Sigma z - 2\alpha z_1^T z &= \beta
+\end{align*}
+\[ \underbrace{2 z_1^T \Sigma z}_{\ } \]
+
+\sayfa{3}
+\section{Principle Component analizi}
+$\leftarrow$ Dimension reduction
+\[ N \to M \]
+\[ z_1, z_2, z_3, z_4, \ldots, z_M \]
+\[ \begin{array}{rl} x \cdot z_1 &= \\ x \cdot z_2 &= \\ x \cdot z_n &= \end{array} \begin{bmatrix} y_1 \\ y_2 \\ y_n \end{bmatrix} \]
+\[ \underbrace{\begin{bmatrix} x_1 & x_2 & x_3 & \cdots \end{bmatrix}}_{X^T} \qquad \begin{bmatrix} z_1 & z_2 & z_3 & \cdots & z_n \end{bmatrix} \]
+
+x.shape = (100, 200, 224)
+
+x.view(-1, 224)\\
+$\uparrow$ kullanın
+
+Haftaya perceptron bakacağız
+
+\section{Feature Embedding}
+\[ W D W^T = X \cdot X^T \]
+
+\elcizimi[0.35]{sekiller/Ders7-s3-1.png}[3]
+
+\subsection{Eigen faces}
+
+\section{Singular value composition}
+\begin{align*}
+\mathrm{SVD}:\quad x &= [x_1\ x_2\ \cdots\ x_N]_{N\times d} \\
+&= \underset{N\times f}{V}\ \underset{f\times f}{\Lambda}\ \underset{f\times d}{W^T}
+\end{align*}
+
+\sayfa{4}
+\elcizimi[0.45]{sekiller/Ders7-s4-1.png}[4]
+
+$\rightarrow$ Linear Discriminant Analysis
+\[ z = w^T x \]
+\[ m_1 = \frac{\sum_t w^T x^t r^t}{\sum_t r^t} = w^T \cdot \vec{m}_1 \]
+\[ m_2 = \frac{\sum_t w^T x^t (1 - r^t)}{\sum_t (1 - r^t)} = w^T \vec{m}_2 \]
+\begin{align*}
+s_1^2 &= \sum_t (w^T x^t - m_1)^2\, r^t \\
+s_2^2 &= \sum_t (w^T x^t - m_2)^2\, (1 - r^t)
+\end{align*}
+\begin{align*}
+J(w) &= \frac{(m_1 - m_2)^2}{s_1^2 + s_2^2} = \frac{(w^T \vec{m}_1 - w^T \vec{m}_2)^2}{s_1^2 + s_2^2} \\
+&= \frac{w^T (\vec{m}_1 - \vec{m}_2)^T (\vec{m}_1 - \vec{m}_2)\, w}{s_1^2 + s_2^2} \\
+&= \frac{w^T S_B\, w}{s_1^2 + s_2^2}
+\end{align*}
+\begin{align*}
+s_1^2 &= \sum_t (w^T x^t - m_1)^2\, r^t \\
+&= w^T \cdot S_1\, w \qquad\qquad S_1 = \sum_t w^T (x^t - \vec{m}_1)(x^t - \vec{m}_1)^T r^t
+\end{align*}
+\[ s_1^2 + s_2^2 = w^T S_W\, w = \vec{w}\,(S_1^2 + S_2^2)\, w \]
+\[ J(w) = \frac{w^T S_B\, w}{w^T \cdot S_W w} \]
+\[ \frac{\partial J(w)}{\partial w} = 0 \]
+\[ {}= \frac{w^T (\vec{m}_1 - \vec{m}_2)}{w^T S_W\, w}\ 2 \]
+
+\sayfa{5}
+Soft k means
+
+$P(x \mid C_i) = ??$ \quad esnek label
+
+belli bir eşiğin altında \okunamadi{kullanmayız}
+
+\section{Expectation maximization}
+\elcizimi[0.4]{sekiller/Ders7-s5-1.png}[5]
+
+hierarchical clustering
+
+DB scan
+
+\elcizimi[0.5]{sekiller/Ders7-s5-2.png}[5]
+
+\end{document}

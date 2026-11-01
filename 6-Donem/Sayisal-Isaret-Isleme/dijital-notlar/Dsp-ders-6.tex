@@ -1,0 +1,179 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Z dönüşümü, fark denklemi ve örnekleme}{Dsp-ders-6.pdf}
+
+\sayfa{1}
+\elcizimi[0.4]{sekiller/Dsp-ders-6-s1-1.png}[1]
+
+\[
+\begin{gathered}
+|z| > a_3 \\
+a_2 < |z| < a_3 \\
+a_1 < |z| < a_2 \\
+|z| < a_1
+\end{gathered}
+\]
+
+\elcizimi[0.4]{sekiller/Dsp-ders-6-s1-2.png}[1]
+
+\begin{align*}
+y[n] &= x[n] * h[n] \\
+Y(z) &= X(z)\,H(z) \\
+H(z) &= \frac{Y(z)}{X(z)}
+\end{align*}
+
+\[ y[n] = -\sum_{k=1}^{N} a_k\, y[n-k] + \sum_{k=0}^{M} b_k\, x[n-k] \]
+\[ Y(z) = -\sum_{k=1}^{N} a_k z^{-k}\, Y(z) + \sum_{k=0}^{M} b_k z^{-k}\, X(z) \]
+\[ Y(z)\left[1 + \sum_{k=1}^{N} a_k z^{-k}\right] = X(z)\left[\sum_{k=0}^{M} b_k z^{-k}\right] \]
+\[ \Rightarrow\ H(z) = \frac{Y(z)}{X(z)} = \frac{\sum_{k=0}^{M} b_k z^{-k}}{\sum_{k=0}^{N} a_k z^{-k}} \qquad a_0 = 1 \text{ olmalıdır} \]
+
+\[ y[n] = \tfrac{1}{2}\, y[n-1] + 2x[n] - x[n-2] \]
+\[ Y(z) = \tfrac{1}{2} z^{-1} Y(z) + 2X(z) - z^{-2} X(z) \]
+\[ H(z) = \frac{Y(z)}{X(z)} = \frac{2 - z^{-2}}{1 - \frac{1}{2} z^{-1}} = 2z^{-1} + 4 + \frac{-2}{1 - \frac{1}{2} z^{-1}} \]
+\[ \Rightarrow\ h[n] = 2\delta[n-1] + 4\delta[n] - 2\left(\tfrac{1}{2}\right)^{n} u[n] \]
+
+fark denklemi aksi belirtilmedikçe nedensel olarak kabul edilir
+
+\sayfa{2}
+\begin{ornek}
+\[
+\begin{aligned}
+y[n] &= 0{,}5\, y[n-1] + x[n] \\
+x[n] &= 10\cos\!\left(\tfrac{\pi}{4}\, n\right)\underbrace{u[n]}_{\textcolor{kirmizikalem}{\text{transient}}} \qquad \rightarrow \text{sağ yanlı} \\
+y[n] &= \ ?
+\end{aligned}
+\]
+\end{ornek}
+
+\[ H(z) = \frac{1}{1 - 0{,}5 z^{-1}} \qquad |z| > \tfrac{1}{2} \]
+\[ h[n] = \left(\tfrac{1}{2}\right)^{n} u[n] \]
+
+\[
+\begin{aligned}
+& r^n x[n] \donusum \ ? \\
+& \cos(\omega n)\,u[n] \donusum \\
+& \qquad \frac{e^{j\omega n} + e^{-j\omega n}}{2}\, u[n] \\
+& \tfrac{1}{2} e^{j\omega n} u[n] + \tfrac{1}{2} e^{-j\omega n} u[n] \\
+& \tfrac{1}{2} a_1^{\,n} u[n] + \tfrac{1}{2} a_2^{\,n} u[n]
+\end{aligned}
+\]
+
+\begin{align*}
+X(z) &= \frac{10\left(1 - \frac{1}{\sqrt{2}}\, z^{-1}\right)}{1 - \sqrt{2}\, z^{-1} + z^{-2}} \\
+&\phantom{=} \ \left(1 - e^{j\pi/4} z^{-1}\right)\left(1 - e^{-j\pi/4} z^{-1}\right) \ \rightarrow\ |z| > 1
+\end{align*}
+
+\elcizimi[0.35]{sekiller/Dsp-ders-6-s2-1.png}[2]
+
+\formulkutu{ax^2+bx+c \qquad \frac{-b \pm \sqrt{b^2-4ac}}{2a}}
+
+\[ Y(z) = H(z)\, X(z) \]
+\[ Y(z) = \frac{10\left(1 - \frac{1}{\sqrt{2}}\, z^{-1}\right)}{\left(1 - 0{,}5 z^{-1}\right)\left(1 - \sqrt{2}\, z^{-1} + z^{-2}\right)} \]
+\[ = \frac{10\left(1 - \frac{1}{\sqrt{2}}\, z^{-1}\right)}{\left(1 - 0{,}5 z^{-1}\right)\left(1 - e^{j\pi/4} z^{-1}\right)\left(1 - e^{-j\pi/4} z^{-1}\right)} \]
+\[ = \frac{A}{1 - 0{,}5 z^{-1}} + \frac{B}{1 - e^{j\pi/4} z^{-1}} + \frac{C}{1 - e^{-j\pi/4} z^{-1}} \]
+
+\okunamadi{kısmi kesirler yöntemi}
+\[ A = Y(z)\left(1 - 0{,}5 z^{-1}\right)\Big|_{z=1/2} \]
+
+\begin{align*}
+y[n] &= 6{,}3\,(0{,}5)^{n} u[n] + 6{,}78\, e^{-j28{,}7^\circ}\left(e^{j\pi/4}\right)^{n} u[n] \\
+&\quad + 6{,}78\, e^{j28{,}7^\circ}\left(e^{-j\pi/4}\right)^{n} u[n]
+\end{align*}
+\[ = \underbrace{6{,}3\,(0{,}5)^{n} u[n]}_{\textcolor{kirmizikalem}{\text{transient cevabı}}} + \underbrace{13{,}56\cos\!\left(\tfrac{\pi}{4}\, n - 28{,}7^\circ\right) u[n]}_{\textcolor{kirmizikalem}{\text{girişin değişmiş hali, steady state}}} \]
+
+\[ \sum |h[n]| = \sum_{n=-\infty}^{\infty} \left|\left(\tfrac{1}{2}\right)^{n} u[n]\right| = \sum_{n=0}^{\infty} \left(\tfrac{1}{2}\right)^{n} = \frac{1}{1-\frac{1}{2}} = 2 \]
+\[ = 1 + \tfrac{1}{2} + \tfrac{1}{4} + \tfrac{1}{8} \]
+
+\sayfa{3}
+\section{Sampling}
+
+\elcizimi[0.4]{sekiller/Dsp-ders-6-s3-1.png}[3]
+
+\elcizimi[0.85]{sekiller/Dsp-ders-6-s3-2.png}[3]
+
+\[ x(t)\Big|_{t=nT} = x(nT) = x[n] \]
+
+\elcizimi[0.5]{sekiller/Dsp-ders-6-s3-3.png}[3]
+
+\elcizimi[0.42]{sekiller/Dsp-ders-6-s3-4.png}[3]
+\textcolor{turuncukalem}{ikisi olabilir}
+
+\begin{align*}
+x(t) &= \cos(12\pi t) \\
+x[n] &= \cos\left(\tfrac{\pi}{2}\, n\right) \qquad \longleftarrow F_s = 24\ \mathrm{Hz} \\
+x[n] &= \cos(2\pi n) = 1 \qquad \longleftarrow F_s = 6\ \mathrm{Hz}
+\end{align*}
+
+\elcizimi[0.78]{sekiller/Dsp-ders-6-s3-5.png}[3]
+
+\[ s(t) = \sum_{n=-\infty}^{\infty} \delta(t - nT) \]
+\[ x_s(t) = x_c(t) \cdot s(t) \]
+
+\elcizimi[0.4]{sekiller/Dsp-ders-6-s3-6.png}[3]
+
+\sayfa{4}
+\elcizimi[0.45]{sekiller/Dsp-ders-6-s4-1.png}[4]
+
+\elcizimi[0.8]{sekiller/Dsp-ders-6-s4-2.png}[4]
+
+\begin{align*}
+X_c(j\Omega) &= \int_{-\infty}^{\infty} x_c(t)\, e^{-j\Omega t}\, dt
+\end{align*}
+
+\begin{align*}
+X_s(e^{j\omega}) &= \sum_{n=-\infty}^{\infty} x_s[n]\, e^{-j\omega n} \\
+X_s(e^{j\omega}) &= \frac{1}{T}\sum_{k} X_c\big(j(\Omega - k\Omega_s)\big) \qquad \textcolor{kirmizikalem}{\rightarrow\ \Omega_s = 2\pi f_s,\ T = \tfrac{1}{f_s}} \\
+&= \frac{1}{T}\sum_{k} X_c\!\left(\frac{\omega - 2\pi k}{T}\right) \qquad \text{olduğunu kabul edelim}
+\end{align*}
+
+\begin{align*}
+X_s(e^{j\omega}) = \frac{1}{T}\Big[ & \cdots + X_c\big(j(\Omega + 2\Omega_s)\big) + X_c\big(j(\Omega + \Omega_s)\big) \\
+& + X_c(j\Omega) + X_c\big(j(\Omega - \Omega_s)\big) + X_c\big(j(\Omega - 2\Omega_s)\big) \\
+& + \cdots \Big]
+\end{align*}
+
+\elcizimi[0.5]{sekiller/Dsp-ders-6-s4-3.png}[4]
+
+\[ \Omega_n < \frac{\Omega_s}{2} \]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-6-s4-4.png}[4]
+
+\sayfa{5}
+\elcizimi[0.9]{sekiller/Dsp-ders-6-s5-1.png}[5]
+
+\elcizimi[0.85]{sekiller/Dsp-ders-6-s5-2.png}[5]
+
+örtüşme aslında iki farklı işaretin örneklerinin aynı olması.
+
+\elcizimi[0.6]{sekiller/Dsp-ders-6-s5-3.png}[5]
+
+\[ x_s(t) = x_c(t)\, s(t) \qquad\qquad s(t) = \sum_{n=-\infty}^{\infty}\delta(t - nT) \qquad\qquad \Omega_s = \frac{2\pi}{T} = 2\pi f_s \]
+
+\begin{align*}
+X_s(j\Omega) &= \frac{1}{2\pi}\, X_c(j\Omega) * S(j\Omega) \qquad \rightarrow\ S(j\Omega) = \frac{2\pi}{T}\sum_{k=-\infty}^{\infty}\delta(\Omega - k\Omega_s) \\
+&= \frac{1}{2\pi}\int_{-\infty}^{\infty} X_c(j\theta)\, S\big(j(\Omega-\theta)\big)\, d\theta \qquad\quad x(t) * h(t) = \int x(\tau)\, h(t-\tau)\, d\tau \\
+&= \frac{1}{\textcolor{turuncukalem}{2\pi}}\int X_c(j\theta)\cdot\frac{2\pi}{T}\sum_{k=-\infty}^{\infty}\delta(\Omega - \theta - k\Omega_s)\, d\theta \\
+&= \frac{1}{T}\sum_{k=-\infty}^{\infty} X_c\big(j(\Omega - k\Omega_s)\big)
+\end{align*}
+
+\[ \omega = \frac{\Omega}{F_s} \quad\Longrightarrow\quad \Omega = \omega\cdot F_s \quad\Longrightarrow\quad \Omega = \frac{\omega}{T} \]
+
+\[ X_s(j\omega) = \frac{1}{T}\sum_{k} X_c\!\left(j\,\frac{\omega - 2\pi k}{T}\right) \]
+\okunamadi{$2\pi$}
+
+\sayfa{6}
+\[ x_c(t) = \cos(8\pi t) \qquad F_s = 6\ \mathrm{Hz} \qquad \Omega_s = 12\pi\ \mathrm{rad/sec} \]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-6-s6-1.png}[6]
+
+örtüşme var \quad $\cos(4\pi t)$ ve $\cos(8\pi t)$ örnekleri aynı oldu
+
+\elcizimi[0.95]{sekiller/Dsp-ders-6-s6-2.png}[6]
+
+\begin{align*}
+\cos(8\pi t)\Big|_{t=n\frac{1}{6}} &= \cos\left(\tfrac{4\pi}{3}\, n\right) \\
+\cos(4\pi t)\Big|_{t=n\frac{1}{6}} &= \cos\left(\tfrac{2\pi}{3}\, n\right)
+\end{align*}
+
+\end{document}

@@ -1,0 +1,243 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Düz tepeli örnekleme, PAM/PWM/PPM, TDM ve PCM}{Ders-5.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 9) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\section{Sample and Hold operation (örnekle ve tut işlemi)}
+
+\subsection{Düz Tepeli örnekleme (Flat top sampling) (FTS)}
+
+\sekilnotu[1]{Blok diyagram: soldan giriş çizgisi, ortada ``FTS ($\tau$)'' kutusu, sağa çıkış çizgisi; kırmızı not ``Flattop sampling'' kutuya işaret ediyor. Kutunun üstünde yüksekliği 1, genişliği $\tau$ olan dikdörtgen darbe çizilmiş. Kutunun altında ``Clock \quad $f_s \geq 2 f_m$'' kutusu, yukarı okla FTS kutusuna bağlı.}
+
+\sekilnotu[1]{$x(t)$ eğrisi ve üzerinde düz tepeli (dikdörtgen) darbeler, kırmızı; genlikleri $x(0)$, $x(T_s)$, $x(2T_s)$, $x(3T_s)$. Zaman ekseninde $0$, $\tau$, $T_s$, $T_s+\tau$, $2T_s$, $2T_s+\tau$, $3T_s$, $3T_s+\tau$ işaretli; $\tau$ aralığı çift yönlü okla gösterilmiş, altına ``$\tau$ genişlikli darbe'' yazılmış. Kırmızı not: $\ast$ tepeyi takip etmiyor.}
+
+\sekilnotu[1]{Başlık: Sample and hold circuit (örnekle ve tut devresi). $x(t)$ eğrisi ve altında düz tepeli darbeler; eksende $0$, $\tau$, $T_s$, $2T_s$, $\dots$, $kT_s$ işaretli.}
+
+$x_s(t)$: Darbe Genlik mod (DGM)\\
+\hspace*{2em}Pulse amplitude mod
+
+Burda darbeler düz tepeli
+
+bu discrete time analog modulation \quad zaman ayrık ama genlik değil
+
+Discrete time analog modulation
+
+\subsection{Sample/ Hold (Dump) circuit}
+
+\sekilnotu[1]{Kesikli çizgili kutu (FTS): solda $x(t)$ girişi, $t=nT_s$ anında kapanan anahtar; ardından toprağa bağlı kondansatör ve onunla paralel ikinci anahtar ($t=nT_s+\tau$ anında kapanıyor); çıkış $x_s(t)$. Notlar: ``$nT_s$ anında hemen kapanıp açılıyor'' (birinci anahtar), ``$\tau$ saniye sonra bu anahtar kapanıyor ve gerilim sıfır oluyor'' (ikinci anahtar).}
+
+\sekilnotu[1]{Blok diyagram: $x(t)$ girişi çarpıcıya ($\otimes$) girer, çarpıcıya alttan $x_\delta(t)=\sum_n \delta(t-nT_s)$ uygulanır; çarpıcı çıkışı $g(t)$; ardından içinde yüksekliği 1, genişliği $\tau$ olan $q(t)$ darbesi bulunan blok; çıkış $x_s(t)$. Bloğun altında $q(t) \donusum Q(f)$ yazıyor.}
+
+\begin{align*}
+g(t) &= x(t)\, x_\delta(t) = \sum_n x(nT_s)\, \underline{\delta(t-nT_s)}\\
+x_s(t) &= q(t) \circledast g(t) = \sum_n x(nT_s)\, \underline{q(t-nT_s)}
+\end{align*}
+\begin{align*}
+x_s(t) &= q(t) \circledast \bigl[x(t)\, x_\delta(t)\bigr] = q(t) \circledast \Bigl[\sum_n x(nT_s)\,\delta(t-nT_s)\Bigr]\\
+&= \sum_n x(nT_s)\, q(t-nT_s)
+\end{align*}
+
+\sayfa{2}
+\begin{align*}
+X_s(f) &= Q(f)\,\bigl[X(f) \circledast X_\delta(f)\bigr] = Q(f)\,\Bigl[X(f) \circledast f_s \sum_n \delta(f-nf_s)\Bigr]\\
+X_s(f) &= Q(f)\,\Bigl[f_s \sum_n X(f-nf_s)\Bigr]
+\end{align*}
+\[ \hookrightarrow\ \tau\,\operatorname{sinc}(f\tau)\, e^{-j2\pi f \tau/2} \]
+\[ X_s(f) = \underbrace{f_s\, Q(f)\, X(f)}_{!!} + Q(f)\cdot f_s \sum_{n\neq 0} X(f-nf_s) \]
+
+\sekilnotu[2]{Frekans ekseninde dikdörtgen: $-f_m$ ile $f_m$ arasında yükseklik $T_s$; yanında ``alçak geçiren'' yazıyor.}
+
+\vurgu[turuncu]{Equalizing LPF (Dengeleyici AGF)}
+\[ x_s(t) \longrightarrow \underbrace{\boxed{H_{eq}(f)=\frac{1}{Q(f)}} \longrightarrow \boxed{\begin{matrix}\text{Ideal LPF}\\ \text{Gain}=T_s\\ \text{BW}=f_m\end{matrix}}}_{} \longrightarrow x(t) \]
+
+\[ H_{eq}(f) = \begin{cases} \dfrac{T_s}{Q(f)} & |f|\le f_m\\[1ex] 0 & \text{else} \end{cases} \]
+
+\sekilnotu[2]{$|Q(f)| = \tau\,|\operatorname{sinc}(f\tau)|$ grafiği: sinc genliği, ana lob tepesi $\tau$; sıfır geçişleri $-1/\tau$ ve $1/\tau$; eksende $-1/\tau$, $-f_m$, $f_m$, $1/\tau$ işaretli. $-f_m$ ve $f_m$ noktalarında kırmızı kesikli dikey çizgiler, ana lobun $|f|\le f_m$ aralığındaki tepe kısmı kırmızı kesikli çizilmiş ve kırmızı okla sağdaki $|H_{eq}(f)|$ grafiğine bağlanmış.}
+
+\[ H_{eq}(f) = \begin{cases} \dfrac{T_s}{Q(f)} & |f|\le f_m\\[1ex] 0 & \text{else} \end{cases} \]
+
+\sekilnotu[2]{$|H_{eq}(f)|$ grafiği: $-f_m$ ile $f_m$ arasında, ortası çukur dikdörtgen benzeri yanıt (merkezde minimum değer $T_s/\tau$, kenarlara doğru yükseliyor), dışarısı sıfır; yatay eksen $f$, işaretler $-f_m$ ve $f_m$.}
+
+\[ H_{eq}(f) = \frac{T_s}{Q(f)} = \frac{T_s}{\tau\,\operatorname{sinc}(f\tau)}\,\underline{e^{\,j2\pi f \tau/2}}\,,\quad |f|\le f_m \]
+\hspace*{3em}$\hookrightarrow$ advance in time $\rightarrow$ $h_{eq}(t)$ is not causal
+
+For this reason, $H_{eq}'(f) = H_{eq}(f)\, e^{-j2\pi f T_x}$ is chosen\\
+$\downarrow$
+\[ h_{eq}'(t) = h_{eq}(t-T_x) \qquad T_x = \frac{\tau}{2}+T_0 \]
+\[ x_s(t) \longrightarrow \boxed{H_{eq}'(f)} \longrightarrow x(t-T_0) \]
+
+\sayfa{3}
+\subsection{Reminder}
+\sekilnotu[3]{Üçgen darbe: tepe yüksekliği $A$ ($t=0$'da), taban $-T$ ile $T$ arasında; yatay eksen $t$, işaretler $-T$, $0$, $T$.}
+\[ A\,\Lambda\!\left(\frac{t}{T}\right) \overset{\mathcal{F}}{\longleftrightarrow} A\,T\,\operatorname{sinc}^2(fT) \]
+
+\begin{ornek}[(2004 Midterm Ex.Q.)]
+A PAM signal is produced as shown in the figure below. a) If the bandwidth of $x(t)$ is 1\,kHz, what is the maximum value of $T_s$ to obtain $x(t)$ without distortion at the receiver? b) For $T_s=T_s(\max)$, sketch PAM demodulator. Find the transfer function of demodulator.
+
+\sekilnotu[3]{Blok diyagram: $x(t)$ girişi çarpıcıya ($\otimes$) girer, çarpıcıya alttan $\sum_n \delta(t-nT_s)$ uygulanır; çarpıcı çıkışı $q(t)$ bloğuna gider, çıkış $x_{PAM}(t)$. Sağda $q(t)$ grafiği: $t=0$'dan $0{,}2T_s$'e uzanan üçgen darbe, tepe noktası $t=0{,}1T_s$ anında ve yüksekliği $0{,}1T_s$; eksen işaretleri $0$, $0{,}1T_s$, $0{,}2T_s$.}
+\end{ornek}
+
+\begin{cozum}
+\sekilnotu[3]{Aynı blok diyagram yeniden çizilmiş: $x(t) \to \otimes \to q(t) \to x_{PAM}(t)$, çarpıcıya alttan $\sum_n \delta(t-nT_s)$.}
+
+a) $\mathrm{BW}\{x(t)\} = 1\ \mathrm{kHz} = f_m$\\
+\hspace*{1.2em}$f_s \ge 2f_m = 2\ \mathrm{kHz}$\\
+\hspace*{1.2em}$T_s \le \dfrac{1}{2f_m} = 0{,}5\ \mathrm{msec}$\\
+\hspace*{1.2em}$T_s(\max) = 0{,}5\ \mathrm{msec}$
+
+\sekilnotu[3]{$q(t)$ grafiği (sağda): $t=0$'dan $0{,}2T_s$'e kadar üçgen darbe, tepe yüksekliği $0{,}1T_s$ ($t=0{,}1T_s$ anında); eksen işaretleri $0$, $0{,}1T_s$, $0{,}2T_s$.}
+
+b)
+\[ x_{pam}(t) \longrightarrow \boxed{H_{eq}(f)=\frac{1}{Q(f)}} \longrightarrow \boxed{\begin{matrix}\text{Ideal}\\ \text{LPF}\\ \mathrm{BW}=f_m\end{matrix}} \longrightarrow x(t) \]
+\[ H_{eq}(f) = \begin{cases} \dfrac{T_s}{Q(f)}, & |f| \le f_m\\[1ex] 0, & |f| > f_m \end{cases} \]
+\begin{align*}
+Q(f) &= 0{,}1T_s\,\Bigl(0{,}1T_s\operatorname{sinc}^2(0{,}1T_s f)\, e^{-j2\pi f\, 0{,}1T_s}\Bigr)\\
+&= 0{,}01\,T_s^2\operatorname{sinc}^2(0{,}1T_s f)\, e^{-j2\pi f\, 0{,}1T_s}
+\end{align*}
+\begin{align*}
+H_{eq}(f) &= \frac{T_s\, e^{j2\pi f\, 0{,}1T_s}}{0{,}01\,T_s^2\operatorname{sinc}^2(0{,}1T_s f)}\\
+&= \begin{cases} \dfrac{2\cdot 10^{5}\, e^{j2\pi f\, 5\cdot 10^{-5}}}{\operatorname{sinc}^2(5\cdot 10^{-5} f)}, & |f| \le 1\ \mathrm{kHz}\ \text{ iken}\\[2ex] 0, & \text{else} \end{cases}
+\end{align*}
+\end{cozum}
+
+\sayfa{4}
+\sekilnotu[4]{$g(t)$ grafiği (dikey eksen $g(t)$, yatay eksen $t$): bir periyotluk sinüs benzeri eğri ($t=0$'dan başlayıp pozitif tepeye çıkar, sıfırdan geçer, negatif tepeye iner ve tekrar sıfıra döner). Eğri üzerinde turuncu, eşit aralıklı altı impuls oku: üçü pozitif (yukarı ok), üçü negatif (aşağı ok); okların boyu eğrinin değerini izliyor.}
+
+\sekilnotu[4]{Aynı $g(t)$ eğrisi; bu kez aynı altı örnekleme anında turuncu dikdörtgen (düz tepeli) darbeler: üçü pozitif, üçü negatif.}
+
+\sekilnotu[4]{$x_{PWM}$ grafiği: sabit yükseklikli, genişlikleri farklı dört dikdörtgen darbe (ilki $y$ ekseninde ve dar, sonra orta, en geniş ve tekrar daha dar); yatay eksen zaman.}
+
+\sekilnotu[4]{$x_{PPM}(t)$ grafiği: ilk darbe $y$ ekseninde ve daha geniş; devamında sabit genişlikli dar darbeler, konumları kaydırılmış; referans konumlar kesikli dikey çizgilerle işaretli.}
+
+$x_{PPM}(t)$: Pulse Width modulation\footnote{Claude notu: muhtemelen Pulse Position modulation olmalı.}
+
+\sayfa{5}
+\sekilnotu[5]{Bu sayfa basılı materyal içeriyor (ders kitabından şekil); dijitalleştirilmedi. Dört grafik üst üste: $g(t)$ (sinüs benzeri eğri, örnekleme okları), $x_{PAM}(t)$, $x_{PWM}(t)$ (basılı not: Pulse locations are the same but their widths change.) ve $x_{PPM}(t)$ (basılı not: Pulse widths are the same but their locations change.). El yazısı eklemeler: grafiklerin sağında PAM, PWM, PPM etiketleri ve altta aşağıdaki iki açıklama.}
+
+PWM: Pulse Width Modulation (Darbe Genişlik Modülasyonu)
+
+PPM: Pulse Position Modulation (Darbe Pozisyon Modülasyonu)
+
+\sayfa{6}
+\section{Time division multiplexing (TDM) \quad Zaman bölmeli çoklama (ZBÇ)}
+\begin{itemize}
+\item Multiple PAM signals are transmitted without overlapping.
+\item At the receiver, PAM signals are separated by synchronization
+\end{itemize}
+
+\sekilnotu[6]{$x_a(t)$ grafiği: $\mathrm{BW}\{x_a(t)\}=B\ \mathrm{Hz}$; çan benzeri $x_a(t)$ eğrisi ve $0$, $T_s$, $2T_s$ anlarında turuncu dikdörtgen (PAM) darbeler.}
+
+\sekilnotu[6]{$x_b(t)$ grafiği: $\mathrm{BW}\{x_b(t)\}=B\ \mathrm{Hz}$; azalan $x_b(t)$ eğrisi ve $T_s/2$ ile $3T_s/2$ anlarında kırmızı taralı dikdörtgen (PAM) darbeler.}
+
+\sekilnotu[6]{Çoklayıcı: $x_1(t)$ girişi A noktasına ($[0,T_s/2]$ aralığı), $x_2(t)$ girişi B noktasına ($[T_s/2,T_s]$ aralığı) bağlı; dönen anahtar ($f_s$, not: $f_s\ge 2B$) çıkışı ``FTS ($\tau$)'' bloğuna verir; bloğa alttan ``TDM Clock, $f_p=2f_s$'' bloğu bağlı; çıkış $v(t)$. Altta $0$, $T_s/2$, $T_s$, $3T_s/2$, $2T_s$ anlarında impuls dizisi (``for N signals, $f_p=Nf_s$'').}
+
+\sekilnotu[6]{$v(t)$ grafiği: PAM darbeleri sırayla $x_a(t)$ (turuncu) ve $x_b(t)$ (kırmızı) darbeleri olarak birbirini izliyor.}
+
+\sekilnotu[6]{Ayırıcı: $v(t)$ girişi dönen anahtara ($f_s$) girer; anahtar A ve B kollarına bağlanır. A kolu: $x_a(t) \to [H_{eq}'(f)] \to x_1(t-T_0)$; B kolu: $x_b(t) \to [H_{eq}'(f)] \to x_2(t-T_0)$.}
+
+FDM $\times$ TDM
+
+Advantages: 1) Easier to implement \quad 2) Less crosstalk than FDM
+
+Disadvantage: 1) Strict synchronization
+
+Çok kaynaklı (Multi-source) $\to$ multiplexing (çoklama)
+
+Çok kullanıcılı (Multi user) $\to$ Multiple Access (çoklu erişim)
+
+\hspace*{1em}$\hookrightarrow$ TDMA (2.nesil, avrupada GSM), FDMA (1.nesil)
+
+3.nesil: Code Division multiplexing
+
+4.nesil: OFDM
+
+
+\sayfa{7}
+\section{Pulse code Modulation (Darbe kod modülasyonu - DKM)}
+
+\elcizimi[0.9]{sekiller/Ders-5-s7-1.png}[7]
+
+$x(t)$ analog signal \hfill $-x_p$ den $+x_p$ ye kadar
+
+$x_p=\mathrm{Maks}\,|x(t)|$ \quad peak value (Tepe değer)
+
+\underline{kuantalayıcı adımı} (Quantizer step) $=\Delta v=\dfrac{2x_p}{L}$ $\longrightarrow$ kuantalayıcıdaki seviye sayısı (\# of levels in quantizer)
+
+\elcizimi[0.75]{sekiller/Ders-5-s7-2.png}[7]
+
+Assume $\Delta v=1\ \mathrm{V}$
+
+\begin{center}
+\begin{tabular}{rcl}
+$x(t)$ & & $x_q(t)$\\[3pt]
+$1{,}07$ & $\longrightarrow$ & $1\ \mathrm{V}$\\
+$1{,}40\ \mathrm{V}$ & $\longrightarrow$ & $1\ \mathrm{V}$\\
+$0{,}55\ \mathrm{V}$ & $\longrightarrow$ & $1\ \mathrm{V}$\\
+$2{,}25\ \mathrm{V}$ & $\longrightarrow$ & $2\ \mathrm{V}$\\
+$-3{,}1\ \mathrm{V}$ & $\longrightarrow$ & $-3\ \mathrm{V}$
+\end{tabular}
+\end{center}
+
+\sayfa{8}
+\elcizimi[0.62]{sekiller/Ders-5-s8-1.png}[8]
+
+8 seviyeyi kodluyoruz
+
+$L=8$ \quad \textit{(Mid rise quantizer)}
+
+Assume $\Delta v=1\ \mathrm{V}$
+
+\begin{center}
+\begin{tabular}{rcl}
+\underline{$x(t)$} & & \underline{$x_q(t)$}\\[3pt]
+$1{,}03\ \mathrm{V}$ & & $1{,}5\ \mathrm{V}$\\
+$0{,}55\ \mathrm{V}$ & & $0{,}5\ \mathrm{V}$\\
+$-3{,}1\ \mathrm{V}$ & & $-3{,}5\ \mathrm{V}$\\[6pt]
+$1{,}01\ \mathrm{V}$ & $\longrightarrow$ & $1{,}5\ \mathrm{V}$
+\end{tabular}
+\qquad
+\begin{tabular}{l}
+$+\dfrac{\Delta v}{2}$ hata\\[4pt]
+$-\dfrac{\Delta v}{2}$ hata
+\end{tabular}
+\end{center}
+
+* Each sample is approximated with a quantized value, the approximation will result in an error less than $\Delta v/2$ in the positive direction or $-\Delta v/2$ in the negative \okunamadi{direction}
+
+Quantization error : $(-\Delta v/2,\ \Delta v/2)$
+
+\[
+\underbrace{x_q(t)}_{\text{kuantalanmış işaret}} \quad = \quad \underbrace{x(t)}_{\text{Analog işaret}} + \overbrace{q(t)}^{\substack{\text{kuantalama gürültüsü}\\ \text{(Quantization noise)}}}
+\]
+
+$q$ is uniform in $[-\Delta v/2,\ \Delta v/2]$
+
+Average quantization noise power $=N_q=E[q^2]$
+
+(ort. kuantalama gürültüsü gücü)
+
+\subsection{Reminder}
+$x\sim U[a,b]$ düzgün dağ.
+
+\elcizimi[0.3]{sekiller/Ders-5-s8-2.png}[8]
+
+\[ \mu_x=\frac{a+b}{2} \qquad \sigma_x^2=\frac{(b-a)^2}{12} \]
+\[ \sigma_q^2=E\!\left[(q-\mu_q)^2\right]=E[q^2]=N_q \]
+\[ N_q=\frac{\left[\frac{\Delta v}{2}-\left(-\frac{\Delta v}{2}\right)\right]^2}{12}=\frac{\Delta v^2}{12} \]
+\[ \Delta v=\frac{2x_p}{L}\ \Longrightarrow\ N_q=\frac{\Delta v^2}{12}=\frac{x_p^2}{3L^2} \]
+
+İşaretin gücü $=S_0=\langle x^2(t)\rangle=P_x$
+
+Gürültünün gücü $=N_0=N_q$
+
+İşaretin gürültüye oranı (İGO)
+
+Signal to noise Ratio (SNR)
+
+\noindent\hfill signal to Quantization noise Ratio (SQNR) $\downarrow$
+
+\formulkutu[önemli]{\mathrm{SNR}=\dfrac{S_0}{N_0}=\dfrac{P_x}{x_p^2}\cdot 3L^2}
+
+\end{document}

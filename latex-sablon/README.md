@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › latex-sablon
 
-El yazısı ders notlarını **el yazısı görünümünü koruyarak** LaTeX'e aktarmak için hazırlanmış bir XeLaTeX şablonu. Depodaki tüm `dijital-notlar/` dosyaları (144 not) bu şablonla, Claude (Anthropic) yardımıyla yazılmıştır. Örnek çıktı için [`ornek.pdf`](ornek.pdf) dosyasına bakın.
+El yazısı ders notlarını **el yazısı görünümünü koruyarak** LaTeX'e aktarmak için hazırlanmış bir XeLaTeX şablonu. Depodaki tüm `dijital-notlar/` dosyaları (187 not) bu şablonla, Claude (Anthropic) yardımıyla yazılmıştır. Örnek çıktı için [`ornek.pdf`](ornek.pdf) dosyasına bakın.
 
 ## Dosyalar
 

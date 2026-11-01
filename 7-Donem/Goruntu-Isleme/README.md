@@ -10,25 +10,45 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [7. Dönem](../README.md) · 2024–2025 Güz | ELM463 | Image Processing | 11 ders notu · 2 ödev · 6 lab · 1 proje |
+| [7. Dönem](../README.md) · 2024–2025 Güz | ELM463 | Image Processing | 11 ders notu · 11 dijital not · 2 ödev · 6 lab · 1 proje |
 
-**Bu sayfada:** [Ders Notları](#ders-notları) · [Ödevler](#ödevler) · [Laboratuvar](#laboratuvar) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları) · [Kaynak Kitaplar](#kaynak-kitaplar)
+**Bu sayfada:** [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Ödevler](#ödevler) · [Laboratuvar](#laboratuvar) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları) · [Kaynak Kitaplar](#kaynak-kitaplar)
 
 ## Ders Notları
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Ders1](ders-notlari/Ders1.pdf) | PDF | 4 s. |
-| [Ders2](ders-notlari/Ders2.pdf) | PDF | 10 s. |
-| [Ders 3](ders-notlari/Ders-3.pdf) | PDF | 9 s. |
-| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 7 s. |
-| [Ders6](ders-notlari/Ders6.pdf) | PDF | 11 s. |
-| [Ders7](ders-notlari/Ders7.pdf) | PDF | 7 s. |
-| [Ders8](ders-notlari/Ders8.pdf) | PDF | 8 s. |
-| [Ders9](ders-notlari/Ders9.pdf) | PDF | 5 s. |
-| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 7 s. |
-| [Ders 11](ders-notlari/Ders-11.pdf) | PDF | 8 s. |
-| [Ders 12](ders-notlari/Ders-12.pdf) | PDF | 6 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Ders1](ders-notlari/Ders1.pdf) | PDF | 4 s. | [PDF](dijital-notlar/Ders1.pdf) |
+| [Ders2](ders-notlari/Ders2.pdf) | PDF | 10 s. | [PDF](dijital-notlar/Ders2.pdf) |
+| [Ders 3](ders-notlari/Ders-3.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-3.pdf) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders-5.pdf) |
+| [Ders6](ders-notlari/Ders6.pdf) | PDF | 11 s. | [PDF](dijital-notlar/Ders6.pdf) |
+| [Ders7](ders-notlari/Ders7.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders7.pdf) |
+| [Ders8](ders-notlari/Ders8.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Ders8.pdf) |
+| [Ders9](ders-notlari/Ders9.pdf) | PDF | 5 s. | [PDF](dijital-notlar/Ders9.pdf) |
+| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders-10.pdf) |
+| [Ders 11](ders-notlari/Ders-11.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Ders-11.pdf) |
+| [Ders 12](ders-notlari/Ders-12.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders-12.pdf) |
+
+## Dijital Notlar (LaTeX)
+
+El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: [latex-sablon](../../latex-sablon/README.md).
+
+> **Uyarı:** Dijital notlar, el yazısı notlardan Claude (Anthropic) yardımıyla oluşturulmuştur; yardımcı kaynak olarak hazırlanmıştır ve hata içerebilir. Orijinal notları ve resmi ders kaynaklarını esas alın.
+
+| Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
+|---|---|---|---|
+| [Ders1](ders-notlari/Ders1.pdf) | Giriş, görüntü gösterimi ve PGM formatı (Ders 1) | [PDF](dijital-notlar/Ders1.pdf) · 4 s. | [.tex](dijital-notlar/Ders1.tex) |
+| [Ders2](ders-notlari/Ders2.pdf) | Görüntü iyileştirme: yoğunluk dönüşümleri ve uzamsal filtreler | [PDF](dijital-notlar/Ders2.pdf) · 6 s. | [.tex](dijital-notlar/Ders2.tex) |
+| [Ders 3](ders-notlari/Ders-3.pdf) | Ders 3: Unsharp masking, gradyan, histogram işleme | [PDF](dijital-notlar/Ders-3.pdf) · 7 s. | [.tex](dijital-notlar/Ders-3.tex) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | Filtering in the Frequency Domain (Ders 5) | [PDF](dijital-notlar/Ders-5.pdf) · 6 s. | [.tex](dijital-notlar/Ders-5.tex) |
+| [Ders6](ders-notlari/Ders6.pdf) | Frekans Bölgesinde Filtreleme (Gauss, Laplacian, Homomorphic) | [PDF](dijital-notlar/Ders6.pdf) · 7 s. | [.tex](dijital-notlar/Ders6.tex) |
+| [Ders7](ders-notlari/Ders7.pdf) | Örnekler ve Image Segmentation (kenar, gradyan, eşikleme) | [PDF](dijital-notlar/Ders7.pdf) · 6 s. | [.tex](dijital-notlar/Ders7.tex) |
+| [Ders8](ders-notlari/Ders8.pdf) | Görüntü eşikleme (thresholding) | [PDF](dijital-notlar/Ders8.pdf) · 7 s. | [.tex](dijital-notlar/Ders8.tex) |
+| [Ders9](ders-notlari/Ders9.pdf) | Hough dönüşümü ve bağlı bileşenler | [PDF](dijital-notlar/Ders9.pdf) · 10 s. | [.tex](dijital-notlar/Ders9.tex) |
+| [Ders 10](ders-notlari/Ders-10.pdf) | Morphological Image Processing | [PDF](dijital-notlar/Ders-10.pdf) · 7 s. | [.tex](dijital-notlar/Ders-10.tex) |
+| [Ders 11](ders-notlari/Ders-11.pdf) | Morphological Image Processing (devam) | [PDF](dijital-notlar/Ders-11.pdf) · 6 s. | [.tex](dijital-notlar/Ders-11.tex) |
+| [Ders 12](ders-notlari/Ders-12.pdf) | Ders 12: Granulometry, geometrik dönüşüm, feature extraction | [PDF](dijital-notlar/Ders-12.pdf) · 8 s. | [.tex](dijital-notlar/Ders-12.tex) |
 
 ## Ödevler
 
@@ -82,4 +102,4 @@ Derste kullanılan kaynaklar (kitapların kendisi telif hakları nedeniyle depod
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Image Processing (ELM463)* — Semester 7, Fall 2024–25. Digital image fundamentals, point operations and histograms, spatial filtering, morphological operations and segmentation; Python labs and a traffic-sign detection project. This page lists: 11 lecture notes, 2 assignments, 6 labs, 1 project. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Image Processing (ELM463)* — Semester 7, Fall 2024–25. Digital image fundamentals, point operations and histograms, spatial filtering, morphological operations and segmentation; Python labs and a traffic-sign detection project. This page lists: 11 lecture notes, 11 digital notes, 2 assignments, 6 labs, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

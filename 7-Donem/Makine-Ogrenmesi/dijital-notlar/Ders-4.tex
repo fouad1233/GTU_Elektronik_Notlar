@@ -1,0 +1,172 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Parametrik kestirim, MLE, Gaussian Mixtures, EM}{Ders-4.pdf}
+
+\sayfa{1}
+feature vektörü
+\[ \vec{x} = \begin{bmatrix} \#\text{ayak sayısı} \\ \#\text{ağırlığı} \end{bmatrix} \qquad\qquad P(C_i|x) \]
+
+\[ \left.\begin{aligned} &\text{tavuk} \\ &\text{keçi} \end{aligned}\right\} \#\text{ayak sayısı} \qquad r^t \in \{2,4\} \]
+
+Bernolli dağılımı:
+\elcizimi[0.3]{sekiller/Ders-4-s1-1.png}[1]
+
+\elcizimi[0.5]{sekiller/Ders-4-s1-2.png}[1]
+
+\section{Parametric kestirim:}
+\begin{enumerate}[label=\textcircled{\small\arabic*}]
+\item Varsayılan Model: \quad $\theta$
+\item En olabilirlik fonksiyonu: \quad $L(\theta)$
+\item Optimization Yöntemi: \quad MLE \quad maximum likelihood estimation
+\end{enumerate}
+
+\subsection{MLE:}
+\[ \mathcal{X} = \{x^1, x^2, \ldots, x^N\} \]
+her bir örnek.
+\[ \underbrace{x^t}_{\text{bu dağılıma göre üretilir}} \sim p(x|\theta) \]
+
+\elcizimi[0.35]{sekiller/Ders-4-s1-3.png}[1]
+
+\[ L(\theta|\mathcal{X}) = p(x^1|\theta)\cdot p(x^2|\theta)\cdots \]
+\[ = \prod_{i=1}^{N} \underbrace{p(x^i|\theta)}_{0'\text{dan büyük}} \]
+$\hat\theta = \arg\max_\theta L(\theta|\mathcal{X})$ = likelihood fonksiyonunu max yapan $\theta$ benim kestirim
+
+\sayfa{2}
+logaritmasını alabiliriz
+\[ \ell(\theta|\mathcal{X}) = \log L(\theta|\mathcal{X}) \]
+\[ = \sum_{i=1}^{N} \log p(x^i|\theta) \]
+
+\section{Yeterli istatistik (Sufficient Statistics)}
+Bir dağılımı açıklayabilecek minimum parametre sayısı
+
+\section{Bernoulli Distrubution:}
+\[ P(x|\theta) = \theta^x(1-\theta)^{1-x}, \quad \overset{\text{ya 0 ya 1}}{x\in\{0,1\}}, \quad \overset{\text{0 ile 1 arasında}}{\theta\in[0,1]} \]
+\textcolor{kirmizikalem}{??}
+
+\elcizimi[0.35]{sekiller/Ders-4-s2-1.png}[2]
+
+\begin{align*}
+L(\theta|\mathcal{X}) &= \prod_{i=1}^{N} p(x^i|\theta) \\
+&= \prod_{i=1}^{N} \theta^{x_i}(1-\theta)^{(1-x_i)} \\
+\ell(\theta|\mathcal{X}) &= \sum_{i=1}^{N}\Bigl[(x_i\log\theta)+(1-x_i)\log(1-\theta)\Bigr]
+\end{align*}
+\[ x_i \in \{0,1\} \;\downarrow\; \kutula{s=\sum_{i=1}^{N} x_i} \]
+
+\[ \frac{\partial \ell(\theta|\mathcal{X})}{\partial\theta} = 0 = \frac{\partial(s\log\theta)}{\partial\theta} + \frac{\partial\bigl(\log(1-\theta)(N-s)\bigr)}{\partial\theta} \]
+\[ = \frac{s}{\theta} - \frac{N-s}{1-\theta} \]
+\[ \frac{N-s}{1-\theta} = \frac{s}{\theta} \]
+\[ s - s\theta = N\theta - s\theta \]
+\[ \hat\theta = \frac{s}{N} = \frac{\sum_{i=1}^{N} x_i}{N} \]
+
+Saç renkleri üzerinden konuşalım
+\elcizimi[0.4]{sekiller/Ders-4-s2-2.png}[2]
+\[ p_k = \Bigl(1 - \sum_{i=1}^{k-1} p_i\Bigr) \]
+\[ p_i \ge 0,\quad \sum_{i=1}^{k} p_i = 1 \]
+
+\sayfa{3}
+Classlarım var \\
+sınıf vektörü
+
+\elcizimi[0.4]{sekiller/Ders-4-s3-1.png}[3]
+\textcolor{kirmizikalem}{$\leftarrow$ Multinomial Density}
+\[ P(x|\theta) = \prod_{k=1}^{K} p_k^x \]
+
+\begin{align*}
+L(\theta|\mathcal{X}) &= \prod_{i=1}^{N} p(x_i|\theta) = \prod_{i=1}^{N}\prod_{k=1}^{K} p_k^{x_i} \\
+\ell(\theta|\mathcal{X}) &= \log\Bigl(\prod_{i=1}^{N}\prod_{k=1}^{K} p_k^{x_i}\Bigr)
+\end{align*}
+\[ \frac{\partial\,\ell(\theta|\mathcal{X})}{\partial p_1} = 0 \Rightarrow \hat p_1 = \frac{s_1}{N} \]
+
+\section{Gauss Dağılımı}
+\[ p(x|\mu,\sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+
+\elcizimi[0.4]{sekiller/Ders-4-s3-2.png}[3]
+
+\elcizimi[0.7]{sekiller/Ders-4-s3-3.png}[3]
+
+\begin{align*}
+L(\theta|\mathcal{X}) &= \prod_{i=1}^{N} p(x_i|\theta) \\
+&= \Bigl(\frac{1}{\sqrt{2\pi\sigma^2}}\Bigr)^{N}\prod_{i=1}^{N} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \\
+\ell(\theta|\mathcal{X}) &= -N\log(2\pi\sigma^2) - \sum_{i=1}^{N}\frac{(x-\mu)^2}{2\sigma^2}
+\end{align*}
+\[ \frac{\partial\,\ell(\theta|\mathcal{X})}{\partial\mu} = \frac{1}{2\sigma^2}\sum_{i=1}^{N} 2(x_i-\mu) \]
+\[ 0 = \frac{\sum_{i=1}^{N} x_i - N\mu}{\sigma^2} \]
+
+\sayfa{4}
+\[ N\cdot\mu = \sum_{i=1}^{N} x_i \]
+\formulkutu{\hat\mu = \frac{1}{N}\sum_{i=1}^{N} x_i}
+
+\begin{align*}
+\underbrace{\hat\mu_{ML}^{T}}_{\text{Maximum likelihood}} &= \frac{1}{T}\sum_{t=1}^{T} x_t = \frac{1}{T}\Bigl(x_T + \sum_{t=1}^{T-1} x_t\Bigr) = \frac{x_T}{T} + \frac{1}{T}\sum_{t=1}^{T-1} x_t \\
+&= \frac{x_T}{T} + \frac{1}{T}\,\hat\mu_{ML}^{(T-1)}(T-1)
+\end{align*}
+\[ \hat\mu_{ML}^{T} = \frac{1}{T}x_T + \frac{T-1}{T}\,\hat\mu_{ML}^{T-1} \]
+
+\[ \frac{\partial \ell}{\partial\sigma^2} = -\frac{N}{2\sigma^2} + \frac{1}{2\sigma^4}\sum_{i=1}^{N}(x_i-\hat\mu)^2 = 0 \]
+\[ \hat\sigma^2 = \frac{1}{N}\sum_{i=1}^{N}(x_i-\hat\mu)^2 \]
+
+\subsection{Gaussian Mixtures}
+\elcizimi[0.45]{sekiller/Ders-4-s4-1.png}[4]
+\[ p(x) = \sum_{k=1}^{K} w_k\,\mathcal{N}\bigl(x|\mu_k, \underbrace{\Sigma_k}_{\text{kovaryans matrisi}}\bigr) \]
+
+\section{k-means:}
+\textcolor{kirmizikalem}{$w_k=?$ \\ $\mu_k=?$ \\ $\Sigma_k=?$}
+
+\elcizimi[0.3]{sekiller/Ders-4-s4-2.png}[4]
+
+\subsection{EM algoritm}
+Expectation \\
+maximization algoritm
+\[ \sum_{k=1}^{K} w_k^{0}\,\mathcal{N}\bigl(\mu_k^{(0)},\Sigma_k^{(0)}\bigr) = P(x|\theta) \]
+\begin{itemize}[label=$\hookrightarrow$]
+\item Etiketleme Expectation
+\item Maximization $\rightarrow \displaystyle\sum_{k=1}^{K} w_k^{(1)}\,\mathcal{N}\bigl(\mu_k^{(1)},\Sigma_k^{(1)}\bigr)$
+\item etiket değişmeyene kadar devam ederiz.
+\end{itemize}
+
+\sayfa{5}
+\[ {\color{kirmizikalem}\hat\mu^{(N)} = \frac{1}{N}\sum_{i=1}^{N} x_i} \]
+
+\elcizimi[0.5]{sekiller/Ders-4-s5-1.png}[5]
+
+buna kestiricinin varyansı
+\[ \varepsilon(d,\theta) = E\bigl[(d(x)-\theta)^2\bigr] \;\nearrow\; \text{varyans} \]
+\[ b_\theta(d) = E\{d(x)\} - \theta \]
+
+\begin{align*}
+E\{m\} &= E\left\{\frac{\sum_{t=1}^{N} x_t}{N}\right\} = \frac{1}{N}\sum_{t=1}^{N} E\{x^t\} \\
+&= \frac{1}{N}\sum_{t=1}^{N}\mu = \frac{N\cdot\mu}{N} = \mu
+\end{align*}
+
+\begin{align*}
+\mathrm{Var}\{m\} &= \mathrm{Var}\left\{\frac{\sum_{t=1}^{N} x_t}{N}\right\} = \frac{1}{N^2}\sum_{t=1}^{N}\mathrm{Var}\{x_t\} = \frac{N\cdot\mathrm{Var}\{x_t\}}{N^2} \\
+&= \frac{\mathrm{Var}[x_t]}{N} = \frac{\sigma^2}{N}
+\end{align*}
+
+kestiricinin varyansı
+\[ s^2 = \frac{\sum_{t=1}^{N}(x_t-m)^2}{N} = \frac{\sum_{t=1}^{N}(x_t)^2 - Nm^2}{N} \]
+\[ E\{s^2\} = \frac{\sum_{t=1}^{N} E\bigl[(x_t)^2\bigr] - N\,E\{m^2\}}{N} \]
+\[ \mathrm{Var}\{x\} = E\{x^2\} - E\{x\}^2 \]
+\[ E[x^2] = \mathrm{Var}\{x\} + E\{x\}^2 = \sigma^2 + \mu^2 \]
+\[ E[m^2] = \frac{\sigma^2}{N} + \mu^2 \]
+
+\sayfa{6}
+\[ E[s^2] = \Bigl(\sum_{t=1}^{N}\sigma^2+\mu^2\Bigr) - N\cdot\frac{\sigma^2}{N} - N\mu^2 \]
+\[ = \frac{N\sigma^2 + N\mu^2 - \sigma^2 - N\mu^2}{N} = \frac{(N-1)\sigma^2}{N} \overset{?}{=} \sigma^2 \;\;\nearrow\;\text{yanlı bi sonuç} \]
+
+N ile çarpıp N-1 bölüp, kestiriciyi değiştirsek çıkar
+
+\elcizimi[0.4]{sekiller/Ders-4-s6-1.png}[6]
+\[ \sum_{i=1}^{N} c_i\underbrace{\bigl(e^{+j\omega_i k}\bigr)}_{\text{baz fonksiyonlar}} = f(k) \]
+
+\[ f(x) = \sum_{k=1}^{K} w_k\,\Phi_k(x-x_k) \]
+
+\[ \langle f(x),g(x)\rangle = \underset{\text{diklik}}{\int_{-\infty}^{\infty}} f(x)g(x)\,dx = 0 \]
+\elcizimi[0.3]{sekiller/Ders-4-s6-2.png}[6]
+
+Makine öğrenmesinde dik olmasa da olur base functions
+
+haftaya Naive bayes
+
+\end{document}

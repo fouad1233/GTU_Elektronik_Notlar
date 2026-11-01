@@ -1,0 +1,73 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Naive Bayes, kernel density ve k-nn}{Ders-5.pdf}
+
+\sayfa{1}
+\begin{tabular}{@{}l@{\quad}l@{}}
+\textcolor{kirmizikalem}{\underline{Spam mail}} & \textcolor{kirmizikalem}{\underline{Naive Bayes}} \\[3pt]
+kazandınız & $\rightarrow$ \textcolor{turuncukalem}{spam} \\
+indirim & $\rightarrow$ \textcolor{turuncukalem}{spam} \\
+proje & $\rightarrow$ \textcolor{turuncukalem}{ham} \\
+merhaba & $\rightarrow$ \textcolor{turuncukalem}{ham}
+\end{tabular}
+
+kelimeler birbirine bağlı değilse
+\[ P(x_1|x_2) = \frac{P(x_1,x_2)}{P(x_2)} = \frac{P(x_1)P(x_2)}{P(x_2)} = P(x_1) \]
+
+\[ P(\text{spam}|x_1,\ldots,x_N) \overset{?}{\geq} P(\text{ham}|x_1,\ldots,x_N) \]
+\[ P(y|x_1,\ldots,x_N) = \frac{\overbrace{P(x_1,\ldots,x_N|y)}^{\text{likelihood}}\;\overbrace{P(y)}^{\text{prior distrubution}}}{P(x_1,\ldots,x_N)} \]
+
+\begin{align*}
+\underbrace{P(x_1,\ldots,x_N,y)}_{\text{joint distribution}} &= P(x_1|x_2,\ldots,x_N,y)\,P(x_2,\ldots,x_N,y) \\
+&= P(x_1|x_2,\ldots,x_N,y)\,P(x_2|x_3,\ldots,x_N,y)\,P(x_3,\ldots,x_N,y) \\
+&= P(x_1|x_2,\ldots,x_N,y)\,P(x_2|x_3,\ldots,x_N,y)\cdots P(x_N|y)
+\end{align*}
+kelimeler bağımsızsa $\Rightarrow\;=P(x_1|y)\,P(x_2|y)\cdots P(x_N|y)$
+
+\[ \frac{P(x_1,\ldots,x_N|\text{spam})\,{\color{kirmizikalem}P(\text{spam})}}{P(x_1,\ldots,x_N|\text{ham})\,{\color{kirmizikalem}P(\text{ham})}} \geq 1 \]
+$\uparrow$ Bu \okunamadi{önsel} olacak
+
+\textcolor{kirmizikalem}{$\ast$ $P(C_1)$}
+
+$\ast$ $P(x_1|C_i) = \dfrac{P(x_1,C_i)}{P(C_i)}$
+
+Burda bernolli dağılım kullandık, gauss de kullanılabilirdi
+
+scikit learn naive bayes sınıflandırıcı
+
+\sayfa{2}
+\subsection{Kitapta non parametrik kısımlara gireceğiz}
+\elcizimi[0.65]{sekiller/Ders-5-s2-1.png}[2]
+olasılık dağılımı için kullanılabilir o zaman $\int f(x) = 1$ olmalıdır.
+
+\elcizimi[0.5]{sekiller/Ders-5-s2-2.png}[2]
+\[ \frac{1}{C}\sum_{i=1}^{N} K\!\left(\frac{x-x_i}{h}\right) = f(x) \]
+$\rightarrow$ varyansa göre \qquad varyans büyükse $h$ \okunamadi{küçülür}
+
+kernel Approximation \qquad fonksiyonlar birbirinin aynısı \\
+window functions
+
+\elcizimi[0.6]{sekiller/Ders-5-s2-3.png}[2]
+
+Burda bütün verileri tutmamız lazım k-nn de \\
+distance metriği ile çözersek
+\[ d = |x - x_i| \]
+
+\elcizimi[0.4]{sekiller/Ders-5-s2-4.png}[2]
+kernel fonksiyonu \quad $k = \dfrac{1}{|x-x_i|}$
+
+\okunamadi{1nn $k^{nn}$}
+\[ \left\{ \max_i \frac{1}{|x-x_i|} \right. \]
+2-nn için en büyük ikincisi
+
+\sayfa{3}
+\[ \min_i (k_i) \]
+
+make blobs
+
+Kernel density
+
+Pesudocode soruları
+
+\end{document}

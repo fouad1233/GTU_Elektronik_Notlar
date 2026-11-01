@@ -1,0 +1,412 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{İkili işaretleşmede hata olasılığı ve MAP kriteri}{Ders-9.pdf}
+
+\sayfa{1}
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep]
+\node[draw,minimum width=1.6cm,minimum height=0.8cm] (mf) {MF};
+\draw[->] (-3.6,0) -- (mf.west);
+\node[below] at (-2.1,0) {$r(t)=s_i(t)+n(t)$};
+\end{tikzpicture}
+\end{center}
+
+\[
+P_b = Q\!\left(\frac{a_1-a_2}{2\sigma_0}\right) = Q\!\left(\sqrt{\frac{E_d}{2N_0}}\right) = Q\!\left(\sqrt{\frac{E_b}{N_0}(1-\rho)}\right)
+\]
+\[ E_d = \int_0^T \left[s_1(t)-s_2(t)\right]^2 dt \]
+\[ \rho = \frac{1}{E_b}\int_0^T s_1(t)\,s_2(t)\,dt \]
+\noindent $\rightarrow$ $E_b$: ortalama bit enerjisi / average energy per bit \\
+$\rightarrow$ $\rho$: karşı ilişki katsayısı, $-1\le\rho\le1$
+\[ \gamma_b = \frac{E_b}{N_0} \quad : \quad \text{Bit başına İGO (SNR per bit)} \]
+
+\noindent $s_1(t)\perp s_2(t)$ ($s_1(t)$ ve $s_2(t)$ ortogonal) $\Rightarrow \rho=0 \Rightarrow P_b = Q\!\left(\sqrt{\tfrac{E_b}{N_0}}\right)$
+
+\noindent $s_1(t) = -s_2(t)$ ('' '' '' zıt işaretler (antipodal)) $\Rightarrow \rho=-1 \Rightarrow P_b = Q\!\left(\sqrt{\tfrac{2E_b}{N_0}}\right)$
+
+\[ E_b = \sum_{i=1}^{2} E_i\,P(s_i) = E_1 P(s_1) + E_2 P(s_2) \]
+\noindent $E_i$: $s_i(t)$'nin enerjisi
+
+\begin{ornek}
+Consider a binary communication system that receives equally likely signals $s_1(t)$ and $s_2(t)$ plus AWGN. Assume that the receiving filter is a MF, and the noise PSD $N_0$ is $10^{-12}$ Watt/Hz. Use the values of the received signal voltage and time shown in the figure below to compute bit error probability.
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,x=1.1cm,y=0.9cm]
+\draw[->] (0,0) -- (3.7,0) node[right]{$t$ (ms)};
+\draw[->] (0,0) -- (0,2.7) node[above]{$s_1(t)$ (mV)};
+\foreach \x in {1,2,3} \draw (\x,0.06) -- (\x,-0.06) node[below]{\x};
+\foreach \y in {1,2} \draw (0.06,\y) -- (-0.06,\y) node[left]{\y};
+\draw[thick] (0,1) -- (1,1) -- (1,2) -- (2,2) -- (2,1) -- (3,1) -- (3,0);
+\end{tikzpicture}
+\qquad $s_2(t) = -s_1(t)$
+\end{center}
+\end{ornek}
+
+\sayfa{2}
+\begin{gather*}
+P(s_1)=P(s_2)=\tfrac{1}{2}\\
+N_0 = 10^{-12}\ \mathrm{W}\\
+s_2=-s_1 \ \rightarrow\ E_b = E_{s_1}=E_{s_2}
+\end{gather*}
+\begin{align*}
+E_b = E_{s_1} &= \int_0^T s_1^2(t)\,dt = \int_0^{10^{-6}} (10^{-3})^2\,dt + \int_{10^{-6}}^{2\cdot10^{-6}} (2\cdot10^{-3})^2\,dt\\
+&\quad + \int_{2\cdot10^{-6}}^{3\cdot10^{-6}} (10^{-3})^2\,dt = 6\cdot10^{-12}\ \mathrm{J}
+\end{align*}
+\begin{align*}
+P_b &= Q\!\left(\sqrt{\frac{2\cdot6\cdot10^{-12}}{10^{-12}}}\right) = Q(\sqrt{12}) = Q(3{,}46) = 3\cdot10^{-4} \quad \text{(Tablodan)}\\
+&= \frac{3}{10\,000}
+\end{align*}
+
+\section{İkili işaretleşmenin Hata olasılığı Performansı}
+\subsection{Tek kutuplu işaretleşme (Unipolar signaling)}
+\[
+\left.\begin{aligned}
+\text{“1”} &\rightarrow s_1(t)=A,\quad 0\le t\le T,\ A>0\\
+\text{“0”} &\rightarrow s_2(t)=0,\quad 0\le t\le T
+\end{aligned}\right\}
+\Rightarrow \rho = \frac{1}{E_b}\int_0^T s_1(t)\,s_2(t)\,dt = 0
+\]
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,x=0.95cm,y=1cm]
+\draw[->] (-0.3,0) -- (7.7,0) node[right]{$t$};
+\draw[->] (0,-0.1) -- (0,1.6);
+\node[left] at (0,1) {$A$};
+\foreach \i/\l in {1/T,2/2T,3/3T,4/4T,5/5T,6/6T,7/7T} \node[below] at (\i,0) {$\l$};
+\draw[turuncukalem,thick] (0,0) -- (0,1) -- (1,1) -- (1,0);
+\draw[turuncukalem,thick] (2,0) -- (2,1) -- (4,1) -- (4,0);
+\draw[turuncukalem,thick] (3,0) -- (3,1);
+\draw[turuncukalem,thick] (5,0) -- (5,1) -- (6,1) -- (6,0);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,font=\small]
+\node[draw,minimum width=1.2cm,minimum height=0.8cm] (mf) at (1.6,0) {MF};
+\draw[->] (-0.2,0) -- node[above]{$r(t)$} (mf.west);
+\draw[->] (mf.east) -- node[below]{$z(t)$} (3.8,0);
+\draw (3.8,0) -- (4.2,0.25);
+\node[above] at (4.2,0.3) {$t=T$};
+\draw[->] (4.4,0) -- node[below]{$z(T)=z$} (5.8,0);
+\node[draw,minimum width=1.3cm,minimum height=0.8cm] (cmp) at (6.5,0) {$z\gtrless\gamma_0$};
+\draw[->] (cmp.east) -- node[above]{karar} (8.3,0);
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+h(t) &= s_1(T-t) - s_2(T-t) = s_1(T-t),\quad 0\le t\le T\\
+s_1(t) - s_2(t) &= s_1(t) = A,\quad 0\le t\le T
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,font=\small]
+\node[draw,circle,inner sep=1pt] (mul) at (1.5,0) {$\times$};
+\draw[->] (-0.3,0) -- node[above]{$r(t)$} (mul.west);
+\draw[->] (1.5,1) -- (mul.north);
+\node[draw,minimum width=1.8cm,minimum height=0.9cm] (int) at (4.2,0) {$\displaystyle\int_0^t(\cdot)\,d\tau$};
+\draw[->] (mul.east) -- (int.west);
+\draw (int.east) -- (5.7,0);
+\draw (5.7,0) -- (6.1,0.25);
+\node[above] at (6.1,0.3) {$t=T$};
+\draw[->] (6.3,0) -- (7.4,0);
+\node[draw,minimum width=1.3cm,minimum height=0.7cm] (cmp) at (8.1,0) {$z\gtrless\gamma_0$};
+\draw[->] (cmp.east) -- node[above]{karar} (9.8,0);
+\end{tikzpicture}
+\end{center}
+
+\begin{gather*}
+r(t) = s_i(t) + n(t)\\
+z(t) = r(t)\circledast h(t) \xrightarrow{\;t=T\;} z = z(T) = \underbrace{r(t)\circledast h(t)}_{a_i(t)+n_0(t)}\Big|_{t=T}\\
+\Rightarrow z = z(T) = a_i(T) + n_0(T) = a_i + n_0
+\end{gather*}
+
+\formulkutu[önemli]{\begin{aligned}
+a_i = a_i(T) &= s_i(t)\circledast h(t)\Big|_{t=T}, \quad \kutula{i=1,2}\\
+a_i = a_i(T) &= \int_0^T s_i(t)\,\bigl[s_1(t)-s_2(t)\bigr]\,dt \qquad i=1,2
+\end{aligned}}
+
+\sayfa{3}
+\[ \text{Tek kutup işaretleşme} \Rightarrow a_i = \int_0^T s_i(t)\bigl[s_1(t)-\underbrace{s_2(t)}_{0}\bigr]\,dt \qquad i=1,2 \]
+\[
+\left.\begin{aligned}
+a_1 &= \int_0^T s_1^2(t)\,dt = \int_0^T A^2\,dt\\
+a_2 &= \int_0^T s_2(t)\,s_1(t)\,dt = 0
+\end{aligned}\right\}
+\quad \gamma_0 = \frac{a_1+a_2}{2} = \frac{A^2T}{2}
+\]
+\begin{align*}
+\text{Eğer } z > \gamma_0 = \tfrac{A^2T}{2} &\ \Rightarrow\ \text{karar} = s_1(t)\\
+z < \gamma_0 &\ \Rightarrow\ \text{karar} = s_2(t)
+\end{align*}
+\[ E_d = \int_0^T \bigl[s_1(t)-s_2(t)\bigr]^2 dt = \int_0^T s_1^2(t)\,dt = A^2T \]
+\begin{align*}
+P_b &= Q\!\left(\sqrt{\frac{E_d}{2N_0}}\right) = Q\!\left(\sqrt{\frac{A^2T}{2N_0}}\right)\\
+&\Rightarrow E_b = E_1\underset{1/2}{P(s_1)} + E_2\underset{1/2}{P(s_2)} = \frac{A^2T}{2}\\
+&\qquad E_1 = \int_0^T s_1^2(t)\,dt = A^2T
+\end{align*}
+\[ P_b = Q\!\left(\sqrt{\frac{E_b}{N_0}}\right) \]
+\begin{align*}
+P_b &= Q\!\left(\sqrt{\frac{E_b}{N_0}(1-\rho)}\right) = Q\!\left(\sqrt{\frac{E_b}{N_0}}\right)\\
+P_b &= Q\!\left(\frac{a_1-a_2}{2\sigma_0}\right)
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,font=\small]
+\node[draw,minimum width=1.6cm,minimum height=1.3cm] (h) at (5,0) {$h(t)$};
+\draw[->] (0,0) -- (h.west);
+\node[above right] at (0,0) {$r(t)=s_i(t)+n(t)$};
+\node[below right] at (0.3,0) {$n(t)$};
+\draw[->] (h.east) -- node[below]{$n_0(t)=n(t)\circledast h(t)$} (10,0);
+\end{tikzpicture}
+\end{center}
+
+\[ S_n(f) = \frac{N_0}{2}\,\frac{\text{Watt}}{\text{Hz}} \]
+\[ S_{n_0}(f) = S_n(f)\,|H(f)|^2 \]
+\[ \sigma_0^2 = P_{n_0} = \int_{-\infty}^{\infty} S_{n_0}(f)\,df = \frac{N_0}{2}\underbrace{\int_{-\infty}^{\infty}|H(f)|^2\,df}_{E_h} = \frac{N_0}{2}E_h \]
+\formulkutu{\sigma_0^2 = \frac{N_0}{2}\,E_h}
+
+\noindent Tek kutuplu da $h(t)=s_1(T-t)$
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,font=\small]
+\draw[->] (-0.4,0) -- (2.8,0) node[right]{$t$};
+\draw[->] (0,0) -- (0,1.7) node[above]{$s_1(t)$};
+\draw[turuncukalem,thick] (0,1) -- (1.2,1) -- (1.2,0);
+\node[turuncukalem,left] at (0,1) {$A$};
+\node[turuncukalem,below] at (0,0) {$0$};
+\node[turuncukalem,below] at (1.2,0) {$T$};
+\draw[->,thick] (3.6,0.9) -- (4.4,0.9);
+\draw[->] (5.8,0) -- (9.0,0);
+\draw[->] (7.6,0) -- (7.6,1.7) node[above]{$s_1(-t)$};
+\draw[turuncukalem,thick] (7.6,1) -- (6.4,1) -- (6.4,0);
+\node[turuncukalem,below] at (6.4,0) {$-T$};
+\node[turuncukalem,below] at (7.6,0) {$0$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,font=\small]
+\draw[->,thick] (-1.5,0.7) -- (-0.7,0.7);
+\draw[->] (-0.3,0) -- (2.8,0) node[right]{$t$};
+\draw[->] (0,0) -- (0,1.5);
+\draw[thick] (0,0) -- (0,1) -- (1.2,1) -- (1.2,0);
+\node[below] at (0,0) {$0$};
+\node[below] at (1.2,0) {$T$};
+\node[above right] at (0.1,1.05) {$s_1(T-t)=h(t)=s_1(t)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{gather*}
+h(t)=s_1(t) \ \Rightarrow\ E_h = E_{s_1} = E_1 = A^2T\\
+\sigma_0^2 = \frac{N_0}{2}E_h = \frac{N_0}{2}A^2T
+\end{gather*}
+\begin{align*}
+P_b &= Q\!\left(\frac{a_1-a_2}{2\sigma_0}\right) = Q\!\left(\frac{A^2T-0}{2\sqrt{\frac{N_0}{2}A^2T}}\right)\\
+&= Q\!\left(\sqrt{\frac{A^2T}{2N_0}}\right) = Q\!\left(\sqrt{\frac{E_b}{N_0}}\right)
+\end{align*}
+
+\sayfa{4}
+\subsection{Çift kutuplu işaretleşme (Bipolar signaling)}
+\begin{align*}
+\text{“1”} &\rightarrow s_1(t)=A,\quad 0\le t\le T\\
+\text{“0”} &\rightarrow s_2(t)=-A,\quad 0\le t\le T
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,x=1.15cm,y=1.1cm]
+\draw[->] (-0.3,0) -- (6.9,0);
+\draw (0,-1.2) -- (0,1.4);
+\node[turuncukalem,left] at (0,1) {$A$};
+\node[turuncukalem,left] at (0,-1) {$-A$};
+\draw[turuncukalem,thick] (0,1) -- (1,1) -- (1,-1) -- (2,-1) -- (2,1) -- (4,1) -- (4,-1) -- (5,-1) -- (5,1) -- (6,1) -- (6,0);
+\draw[turuncukalem,thick] (3,0) -- (3,1);
+\foreach \i/\l in {1/T,2/2T,3/3T,4/4T,5/5T,6/6T} \node[anchor=north west,inner sep=2pt] at (\i,0) {$\l$};
+\foreach \i/\bb in {0.5/1,1.5/0,2.5/1,3.5/1,4.5/0,5.5/1} \node at (\i,1.35) {$\bb$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,font=\small]
+\node[draw,circle,inner sep=1pt] (mul) at (1.5,0) {$\times$};
+\draw[->] (-0.3,0) -- node[above]{$r(t)$} (mul.west);
+\draw[->] (1.5,1.1) -- (mul.north);
+\node[above] at (1.5,1.1) {$s_1(t)-s_2(t)=2A,\ 0\le t\le T$};
+\node[draw,minimum width=1.8cm,minimum height=0.9cm] (int) at (4.2,0) {$\displaystyle\int_0^t(\cdot)\,d\tau$};
+\draw[->] (mul.east) -- (int.west);
+\draw (int.east) -- (5.7,0);
+\draw (5.7,0) -- (6.1,0.25);
+\node[above] at (6.1,0.3) {$t=T$};
+\draw[->] (6.3,0) -- node[below]{$z=a_i+n_0$} (8.2,0);
+\node[draw,minimum width=1.3cm,minimum height=0.7cm] (cmp) at (8.9,0) {$z\gtrless\gamma_0$};
+\draw[->] (cmp.east) -- node[above]{karar} (10.6,0);
+\end{tikzpicture}
+\end{center}
+
+\[ a_i = \int_0^T s_i(t)\bigl[\underbrace{s_1(t)-s_2(t)}_{2A}\bigr]\,dt \]
+\[
+\left.\begin{aligned}
+a_1 &= \int_0^T \underbrace{s_1(t)}_{A}\,2A\,dt = 2A^2T\\
+a_2 &= \int_0^T \underbrace{s_2(t)}_{-A}\,2A\,dt = -2A^2T
+\end{aligned}\right\}
+\quad \gamma_0 = \frac{a_1+a_2}{2} = 0
+\]
+\begin{align*}
+\text{Eğer } z > 0 &\ \Rightarrow\ \text{karar} = s_1(t)\\
+z < 0 &\ \Rightarrow\ \text{''} = s_2(t)
+\end{align*}
+\begin{align*}
+E_1 = E_2 &= \int_0^T s_1^2(t)\,dt = A^2T\\
+&\Rightarrow E_b = \underset{A^2T}{E_1}\,\underset{1/2}{P(s_1)} + \underset{A^2T}{E_2}\,\underset{\cdot\,1/2}{P(s_2)} = A^2T
+\end{align*}
+
+\noindent $E_h = {?}{?}$
+
+\begin{center}
+\begin{tikzpicture}[>=stealth,murekkep,font=\small,x=0.85cm,y=0.9cm]
+\draw[->] (-0.4,0) -- (2.4,0) node[right]{$t$};
+\draw[->] (0,-0.4) -- (0,1.7) node[above]{$s_1(t)$};
+\draw[thick] (0,1) -- (1,1) -- (1,0);
+\node[left] at (0,1) {$A$};
+\node[below] at (1,0) {$T$};
+\draw[->,thick] (3.3,0.7) -- (4.1,0.7);
+\draw[->] (5.2,0) -- (8.0,0) node[right]{$t$};
+\draw[->] (6.6,-0.4) -- (6.6,1.7) node[above]{$s_1(-t)$};
+\draw[thick] (6.6,1) -- (5.6,1) -- (5.6,0);
+\node[right] at (6.6,1) {$A$};
+\node[below] at (5.6,0) {$-T$};
+\draw[->,thick] (8.9,0.7) -- (9.7,0.7);
+\draw[->] (10.0,0) -- (13.0,0) node[right]{$t$};
+\draw[->] (10.4,-0.4) -- (10.4,1.7) node[above]{$s_1(T-t)$};
+\draw[thick] (10.4,1) -- (11.4,1) -- (11.4,0);
+\node[left] at (10.4,1) {$A$};
+\node[below] at (11.4,0) {$T$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{5}
+\elcizimi[0.9]{sekiller/Ders-9-s5-1.png}[5]
+
+\[ h(t) = 2A,\quad 0\le t\le T \]
+\elcizimi[0.4]{sekiller/Ders-9-s5-2.png}[5]
+
+\[ E_h = \int_0^T h^2(t)\,dt = \int_0^T 4A^2\,dt = 4A^2T \]
+\[ \sigma_0^2 = \frac{N_0}{2}E_h = \frac{N_0}{2}\,4A^2\,T = 2N_0A^2T \]
+\[ E_d = \int_0^T \bigl[\underbrace{s_1(t)-s_2(t)}_{2A}\bigr]^2 dt = \int_0^T 4A^2\,dt = 4A^2T \]
+\begin{align*}
+\kutula{P_b = Q\!\left(\frac{a_1-a_2}{2\sigma_0}\right)} &= Q\!\left(\frac{2A^2T-(-2A^2T)}{2\sqrt{2N_0A^2T}}\right) = Q\!\left(\frac{4A^2T}{\sqrt{8N_0A^2T}}\right)\\
+&= Q\!\left(\sqrt{\frac{2A^2T}{N_0}}\right) = Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right)
+\end{align*}
+\formulkutu[önemli]{P_b = Q\!\left(\sqrt{\frac{E_b}{N_0}(1-\underset{-1}{\rho})}\right) = Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right)}
+\[ P_b = Q\!\left(\sqrt{\frac{E_d}{2N_0}}\right) = Q\!\left(\sqrt{\frac{4A^2T}{2N_0}}\right) = Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right) \]
+
+\noindent \underline{Fig 3.14}
+\sekilnotu[5]{Basılı şekil: tek kutuplu ve çift kutuplu işaretleşmenin bit hata başarımı ($P_b$ -- $E_b/N_0$ eğrileri); dijitalleştirilmedi. Şekil üzerindeki el yazısı notlar: “Tek kutuplu işaretleşme”, “Çift kutuplu”, “3 dB”.}
+
+\[ 10\log_{10}\frac{2E_b}{N_0} = \underbrace{10\log_{10}2}_{3\ \mathrm{dB}} + 10\log_{10}\frac{E_b}{N_0} \]
+\noindent Çift kutuplu daha iyi performans sağlar.
+
+\sayfa{6}
+\noindent Var yok haberleşmesi, ışık fiber haberleşmede kullanılır (tek kutuplu)
+
+\noindent \underline{Örnek:} Sklar, S.163, Prob 3.5
+\sekilnotu[6]{Basılı soru (Sklar Prob. 3.5): $\pm1$ V'luk çift kutuplu ikili işaret, iki taraflı güç spektral yoğunluğu $10^{-3}$ W/Hz olan toplamsal beyaz Gauss gürültüsü, eşleşmiş süzgeçle algılama; $P_B\le10^{-3}$ için gönderilebilecek maksimum bit hızı isteniyor.}
+
+\noindent Max bit rate?
+\[ R = \frac{1\ \text{bit}}{T\ \text{sn}} \]
+\[ \rightarrow\ P_b = Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right) \le \underbrace{10^{-3}}_{0{,}001} \qquad\quad E_b = A^2T = 1^2T = T \]
+\[ \sqrt{\frac{2E_b}{N_0}} \ge 3{,}08 \quad \text{(Tablodan)} \]
+\begin{gather*}
+\Rightarrow \sqrt{\frac{2T}{N_0}} \ge 3{,}08 \ \Rightarrow\ \frac{2T}{N_0} \ge 9{,}4864\\
+\Rightarrow T \ge \frac{N_0}{2}\cdot 9{,}4864 = 9{,}48\cdot10^{-3}\ \text{sn}
+\end{gather*}
+\[ R = \frac{1}{T} \le 105{,}41\ \text{bit/sn} \]
+
+\noindent \underline{Örnek} Sklar, Prob 3.14
+\sekilnotu[6]{Basılı soru (Sklar Prob. 3.14): NRZ ikili darbeler, güç zayıflaması 3 dB olan kablo, koherent algılama, veri hızı 56 kbit/s, $N_0=10^{-6}$ W/Hz; $P_B=10^{-3}$ için vericide gereken minimum güç isteniyor.}
+
+\noindent NRZ-L, attenuation 3 dB\\
+Coherent detection\\
+$R=56$ kbit/sec, $N_0=10^{-6}$ Watt/Hz\\
+min amount of power needed at Tx for $P_b=10^{-3}$\\
+Bipolar signaling $\Rightarrow P_b = Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right) = 10^{-3}$
+\[
+\left.\begin{aligned}
+E_b &= A^2T\\
+R = \frac{1}{T} &= 56000\ \tfrac{\text{bit}}{\text{sn}}
+\end{aligned}\right\}
+\Rightarrow Q\!\left(\underbrace{\sqrt{\frac{2A^2(1/56\,000)}{10^{-6}}}}_{=3{,}1\ \text{tablodan}}\right) = 10^{-3}
+\]
+\[ \sqrt{\frac{2A^2(1/56\,000)}{10^{-6}}} = 3{,}1 \ \Rightarrow\ A^2 = 0{,}265\ \text{Watt} \approx 270\ \text{mW} \]
+
+\sayfa{7}
+\elcizimi[0.5]{sekiller/Ders-9-s7-1.png}[7]
+
+\[ 10\log_{10}P_T = 10\log_{10}\mathcal{L} + 10\log_{10}P_R \]
+\formulkutu{\mathcal{L}_d = 10\log_{10}\frac{P_T}{P_R}}
+\[ P_R = A_r^2 = 270\ \mathrm{mW} \]
+\begin{align*}
+P_T &= P_R\cdot 10^{\mathcal{L}_{dB}/10}\\
+&= 270\ \mathrm{mW}\cdot 10^{3/10}\\
+&= 540\ \mathrm{mW}
+\end{align*}
+
+\section{Likelihood Ratio Test and Maximum a Posteriori\textsuperscript{\textcolor{kirmizikalem}{\itshape probability}} (MAP) Criterion}
+\noindent Muhtemellik oranı testi ve maksimum sonsal olasılık kriteri
+
+\[ P(s_1/z) \overset{H_1}{\underset{H_2}{\gtrless}} P(s_2/z) \qquad (H_i:\ \text{Hipotez}) \]
+\[ P(s_i/z) = \frac{f(z/s_i)\,P(s_i)}{f(z)} \qquad i=1,2 \]
+\[ f(z) = \sum_{i=1}^{2} f(z/s_i)\,P(s_i) = f(z/s_1)\,P(s_1) + f(z/s_2)\,P(s_2) \]
+\[ f(z/s_1)\,P(s_1) \overset{H_1}{\underset{H_2}{\gtrless}} f(z/s_2)\,P(s_2) \]
+\[ \Lambda(z) = \frac{f(z/s_1)}{f(z/s_2)} \overset{H_1}{\underset{H_2}{\gtrless}} \frac{P(s_2)}{P(s_1)} \qquad \text{likelihood ratio test} \]
+\[ \text{Eğer } P(s_1)=P(s_2)=\tfrac{1}{2} \ \Rightarrow\ \Lambda(z) = \frac{f(z/s_1)}{f(z/s_2)} \overset{H_1}{\underset{H_2}{\gtrless}} 1 \]
+\noindent Maximum likelihood criterion\\ (En muhtemeli bulma kriteri)
+
+\elcizimi[0.6]{sekiller/Ders-9-s7-2.png}[7]
+
+\[ \Lambda(z) = \frac{\dfrac{1}{\sqrt{2\pi}\,\sigma_0}\,e^{-\frac{(z-a_1)^2}{2\sigma_0^2}}}{\dfrac{1}{\sqrt{2\pi}\,\sigma_0}\,e^{-\frac{(z-a_2)^2}{2\sigma_0^2}}} \overset{H_1}{\underset{H_2}{\gtrless}} \frac{P(s_2)}{P(s_1)} \]
+
+\sayfa{8}
+\[
+\Lambda(z) = \exp\Biggl\{\underbrace{-\frac{z^2+a_1^2-2za_1}{2\sigma_0^2} + \frac{z^2+a_2^2-2za_2}{2\sigma_0^2}}_{\displaystyle\frac{a_2^2-a_1^2}{2\sigma_0^2} + \frac{2z(a_1-a_2)}{2\sigma_0^2}}\Biggr\} \overset{H_1}{\underset{H_2}{\gtrless}} \frac{P(s_2)}{P(s_1)}
+\]
+\[ L(z) = \ln\Lambda(z) = \frac{a_2^2-a_1^2}{2\sigma_0^2} + \frac{z(a_1-a_2)}{\sigma_0^2} \overset{H_1}{\underset{H_2}{\gtrless}} \ln\frac{P(s_2)}{P(s_1)} \]
+\[ \frac{z(a_1-a_2)}{\sigma_0^2} \overset{H_1}{\underset{H_2}{\gtrless}} \ln\frac{P(s_2)}{P(s_1)} + \frac{a_1^2-a_2^2}{2\sigma_0^2} \]
+\[ z \overset{H_1}{\underset{H_2}{\gtrless}} \frac{\sigma_0^2}{a_1-a_2}\,\ln\frac{P(s_2)}{P(s_1)} + \frac{\sigma_0^2}{a_1-a_2}\,\frac{a_1^2-a_2^2}{2\sigma_0^2} \]
+\noindent {\small\textcolor{turuncukalem}{$a_1+a_2$ kalır}}
+\[ \kutula{z \overset{H_1}{\underset{H_2}{\gtrless}} \frac{\sigma_0^2}{a_1-a_2}\,\ln\frac{P(s_2)}{P(s_1)} + \frac{a_1+a_2}{2}}\ \textcolor{kirmizikalem}{=\gamma_0} \]
+
+\[ \text{Eğer } P(s_1)=P(s_2)=\tfrac{1}{2} \quad\Longrightarrow\quad \gamma_0 = \frac{a_1+a_2}{2} \]
+
+\[ P(h/s_1) = \int_{-\infty}^{\gamma_0} f(z/s_1)\,dz = \frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{-\infty}^{\gamma_0} e^{-\frac{(z-a_1)^2}{2\sigma_0^2}}\,dz \]
+\begin{align*}
+&= 1 - \frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{\gamma_0}^{\infty} e^{-\frac{(z-a_1)^2}{2\sigma_0^2}}\,dz\\
+&= 1 - \underbrace{\frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{\frac{\gamma_0-a_1}{\sigma_0}}^{\infty} e^{-t^2/2}\,\sigma_0\,dt}_{Q\left(\frac{\gamma_0-a_1}{\sigma_0}\right)}
+\end{align*}
+\begin{align*}
+\frac{z-a_1}{\sigma_0} = t \qquad\qquad & z=\gamma_0 \ \Rightarrow\ t = \frac{\gamma_0-a_1}{\sigma_0}\\
+& z=\infty \ \rightarrow\ t=\infty
+\end{align*}
+\begin{align*}
+\Rightarrow\ z &= \sigma_0 t + a_1\\
+dz &= \sigma_0\,dt
+\end{align*}
+\[ \Rightarrow\ \kutula{P(h/s_1) = 1 - Q\!\left(\frac{\gamma_0-a_1}{\sigma_0}\right)} \]
+
+\[ P(h/s_2) = \int_{\gamma_0}^{\infty} f(z/s_2)\,dz \]
+\begin{align*}
+&= \frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{\gamma_0}^{\infty} e^{-\frac{(z-a_2)^2}{2\sigma_0^2}}\,dz\\
+&= \underbrace{\frac{1}{\sqrt{2\pi}\,\sigma_0}\int_{\frac{\gamma_0-a_2}{\sigma_0}}^{\infty} e^{-t^2/2}\,\sigma_0\,dt}_{\textcolor{turuncukalem}{Q\left(\frac{\gamma_0-a_2}{\sigma_0}\right)}}
+\end{align*}
+
+\sayfa{9}
+\[ P(h/s_2) = Q\!\left(\frac{\gamma_0-a_2}{\sigma_0}\right) \]
+\[ P_b = P(h/s_1)\cdot P(s_1) + P(h/s_2)\cdot P(s_2) \]
+\formulkutu[önemli]{P_b = \Bigl[\underbrace{1 - Q\!\left(\frac{\gamma_0-a_1}{\sigma_0}\right)}_{\textcolor{turuncukalem}{Q\left(\frac{a_1-\gamma_0}{\sigma_0}\right)}}\Bigr] P(s_1) + Q\!\left(\frac{\gamma_0-a_2}{\sigma_0}\right) P(s_2)}
+\[ Q(-x) = 1 - Q(x) \]
+
+\elcizimi[0.5]{sekiller/Ders-9-s9-1.png}[9]
+
+\elcizimi[0.4]{sekiller/Ders-9-s9-2.png}[9]
+
+\end{document}

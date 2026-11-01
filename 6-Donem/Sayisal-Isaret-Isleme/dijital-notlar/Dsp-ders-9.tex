@@ -1,0 +1,215 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Ders 9: Filtre yapıları (structures)}{Dsp-ders-9.pdf}
+
+\sayfa{1}
+\section{Dsp ders 9}
+kitapta 6. bölümdeyiz
+
+\section{Structures for discrete-time system}
+\begin{enumerate}[label=\arabic*-]
+\item Direct form I
+\item Direct form II
+\item Cascade
+\item Parallel structures
+\item Transposed form (flow graph reversal)
+\end{enumerate}
+
+Önceden filtreleri ikiye ayırmıştık
+\elcizimi[0.85]{sekiller/Dsp-ders-9-s1-1.png}[1]
+\elcizimi[0.35]{sekiller/Dsp-ders-9-s1-2.png}[1]
+\[ y[n] = x[n] * h[n] \]
+bilgisayarla yapılabilir \quad $\uparrow$ FIR
+\[ \Rightarrow\ y[n] = x[n] * h[n] \ \leftarrow \text{IIR} \]
+bilgisayarda yapabilmek için belli bir noktadan sonra kesmek gerekiyor o zaman aslında FIR olur böylece yaklaşıklık yapılır.
+Ama biz tam olarak bulmak istiyoruz, o zaman başka bir yöntem kullanacağız.
+
+\section{IIR Filter Design}
+\begin{enumerate}[label=\arabic*-]
+\item specs. (Teknik özellikler)
+\item $h[n]$
+\item realize (gerçeklemek) \hfill (this week)
+\item implementation (gerçekleştirmek)
+\end{enumerate}
+
+\sayfa{2}
+\[ y[n] - \sum_{k=1}^{p} a_k\, y[n-k] = \sum_{k=0}^{q} b_k\, x[n-k] \]
+$a_k, b_k$ real
+\[ H(z) = \frac{\sum_{k=0}^{q} b_k z^{-k}}{1 - \sum_{k=1}^{p} a_k z^{-k}} \qquad \text{rational} \]
+Özel sadeleşme durumu \okunamadi{olmazsak} bu IIR bir filtrenin sistem fonksiyonu
+
+\section{Flow notation}
+\elcizimi[0.45]{sekiller/Dsp-ders-9-s2-1.png}[2]
+
+\section{Block diagram notation}
+\elcizimi[0.55]{sekiller/Dsp-ders-9-s2-2.png}[2]
+
+\[ y[n] = a\,y[n-1] + x[n] \]
+\elcizimi[0.9]{sekiller/Dsp-ders-9-s2-3.png}[2]
+\[ y[n] = \sum_{k=1}^{p} a_k\, y[n-k] + \underbrace{\sum_{k=0}^{q} b_k\, x[n-k]}_{v[n]} \]
+
+\subsection{Direct Form-I}
+\begin{align*}
+y[n] &= \sum_{k=1}^{p} a_k\, y[n-k] + v[n]\\
+&= a_1 y[n-1] + \cdots + a_p y[n-p] + v[n]
+\end{align*}
+\[ H(z) = \frac{\sum_{k=0}^{q} b_k z^{-k}}{1 - \sum_{k=1}^{p} a_k z^{-k}} \qquad \text{rational} \]
+
+\sayfa{3}
+Önceki girişlerden $q$ tane değer saklanmalı
+
+Önceki çıkışlardan $p$ tane değer saklanmalı
+\elcizimi[0.8]{sekiller/Dsp-ders-9-s3-1.png}[3]
+\[ H(z) = \frac{H_1(z)}{H_2(z)} = \big(H_1(z)\big)\cdot\left(\frac{1}{H_2(z)}\right) \]
+\elcizimi[0.85]{sekiller/Dsp-ders-9-s3-2.png}[3]
+\elcizimi[0.85]{sekiller/Dsp-ders-9-s3-3.png}[3]
+artı artı diye yaptıklarımız artık eksi olacak $a$'larda sola geçirirken - oluyor
+\[ H(z) = \frac{b_0 + b_1 z^{-1} + b_2 z^{-2}}{1 - a_1 z^{-1} - a_2 z^{-2}} \]
+\[ y[n] = a_1 y[n-1] + a_2 y[n-2] + b_0 x[n] + b_1 x[n-1] + b_2 x[n-2] \]
+\[ y[n] - a_1 y[n-1] - a_2 y[n-2] = b_0 x[n] + b_1 x[n-1] + b_2 x[n-2] \]
+önceden bunlar artı idi genel gösterimizde
+
+\sayfa{4}
+\[ H(z) = \frac{b_0 + b_1 z^{-1} + b_2 z^{-2}}{1 - a_1 z^{-1} - a_2 z^{-2}} \]
+\elcizimi[0.6]{sekiller/Dsp-ders-9-s4-1.png}[4]
+\elcizimi[0.65]{sekiller/Dsp-ders-9-s4-2.png}[4]
+\elcizimi[0.75]{sekiller/Dsp-ders-9-s4-3.png}[4]
+
+\begin{ornek}
+\[ H(z) = \frac{1 + 2z^{-1}}{1 - 1{,}5z^{-1} + 0{,}9z^{-2}} \]
+\elcizimi[0.85]{sekiller/Dsp-ders-9-s4-4.png}[4]
+\elcizimi[0.65]{sekiller/Dsp-ders-9-s4-5.png}[4]
+\end{ornek}
+
+\sayfa{5}
+\section{Cascade Structures}
+\[ H(z) = A\,\frac{\overbrace{\prod_k (1 - e_k z^{-1})}^{\text{Reel sıfırlar}}\ \prod_k (1 - f_k z^{-1})(1 - f_k^* z^{-1})}{\underbrace{\prod_k (1 - c_k z^{-1})}_{\text{Reel kutuplar}}\ \prod_k (1 - d_k z^{-1})(1 - d_k^* z^{-1})} \]
+\begin{align*}
+(1 - d_k z^{-1})(1 - d_k^* z^{-1}) &= 1 - 2\,\mathrm{Re}[d_k]\,z^{-1} + |d_k|^2 z^{-2}\\
+&= 1 + \beta_{1k} z^{-1} + \beta_{2k} z^{-2}
+\end{align*}
+O zaman $H(z)$ tekrar bu şekilde yazabiliriz
+\[ H(z) = A \prod_k H_k(z) \]
+\[ H_k(z) = \frac{1 + \beta_{1k} z^{-1} + \beta_{2k} z^{-2}}{1 - \alpha_{1k} z^{-1} - \alpha_{2k} z^{-2}} \]
+s.o.s $\rightarrow$ section
+
+$\swarrow$ second \qquad $\searrow$ order
+\elcizimi[0.4]{sekiller/Dsp-ders-9-s5-1.png}[5]
+\elcizimi[0.75]{sekiller/Dsp-ders-9-s5-2.png}[5]
+SOS Form
+\elcizimi[0.75]{sekiller/Dsp-ders-9-s5-3.png}[5]
+
+\begin{ornek}
+\begin{align*}
+H(z) &= \frac{1 - z^{-1}}{\left(1 + \frac{1}{8}z^{-1}\right)\left(1 + z^{-1} + \frac{1}{4}z^{-2}\right)}\\
+&= \left(\frac{1}{1 + \frac{1}{8}z^{-1}}\right)\left(\frac{1 - z^{-1}}{1 + z^{-1} + \frac{1}{4}z^{-2}}\right)\\
+&= \left(\frac{1 - z^{-1}}{1 + \frac{1}{8}z^{-1}}\right)\left(\frac{1}{1 + z^{-1} + \frac{1}{4}z^{-2}}\right)
+\end{align*}
+\end{ornek}
+
+\sayfa{6}
+\elcizimi[0.75]{sekiller/Dsp-ders-9-s6-1.png}[6]
+Burada 3 tane değeri hafızada saklamak gerekir. (gecikmelerden dolayı)
+
+\section{Parallel implementation}
+S.O.S'ların toplamı şeklinde ifade edilmelidir.
+\[ H(z) = \frac{\sum_{k=0}^{q} b_k z^{-k}}{1 - \sum_{k=1}^{p} a_k z^{-k}} \]
+\[ = \sum_k A_k z^{-k} + \sum_k \frac{B_k}{1 - g_k z^{-1}} + \underbrace{\sum_k \frac{C_k + D_k z^{-1}}{1 - h_{1k} z^{-1} - h_{2k} z^{-2}}}_{\text{en genel hal}} \]
+\[ = \sum_k H_k(z) \]
+\elcizimi[0.65]{sekiller/Dsp-ders-9-s6-2.png}[6]
+
+\sayfa{7}
+\[ H(z) = \underbrace{2z^{-1}}_{H_1(z)} + \underbrace{\frac{1 - z^{-1}}{1 + \frac{1}{2}z^{-1} + \frac{1}{4}z^{-2}}}_{H_2(z)} \]
+\elcizimi[0.5]{sekiller/Dsp-ders-9-s7-1.png}[7]
+\elcizimi[0.6]{sekiller/Dsp-ders-9-s7-2.png}[7]
+
+\section{Transpozition theorem (Flow-graph reversal theorem)}
+Teoreme göre $x[n]$ ve $y[n]$'in yeri değiştirilip tüm okların yönü terslenirse yeni sistem eskinin eşidir.
+\[ H_k(z) = \frac{1 + \beta_{1k} z^{-1} + \beta_{2k} z^{-2}}{1 - \alpha_{1k} z^{-1} - \alpha_{2k} z^{-2}} \]
+\elcizimi[0.6]{sekiller/Dsp-ders-9-s7-3.png}[7]
+\elcizimi[0.6]{sekiller/Dsp-ders-9-s7-4.png}[7]
+\begin{align*}
+v[n] &= x[n]\,\beta_{1k}\\
+&\quad + y[n]\,\alpha_{1k}\\
+&\quad + y[n-1]\,\alpha_{2k}\\
+&\quad + x[n-1]\,\beta_{2k}\\
+y[n] &= x[n] + v[n-1]\\
+&= x[n] + x[n-1]\,\beta_{1k} + x[n-2]\,\beta_{2k} + y[n-1]\,\alpha_{1k}\\
+&\quad + y[n-2]\,\alpha_{2k}
+\end{align*}
+\[ \frac{Y(z)}{X(z)} = \frac{1 + \beta_{1k} z^{-1} + \beta_{2k} z^{-2}}{1 - \alpha_{1k} z^{-1} - \alpha_{2k} z^{-2}} \]
+
+\sayfa{8}
+Simetriğini alırsak bizim alıştığımız forma geçer
+\elcizimi[0.65]{sekiller/Dsp-ders-9-s8-1.png}[8]
+\elcizimi[0.75]{sekiller/Dsp-ders-9-s8-2.png}[8]
+
+\section{FIR realization}
+$h[n]$: finite
+\[ H(z) = \sum_{k=0}^{N} h[k]\, z^{-k} \]
+\begin{align*}
+\Rightarrow\ y[n] &= \sum_{k=0}^{N} h[k]\, x[n-k] = h[0]x[n] + h[1]x[n-1] + h[2]x[n-2]\\
+&\quad + \cdots + h[N]x[n-N]
+\end{align*}
+\elcizimi[0.9]{sekiller/Dsp-ders-9-s8-3.png}[8]
+use transposition theorem:
+\elcizimi[0.85]{sekiller/Dsp-ders-9-s8-4.png}[8]
+
+\sayfa{9}
+\section{In cascade Structure:}
+\[ H(z) = \sum_{k=0}^{N} h[k]\, z^{-k} = \prod_{k=1}^{N} \left(b_{0k} + b_{1k} z^{-1} + b_{2k} z^{-2}\right) \]
+\elcizimi[0.8]{sekiller/Dsp-ders-9-s9-1.png}[9]
+\[ H(e^{j\omega}) \qquad |H(e^{j\omega})| \qquad \angle H(e^{j\omega}) \]
+\[ \kutula{\tau(\omega) = -\frac{d}{d\omega}\,\angle H(e^{j\omega})} \qquad \text{group delay} \]
+$\tau(\omega)$ = constant
+\elcizimi[0.45]{sekiller/Dsp-ders-9-s9-2.png}[9]
+\elcizimi[0.5]{sekiller/Dsp-ders-9-s9-3.png}[9]
+Önceden böyle bir örnek göstermiştik
+
+\fbox{$0{,}2\pi$}
+
+$0{,}4\pi$
+
+$0{,}8\pi$
+\[ \kutula{\angle H(e^{j\omega}) = \alpha\omega + \beta} \quad \text{yapısında ise} \quad \tau(\omega) = \text{constant} \]
+Linear Phase Filter
+
+IIR $\times$ (hiç bir zaman sağlayamaz) \qquad FIR sağlayabilir
+
+\sayfa{10}
+\subsection{Type-I}
+\[ h[n] = h[M-n] \qquad 0 \le n \le M \]
+$M$: even integer (çift)
+\[ M = 4 \;\Rightarrow\; 0 \le n \le 4 \]
+\begin{align*}
+h[0] &= h[4]\\
+h[1] &= h[3]\\
+h[2]&
+\end{align*}
+\elcizimi[0.45]{sekiller/Dsp-ders-9-s10-1.png}[10]
+
+\subsection{Type II}
+\[ h[n] = h[M-n] \qquad 0 \le n \le M \]
+$M$: odd integer (tek sayı)
+\[ M = 5 \;\Rightarrow\; 0 \le n \le 5 \]
+\begin{align*}
+h[0] &= h[5]\\
+h[1] &= h[4]\\
+h[2] &= h[3]
+\end{align*}
+\elcizimi[0.65]{sekiller/Dsp-ders-9-s10-2.png}[10]
+
+\subsection{Type III}
+\[ h[n] = -h[M-n] \qquad 0 \le n \le M \]
+$M$: even integer (çift sayı)
+
+$M = 4$
+\elcizimi[0.5]{sekiller/Dsp-ders-9-s10-3.png}[10]
+
+\subsection{Type IV}
+\[ h[n] = -h[M-n] \qquad 0 \le n \le M \qquad M\text{: odd integer} \]
+$M = 5$
+\elcizimi[0.6]{sekiller/Dsp-ders-9-s10-4.png}[10]
+
+\end{document}

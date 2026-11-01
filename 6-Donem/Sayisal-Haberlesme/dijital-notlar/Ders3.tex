@@ -1,0 +1,287 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Temel işaretler, Fourier dönüşümü, örnekleme}{Ders3.pdf}
+
+\sayfa{1}
+\section{Bazı önemli işaretler}
+
+\subsection{Unit step signal}
+(Birim basamak işareti)
+\[ u(t)=\begin{cases} 1 & t>0\\ 0 & t<0 \end{cases} \]
+\elcizimi[0.4]{sekiller/Ders3-s1-1.png}[1]
+
+\subsection{Rectangular pulse signal}
+Dikdörtgen darbe işareti
+\[ \Pi\!\left(\frac{t}{T}\right)=\mathrm{rect}\!\left(\frac{t}{T}\right)=\begin{cases} 1 & -T/2<t<T/2\\ 0 & \text{diğer}\end{cases} \]
+\elcizimi[0.4]{sekiller/Ders3-s1-2.png}[1]
+
+\subsection{Triangular pulse signal}
+Üçgen darbe işareti
+\[ \Lambda\!\left(\frac{t}{T}\right)=\begin{cases} 1-\dfrac{|t|}{T} & |t|\le T\\ 0 & \text{diğer}\end{cases} \]
+\elcizimi[0.45]{sekiller/Ders3-s1-3.png}[1]
+\[ T\Lambda\!\left(\frac{t}{T}\right)=\Pi\!\left(\frac{t}{T}\right)\circledast\Pi\!\left(\frac{t}{T}\right) \]
+\[ \Lambda(t)=\Pi(t)\circledast\Pi(t) \]
+
+\sayfa{2}
+\subsection{Sinc pulse signal}
+(sinc darbe işareti)
+\[ \mathrm{sinc}(t)=\frac{\sin(\pi t)}{\pi t} \]
+\elcizimi[0.7]{sekiller/Ders3-s2-1.png}[2]
+
+\subsection{Sgn signal}
+(işaret fonksiyonu)
+\[ \mathrm{sgn}(t)=\begin{cases} 1, & t>0\\ -1, & t<0 \end{cases} \]
+\elcizimi[0.45]{sekiller/Ders3-s2-2.png}[2]
+
+\subsection{Unit impulse (Dirac delta function)}
+Birim darbe fonksiyonu
+\[ \delta(t)=\begin{cases} \infty, & t=0\\ 0, & \text{diğer} \end{cases} \]
+\elcizimi[0.45]{sekiller/Ders3-s2-3.png}[2]
+
+\subsection{Özellikler:}
+\begin{enumerate}[label=\arabic*)]
+\item $\displaystyle\int_{-\infty}^{\infty}\delta(t)\,dt=1$
+\item Sifting / sampling property
+\[ f(t)\,\delta(t-t_0)=f(t_0)\,\delta(t-t_0),\qquad t_0=\text{sbt} \]
+\end{enumerate}
+\elcizimi[0.9]{sekiller/Ders3-s2-4.png}[2]
+
+\sayfa{3}
+\[ \int_a^b \underbrace{f(t)\,\delta(t-t_0)}_{f(t_0)\,\delta(t-t_0)}\,dt=\begin{cases} f(t_0), & a<t_0<b\\ 0, & \text{diğer}\end{cases} \]
+\[ \int_a^b \delta(t-t_0)\,dt=\begin{cases} 1, & a<t_0<b\\ 0, & \text{diğer}\end{cases} \]
+\begin{enumerate}[label=\arabic*),start=3]
+\item $\forall a\neq0 \qquad \delta(at)=\dfrac{1}{|a|}\,\delta(t)$
+\[ a=-1 \;\Rightarrow\; \delta(-t)=\delta(t)\quad\text{çift fonk.} \]
+\item $f(t)\circledast\delta(t)=f(t)$\par
+$f(t)\circledast\delta(t-t_0)=f(t-t_0)$
+\item $u(t)=\displaystyle\int_{-\infty}^{t}\delta(\alpha)\,d\alpha \;\Rightarrow\; \delta(t)=\dfrac{du(t)}{dt}$
+\end{enumerate}
+
+\section{Fourier series}
+\[ \forall t \quad x(t+T_0)=x(t) \]
+\[ \underbrace{x(t)}_{\text{FS açılımı}}=\sum_{n=-\infty}^{+\infty} c_n\,e^{j2\pi n f_0 t} \]
+\[ \underbrace{c_n}_{\text{FS katsayıları}}=\frac{1}{T_0}\int_{-T_0/2}^{T_0/2} x(t)\,e^{-j2\pi n f_0 t}\,dt \]
+\[ \int_0^{T_0} e^{j2\pi n f_0 t}\,e^{-j2\pi m f_0 t}\,dt=\begin{cases} 0 & m\neq n\\ T_0 & m=n\end{cases} \]
+\[ c_n=|c_n|\,e^{j\theta_n} \]
+\[ c_{-n}=|c_n|\,e^{-j\theta_n} \]
+
+\subsection{Parseval teoremi}
+\[ P_x=\frac{1}{T_0}\int_{T_0}|x(t)|^2\,dt=\sum_{n=-\infty}^{\infty}|c_n|^2 \]
+
+\subsection{Örnek}
+\[ x(t)=2\sin(100t) \]
+\[ \omega_0=100=\frac{2\pi}{T_0}\ \rightarrow\ T_0=\frac{\pi}{50}\ \mathrm{sn} \]
+\[ P_x=\frac{1}{T_0}\int_0^{T_0}|x(t)|^2\,dt=\frac{1}{\pi/50}\int_0^{\pi/50}4\,\underbrace{\sin^2(100t)}_{\frac12[1-\cos(200t)]}\,dt \]
+{\small $\bigcirc$\,0: Frekansı iki katına çıkmış, periyodu $T_0/2$ onun için}
+\[ =\frac{1}{\pi/50}\,2\,\underbrace{\int_0^{\pi/50}dt}_{\pi/50}=2\ \text{watt} \]
+\[ P_x=\frac{A^2}{2}=\frac{4}{2}=2\ \text{watt} \]
+
+\sayfa{4}
+\[ x(t)=2\sin(100t)=2\left(\frac{e^{j100t}-e^{-j100t}}{2j}\right)=\underbrace{\frac{1}{j}}_{c_1}e^{j100t}\underbrace{-\frac{1}{j}}_{c_{-1}}e^{-j100t} \]
+\[ P_x=\sum_n|c_n|^2=\left|\frac{1}{j}\right|^2+\left|-\frac{1}{j}\right|^2=2\,\text{watt} \]
+
+\subsection{Örnek: Dürtü katarı}
+\[ x(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT_0) \]
+\elcizimi[0.8]{sekiller/Ders3-s4-1.png}[4]
+\[ c_n=\frac{1}{T_0}\underbrace{\int_{-T_0/2}^{T_0/2}\underbrace{x(t)}_{\delta(t-0)}\,e^{-j2\pi n f_0 t}\,dt}_{e^{-j2\pi n f_0\cdot 0}=1}\ =\ \frac{1}{T_0} \]
+\[ x(t)=\sum_{n=-\infty}^{\infty}c_n\,e^{j2\pi n f_0 t}=\frac{1}{T_0}\sum_{n=-\infty}^{+\infty}e^{j2\pi n f_0 t} \]
+\[ x(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT_0)=\frac{1}{T_0}\sum_{n=-\infty}^{\infty}e^{j2\pi n f_0 t} \]
+
+\section{Fourier Dönüşümü}
+-- Periyodik olmayan işaretler için
+
+Dirichlet şartları
+\begin{enumerate}[label=\arabic*)]
+\item $\displaystyle\int_{-\infty}^{\infty}|x(t)|\,dt<\infty$
+\item Reel eksendeki herhangi bir sonlu aralıkta sonlu sayıda maksimum ve minimum olmalıdır.\\
+\textcolor{turuncukalem}{3- (süreksizliği)}
+\end{enumerate}
+\[ X(f)=\int_{-\infty}^{\infty}x(t)\,e^{-j2\pi ft}\,dt \]
+\[ x(t)=\int_{-\infty}^{\infty}X(f)\,e^{j2\pi ft}\,dt\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $df$ olmalı.}
+\[ x(t)\overset{F}{\longleftrightarrow}X(f) \]
+\[ X(f)=\Fou{x(t)} \]
+\[ x(t)=\iFou{X(f)} \]
+
+\sayfa{5}
+\[ X(f)=\underbrace{|X(f)|}_{\text{Genlik spektrumu}}\,\underbrace{e^{j\theta_X(f)}}_{\text{Faz spektrumu}} \]
+\[ x(t)\ \text{reel}\ \Rightarrow\ X(-f)=X^{*}(f) \]
+\[ x(t)\ \text{reel ve çift}\ \Rightarrow\ X(f)\ \underbrace{\text{reel}}_{X^{*}(f)=X(f)}\ \text{ve}\ \underbrace{\text{çift}}_{X(-f)=X(f)} \]
+\[ x(t)\ \text{reel ve tek}\ \Rightarrow\ X(f)\ \underbrace{\text{sanal}}_{X^{*}(f)=-X(f)}\ \text{ve}\ \underbrace{\text{tek}}_{X(-f)=-X(f)} \]
+\[ \text{Lineerlik:}\quad \underbrace{a\,x_1(t)+b\,x_2(t)}_{x_3(t)}\ \overset{F}{\longleftrightarrow}\ \underbrace{a\,X_1(f)+b\,X_2(f)}_{X_3(f)} \]
+\[ \Fou{\delta(t)}=\int_{-\infty}^{+\infty}\delta(t)\,e^{-j2\pi ft}\,dt=e^{-j2\pi f\cdot 0}=1 \]
+{\small\textcolor{turuncukalem}{(t göründüğü yere 0 koy)}}
+\[ \delta(t)\overset{F}{\longleftrightarrow}1 \]
+\[ \iFou{\delta(f)}=\int_{-\infty}^{\infty}\delta(f)\,e^{j2\pi ft}\,df=e^{j2\pi\cdot 0\cdot t}=1 \]
+\[ \delta(f)\overset{F^{-1}}{\longleftrightarrow}1 \]
+\[ 1\overset{F}{\longleftrightarrow}\delta(f) \]
+\formulkutu{\mathrm{Sgn}(t)\overset{F}{\longleftrightarrow}\frac{1}{j\pi f}}
+\[ u(t)=\frac{1}{2}+\frac{1}{2}\,\mathrm{sgn}(t)\ \overset{F}{\longleftrightarrow}\ \frac{1}{2}\,\delta(f)+\frac{1}{j2\pi f} \]
+\formulkutu{\Fou{u(t)}=\frac{1}{2}\,\delta(f)+\frac{1}{j2\pi f}}
+
+\subsection{Örnek}
+\elcizimi[0.5]{sekiller/Ders3-s5-1.png}[5]
+\[ X(f)=\int_{-\infty}^{\infty}x(t)\,e^{-j2\pi ft}\,dt=A\int_{-T/2}^{T/2}e^{-j2\pi ft}\,dt=A\left.\frac{e^{-j2\pi ft}}{-j2\pi f}\right|_{-T/2}^{T/2} \]
+\[ =\frac{A}{\pi f}\,\underbrace{\frac{e^{-j\pi fT}-e^{j\pi fT}}{-2j}}_{\sin(\pi fT)} \]
+\[ X(f)=AT\,\frac{\sin(\pi fT)}{\pi fT}=AT\,\mathrm{sinc}(fT) \]
+
+\sayfa{6}
+\[ x(t)=A\,\Pi\!\left(\frac{t}{T}\right)\ \overset{F}{\longleftrightarrow}\ X(f)=AT\,\mathrm{sinc}(fT) \]
+\[ \pi fT=\pi k,\quad k\in\mathbb{Z}-\{0\} \]
+\[ f=\frac{k}{T} \]
+\elcizimi[0.7]{sekiller/Ders3-s6-1.png}[6]
+\[ \mathrm{BG}=\frac{1}{T}\ \mathrm{Hz} \]
+\begin{center}
+\begin{tabular}{ccc}
+zamanda & & Frekans uzayında\\
+$T$ & $\times$ & $\mathrm{BG}=1/T$
+\end{tabular}
+\end{center}
+
+\subsection{Dualite özelliği}
+\[ x(t)\overset{F}{\longleftrightarrow}X(f) \]
+\[ y(t)=X(t)\longleftrightarrow Y(f)=x(-f) \]
+\[ x(t)=A\,\Pi\!\left(\frac{t}{T}\right)\longleftrightarrow X(f)=AT\,\mathrm{sinc}(fT) \]
+\elcizimi[0.8]{sekiller/Ders3-s6-2.png}[6]
+\[ y(t)=X(t)=A\,\mathrm{sinc}(tT)\footnotemark\longleftrightarrow Y(f)=x(-f)=A\,\Pi\!\left(\frac{-f}{T}\right)=A\,\Pi\!\left(\frac{f}{T}\right) \]
+\footnotetext{Claude notu: muhtemelen $AT\,\mathrm{sinc}(tT)$ olmalı.}
+\elcizimi[0.9]{sekiller/Ders3-s6-3.png}[6]
+\formulkutu{AT\,\mathrm{sinc}(fT)\overset{F}{\longleftrightarrow}A\,\Pi\!\left(\frac{f}{T}\right)}
+
+\subsection{Zamanda öteleme özelliği}
+\[ x(t)\longleftrightarrow X(f) \]
+\[ x(t-t_0)\longleftrightarrow X(f)\,e^{-j2\pi ft_0} \]
+ikisinin genlik spektrumu aynı, bant genişliği de aynıdır.
+\elcizimi[0.45]{sekiller/Ders3-s6-4.png}[6]
+\[ \begin{array}{l} x(t)=\Pi\!\left(t-\tfrac{3}{2}\right)\\ \quad\downarrow\\ X(f)=\mathrm{sinc}(f)\,e^{-j2\pi f\frac{3}{2}} \end{array} \]
+
+\sayfa{7}
+\subsection{Ölçekleme özelliği}
+(scaling property)
+\[ a\neq0,\ a\in\mathbb{R} \]
+\[ \Fou{x(at)}=\frac{1}{|a|}\,X\!\left(\frac{f}{a}\right) \]
+\[ \begin{array}{rcccl}
+ & \text{zaman} & & \text{frekans} & \\
+a>1\Rightarrow & \underset{\text{Daralma}}{x(at)} & \Rightarrow & \underset{\text{genişleme}}{\dfrac{1}{|a|}X\!\left(\dfrac{f}{a}\right)} & \\[10pt]
+a<1\Rightarrow & \underset{\text{genişleme}}{x(at)} & \Rightarrow & \underset{\text{Daralma olacak}}{\dfrac{1}{|a|}X\!\left(\dfrac{f}{a}\right)} &
+\end{array} \]
+\elcizimi[0.5]{sekiller/Ders3-s7-1.png}[7]
+\[ \overset{F}{\longrightarrow}\ \mathrm{sinc}(f) \]
+\elcizimi[0.45]{sekiller/Ders3-s7-2.png}[7]
+\[ \Pi\!\left(\frac{t}{T}\right)\xrightarrow[a=1/T]{F}T\,\mathrm{sinc}(fT) \]
+
+\subsection{Konvolüsyon özelliği}
+\[ x(t)\circledast y(t)=\int_{-\infty}^{\infty}x(z)\,y(t-z)\,dz=\int_{-\infty}^{\infty}y(z)\,x(t-z)\,dz \]
+\[ z(t)=x(t)\circledast y(t)\overset{F}{\longleftrightarrow}X(f)\,Y(f)=Z(f) \]
+\[ \begin{array}{l} T\Lambda\!\left(\dfrac{t}{T}\right)=\Pi\!\left(\dfrac{t}{T}\right)\circledast\Pi\!\left(\dfrac{t}{T}\right)\\ \quad\downarrow\\ \qquad T\,\Fou{\Lambda\!\left(\dfrac{t}{T}\right)}=T\,\mathrm{sinc}(fT)\cdot T\,\mathrm{sinc}(fT) \end{array} \]
+\formulkutu{\Lambda\!\left(\frac{t}{T}\right)\overset{F}{\longleftrightarrow}T\,\mathrm{sinc}^2(fT)}
+
+\subsection{Frekansta öteleme ve modülasyon özelliği}
+\[ x(t)\overset{F}{\longleftrightarrow}X(f) \]
+\[ x(t)\,e^{j2\pi f_0t}\overset{F}{\longleftrightarrow}X(f-f_0) \]
+\subsection{Örnek:}
+\[ g(t)=x(t)\cos(2\pi f_0t)=x(t)\,\frac{e^{j2\pi f_0t}+e^{-j2\pi f_0t}}{2} \]
+\[ \overset{F}{\longleftrightarrow}\ Y(f)=\frac{1}{2}\left[X(f-f_0)+X(f+f_0)\right] \]
+
+\sayfa{8}
+\elcizimi[0.95]{sekiller/Ders3-s8-1.png}[8]
+\[ x(t)=1\ \Rightarrow\ e^{j2\pi f_0t}\overset{F}{\longleftrightarrow}\delta(f-f_0) \]
+\[ \cos(2\pi f_0t)\overset{F}{\longleftrightarrow}\frac{1}{2}\left[\delta(f-f_0)+\delta(f+f_0)\right] \]
+\elcizimi[0.6]{sekiller/Ders3-s8-2.png}[8]
+\[ \sin(2\pi f_0t)=\frac{e^{j2\pi f_0t}-e^{-j2\pi f_0t}}{2j}\overset{F}{\longleftrightarrow}\frac{1}{2j}\left[\delta(f-f_0)-\delta(f+f_0)\right] \]
+
+\subsection{Zamanda türev}
+\[ \frac{d}{dt}x(t)\overset{F}{\longleftrightarrow}j2\pi f\,X(f) \]
+yüksek frekansları kuvvetlendirir (Basit bir yüksekgeçiren filtre)
+\[ \frac{d^n}{dt^n}x(t)\overset{F}{\longleftrightarrow}(j2\pi f)^n\,X(f) \]
+
+\subsection{Örnek:}
+\elcizimi[0.9]{sekiller/Ders3-s8-3.png}[8]
+\[ X(f)=j2\pi f\,\underbrace{\Fou{\Lambda(t)}}_{\mathrm{sinc}^2(f)}=j2\pi f\,\mathrm{sinc}^2(f) \]
+
+\sayfa{9}
+\subsection{Frekansta türev}
+\[ t\,x(t)\longleftrightarrow\frac{j}{2\pi}\,\frac{d}{df}X(f) \]
+\[ t^n\,x(t)\longleftrightarrow\left(\frac{j}{2\pi}\right)^{n}\frac{d^n}{df^n}X(f) \]
+
+\subsection{İntegral özelliği:}
+\[ y(t)=\int_{-\infty}^{t}x(z)\,dz\ \overset{F}{\longleftrightarrow}\ Y(f)=\frac{X(f)}{j2\pi f}+\frac{1}{2}\,\overbrace{X(0)}^{X(f)|_{f=0}\ \text{daki değer}}\,\delta(f) \]
+
+\subsection{Frekansta konvolüsyon özelliği}
+\[ \underbrace{\underbrace{x_1(t)}_{B_1\ \text{bant genişliği}}\cdot\underbrace{x_2(t)}_{B_2\ \text{bant genişliği}}}_{z(t)}\ \overset{F}{\longleftrightarrow}\ \underbrace{X_1(f)\circledast X_2(f)}_{Z(f)} \]
+$Z(f)$'in bant genişliği $B_1+B_2$
+
+\subsection{Periyodik işaretlerin Fourier Dönüşümü}
+\[ \forall t\quad x(t+T_0)=x(t) \]
+\[ x(t)=\sum_{n=-\infty}^{+\infty}c_n\,e^{j2\pi nf_0t},\qquad c_n=\frac{1}{T_0}\int_{T_0}x(t)\,e^{-j2\pi nf_0t}\,dt \]
+\[ e^{j2\pi nf_0t}\overset{F}{\longleftrightarrow}\delta(f-nf_0) \]
+\[ e^{j2\pi nf_0t}\overset{F}{\longleftrightarrow}\delta(f-nf_0) \]
+\[ x(t)=\sum_{n=-\infty}^{\infty}c_n\,e^{j2\pi nf_0t}\ \overset{F}{\longleftrightarrow}\ \kutula{X(f)=\sum_{n=-\infty}^{\infty}c_n\,\delta(f-nf_0)} \]
+
+\subsection{Dürtü katarı:}
+\[ \begin{aligned} x(t)&=\sum_{n=-\infty}^{+\infty}\delta(t-nT_0)=\frac{1}{T_0}\sum_{n=-\infty}^{\infty}e^{j2\pi nf_0t}\\ &\overset{F}{\longleftrightarrow}\ X(f)=\overbrace{\frac{1}{T_0}}^{f_0}\sum_{n=-\infty}^{\infty}\delta(f-nf_0) \end{aligned} \]
+\elcizimi[0.5]{sekiller/Ders3-s9-1.png}[9]
+
+\subsection{Parseval teoremi}
+\[ E_x=\int_{-\infty}^{\infty}|x(t)|^2\,dt=\int_{-\infty}^{+\infty}\underbrace{|X(f)|^2}_{\varepsilon_x(f):\ \text{Enerji yoğunluk fonk.}}\,df \]
+\elcizimi[0.5]{sekiller/Ders3-s9-2.png}[9]
+\[ y(t)=x(t)\circledast h(t) \]
+\[ Y(f)=X(f)\cdot H(f)\ \rightarrow\ \text{Sistemin transfer fonksiyonu} \]
+
+\sayfa{10}
+\begin{center}
+\begin{tabular}{p{4.5cm}l}
+RP & RP\\
+$S_x(f)$ & $S_y(f)=S_x(f)\,|H(f)|^2$\\
+GYF & GYF
+\end{tabular}
+\end{center}
+
+\section{Asıl derse geçelim}
+\subsection{Kaynak kodlaması (Source coding)}
+Ch2: Formatting and Baseband communication
+\elcizimi[0.95]{sekiller/Ders3-s10-1.png}[10]
+
+\subsection{Örnekleme Teoremi (Sampling Theorem)}
+A bandlimited signal having no spectral components above $f_m$ Hz can be uniquely determined by values sampled at uniform intervals of $T_s\le\frac{1}{2f_m}$ sec.
+
+$\longrightarrow$ In order to reconstruct a signal with a BW of $f_m$ completely from its samples, the sampling rate $f_s\ge 2f_m$.
+
+En yüksek frekansı $f_m$ Hz olan bir işareti düzgün aralıklarla alınan örneklerinden yeniden elde etmek için örnekleme hızı \vurgu{$f_s\ge 2f_m$} olmalıdır.
+\[ f_s=\frac{1}{T_s}\ \ge\ 2f_m \]
+$f_s$: Örnekleme frekansı, (sampling frequency)\\
+$T_s$: Örnekleme aralığı (Sampling interval (period))
+
+\sayfa{11}
+\[ \underbrace{f_N}_{\text{Nyquist frekansı (rate)}}=2f_m\ \longrightarrow\ f_s\ge f_N \]
+\okunamadi{$\Delta$ saf} sinüsoidal işaret her için
+\[ f_s=f_N+\delta \]
+$\delta\ll$ olmalıdır (en az)
+
+\elcizimi[0.5]{sekiller/Ders3-s11-1.png}[11]
+$f_s=2f_m$ olursa $T_0/2$ de örnek alınır örnekler 0 olur
+
+\subsection{İdeal örnekleme (Ideal Sampling / Impulse sampling)}
+\elcizimi[0.45]{sekiller/Ders3-s11-2.png}[11]
+\elcizimi[0.45]{sekiller/Ders3-s11-3.png}[11]
+
+\subsection{Dürtü katarı}
+\[ x_\delta(t)=\sum_{n=-\infty}^{+\infty}\delta(t-nT_s)\ \overset{F}{\longleftrightarrow}\ X_\delta(f)=\overbrace{\frac{1}{T_s}}^{=f_s}\sum_{n=-\infty}^{\infty}\delta(f-nf_s) \]
+\elcizimi[0.95]{sekiller/Ders3-s11-4.png}[11]
+\[ \begin{aligned}
+\underbrace{x_s(t)}_{\substack{\text{Örneklenmiş işaret}\\\text{(Dürtü katarlı)}}} &= x(t)\cdot x_\delta(t)=x(t)\sum_{n=-\infty}^{\infty}\delta(t-nT_s)\\
+&=\underbrace{\sum_{n=-\infty}^{+\infty}x(nT_s)\,\delta(t-nT_s)}_{f(t)\,\delta(t-t_0)=f(t_0)\,\delta(t-t_0)}
+\end{aligned} \]
+\elcizimi[0.5]{sekiller/Ders3-s11-5.png}[11]
+\[ \begin{aligned} x_s(t)=x(t)\cdot x_\delta(t)&\overset{F}{\longleftrightarrow}X_s(f)=X(f)\circledast X_\delta(f)\\ &=X(f)\circledast f_s\sum_{n=-\infty}^{+\infty}\delta(f-nf_s)\\ &=f_s\sum_{n=-\infty}^{\infty}\underbrace{\left[X(f)\circledast\delta(f-nf_s)\right]}_{X(f-nf_s)} \end{aligned} \]
+
+\sayfa{12}
+\[ \left(f(t)\circledast\delta(t-t_0)=f(t-t_0)\right) \]
+\[ X_s(f)=f_s\sum_{n=-\infty}^{\infty}X(f-nf_s) \]
+\[ X_s(f)=f_s\sum_{n=-\infty}^{\infty}X(f-nf_s) \]
+\elcizimi[0.9]{sekiller/Ders3-s12-1.png}[12]
+\[ f_s-f_m>f_m \]
+\[ \Rightarrow\ f_s\ge 2f_m \]
+
+\end{document}

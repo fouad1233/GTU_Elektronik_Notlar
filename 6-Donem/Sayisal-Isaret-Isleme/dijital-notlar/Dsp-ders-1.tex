@@ -1,0 +1,150 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Sayısal İşaret İşlemenin Temelleri}{Dsp-ders-1.pdf}
+
+\sayfa{1}
+\section{Sayısal İşaret İşlemenin Temelleri}
+(Discrete-Time Signal Processing) \textit{(Kitap adı)}
+
+\begin{itemize}
+  \item 2 tane kısa sınav \quad 20 dk
+  \item Kısa sınav \%10
+  \item Ödevler \%5 \quad Her ödev 1 puan
+  \item Ara sınav \%35
+  \item Final sınavı \%50
+\end{itemize}
+
+\elcizimi[0.6]{sekiller/Dsp-ders-1-s1-1.png}[1]
+
+\elcizimi[0.6]{sekiller/Dsp-ders-1-s1-2.png}[1]
+
+Kuantalarsak dijital sinyal olur.
+
+Biz ayrık zamanla çalışacağız.
+
+\elcizimi[0.4]{sekiller/Dsp-ders-1-s1-3.png}[1]
+
+\[ x(t) \xrightarrow[t=nT]{\text{sampling}} x[n] \]
+\[ x[n] = x(t)\Big|_{t=nT} \]
+
+$T$: period (sec)
+
+$\dfrac{1}{T} = f_s$ : sampling frequency [Hz]
+
+\sayfa{2}
+\[ x[n] = [\quad 1 \quad \underset{\substack{\uparrow\\ n=7}}{10} \quad 11 \quad 17 \quad 0\ \ 0\ \ 0]\ 0\ \ 0 \]
+
+\section{Önemli işaretler}
+
+\[ \delta[n] = \begin{cases} 1 & n=0 \\ 0 & \text{o.w.} \end{cases} \]
+
+\[ u[n] = \begin{cases} 1 & n \ge 0 \\ 0 & \text{o.w.} \end{cases} \]
+
+\[ x[n] = a^n \quad \Longrightarrow \quad x[n] = r^n e^{j\theta n} \]
+
+Genlik: $|x[n]| = |r^n|$
+
+$\angle x[n] = \theta n$ radyan
+
+a complex olsun \quad $\overset{\Uparrow}{a = re^{j\theta}}$
+
+\[ x[n] = r^n e^{j\theta n} = \underbrace{r^n \cos\theta n}_{\text{reel}} + j\,\underbrace{r^n \sin\theta n}_{\text{imajiner}} \]
+
+\elcizimi[0.65]{sekiller/Dsp-ders-1-s2-1.png}[2]
+
+\elcizimi[0.62]{sekiller/Dsp-ders-1-s2-2.png}[2]
+
+\begin{align*}
+x[n] &= \cdots + x[-1]\,\delta[n+1] + x[0]\,\delta[n] + x[1]\,\delta[n-1] + \\
+&\quad + x[2]\,\delta[n-2] + \cdots + x[k]\,\delta[n-k]
+\end{align*}
+
+\[ x[n] = \sum_{k=-\infty}^{\infty} x[k]\,\delta[n-k] \]
+
+$\rightarrow$ LTI bir sistemin girişini bu şekilde bilirsek, bir girişin diğerini bilirsek, her giriş için çıkışı biliriz.
+
+\elcizimi[0.45]{sekiller/Dsp-ders-1-s2-3.png}[2]
+
+\sayfa{3}
+\elcizimi[0.42]{sekiller/Dsp-ders-1-s3-1.png}[3]
+
+\[ x[n] = \underset{\substack{\uparrow\\ \text{Bu işaret}\\ \text{periyodiktir.}}}{A e^{j\omega_0 n}} = A e^{j\omega_0 n}\,(e^{j2\pi})^n = \underset{\substack{\downarrow\\ \text{$2\pi$ de periyodik}}}{A e^{j(\omega_0+2\pi)n}} \]
+
+\elcizimi[0.38]{sekiller/Dsp-ders-1-s3-2.png}[3]
+
+\begin{align*}
+x[n] &= A\cos(\omega_0 n) = A\cos(\omega_0 n + 2\pi k) \\
+&= A\cos(\omega_0 (n+N)) = A\cos(\omega_0 n + \omega_0 N)
+\end{align*}
+
+\[ x[n+N] = x[n] \ \text{ for all } n \ \Longrightarrow \ \text{işaret periyodiktir} \qquad\qquad 2\pi k = \omega_0 N \]
+
+\[ x_1[n] = \cos\Big(\underbrace{\frac{\pi}{4}}_{\omega_0}\, n\Big) \]
+
+\[ \omega_0 = \frac{\pi}{4} \qquad \text{şartımız} \qquad 2\pi\,\overset{\substack{\text{tamsayı}\\ \text{(0 hariç)}\\ \downarrow}}{k} = \frac{\pi}{4}\,\overset{\substack{\text{bu da tamsayı}\\ \text{olmak zorunda}\\ \downarrow}}{N} \]
+
+\[ 8k = N \]
+
+$k=1$ için $N=\underset{\text{(sample)}}{8}$ çıkar
+
+Her 8 örnekte bir kendini tekrarlar.
+
+2 tam periyot için $n=0$'dan $n=15$'e kadar çizdirilir.
+
+\[ x_2[n] = \cos\Big(\frac{3\pi}{8}\,n\Big) \]
+
+\[ \omega_0 = \frac{3\pi}{8} \qquad\qquad 2\pi k = \frac{3\pi}{8}\,N \]
+
+\[ \frac{16k}{3} = N \]
+
+$k=3$ için $\kutula{N=16\ \mathrm{sample}}$
+
+\[ x_3[n] = \cos(3n) \]
+
+\[ \omega_0 = 3 \qquad\qquad 2\pi k = 3N \qquad\qquad \frac{2\pi}{3}\,k = N \qquad \text{periyodik değil} \]
+
+$k$ ve $N$ aynı zamanda tamsayı olamıyor.
+
+\sayfa{4}
+$x_1[n]$ \quad $N_1$
+
+$x_2[n]$ \quad $N_2$
+
+$x_3[n] = x_1[n] + x_2[n]$ \quad periyodik \quad ekok($N_1,N_2$) ile
+
+$\star$ \quad $x_1[n]\cdot x_2[n]$ \quad periyodik mı?? \quad ödev
+
+\[ x[n] \Longrightarrow \text{Enerjisi} \quad \sum_{k=-\infty}^{\infty} |x[k]|^2 \]
+
+\[ \text{Ortalama güç} \quad \lim_{K\to\infty} \frac{1}{2K+1} \sum_{k=-K}^{K} |x[k]|^2 \]
+
+Eğer bir işaretin enerjisi $E_x < \infty$ ise ona enerji işareti denir ve ortalama gücü sıfırdır.
+
+Güç işaretlerinin gücü $0$'dan farklı, enerjisi sonsuz.
+
+\begin{align*}
+x_a(t) &= \cos(\Omega_0 t) = \cos(2\pi F_0 t) \\
+x_a(t)\Big|_{t=nT} &= x[n] = \cos(\Omega_0 nT) = \cos\Big(\overset{\substack{\text{Frekansı normalize olur}\\ \downarrow}}{\frac{\Omega_0}{F_s}}\, n\Big) \\
+&= \cos\Big(2\pi\frac{F_0}{F_s}\,n\Big) \qquad\qquad T = \frac{1}{F_s}
+\end{align*}
+
+Örnekleme frekansına göre normalize edilen hali:
+\[ {}= \cos(\omega_0 n) = \cos(2\pi f_0 n) \]
+
+\elcizimi[0.9]{sekiller/Dsp-ders-1-s4-1.png}[4]
+
+\sayfa{5}
+\[ \cos(\underbrace{\omega_0}_{\text{radyan}}\, n) = \cos(\alpha) \qquad\qquad \text{? Örnek = radyan} \]
+
+\[ \cos\big(\underbrace{2\pi}_{\text{rad}}\, f\, \underset{\uparrow}{n}\big) \]
+
+$\rightarrow$ $\cos(0{,}1\pi n)$ işaretini çizdirin
+
+\[
+\begin{gathered}
+\cos(0{,}2\pi n) \\ \vdots \\ \cos(0{,}9\pi n) \\ \cos(\pi n) \\ \cos(1{,}1\pi n)
+\end{gathered}
+\]
+
+\end{document}

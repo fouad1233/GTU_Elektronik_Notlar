@@ -1,0 +1,108 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Filtering in the Frequency Domain (Ders 5)}{Ders-5.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 5--6) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\section{Filtring in the frequency domain}
+
+\subsection*{Fourier serisi :}
+
+\subsection*{Fourier dönüşümü}
+
+\[ x(t) \;\longleftrightarrow\; X(f)=\int_{-\infty}^{\infty} x(t)\,e^{-j2\pi f t}\,dt \]
+DSP $\searrow$
+\[ x[n] \;\longleftrightarrow\; \underset{k=0,\dots,N-1}{X[k]} = \sum_{n=0}^{N-1} x[n]\,e^{-j\,{\color{kirmizikalem}\frac{2\pi}{N}k}\,n} \]
+
+yeni notasyon
+\[ \underset{u=0,\dots,{\color{kirmizikalem}N-1}}{F[u]} = \sum_{x=0}^{N-1} f[x]\,e^{-j\frac{2\pi}{{\color{kirmizikalem}N}}ux} \]
+
+\begin{align*}
+F[u,v] &= \sum_{x=0}^{M-1}\sum_{y=0}^{N-1} f(x,y)\,\underbrace{e^{-j\frac{2\pi}{M}ux}\,e^{-j\frac{2\pi}{N}vy}}_{e^{-j2\pi\left(\frac{ux}{M}+\frac{vy}{N}\right)}} \\
+u &= 0,\dots,M-1 \\
+v &= 0,\dots,N-1
+\end{align*}
+
+\[ f(x,y) = \overset{\color{kirmizikalem}?}{\dfrac{1}{MN}} \sum_{u=0}^{M-1}\sum_{v=0}^{N-1} F(u,v)\,e^{j\frac{2\pi}{M}ux}\,e^{j\frac{2\pi}{N}vy} \]
+
+çok yavaş olduğu için aşağıdakini yapıyoruz
+
+\elcizimi[0.65]{sekiller/Ders-5-s1-1.png}[1]
+
+Bir fourier dönüşümü \quad $N\log_2(N)$
+
+$M^2\cdot N^2$ işlem yapılmalı
+
+\elcizimi[0.3]{sekiller/Ders-5-s1-2.png}[1]
+
+Toplam $2N^2\log 2N$
+
+$N=1000 \Rightarrow$ 20 milyon
+
+\sayfa{2}
+\[ \underbrace{\sum_{x=0}^{M-1}\left[\underbrace{\left[\sum_{y=0}^{N-1} f(x,y)\,e^{-j\frac{2\pi}{N}vy}\right]}_{F(x,v)} e^{-j\frac{2\pi}{M}ux}\right]}_{F(u,v)} \]
+
+\[ f(x,y)\,\exp\!\left(2\pi j\left(\frac{u_0x}{{\color{kirmizikalem}M}}+\frac{v_0y}{{\color{kirmizikalem}N}}\right)\right) \;\longleftrightarrow\; F(u-u_0,\,v-v_0) \]
+
+\elcizimi[0.7]{sekiller/Ders-5-s2-1.png}[2]
+
+\elcizimi[0.6]{sekiller/Ders-5-s2-2.png}[2]
+
+$\downarrow$ böyle yapsak
+
+\elcizimi[0.5]{sekiller/Ders-5-s2-3.png}[2]
+
+\elcizimi[0.5]{sekiller/Ders-5-s2-4.png}[2]
+
+\sayfa{3}
+Merkezi nasıl taşıyacağız ?
+
+\[ f(x,y)\,\exp\!\left(2\pi j\left(\frac{u_0x}{M}+\frac{v_0y}{N}\right)\right) \;\longleftrightarrow\; F(u-u_0,\,v-v_0) \]
+
+\[ u_0=\frac{M}{2}\ ,\quad v_0=\frac{N}{2} \]
+
+\begin{align*}
+e^{j2\pi\frac{M}{2}\frac{x}{{\color{kirmizikalem}M}}} f(x,y) &\longleftrightarrow \sum_{x=0}^{M-1}\left[e^{j2\pi\frac{M}{2}\frac{x}{{\color{kirmizikalem}M}}} f(x)\right] e^{-j\frac{2\pi}{M}ux} \\
+&= \sum_{x=0}^{M-1} f(x)\,e^{-j\frac{2\pi}{{\color{kirmizikalem}M}}\left(\frac{u}{M}-\underbrace{\left(\frac{M}{2}\right)}_{u_0}\right)x}
+\end{align*}
+
+\begin{align*}
+\sum_{x=0}^{M-1}\left[f(x)\,e^{j2\pi\frac{u_0x}{M}}\right]e^{-j\frac{2\pi}{M}ux} &= \sum_{x=0}^{M-1} f(x)\,e^{-j\frac{2\pi}{M}(u-u_0)x} \\
+&= F(u-u_0)
+\end{align*}
+
+\begin{align*}
+& u_0=\frac{M}{2} \\
+& f(x) = e^{j2\pi\frac{\frac{M}{2}x}{M}} \\
+& f(x)\left(\underbrace{e^{j\pi}}_{-1}\right)^{x} \\
+& f(x)(-1)^x \longleftrightarrow F\!\left(u-\frac{M}{2}\right) \\
+& f(x,y)(-1)^{x+y} \longleftrightarrow F\!\left(u-\frac{M}{2},\,v-\frac{N}{2}\right)
+\end{align*}
+
+\elcizimi[0.35]{sekiller/Ders-5-s3-1.png}[3]
+
+giriş realse fourier konjüge simetriktir
+
+if $f(x,y)$ is real , \quad $F(u,v)=F^{*}(-u,-v)$
+\[ |F(u,v)| = |F^{*}(-u,-v)| \]
+
+\sayfa{4}
+\elcizimi[0.67]{sekiller/Ders-5-s4-1.png}[4]
+
+$f * h = g$ \qquad $f \circ h = g$
+
+frekans domaini $\searrow$
+\[ F \cdot H = G \]
+
+\elcizimi[0.55]{sekiller/Ders-5-s4-2.png}[4]
+
+Power spectrum \quad $P(u,v)=|F(u,v)|^2$
+
+Average value \quad $\displaystyle \bar{f}(x,y)=\frac{1}{MN}\sum_{x=0}^{M-1}\sum_{y=0}^{N-1}f(x,y)=\frac{1}{MN}F(0,0)$
+
+{\color{kirmizikalem}$\star$} Periodicity \quad $F(u,v)=F(u+k_1M,\,v+k_2N)$
+
+\elcizimi[0.4]{sekiller/Ders-5-s4-3.png}[4]
+
+\end{document}

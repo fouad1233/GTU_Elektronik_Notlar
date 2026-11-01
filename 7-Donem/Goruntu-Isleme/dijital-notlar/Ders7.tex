@@ -1,0 +1,101 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Örnekler ve Image Segmentation (kenar, gradyan, eşikleme)}{Ders7.pdf}
+
+\sayfa{1}
+\[ g(x,y)=f(x,y)*\underbrace{h_1(x,y)*h_2(x,y)}_{h(x,y)}-f(x,y) \]
+\[ G(u,v)=F(u,v)\left[H(u,v)-1\right] \]
+\elcizimi[0.25]{sekiller/Ders7-s1-1.png}[1]
+\elcizimi[0.43]{sekiller/Ders7-s1-2.png}[1]
+\elcizimi[0.4]{sekiller/Ders7-s1-3.png}[1]
+\elcizimi[0.6]{sekiller/Ders7-s1-4.png}[1]
+
+\sayfa{2}
+\elcizimi[0.25]{sekiller/Ders7-s2-1.png}[2]
+\begin{center}
+\renewcommand{\arraystretch}{1.25}
+\begin{tabular}{c|c}
+$z$ & $P_z$ \\ \hline
+0 & 0 \\
+1 & 2 \\
+2 & 2 \\
+3 & 2 \\
+4 & 1 \\
+5 & 1 \\
+6 & 1 \\
+7 & 0
+\end{tabular}
+\qquad
+\begin{tabular}{c|c|c|c l}
+$r$ & $p_r(r)$ & $s=T_r(r)$ & $G(z)$ & \\ \hline
+0 & 1/9 & 1/9 & 0/9 & \textcolor{kirmizikalem}{0,1 $\rightarrow$ {\scriptsize tutarlı almak için}}\\
+1 & 3/9 & 4/9 & 2/9 & \textcolor{kirmizikalem}{2}\\
+2 &  & 6/9 & 4/9 & \textcolor{kirmizikalem}{3}\\
+3 &  & 7/9 & 6/9 & \textcolor{kirmizikalem}{4}\\
+4 &  & 7/9 & 7/9 & \textcolor{kirmizikalem}{4}\\
+5 &  & 7/9 & 8/9 & \textcolor{kirmizikalem}{4}\\
+6 &  & 7/9 & 9/9 & \textcolor{kirmizikalem}{4}\\
+7 &  & 9/9 & 9/9 & \textcolor{kirmizikalem}{7}
+\end{tabular}
+\end{center}
+3. soru \quad $(-1)^{x+y}$
+
+\elcizimi[0.85]{sekiller/Ders7-s2-2.png}[2]
+\elcizimi[0.35]{sekiller/Ders7-s2-3.png}[2]
+\[ f(x,y)=\sum_{u}\sum_{v}F(u,v)\,e^{j2\pi\left(\frac{ux}{M}+\frac{vy}{N}\right)} \]
+
+\sayfa{3}
+\section{Image Segmentation}
+\sekilnotu[3]{Bu sayfa basılı materyal içeriyor (Bölüm 10.1 Fundamentals, Şekil 10.1, kitaptan); dijitalleştirilmedi.}
+
+(a) $\rightarrow$ Tüm bölgelerin toplamı image'ı oluşturmalı
+
+(c) $\rightarrow$ Her bölgenin kendi pikselleri var
+
+(e) $\uparrow$ \okunamadi{her yer} edge
+
+(f) $\uparrow$ varyanstan bulunabilir $3\times3$ pencereyle
+
+\sayfa{4}
+\sekilnotu[4]{Bu sayfa basılı materyal içeriyor (Şekil 10.7 ve 10.8, kitaptan); dijitalleştirilmedi.}
+\elcizimi[0.3]{sekiller/Ders7-s4-1.png}[4]
+double edge sonuç var
+
+\noindent Sınırları belirlemek, bölgeyi bulmak için edge detection\\
+\hspace*{2em}segmentation \hfill gerekiyor
+
+(b) $\uparrow$ Merkezi bulabiliyor olman lazım
+
+\sayfa{5}
+\sekilnotu[5]{Bu sayfa basılı materyal içeriyor (Şekil 10.10 ve 10.11, kitaptan); dijitalleştirilmedi.}
+
+Zero crossing $\rightarrow$ pozitiften negatife geçişin olduğu yer
+
+\elcizimi[0.38]{sekiller/Ders7-s5-1.png}[5]
+birinci dereceden türevinin mutlağı 1'den büyük olmalı
+
+\sayfa{6}
+\[
+\nabla f=\begin{bmatrix} g_x\\ g_y\end{bmatrix}=\begin{bmatrix}\dfrac{\partial f}{\partial x}\\[6pt] \dfrac{\partial f}{\partial y}\end{bmatrix}
+\]
+\begin{align*}
+M(x,y) &= \mathrm{mag}(\nabla f)=\left(g_x^{2}+g_y^{2}\right)^{1/2}\\
+&\approx |g_x|+|g_y|
+\end{align*}
+direction of gradient vector
+\[ \alpha(x,y)=\tan^{-1}\!\left(\frac{g_y}{g_x}\right) \]
+\elcizimi[0.38]{sekiller/Ders7-s6-1.png}[6]
+\sekilnotu[6]{Bu sayfa basılı materyal içeriyor (Şekil 10.16 ve 10.36, kitaptan); dijitalleştirilmedi.}
+
+$\nearrow$ iki ayrı görüntü var \okunamadi{diğerinde}
+
+\sayfa{7}
+\sekilnotu[7]{Bu sayfa basılı materyal içeriyor (Şekil 10.37 ve 10.38, kitaptan); dijitalleştirilmedi.}
+\section{Basic Intensity Tresholding}
+\[
+g(x,y)=\begin{cases}1 & \text{if } f(x,y)>T\\ 0 & \text{o.w}\end{cases}
+\]
+Global tek eşik
+
+\end{document}

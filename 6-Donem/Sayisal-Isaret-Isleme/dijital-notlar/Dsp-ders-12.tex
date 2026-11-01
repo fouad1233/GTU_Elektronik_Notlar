@@ -1,0 +1,161 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Quiz çözümü, IIR filtre tasarımı (B.T.), Butterworth}{Dsp-ders-12.pdf}
+
+\sayfa{1}
+\section{Quiz çözümü}
+\[ x(t) = \cos(0{,}1\pi t + 0{,}2) \]
+$f_s =$ \qty{5}{\hertz} \qquad $x[2] = \,?$
+\[ x[2] = \cos\!\Bigl(0{,}1\pi \cdot \frac{2}{5} + 0{,}2\Bigr) \]
+
+\elcizimi[0.85]{sekiller/Dsp-ders-12-s1-1.png}[1]
+\[ H(z) = 1 + 2z^{-1} \qquad\qquad X(z) = 4 + 6z^{-1} + 2z^{-2} \]
+\[ X(z)\,H(z) \Rightarrow \]
+
+Başka bir yol
+\elcizimi[0.55]{sekiller/Dsp-ders-12-s1-2.png}[1]
+
+\subsection{3. soru}
+\elcizimi[0.5]{sekiller/Dsp-ders-12-s1-3.png}[1]
+\elcizimi[0.6]{sekiller/Dsp-ders-12-s1-4.png}[1]
+\[ v[n] = \sum_{k=-\infty}^{\infty} \delta[n-2k]\, x[k] \]
+\[ v[4] = \delta[4-2\cdot 2]\, x[2] = \sum_{k=-\infty}^{\infty} \delta[4-2k]\, x[k] \]
+
+\[ X(z) = \frac{1 - 0{,}81 z^{-1}}{1 + 0{,}25 z^{-2}}, \quad |z| > 0{,}5 \]
+\[ = \frac{z^2 - 0{,}81 z}{z^2 + 0{,}25} = \frac{z(z - 0{,}81)}{(z + j0{,}5)(z - j0{,}5)} \]
+\elcizimi[0.4]{sekiller/Dsp-ders-12-s1-5.png}[1]
+
+\sayfa{2}
+\[ h[n] = \cos\!\left(\frac{\pi}{2}n\right)\bigl[\delta[n+4] - \delta[n-8]\bigr] \]
+\[ h[n] = \underbrace{\cos\!\left(\frac{\pi}{2}(-4)\right)}_{a}\,\delta[n+4] \;\underbrace{-\cos\!\left(\frac{\pi}{2}\,8\right)}_{b}\,\delta[n-8] \]
+\elcizimi[0.5]{sekiller/Dsp-ders-12-s2-1.png}[2]
+\[ H(z) = a z^{4} + b z^{-8} = a z^{4} + \frac{b}{z^{8}} \]
+
+\[ X(z) = \frac{0{,}4}{1 - 3z^{-1}}, \qquad |z| < 3 \]
+
+$x[n] * \delta[n+2] = \,?$
+\[ (0{,}4)\bigl(-3^{n}\,u[-n-1]\bigr) \]
+\[ X(z) = \frac{1}{1 - a z^{-1}}, \qquad |z| < a \]
+\[ x[n] = -a^{n}\,u[-n-1] \]
+
+\section{IIR Filter Design by the B.T.}
+\[ H(s) = \frac{b}{s+a} = \frac{Y(s)}{X(s)} \]
+\[ H(s) = \frac{1}{s^{3}+2s^{2}+3s+4} = \frac{k_1}{s-a} + \frac{k_2}{s-b} + \cdots \]
+
+\[ \frac{dy(t)}{dt} + a\,y(t) = b\,x(t) \qquad \text{\okunamadi{}} \]
+\[ y'(t) + a\,y(t) = b\,x(t) \]
+\[ y'(t) = b\,x(t) - a\,y(t) \]
+\[ t = nT \qquad y'(nT) = b\,x(nT) - a\,y(nT) \qquad \text{\textcircled{1}} \]
+\[ y(t) = \int_{t_0}^{t} y'(t)\,dt + y(t_0) \]
+\[ t = nT,\ t_0 = (n-1)T \qquad y(t) = \int_{t_0}^{t} y'(t)\,dt + y(t_0) \]
+\elcizimi[0.5]{sekiller/Dsp-ders-12-s2-2.png}[2]
+\[ y'(nT) = \frac{T}{2}\bigl[y'(nT) + y'((n-1)T)\bigr] + y((n-1)T) \qquad \text{\textcircled{2}}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen soldaki terim $y(nT)$ olmalı.}
+Substitute $\text{\textcircled{1}}$ into $\text{\textcircled{2}}$
+\[ \left(1 + a\frac{T}{2}\right) y[n] + \left(-1 + a\frac{T}{2}\right) y[n-1] = b\frac{T}{2}\bigl[x[n] + x[n-1]\bigr] \]
+
+\sayfa{3}
+\[ H(z) = \frac{Y(z)}{X(z)} = b\,\frac{T}{2}\,\frac{1+z^{-1}}{\left(1+a\frac{T}{2}\right) + \left(-1+a\frac{T}{2}\right)z^{-1}} = \frac{b}{\frac{2}{T}\,\frac{1-z^{-1}}{1+z^{-1}} + a} \]
+\[ H(s) = \frac{b}{s+a} \]
+
+\[ H(z) = H(s)\Big|_{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}} \]
+
+\[ s = \frac{2}{T}\,\frac{1-z^{-1}}{1+z^{-1}} \qquad\qquad z = \frac{1+sT/2}{1-sT/2} \]
+\elcizimi[0.45]{sekiller/Dsp-ders-12-s3-1.png}[3]
+\elcizimi[0.5]{sekiller/Dsp-ders-12-s3-2.png}[3]
+
+$s$ yerine $j\Omega$ \qquad $z$ yerine $e^{j\omega}$
+\begin{align*}
+j\Omega &= \frac{2}{T}\,\frac{e^{j\omega}-1}{e^{j\omega}+1} \\
+&= \frac{2}{T}\,\frac{e^{j\omega/2}\left(e^{j\omega/2}-e^{-j\omega/2}\right)}{e^{j\omega/2}\left(e^{j\omega/2}+e^{-j\omega/2}\right)} \\
+&= \frac{2}{T}\,\frac{2j\sin(\omega/2)}{2\cos(\omega/2)} = j\,\frac{2}{T}\tan\!\left(\frac{\omega}{2}\right)
+\end{align*}
+\[ j\Omega = j\,\frac{2}{T}\tan\!\left(\frac{\omega}{2}\right) \]
+\[ \Omega = \frac{2}{T}\tan\!\left(\frac{\omega}{2}\right) \]
+\[ \omega = 2\arctan\!\left(\frac{\Omega\cdot T}{2}\right) \]
+
+\section{Örnek}
+\subsection{Specleri belirleyelim}
+\elcizimi[0.5]{sekiller/Dsp-ders-12-s3-3.png}[3]
+\noindent $k_1$ @ $\omega_1$ \\
+$k_2$ @ $\omega_2$ \\
+$k_1$ @ $\Omega_1 = \dfrac{2}{T}\tan\!\left(\dfrac{\omega_1}{2}\right)$ \\
+$k_2$ @ $\Omega_2 = \dfrac{2}{T}\tan\!\left(\dfrac{\omega_2}{2}\right)$
+
+3) design $H(s)$
+
+4) $H(z) = H(s)\Big|_{s=\frac{2}{T}\frac{1-z^{-1}}{1+z^{-1}}}$
+
+\sayfa{4}
+\section{EX: Design LPF, B.T}
+\vurgu[turuncu]{sadece Butterworth}
+
+a) \underline{Monotonic} \underline{stop band, pass band}
+
+b) $-3{,}01$ dB cutoff at $0{,}5\pi$ rad
+
+c) $0{,}75\pi$ rad $\Rightarrow$ at least 15 db olsun
+
+\elcizimi[0.3]{sekiller/Dsp-ders-12-s4-1.png}[4]
+\elcizimi[0.7]{sekiller/Dsp-ders-12-s4-2.png}[4]
+
+$F_s =$ \qty{1000}{\hertz} \qquad $T = 10^{-3}$ sec
+\[ \frac{1}{T} = F_s \]
+
+\elcizimi[0.6]{sekiller/Dsp-ders-12-s4-3.png}[4]
+\[ 20\log\left|H(e^{j\omega})\right| = -3{,}01\ \mathrm{dB} \]
+\[ 20\log\left|H(e^{j\omega})\right| < -15\ \mathrm{dB} \]
+
+$F_s =$ \qty{1000}{\hertz} \qquad $T = 10^{-3}$ sec
+\[ \Omega_1 = \frac{2}{T}\tan\!\left(\frac{\omega_1}{2}\right)\Big|_{\omega_1 = 0{,}5\pi} \qquad\qquad k_1 @ \omega_1 \]
+\[ \Omega_2 = \frac{2}{T}\tan\!\left(\frac{\omega_2}{2}\right)\Big|_{\omega_2 = 0{,}75\pi} \]
+\noindent $k_1$ @ $\Omega_1 = \dfrac{2}{T}\tan\!\left(\dfrac{\omega_1}{2}\right)$ \\
+$k_2$ @ $\Omega_2 = \dfrac{2}{T}\tan\!\left(\dfrac{\omega_2}{2}\right)$
+\[ \Omega_1 = 2000\ \mathrm{rad/sec} \]
+\[ \Omega_2 = 4828{,}42\ \mathrm{rad/sec} \]
+\[ k_1 = 0{,}707 \qquad\qquad k_2 = 0{,}1778 \]
+
+\sayfa{5}
+\section{Butterworth}
+\[ \left|H_n(j\Omega)\right|^{2} = \frac{1}{1 + \left(\frac{\Omega}{\Omega_c}\right)^{2n}} \]
+n ne olursa olsun 1'den başlar, n'den bağımsız olarak $\Omega_c$'de genlik $\frac{1}{\sqrt{2}}$
+
+\elcizimi[0.45]{sekiller/Dsp-ders-12-s5-1.png}[5]
+\[ \left|H_n(j\Omega)\right|^{2} = \frac{1}{1 + \left(\frac{\Omega}{\Omega_c}\right)^{2n}} \]
+\[ \left|H_n(j\Omega_1)\right|^{2} = \frac{1}{1 + \left(\frac{\Omega_1}{\Omega_c}\right)^{2n}} \]
+\[ \text{\textcircled{1}}\ \left|H_n(j\Omega_1)\right|^{2} = \frac{1}{1 + \left(\frac{2000}{\Omega_c}\right)^{2n}} = (0{,}707)^{2} \quad\Rightarrow\quad \Omega_c = 2000\ \mathrm{rad/sec} \]
+\[ \text{\textcircled{2}}\ \left|H_n(j\Omega_2)\right|^{2} = \frac{1}{1 + \left(\frac{\Omega_2}{\Omega_c}\right)^{2n}} \]
+\[ (0{,}1778)^{2} \geq \frac{1}{1 + \left(\frac{4828{,}42}{2000}\right)^{2n}} \]
+\[ \Rightarrow\ n \geq 1{,}942 \]
+$n$: 2, 3, 4 $\longrightarrow$ seçebiliriz
+
+$\kutula{n=2}$ seçelim
+
+\begin{align*}
+H(s) &= \frac{k}{(s-s_0)(s-s_1)\cdots(s-s_{n-1})} \\
+&= \frac{k}{\bigl(s-(-\tfrac{1}{\sqrt{2}}+j\tfrac{1}{\sqrt{2}})\bigr)\bigl(s-(-\tfrac{1}{\sqrt{2}}-j\tfrac{1}{\sqrt{2}})\bigr)} \\
+&= \frac{\Omega_c^{2}}{s^{2}+\sqrt{2}\,\Omega_c s+\Omega_c^{2}}
+\end{align*}
+\elcizimi[0.5]{sekiller/Dsp-ders-12-s5-2.png}[5]
+
+\sayfa{6}
+n=3 olsun
+\elcizimi[0.4]{sekiller/Dsp-ders-12-s6-1.png}[6]
+
+Tablo
+\begin{center}
+\begin{tabular}{c|l}
+$n$ & \\ \hline
+1 & $s+1$ \\
+2 & $1+\sqrt{2}\,s+s^{2}$ \\
+3 & $(s^{2}+s+1)(s+1)$
+\end{tabular}
+\end{center}
+
+$n=2$
+\[ H(s) = \frac{1}{1+\sqrt{2}\,s+s^{2}} \]
+\[ H(s) = \frac{k}{s^{2}+\underset{\substack{\uparrow\\ 2000}}{\Omega_c}\sqrt{2}\,s+\Omega_c^{2}} \]
+\[ H(z) = H(s)\Big|_{s=2000\frac{1-z^{-1}}{1+z^{-1}}} \]
+\[ H(z) = \frac{1+2z^{-1}+z^{-2}}{3{,}4142+0{,}58\,z^{-2}} \]
+\end{document}

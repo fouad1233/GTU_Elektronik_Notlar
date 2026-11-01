@@ -1,0 +1,266 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{PCM sistemi örneği}{Ders-7.pdf}
+
+\sayfa{1}
+\begin{ornek}
+Aşağıdaki şekilde görülen sistemin girişine $x(t)=\cos(2\pi f_0 t)$ işareti uygulanmaktadır. Örnekleme periyodu $T_s=\dfrac{1}{12 f_0}$ ve
+\[ h(t)=\begin{cases} 1, & 0\le t\le T_s/2 \\ 0, & \text{Diğer} \end{cases} \]
+olarak verilmektedir. Kuantalayıcının giriş-çıkış bağıntısı aşağıda verilmiştir.
+\[ x_q(t)=\begin{cases} -1, & -1{,}2\le x_p(t)\le -0{,}6\\ -0{,}5, & -0{,}6< x_p(t)\le 0{,}1\\ 0{,}5, & 0{,}1< x_p(t)\le 0{,}6\\ 1, & 0{,}6< x_p(t)\le 1{,}2\end{cases} \]
+Kodlayıcı $(-1),(-0{,}5),(0{,}5),(1)$ genliklerini sırasıyla $00, 01, 10$ ve $11$ ile kodlamaktadır. Darbe üretici $0$ ve $1$ bitleri için sırasıyla $-5\,$V ve $+5\,$V genlikli tam dikdörtgen darbeler üretmektedir.
+\begin{enumerate}[label=\alph*)]
+\item $x_p(t)$ ve $x_q(t)$'yi $[0,T_0]$ aralığında çiziniz
+\item $y(t)$'yi
+\item $f_0=1$ kHz ise iletim hızını ve min kanal BG'sini bulunuz
+\end{enumerate}
+\end{ornek}
+
+\begin{center}
+\begin{tikzpicture}[font=\footnotesize,>=stealth,blk/.style={draw=murekkep,minimum width=1.5cm,minimum height=0.8cm,inner sep=2pt,text=murekkep}]
+\node[murekkep] (in) at (0,0) {$x(t)$};
+\node[draw=murekkep,circle,inner sep=1pt,murekkep] (mul) at (1.3,0) {$\times$};
+\node[blk] (h) at (3.1,0) {$h(t)$};
+\node[blk] (q) at (5.5,0) {kuantalayıcı};
+\node[blk] (k) at (8.0,0) {kodlayıcı};
+\node[blk,align=center] (d) at (10.5,0) {Darbe\\üretici};
+\node[murekkep] (out) at (12.2,0) {$y(t)$};
+\draw[->,murekkep] (in) -- (mul);
+\draw[->,murekkep] (mul) -- node[above]{$x_s(t)$} (h);
+\draw[->,murekkep] (h) -- node[above]{$x_p(t)$} (q);
+\draw[->,murekkep] (q) -- node[above]{$x_q(t)$} (k);
+\draw[->,murekkep] (k) -- node[above]{$x_c(t)$} (d);
+\draw[->,murekkep] (d) -- (out);
+\draw[->,murekkep] (1.3,-1.1) -- (mul);
+\node[murekkep,below] at (1.3,-1.1) {$\sum_n \delta(t-nT_s)$};
+\node[turuncukalem,font=\scriptsize,align=center] at (4.3,-0.95) {Düz tepeli\\örnekleme işareti};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[x=2.2cm,y=1.1cm,font=\footnotesize]
+\draw[->,kursunkalem] (-1.35,0) -- (1.4,0) node[right]{$x_p(t)$};
+\draw[->,kursunkalem] (0,-1.3) -- (0,1.3) node[above]{$x_q(t)$};
+\draw[turuncukalem,thick] (-1.2,-1) -- (-0.6,-1) (-0.6,-0.5) -- (0.1,-0.5) (0.1,0.5) -- (0.6,0.5) (0.6,1) -- (1.2,1);
+\draw[kursunkalem,dashed] (-1.2,0) -- (-1.2,-1) (-0.6,0) -- (-0.6,-0.5) (0.1,0) -- (0.1,0.5) (0.6,0) -- (0.6,1) (1.2,0) -- (1.2,1);
+\node[above] at (-1.2,0) {$-1{,}2$}; \node[above] at (-0.6,0) {$-0{,}6$};
+\node[below] at (0.1,0) {$0{,}1$}; \node[below] at (0.6,0) {$0{,}6$}; \node[below] at (1.2,0) {$1{,}2$};
+\node[left] at (0,1) {$1$}; \node[left] at (0,0.5) {$0{,}5$};
+\node[right] at (0,-0.5) {$-0{,}5$}; \node[right] at (0,-1) {$-1$};
+\node[murekkep,above] at (-0.9,-1) {00}; \node[murekkep,above] at (-0.25,-0.5) {01};
+\node[murekkep,above] at (0.35,0.5) {10}; \node[murekkep,above] at (0.9,1) {11};
+\node[align=left,text=black] at (2.1,0.6) {Düzgün olmayan\\kuantalayıcı};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{2}
+\sekilnotu[2]{Sayfa 1'deki blok diyagramın aynısı: $x(t)$ girişi, çarpıcı ($\sum_n\delta(t-nT_s)$ ile çarpım), $h(t)$, kuantalayıcı, kodlayıcı, darbe üretici, çıkış $y(t)$; ara işaretler $x_s(t)$, $x_p(t)$ (turuncu not: düz tepeli örnekleme işareti), $x_q(t)$, $x_c(t)$.}
+\begin{align*}
+x_s(t) &= x(t)\cdot\sum_n \delta(t-nT_s)=\sum_n x(nT_s)\,\delta(t-nT_s)\\
+x_p(t) &= x_s(t)*h(t)=\sum_n x(nT_s)\,h(t-nT_s)\\
+x_q(t) &= \sum_n x_q(nT_s)\,h(t-nT_s)
+\end{align*}
+\[ T_s=\frac{1}{12 f_0}=\frac{T_0}{12} \qquad \text{bir periyod boyunca 12 örnek var} \]
+\[ x(nT_s)=\cos(2\pi f_0\, nT_s)=\cos\Big(2\pi f_0\, n\,\frac{1}{12 f_0}\Big)=\cos\Big(\frac{n\pi}{6}\Big) \]
+\begin{center}
+\small
+\begin{tabular}{r|ccccccccccccc}
+$n$ & $0$ & $1$ & $2$ & $3$ & $4$ & $5$ & $6$ & $7$ & $8$ & $9$ & $10$ & $11$ & $12$ \\ \hline
+$x(nT_s)$ & $1$ & $0{,}87$ & $0{,}5$ & $0$ & $-0{,}5$ & $-0{,}87$ & $-1$ & $-0{,}87$ & $-0{,}5$ & $0$ & $0{,}5$ & $0{,}87$ & $1$ \\ \hline
+$x_q(nT_s)$ & $1$ & $1$ & $0{,}5$ & $-0{,}5$ & $-0{,}5$ & $-1$ & $-1$ & $-1$ & $-0{,}5$ & $-0{,}5$ & $0{,}5$ & $1$ & $1$ \\ \hline
+kod & \textcolor{murekkep}{11} & \textcolor{murekkep}{11} & \textcolor{murekkep}{10} & \textcolor{murekkep}{01} & \textcolor{murekkep}{01} & \textcolor{murekkep}{00} & \textcolor{murekkep}{00} & \textcolor{murekkep}{00} & \textcolor{murekkep}{01} & \textcolor{murekkep}{01} & \textcolor{murekkep}{10} & \textcolor{murekkep}{11} & \textcolor{murekkep}{11}
+\end{tabular}
+\end{center}
+\begin{center}
+\begin{tikzpicture}[x=0.6cm,y=1.4cm,font=\footnotesize]
+\draw[->,kursunkalem] (-0.5,0) -- (13,0) node[right]{$t$};
+\draw[->,kursunkalem] (0,-1.3) -- (0,1.3) node[above]{$x(t)$};
+\draw[kursunkalem,dashed] (0,1) -- (12.5,1) (0,-1) -- (12.5,-1);
+\draw[turuncukalem,thick,domain=0:12.3,samples=60,smooth] plot (\x,{cos(\x*30)});
+\foreach \i in {1,...,12} \draw[kursunkalem] (\i,0.05) -- (\i,-0.05);
+\node[below,align=center] at (1,0) {$T_s$\\$=\frac{T_0}{12}$};
+\node[below] at (2.1,0) {$2T_s$};
+\node[below] at (3,-0.1) {$\frac{T_0}{4}$};
+\node[below] at (6,-0.1) {$\frac{T_0}{2}$};
+\node[below] at (9,-0.1) {$\frac{3T_0}{4}$};
+\node[below] at (12,-0.1) {$T_0$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{3}
+\sekilnotu[3]{Dört grafik alt alta, ortak zaman ekseni; $nT_s$ anlarından sarı kesikli düşey çizgiler grafikleri hizalıyor.
+(1) $x(t)$: turuncu kosinüs, $t=0$'da $1$, $T_0/2$'de $-1$, $T_0$'da $1$; $\pm1$ seviyelerinde siyah kesikli yatay çizgiler; eksende $T_s=T_0/12$, $2T_s$, $T_0/4$, $T_0/2$, $3T_0/4$, $T_0$ işaretli.
+(2) $x_p(t)$: aynı kosinüs üzerinde, her $nT_s$ ($n=0,\dots,12$) anında başlayan ve $T_s/2$ süren mavi dikdörtgen (düz tepeli) darbeler; yükseklikler $x(nT_s)$: $1;\ 0{,}87;\ 0{,}5;\ 0;\ -0{,}5;\ -0{,}87;\ -1;\ -0{,}87;\ -0{,}5;\ 0;\ 0{,}5;\ 0{,}87;\ 1$ ($n=3$ ve $n=9$'da darbe yok); düşey eksende $1,\ 0{,}87,\ 0{,}5,\ -0{,}5,\ -0{,}87,\ -1$; zaman ekseninde $T_s/2,\ T_s,\ 2T_s,\ T_0/4,\ 4T_s,\dots,12T_s$.
+(3) $x_q(t)$: aynı konumlarda mavi darbeler, yükseklikler $x_q(nT_s)$: $1;\ 1;\ 0{,}5;\ -0{,}5;\ -0{,}5;\ -1;\ -1;\ -1;\ -0{,}5;\ -0{,}5;\ 0{,}5;\ 1;\ 1$; düşey eksende $1,\ 0{,}5,\ -0{,}5,\ -1$.
+(4) $y(t)$: kırmızı, $\pm5$\,V genlikli tam dikdörtgen darbeler, her bit $T_s/2$ süreli; bitler darbelerin üstünde yazılı: 1 1 1 1 1 0 0 1 0 1 0 0 0 0 0 0 0 1 0 1 1 0 1 1 1 1 (yani 11 11 10 01 01 00 00 00 01 01 10 11 11); düşey eksende $5$\,V ve $-5$\,V; yatay eksende $T_s, 2T_s,\dots,12T_s$ (işaret yaklaşık $13T_s$'de biter), eksen etiketi $y(t)$ (muhtemelen $t$).}
+
+\sayfa{4}
+c) $f_0=1$ kHz \qquad $f_s=\dfrac{1}{T_s}=\dfrac{1}{T_0/12}=12f_0=12$ kHz
+
+$R_b=n f_s=2\cdot 12\mathrm{k}=24\mathrm{k}$ bit/sn
+
+\[ B_w=\frac{R_b}{2}=12\ \text{kHz} \]
+
+\section{Delta Modülasyon (DM)}
+\[ \text{\okunamadi{}}\ \Rightarrow\ \mathrm{SNR}=\frac{P_x}{\Delta v^2/12}=\frac{12\,P_x}{\Delta v^2} \]
+\textbf{PCM}
+\[ N_o=N_q=\frac{\Delta v^2}{12}=\frac{x_p^2}{3L^2}\ \rightarrow\ \mathrm{SNR}=\frac{P_o}{N_o}=\frac{P_x}{N_q}=3L^2\,\frac{P_x}{x_p^2} \]
+\[ \Delta v=\frac{2x_p}{L} \]
+\[ \mathrm{SNR}\uparrow\ \Rightarrow\ N_o\downarrow\ \Rightarrow\ \Delta v\downarrow\ \Rightarrow\ \underset{\text{\scriptsize kuantalayıcı seviye sayısı}}{L\uparrow}\ \Rightarrow\ \underset{n\uparrow}{2^n\ge L} \]
+\[ n\uparrow\ \Rightarrow\ \mathrm{BG}\uparrow \]
+veya $x_p$'yi küçültürüz
+
+\sekilnotu[4]{Pozitif tepeli, sonra negatife inen bir dalga biçimi (yatay eksen üzerinde); tepe civarında üç kırmızı düşey çizgi (birbirine yakın örnekler).}
+2 örnek arasındaki fark \\
+Differential PCM (DPCM)
+
+DM $=$ 1 bitlik DPCM \quad $(n=1,\ L=2)$
+
+$f_s \gg f_N$ \quad $(f_s=4f_N)$
+
+DPCM'e göre daha basit ve \okunamadi{ucuz}
+
+\section{Delta modülatör}
+\sekilnotu[4]{Delta modülatör blok diyagramı. $x(t)$ ($+$) toplayıcıya girer; toplayıcının $-$ girişine geri besleme sinyali $\hat{x}_q(t)$ (estimate signal) gelir. Toplayıcı çıkışı $d(t)$ kutuya girer (kutu üstünde not: Delta modülatör karşılaştırıcı; kutu içinde turuncu iki seviyeli basamak karakteristik, iki seviyede de $\Delta$ işareti). Kutu çıkışı $d_q(t)$, ardından $f_s$ ile etiketli anahtar (örnekleyici), çıkış $d_q(k)$ (mavi not: DM'li işaret). Geri besleme: kutu çıkışından aşağı inen hat, sola bakan üçgen blok (altında: Integrator and amplifier) ve oradan toplayıcının $-$ girişine dönen hat. Altta kırmızı not: birim basamak fonksiyon (küçük basamak çizimi ve yukarı ok). Sol altta $\hat{x}_q(t)$: basamaklı (merdiven) küçük dalga; sağ altta $d_q(k)$ ekseni üzerinde düşey çizgi dizisi (ikili darbe katarı).}
+
+\sayfa{5}
+Hata işareti: $d(t)=x(t)-\hat{x}_q(t)$ \quad (Fark)
+\[ \text{Eğer } d(t)\ \begin{cases} \ge 0, & d_q(t)=\Delta \\ <0, & d_q(t)=-\Delta \end{cases} \]
+
+\section{Delta demodülatör}
+\sekilnotu[5]{Delta demodülatör blok diyagramı: giriş $d_q(k)$, önünde dikdörtgen bulunan üçgen blok (altında: İntegral alıcı ve kuvvetlendirici), çıkışı $\hat{x}_q(t)$, ardından AGF yazan kutu, çıkış $x(t)$.}
+örneklemenin tersi alçak geçiren filtredir
+
+PCM sabit telefon haberleşmesinde, Delta Modülatörü apartman telefonunda
+
+\sekilnotu[5]{Granular noise ve slope overload noise grafiği: yatay eksen $t$, düşey eksende $\hat{x}_q(t)$ etiketi ve küçük $\Delta$ basamağı. Kırmızı eğri $x(t)$ soldan yükselip tepede düzleşiyor, sonra aşağı iniyor; mavi merdiven biçimli $\hat{x}_q(t)$ $\Delta$'lık basamaklarla yükseliyor, tepede küçük salınımlar yapıyor, inişte geride kalıyor. Turuncu notlar: tepe düzlüğü üstünde parantezle Granular noise (GN): Boşta çalışma gürültüsü ($\Delta$ büyük); sağdaki inişte parantezle $\Delta$ küçükse gelen sinyali yakalayamaz; slope overload noise (SON): Eğim sınırlaması gürültüsü.}
+\[ \mathrm{GN}\downarrow\ \Rightarrow\ \Delta\downarrow\ \Rightarrow\ \mathrm{SON}\uparrow\ \rightarrow\ \Delta_{opt}\ \rightarrow\ \text{Adaptive DM (ADM)} \]
+\hspace*{8.2cm}'' DPCM (ADPCM)
+
+\sekilnotu[5]{$d(t)$ grafiği (turuncu, basamaklı): başlangıçta yüksek pozitif değerden basamak basamak azalır, sıfır civarında küçük kare dalga gibi salınır, sonra basamak basamak negatife iner; yatay eksen $t$.}
+Aslında işaretin türevini yolluyoruz
+
+$\Delta$ maksimum eğime eşit olursa
+
+\sekilnotu[5]{$x(t)$ ve $\hat{x}_q(t)$ etiketli S biçimli eğri: sıfırdan yükselip tepeye oturuyor; $t$ ekseninde $0$ ve $T_s$; $T_s$ anında eksenden eğriye düşey süslü parantez, etiketi $\Delta T$ gibi okunuyor.}
+
+\sayfa{6}
+\[ \mathrm{maks}\,|\dot{x}(t)|\ \le\ \overset{\text{\scriptsize $\hat{x}_q(t)$'nin takip edebileceği max eğim}}{\frac{\Delta}{T_s}} \]
+\[ \Rightarrow\ \text{Eğim sınırlaması gürültüsü olmaz} \]
+\formulkutu{\text{SON olmaması için }\Delta f_s \ge \mathrm{maks}\,|\dot{x}(t)|}
+
+\textbf{GN} \quad $-\Delta$ ile $\Delta$ arasında $[\underset{a}{-\Delta},\underset{b}{\Delta}]$ düzgün dağılımlı
+
+boşta çalışma gürültüsünün ortalama gücü
+\[ E[\varepsilon^2]=\frac{(b-a)^2}{12}=\frac{(\Delta+\Delta)^2}{12}=\frac{\Delta^2}{3} \]
+\[ N_q=\underbrace{\frac{\Delta^2/3}{f_s}}_{\text{GYF}}\times \overset{\text{AGF}}{\underset{\mathrm{BG}\{x(t)\}}{B}}\ \Rightarrow\ N_q=\frac{\Delta^2 B}{3f_s} \]
+\[ \Rightarrow\ \mathrm{SNR}=\frac{S_o}{N_o}=\frac{P_x}{N_q}=\frac{3f_sP_x}{\Delta^2B} \]
+
+\begin{ornek}
+$x(t)$ is applied to the input of DM modulator
+\begin{enumerate}[label=\alph*)]
+\item What is the min value of $\Delta$ in order not to have slope overloding for $f_s=1$ khz
+\item Find transmission rate and BW
+\item Find SNR
+\end{enumerate}
+\end{ornek}
+
+\begin{center}
+\begin{tikzpicture}[x=0.45cm,y=0.45cm,font=\footnotesize]
+\draw[->,kursunkalem] (-0.5,0) -- (17,0) node[right]{$t$ (msn)};
+\draw[->,kursunkalem] (0,-0.5) -- (0,8.5) node[above]{$x(t)$};
+\draw[kursunkalem,dashed] (0,7) -- (14,7) (4,0) -- (4,7) (12,0) -- (12,7);
+\draw[murekkep,thick] (0,0) -- (4,7) -- (8,0) -- (12,7) -- (16,0);
+\node[left] at (0,7) {$7$};
+\node[below] at (4,0) {$4$};
+\node[below,align=center] at (8,0) {$8$\\$=T_0$};
+\node[below] at (16,0) {\okunamadi{16}};
+\node[murekkep] at (7,9.2) {$\dfrac{7}{4\cdot10^{-3}}\,t$};
+\draw[->,murekkep] (5.2,8.6) -- (2.6,5.2);
+\end{tikzpicture}
+\end{center}
+
+\[ \text{a)}\quad \Delta\,\underset{10^3}{f_s}\ \ge\ \underbrace{\mathrm{maks}\,|\dot{x}(t)|}_{\frac{7}{4\cdot10^{-3}}} \]
+\[ \Delta \ge \frac{7}{4}\ \Rightarrow\ \Delta_{min}=\frac{7}{4}\ \mathrm{V} \]
+\[ \text{b)}\quad R_b=\overset{n=1}{n}\,f_s=f_s=1\ \text{kHz} \qquad B_w=\frac{R_b}{2}=500\ \text{Hz} \]
+$n=1$ çünkü delta modülasyonu
+
+\sayfa{7}
+\[ \text{c)}\quad \mathrm{SNR}=\frac{3f_sP_x}{\Delta^2B} \]
+\begin{align*}
+P_x &= \frac{1}{T_0}\int_{T_0}|x(t)|^2\,dt=\frac{1}{8\cdot10^{-3}}\int_0^{8\cdot10^{-3}}x^2(t)\,dt\\
+&=\frac{2}{8\cdot10^{-3}}\int_0^{4\cdot10^{-3}}\Big(\frac{7t}{4\cdot10^{-3}}\Big)^2dt
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[x=1cm,y=0.9cm,font=\footnotesize]
+\draw[->,kursunkalem] (-2.2,0) -- (2.5,0) node[right]{$t$ (msn)};
+\draw[kursunkalem] (0,-0.2) -- (0,2.3);
+\draw[murekkep,thick] (-1,0) -- (0,2) -- (1,0);
+\node[below] at (-1,0) {$-T$}; \node[below] at (1,0) {$T$};
+\node at (4.6,1.6) {$\mathrm{sinc}^2($};
+\end{tikzpicture}
+\end{center}
+\[ B\approx\underset{\text{\scriptsize ilk sıfır geçişi}}{\frac{1}{T}}=\frac{1}{4\cdot10^{-3}}=250\ \text{Hz} \]
+sadece bir dalga için geçerlidir
+
+normalde Fourier serisine açmak lazım, sonra 99\% güç bulmak lazım
+
+\begin{ornek}
+DM, $f_s=1$ khz
+\begin{enumerate}[label=\alph*)]
+\item Eğim sınırlaması gürültüsü olmaması için $\Delta$'nın min değeri ne olmalıdır?
+\item $\Delta=2$V için $x(t)$, $\hat{x}_q(t)$ ve $d_q(k)$'yı çiziniz \\ $(x(t)-\hat{x}_q(t)>0 \Rightarrow d_q(t)=\Delta)$
+\end{enumerate}
+\end{ornek}
+
+\begin{center}
+\begin{tikzpicture}[x=0.5cm,y=0.45cm,font=\footnotesize]
+\draw[->,kursunkalem] (-0.5,0) -- (16.5,0) node[right]{$t$};
+\draw[->,kursunkalem] (0,-0.5) -- (0,8.5) node[above]{$x(t)$};
+\draw[kursunkalem,dashed] (0,7) -- (10,7);
+\draw[murekkep,thick] (0,0) -- (4,7) -- (8,7) -- (15,0);
+\node[left] at (0,7) {$7$};
+\node[below] at (4,0) {$4$}; \node[below] at (8,0) {$8$}; \node[below] at (15,0) {$15$};
+\end{tikzpicture}
+\end{center}
+
+\[ \text{a)}\quad \Delta\,\underset{10^{-3}}{f_s}\ \ge\ \underbrace{\mathrm{maks}\,|\dot{x}(t)|}_{\frac{7}{4\cdot10^{-3}}}\ \Rightarrow\ \Delta\ge\frac{7}{4}=1{,}75\ \mathrm{V} \]
+
+\sayfa{8}
+\elcizimi[0.9]{sekiller/Ders-7-s8-1.png}[8]
+
+\section{Encoding techniques applied to speech signals}
+
+\begin{center}
+\begin{tabular}{@{}llll@{}}
+\toprule
+\textbf{Method} & \textbf{Quantize} & \textbf{Coder} & \textbf{Transmission rate} (bit/sec) \\
+\midrule
+PCM & Linear & 12 bits & 96k \\
+\shortstack[l]{Log PCM\\(Nonuniform PCM)} & Logarithmic \okunamadi{} & 7-8 bits & 56k-64k \\
+DPCM & '' & 4-6 bits & 32k-48k \\
+ADPCM & Adaptive & 3-4 bits & 24k-32k \\
+DM & Binary & 1 bit & 32k-64k \\
+ADM & Adaptive '' & '' & 16-32k \\
+\midrule
+\shortstack[l]{{\footnotesize (code excited linear coding)}\\LPC/CELP\\{\footnotesize (Linear predictive coding)}} & & & 2400-9600 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\begin{center}\small
+\textit{[Tablonun sol kenarında, PCM--ADM satırlarını kapsayan süslü parantezle: ``zamanda kodlama''; LPC/CELP satırı için: \okunamadi{frekansta} kodlama.]}
+\end{center}
+
+\sayfa{9}
+3. yol Model based kodlama
+
+\begin{flushleft}
+$\downarrow$ cep telefonu haberleşmesinde \\
+\hspace*{1.2em}(vocoder) \\
+\hspace*{1.2em}Voice Coder
+\end{flushleft}
+
+\end{document}

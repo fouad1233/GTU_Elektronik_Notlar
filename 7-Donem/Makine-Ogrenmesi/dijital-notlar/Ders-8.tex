@@ -1,0 +1,200 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Perceptron, backpropagation, aktivasyon ve PyTorch}{Ders-8.pdf}
+
+\sayfa{1}
+\section{ROC curve \okunamadi{}}
+\elcizimi[0.4]{sekiller/Ders-8-s1-1.png}[1]
+\[ \vec{w}\cdot\vec{x} + b = \hat{r}^t \]
+\[ \mathcal{L}(\theta|X) = \sum_{t=1}^{N} (\hat{r}^t - r^t)^2 \]
+türevini alıp 0'a \okunamadi{eşitleriz}
+
+başka yöntem
+
+\elcizimi[0.62]{sekiller/Ders-8-s1-2.png}[1]
+sınıflandırmak için
+\begin{gather*}
+z<0 \Rightarrow C_0 \\
+z\geq 0 \Rightarrow C_1 \\
+P(C_0)
+\end{gather*}
+
+\subsection{sigmoid}
+\[ \sigma(z) = \frac{1}{1+e^{-z}} \]
+\elcizimi[0.4]{sekiller/Ders-8-s1-3.png}[1]
+\begin{gather*}
+z<0 \Rightarrow C_0 \\
+z\geq 0 \Rightarrow C_1
+\end{gather*}
+
+Bu sefer iteratif olarak ilerliyoruz
+
+gradient descent
+\[ w_i \leftarrow w_i - \eta \frac{\partial J}{\partial w_i} \quad\rightarrow\quad \text{maliyet fonksiyonu} \]
+\elcizimi[0.4]{sekiller/Ders-8-s1-4.png}[1]
+
+\sayfa{2}
+\section{Back Propagation}
+\[ \hat{y}_i = \sigma(z_i) = \frac{1}{1+e^{-z_i}} \quad , \quad z_i = w^T \cdot x_i + b \]
+\[ \text{entropy} \quad \sum_{i=1}^{k} p_i \log p_i \]
+\[ J(w) = -\frac{1}{N}\sum_{i=1}^{N}\underbrace{y_i\log(\hat{y}_i) + (1-y_i)\log(1-\hat{y}_i)}_{\text{cross entropy}} \]
+\[ \frac{\partial J(w)}{\partial w} = \underset{\text{\small\textcolor{turuncukalem}{\okunamadi{önce bu}}}}{\frac{\partial J(w)}{\partial \hat{y}_i}} \cdot \underset{\text{\small\textcolor{turuncukalem}{sonra bu}}}{\frac{\partial \hat{y}_i}{\partial z_i}} \cdot \underset{\text{\small\textcolor{turuncukalem}{sonra bu}}}{\frac{\partial z_i}{\partial w}} \]
+\[ \frac{\partial J(w)}{\partial \hat{y}_i} = -\frac{y_i}{\hat{y}_i} + \frac{1-y_i}{1-\hat{y}_i} \qquad\qquad \frac{\partial \hat{y}_i}{\partial z_i} = \hat{y}_i(1-\hat{y}_i) \]
+\[ \frac{\partial z_i}{\partial w} = x_i \]
+\[ \frac{\partial J(w)}{\partial w} = \frac{1}{N}\sum_{i=1}^{N}(\hat{y}_i - y_i)\,x \]
+\textcolor{turuncukalem}{sonra bunu ekleyeceğiz}\\
+\textcolor{turuncukalem}{geri sararak yapıyoruz}
+\[ \frac{\partial J(w)}{\partial b} = \frac{1}{N}\sum_{i=1}^{N}(\hat{y}_i - y_i) \]
+\[ X = \{x^t, r^t\}_{t=1}^{M} \qquad P(C_0)=\hat{y}_i \qquad P(C_1)=(1-\hat{y}_i) \]
+\elcizimi[0.7]{sekiller/Ders-8-s2-1.png}[2]
+
+multi layer perceptron
+\elcizimi[0.35]{sekiller/Ders-8-s2-2.png}[2]
+
+activation function
+\[ \phi(wx+b) \]
+
+\sayfa{3}
+\[ \Phi_2\Bigl(W \sum \Phi_1(wx+b)\Bigr) \]
+Fourier'de
+\[ \overset{\text{Basis function}}{\langle \Phi_1(x), \Phi_2(x)\rangle} = \int_{-\infty}^{\infty} \Phi_1(x)\,\Phi_2(x)\,dx = \overset{\text{ortogonal}}{0} \]
+ama burda
+
+\elcizimi[0.75]{sekiller/Ders-8-s3-1.png}[3]
+
+Biz ortogonal olmalarını bekliyoruz
+
+Böyle bir teorem var
+\[ \sum_{i=1}^{\infty} w_i\,\Phi(x-x_i) \approx g(x) \]
+yumuşak baz fonksiyonlarıyla mükemmel olarak tahmin edebiliriz
+
+teorik olarak
+
+universal approximator
+\[ x \xrightarrow{f(x)} y \]
+\elcizimi[0.45]{sekiller/Ders-8-s3-2.png}[3]
+
+\[ \text{\textcircled{1}}\ \mathrm{softmax} = \frac{e^{z_i}}{\sum_{j=1}^{C} e^{z_j}} \quad \swarrow\ \text{olasılık dağılımına ihtiyacımız olduğunda} \]
+
+\sayfa{4}
+\okunamadi{soru}
+
+\elcizimi[0.65]{sekiller/Ders-8-s4-1.png}[4]
+böyle bir sıkıntı var \quad sonsuza giderken türev 0 \quad o yüzden back propagation iyi çalışmaz
+
+bu yüzden genelde softmax en son katmanda kullanılır
+
+\textcircled{2} ReLU
+
+\elcizimi[0.35]{sekiller/Ders-8-s4-2.png}[4]
+$ax+b$ şeklinde göstermiyoruz\\
+non linear
+
+negatif tarafta yine türevi 0, dead neuron sorununa yol açıyor
+
+\textcircled{3} Leaky ReLU
+
+\elcizimi[0.35]{sekiller/Ders-8-s4-3.png}[4]
+nonlinearity daha az olduğu için daha fazla katman gerekiyor
+
+\[ 180 \times [-1,1] \]
+\textcircled{4} $\tanh = \dfrac{e^{z}-e^{-z}}{e^{z}+e^{-z}}$
+
+\elcizimi[0.4]{sekiller/Ders-8-s4-4.png}[4]
+bunda da türevler $+\infty,-\infty$'da 0'a yaklaşıyor
+
+\sayfa{5}
+\section{Derin öğrenmede katmanlar artar}
+\textcircled{1} Tensorflow\\
+\textcircled{2} Pytorch
+
+TensorDataset
+
+Data augmentation
+
+\elcizimi[0.55]{sekiller/Ders-8-s5-1.png}[5]
+
+Pseudo random
+
+\okunamadi{x kütlesini} $\swarrow$\\
+DataScaler() $\rightarrow$ Standart Scaler()
+\[ \vec{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix} \qquad -1 < x_i < 1 \]
+\begin{gather*}
+10^{6} \;\text{---}\; 10^{-4} \\
+2 \;\text{---}\; 10^{-4}
+\end{gather*}
+
+\sayfa{6}
+Scaler
+
+\textcircled{1} min-max
+\[ \frac{x-x_{\min}}{x_{\max}-x_{\min}} \]
+
+\textcircled{2} Gauss $\mathcal{N}(0,1)$
+\[ \frac{x-\mu}{\sigma} \]
+\elcizimi[0.3]{sekiller/Ders-8-s6-1.png}[6]
+
+sonra TensorDataset
+
+random split
+
+Dataloader
+
+class ANNmodel(nn.Module) \quad $\leftarrow$ bunun inherit ediyoruz
+
+init : super().\_\_init\_\_()
+
+pytorch linear\\
+torch.nn.Linear(in\_features, out\_features, bias=True, device=None, dtype=None)
+
+\elcizimi[0.3]{sekiller/Ders-8-s6-2.png}[6]
+\[ \text{parametre sayısı} = \underset{\text{in out}}{N\times M} + N \]
+
+net = nn.Sequential
+
+\hspace{2em}BatchNorm1d
+
+\hspace{3em}Dropout
+
+optim.Adam
+
+nn.CrossEntropyLoss
+
+\sayfa{7}
+def forward(self,x):\\
+\hspace*{2em}x = x.to(self.device)\\
+\hspace*{2em}x = x.to(T.float32)
+
+out\_ = F.one\_hot(T.argmax(out,dim=1), num\_classes=\okunamadi{k})
+
+def learn:
+
+self.optimizer.zero\_grad()\\
+\hspace*{1em}y\_pred = self.forward(x)\\
+\hspace*{2em}loss = self.loss(y\_pred, y)\\
+\hspace*{3em}loss.backward
+
+Normalization layer
+
+\hspace{2em}BatchNorm1d
+
+Dropout layers
+
+overfit etmemek için bazı verileri düşürürüz
+
+Cosine similarity
+
+\elcizimi[0.3]{sekiller/Ders-8-s7-1.png}[7]
+\[ \frac{x\cdot y}{\|x\|\,\|y\|} = \cos(\theta) \]
+
+\sayfa{8}
+Loss Functions
+
+\hspace{2em}L1 loss
+
+\hspace{2em}MSE loss
+
+\hspace{2em}KLDivLoss
+
+\end{document}

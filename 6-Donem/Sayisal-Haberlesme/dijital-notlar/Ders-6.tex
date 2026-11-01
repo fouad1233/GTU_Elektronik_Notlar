@@ -1,0 +1,237 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{PCM, kuantalama, hat kodları ve delta modülasyonu}{Ders-6.pdf}
+
+\sayfa{1}
+\section{Darbe kod modülasyonu (Pulse code modulation)}
+
+\elcizimi[0.85]{sekiller/Ders-6-s1-1.png}[1]
+
+$x_p=\mathrm{maks}\,|x(t)|$
+
+\[ \underset{\text{kuantalayıcı adımı}}{\Delta v}=\frac{2x_p}{L}\ \longrightarrow\ \text{kuantalayıcıdaki seviye sayısı} \]
+
+$L=2^n$ olduğunda midir
+
+\[ N_0=N_q=\frac{\Delta v^2}{12}=\frac{x_p^2}{3L^2}\ \Big\}\ \mathrm{SNR}=\frac{S_0}{N_0}=3L^2\,\frac{P_x}{x_p^2} \]
+
+$S_0=P_x$
+
+Ses (Voice): 0-15 kHz \quad (300-3400 Hz önemli)
+
+\elcizimi[0.95]{sekiller/Ders-6-s1-2.png}[1]
+
+$R=nf_s$ bit/sn
+
+\subsection{Düzgün olmayan kuantalama (Non uniform quantization)}
+
+\elcizimi[0.4]{sekiller/Ders-6-s1-3.png}[1]
+
+İşaretin genliği yani gücünün düşük olduğu yerde kuantalama aralığını \okunamadi{küçültürsek}
+\[ N_0=N_q=\frac{\Delta v^2}{12}=\frac{x_p^2}{3L^2}\uparrow\ \Big\}\ \mathrm{SNR}=\frac{S_0}{N_0}=3L^2\,\frac{P_x}{x_p^2} \]
+
+\sayfa{2}
+\elcizimi[0.5]{sekiller/Ders-6-s2-1.png}[2]
+
+küçük genlikleri büyütüyor, büyük genlikleri küçültüyor
+
+\subsection{$\mu$ tipi sıkıştırıcı (low)}
+kuzey Amerika ve Japonya
+
+\elcizimi[0.5]{sekiller/Ders-6-s2-2.png}[2]
+
+\[ \frac{y(t)}{y_p}=\frac{1}{\ln(1+\mu)}\,\ln\!\left(1+\mu\,\frac{|x(t)|}{x_p}\right)\mathrm{sgn}(x),\qquad 0\le\frac{|x(t)|}{x_p}\le 1 \]
+
+SNR $=40$ dB için $\mu\ge 100$ \hfill Standart $\mu=255$
+
+\subsection{A tipi sıkıştırıcı}
+Avrupa ve diğer bölgeler
+
+\elcizimi[0.4]{sekiller/Ders-6-s2-3.png}[2]
+
+\[ \frac{|y(t)|}{y_p}=\begin{cases} \dfrac{A}{1+\ln A}\left(\dfrac{|x(t)|}{x_p}\right)\mathrm{sgn}(x), & 0\le\dfrac{|x(t)|}{x_p}\le\dfrac{1}{A}\\[3mm] \dfrac{1}{1+\ln A}\left(1+\ln\dfrac{A|x(t)|}{x_p}\right), & \dfrac{1}{A}\le\dfrac{|x(t)|}{x_p}\le 1 \end{cases} \]
+
+
+\elcizimi[0.4]{sekiller/Ders-6-s2-4.png}[2]
+
+Alıcı\\
+Açıcı (Expander)
+
+compander $=$ compressor $+$ expander
+
+\sayfa{3}
+$\mu$-sıkıştırıcı/açıcı kullanıldığında\\
+Çıkışta: İGO (SNR)
+
+\[ \mathrm{SNR}=\frac{S_0}{N_0}\approx\frac{3L^2}{\left[\ln(1+\mu)\right]^2},\qquad \mu^2\gg\frac{x_p^2}{P_x} \]
+
+\elcizimi[0.55]{sekiller/Ders-6-s3-1.png}[3]
+
+\subsection{Kodlayıcı (Encoder)}
+Microelectronics Circuits, Rashid, sayfa 873-883
+
+Digit at a time encoder
+
+\elcizimi[0.95]{sekiller/Ders-6-s3-2.png}[3]
+
+\[ V_o=-R_F I_F=-R_F V_{\mathrm{ref}}\left(\frac{B_3}{R_3}+\frac{B_2}{R_2}+\frac{B_1}{R_1}+\frac{B_0}{R_0}\right) \]
+\[ V_o=-\frac{R_F}{R}\,V_{\mathrm{ref}}\left(2^3B_3+2^2B_2+2B_1+B_0\right) \]
+
+\sayfa{4}
+$V_{\mathrm{ref}}=5\,\mathrm{V}$ \quad $R=10R_F$ olsun
+
+\[ V_o=-0{,}5\left(8\underset{1}{B_3}+4\underset{0}{B_2}+2\underset{1}{B_1}+\underset{1}{B_0}\right)\ \longrightarrow\ V_o=-5{,}5\ \mathrm{V} \]
+
+\subsection{İletim hızı ve BG}
+
+$L=2^n$ seviye $\longrightarrow$ $n\,\dfrac{\mathrm{bit}}{\text{k.örnek}}$
+
+İletim hızı: $R_b=n\,\dfrac{\mathrm{bit}}{\mbox{\text{k.örnek}}}\cdot f_s\,\dfrac{\mbox{\text{örnek}}}{\mathrm{sn}}$
+
+\formulkutu{R_b=n f_s\ \mathrm{bit/sn}}
+
+\begin{teorem}
+1 Hz'lik band genişliğinde, 1 saniyede 2 parça bilgi iletilir.
+\begin{center}
+\begin{tabular}{ccc}
+\underline{\hspace{1em}Hız\hspace{1em}} & & \underline{\hspace{1em}BG\hspace{1em}}\\[2pt]
+$\dfrac{2\ \text{parça}}{\text{sn}}$ & $\longrightarrow$ & 1 Hz
+\end{tabular}
+\end{center}
+\end{teorem}
+
+PCM için gereken min kanal BG
+
+\[ \star\quad \mathrm{BG}=B_k=\frac{R_b}{2}=\frac{n f_s}{2}\ \mathrm{Hz} \]
+
+\begin{ornek}
+$x(t)$'nin bant genişliği $3\ \mathrm{kHz}$. $f_s$, Nyquist hızının \%33 fazlasıdır. Maks. kuantalama hatası tepe genliğinin \%0,5'idir. Kuantalanmış örnekler ikili kodlanmıştır. Gereken minimum kanal BG'ni bulunuz. Bu türden 24 işaret zaman bölmeli çoklama (ZBÇ) ile iletirse gereken min kanal BG'ni bulunuz.
+\end{ornek}
+
+\[ B=f_m=3\ \mathrm{kHz} \]
+\[ f_s=f_N+\%33\,f_N=\frac{4}{3}f_N=\frac{4}{3}\times 2B=8\ \mathrm{kHz}\quad(\text{8k örnek/sn}) \]
+
+Maks kuantalama hatası \quad $\dfrac{\Delta v}{2}=\dfrac{0{,}5}{100}\,x_p$
+
+\[ \Delta v=\frac{2x_p}{L}\ \longrightarrow\ \frac{\Delta v}{2}=\frac{x_p}{L} \]
+
+\[ \Longrightarrow\ \frac{\Delta v}{2}=\frac{x_p}{L}=\frac{0{,}5}{100}\,x_p\ \Longrightarrow\ \kutula{L=\frac{100}{0{,}5}=200} \]
+
+\[ \underset{256}{2^n}\geq\underset{200}{L} \]
+
+\[ 2^n=256=2^8\ \longrightarrow\ \kutula{n=8\ \frac{\mathrm{bit}}{\text{k.örnek}}} \]
+
+\[ R_b=n\cdot f_s=8\times 8\mathrm{k}=64\,\mathrm{k}\,\frac{\mathrm{bit}}{\mathrm{sn}} \]
+\[ B_k=\frac{R_b}{2}=32\ \mathrm{kHz} \]
+
+\sayfa{5}
+\[ R_{b,\mathrm{TDM}}=24\times R_b=1{,}536\ \mathrm{M}\,\frac{\mathrm{bit}}{\mathrm{sn}} \]
+\[ B_{k,\mathrm{TDM}}=24\times B_k=0{,}768\ \mathrm{MHz} \]
+
+\[ L=2^n\ \longrightarrow\ L^2=2^{2n} \]
+
+\[ \frac{S_0}{N_0}=\begin{cases} 3L^2\,\dfrac{P_x}{x_p^2} & \text{sıkıştırmasız}\\[3mm] \approx 3L^2\,\dfrac{1}{\left[\ln(1+\mu)\right]^2} & \text{sıkıştırmalı},\ \mu^2\gg\dfrac{x_p^2}{P_x} \end{cases} \]
+
+\[ \frac{S_0}{N_0}=c\cdot 2^{2n} \]
+
+\[ c=\begin{cases} \dfrac{3P_x}{x_p^2} & \text{sıkıştırmasız (Düzgün)}\\[3mm] \dfrac{3}{\left[\ln(1+\mu)\right]^2} & \text{Düzgün olmayan} \end{cases} \]
+
+\[ B_k=\frac{n f_s}{2}\ \Longrightarrow\ n=\frac{2B_k}{f_s}\ \Longrightarrow\ \frac{S_0}{N_0}=c\cdot 2^{2n}=c\cdot 2^{\left(4B_k/f_s\right)} \]
+
+\[ \uparrow\quad \frac{S_0}{N_0}=c\cdot 2^{\frac{4B_k}{f_s}} \]
+
+\vurgu[turuncu]{Bant genişliğindeki küçük bir değişim işaret gürültü oranı hızla artar.}
+
+\begin{align*}
+\left(\frac{S_0}{N_0}\right)_{\mathrm{dB}} &= 10\log_{10}\frac{S_0}{N_0} = 10\log_{10}c\,2^{2n}\\
+&= \underbrace{10\log_{10}c}_{\alpha}+\underbrace{20n\log_{10}2}_{6n} = \alpha+6n\ \mathrm{dB}
+\end{align*}
+
+Bit sayısını bir arttırdığında SNR 6 dB kadar yükselir.\\
+Ama bant genişliği artar
+
+\sayfa{6}
+\[ \left.\begin{array}{ll} n=8 & B_k=32\ \mathrm{kHz}\\ n=9 & B_k=36\ \mathrm{kHz}\end{array}\right\}\ 32\ \mathrm{kHz}\longrightarrow 36\ \mathrm{kHz}\quad(\%12\ \text{artış}) \]
+\[ \nearrow\ \frac{9\cdot\overset{4}{8}\mathrm{k}}{2} \]
+
+15 nisan Pazartesi\\
+15:30 ara sınav (Z03, Z14, B07, B02)
+
+\begin{ornek}
+BG $=4\ \mathrm{kHz}$ olan bir $x(t)$ işareti $\mu=100$'lük sıkıştırıcı kullanan bir DKM (PCM) ile iletilecektir.\\
+a) $L=64$ seviyeli kuantalayıcı kullanırsa $B_k$ ve İGO?\\
+b) $L=256$ \quad '' \quad '' \quad '' \quad '' \quad ''
+\end{ornek}
+
+\[ B=4\ \mathrm{kHz}\ \longrightarrow\ f_s=f_N=2B=8\mathrm{k}\ \text{örnek/sn} \]
+
+a) $L=64=2^6\ \longrightarrow\ n=\dfrac{6\ \mathrm{bit}}{\text{k.örnek}}\ \longrightarrow\ B_k=\dfrac{n f_s}{2}=\dfrac{6\times 8\mathrm{k}}{2}=24\ \mathrm{kHz}$
+
+b) $\text{İGO}=\alpha+6n\ \mathrm{dB}$
+
+\[ \alpha=10\log_{10}c=10\log_{10}\frac{3}{\left[\ln(1+\underset{100}{\mu})\right]^2}=-8{,}51\ \mathrm{dB} \]
+\[ \text{İGO}=-8{,}51+6\times 6=27{,}49\ \mathrm{dB} \]
+
+\okunamadi{b)} $L=256=2^8\ \longrightarrow\ n=8\ \mathrm{bit}/\text{k.örnek}$
+
+$\text{İGO}=\alpha+6n=-8{,}51+6\times 8=39{,}49\ \mathrm{dB}$
+
+$B_k=\dfrac{n f_s}{2}=\dfrac{8\cdot 8\mathrm{k}}{2}=32\ \mathrm{kHz}$
+
+\begin{center}
+\begin{tabular}{lll}
+ & \underline{$L=64$ ($n=6$)} & \underline{$L=256$ ($n=8$)}\\[2pt]
+$B_k=$ & 24 kHz & 32 kHz \quad (\%33 artış)\\
+İGO $=$ & 27,49 dB & 39,49 dB \quad (12 dB)
+\end{tabular}
+\end{center}
+
+\[ \text{İGO}(L=256)=16\cdot\text{İGO}(L=64) \]
+
+\sayfa{7}
+\elcizimi[0.9]{sekiller/Ders-6-s7-1.png}[7]
+
+\elcizimi[0.95]{sekiller/Ders-6-s7-2.png}[7]
+
+S 87, Fig 2.22
+
+\subsection{Parametreler}
+\begin{enumerate}[label=\arabic*)]
+\item DC component
+\item self clocking $\to$ manchester
+\item Error detection $\to$ Duo binary
+\item BW compression
+\item Differential encoding
+\item Noise immunity \quad $P_b(\mathrm{NRZ}) < P(\text{Unipolar RZ})$
+\end{enumerate}
+
+\sayfa{8}
+\sekilnotu[8]{Basılı Figure 2.23: Çeşitli PCM dalga biçimlerinin spektral yoğunlukları (Duobinary, Delay modulation, NRZ, Dicode NRZ, Bi-phase). El yazısı eklemeler: eksen etiketi ``PSD (W/Hz)'' ve ``manchester'' eğrisinin adı.}
+
+\[ \text{Normalized BW}\ \longrightarrow\ \mathrm{BG}=\frac{W\ (\mathrm{Hz})}{R_s=\frac{1}{T}\ \text{sembol/sn}}\quad\text{(sembol hızı)} \]
+
+En yüksek bant genişliği manchester
+
+her darbe bir bite karşı gelirse\\
+1 sembol $=1$ bit olur
+
+$WT<1\ \Rightarrow$ BW efficient\\
+$WT>1\ \Rightarrow$ BW inefficient
+
+\subsection{Delta modülasyonu (DM)}
+
+\[ \Delta v=\frac{2x_p}{L}\ \longrightarrow\ N_q=\frac{\Delta v^2}{12}=\frac{3L^2}{x_p^2}\footnotemark\ \longrightarrow\ \mathrm{SNR}=3L^2\,\frac{P_x}{x_p^2} \]
+\footnotetext{Claude notu: muhtemelen $N_q=x_p^2/(3L^2)$ olmalı (pay ve payda yer değiştirmiş).}
+
+kuantalama gürültüsünü azaltmak için
+
+\[ \underset{(n\uparrow)}{L\uparrow}\ \Rightarrow\ \Delta v\downarrow\ \Rightarrow\ N_q\downarrow\ \Rightarrow\ \text{İGO}=\frac{P_x}{N_q}\uparrow\qquad\times\qquad B_k=\frac{n f_s}{2}\uparrow \]
+
+veya $x_p$'yi küçültebiliriz
+
+\elcizimi[0.42]{sekiller/Ders-6-s8-1.png}[8]
+
+Differential PCM (DPCM) $\xrightarrow{\,n=1\,}$ DM
+
+\end{document}

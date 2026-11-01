@@ -1,0 +1,188 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Ayrık zamanlı sistemler, LTI, konvolüsyon, FIR/IIR}{Dsp-ders-2.pdf}
+
+\sayfa{1}
+\[ x(t)=\cos(2\pi t) \]
+$F_s = 5\,\mathrm{Hz}$ olsun
+\[ x[n] = x(t)\Big|_{t=nT_s} = \cos\frac{2\pi n}{5} = \cos 0{,}4\pi n \]
+
+\[ \omega = 0{,}4\pi \]
+\[ 2\pi k = 0{,}4\pi N \]
+\[ N = 5k \qquad N_0 = 5 \ \text{periyottur.} \]
+
+\[ x_1[n] = \cos(0{,}4\pi n) \qquad \leftarrow \text{bu işaretin frekansı daha yüksek} \]
+\[ x_2[n] = \cos(0{,}2\pi n) \]
+
+\begin{dikkat}
+Daha sık örnekleme aynı işaret için ayrık zamanlı işaretin frekansını azaltır
+\end{dikkat}
+
+Ayrık zamanda daha yüksek değişimler daha yüksek frekans demektir, az değişler daha az frekans demektir.
+
+Ayrık zamanda en yüksek frekans $\omega=\pi$'dir
+\[ x[n]=\cos\pi n \]
+\elcizimi[0.35]{sekiller/Dsp-ders-2-s1-1.png}[1]
+
+\section{Systems}
+\elcizimi[0.4]{sekiller/Dsp-ders-2-s1-2.png}[1]
+\[ y[n] = x[n-n_d] \qquad \leftarrow \text{gecikme} \]
+
+\textit{bellekli} $\swarrow$
+\[ y[n] = \tfrac{1}{3}x[n] + \tfrac{1}{3}x[n-1] + \tfrac{1}{3}x[n-2] \]
+ortalama alıyor, hareketli (moving average) (son üç örneklemin ortalaması alıyor)
+
+\elcizimi[0.7]{sekiller/Dsp-ders-2-s1-3.png}[1]
+(Alçak geçiren filtre aslında ayrık zamanda)
+
+\sayfa{2}
+\[ y[n]=\frac{1}{4}x[n] \qquad \text{belleksiz} \]
+
+\section{Linear system}
+linear system
+\elcizimi[0.4]{sekiller/Dsp-ders-2-s2-1.png}[2]
+\elcizimi[0.55]{sekiller/Dsp-ders-2-s2-2.png}[2]
+\elcizimi[0.85]{sekiller/Dsp-ders-2-s2-3.png}[2]
+
+\[ y[n]=8x[n]+1 \]
+linear systeme 0 verince 0 çıkmalıdır
+\begin{align*}
+x_1[n]&=2 & y_1[n]&=17\\
+x_2[n]&=3 & y_2[n]&=25\\
+x_3[n]&=5 & y_3[n]&=41\neq 42
+\end{align*}
+
+\section{Time invariant Systems}
+\[ x_1[n]\rightarrow y_1[n] \quad \text{time invariant ise} \]
+\[ x_1[n-n_d]\rightarrow y_1[n-n_d] \]
+\elcizimi[0.8]{sekiller/Dsp-ders-2-s2-4.png}[2]
+
+\sayfa{3}
+\section{Nedensel sistemler}
+çıkışı şimdiki ve önceki örnekleme bağlı
+
+zamansa nedensel olmayan sistemler gerçekleştirilemez\\
+Ama konumsa gerçekleşebilir!!
+
+non-causal -- $y[n]=x[n-1]+x[n]+x[n+1]$\\
+anti causal -- $y[n]=x[n+1]$ \quad sadece geleceğe bağlı
+
+\section{Kararlılık (BI-BO)}
+\elcizimi[0.6]{sekiller/Dsp-ders-2-s3-1.png}[3]
+\begin{align*}
+|x[n]| &< B_x \le \infty\\
+|y[n]| &< B_y \le \infty
+\end{align*}
+
+Bir sistemin kararlı olduğunu nasıl anlarız\\
+kararlı olduğunu göstermek çok zor
+
+\[ y[n]=(x[n])^3 \]
+\begin{align*}
+|x[n]| &< B_x\\
+|y[n]| &< (B_x)^3 \quad \rightarrow \text{hala sonlu}
+\end{align*}
+
+\[ y[n]=\begin{cases} 0, & n<0\\ n+1, & n\ge 0 \end{cases} \]
+$\uparrow$ $n$ sonsuza giderken sistem kararsızdır.
+
+\sayfa{4}
+\section{LTI Systems}
+\elcizimi[0.5]{sekiller/Dsp-ders-2-s4-1.png}[4]
+\elcizimi[0.35]{sekiller/Dsp-ders-2-s4-2.png}[4]
+\[ y[n]=\sum_{k=-\infty}^{\infty} x[k]\,h[n-k] = x[n]*h[n] \]
+\textit{convolution sum}
+
+\elcizimi[0.6]{sekiller/Dsp-ders-2-s4-3.png}[4]
+\begin{align*}
+y[n] &= \sum_{k=-\infty}^{\infty} x[k]\,h[n-k]\\
+&= \sum_{k=-\infty}^{\infty} h[k]\,x[n-k]
+\end{align*}
+
+\begin{align*}
+x[n] &= \begin{bmatrix} 1 & 2 & 3 \end{bmatrix}\\
+h[n] &= \begin{bmatrix} 2 & 1 & 3 \end{bmatrix}
+\end{align*}
+
+\sayfa{5}
+\elcizimi[0.7]{sekiller/Dsp-ders-2-s5-1.png}[5]
+\elcizimi[0.7]{sekiller/Dsp-ders-2-s5-2.png}[5]
+\[ y[0]=2\cdot 1=2 \]
+\elcizimi[0.5]{sekiller/Dsp-ders-2-s5-3.png}[5]
+\[ y[1]=1\cdot 1+2\cdot 2=5 \]
+$k=0 \qquad 1$
+
+\sayfa{6}
+\begin{tabular}{@{}l@{\qquad}l@{\qquad}l@{}}
+$x$ & boyutu 3 & $= A$\\
+$h$ & boyutu 3 & $= B$\\
+$y$ & boyutu 5 & $= A+B-1$
+\end{tabular}
+
+\elcizimi[0.6]{sekiller/Dsp-ders-2-s6-1.png}[6]
+\begin{align*}
+w[n] &= x[n]*h_1[n]\\
+y[n] &= w[n]*h_2[n]\\
+&= (x[n]*h_1[n])*h_2[n]\\
+&= x[n]*(h_1[n]*h_2[n])
+\end{align*}
+
+\elcizimi[0.85]{sekiller/Dsp-ders-2-s6-2.png}[6]
+\elcizimi[0.7]{sekiller/Dsp-ders-2-s6-3.png}[6]
+
+\begin{align*}
+h[n] \qquad y[n] &= x[n]*h[n]\\
+&= \sum_{k=-\infty}^{\infty} h[k]\,x[n-k]\\
+&= \sum_{k=-\infty}^{\infty} x[k]\,h[n-k]
+\end{align*}
+\begin{align*}
+y[n] &= \cdots + h[-2]\,x[n-2] + h[-1]\,x[n-1]\footnotemark\\
+&\quad + h[0]\,x[n] + h[1]\,x[n-1] + h[2]\,x[n-2] + \cdots
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $x[n+2]$ ve $x[n+1]$ olmalı.}
+
+\sayfa{7}
+Nedensel sistemlerde çıkış gelecekteki girişlerden bağımsız
+
+\begin{align*}
+h[-1] &= 0\\
+h[-2] &= 0\\
+&\ \ \vdots\\
+h[-n] &= 0
+\end{align*}
+\[ h[n]=0 \quad n<0 \]
+$\Rightarrow$ sistem nedenseldir.
+
+\vurgu[pembe]{Kararlılık} = Genliği sınırlı bir giriş için çıkışı sınırlı olan sistem
+\[ \sum_{n=-\infty}^{\infty} |h[n]| < \infty \qquad \text{(mutlak toplanabilir)} \]
+
+\begin{dikkat}
+Sakın sınavda mutlak koymayı unutma 0 alırsın :)
+\end{dikkat}
+
+\[ h[n]=u[n] \qquad \text{kararsız} \]
+\[ h[n]=\alpha^{n}u[n] \]
+geometrik seri toplamı
+\formulkutu[önemli]{\text{toplam: } \frac{1}{1-|\alpha|} \qquad |\alpha|<1}
+\[ |\alpha|\ge 1 \ \text{ise kararsızdır sistem} \]
+
+\[ h[n]=0{,}2^{n}u[n] \qquad \text{toplam } \frac{1}{1-|\alpha|}=\frac{1}{1-0{,}2}=1{,}25 \]
+\[ = 1+0{,}2+0{,}04+\cdots \]
+
+\section{FIR ve IIR}
+Finite Impulse Response\\
+Infinite Impulse Response
+
+\sayfa{8}
+\elcizimi[0.85]{sekiller/Dsp-ders-2-s8-1.png}[8]
+\elcizimi[0.9]{sekiller/Dsp-ders-2-s8-2.png}[8]
+\elcizimi[0.8]{sekiller/Dsp-ders-2-s8-3.png}[8]
+
+$h[n]$'in genliği her zaman sonludur
+
+FIR her zaman kararlı
+
+IIR (her zaman) kararlı değil ama kullanırız çünkü daha az pencere (örnek) ile FIR'ın yaptığı iş yapılabilir (bazı işaretler için)
+
+\end{document}

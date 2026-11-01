@@ -1,0 +1,211 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal İşaret İşleme}{Altörnekleme, üstörnekleme ve LTI frekans yanıtı}{Dsp-ders-7.pdf}
+
+\sayfa{1}
+\elcizimi[0.9]{sekiller/Dsp-ders-7-s1-1.png}[1]
+
+\[
+\begin{aligned}
+&\textcolor{kirmizikalem}{\text{orijinal}} \\
+&F_s = 200\ \mathrm{Hz} \\[4pt]
+&T_{\text{yeni}} = \overset{\text{tamsayı}}{M}\,T = T' \\[4pt]
+&F_{s,\text{yeni}} = 100\ \mathrm{Hz} \qquad M = 2
+\end{aligned}
+\]
+
+\elcizimi[0.6]{sekiller/Dsp-ders-7-s1-2.png}[1]
+
+\begin{align*}
+x[n] &= x(nT) \\
+\underset{\text{down samples}}{x_d}[n] &= x[nM]
+\end{align*}
+
+\begin{center}
+\begin{tabular}{@{}l@{\qquad\qquad}l@{\qquad\qquad}l@{}}
+ & $M=2$ & $M=3$ \\
+$x[0]=A$ & $x_d[0]=A$ & $x_d[0]=A$ \\
+$x[1]=B$ & $x_d[1]=C$ & $x_d[1]=D$ \\
+$x[2]=C$ & $x_d[2]=E$ & $x_d[2]=G$ \\
+$x[3]=D$ & & \\
+$x[4]=E$ & & \\
+$x[5]=F$ & & \\
+$x[6]=G$ & &
+\end{tabular}
+\end{center}
+
+\elcizimi[0.4]{sekiller/Dsp-ders-7-s1-3.png}[1]
+
+\[ x[n] \donusum X(e^{j\omega}) = \sum_{n=-\infty}^{\infty} x[n]\, e^{-j\omega n} \]
+\[ X(e^{j\omega}) = \frac{1}{T}\sum_{k=-\infty}^{\infty} X_c\!\left(j\left(\underbrace{\frac{\omega}{T}}_{\textcolor{turuncukalem}{\Omega}} - \underbrace{\frac{2\pi k}{T}}_{\textcolor{turuncukalem}{\Omega_s}}\right)\right) \]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s1-4.png}[1]
+
+\[ X_d(e^{j\omega}) = \frac{1}{T'}\sum_{k=-\infty}^{\infty} X_c\!\left(j\left(\frac{\omega}{T'} - \frac{2\pi k}{T'}\right)\right) \]
+\[ = \frac{1}{MT}\sum_{\textcolor{kirmizikalem}{r}=-\infty}^{\infty} X_c\!\left(j\left(\frac{\omega}{MT} - \frac{2\pi \textcolor{kirmizikalem}{r}}{MT}\right)\right) \qquad \textcolor{kirmizikalem}{r\ \text{yazalım}} \]
+
+\sayfa{2}
+\[
+\begin{aligned}
+&r = i + kM \\
+&0 \le i \le M-1 \\
+&-\infty < k \le +\infty
+\end{aligned}
+\]
+
+\elcizimi[0.75]{sekiller/Dsp-ders-7-s2-1.png}[2]
+
+Görüldüğü üzere $r = -\infty$ ile $+\infty$ arasında değer alıyor
+
+\begin{align*}
+X_d(e^{j\omega}) &= \frac{1}{MT}\sum_{r=-\infty}^{\infty} X_c\!\left(j\left(\frac{\omega}{MT} - \frac{2\pi r}{MT}\right)\right) \\
+&= \frac{1}{M}\sum_{i=0}^{M-1}\frac{1}{T}\sum_{k=-\infty}^{\infty} X_c\!\left(j\left(\frac{\omega}{MT} - \frac{2\pi(i+kM)}{MT}\right)\right)
+\end{align*}
+\[ \frac{2\pi i + 2\pi kM}{MT} = \frac{2\pi i}{MT} + \frac{2\pi k}{T} \]
+
+\[ = \frac{1}{M}\sum_{i=0}^{M-1}\frac{1}{T}\sum_{k=-\infty}^{\infty} X_c\!\left(j\left(\textcolor{turuncukalem}{\frac{\omega - 2\pi i}{MT}} - \frac{2\pi k}{T}\right)\right) \]
+
+\[ X_d(e^{j\omega}) = \frac{1}{M}\sum_{i=0}^{M-1} X(e^{j\omega})\Big|_{\omega = \frac{\omega - 2\pi i}{M}} \]
+\[ X_d(e^{j\omega}) = \frac{1}{M}\sum_{i=0}^{M-1} X\!\left(e^{j\frac{\omega - 2\pi i}{M}}\right) \]
+
+\[ M = 2 \ \rightarrow\ X_d(e^{j\omega}) = \tfrac{1}{2}\, X\!\left(e^{j\frac{\omega}{2}}\right) + \tfrac{1}{2}\, X\!\left(e^{j\frac{\omega - 2\pi}{2}}\right) \]
+\[ X_d(e^{j\omega}) = \tfrac{1}{3}\, X\!\left(e^{j\frac{\omega}{3}}\right) + \tfrac{1}{3}\, X\!\left(e^{j\frac{\omega - 2\pi}{3}}\right) + \tfrac{1}{3}\, X\!\left(e^{j\frac{\omega - 4\pi}{3}}\right) \]
+
+\sayfa{3}
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s3-1.png}[3]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s3-2.png}[3]
+
+\begin{center}
+\begin{tabular}{@{}l@{\quad}l@{\quad}l@{}}
+$M=2$ & için & $\mathrm{BG} = \dfrac{\pi}{2}$ \\[6pt]
+$M=3$ & \textquotedblright & $\mathrm{BG} = \dfrac{\pi}{3}$ \\[6pt]
+$M$ & \textquotedblright & $\mathrm{BG} = \dfrac{\pi}{M}$ olmalı
+\end{tabular}
+\end{center}
+
+\elcizimi[0.65]{sekiller/Dsp-ders-7-s3-3.png}[3]
+\textcolor{kirmizikalem}{frekans artıyor.}
+
+\begin{dikkat}
+* İşaretin bant genişliği en fazla $\tfrac{\pi}{M}$ kadar olmalı,
+
+Seyrek örneklediğimizde geçişler keskinleşiyor, frekans artıyor.
+\end{dikkat}
+
+\sayfa{4}
+\section{Down sampling}
+\elcizimi[0.55]{sekiller/Dsp-ders-7-s4-1.png}[4]
+
+\section{Up sampling}
+\elcizimi[0.58]{sekiller/Dsp-ders-7-s4-2.png}[4]
+
+\[ x_e[n] \overset{\triangle}{=} \begin{cases} x\left[\dfrac{n}{L}\right], & n = 0, \pm L, \pm 2L, \pm 3L \\[6pt] 0, & \text{o.w} \end{cases} \]
+
+\elcizimi[0.55]{sekiller/Dsp-ders-7-s4-3.png}[4]
+
+$\kutula{L=2}$
+
+\elcizimi[0.58]{sekiller/Dsp-ders-7-s4-4.png}[4]
+araya $L-1$ ekliyor
+
+$\kutula{L=3}$
+
+\elcizimi[0.8]{sekiller/Dsp-ders-7-s4-5.png}[4]
+
+\elcizimi[0.7]{sekiller/Dsp-ders-7-s4-6.png}[4]
+
+\[ x_e[n] = \sum_{k=-\infty}^{\infty} x[k]\, \delta[n - kL] \]
+
+\begin{align*}
+X_e(e^{j\omega}) &= \sum_{n=-\infty}^{\infty} x_e[n]\, e^{-j\omega n} \\
+&= \sum_{n=-\infty}^{\infty}\left(\sum_{k=-\infty}^{\infty} x[k]\, \delta[n - kL]\right) e^{-j\omega n}
+\end{align*}
+
+\sayfa{5}
+\[ = \sum_{k=-\infty}^{\infty} x[k]\sum_{n=-\infty}^{\infty}\delta[n - kL]\, e^{-j\omega n} \]
+\[ X_e(e^{j\omega}) = \sum_{k=-\infty}^{\infty} x[k]\, e^{-j\omega L k} \]
+\[ X(e^{j\omega}) = \sum_{k=-\infty}^{\infty} x[k]\, e^{-j\omega k} \]
+\[ X_e(e^{j\omega}) = X(e^{j\omega})\Big|_{\omega \leftarrow \omega L} \]
+\[ X_e(e^{j\omega}) = X(e^{j\omega L}) \]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s5-1.png}[5]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s5-2.png}[5]
+
+\sayfa{6}
+\[ x_i[n] = x_e[n] * h[n] \]
+\[ h[n] = \frac{\sin(\pi n/L)}{\pi n/L} \]
+
+\[ x_i[n] = \sum_{k=-\infty}^{\infty} x_e[k]\, h[n-k] \qquad = \sum_{k=-\infty}^{\infty} x[k]\, h[n-kL] \]
+
+\begin{align*}
+&= \cdots + \overbrace{x_e[0]\,h[n]}^{\textcolor{turuncukalem}{x[0]}} + \overbrace{x_e[1]\,h[n-1]}^{\textcolor{kirmizikalem}{0}} + \overbrace{x_e[2]\,h[n-2]}^{\textcolor{kirmizikalem}{0}} + x_e[3]\,h[n-3] \\
+&\quad + \overbrace{x_e[L]\,h[n-L]}^{\textcolor{turuncukalem}{x[1]}} + \cdots \\
+&\quad + \overbrace{x_e[2L]\,h[n-2L]}^{\textcolor{turuncukalem}{x[2]}} + \cdots \\
+&\quad \vdots
+\end{align*}
+
+\[ x_i[n] = \sum_{k=-\infty}^{\infty} x[k]\, \frac{\sin \pi (n-kL)/L}{\pi (n-kL)/L} \]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s6-1.png}[6]
+
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s6-2.png}[6]
+
+\sayfa{7}
+\[ x_i[n] = x_e[n] * h[n] \]
+
+\elcizimi[0.65]{sekiller/Dsp-ders-7-s7-1.png}[7]
+
+\elcizimi[0.6]{sekiller/Dsp-ders-7-s7-2.png}[7]
+
+\elcizimi[0.55]{sekiller/Dsp-ders-7-s7-3.png}[7]
+
+\[ h[n] = \begin{cases} 1 - \dfrac{|n|}{L}, & |n| < L \\[6pt] 0, & \text{o.w} \end{cases} \]
+
+\elcizimi[0.58]{sekiller/Dsp-ders-7-s7-4.png}[7]
+
+\elcizimi[0.7]{sekiller/Dsp-ders-7-s7-5.png}[7]
+
+\sayfa{8}
+\elcizimi[0.95]{sekiller/Dsp-ders-7-s8-1.png}[8]
+
+\elcizimi[0.85]{sekiller/Dsp-ders-7-s8-2.png}[8]
+
+Her zaman up yapılır başta
+
+\section{Frequency Response of LTI systems}
+
+\elcizimi[0.55]{sekiller/Dsp-ders-7-s8-3.png}[8]
+
+\begin{align*}
+y[n] &= x[n] * h[n] \\
+Y(z) &= X(z)\, H(z)
+\end{align*}
+
+\begin{align*}
+Y(e^{j\omega}) &= X(e^{j\omega})\, H(e^{j\omega}) \\
+\left|Y(e^{j\omega})\right| &= \left|X(e^{j\omega})\right| \left|H(e^{j\omega})\right| \\
+\angle Y(e^{j\omega}) &= \angle X(e^{j\omega}) + \angle H(e^{j\omega})
+\end{align*}
+
+\begin{align*}
+x[n] &= A\cos(\omega_0 n + \phi) \\
+y[n] &= A\left|H(e^{j\omega_0})\right| \cos\left(\omega_0 n + \phi + \angle H(e^{j\omega_0})\right) \\
+h_{id}[n] &= \delta[n - n_d]
+\end{align*}
+
+\sayfa{9}
+\begin{align*}
+H_{id}(e^{j\omega}) &= e^{-j\omega n_d} \\[6pt]
+\left|H_{id}(e^{j\omega})\right| &= 1 \\
+\angle H_{id}(e^{j\omega_0}) &= -\omega_0 n_d
+\end{align*}
+
+\begin{align*}
+y[n] &= A\cos(\omega_0 n + \phi - \omega_0 n_d) \\
+&= A\cos\left(\omega_0 (n - n_d) + \phi\right)
+\end{align*}
+
+\end{document}

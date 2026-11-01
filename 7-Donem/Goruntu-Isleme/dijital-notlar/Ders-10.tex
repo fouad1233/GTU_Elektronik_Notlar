@@ -1,0 +1,133 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Görüntü İşleme}{Morphological Image Processing}{Ders-10.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 3) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+$\star$ eccentiricity
+
+Alan bazlı filtreleme
+
+\section{Morphological Image Processing}
+$\hookrightarrow$ binary
+
+$\hookrightarrow$ grayscale
+
+\[ \mathbb{Z}^2 \quad\leftarrow\quad \text{iki boyutlu tam sayı uzayı} \]
+
+\[ \mathbb{Z}^2_{x,y} \qquad \text{($x,y$ noktası)} \]
+
+\begin{align*}
+A &= \{(a_1,b_1),(a_2,b_2),\dots\}\\
+  &= \{(x_1,y_1),(x_2,y_2),\dots\}
+\end{align*}
+\[ a = (a_1,a_2) \]
+
+\[ a \in A \]
+
+\[ a \notin A \qquad \text{(elemanı değil)} \]
+
+\[ A \subseteq B \qquad \text{(A, B'nin alt kümesi)} \]
+
+\begin{gather*}
+C = A \cup B \qquad \text{(birleşimi)}\\
+D = A \cap B \qquad \text{(ortak elemanlar)}\\
+A \cap B \neq \emptyset \qquad \text{(A ve B ayrık)}\footnotemark
+\end{gather*}
+\footnotetext{Claude notu: ayrık kümeler için muhtemelen $A \cap B = \emptyset$ olmalı.}
+
+\[ A^c = \{w \mid w \notin A\} \qquad \text{(w öyleki A'da değil)} \]
+
+\[ A - B = \{w \mid w \in A,\ w \in B\footnotemark\} = A \cap B^c \]
+\footnotetext{Claude notu: muhtemelen $w \notin B$ olmalı.}
+
+\[ \hat{B} = \{w \mid w = -b,\ \text{for } b \in B\} \qquad \text{(reflection)} \]
+
+\[ (A)_z = \{w \mid w = a + z,\ \text{for } a \in A\} \]
+A kümesini z noktasına translation
+
+\sayfa{2}
+\section{Dilation operator}
+$A$ and $B$ sets in $\mathbb{Z}^2$
+\[ C = A \oplus \underset{\text{structuring element}}{B} = \{z \mid (\hat{B})_z \cap A \neq \emptyset\} \]
+A dilayted by B
+
+\elcizimi[0.7]{sekiller/Ders-10-s2-1.png}[2]
+
+A'yı d kadar büyüttüm
+
+dilate ettim
+
+\section{Erosion:}
+\[ C = A \ominus B = \{z \mid (B)_z \subseteq A\} \]
+
+\elcizimi[0.45]{sekiller/Ders-10-s2-2.png}[2]
+
+\[ (A \ominus B)^c = A^c \oplus \hat{B} \]
+\[ A \ominus B = (A^c \oplus \hat{B})^c \]
+
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\sayfa{4}
+\section{Opening and Closing}
+\[ \underline{\text{opening}} \qquad A \circ B = (A \ominus B) \oplus B \]
+$\swarrow$ küçültüp \qquad $\swarrow$ büyütüyor
+\[ \underline{\text{closing}} \qquad A \bullet B = (A \oplus B) \ominus B \]
+$\swarrow$ aslında bu görüntünün negatifi
+\[ (A \bullet B)^c = (A^c \circ B^c) \]
+
+\elcizimi[0.5]{sekiller/Ders-10-s4-1.png}[4]
+
+opening yaparsak $3\times 3$'ü götürüz
+
+\sekilnotu[4]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+Closing delikleri kapatıyor
+
+$\leftarrow$ opening
+
+\sayfa{5}
+\[ A - (A \ominus B) \quad \rightarrow \text{inner edge} \]
+\[ (A \oplus B) - A \quad \rightarrow \text{outer edge} \]
+
+\elcizimi[0.5]{sekiller/Ders-10-s5-1.png}[5]
+
+\[ (A \oplus B) - (A \ominus B) \]
+$\hookrightarrow$ inner, outer edge
+
+\elcizimi[0.3]{sekiller/Ders-10-s5-2.png}[5]
+
+Hit-OR-Miss Transform
+
+Hit-And-Miss aslında
+\[ A \circledast B = \underbrace{(A \ominus X)}_{\text{hit}} \cap \underbrace{[A^c \ominus (W-X)]}_{\text{Miss}} \]
+\[ B = (X, W) \]
+\[ A \circledast B = (A \ominus B_1) \cap [A^c \ominus B_2] \]
+\[ B = (B_1, B_2) \]
+
+\elcizimi[0.85]{sekiller/Ders-10-s5-3.png}[5]
+
+\sayfa{6}
+\elcizimi[0.5]{sekiller/Ders-10-s6-1.png}[6]
+
+\elcizimi[0.35]{sekiller/Ders-10-s6-2.png}[6]
+
+\elcizimi[0.55]{sekiller/Ders-10-s6-3.png}[6]
+
+\section{Hole filling}
+\[ X_k = (X_{k-1} \oplus B) \cap I^c \qquad k = 1,2,3,\dots \]
+\[ \text{if } X_k = X_{k-1} \Rightarrow \text{stop} \]
+
+delikten bir nokta ile başlamak gerekiyo.
+\[ X_1 = (X_0 \oplus B) \cap A^c \]
+
+\sekilnotu[6]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\sayfa{7}
+\[ A \oplus (B \oplus C) = (A \oplus B) \oplus C \]
+\[ A \ominus \underbrace{(B \oplus C)}_{D} = (A \ominus B) \ominus C \]
+\[ A \oplus B = B \oplus A \]
+\[ ((A \circ B) \circ B) \circ B = A \circ B \]
+\[ (A \circ B) \circ B = A \bullet B \]
+
+\end{document}

@@ -10,9 +10,9 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [6. Dönem](../README.md) · 2023–2024 Bahar | ELM367 | Fundamentals of Digital Signal Processing | 14 ders notu · 3 ödev |
+| [6. Dönem](../README.md) · 2023–2024 Bahar | ELM367 | Fundamentals of Digital Signal Processing | 14 ders notu · 13 dijital not · 3 ödev |
 
-**Bu sayfada:** [Genel](#genel) · [Ders Notları](#ders-notları) · [Ödevler](#ödevler)
+**Bu sayfada:** [Genel](#genel) · [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Ödevler](#ödevler)
 
 ## Genel
 
@@ -23,22 +23,44 @@
 
 ## Ders Notları
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Dsp ders 1](ders-notlari/Dsp-ders-1.pdf) | PDF | 5 s. |
-| [interaktif kanali 001 konvolusyon toplami](ders-notlari/interaktif-kanali-001-konvolusyon-toplami.pdf) | PDF | 2 s. |
-| [Dsp ders 2](ders-notlari/Dsp-ders-2.pdf) | PDF | 9 s. |
-| [Dsp ders 3](ders-notlari/Dsp-ders-3.pdf) | PDF | 6 s. |
-| [Dsp ders 4](ders-notlari/Dsp-ders-4.pdf) | PDF | 9 s. |
-| [Dsp ders 5](ders-notlari/Dsp-ders-5.pdf) | PDF | 7 s. |
-| [Dsp ders 6](ders-notlari/Dsp-ders-6.pdf) | PDF | 7 s. |
-| [Dsp ders 7](ders-notlari/Dsp-ders-7.pdf) | PDF | 9 s. |
-| [Dsp ders 8](ders-notlari/Dsp-ders-8.pdf) | PDF | 8 s. |
-| [Dsp ders 9](ders-notlari/Dsp-ders-9.pdf) | PDF | 11 s. |
-| [Dsp ders 10](ders-notlari/Dsp-ders-10.pdf) | PDF | 6 s. |
-| [Dsp ders 11](ders-notlari/Dsp-ders-11.pdf) | PDF | 7 s. |
-| [Dsp ders 12](ders-notlari/Dsp-ders-12.pdf) | PDF | 6 s. |
-| [Dsp ders 13](ders-notlari/Dsp-ders-13.pdf) | PDF | 6 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Dsp ders 1](ders-notlari/Dsp-ders-1.pdf) | PDF | 5 s. | [PDF](dijital-notlar/Dsp-ders-1.pdf) |
+| [interaktif kanali 001 konvolusyon toplami](ders-notlari/interaktif-kanali-001-konvolusyon-toplami.pdf) | PDF | 2 s. |  |
+| [Dsp ders 2](ders-notlari/Dsp-ders-2.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Dsp-ders-2.pdf) |
+| [Dsp ders 3](ders-notlari/Dsp-ders-3.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Dsp-ders-3.pdf) |
+| [Dsp ders 4](ders-notlari/Dsp-ders-4.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Dsp-ders-4.pdf) |
+| [Dsp ders 5](ders-notlari/Dsp-ders-5.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Dsp-ders-5.pdf) |
+| [Dsp ders 6](ders-notlari/Dsp-ders-6.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Dsp-ders-6.pdf) |
+| [Dsp ders 7](ders-notlari/Dsp-ders-7.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Dsp-ders-7.pdf) |
+| [Dsp ders 8](ders-notlari/Dsp-ders-8.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Dsp-ders-8.pdf) |
+| [Dsp ders 9](ders-notlari/Dsp-ders-9.pdf) | PDF | 11 s. | [PDF](dijital-notlar/Dsp-ders-9.pdf) |
+| [Dsp ders 10](ders-notlari/Dsp-ders-10.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Dsp-ders-10.pdf) |
+| [Dsp ders 11](ders-notlari/Dsp-ders-11.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Dsp-ders-11.pdf) |
+| [Dsp ders 12](ders-notlari/Dsp-ders-12.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Dsp-ders-12.pdf) |
+| [Dsp ders 13](ders-notlari/Dsp-ders-13.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Dsp-ders-13.pdf) |
+
+## Dijital Notlar (LaTeX)
+
+El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: [latex-sablon](../../latex-sablon/README.md).
+
+> **Uyarı:** Dijital notlar, el yazısı notlardan Claude (Anthropic) yardımıyla oluşturulmuştur; yardımcı kaynak olarak hazırlanmıştır ve hata içerebilir. Orijinal notları ve resmi ders kaynaklarını esas alın.
+
+| Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
+|---|---|---|---|
+| [Dsp ders 1](ders-notlari/Dsp-ders-1.pdf) | Sayısal İşaret İşlemenin Temelleri | [PDF](dijital-notlar/Dsp-ders-1.pdf) · 6 s. | [.tex](dijital-notlar/Dsp-ders-1.tex) |
+| [Dsp ders 2](ders-notlari/Dsp-ders-2.pdf) | Ayrık zamanlı sistemler, LTI, konvolüsyon, FIR/IIR | [PDF](dijital-notlar/Dsp-ders-2.pdf) · 10 s. | [.tex](dijital-notlar/Dsp-ders-2.tex) |
+| [Dsp ders 3](ders-notlari/Dsp-ders-3.pdf) | Fark denklemleri, FIR/IIR, DTFT ve frekans cevabı | [PDF](dijital-notlar/Dsp-ders-3.pdf) · 10 s. | [.tex](dijital-notlar/Dsp-ders-3.tex) |
+| [Dsp ders 4](ders-notlari/Dsp-ders-4.pdf) | Frekans yanıtı, DTFT ve Z dönüşümü | [PDF](dijital-notlar/Dsp-ders-4.pdf) · 13 s. | [.tex](dijital-notlar/Dsp-ders-4.tex) |
+| [Dsp ders 5](ders-notlari/Dsp-ders-5.pdf) | Z dönüşümünün özellikleri | [PDF](dijital-notlar/Dsp-ders-5.pdf) · 6 s. | [.tex](dijital-notlar/Dsp-ders-5.tex) |
+| [Dsp ders 6](ders-notlari/Dsp-ders-6.pdf) | Z dönüşümü, fark denklemi ve örnekleme | [PDF](dijital-notlar/Dsp-ders-6.pdf) · 9 s. | [.tex](dijital-notlar/Dsp-ders-6.tex) |
+| [Dsp ders 7](ders-notlari/Dsp-ders-7.pdf) | Altörnekleme, üstörnekleme ve LTI frekans yanıtı | [PDF](dijital-notlar/Dsp-ders-7.pdf) · 12 s. | [.tex](dijital-notlar/Dsp-ders-7.tex) |
+| [Dsp ders 8](ders-notlari/Dsp-ders-8.pdf) | Ders 8: Grup gecikmesi ve lineer faz | [PDF](dijital-notlar/Dsp-ders-8.pdf) · 9 s. | [.tex](dijital-notlar/Dsp-ders-8.tex) |
+| [Dsp ders 9](ders-notlari/Dsp-ders-9.pdf) | Ders 9: Filtre yapıları (structures) | [PDF](dijital-notlar/Dsp-ders-9.pdf) · 15 s. | [.tex](dijital-notlar/Dsp-ders-9.tex) |
+| [Dsp ders 10](ders-notlari/Dsp-ders-10.pdf) | FIR filtre tipleri ve tasarımı, STFT | [PDF](dijital-notlar/Dsp-ders-10.pdf) · 7 s. | [.tex](dijital-notlar/Dsp-ders-10.tex) |
+| [Dsp ders 11](ders-notlari/Dsp-ders-11.pdf) | Quiz çözümü, FIR/IIR filtre tasarımı | [PDF](dijital-notlar/Dsp-ders-11.pdf) · 9 s. | [.tex](dijital-notlar/Dsp-ders-11.tex) |
+| [Dsp ders 12](ders-notlari/Dsp-ders-12.pdf) | Quiz çözümü, IIR filtre tasarımı (B.T.), Butterworth | [PDF](dijital-notlar/Dsp-ders-12.pdf) · 11 s. | [.tex](dijital-notlar/Dsp-ders-12.tex) |
+| [Dsp ders 13](ders-notlari/Dsp-ders-13.pdf) | DTFT, DFT, dairesel konvülasyon ve FFT | [PDF](dijital-notlar/Dsp-ders-13.pdf) · 9 s. | [.tex](dijital-notlar/Dsp-ders-13.tex) |
 
 ## Ödevler
 
@@ -54,4 +76,4 @@
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Fundamentals of Digital Signal Processing (ELM367)* — Semester 6, Spring 2023–24. Discrete-time signals and systems, convolution, the z-transform, the discrete Fourier transform and FFT, and digital filter structures. This page lists: 14 lecture notes, 3 assignments. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Fundamentals of Digital Signal Processing (ELM367)* — Semester 6, Spring 2023–24. Discrete-time signals and systems, convolution, the z-transform, the discrete Fourier transform and FFT, and digital filter structures. This page lists: 14 lecture notes, 13 digital notes, 3 assignments. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

@@ -10,7 +10,7 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [6. Dönem](../README.md) · 2023–2024 Bahar | ELM365 | Digital Communications | 14 ders notu · 5 dijital not · 1 ödev · 1 proje |
+| [6. Dönem](../README.md) · 2023–2024 Bahar | ELM365 | Digital Communications | 14 ders notu · 14 dijital not · 1 ödev · 1 proje |
 
 **Bu sayfada:** [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Ödevler](#ödevler) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları)
 
@@ -18,20 +18,20 @@
 
 | Dosya | Tür | Bilgi | Dijital sürüm |
 |---|---|---|---|
-| [Ders1](ders-notlari/Ders1.pdf) | PDF | 5 s. |  |
-| [Ders2](ders-notlari/Ders2.pdf) | PDF | 11 s. |  |
-| [Ders3](ders-notlari/Ders3.pdf) | PDF | 12 s. |  |
+| [Ders1](ders-notlari/Ders1.pdf) | PDF | 5 s. | [PDF](dijital-notlar/Ders1.pdf) |
+| [Ders2](ders-notlari/Ders2.pdf) | PDF | 11 s. | [PDF](dijital-notlar/Ders2.pdf) |
+| [Ders3](ders-notlari/Ders3.pdf) | PDF | 12 s. | [PDF](dijital-notlar/Ders3.pdf) |
 | [Ders 4](ders-notlari/Ders-4.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-4.pdf) |
-| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 10 s. |  |
-| [Ders 6](ders-notlari/Ders-6.pdf) | PDF | 9 s. |  |
-| [Ders 7](ders-notlari/Ders-7.pdf) | PDF | 9 s. |  |
-| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 9 s. |  |
-| [Ders 9](ders-notlari/Ders-9.pdf) | PDF | 9 s. |  |
+| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 10 s. | [PDF](dijital-notlar/Ders-5.pdf) |
+| [Ders 6](ders-notlari/Ders-6.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-6.pdf) |
+| [Ders 7](ders-notlari/Ders-7.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-7.pdf) |
+| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-8.pdf) |
+| [Ders 9](ders-notlari/Ders-9.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-9.pdf) |
 | [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders-10.pdf) |
 | [Ders 11](ders-notlari/Ders-11.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Ders-11.pdf) |
 | [Ders 12](ders-notlari/Ders-12.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders-12.pdf) |
 | [Ders 13](ders-notlari/Ders-13.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders-13.pdf) |
-| [ELM365-2024 Bahar 5 hafta ders notlari](ders-notlari/ELM365-2024-Bahar-5-hafta-ders-notlari.pdf) | PDF | 7 s. |  |
+| [ELM365-2024 Bahar 5 hafta ders notlari](ders-notlari/ELM365-2024-Bahar-5-hafta-ders-notlari.pdf) | PDF | 7 s. | [PDF](dijital-notlar/ELM365-2024-Bahar-5-hafta-ders-notlari.pdf) |
 
 ## Dijital Notlar (LaTeX)
 
@@ -41,11 +41,20 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
+| [Ders1](ders-notlari/Ders1.pdf) | Sayısal haberleşme sistemi, kanallar ve avantajları | [PDF](dijital-notlar/Ders1.pdf) · 4 s. | [.tex](dijital-notlar/Ders1.tex) |
+| [Ders2](ders-notlari/Ders2.pdf) | Olasılık teorisi, rastgele değişkenler ve prosesler | [PDF](dijital-notlar/Ders2.pdf) · 14 s. | [.tex](dijital-notlar/Ders2.tex) |
+| [Ders3](ders-notlari/Ders3.pdf) | Temel işaretler, Fourier dönüşümü, örnekleme | [PDF](dijital-notlar/Ders3.pdf) · 16 s. | [.tex](dijital-notlar/Ders3.tex) |
 | [Ders 4](ders-notlari/Ders-4.pdf) | Örnekleme teoremi ve örnekleme türleri | [PDF](dijital-notlar/Ders-4.pdf) · 14 s. | [.tex](dijital-notlar/Ders-4.tex) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | Düz tepeli örnekleme, PAM/PWM/PPM, TDM ve PCM | [PDF](dijital-notlar/Ders-5.pdf) · 9 s. | [.tex](dijital-notlar/Ders-5.tex) |
+| [Ders 6](ders-notlari/Ders-6.pdf) | PCM, kuantalama, hat kodları ve delta modülasyonu | [PDF](dijital-notlar/Ders-6.pdf) · 10 s. | [.tex](dijital-notlar/Ders-6.tex) |
+| [Ders 7](ders-notlari/Ders-7.pdf) | PCM sistemi örneği | [PDF](dijital-notlar/Ders-7.pdf) · 8 s. | [.tex](dijital-notlar/Ders-7.tex) |
+| [Ders 8](ders-notlari/Ders-8.pdf) | Temel band haberleşmesi, Matched Filter, Correlator | [PDF](dijital-notlar/Ders-8.pdf) · 11 s. | [.tex](dijital-notlar/Ders-8.tex) |
+| [Ders 9](ders-notlari/Ders-9.pdf) | İkili işaretleşmede hata olasılığı ve MAP kriteri | [PDF](dijital-notlar/Ders-9.pdf) · 11 s. | [.tex](dijital-notlar/Ders-9.tex) |
 | [Ders 10](ders-notlari/Ders-10.pdf) | Matched filter, SAK ve 1. Nyquist kriteri | [PDF](dijital-notlar/Ders-10.pdf) · 9 s. | [.tex](dijital-notlar/Ders-10.tex) |
 | [Ders 11](ders-notlari/Ders-11.pdf) | RC darbe, kontrollü SAK, sayısal taşıyıcılı modülasyon (PSK/FSK) | [PDF](dijital-notlar/Ders-11.pdf) · 10 s. | [.tex](dijital-notlar/Ders-11.tex) |
 | [Ders 12](ders-notlari/Ders-12.pdf) | FSK, ASK, QAM ve M'li modülasyonun vektör uzayı gösterimi | [PDF](dijital-notlar/Ders-12.pdf) · 10 s. | [.tex](dijital-notlar/Ders-12.tex) |
 | [Ders 13](ders-notlari/Ders-13.pdf) | M-PSK ve MFSK hata olasılığı eğrileri | [PDF](dijital-notlar/Ders-13.pdf) · 7 s. | [.tex](dijital-notlar/Ders-13.tex) |
+| [ELM365-2024 Bahar 5 hafta ders notlari](ders-notlari/ELM365-2024-Bahar-5-hafta-ders-notlari.pdf) | Örnekle-tut, PAM/PWM/PPM, TDM ve PCM | [PDF](dijital-notlar/ELM365-2024-Bahar-5-hafta-ders-notlari.pdf) · 9 s. | [.tex](dijital-notlar/ELM365-2024-Bahar-5-hafta-ders-notlari.tex) |
 
 ## Ödevler
 
@@ -76,4 +85,4 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Digital Communications (ELM365)* — Semester 6, Spring 2023–24. Sampling and pulse-code modulation, baseband transmission, optimum receivers, digital modulation (ASK, PSK, FSK) and bit-error probability. This page lists: 14 lecture notes, 5 digital notes, 1 assignment, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Digital Communications (ELM365)* — Semester 6, Spring 2023–24. Sampling and pulse-code modulation, baseband transmission, optimum receivers, digital modulation (ASK, PSK, FSK) and bit-error probability. This page lists: 14 lecture notes, 14 digital notes, 1 assignment, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

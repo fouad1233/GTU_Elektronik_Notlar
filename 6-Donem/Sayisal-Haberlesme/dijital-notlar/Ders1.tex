@@ -1,0 +1,120 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Sayısal haberleşme sistemi, kanallar ve avantajları}{Ders1.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 2) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\section{Sayısal Ders 1}
+\noindent Haberleşme: Bir mesajı bir vericiden bir veya birden fazla alıcıya ulaştıran işlem.
+
+\noindent Sayısal işaret: Ayrıkzamanlı, Ayrıkgenlikli sinyal
+
+\noindent Sayısal haberleşme: İşareti sayısal bir şekilde işleyip sonra kanaldan iletmeye denir. (Kanaldaki işaret yine Analogtur.)
+
+\elcizimi[0.9]{sekiller/Ders1-s1-1.png}[1]
+
+\sayfa{3}
+\elcizimi[0.7]{sekiller/Ders1-s3-1.png}[3]
+
+\noindent genlik seviyelerin aralığı eşittir normalde
+
+\noindent Kanal kodlaması\\
+codeword (kod sözcüğü)
+
+\begin{center}
+\begin{tabular}{@{}c@{\quad}c@{\quad}c@{}}
+\underline{$\ell=2$} & & \underline{$n=3$}\\[3pt]
+00 & $\longrightarrow$ & 000\\
+01 & $\longrightarrow$ & 010\\
+10 & $\longrightarrow$ & 101\\
+11 & $\longrightarrow$ & 111
+\end{tabular}
+\end{center}
+\noindent artık bitler ekleniyor
+
+\[
+\begin{array}{c@{\qquad}l}
+\ell=2 & g_i(t) \qquad\qquad M=4\\[4pt]
+00 & g_1(t) = -2A, \quad 0\le t\le T\\
+01 & g_2(t) = -A, \quad ''\\
+10 & g_3(t) = A, \quad ''\\
+11 & g_4(t) = 2A, \quad ''
+\end{array}
+\]
+
+\noindent Bandpass mod. M -- phase Shift keying (PSK)
+\[ s_i(t) = \sqrt{\frac{2E_s}{T_s}}\cos\!\Bigl(2\pi f_c t + \frac{2\pi}{M}(i-1)\Bigr),\quad 0\le t\le T_s \qquad i=1,\dots,2^{\ell} \]
+
+\noindent \underline{$M=4$}\\
+\underline{$\ell=2$}
+\[
+\begin{array}{ll}
+00 & \sqrt{\dfrac{2E_s}{T_s}}\cos(2\pi f_c t) \quad , \quad 0\le t\le T_s\\[8pt]
+01 & \sqrt{\dfrac{2E_s}{T_s}}\cos\!\left(2\pi f_c t+\dfrac{\pi}{2}\right) \quad , \quad ''\\[8pt]
+10 & \sqrt{\dfrac{2E_s}{T_s}}\cos\!\left(2\pi f_c t+\pi\right) \quad , \quad ''\\[8pt]
+11 & \sqrt{\dfrac{2E_s}{T_s}}\cos\!\left(2\pi f_c t+\dfrac{3\pi}{2}\right) \quad , \quad ''
+\end{array}
+\]
+
+\sayfa{4}
+\section{Kanallar}
+\subsection{Wireline (kablolu)}
+\begin{itemize}
+\item Burulu çift (twisted pair) $\sim$kHz
+\item Eş eksenli (coaxial) \quad $\sim$MHz
+\item Fiber cable \quad $10^{4}$--$10^{5}$ GHz
+\item Dalga kılavuzu (Waveguide) \quad 1--100 GHz
+\end{itemize}
+\subsection{Wireless (Telsiz)}
+RF, optik, sualtı kanalında akustik dalga
+
+\noindent Alınan işaret:
+\[ r(t) = h(t)\circledast s_i(t) + n(t) \qquad\longrightarrow\ \text{Beyaz Gürültü (AWGN)} \]
+\[ \underset{\text{\scriptsize\textcolor{turuncukalem}{kanal idealse}}}{h(t)=\delta(t)} \ \Rightarrow\ r(t) = s_i(t)+n(t) \]
+\[ \overset{F}{\longrightarrow}\ R(f) = H(f)\,S_i(f) + N(f) \]
+
+\noindent \textcolor{turuncukalem}{\underline{Bozucu etkiler}}
+\begin{itemize}
+\item Gürültü (noise)
+\item Sönümleme (fading) (çarpımsal gürültü)
+\item kanal ideal değilse ($h(t)\neq\delta(t)$) $\rightarrow$ \textcolor{turuncukalem}{Genlik ve faz bozulması (Amplitude and phase distortion)}
+\item Karışım (interference)
+\item Zayıflama (Attenuation)
+\end{itemize}
+\[ \textcolor{turuncukalem}{\rightarrow}\ r(t) = \underset{\textcolor{turuncukalem}{\text{\scriptsize sönümleme}}}{a(t)}\,s_i(t) + n(t) \]
+\noindent \textcolor{turuncukalem}{Telsiz haberleşmede buna çözüm \okunamadi{üretmek} gerekir}
+
+\elcizimi[0.6]{sekiller/Ders1-s4-1.png}[4]
+
+\noindent Equalization (kanal denkleştirme)
+
+\noindent Kablolu sistemlerde $h(t)$'yi \okunamadi{giderebiliriz}
+
+\noindent \textcolor{kirmizikalem}{$\star$} Mihenk taşı: işaretin Gürültüye Oranı (İGO)\\
+Signal to Noise Ratio (SNR)
+\formulkutu{\mathrm{SNR} = \frac{P_m}{P_{\tilde n}}}
+
+\noindent \textcolor{kirmizikalem}{$\star$} Bit hata olasılığı (Probability of bit error) (Bit error rate)
+\[ \equiv P_b = \mathrm{Prob}(m_i \neq \hat m_i) = f(\mathrm{SNR}) \]
+\[ \mathrm{SNR}\uparrow \ \Rightarrow\ P_b\downarrow \qquad \text{(Performans iyileşir)} \]
+
+\sayfa{5}
+\noindent \textcolor{kirmizikalem}{$\star$} Kısıtlı kaynaklar: B ve Güç
+\section{Sayısal haberleşmenin avantajları}
+\noindent 1) Yeniden üretme (Regeneration) \quad \textcolor{kirmizikalem}{$\star$ sayısal haberleşmenin en iyi avantajı}
+
+\elcizimi[0.9]{sekiller/Ders1-s5-1.png}[5]
+
+\noindent 2) Digital circuits are more reliable, cheaper, more flexible
+
+\noindent 3) Better Signal processing (SP) $\longrightarrow$ removing redundancy $\rightarrow$ less BW
+\section{Sayısal haberleşmenin dezavantajları}
+\noindent 1) Intensive SP as compared to analog systems.
+
+\noindent 2) Synchronization is more complicated as compared to analog systems.
+
+\noindent 3) Nongraceful degradation:\\
+When SNR drops below a certain threshold, the quality of service can suddenly change from very good to very poor. In contrast most analog communication systems degrade gracefully.
+
+\end{document}

@@ -1,0 +1,157 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Supervised learning, regresyon, MLE, MMSE ve MAP}{Ders3.pdf}
+
+\sayfa{1}
+\section{Supervised learning:}
+\subsection{Sınıflandırma:}
+\[ \mathcal{X} = \{x^t, \overset{\text{etiket}}{r^t}\}_{t=1}^{N} \]
+\[ x^t \in C^i \;\Rightarrow\; \text{sınıflandırma} \]
+\[ h_i(x^t) = \begin{cases} 1 & \text{if } x^t \in C^i \\ 0 & \text{if } x^t \in C_j,\ j \neq i \end{cases} \]
+\[ E\{\underset{\substack{\text{sınıflandırmadaki}\\ \text{hata}}}{\varepsilon_n} \mid \mathcal{X}\} = \sum_{t=1}^{N}\sum_{i=1}^{N} 1_{h_i(x^t) \neq r_i^t} \]
+
+\subsection{Regresyon:}
+\[ r^t \in \mathbb{R} \]
+\[ \underset{\text{kestirim}}{\hat r^t} = f(x^t) \]
+\[ r^t = \hat r^t = f(x^t) \;\Rightarrow\; \textcolor{kirmizikalem}{\text{interpolasyon}} \]
+\[ \hat r^t = f(x^t) + \varepsilon^{\text{görültü}} \qquad \textcolor{kirmizikalem}{\text{(regresyon)}} \]
+
+\elcizimi[0.5]{sekiller/Ders3-s1-1.png}[1]
+
+\[ \underset{\text{Expected value}}{E}\{\varepsilon_g \mid \mathcal{X}\} = \frac{1}{N}\sum_{t=1}^{N}\bigl[r^t - g(x^t)\bigr]^2 \]
+Loss f.
+
+$r^t = f(x^t) + \varepsilon^{\text{görültü}}$ \quad fonksiyonun $g(x)$ ile tahmin etmeye çalışıyoruz.
+
+En basit modelleme: doğrusal modelleme
+\begin{align*}
+g(x) &= w_1 x_1 + w_2 x_2 + \cdots + w_N x_N + w_0 \\
+&= \vec{w}\cdot\vec{x} + w_0
+\end{align*}
+
+\sayfa{2}
+\[ g(x) = w_1 x_1 + w_0 \]
+\[ E\{\underset{\substack{\text{değişkenlerimiz}\\ \text{bunlar}}}{w_1, w_0} \mid \mathcal{X}\} = \frac{1}{N}\sum_{t=1}^{N}\bigl(r^t - (w_1 x_1 + w_0)\bigr)^2 \]
+\[ \frac{\partial E\{w_1, w_0 \mid \mathcal{X}\}}{\partial w_0} = -\frac{1}{N}\sum_{t=1}^{N} 2\bigl(r^t - (w_1 x_1 + w_0)\bigr) \]
+\[ \frac{\partial E\{w_1, w_0 \mid \mathcal{X}\}}{\partial w_1} = \frac{1}{N}\sum_{t=1}^{N} 2\bigl[r^t - (w_1 x_1 + w_0)\bigr](-x_1) = 0 \]
+\begin{align*}
+w_1 &= \frac{\sum_{t=1}^{N} x^t r^t - \bar{x}\,\bar{r}\,N}{\sum_{t=1}^{N} (x^t)^2 - N\bar{x}^2}
+ & \bar{r} &= \frac{1}{N}\sum_{t=1}^{N} r^t \\
+w_0 &= \bar{r} - w_1\bar{x}
+ & \bar{x} &= \frac{1}{N}\sum_{t=1}^{N} x^t
+\end{align*}
+
+ya böyle olsaydı
+
+\elcizimi[0.45]{sekiller/Ders3-s2-1.png}[2]
+
+\[ \begin{array}{l} 2,\ 3 \\ 1,\ 4 \\ {[4,2]} \to 3 \\ {[1,1]} \to 4 \end{array} \qquad \{x^t, r^t\}_{t=1}^{N} \qquad g(x) = w_1 x_1 + w_0 \]
+\[ g(x) = w_2 x_1^2 + w_1 x + w_0 \]
+ikinci bir boyut ekledik \qquad $[x_1^2,\ x_1]$
+
+\sayfa{3}
+\section{3 adımımız var}
+\textcolor{kirmizikalem}{\textcircled{1} Model oluşturma}
+
+\textcolor{kirmizikalem}{\textcircled{2} Maliyet fonksiyonu}
+\[ E[\theta \mid \mathcal{X}] = \sum_t L\bigl(r^t, g(x^t \mid \theta)\bigr) \]
+\textcolor{kirmizikalem}{\textcircled{3} Optimizasyon Yöntemi}
+
+\subsection{Hastalık tespitinde}
+\[ \sum_{k=1}^{K} P(C_k \mid x) = 1 \]
+\[ R\{\alpha_i \mid x\} = \sum_{k=1}^{K} \underset{\text{Risk fonksiyonu}}{\lambda_{ik}} \cdot P(C_k \mid x) \]
+
+\noindent $C_1$ : sağlıklı\\
+$C_2$ : kanser
+
+\begin{center}
+\begin{tabular}{c|c|c}
+$\lambda_{ij}$ & $C_1$ & $C_2$ \\ \hline
+$\alpha_1$ & 0 & 1000 \\ \hline
+$\alpha_2$ & 10 & 100 \\ \hline
+\end{tabular}
+\end{center}
+
+\[ \textcolor{kirmizikalem}{\text{0/1 loss:}} \quad \lambda_{ik} = \begin{cases} 0 & \text{if } i = k \\ 1 & \text{o.w} \end{cases} \]
+\begin{align*}
+R\{\alpha_i \mid x\} &= \sum_{k=1}^{K} \lambda_{ik}\, P(C_k \mid x) \\
+&= \sum_{k \neq i} P(C_k \mid x) \\
+&= 1 - P(C_i \mid x)
+\end{align*}
+
+\[ \underset{\substack{\text{\okunamadi{aidiyet}}\\ \text{fonksiyonu}}}{h_i(x^t)} \qquad C_i \ \text{s.t.} \ \underset{i}{\arg\max}\ h_i(x^t) \]
+
+\sayfa{4}
+çocuk bezi, tıraş bıçağı
+\[ \frac{P(x,y)}{P(x)\cdot P(y)} \]
+\[ \frac{\overset{\text{beraber alınmış}}{100}}{100+50+150} = \frac{1}{3} \]
+
+$x$ ile $y$ arasındaki ilişkilerine \okunamadi{bakın}
+\subsection{İlişki kuralları}
+\[ \text{\textcircled{1}}\ P(x,y) = \]
+\[ \text{\textcircled{2}}\ P(Y \mid X) = \frac{P(x,y)}{P(x)} \]
+X'leri satın \okunamadi{almasının kaçında} y'leri de satın \okunamadi{alınmış}
+\[ \text{\textcircled{3}}\ \frac{P(Y \mid X)}{P(Y)} = \frac{P(x,y)}{P(x)\,P(y)} \]
+tamamen bağımsızsa $P(x,y) = P(x)\cdot P(y)$ olur
+
+Korelasyon ile nedensellik aynı şey değil
+
+\section{Bayes kuralı}
+\[ P(z \mid \underset{\text{parametre vektörü}}{\theta}) \qquad \text{(bunları bulmaya çalışıyoruz)} \]
+\[ \underset{\substack{\text{$\theta$ kümesi için}\\ \text{$X$ kümesinin olasılığı}}}{P(x;\theta)} \]
+$x^t \sim P(x \mid \theta)$ $\rightarrow$ theta parametresi ile gösterilen $P$ dağılımına uygun
+\[ \theta_{\mathrm{MLE}} = \underset{\theta}{\arg\max}\ P(z \mid \theta) \]
+\[ \ell(\theta \mid \mathcal{X}) = P(\mathcal{X} \mid \theta) = \prod_{t=1}^{N} P(x^t \mid \theta) \]
+
+\sayfa{5}
+Yazı tura
+
+\elcizimi[0.4]{sekiller/Ders3-s5-1.png}[5]
+
+\[ \ell(\theta \mid \mathcal{X}) = P(\mathcal{X} \mid \theta) = \prod_{t=1}^{N} P(x^t \mid \theta) \]
+çarpımdan kurtulmak için
+\[ \mathcal{L}(\theta \mid \mathcal{X}) = \log\Bigl(\sum_{t=1}^{N} P(x^t \mid \theta)\Bigr)\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $\sum_{t=1}^{N}\log P(x^t\mid\theta)$ olmalı.}
+hem de \okunamadi{üstel} olasılık dağılımları çok fazla
+
+\elcizimi[0.6]{sekiller/Ders3-s5-2.png}[5]
+
+\subsection{Bayesian Theory}
+\[ P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)} \]
+\[ \overset{\textcolor{kirmizikalem}{\text{posterior}}}{P(\mathcal{X} \mid \theta)} = \frac{\overset{\textcolor{kirmizikalem}{\text{likelihood}}}{P(\theta \mid \mathcal{X})}\ \overset{\textcolor{kirmizikalem}{\text{prior}}}{P(\mathcal{X})}}{\underset{\textcolor{kirmizikalem}{\text{evidence}}}{P(\theta)}}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $P(\theta\mid X)=\dfrac{P(X\mid\theta)\,P(\theta)}{P(X)}$ olmalı.}
+
+\elcizimi[0.5]{sekiller/Ders3-s5-3.png}[5]
+
+\[ \hat\theta = \underset{\underset{\text{karar}}{a}}{\arg\min}\ E\{L(\theta, a) \mid X\} \]
+
+\sayfa{6}
+\section{MMSE (Minimum mean square error).}
+\[ C(\theta,a) = \|\theta - a\|_2^2 \]
+\[ \bar\theta = E[\theta \mid \mathcal{X}] \]
+\[ E\{C(\theta,a) \mid \mathcal{X}\} = E\bigl[(\theta-a)^T(\theta-a) \mid \mathcal{X}\bigr] \]
+\[ \frac{\partial}{\partial a}\, E\{(\theta-a)^T(\theta-a) \mid \mathcal{X}\} = 0 \]
+\[ \frac{\partial}{\partial a}\, E\{\theta\theta^T - \theta \cdot a^T - a\theta^T + a a^T \mid \mathcal{X}\} = 0 \]
+\[ 0 - \frac{\partial\, \bar\theta a^T}{\partial a} - \frac{\partial\, a\bar\theta^T}{\partial a} + \frac{\partial (a a^T)}{\partial a} = 0 \]
+\[ -\bar\theta^T - \bar\theta + 2a^T = 0 \;\Rightarrow\; a = \bar\theta \]
+\[ \hat\theta = \bar\theta \]
+
+\elcizimi[0.55]{sekiller/Ders3-s6-1.png}[6]
+
+\section{Maximum a Posteriori (Map) Estimation}
+\[ C(\theta,a) = -\delta(\theta - a) \]
+
+\elcizimi[0.4]{sekiller/Ders3-s6-2.png}[6]
+
+\begin{align*}
+E\{C(\theta,a)\} &= E\{-\delta(\theta-a) \mid X\} \\
+&= -\int P(\theta \mid X)\,\delta(\theta-a)\, d\theta
+\end{align*}
+
+\sayfa{7}
+\[ {}= -P(\theta \mid X)\Big|_{\theta=a} \]
+\[ \hat\theta_{\mathrm{MAP}} = \underset{a}{\arg\min}\ \Bigl(-P(\theta \mid X)\Big|_{\theta=a}\Bigr) \]
+\[ \hat\theta = \underset{\theta}{\arg\max}\ P(\theta \mid X) \]
+
+\end{document}

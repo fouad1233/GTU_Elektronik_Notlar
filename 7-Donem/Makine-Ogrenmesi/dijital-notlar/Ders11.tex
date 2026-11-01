@@ -1,0 +1,118 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{RNN, attention ve pekiştirmeli öğrenme}{Ders11.pdf}
+
+\sayfa{1}
+\section{RNN}
+\elcizimi[0.38]{sekiller/Ders11-s1-1.png}[1]
+
+\elcizimi[0.4]{sekiller/Ders11-s1-2.png}[1]
+
+\[ \text{\textcircled{1}}\ \left[\, B \;\middle|\; A \,\right]\begin{bmatrix} x_i \\ h_i \end{bmatrix} = \begin{bmatrix} 1 & 1 & 1 \\ 2 & 1 & 1 \end{bmatrix}\begin{bmatrix} 3 \\ 0 \\ 0 \end{bmatrix} = \begin{bmatrix} 3 \\ 6 \end{bmatrix} = h_i = h_1 \]
+\[ C h_i = \text{\okunamadi{}} = y_i \]
+\[ \text{\textcircled{2}}\ \begin{bmatrix} 1 & 1 & -1 \\ 2 & 1 & 1 \end{bmatrix}\begin{bmatrix} 4 \\ 3 \\ 6 \end{bmatrix} = \begin{bmatrix} 1 \\ 17 \end{bmatrix} \]
+\[ y_2 = 16 \]
+\[ \mathrm{MSE} = ? \]
+\[ \hat{y} = f\Bigl(CA\begin{bmatrix} x \\ h \end{bmatrix}\Bigr) \]
+\[ L = (\hat{y}-y)^2 \]
+
+I run
+
+I university bus ran
+
+\elcizimi[0.4]{sekiller/Ders11-s1-3.png}[1]
+
+Q = Query\\
+k = key\\
+V = Value
+\[ \mathrm{attention} = \mathrm{softmax}\left(\frac{k^T\cdot Q}{\underset{\text{k'nın boyutu}}{\sqrt{d_k}}}\right) V \]
+
+\sayfa{2}
+\begin{align*}
+W_Q \cdot w &= q_1\, q_2 \\
+W_K \cdot w &= k_1,\ k_2 \\
+W_V \cdot w &= v_1\, v_2
+\end{align*}
+\elcizimi[0.7]{sekiller/Ders11-s2-1.png}[2]
+
+Bunun adı self attention
+
+Makalelerde böyle görürsünüz
+
+\elcizimi[0.3]{sekiller/Ders11-s2-2.png}[2]
+$\rightarrow$ multihead olabilir
+
+Q : Ne aradığımız\\
+k : Ne ile ilgili\\
+V : Neyi kullanacağız
+
+\okunamadi{sembol} ile takım adını \okunamadi{karşılaştırdık}
+
+\elcizimi[0.5]{sekiller/Ders11-s2-3.png}[2]
+bunun $\times W_1 \rightarrow$ positional encoding matris
+\[ x_I + W_1 x_I = \underset{\text{positional embedding}}{\bar{x}_I} \]
+
+\sayfa{3}
+I run
+
+I university bus run
+
+\elcizimi[0.4]{sekiller/Ders11-s3-1.png}[3]
+
+\elcizimi[0.8]{sekiller/Ders11-s3-2.png}[3]
+
+\sayfa{4}
+\elcizimi[0.95]{sekiller/Ders11-s4-1.png}[4]
+
+\elcizimi[0.3]{sekiller/Ders11-s4-2.png}[4]
+
+361! ihtimal
+\[ P(s_{t+1}, a_{t+1} \mid s_t, a_t) \]
+
+\elcizimi[0.75]{sekiller/Ders11-s4-3.png}[4]
+
+\sayfa{5}
+\elcizimi[0.45]{sekiller/Ders11-s5-1.png}[5]
+Exploration\\
+Exploitation\\
+\okunamadi{Dilemma}
+\[ V(s) = E\{G_t \mid S_t\} \]
+\[ G_t = \sum_{n=1}^{T} r_{t+n} \]
+\[ V(s) = E\{G_t \mid S_t\} \quad \text{nasıl hesaplanır} \]
+
+$s_0, a_0, r_1, s_1, a_1, r_2, s_2, \dots$
+
+Gelecekte alacağım \okunamadi{ödüllerin toplamı}
+
+\[ V(s) = E\{G_t \mid S_t\} \]
+\[ Q(s,a) = E\{G_t \mid s_t, a\} \]
+
+\elcizimi[0.45]{sekiller/Ders11-s5-2.png}[5]
+
+\textcircled{1}
+\formulkutu{\begin{aligned} Q(s_1,a_1) &= 0 \\ Q(s_1,a_2) &= 0 \end{aligned}}
+
+\section{SARSA}
+\[ 0 < \alpha < 1 \]
+\[ Q(s_1,a_1) = Q(\textcolor{kirmizikalem}{s_1},\textcolor{kirmizikalem}{a_1}) + \alpha\Bigl(\underset{\text{reward}}{\textcolor{kirmizikalem}{r}} + \overset{\textcolor{kirmizikalem}{Q(s_2,a_2)}}{V(s_2)} - Q(s_1,a_1)\Bigr) \]
+$= 2$
+
+Q learning
+
+\sayfa{6}
+Policy gradient theorem
+
+\hspace{2em}Actor critic (value, policy birleşimi)
+
+Bunun dışında
+
+\hspace{2em}Multi agent reinforcement learning
+
+\begin{align*}
+G_t = \sum_{n=1}^{T} \gamma^{n-1} r_{t+n} \quad &= r_{t+1} + \gamma r_{t+2} + \gamma^2 r_{t+3} \\
+0 < \gamma \leq 1 \quad &= r_{t+1} + \gamma G_{t+1}
+\end{align*}
+\[ V(s^t) = r_{t+1} + \underset{\downarrow}{\phantom{\gamma}} V(s_{t+1}) \]
+
+\end{document}

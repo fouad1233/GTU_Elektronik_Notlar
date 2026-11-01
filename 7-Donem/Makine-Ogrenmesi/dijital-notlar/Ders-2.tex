@@ -1,0 +1,199 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Makine Öğrenmesi}{Metrikler, mesafe ölçüleri, sınıflandırma ölçütleri}{Ders-2.pdf}
+
+\sayfa{1}
+\section{Independent component analysis}
+\elcizimi[0.45]{sekiller/Ders-2-s1-1.png}[1]
+
+zero shot \quad mesela sınıfın yarısından örnek alındı, diğer tarafta test edildi. diğer taraftan örnek alınmamış.
+
+\section{Metrikler}
+\[ \vec{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix} \]
+
+\subsection{Mesafe ölçümü ve metrikler:}
+\textcolor{kirmizikalem}{Distance measure and metrics}
+
+\subsection{Metrik:}
+\begin{enumerate}[label=\textcircled{\small\arabic*}]
+\item Negatif olmama: $d(x) \ge 0$\footnote{Claude notu: muhtemelen $d(x,y)\ge 0$ olmalı.}
+\item $d(x,y)=0 \Rightarrow x=y$
+\item $d(x,y)=d(y,x)$ \quad simetri özelliği
+\item $d(x,z) \le d(x,y)+d(y,z)$
+\end{enumerate}
+
+$\arg\max_x f(x)$, $f(x)$ max yapan
+
+\sayfa{2}
+\[ \vec{x} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_N \end{bmatrix} \qquad d(x,y) = \sqrt{(x_1-y_1)^2+(x_2-y_2)^2+\cdots} \]
+
+\textbf{Divergence:} (Bu metrik değil ama o da mesafe ölçer) birisi diğerine daha uzak mı onu ölçüyor.
+
+Tüm metrik özelliklerini sağlamazlar
+
+norm:
+\[
+\left.
+\begin{aligned}
+\|\vec{x}\|_2 &= \Bigl(\sum_{i=1}^{N} |x_i|^2\Bigr)^{1/2} \\
+\|\vec{x}\|_p &= \Bigl(\sum_{i=1}^{N} |x_i|^p\Bigr)^{1/p}
+\end{aligned}
+\right\} \ell_p\text{-norm}
+\]
+
+\elcizimi[0.5]{sekiller/Ders-2-s2-1.png}[2]
+
+\[ \|\vec{x}\|_1 = \sum_{i=1}^{N} |x_i| \]
+$\ell_1$-norm: Manhattan norm \\
+$\ell_2$-norm: Öklid \\
+$\ell_\infty$-norm: $\|x\|_\infty = \max_i |x_i|$
+
+\elcizimi[0.55]{sekiller/Ders-2-s2-2.png}[2]
+$\ell_p$-norma göre birim çemberler
+
+\sayfa{3}
+\elcizimi[0.5]{sekiller/Ders-2-s3-1.png}[3]
+$\rightarrow$ Loss functionlarda normlar kullanılıyor
+
+\[ \|\alpha x\|_p = |\alpha|\,\|x\|_p \]
+
+Okuma alışkanlığını şehirlere göre
+
+\elcizimi[0.45]{sekiller/Ders-2-s3-2.png}[3]
+\[ \vec{x}_{izmir} = \begin{bmatrix} x_1 \\ x_2 \\ \vdots \\ x_{14} \end{bmatrix} \]
+
+\elcizimi[0.45]{sekiller/Ders-2-s3-3.png}[3]
+burada sıkıntı ne \\
+mesela nüfusa bölebiliriz
+
+\[ \|\vec{x}_{izmir}-\vec{x}_{ankara}\|_2 > \|\vec{x}_{izmir}-\vec{x}_{antep}\|_2 \]
+
+\elcizimi[0.4]{sekiller/Ders-2-s3-4.png}[3]
+\[ \vec{x}_{izmir}\cdot\vec{x}_{ankara} = \frac{\|\vec{x}_{izmir}\|\,\|\vec{x}_{ankara}\|\cos\alpha}{\|\ \|\cdot\|\ \|} \]
+
+\sayfa{4}
+Ama ben olasılık dağılımı üzerinden gitmek istiyorum
+
+\subsection{KL-Divergence:}
+\[ D_{KL}(P\|Q) = \sum_{x\in\mathcal{X}} P(x)\cdot\log\frac{P(x)}{Q(x)} \]
+bir kez izmir ankara \\
+bir kez izmir antep
+
+Ama bu metrik değil
+
+çünkü
+\begin{enumerate}[label=\arabic*)]
+\item negatif olabilir
+\item simetrik değil \quad $d(x,y)\neq d(y,x)$ her zaman
+\end{enumerate}
+
+Metriğe çevirelim
+\[ D_{JS}(P,Q) = \left\{ \begin{aligned} & \sum_{x\in\mathcal{X}} P(x)\left|\log\frac{P(x)}{Q(x)}\right| \\ & + \sum_{x\in\mathcal{X}} P(x)\left|\log\frac{Q(x)}{P(x)}\right| \end{aligned} \right. \]
+
+\subsection{Jenson-Shannon div}
+\[ M(x) = \frac{P(x)+Q(x)}{2} \]
+\[ \tfrac12 D_{KL}(P\|M) + \tfrac12 D_{KL}(Q\|M) \]
+
+\elcizimi[0.3]{sekiller/Ders-2-s4-1.png}[4]
+Entropi:
+\[ H(x) = -\sum_{x\in\mathcal{X}} P(x)\log P(x) \]
+\[ P(0)\cdot\log P(0) + P(1)\log P(1) \]
+\[ H_1 = -\left(\tfrac23\log\tfrac23 + \tfrac13\log\tfrac13\right) \]
+\[ H_2(x) = 0+0 = 0 \]
+
+Ne kadar çok kaos varsa entropi o kadar yükselir.
+
+\sayfa{5}
+$P(0)=p$ \qquad $P(1)=1-p$ \qquad $p=0{,}5$ max olur $H(x)$
+
+\subsection{Continuos için:}
+\[ H(x) = -\int_{-\infty}^{+\infty} p(x)\log p(x)\,dx \]
+
+\section{Cross-Entropy:}
+\[ H(P,Q) = -\sum_{x\in\mathcal{X}} P(x)\log Q(x) \]
+$\uparrow$ P ile Q'nun birbirine uzaklığı
+
+\elcizimi[0.75]{sekiller/Ders-2-s5-1.png}[5]
+
+\elcizimi[0.45]{sekiller/Ders-2-s5-2.png}[5]
+
+\[ d_M(x,y) = \sqrt{(x-y)^T\,\underbrace{\Sigma_{xy}^{-1}}_{\text{kovaryans matrisinin tersi}}\,(x-y)} \]
+
+\elcizimi[0.3]{sekiller/Ders-2-s5-3.png}[5]
+\[ \Sigma = \begin{bmatrix} 10^{12} & 0 \\ 0 & 10^{4} \end{bmatrix} \]
+
+\sayfa{6}
+Bir haber başkasına benziyor mu
+
+Iğdır'da trafik kazasından 10 kişi öldü
+
+$\Big\{$ Tokenization
+
+{\color{turuncukalem}\fbox{\color{black}ığdır trafik kaza 10 kişi ölmek}}
+
+{\color{turuncukalem}\fbox{\color{black}gs fb 3 1 yemek}}
+
+ığdır avokada getirmek
+
+\subsection{Küme Metrikleri}
+Hamming Distance \quad Bütün veriler tek (set())
+\[ d_H(A,B) = |A \cap B| \]
+Jaccard distance:
+\[ 1 - \frac{|A\cap B|}{|A\cup B|} \]
+
+\section{Sınıflandırma metrikleri}
+\elcizimi[0.4]{sekiller/Ders-2-s6-1.png}[6]
+
+\subsection{Doğruluk (Acc)}
+\[ \frac{TN+TP}{\#\text{total}} = Acc \]
+\[ \{x^t, r^t\}_{t=1}^{N} \]
+\[ r^t = 0,\ t=1{:}N \]
+\[ \text{Precision} = \frac{TP}{TP+FP} \]
+
+\sayfa{7}
+\[ \text{Recell} = \frac{TP}{TP+FN} \]
+\[ \text{F-1 score} = 2\times\frac{\text{Prec}\times\text{Recell}}{\text{Prec}+\text{Recell}} \]
+
+\elcizimi[0.55]{sekiller/Ders-2-s7-1.png}[7]
+
+\elcizimi[0.55]{sekiller/Ders-2-s7-2.png}[7]
+
+\elcizimi[0.5]{sekiller/Ders-2-s7-3.png}[7]
+\[ FPR = \frac{FP}{TN+FP} \]
+
+0'ı eşik değer yaparsam
+
+\elcizimi[0.3]{sekiller/Ders-2-s7-4.png}[7]
+\[ TPR = \frac{4}{0+4} = 1 \qquad FPR = \frac{5}{5+0} = 1 \]
+
+\elcizimi[0.55]{sekiller/Ders-2-s7-5.png}[7]
+
+\elcizimi[0.3]{sekiller/Ders-2-s7-6.png}[7]
+\[ TPR = \frac{4}{4+0} = 1 \qquad FPR = \frac{3}{3+2} = \frac{3}{5} \]
+
+\sayfa{8}
+Soru
+
+\elcizimi[0.6]{sekiller/Ders-2-s8-1.png}[8]
+
+\elcizimi[0.45]{sekiller/Ders-2-s8-2.png}[8]
+
+\elcizimi[0.3]{sekiller/Ders-2-s8-3.png}[8]
+\[ TPR = \frac{2}{2+1} = \frac{2}{3} \qquad FPR = \frac{2}{2+3} = \frac{2}{5} \]
+
+\sayfa{9}
+\section{Confusion matrix}
+\elcizimi[0.5]{sekiller/Ders-2-s9-1.png}[9]
+\[ \{x^t, r^t\}_{t=1}^{N} \]
+\[ r^t \in C \]
+\[ r^t \in \mathbb{R}^N \]
+
+\elcizimi[0.3]{sekiller/Ders-2-s9-2.png}[9]
+\[ f(x^t) = r^{\alpha} \]
+\[ \frac{1}{N}\sum_{t=1}^{N}\bigl(\underbrace{\hat r^t}_{\text{tahminler}} - r^t\bigr)^2 \]
+
+\elcizimi[0.55]{sekiller/Ders-2-s9-3.png}[9]
+\[ ax+b = f(x) \]
+
+\end{document}
