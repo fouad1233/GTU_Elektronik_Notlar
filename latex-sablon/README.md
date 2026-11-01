@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › latex-sablon
 
-El yazısı ders notlarını **el yazısı görünümünü koruyarak** LaTeX'e aktarmak için hazırlanmış bir XeLaTeX şablonu. Depodaki tüm `dijital-notlar/` dosyaları (113 not) bu şablonla, Claude (Anthropic) yardımıyla yazılmıştır. Örnek çıktı için [`ornek.pdf`](ornek.pdf) dosyasına bakın.
+El yazısı ders notlarını **el yazısı görünümünü koruyarak** LaTeX'e aktarmak için hazırlanmış bir XeLaTeX şablonu. Depodaki tüm `dijital-notlar/` dosyaları (116 not) bu şablonla, Claude (Anthropic) yardımıyla yazılmıştır. Örnek çıktı için [`ornek.pdf`](ornek.pdf) dosyasına bakın.
 
 ## Dosyalar
 
@@ -14,7 +14,7 @@ El yazısı ders notlarını **el yazısı görünümünü koruyarak** LaTeX'e a
 | [`derle.sh`](derle.sh) | Derleme betiği (XeLaTeX) |
 | [`fonts/`](fonts/) | Shantell Sans (gövde) ve Caveat (başlıklar) fontları — SIL Open Font License 1.1 |
 | [`ornek.tex`](ornek.tex) | Örnek belge (tüm kutular, devre, grafik, tablo) |
-| [`ornek.pdf`](ornek.pdf) | Örneğin derlenmiş hâli (2 sayfa) |
+| [`ornek.pdf`](ornek.pdf) | Örneğin derlenmiş hâli (3 sayfa) |
 
 ## Derleme: `derle.sh`
 
@@ -94,7 +94,7 @@ TikZ için kalem renkleri: `murekkep` (mavi mürekkep), `kirmizikalem`, `yesilka
 
 **gtu-el-yazisi** is a XeLaTeX template that typesets lecture notes in a handwriting style (grid paper, Shantell Sans and Caveat fonts, coloured “pen” boxes). Every file in the `dijital-notlar/` folders of this repository was written with it, with the help of Claude (Anthropic). See `ornek.pdf` for a sample.
 
-- **Files:** [`gtu-el-yazisi.sty`](gtu-el-yazisi.sty) — the package: grid paper, handwriting fonts, coloured boxes, circuit/plot settings; [`derle.sh`](derle.sh) — build script (XeLaTeX); [`fonts/`](fonts/) — Shantell Sans (body) and Caveat (headings) fonts — SIL Open Font License 1.1; [`ornek.tex`](ornek.tex) — sample document (all boxes, a circuit, a plot, a table); [`ornek.pdf`](ornek.pdf) — the compiled sample (2 pages).
+- **Files:** [`gtu-el-yazisi.sty`](gtu-el-yazisi.sty) — the package: grid paper, handwriting fonts, coloured boxes, circuit/plot settings; [`derle.sh`](derle.sh) — build script (XeLaTeX); [`fonts/`](fonts/) — Shantell Sans (body) and Caveat (headings) fonts — SIL Open Font License 1.1; [`ornek.tex`](ornek.tex) — sample document (all boxes, a circuit, a plot, a table); [`ornek.pdf`](ornek.pdf) — the compiled sample (3 pages).
 - **Compile:** `latex-sablon/derle.sh path/to/file.tex [more.tex …]` (needs XeLaTeX, e.g. TeX Live; pdfLaTeX is not supported). The script sets `TEXINPUTS` and the font paths, runs XeLaTeX up to three times in the file's folder, writes the PDF next to the `.tex`, removes auxiliary files and prints `TAMAM: …` (“OK”). On errors it prints the relevant log lines, keeps the `.log` and exits non-zero. Without the script: `xelatex` with `\usepackage[fontpath=<path>/latex-sablon/fonts/]{gtu-el-yazisi}`.
 - **Skeleton:** see above; `\notbilgi[extra]{Course}{Topic}{original file}` is mandatory — it prints the header card and the bilingual “digitised with Claude, may contain errors” box.
 - **Options:** `kagit=kareli|cizgili|noktali|duz` (paper), `kalem=ince|normal` (pen weight), `etiket=tr|en` (box labels), `numarali` (numbered sections), `fontpath=…`.

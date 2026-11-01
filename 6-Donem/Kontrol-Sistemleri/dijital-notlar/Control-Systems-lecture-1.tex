@@ -1,0 +1,96 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Control Systems – Lecture 1}{Control-Systems-lecture-1.pdf}
+
+\sayfa{1}
+\section{Control Systems}
+(Automatic Control, lineer Control, Engineering Control)
+
+Basic assumption $\rightarrow$ LTI systems
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-1-s1-1.png}[1]
+
+\subsection{Output should be}
+\noindent 1- Acurate (error) \hfill \textcolor{turuncukalem}{$\leftarrow$ Partical solution}\\
+2- Quality (of the output) (\%OS, $t_s$, $t_p$) \hfill \textcolor{turuncukalem}{$\leftarrow$ Homogen solution}\\
+\textcolor{kirmizikalem}{$\ast$} 3- Stability
+
+\bigskip
+\noindent\textcolor{kirmizikalem}{To control a system:} it should be dynamic, stable,
+
+\subsection{Stability types:}
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-1-s1-2.png}[1]
+
+\sayfa{2}
+\begin{center}
+\begin{tikzpicture}[>=stealth, font=\footnotesize, thick, murekkep, every node/.style={align=center}]
+  \node (in) at (0,0) {desired\\input};
+  \node[font=\tiny] (also) at (0,1.05) {it is also\\velocity};
+  \draw[->] (0,0.4) -- (0,0.7);
+  \node[circle,draw,inner sep=0pt,minimum size=0.56cm] (sum) at (1.8,0) {};
+  \draw (sum.north) -- (sum.south) (sum.west) -- (sum.east);
+  \draw[->] (in.east) -- (sum.west);
+  \node at (1.25,0.27) {$+$};
+  \node at (1.45,-0.6) {$-$};
+  \node[circle,draw,inner sep=1pt,minimum size=1.1cm] (cu) at (3.6,0) {Control\\unit};
+  \node[circle,draw,inner sep=1pt,minimum size=1.1cm] (ac) at (5.4,0) {\scriptsize Actuator};
+  \node[font=\tiny] at (5.4,0.85) {(motor)};
+  \node[draw,minimum width=2cm,minimum height=1.1cm] (car) at (7.6,0) {Car};
+  \draw[->] (sum.east) -- (cu.west);
+  \draw[->] (cu.east) -- (ac.west);
+  \draw[->] (ac.east) -- (car.west);
+  \draw[->] (car.east) -- (9.7,0) node[right] {velocity};
+  \node[draw,minimum width=2.6cm,minimum height=0.8cm] (tr) at (6.0,-1.5) {Transducer\\{\tiny (sensor)}};
+  \draw (9.2,0) -- (9.2,-1.5) -- (tr.east);
+  \draw[->] (tr.west) -| (sum.south);
+  \draw[->] (2.0,1.15) -- (2.55,0.07);
+  \node at (3.3,1.4) {Actuating signal\\or control signal};
+  \node[turuncukalem,font=\tiny] at (11.7,0.9) {output (controlled parameter)};
+  \node[turuncukalem,font=\tiny] at (0.3,-1.1) {summation\\point};
+  \draw[->,turuncukalem] (0.8,-0.85) -- (1.6,-0.2);
+  \node[turuncukalem,font=\tiny,anchor=west] at (9.25,-1.5) {$\hookrightarrow$ feedback loop};
+  \node[turuncukalem,font=\tiny] at (7.6,-2.15) {\okunamadi{}};
+  \draw[dashed] (cu.south) -- (3.6,-2.9);
+  \draw[->] (3.6,-2.9) -- (4.0,-2.9);
+  \node[anchor=west,align=left,font=\tiny] at (4.0,-3.1) {non human unit\\ \& \\ Automatic control};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Classification for control systems}
+\noindent
+\begin{tabular}{@{}l l@{}}
+\textcolor{kirmizikalem}{$\ast$} Architecture & $\rightarrow$ open loop\\
+ & $\hookrightarrow$ closed loop : feed back
+\end{tabular}
+
+\medskip
+\noindent
+\begin{tabular}{@{}l l l@{}}
+\textcolor{kirmizikalem}{$\ast$} Energy Source & $\longrightarrow$ Active & \textcolor{turuncukalem}{(always need energy source)}\\
+\phantom{$\ast$} in the System & $\hookrightarrow$ passive & \textcolor{turuncukalem}{(you dont need energy source)}
+\end{tabular}
+
+\medskip
+\noindent
+\begin{tabular}{@{}l l l@{}}
+ & & \textcolor{turuncukalem}{Root locus, Bode-plot}\\
+\textcolor{kirmizikalem}{$\ast$} Input-output & $\rightarrow$ SISO (Single input single-output) & \textcolor{turuncukalem}{(classical control) (Freq)}\\
+ & $\hookrightarrow$ SIMO (''\ \ ''\ \ multiple '') & \textcolor{turuncukalem}{Modern control (time domain)}\\
+ & $\hookrightarrow$ MISO & \textcolor{turuncukalem}{$\downarrow$ State-space}\\
+ & $\hookrightarrow$ MIMO &
+\end{tabular}
+
+\bigskip
+\noindent\textcolor{murekkep}{SISO example :} Regulators, Amplifiers, thermositor, dc motors, water controller in a pool,
+
+\medskip
+\noindent\textcolor{murekkep}{MIMO Example:} Autonom vehicle, Electrical distrubition system, aircraft systems, Internet Router, Camera, Temperature System of (\okunamadi{BMS})
+
+\medskip
+\noindent\textcolor{murekkep}{SIMO Example:} Radar systems, Powerbank
+
+\medskip
+\noindent\textcolor{murekkep}{MISO Example:} A computer temp sytem with multiple sensors and one fan
+
+\end{document}

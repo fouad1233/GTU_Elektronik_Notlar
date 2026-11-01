@@ -6,12 +6,12 @@
 \sayfa{1}
 Boş olmayan ortam
 
-\sekilnotu[1]{Eğik çizgilerle taralı, düzensiz biçimli bir bölge (ortam). Sol üstteki ``dış yük yoğunluğu'' yazısından bölgenin sınırına ok, sınırda $\rho_{\text{dış}}$; bölgenin içinden ``$\rho=\rho_{\text{dış}}+\rho_{\text{iç}}$'' yazısına ok; turuncu: bölge içinden okla ``$\rho_{\text{iç}}^{+}+\rho_{\text{iç}}^{-}=\rho_{\text{iç}}$''; bölgenin sol altında ``$\rho_{\text{iç}}=\bar\rho$''. Bölgenin sağında eğri bir ayırıcı çizgi.}
+\elcizimi[0.75]{sekiller/Ders13-s1-1.png}[1]
 Belli bir zaman sonra dengeye erişip bir iç yük oluşturacak
 
 Boş uzayda
 
-\sekilnotu[1]{Eğri ayırıcı çizginin sağ üstünde kapalı bir bölge, içinde daha küçük kapalı bir bölge; küçük bölgede ``$\rho_{\text{dış}}$'' ve yanında ``$\varepsilon_0$''.}
+\elcizimi[0.3]{sekiller/Ders13-s1-2.png}[1]
 \[ \vec E = -\mathrm{grad}\,V \qquad \vec D = \varepsilon_0\vec E \qquad \vec D\parallel\vec E \]
 \[ \Delta V = -\frac{\rho}{\varepsilon_0} = \frac{-\rho_{\text{dış}}}{\varepsilon_0} \]
 \[ \mathrm{div}\,\vec D = \mathrm{div}(\varepsilon_0\vec E) = \rho = \rho_{\text{dış}} \]
@@ -20,7 +20,7 @@ Boş uzayda
 
 $\rho = \rho_{\text{dış}} + \bar\rho$ \qquad artık ortamı boş gibi düşünebiliriz
 
-\sekilnotu[1]{Kapalı bir bölge, içinde ``$\varepsilon_0$''; bölgenin altından içine doğru yukarı yönlü ok, yanında ``$\rho_{\text{dış}}+\bar\rho$''.}
+\elcizimi[0.3]{sekiller/Ders13-s1-3.png}[1]
 \[ \mathrm{div}(\varepsilon_0\vec E) = \rho = \rho_{\text{dış}} + \bar\rho \]
 \[ \bar\rho = -\mathrm{div}\Bigl(\varepsilon_0\,\overbrace{\chi(\vec E)}^{\text{? kapa katsayısı ortamın duyarlılığıdır}}\,\vec E\Bigr) \]
 
@@ -61,7 +61,7 @@ $\vec F = q\,\vec E$ \qquad $\mathrm{div}\,\vec E = \dfrac{\rho_{\text{dış}}}{
 \end{minipage}
 
 \sayfa{2}
-\sekilnotu[2]{Eksenler (yatay eksen, düşey eksen ve bir çapraz doğru) ve orijinin sol-altında eğik çizgilerle taralı bir bölge; orijin yakınında ``$q$'' ve ``$\varepsilon$'' yazılı. Sayfanın sağ üst köşesinde tek başına ``$\varepsilon$'' yazılı.}
+\elcizimi[0.35]{sekiller/Ders13-s2-1.png}[2]
 $q=1$ ise \quad $V = \dfrac{1}{4\pi\varepsilon\cdot r}$
 
 \[ V = \frac{1}{4\pi\varepsilon}\int\frac{\rho}{r'}\,dv \]
@@ -69,7 +69,7 @@ $q=1$ ise \quad $V = \dfrac{1}{4\pi\varepsilon\cdot r}$
 
 \medskip\noindent\hrulefill\medskip
 
-\sekilnotu[2]{Kapalı, uzamış bir eğri (yüzey); üst kısmında dışarıda ``$\vec E_2$'', hemen içinde ``$\vec E_1$''; sağ sınırdan dışarı doğru bir $\vec n$ oku.}
+\elcizimi[0.3]{sekiller/Ders13-s2-2.png}[2]
 \[ \vec n = \frac{d\vec S}{dS} \]
 
 \[ \mathrm{rot}\,\vec E=0 \;\Rightarrow\; \{\mathrm{rot}\,\vec E\} + \vec n\times(\vec E_2-\vec E_1)\big|_S\,\delta(s) = \{0\} + 0\cdot\delta(s) \]
@@ -81,7 +81,7 @@ $q=1$ ise \quad $V = \dfrac{1}{4\pi\varepsilon\cdot r}$
 \[ \vec n\times\bigl(\vec E_2\big|_S-\vec E_1\big|_S\bigr) = 0 \]
 \[ \Rightarrow\; \vec n\times\vec E_2\big|_S = \vec n\times\vec E_1\big|_S \;\Rightarrow\; \vec E_1^{\,t}\big|_S = \vec E_2^{\,t}\big|_S \]
 
-\sekilnotu[2]{Eğri bir çizgi (yüzey) ve üzerinde bir nokta; noktadan üç ok: normal $\vec n$ (sola yukarı), ortada $\vec A$ ve teğet $\vec t$ (sağa yukarı). Ok uçlarında ``$\vec A = A^t\vec t +$'' ve ``$A^n\vec n$'' yazılı.}
+\elcizimi[0.35]{sekiller/Ders13-s2-3.png}[2]
 \begin{align*}
 \vec n\times\vec A &= \vec n\times\bigl(A^t\,\vec t + A^n\,\vec n\bigr) \\
  &= A^t\,\underbrace{(\vec n\times\vec t)}_{\vec t\,'} + A^n\,\underbrace{\vec n\times\vec n}_{0} \\
@@ -111,7 +111,7 @@ $q=1$ ise \quad $V = \dfrac{1}{4\pi\varepsilon\cdot r}$
 \Delta V_2 &= -\frac{\rho_2}{\varepsilon_2} && v_2\text{'de}
 \end{align*}
 
-\sekilnotu[3]{Düzensiz kapalı bir bölge ($S$ yüzeyi); bölgeyi kesen, bölge içinde kesikli çizilmiş eğik bir doğru (sol üstten sağ alta); sol üstte dışarıda ``$\varepsilon_2$'' yazılı, bölgenin sağ üst kenarında küçük bir işaret. Sağdan bölge sınırına işaret eden ok ve yanında ``$V=V_s=$ sabit''.}
+\elcizimi[0.45]{sekiller/Ders13-s3-1.png}[3]
 \begin{gather*}
 \vec E = -\mathrm{grad}\,V = -\mathrm{grad}\,V_s = 0 \\
 \vec D = \varepsilon\vec E = 0 \\
@@ -126,7 +126,7 @@ $q=1$ ise \quad $V = \dfrac{1}{4\pi\varepsilon\cdot r}$
 \sayfa{4}
 Yüzey üzerinde potansiyel sabitse ve içeride yük yoksa iç bölgede potansiyel sabittir, elektrik alan de sabittir, ve içerde $\rho=0$ \,/\!/
 
-\sekilnotu[4]{Kırmızı kalemle: düşey bir eksen (yukarı oklu) ve iki yatay, sağa oklu çizgi (biri üstte, biri altta); aralarındaki bant eğik çizgilerle taralı. Üst çizginin üstünde solda ``$V_2$'', ortada ``$\varepsilon_2$''; taralı bölgede solda ``$V\neq 0$'', sağda ``$\varepsilon_1$''; taralı bölgenin sağında ``$\Delta V_1=0$''; alt çizginin altında solda ``$V_0$'', ortada ``$\varepsilon_3$''. Çizimin sağ üstünde (siyah) aşağıdaki üç ifade yazılı.}
+\elcizimi[0.6]{sekiller/Ders13-s4-1.png}[4]
 \begin{gather*}
 V_2 = V_d = \text{sabit} \\
 \vec D_2 = 0 \\
@@ -136,7 +136,7 @@ V_2 = V_d = \text{sabit} \\
 \[ \mathrm{div}\,\vec D = \rho \;\Rightarrow\; \Delta V_1 = \frac{\partial^2 V_1}{\partial x^2} + \frac{\partial^2 V_1}{\partial x^2}\text{\footnotemark} + \frac{\partial^2 V_1}{\partial z^2} = 0 \]
 \footnotetext{Claude notu: muhtemelen ikinci terim $\partial^2 V_1/\partial y^2$ olmalı.}
 
-\sekilnotu[4]{Bir daire (kapalı yüzey); sağında ``$V_s=$ sabit''; sağ alt kenarından daireye işaret eden eğri bir çizgi ve ``$S$'de''; sol alt kenarından daireye işaret eden kısa bir çizgi ve ``$\rho_s\neq 0$''.}
+\elcizimi[0.35]{sekiller/Ders13-s4-2.png}[4]
 \begin{align*}
 \frac{d^2V_1}{dx^2} &= 0 \;\Rightarrow\; V_1 = Ax + B \\
 V_1\Big|_{x=0} &= A\cdot 0 + B = V_0 \;\Rightarrow\; B = V_0 \\[2mm]

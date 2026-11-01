@@ -7,7 +7,7 @@
 \section{Açı modülasyonun lineersizliğe dayanıklığı}
 (Immunity of angle mod.\ to nonlinearity)
 
-\sekilnotu[1]{Blok diyagram: soldan giriş oku, altında $y(t)=A_c\cos(\theta(t))$; kutu ``L.O.F. $(\;)^3$''; kutudan çıkan ok, altında $z(t)=y^3(t)$; ardından kırmızı çerçeveli kutu (``BGF, M.F $=f_c$, BG $=$ BG$_{FM}$''); çıkış oku ``FM''.}
+\elcizimi[0.75]{sekiller/Ders13-s1-1.png}[1]
 
 GM (AM)?
 \begin{align*}
@@ -48,7 +48,7 @@ Tek yanbantı çoklanmış işaretler mikrodalga ile iletirken kullanılır. TV'
 \subsection{1) Dolaylı metod (Indirect method)}
 (Armstrong tekniği)
 
-\sekilnotu[2]{Blok diyagram: giriş $m(t)$ $\rightarrow$ kutu ``NBFM (DB-FRM)'' $\rightarrow$ ok (üstünde kıvrık kırmızı okla gösterilen etiket $y_{NBFM}(t)$) $\rightarrow$ kutu ``Frequency multiplier (Frekans çarpıcı)'' $\rightarrow$ çıkış oku ``WBFM (GB-FRM)''. Frekans çarpıcı kutusuna işaret eden kırmızı not: ``genlik sınırlayıcı içerir, genlikte bozulmayı düzeltir''.}
+\elcizimi[0.9]{sekiller/Ders13-s2-1.png}[2]
 
 -- Genlik ve faz bozulmasına sebep olur
 \[ y_{\mathrm{NBFM}}(t) = A_c\left[\cos(2\pi f_c t)-\phi(t)\sin(2\pi f_c t)\right] \]
@@ -102,12 +102,12 @@ $\ast$ $|x|\ll 1 \;\Rightarrow\; (1+x)^n \simeq 1+nx$
 \sayfa{4}
 \section{FRM (FM)'nin Dönüşümü}
 
-\sekilnotu[4]{Blok diyagram: giriş $y_{FM}(t)$ $\rightarrow$ kutu ``$\frac{d}{dt}$'' $\rightarrow$ ok üzerinde $\dot y_{FM}(t)$ $\rightarrow$ kutu ``Envelope detector'' $\rightarrow$ çıkış $m(t)$. Kırmızı etiketler: ilk kutunun altında ``\okunamadi{Process} FM to AM converter'', ikinci kutunun altında ``AM demodulator''.}
+\elcizimi[0.65]{sekiller/Ders13-s4-1.png}[4]
 
 \[ y_{FM}(t) = A_c\cos\Big(\underbrace{2\pi f_c t + 2\pi k_f\int_{-\infty}^{t} m(\tau)\,d\tau}_{\theta(t)}\Big) \]
 \[ \frac{dy_{FM}(t)}{dt} = -A_c\underbrace{\left[2\pi f_c + 2\pi k_f\,m(t)\right]}_{\text{zarf (envelope)}}\sin(\theta(t)) \]
 
-\sekilnotu[4]{FM işaretinin zaman grafiği: yatay eksen $t$; genliği değişen, frekansı zamanla sıkışıp açılan siyah salınım; kırmızı kesikli eğrilerle üst ve alt zarf (envelope) çizilmiş; sağda ok ile $y_{FM}(t)$ etiketi; kırmızı not: ``zarf $=A_c[2\pi f_c+2\pi k_f m(t)]$''.}
+\elcizimi[0.75]{sekiller/Ders13-s4-2.png}[4]
 
 \[ \frac{dy_{FM}(t)}{dt} = -A_c\underbrace{\left[2\pi f_c + 2\pi k_f\,m(t)\right]}_{\text{zarf (envelope)}}\sin(\theta(t)) \]
 
@@ -121,10 +121,10 @@ Bu metodun uygulanabilmesi için $A_c$'nin sabit olması lazım
 
 $A_c(t)\,m(t)$
 
-\sekilnotu[4]{Blok diyagram: giriş $\rightarrow$ kutu ``BP limiter'' (üstünde BP) $\rightarrow$ kutu ``$\frac{d}{dt}$'' $\rightarrow$ kutu ``zarf detektörü'' $\rightarrow$ seri kondansatör (C) $\rightarrow$ çıkış ``$k\cdot m(t)$'' (altında ``$=$ sabit''). Girişin altında $y_{FM}(t)=A_c(t)\cos(\theta(t))$; BP limiter çıkışının altında $\tilde y_{FM}(t)=A_c\cos(\theta(t))$. BP limiter kutusundan aşağı ok: kırmızı kesikli çerçeve içinde ``Hard limiter'' $\rightarrow$ ``BPF, C.F $=f_c$, BW $=$ BW$_{FM}$'' $\rightarrow$ çıkış oku (BP limiter'ın iç yapısı).}
+\elcizimi[0.9]{sekiller/Ders13-s4-3.png}[4]
 
 \sayfa{5}
-\sekilnotu[5]{Hard limiter karakteristiği: yatay eksen $v_i(t)$, düşey eksen $v_o(t)$; $v_i<0$ için $v_o=-1$ (yatay çizgi), $v_i>0$ için $v_o=1$ (yatay çizgi); düşey eksende $1$ ve $-1$ işaretli.}
+\elcizimi[0.45]{sekiller/Ders13-s5-1.png}[5]
 
 \section{Pratik FM demodülatörleri}
 \begin{itemize}
@@ -138,7 +138,7 @@ $A_c(t)\,m(t)$
 
 \[ \text{Demodülatör çıkışı: } y_d(t)=\begin{cases} \dfrac{I}{A_c}\sin(2\pi f t) & \text{PM} \\[4pt] \dfrac{If}{A_c}\cos(2\pi f t) & \text{FM}\end{cases} \]
 
-\sekilnotu[5]{Grafik: yatay eksen $f$ (ok ucunda), düşey eksen ``karışımın genliği'' (yanında: PM için $I/A_c$, FM için $If/A_c$). Turuncu doğru orijinden başlayarak doğrusal artar, ucunda ``FM''; siyah yatay çizgi üstte, ucunda ``PM''; kırmızı çizgi orijinden FM doğrusunu izler, $2{,}1$ kHz'te (kesikli düşey çizgiyle işaretli) PM seviyesine ulaşıp yatay devam eder. Kırmızı notlar: ``böyle olmasını isteriz'' (ok yatay kırmızı çizgiyi gösterir); ``FM with pre-emphasis and de-emphasis filters (ön vurgulama ve son vurgulama filtreleri)''.}
+\elcizimi[0.75]{sekiller/Ders13-s5-2.png}[5]
 
 Başta FM sonra PM gibi çalışsın isteriz
 
@@ -146,11 +146,11 @@ Başta FM sonra PM gibi çalışsın isteriz
 \section{AWGN: kanal gürültüsü}
 \[ r(t) = \underbrace{y(t)}_{\text{modüle edilmiş işaret}} + \underbrace{n(t)}_{\text{AWGN}} \quad\rightarrow\quad \text{GYF: } S_n(f)=\frac{N_0}{2}=\text{sabit}\ \ \forall f \]
 
-\sekilnotu[6]{Beyaz gürültünün GYF grafiği: yatay eksen $f$, düşey eksen $S_n(f)$; $N_0/2$ seviyesinde tüm frekanslarda sabit yatay çizgi. Grafik, FM modülatör ile kanal kutuları arasındaki okun üstüne çizilmiş.}
+\elcizimi[0.4]{sekiller/Ders13-s6-1.png}[6]
 
-\sekilnotu[6]{Blok diyagram: $m(t)$ $\rightarrow$ ``Pre emphasis filter'' (altında $H_p(f)$) $\rightarrow$ ok üzerinde turuncu $\tilde m(t)$ $\rightarrow$ ``FM modulator'' $\rightarrow$ ``kanal'' $\rightarrow$ ``FM demodulator'' $\rightarrow$ (aşağı ve sola dönen hat; üzerinde turuncu $\tilde m(t)$) $\rightarrow$ ``De emphasis filter'' (altında $H_d(f)$) $\rightarrow$ çıkış $m(t)$.}
+\elcizimi[0.95]{sekiller/Ders13-s6-2.png}[6]
 
-\sekilnotu[6]{``Sesin GYF'' grafiği: yatay eksen $f$ (kHz), işaretli noktalar 0, 1, 2, 3, 4, 5; düşey eksen ``Sesin GYF''. Eğri 0'da orta bir değerden başlar, yaklaşık 0,3 kHz civarında dar bir tepe yapar, sonra 1--2 kHz arasında hızla düşer ve 3--4 kHz'den sonra sıfıra yakın seyreder.}
+\elcizimi[0.6]{sekiller/Ders13-s6-3.png}[6]
 
 2,1 khz kritik frekans
 
@@ -159,7 +159,7 @@ Sesin zayıf olduğu frekanslarda kuvvetlendirir gürültüye bağışıklık ka
 \section{Proakis, S.294--295}
 \[ |H_p(f)| = \sqrt{1+\left(\frac{f}{f_0}\right)^2} \]
 
-\sekilnotu[6]{$|H_p(f)|$ grafiği: düşey eksen ve yatay frekans ekseni; $-f_0$ ile $f_0$ arasında $1$ seviyesinde yatay düz çizgi (kesikli düşey çizgilerle $\pm f_0$ işaretli), $|f|>f_0$ için doğrular dışa doğru yükselir. Altında ``1st order HP filter''.}
+\elcizimi[0.55]{sekiller/Ders13-s6-4.png}[6]
 
 Ticari FM yayınında $RC=75\ \mu\mathrm{sn}$
 \begin{align*}
@@ -170,7 +170,7 @@ Ticari FM yayınında $RC=75\ \mu\mathrm{sn}$
 \sayfa{7}
 \[ |H_d(f)| = \frac{1}{\sqrt{1+\left(\dfrac{f}{f_0}\right)^2}} \]
 
-\sekilnotu[7]{$|H_d(f)|$ grafiği: düşey eksen ve yatay frekans ekseni; orijinde tepe yapan, iki yana doğru azalan çan biçimli (alçak geçiren) eğri; yatay eksende $-f_0$ ve $f_0$ işaretli. Altında ``1st order LP filter''. Kırmızı bir ok aşağıdaki nota işaret ediyor.}
+\elcizimi[0.75]{sekiller/Ders13-s7-1.png}[7]
 
 gürültüyü azaltıyor ve performansı artırır
 
@@ -178,7 +178,7 @@ gürültüyü azaltıyor ve performansı artırır
 
 \subsection{Süper heterodin FM alıcısı}
 
-\sekilnotu[7]{Blok diyagram: anten $\rightarrow$ ``RF Amplifier'' $\rightarrow$ ``mixer''; mixer'a aşağıdan ``local oscillator'' bağlı; turuncu kesikli oklarla RF Amplifier ile local oscillator arasında ``common tuning''. mixer $\rightarrow$ (okun altında $f_{IF}=10{,}7$ MHz) ``IF Amplifier'' (yamuk biçiminde; altında turuncu: CF $=f_{IF}=10{,}7$ MHz, BW $=200$ kHz) $\rightarrow$ ``BP limiter'' (altında turuncu: (Hard Limiter $+$ BPF, C.F $=10{,}7$ MHz, BW $=200$ kHz)) $\rightarrow$ ``Discriminator (FM demodulator)'' $\rightarrow$ ``Audio Amplifier and de-emphasis'' $\rightarrow$ ``LPF'' $\rightarrow$ ``Speaker''.}
+\elcizimi[0.9]{sekiller/Ders13-s7-2.png}[7]
 
 Ticari FM yayınında \\
 Band: 88--108 MHz \\
@@ -194,7 +194,7 @@ $\ast$ Dezavantajı
 \subsection{Eşik değeri etkisi (Treshold effect)}
 sinüsoidal mesaj işaretleri için
 
-\sekilnotu[8]{Eşik değeri grafiği: düşey eksen $\mathrm{SNR}_o$(dB) (yanında ok ile ``modüle edilmiş'' yazısı), yatay eksen $\mathrm{SNR}_b$(dB). Orijinden çıkan koyu kırmızı doğru ``$\mathrm{SNR}_o=\mathrm{SNR}_b$ (DSB-SC, SSB)''; daha az eğimli turuncu doğru ``$\mathrm{SNR}_o=\eta\cdot\mathrm{SNR}_b$ (DSB-LC)''. Mor ($\beta=3$), yeşil ($\beta=5$) ve mavi ($\beta=7$) eğriler yatay eksende kendi eşik değerlerinde dikey çıkıp ardından yukarı doğru eğimli devam ediyor; $\beta$ büyüdükçe eğri daha yukarıda.}
+\elcizimi[0.8]{sekiller/Ders13-s8-1.png}[8]
 
 \[ \mathrm{SNR}_{b,\mathrm{th}} = 20(\beta+1) \]
 

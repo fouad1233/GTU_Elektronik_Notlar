@@ -8,7 +8,7 @@
 Consider the active loaded MOS differential amplifier with $(W/L)_n=100$, $(W/L)_p=\okunamadi{}$, $\mu_n C_{ox}=2\mu_p C_{ox}=0{,}2\ \mathrm{mA/V^2}$, $|V_A|_n=|V_A|_p=20\ \mathrm{V}$, $I=0{,}8\ \mathrm{mA}$, $R_{SS}=25\ \mathrm{k}\Omega$. Calculate $g_m$, $R_o$, $|A_d|$, $|A_c|$ and CMRR\footnote{Claude notu: Soru metni sayfa kenarında kesilmiş; ``loaded'', ``amplifier'', ``mA/V$^2$'' ve ``$|A_c|$'' tamamlanmıştır.}
 \end{ornek}
 
-\sekilnotu[1]{Aktif yüklü MOS fark yükselteci. Üstte $V_{DD}$ rayı; ona bağlı iki PMOS (3 ve 4 numaralı, ``Active load'' notlu, turuncu kesikli çerçeve içinde) akım aynası yükü: ortak gate hattı sol PMOS'un (3) drain düğümüne bağlı (diyot bağlı), sağ PMOS (4) çıkış düğümünü besliyor. Altta iki NMOS (1 solda, gate: $v_{G1}$; 2 sağda, gate: $v_{G2}$) fark çifti, turuncu kesikli çerçeve içinde. Sağ kolun (2 ve 4) birleştiği düğümden çıkış $v_O$ alınıyor. Her iki kolda aşağı doğru kırmızı ok ve ``0,4 mA''. Ortak source düğümü ile $-V_{SS}$ arasında $R_{SS}$ direnci ve ona paralel $I$ akım kaynağı (aşağı yönlü). Sol üstte daire içinde ``7''.}
+\elcizimi[0.65]{sekiller/Ders8-s1-1.png}[1]
 
 \begin{cozum}
 $g_{m1,2}=\ ?$ \qquad $\to\quad \dfrac{2(0{,}4)}{V_{OV}=0{,}2}=4\ \mathrm{mA/V}$
@@ -23,7 +23,7 @@ $r_{o\,3,4}=r_{o\,1,2}=50\ \mathrm{k}\Omega$
 
 \textit{differential mode}
 
-\sekilnotu[1]{Fark modu yarım devresi: üstte $r_{o4}$ direnci (üst ucu sağa kısa bir çizgiyle AC toprağa/besleme hattına gidiyor), altında ``2'' numaralı NMOS'un drain'ine bağlı; gate'e $v_{id}/2$ uygulanmış; source toprağa bağlı.}
+\elcizimi[0.5]{sekiller/Ders8-s1-2.png}[1]
 
 \begin{align*}
 &= g_m\,(r_{o4}\parallel r_{o2}) \\
@@ -42,12 +42,12 @@ $r_{o\,3,4}=r_{o\,1,2}=50\ \mathrm{k}\Omega$
 \sayfa{2}
 \sekilnotu[2]{Yapıştırılmış basılı ders kitabı şekli: kazancın frekansla değişimi, $|V_o/V_{sig}|$ (dB) eksenine karşı $f$ (Hz, log ölçek). Alçak frekans bandı (``Gain falls off due to the effects of coupling and bypass capacitors''), orta bant (``All capacitances can be neglected'', $20\log|A_M|$ (dB), 3 dB düşüş) ve yüksek frekans bandı (``Gain falls off due to the internal capacitive effects of the BJT or the MOSFET''); alt ve üst kesim frekansları $f_L$ ve $f_H$.}
 
-\sekilnotu[2]{Akım kaynağı ile kutuplanmış MOSFET ortak source yükselteç devresi (elle çizilmiş). Solda $v_{sig}$ kaynağı ve $R_{sig}$, ardından $C_{C1}$ kuplaj kondansatörü; gate düğümü $R_G$ ile toprağa bağlı. Drain üstte $R_D$ ile $V_{DD}$'ye bağlı; drain'den $C_{C2}$ kuplaj kondansatörü üzerinden $R_L$ yük direncine (toprağa) çıkış. Source'dan aşağı, $-V_{SS}$'e giden $I$ akım kaynağı ve ona paralel (toprağa bağlı) $C_S$ bypass kondansatörü. Turuncu kalemle üç bölge çevrilmiş: sol bölge ($v_{sig}$, $R_{sig}$, $C_{C1}$, $R_G$) ``due to $C_{C1}$''; sağ üst bölge ($R_D$, $C_{C2}$, $R_L$) ``due to $C_{C2}$''; alt bölge (akım kaynağı ve $C_S$) ``due to $C_S$''. Sol bölgeden kırmızı bir ok aşağıdaki ifadeye gidiyor.}
+\elcizimi[0.7]{sekiller/Ders8-s2-1.png}[2]
 
 \[ \frac{1}{j\omega C} \]
 \textit{(ifadenin altında kırmızı, kıvrımlı bir ok var)}
 
-\sekilnotu[2]{Aynı devrenin ikinci çizimi; $C_{C1}$ kondansatörünün üzeri kırmızı kalemle işaretlenmiş (kondansatörün iki yanında kırmızı çift çizgi ve küçük oklar). Altında, kırmızı kalemle eşdeğer direnç şeması: soldaki uçtan $R_{sig}$ direnci, sağdaki uca bağlı $R_G$ direnci; iki uç arasında (kondansatörün olduğu yerde) çift yönlü ok ve altında ``$R_{eq}$''.}
+\elcizimi[0.7]{sekiller/Ders8-s2-2.png}[2]
 
 \[ R_{eq}=R_{sig}+R_G \]
 
@@ -55,14 +55,14 @@ $r_{o\,3,4}=r_{o\,1,2}=50\ \mathrm{k}\Omega$
 
 \sayfa{3}
 \section{2. kapasiteden kaynaklı etkiyi \texorpdfstring{\okunamadi{koyalım}}{koyalım}}
-\sekilnotu[3]{Sol: MOSFET devresi (kapasitör etkisi için sadeleştirilmiş). Gate, ``$R$'' etiketli bir direnç üzerinden toprağa bağlı; drain, ``$R_D$'' direnciyle toprağa bağlı; source, ``$C_S$'' kondansatörü üzerinden toprağa bağlı. Sağ: küçük işaret eşdeğer devresi. Solda toprağa bağlı ``$R$'' direnci ve ``$+\,v_{gs}\,-$'' işaretli iki açık uç; alt hat (source düğümü) üzerine, toprağa bağlı bir test kaynağı $V_{tn}$ ve düğüme doğru yukarı yönlü $I_{tn}$ akımı bağlanmış; yanında bağımlı akım kaynağı $g_m v_{gs}$ ve paralelinde $r_o$ (kırmızı kalemle çizilerek iptal edilmiş, yanında kırmızı ``ihmal'') ile $R_D$.}
+\elcizimi[0.9]{sekiller/Ders8-s3-1.png}[3]
 
 \[ \frac{V_{tn}}{I_{tn}} = \ ? \ = \frac{-v_{gs}}{-g_m\, v_{gs}} = \frac{1}{g_m} \]
 \textit{(pay ve paydadaki $v_{gs}$ terimleri çizilerek sadeleştirilmiş)}
 
 \[ \omega_{P2} = \frac{1}{\;\dfrac{C_S}{g_m}\;} = \frac{g_m}{C_S} \]
 
-\sekilnotu[3]{Küçük işaret eşdeğer devresi: solda toprağa bağlı bir direnç ve iki açık uç (üstte gate, altta ``S'' düğümü); bağımlı akım kaynağı $g_m v_{gs}$; ``D'' düğümü ve ona bağlı $R_D$ (toprağa); ardından $C_{C2}$ kuplaj kondansatörü (iki ``L'' biçiminde çizilmiş, arada ok) ve toprağa bağlı $R_L$.}
+\elcizimi[0.8]{sekiller/Ders8-s3-2.png}[3]
 
 \[ \omega_{P3} = \frac{1}{(R_D+R_L)\,C_{C2}} \]
 
@@ -104,7 +104,7 @@ $r_{o\,3,4}=r_{o\,1,2}=50\ \mathrm{k}\Omega$
 \end{tikzpicture}
 \end{center}
 
-\sekilnotu[4]{PNP BJT'li yükselteç devresi (emiter yukarıda). Üstte $V_{EE}$ (yukarı ok) ile beslenen, aşağı yönlü bir akım kaynağı emitere bağlı; emiter düğümü ayrıca $C_E$ bypass kondansatörü ile toprağa bağlı. Base: solda $v_{sig}$ kaynağı, $R_{sig}$ ve $C_{C1}$ kuplaj kondansatörü üzerinden base'e bağlı; base ayrıca $R_B$ ile toprağa bağlı. Kolektör: aşağıda $R_C$ üzerinden $V_{CC}$ kaynağına (aşağı ok) bağlı; kolektörden $C_{C2}$ kuplaj kondansatörü ile toprağa bağlı $R_L$ yük direncine ve $v_{out}$ çıkışına gidiyor.}
+\elcizimi[0.6]{sekiller/Ders8-s4-1.png}[4]
 
 \[ A_m = -g_m\,(R_C \parallel R_L)\,\frac{(R_B \parallel r_\pi)}{R_{sig}+(R_B \parallel r_\pi)} \]
 
@@ -119,9 +119,9 @@ $r_{o\,3,4}=r_{o\,1,2}=50\ \mathrm{k}\Omega$
 \[ A_m = -g_m\,(R_C \parallel R_L)\,\frac{(R_B \parallel r_\pi)}{R_{sig}+(R_B \parallel r_\pi)} \]
 
 \sayfa{5}
-\sekilnotu[5]{Küçük işaret eşdeğer devresi (BJT): solda toprağa bağlı uçtan $R_{sig}$, ardından $C_{C1}$ kondansatörü (çift çizgi, altında küçük bir ok işareti); sonraki düğümden toprağa $R_B$; aynı düğümden aşağı $r_\pi$, alt ucu kalın bir telle bağımlı akım kaynağı $g_m v_\pi$'nin alt ucuna bağlı; kaynağın üst ucundan giden hat toprağa bağlı $R_C$'ye gidiyor.}
+\elcizimi[0.8]{sekiller/Ders8-s5-1.png}[5]
 
-\sekilnotu[5]{Aynı devre; $C_{C1}$ yerine seri bir test kaynağı $V_{tn}$ (daire içinde) konmuş, altında sağa doğru ok ve ``$I_{tn}$''. Diğer elemanlar aynı ($R_{sig}$, $R_B$, $r_\pi$, $g_m v_\pi$, $R_C$).}
+\elcizimi[0.8]{sekiller/Ders8-s5-2.png}[5]
 
 \[ R_1 = R_{CC1} = \bigl(R_{sig} + (R_B \parallel r_\pi)\bigr) \]
 
@@ -131,7 +131,7 @@ $r_{o\,3,4}=r_{o\,1,2}=50\ \mathrm{k}\Omega$
 
 \noindent Low frekansta C'ler short kabul edilir
 
-\sekilnotu[5]{Soldan toprağa bağlı uçtan $R_{sig}$; sonraki düğümden toprağa $R_B$; sağdaki düğüm ``B'' olarak işaretli; ``B''den aşağı $r_\pi$; $r_\pi$'nin alt ucundan sağa bir hat ve hattın ucunda toprağa bağlı bir kondansatör, yanında ``$R_{out}$'' etiketi.}
+\elcizimi[0.5]{sekiller/Ders8-s5-3.png}[5]
 
 \[ R_{CE} = R_2 = \frac{(R_{sig} \parallel R_B) + r_\pi}{\beta + 1} \]
 

@@ -1,0 +1,137 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{BJT fark yükselteci ve fark çifti problemleri}{Ders6.pdf}
+
+\sayfa{1}
+\section{BJT Differential Amplifier}
+\elcizimi[0.75]{sekiller/Ders6-s1-1.png}[1]
+\[ I_C = \beta\, I_B \]
+\[ \frac{I}{2}\,\frac{\alpha}{\beta} = \frac{I}{2(\beta + 1)} \qquad\qquad \alpha = \frac{\beta}{\beta + 1} \]
+
+\begin{align*}
+& I_B \neq 0 \\
+& g_m = \frac{I_C}{V_T} \qquad V_T \rightarrow \qty{25,8}{\milli\volt}\ \text{at room temp} \\
+& r_\pi = (\beta + 1)\,r_e \\
+& r_e \simeq 1/g_m = \frac{V_T}{I_E}
+\end{align*}
+
+\elcizimi[0.7]{sekiller/Ders6-s1-2.png}[1]
+\[ I_E = I_B + I_C \]
+
+$Q_1 \equiv Q_2$ \quad (EBJ Area$_1$ = EBJ Area$_2$)
+\[ I_C = I_S\, e^{V_{BE}/V_T} \]
+
+\sayfa{2}
+\elcizimi[0.6]{sekiller/Ders6-s2-1.png}[2]
+$I_1 = \ ?$ \qquad $I_2 = \ ?$
+
+İki transistörün çalıştığını varsayalım
+
+\elcizimi[0.5]{sekiller/Ders6-s2-2.png}[2]
+$V_1 - 0{,}7 \neq -0{,}7$ \quad (\okunamadi{birinciden kaynaklı}) \\
+(ikinciden kaynaklı)
+
+\elcizimi[0.8]{sekiller/Ders6-s2-3.png}[2]
+$V_1 = -0{,}1\,\mathrm{V}$ olursa \\
+$Q_1$ çalışmaz \\
+$Q_2$ çalışır
+
+$\underline{1}$ \ $Q_1$ çalışmaz \qquad $Q_2$ çalışır $\checkmark$ \qquad $\alpha$
+
+\sayfa{3}
+\begin{ornek}[4]
+A MOS differential pair is operated at a bias current of $\qty{0,8}{\milli\ampere}$. Find $V_{ov}$, $g_m$, $r_o$, and $A_{diff}$ using transistors with a $\frac{W}{L}$ ratio of 100, $\mu_n C_{ox} = \qty{0,2}{\milli\ampere\per\volt\squared}$, $V_A = \qty{20}{\volt}$ and $R_D = \qty{5}{\kilo\ohm}$
+\end{ornek}
+\elcizimi[0.55]{sekiller/Ders6-s3-1.png}[3]
+\begin{align*}
+& I_{D1} + I_{D2} = \qty{0,8}{\milli\ampere} \\
+& \text{since } M_1 \equiv M_2 \\
+& 2I_{D1} = 2I_{D2} = \qty{0,8}{\milli\ampere} \\
+& I_{D1} = I_{D2} = I/2 = \qty{0,4}{\milli\ampere}
+\end{align*}
+
+\[ \qty{0,4}{\milli\ampere} = \frac{1}{2}\cdot 0{,}2\cdot 100\,(V_{ov})^2\footnotemark \]
+\footnotetext{Çarpımın üzerine $0{,}1$ ve $10$ yazılmış (ara sonuçlar).}
+\[ V_{ov} = \begin{cases} \kutula{+0{,}2} \\ -0{,}2 \ \times\ \text{eksi olmaz} \end{cases} \]
+
+\[ \kutula{\, g_m = \frac{2I_D}{V_{ov}} = \frac{2\cdot 0{,}4}{0{,}2} = \qty{4}{\milli\siemens}\footnotemark \,} \]
+\footnotetext{Pay ve paydadaki sayılar çizilmiş; $0{,}4$'ün üzerine $2$ yazılmış.}
+\[ r_o = \frac{V_A}{I_D} = \frac{20}{0{,}4} = \qty{50}{\kilo\ohm} \]
+
+\elcizimi[0.85]{sekiller/Ders6-s3-2.png}[3]
+\begin{align*}
+\frac{v_{o1}}{v_{id}/2} &= -g_m\,(r_o \parallel R_D) \\
+&= -\qty{4}{\milli\siemens}\ \underbrace{\bigl(\qty{50}{\kilo\ohm} \parallel \qty{5}{\kilo\ohm}\bigr)}_{4{,}54}
+\end{align*}
+\[ \frac{v_{o2}}{v_{id}} = 9{,}08\ [\mathrm{V/V}] \quad\Longleftarrow\quad \frac{v_{o1}}{v_{id}} = -9{,}08\ [\mathrm{V/V}] \]
+
+\sayfa{4}
+\begin{align*}
+A_{diff} &= \frac{v_{diff}}{v_{id}} = \frac{v_{o2} - v_{o1}}{v_{id}} = 18{,}16\ [\mathrm{V/V}] \\
+&= 20\log(18{,}16)\ \mathrm{dB} \\
+A_{diff} &= 25{,}18\ \mathrm{dB}
+\end{align*}
+
+\elcizimi[0.55]{sekiller/Ders6-s4-1.png}[4]
+
+\elcizimi[0.25]{sekiller/Ders6-s4-2.png}[4]
+
+\elcizimi[0.65]{sekiller/Ders6-s4-3.png}[4]
+
+\[ \frac{v_{o1}}{v_{id}/2} = \frac{v_{o1}}{v_{gs}}\ ?? \]
+\[ v_{id}/2\ \text{??}\ v_{gs} \]
+
+\begin{align*}
+v_{o1} &= -5\mathrm{k}\,i_x \\
+g_m v_{gs} + \frac{-5\,i_x - i_x}{50} &= i_x \\
+g_m v_{gs} &= \frac{56\, i_x}{50}
+\end{align*}
+
+\sayfa{5}
+\[ v_{gs} = \frac{1}{g_m}\cdot\frac{56\, i_x}{50} \]
+\formulkutu{\frac{v_{o1}}{v_{gs}} = \frac{-5\, i_x}{\dfrac{56\, i_x}{200}} = -17{,}86\ [\mathrm{V/V}]}
+
+$V_A = \infty$ \qquad $|A_{single}| = \dfrac{v_{o1}}{v_{id}}$
+
+\elcizimi[0.6]{sekiller/Ders6-s5-1.png}[5]
+
+\begin{ornek}
+a) Find the differential gain, the common mode gain, and the common-mode rejection ratio if the output is taken single endedly. Assume devices are perfectly matched.
+
+b) Repeat a for differential output.
+
+c) Repeat b when the resistances have a mismatch of 1\%.
+\end{ornek}
+
+\sayfa{6}
+\section{Diff mode half-circuit model}
+\elcizimi[0.85]{sekiller/Ders6-s6-1.png}[6]
+\begin{align*}
+v_{o1} &= -g_m\,\frac{v_{id}}{2}\,R_D \\
+\frac{v_{o1}}{v_{id}} &= -\frac{1}{2}\cdot\qty{4}{\milli\siemens}\cdot\qty{5}{\kilo\ohm} \\
+&= -10\ \mathrm{V/V}
+\end{align*}
+\[ |A_{single}| = 10\ [\mathrm{V/V}] = 20\ \mathrm{dB} \]
+\[ |A_{diff}| = 40\ \mathrm{dB}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $|A_{diff}| = 2\cdot 10 = 20\ \mathrm{V/V} \approx 26\ \mathrm{dB}$ olmalı (aşağıdaki $100\ \mathrm{dB}$ sonucu da bu değere dayanıyor).}
+
+\section{Common mode half-circuit model}
+\elcizimi[0.4]{sekiller/Ders6-s6-2.png}[6]
+\begin{align*}
+\frac{v_{o1}}{v_{icm}} &\simeq -\frac{R_D}{2R_{SS}} = -\frac{5}{50\,\mathrm{k}} \\
+&= -0{,}1\ [\mathrm{V/V}]
+\end{align*}
+\[ |A_{cm}| = +0{,}1\ [\mathrm{V/V}] = -20\ \mathrm{dB} \]
+
+\[ |A_{cm\,diff}| = 0 \]
+\[ \mathrm{CMRR} = \frac{A_{single}\,[\mathrm{V/V}]}{A_{cm}\,[\mathrm{V/V}]} = A_{single}\,[\mathrm{dB}] - A_{cm}\,[\mathrm{dB}] = 40\ \mathrm{dB} \]
+\[ \mathrm{CMRR} = \infty \]
+
+\begin{align*}
+|A_{cm\,diff}| &= |A_{cm}|_{single} \times \frac{1}{100} \\
+&= 1\times 10^{-3}\ [\mathrm{V/V}] \\
+|A_{cm}|_{diff} &= -60\ \mathrm{dB}
+\end{align*}
+\[ \mathrm{CMRR}_{\text{\okunamadi{with mismatch}}} = 40 - (-60) = 100\ \mathrm{dB} \]
+\end{document}

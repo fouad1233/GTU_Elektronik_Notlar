@@ -1,0 +1,163 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{Feedback Amplifier Examples}{Ders13.pdf}
+
+\sayfa{1}
+\begin{ornek}
+  Analyze the circuit given below (Transconductance Amplifier) (Series-Series)
+
+  $I_{C1} = 0{,}6\,\mathrm{mA}$, $I_{C2} = 1\,\mathrm{mA}$, $I_{C3} = 4\,\mathrm{mA}$ \quad [$\beta = 100$, $r_o = \infty$] \quad Find $A$, $\beta$, $A_f = \dfrac{I_o}{V_s}$, $\dfrac{V_o}{V_s}$
+\end{ornek}
+
+\elcizimi[0.5]{sekiller/Ders13-s1-1.png}[1]
+
+\elcizimi[0.55]{sekiller/Ders13-s1-2.png}[1]
+
+\begin{align*}
+  g_{m1} &= \frac{0{,}6\,\mathrm{mA}}{25\,\mathrm{mV}} = 24\,\mathrm{mS} \\
+  g_{m2} &= \frac{1\,\mathrm{mA}}{25\,\mathrm{mV}} = 40\,\mathrm{mS} \\
+  g_{m3} &= \frac{4\,\mathrm{mA}}{25\,\mathrm{mV}} = 10\,\mathrm{mS}\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $160\,\mathrm{mS}$ olmalı ($4\,\mathrm{mA}/25\,\mathrm{mV}$; $r_{\pi3}=0{,}625\mathrm{k}$ ile tutarlı).}
+
+\begin{align*}
+  r_{\pi1} &= \frac{1000}{24}\times 100 = 4{,}2\mathrm{k} \\
+  r_{\pi2} &= 2{,}5\mathrm{k} \\
+  r_{\pi3} &= 0{,}625\mathrm{k}
+\end{align*}
+
+\elcizimi[0.65]{sekiller/Ders13-s1-3.png}[1]
+
+\begin{align*}
+  R_{11} &= 100\parallel 740 = 88\,\Omega \\
+  R_{22} &\approx 88\,\Omega
+\end{align*}
+
+\formulkutu{\beta = \frac{V_f}{I_o} = \frac{100x}{8{,}4x} = 11{,}9\,\Omega}
+
+\sayfa{2}
+\elcizimi[0.9]{sekiller/Ders13-s2-1.png}[2]
+
+\begin{align*}
+  v_s &= v_{\pi1} + 88\left(0{,}024\,v_{\pi1} + \frac{v_{\pi1}}{4200}\right) \\
+  v_s &\approx 3{,}03\,v_{\pi1}
+\end{align*}
+
+\begin{align*}
+  v_{\pi2} &= \frac{-24\,\mathrm{mS}\; v_{\pi1}\times 2{,}5\mathrm{k}\times 9\mathrm{k}}{11{,}5\mathrm{k}} \\
+  v_{\pi2} &= -47\,v_{\pi1}
+\end{align*}
+
+\[ I_o = g_{m3}\,v_{\pi3} + \frac{v_{\pi3}}{0{,}62\mathrm{k}} \qquad \bigl(R_o\cdot(\beta+1) + 0{,}62\mathrm{k}\bigr) \]
+
+\begin{align*}
+  v_{\pi3} &= 3{,}1x = -8{,}86\,v_{\pi2} \\
+  &= -g_{m2}\,v_{\pi2}\,\frac{3{,}1}{14}
+\end{align*}
+
+\elcizimi[0.5]{sekiller/Ders13-s2-2.png}[2]
+
+\[ I_x = -g_m\,v_{\pi2} \]
+
+\[ \frac{I_x\cdot 5\mathrm{k}}{(14\mathrm{k})}\cdot 0{,}62\mathrm{k} \]
+
+\[ V_s = \frac{-3{,}03}{47}\cdot\frac{-I_o}{8{,}57}\cdot\frac{1}{0{,}16} = \frac{I_o}{V_o}\text{\footnotemark} \approx 21{,}27\ [\mathrm{A/V}] \]
+\footnotetext{Claude notu: muhtemelen $I_o/V_s$ olmalı (sonuç $A=I_o/V_s$ için).}
+
+\begin{align*}
+  R_i &= 4{,}2\mathrm{k} + 88\times 100 \\
+  R_i &= 4{,}2\mathrm{k} + 8{,}8\mathrm{k} = 13\mathrm{k}\Omega \\
+  R_o &= 88 + \frac{5\mathrm{k}+0{,}62\mathrm{k}}{100} = 144{,}2\,\Omega
+\end{align*}
+
+\[ \textcolor{turuncukalem}{R_{o2} = 600\,\Omega} \]
+
+\begin{align*}
+  R_{if} &= (1+A\beta)\,R_i = 1086\,\Omega \\
+  R_{of} &= (1+A\beta)\,R_o = \okunamadi{12,09}\,\Omega \\
+  A_f &= \frac{21{,}27}{1+21{,}27\times 11{,}9} = 0{,}0837
+\end{align*}
+
+\sayfa{3}
+\elcizimi[0.3]{sekiller/Ders13-s3-1.png}[3]
+
+Consider the active loaded common source amplifier given at left\\
+$(W/L) = \dfrac{7\,\mu\mathrm{m}}{0{,}4\,\mu\mathrm{m}}$ for all trans
+
+\begin{align*}
+  \mu_n C_{ox} &= 387\ \mu\mathrm{A/V^2} \\
+  \mu_p C_{ox} &= 86\ \mu\mathrm{A/V^2} \\
+  I_{ref} &= 100\,\mu\mathrm{A} \\
+  V'_{An} &= 5\ \mathrm{V/\mu m} \\
+  V'_{Ap} &= 10\ \mathrm{V/\mu m} \\
+  & V_A = V'_A\, L
+\end{align*}
+
+For $Q_1$, $C_{gs} = 20\,\mathrm{fF}$, $C_{gd} = 5\,\mathrm{fF}$, $C_L = 25\,\mathrm{fF}$ and $R_{sig} = 10\mathrm{k}\Omega$. Assuming that $C_L$ represents all the capacitance at that node.\\
+Find $f_H$ with open time constant and Miller approaches
+
+\begin{align*}
+  I_D = 100\,\mu\mathrm{A} &= \frac{1}{2}\cdot 387\ \mu\mathrm{A/V^2}\cdot 20\,(V_{ov})^2 \\
+  V_{ov} &= \sqrt{\frac{10}{387}} = \pm 0{,}16 \;\longrightarrow\; +0{,}16\,\mathrm{V}
+\end{align*}
+
+\begin{align*}
+  g_{m1} &= \frac{2\times 100\,\mu\mathrm{A}}{0{,}16\,\mathrm{V}} = 1{,}25\,\mathrm{mS} \\
+  r_{o1} &= \frac{5\,\mathrm{V/\mu m}\times 0{,}4\,\mu\mathrm{m}}{100\,\mu\mathrm{A}} = 20\,\mathrm{k}\Omega \\
+  r_{o2} &= \frac{10\,\mathrm{V/\mu m}\times 0{,}4}{100\,\mu\mathrm{A}} = 40\,\mathrm{k}\Omega
+\end{align*}
+
+\elcizimi[0.8]{sekiller/Ders13-s3-2.png}[3]
+
+\begin{align*}
+  A_M &= -g_{m1}\,(r_{o1}\parallel r_{o2}) \\
+  &= -1{,}25\,\mathrm{mS}\,(20\mathrm{k}\parallel 40\mathrm{k}) \\
+  A_M &= -16{,}6\ [\mathrm{V/V}]
+\end{align*}
+
+
+\sayfa{4}
+\elcizimi[0.9]{sekiller/Ders13-s4-1.png}[4]
+
+\begin{align*}
+  R_{C1} &= R_{sig} = 10\,\mathrm{k}\Omega \\
+  C_{C1} &= C_{gs} = 20\,\mathrm{fF} \\
+  \tau_{gs} &= R_{C1}\,C_{C1} = 200\ \mathrm{psec}
+\end{align*}
+
+\begin{align*}
+  \tau_{CL} &= \underbrace{R_{CL}}_{r_{o1}\parallel r_{o2}}\,\underbrace{C_L}_{25\,\mathrm{fF}} \\
+  \tau_{CL} &= 332\ \mathrm{psec}
+\end{align*}
+
+\begin{align*}
+  R_{gd} &= R_{sig}\,(1+g_m R_L') + R_L' \qquad (R_L' = r_{o1}\parallel r_{o2}) \\
+  \tau_{gd} &= R_{gd}\,C_{gd} = 950\ \mathrm{psec} \\
+  \tau &= \tau_{gd}+\tau_{gs}+\tau_{CL} \\
+  &= 1482\ \mathrm{psec} \\
+  f &= \frac{1}{2\pi\tau} = 107{,}4\ \mathrm{MegHz}
+\end{align*}
+
+\elcizimi[0.8]{sekiller/Ders13-s4-2.png}[4]
+
+\[
+  C_y = C_{gd}\Bigl(1+\frac{1}{g_m R_L'}\Bigr) = 5\,\mathrm{pF}\footnotemark
+\]
+\footnotetext{Claude notu: birimler muhtemelen fF olmalı (şekildeki $C_{gd}=5\,\mathrm{fF}$, $C_L=25\,\mathrm{fF}$ ile uyumlu); aşağıdaki pF ifadeleri için de geçerli.}
+
+\begin{align*}
+  C_x &= (1 - g_m R_L')\,C_{gd}\footnotemark \\[3pt]
+  C_x &= 88\,\mathrm{pF} \\[3pt]
+  C_1 &= 88 + 20 = 108\,\mathrm{pF} \\[6pt]
+  f_{p1} &= \frac{1}{2\pi\,(108\,\mathrm{pF})} = 294\,\mathrm{MHz} \\[6pt]
+  C_2 &= 30\,\mathrm{pF} \\[6pt]
+  f_{p2} &= \frac{1}{2\pi\,(30\,\mathrm{pF})\,13{,}3\mathrm{k}} = 399\,\mathrm{MHz} \\[6pt]
+  f_H &= \sqrt{\dfrac{1}{\dfrac{1}{(f_{p1})^2}+\dfrac{1}{(f_{p2})^2}}} \\[6pt]
+  f_H &\approx 236{,}4\ \mathrm{MegHz}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $(1+g_m R_L')$ olmalı (88 sonucu ile uyumlu).}
+
+\elcizimi[0.5]{sekiller/Ders13-s4-3.png}[4]
+
+\end{document}

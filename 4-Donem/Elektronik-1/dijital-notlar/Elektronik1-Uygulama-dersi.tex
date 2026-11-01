@@ -32,7 +32,7 @@
 \end{circuitikz}
 \end{center}
 
-\sekilnotu[1]{BJT'li ortak emetörlü devre: kollektörde $\qty{3}{\kilo\ohm}$ direnç ve $\qty{10}{\volt}$ besleme (yukarı ok), kollektör düğümünden alınan $v_{out}$ çıkışı; bazda $\qty{100}{\kilo\ohm}$ direnç üzerinden seri bağlı $v_{in}$ kaynağı ($+$ uç üstte) ve altında $\qty{3}{\volt}$ DC kaynak (alt ucu toprakta); emetör toprakta.}
+\elcizimi[0.4]{sekiller/Elektronik1-Uygulama-dersi-s1-1.png}[1]
 
 \begin{ornek}
   Analyze the circuit at left. Assume $\beta = 100$, $V_A = \qty{100}{\volt}$. Calculate the voltage gain $\left(\dfrac{v_{out}}{v_{in}}\right)$, $R_{in}$, and $R_{out}$
@@ -47,7 +47,7 @@
 
 $\Downarrow$ @DC
 
-\sekilnotu[1]{DC devre: $v_{in}$ kaynağı çıkarılmış; $\qty{3}{\volt}$ DC kaynak $\qty{100}{\kilo\ohm}$ direnç üzerinden bazı besliyor, base--emetör arasında $\qty{0,7}{\volt}$ ve çevrim yönünü gösteren ok; kollektörde $\qty{3}{\kilo\ohm}$ ve $\qty{10}{\volt}$ (yukarı ok), $V_{out}$ ucu; emetör toprakta.}
+\elcizimi[0.4]{sekiller/Elektronik1-Uygulama-dersi-s1-2.png}[1]
 
 \begin{align*}
   -\qty{3}{\volt} + \qty{100}{\kilo\ohm}\, I_B + 0{,}7 &= 0 \\
@@ -57,7 +57,7 @@ $\Downarrow$ @DC
   I_C &= \qty{2,3}{\milli\ampere}
 \end{align*}
 
-\sekilnotu[1]{Aynı devre kırmızı notlarla: $\qty{3}{\kilo\ohm}$ direncin yanında aşağı yönlü ok ve $\qty{2,3}{\milli\ampere}$; base--emetör için $\qty{0,7}{\volt}$; çıkış düğümünde $\qty{3,1}{\volt}$ ve aşağı ok; kollektöre bakan ok ``$R_{out}$''; $v_{in}$ kaynağının yanında ok ve ``$R_{in}$''; altta $\qty{3}{\volt}$ DC kaynak.}
+\elcizimi[0.45]{sekiller/Elektronik1-Uygulama-dersi-s1-3.png}[1]
 
 \[ V_{CB} \ge 0{,}4 \quad \text{(for linear)\footnotemark} \]
 \footnotetext{Claude notu: muhtemelen $V_{CB} \ge -0{,}4\ \mathrm{V}$ olmalı.}
@@ -104,10 +104,10 @@ $\Downarrow$ @DC
 \[ V_{out} = \frac{-257{,}6 \cdot v_{in} \cdot 1{,}13\,\mathrm{k}}{101{,}3\,\mathrm{k}} = -2{,}68\ \mathrm{V/V}\footnotemark \]
 \footnotetext{Claude notu: $257{,}6 \cdot 1{,}13/101{,}13 \approx 2{,}88$ olduğundan muhtemelen $-2{,}88\ \mathrm{V/V}$ olmalı.}
 
-\sekilnotu[2]{Çıkış dalga şekli: dikey eksen (ok) üzerinde ``3,1'' işaretli seviye, yatay eksen (ok) zaman ekseni (etiketsiz); eğri 3,1 seviyesinden başlayıp önce aşağı iniyor, sonra yaklaşık üç tepe veren sinüs benzeri bir salınım yapıyor (3,1 seviyesi civarında).}
+\elcizimi[0.5]{sekiller/Elektronik1-Uygulama-dersi-s2-1.png}[2]
 
 \section{Soru 2}
-\sekilnotu[2]{Soru 2 devresi: $\qty{20}{\volt}$ besleme; iki kol: solda $\qty{470}{\kilo\ohm}$ (bazı besliyor), sağda $\qty{2,2}{\kilo\ohm}$ (kollektör direnci; kollektör düğümünde mavi ok ve ``10,54''); npn transistör, emetörde $\qty{0,56}{\kilo\ohm}$ direnç ve toprak; girişte $v_{in}$ kaynağı (AC ``$\sim$'' sembolü, alt ucu toprakta) $\qty{10}{\micro\farad}$ kuplaj kondansatörü üzerinden baza bağlı; çıkış kollektörden $\qty{10}{\micro\farad}$ kondansatör üzerinden $V_{out}$. Mavi notlar: bazda $R_{in}$ oku ve ``3,13'' (okunması belirsiz); kollektörde $R_{out}$ oku; emetör direncinin yanında artı ucu üstte, aşağı yönlü gerilim oku ve ``2,4''.}
+\elcizimi[0.72]{sekiller/Elektronik1-Uygulama-dersi-s2-2.png}[2]
 
 \noindent $\beta = 120$ \qquad $V_A = \infty$ \qquad C-E with $R_E$ (T model)
 
@@ -124,7 +124,7 @@ $\Downarrow$ @DC
   r_o &= \infty
 \end{align*}
 
-\sekilnotu[3]{T-modelli küçük işaret devresi (mavi): solda AC kaynak (``$\sim$'', alt ucu toprakta) ve $\qty{470}{\kilo\ohm}$ direnç, kaynak tarafında $R_{in}$ oku; direnç, aşağı yönlü bağımlı akım kaynağının altındaki düğüme bağlı. Bu düğümden aşağıya $\qty{5,76}{\ohm}$ direnç (yanında $+\ v_\pi\ -$), sonra $\qty{0,56}{\kilo\ohm}$ direnç ve toprak. Üstte aşağı oklu bağımlı akım kaynağı ``$\qty{172}{\milli\siemens}\,v_\pi$''; üst hattı sağa gidip dikey $\qty{2,2}{\kilo\ohm}$ dirence ve sağ uçtaki $v_{out}$ terminaline ulaşıyor; $\qty{2,2}{\kilo\ohm}$ düğümüne bakan $R_{out}$ oku.}
+\elcizimi[0.78]{sekiller/Elektronik1-Uygulama-dersi-s3-1.png}[3]
 
 \[ R_{in} = \qty{470}{\kilo\ohm} \parallel \underbrace{(121)(\qty{565,76}{\ohm})}_{\qty{68,4}{\kilo\ohm}} \qquad\qquad R_{out} = \qty{2,2}{\kilo\ohm} \]
 \[ R_{in} = \qty{59,8}{\kilo\ohm} \]
@@ -141,7 +141,7 @@ $\Downarrow$ @DC
 
 $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor{kirmizikalem}{CB Amplifier}
 
-\sekilnotu[4]{CB (ortak bazlı) kuvvetlendirici devresi: üstte $\qty{10}{\volt}$ besleme (yukarı ok) ve $R_C=\qty{8}{\kilo\ohm}$; npn transistörün bazı topraklı (kırmızı ``$0\,\mathrm{V}$'' ve ``$+$''), kollektör düğümü kırmızı ``$2\,\mathrm{V}$''; kollektörden $\qty{10}{\micro\farad}$ kondansatör üzerinden $R_L=\qty{5}{\kilo\ohm}$ yüke (alt ucu toprakta), mavi $R_{out}$ oku bu çıkış tarafını gösteriyor; emetör kırmızı ``$-0{,}7\,\mathrm{V}$'' ve ``$-$''; emetöre solda $R_{sig}=\qty{5}{\kilo\ohm}$ direnç ve $\qty{10}{\micro\farad}$ kondansatör üzerinden $v_{sig}$ kaynağı (alt ucu toprakta), mavi $R_{in}$ oku; emetörün altında aşağı yönlü $\qty{1}{\milli\ampere}$ akım kaynağı ve ``$-10\,\mathrm{V}$'' (aşağı ok).}
+\elcizimi[0.7]{sekiller/Elektronik1-Uygulama-dersi-s4-1.png}[4]
 
 \[ \beta = 100 \qquad V_A = \infty \]
 
@@ -153,7 +153,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
   g_m &= \frac{\qty{1}{\milli\ampere}}{\qty{25}{\milli\volt}} = \qty{40}{\milli\siemens}
 \end{align*}
 
-\sekilnotu[4]{T-model küçük işaret devresi: solda üstte aşağı yönlü bağımlı akım kaynağı ``$\alpha i_e$''; kaynağın alt ucu ile $\qty{25}{\ohm}$ direncin üst ucu toprağa bağlı (sol tarafta toprak sembolü). Üst hat sağa gidip paralel iki dirence ($\qty{8}{\kilo\ohm}$ ve $\qty{5}{\kilo\ohm}$) ve sağ üstteki mavi $v_{out}$ terminaline bağlanıyor; mavi $R_{out}$ oku bu dirençlere bakıyor. $\qty{25}{\ohm}$ direncin altındaki düğümden sola mavi $R_{in}$ oku çıkıyor; devam eden hat $\qty{5}{\kilo\ohm}$ direnç üzerinden $v_{sig}$ kaynağına ($+$ ucu üstte, alt ucu toprakta) bağlanıyor.}
+\elcizimi[0.55]{sekiller/Elektronik1-Uygulama-dersi-s4-2.png}[4]
 
 \begin{align*}
   R_{in} &= r_e = \qty{25}{\ohm} \\
@@ -171,7 +171,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
 \sayfa{5}
 \section{Soru}
 
-\sekilnotu[5]{Soru devresi: solda $v_{in}$ kaynağı (AC, alt ucu toprakta), seri $\qty{10}{\kilo\ohm}$ direnç ve $\qty{10}{\micro\farad}$ kondansatör üzerinden npn transistörün bazına; bazdan toprağa etiketsiz bir direnç (yanında kırmızı ok ve ``$I_E=\qty{5}{\milli\ampere}$''); mavi $R_{in}$ oku girişe bakıyor. Kollektör $V_{CC}$'ye bağlı (yukarı ok), yanında kırmızı ``$I_C \approx \qty{5}{\milli\ampere}$''. Emetörde aşağı yönlü $\qty{5}{\milli\ampere}$ akım kaynağı ve ``$-V_{EE}$''; emetörden $\qty{10}{\micro\farad}$ kondansatör üzerinden $R_L=\qty{1}{\kilo\ohm}$ yüke (alt ucu toprakta).}
+\elcizimi[0.9]{sekiller/Elektronik1-Uygulama-dersi-s5-1.png}[5]
 
 \[ \beta = 100 \qquad V_A = \qty{100}{\volt} \]
 
@@ -182,7 +182,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
   r_o &= \frac{\qty{100}{\volt}}{\qty{5}{\milli\ampere}} = \qty{20}{\kilo\ohm}
 \end{align*}
 
-\sekilnotu[5]{Küçük işaret eşdeğer devresi (mavi): solda $v_{sig}$ kaynağı ve seri $\qty{10}{\kilo\ohm}$ direnç, $X$ düğümüne bağlı (düğümün altında ``$B$''); $B$ düğümünden toprağa $\qty{40}{\kilo\ohm}$ direnç, altında ``$R_{in}$''. $X$ düğümünden mavi hat sağa gidip $\qty{0,5}{\kilo\ohm}$ direnç üzerinden (yanında $v_\pi$ ve aşağı ok) emetör düğümüne iniyor. Emetör düğümü ile üstteki kollektör düğümü arasında paralel: aşağı yönlü bağımlı akım kaynağı ``$\qty{200}{\milli\siemens}\,v_\pi$'' ve $\qty{20}{\kilo\ohm}$ direnç; kollektör düğümü ``$C$'' toprağa bağlı. Emetör düğümünden sağa $v_{out}$ çıkışı ve $R_L=\qty{1}{\kilo\ohm}$ (toprağa); ayrıca aşağıya $R_{out}$ oku ve ``ihmal et'' (okunması belirsiz) notlu $\qty{20}{\kilo\ohm}$ direnç.}
+\elcizimi[0.8]{sekiller/Elektronik1-Uygulama-dersi-s5-2.png}[5]
 
 \begin{align*}
   R_{in} &= \qty{40}{\kilo\ohm} \parallel (\qty{0,5}{\kilo\ohm} + \qty{101}{\kilo\ohm}) \\
@@ -223,7 +223,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
   Design the circuit given below to obtain a current of $\qty{80}{\micro\ampere}$. Find the value of $R_D$ and $V_D$. Let the NMOS have $V_T = \qty{0,6}{\volt}$, $\mu_n C_{ox} = \qty{200}{\micro\ampere\per\volt\squared}$, $L = \qty{0,8}{\micro\meter}$, $W = \qty{4}{\micro\meter}$. Neglect channel length modulation.
 \end{ornek}
 
-\sekilnotu[6]{Üstte $\qty{3}{\volt}$ besleme (yukarı ok), $R_D$ direnci ve yanında $I_D=\qty{80}{\micro\ampere}$ (aşağı ok); direncin altında NMOS transistörün drain'i, gate drain'e bağlı (``Diode connected'' notu ve ok), source toprakta.}
+\elcizimi[0.4]{sekiller/Elektronik1-Uygulama-dersi-s6-1.png}[6]
 
 \begin{align*}
   I_D &= \tfrac{1}{2}\,\mu_n C_{ox}\,\frac{W}{L}\,(V_{GS}-V_T)^2 \\
@@ -244,7 +244,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
 
 \[ \begin{aligned} &\text{Sat} \\ V_{GS} &\ge V_T \\ V_{DS} &\ge V_{GS} - V_T \end{aligned} \]
 
-\sekilnotu[7]{Akım aynası devresi: sol kolda $\qty{3}{\volt}$ besleme (yukarı ok), $\qty{20}{\kilo\ohm}$ direnç ve $V_{D1}$ düğümü (yanında ok ile ``$3-1{,}6=1{,}4\,\mathrm{V}$''); $Q_1$'in drain'i bu düğümde, gate'i drain'e bağlı. İki transistörün gate'leri birbirine bağlı (``G''), source'lar toprakta. Sağ kolda $\qty{3}{\volt}$ besleme (yukarı ok), direnç $R$, $V_{D2}$ düğümü ve $Q_2$'nin drain'i. Mavi aşağı oklar: sol kolda $I_{D1}=\qty{80}{\micro\ampere}$, sağ kolda $I_{D2}$. Altında ``$Q_1$ identical to $Q_2$''.}
+\elcizimi[0.7]{sekiller/Elektronik1-Uygulama-dersi-s7-1.png}[7]
 
 \begin{align*}
   I_{D1} &= \qty{80}{\micro\ampere} \\
@@ -283,7 +283,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
   Design the circuit to obtain a drain voltage of $\qty{0,1}{\volt}$. What is the effective resistance between drain and source at this point $V_T = \qty{1}{\volt}$ and $\tfrac{1}{2}\mu_n C_{ox}\tfrac{W}{L} = \qty{1}{\milli\ampere\per\volt\squared}$.
 \end{ornek}
 
-\sekilnotu[8]{Soldaki $\qty{5}{\volt}$ kaynağı (yukarı ok) NMOS'un gate'ine bağlı; drain tarafında yukarı okla beslemeye bağlı $R_D$ direnci, yanında $I_D$ (aşağı ok); drain düğümünde ``$0{,}1\,\mathrm{V}$''; source toprakta.}
+\elcizimi[0.38]{sekiller/Elektronik1-Uygulama-dersi-s8-1.png}[8]
 
 \[ V_{DS} < V_{GS} - V_T \qquad\qquad 0{,}1 < \qty{5}{\volt} \ \Big\}\ \text{triode} \]
 \textit{(İlk ifadenin altında dalgalı çizgi ve ``X'' işareti var.)}
@@ -294,7 +294,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
 \noindent $R_D$'yi bul $= ?$
 
 \section{Soru}
-\sekilnotu[8]{Üstte $\qty{10}{\volt}$ besleme (yukarı ok); gate'te iki $\qty{100}{\mega\ohm}$ direnç bölücüsü (biri besleme ile gate düğümü arasında, diğeri gate düğümü ile toprak arasında). Girişte AC kaynak (alt ucu toprakta), $\qty{100}{\kilo\ohm}$ seri direnç ve $C_{c1}$ kondansatörü üzerinden gate düğümüne; girişte $R_{in}$ oku. NMOS'un drain'i $\qty{5}{\kilo\ohm}$ direnç üzerinden beslemeye bağlı (yukarı ok); drain'den $C_{c2}$ kondansatörü üzerinden $R_L$ yüküne (toprağa) çıkış, $R_{out}$ oku; ``$R_L=10\ldots$'' (birimi okunması belirsiz, $\qty{10}{\kilo\ohm}$ olabilir). Source'tan toprağa $\qty{1}{\kilo\ohm}$ direnç ve ona paralel $C_s$ kondansatörü.}
+\elcizimi[0.8]{sekiller/Elektronik1-Uygulama-dersi-s8-2.png}[8]
 
 \sayfa{9}
 \begin{ornek}
@@ -312,12 +312,12 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
   g_m &= 2 I_D / V_{ov}
 \end{align*}
 
-\sekilnotu[9]{Mavi devre: üstte $\qty{10}{\volt}$ besleme (yukarı ok); gate düğümünde iki $\qty{100}{\mega\ohm}$ direnç (biri beslemeden gate düğümüne, diğeri gate düğümünden toprağa); NMOS'un drain'i $\qty{5}{\kilo\ohm}$ direnç üzerinden yukarı okla beslemeye, source'u $\qty{1}{\kilo\ohm}$ direnç üzerinden toprağa bağlı.}
+\elcizimi[0.5]{sekiller/Elektronik1-Uygulama-dersi-s9-1.png}[9]
 
 \[ V_{TH} = \qty{5}{\volt} \qquad R_{TH} = \qty{50}{\kilo\ohm}\,\footnotemark \]
 \footnotetext{Claude notu: $\qty{100}{\mega\ohm}\parallel\qty{100}{\mega\ohm}=\qty{50}{\mega\ohm}$ olduğundan muhtemelen $\qty{50}{\mega\ohm}$ olmalı.}
 
-\sekilnotu[9]{Kırmızı Thevenin eşdeğer devresi: $V_{TH}$ kaynağı ($+$ ucu üstte, alt ucu toprakta), $\qty{50}{\kilo\ohm}$ direnç üzerinden gate'e bağlı (gate'in yanında ``$5\,\mathrm{V}$'' ve yukarı ok); drain $\qty{5}{\kilo\ohm}$ direnç üzerinden ``$10\,\mathrm{V}$''a (yukarı ok), source $\qty{1}{\kilo\ohm}$ direnç üzerinden toprağa bağlı.}
+\elcizimi[0.55]{sekiller/Elektronik1-Uygulama-dersi-s9-2.png}[9]
 
 \[ I_D = \tfrac{1}{2}\mu_n C_{ox}\tfrac{W}{L}\,(V_{GS}-V_T)^2 \]
 \[
@@ -336,7 +336,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
 \end{align*}
 
 \sayfa{10}
-\sekilnotu[10]{Küçük işaret eşdeğer devresi: solda $v_{sig}$ kaynağı ve seri $\qty{100}{\kilo\ohm}$ direnç; gate düğümünden toprağa $\qty{50}{\mega\ohm}$ direnç, üzerinde $v_{gs}$ ($+$ üstte); girişe bakan ok ve ``$R_{in}=\qty{50}{\mega\ohm}$''. Sağda aşağı oklu bağımlı akım kaynağı ``$g_m v_{gs}$'' ile paralel $\qty{50}{\kilo\ohm}$, $\qty{5}{\kilo\ohm}$ (yanında $R_{out}$ oku) ve $\qty{10}{\kilo\ohm}$ dirençler; üst hat sağda $v_{out}$ çıkışına gidiyor.}
+\elcizimi[0.92]{sekiller/Elektronik1-Uygulama-dersi-s10-1.png}[10]
 
 \[ R_{out} = 5 \parallel \qty{50}{\kilo\ohm} = \qty{4,54}{\kilo\ohm} \]
 
@@ -347,7 +347,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
 \end{align*}
 
 \section{Soru}
-\sekilnotu[10]{Ortak geçitli (common-gate) devre: üstte $\qty{10}{\volt}$ besleme (yukarı ok) ve $R_D=\qty{15}{\kilo\ohm}$ (yanında mavi ``$7{,}5$'' ve $+/-$ işareti); NMOS'un gate'i $\qty{47}{\mega\ohm}$ direnç üzerinden toprağa bağlı; drain'den ``$\infty$'' işaretli kondansatör üzerinden $R_L=\qty{15}{\kilo\ohm}$ yüke (toprağa), drain düğümüne bakan $R_{out}$ oku. Source'tan aşağı yönlü $\qty{0,5}{\milli\ampere}$ akım kaynağı ve ``$-10\,\mathrm{V}$'' (aşağı ok); source düğümünden ``$\infty$'' işaretli kondansatör ve $R_{sig}=\qty{50}{\ohm}$ direnç üzerinden AC kaynağa (alt ucu toprakta) bağlantı.}
+\elcizimi[0.65]{sekiller/Elektronik1-Uygulama-dersi-s10-2.png}[10]
 
 \begin{ornek}
   $V_T = \qty{1,5}{\volt}$ \qquad $\mu_n C_{ox}\dfrac{W}{L} = \qty{1}{\milli\ampere\per\volt\squared}$ \qquad $|V_A| = \infty$
@@ -378,7 +378,7 @@ $R_{in},\ R_{out},\ A_v\ \left(\dfrac{v_{out}}{v_{sig}}\right)$ \quad \textcolor
   g_m &= \qty{1}{\milli\siemens}
 \end{align*}
 
-\sekilnotu[11]{T-modelli küçük işaret devresi (mavi): üstte aşağı oklu bağımlı akım kaynağı ``$g_m v_\pi$''; üst hattı sağa gidip bir terminal düğümünden sonra paralel iki $\qty{15}{\kilo\ohm}$ dirence (toprağa) ve sağ uçtaki $v_{out}$ terminaline ulaşıyor; $R_{out}=\qty{15}{\kilo\ohm}$ oku dirençlere bakıyor. Kaynağın altındaki düğüm solda $\qty{47}{\mega\ohm}$ direnç üzerinden toprağa bağlı (altında ``$R_o=\infty$'' oku); aynı düğümden aşağıya $\qty{1}{\kilo\ohm}$ direnç iniyor ($v_\pi$, $+$ üstte, $-$ altta); bu direncin altındaki düğüm (yanında ``$R_o=\infty$'' oku) $R_{sig}=\qty{50}{\ohm}$ direnç üzerinden $v_{sig}$ kaynağına (alt ucu toprakta) bağlı; altta ``$R_{in}=1/g_m=1\,\mathrm{k\Omega}$'' oku.}
+\elcizimi[0.9]{sekiller/Elektronik1-Uygulama-dersi-s11-1.png}[11]
 
 \begin{align*}
   v_{out} &= -\qty{7,5}{\kilo\ohm} \cdot \qty{1}{\milli\siemens}\, v_\pi \\

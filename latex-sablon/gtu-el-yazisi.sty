@@ -189,7 +189,7 @@
 \RequirePackage{xcolor}
 \RequirePackage{graphicx}
 \RequirePackage{tikz}
-\usetikzlibrary{calc,patterns,shapes.symbols,arrows.meta,positioning}
+\usetikzlibrary{calc,patterns,shapes.symbols,arrows.meta,positioning,shadows}
 \RequirePackage{tikzpagenodes}
 \RequirePackage{eso-pic}
 \RequirePackage[skins,breakable]{tcolorbox}
@@ -235,14 +235,14 @@
   \def\gtu@lbl@tanim{Definition}\def\gtu@lbl@teorem{Theorem}
   \def\gtu@lbl@ornek{Example}\def\gtu@lbl@cozum{Solution}
   \def\gtu@lbl@dikkat{Caution!}\def\gtu@lbl@ozet{Summary}
-  \def\gtu@lbl@sekil{Figure}\def\gtu@lbl@orijinalnotta{in the original notes}
+  \def\gtu@lbl@sekil{Figure}\def\gtu@lbl@orijinalnotta{in the original notes}\def\gtu@lbl@orijinalcizim{original drawing}
   \def\gtu@lbl@okunamadi{illegible}\def\gtu@lbl@s{p.}
   \def\gtu@lbl@orj{orig.}\def\gtu@lbl@orijinal{Original notes}
 \else
   \def\gtu@lbl@tanim{Tanım}\def\gtu@lbl@teorem{Teorem}
   \def\gtu@lbl@ornek{Örnek}\def\gtu@lbl@cozum{Çözüm}
   \def\gtu@lbl@dikkat{Dikkat!}\def\gtu@lbl@ozet{Özet}
-  \def\gtu@lbl@sekil{Şekil}\def\gtu@lbl@orijinalnotta{orijinal notta}
+  \def\gtu@lbl@sekil{Şekil}\def\gtu@lbl@orijinalnotta{orijinal notta}\def\gtu@lbl@orijinalcizim{orijinal çizim}
   \def\gtu@lbl@okunamadi{okunamadı}\def\gtu@lbl@s{s.}
   \def\gtu@lbl@orj{orj.}\def\gtu@lbl@orijinal{Orijinal not}
 \fi
@@ -586,6 +586,23 @@
       (gtuS.north east) to (gtuS.north west) (gtuS.north west) to (gtuS.south west);
   \end{tikzpicture}\par}%
   \vspace{2mm}}
+% \elcizimi[genişlik]{dosya}[sayfa] -- orijinal nottaki el çizimi (kırpılmış görüntü),
+% bantla yapıştırılmış fotoğraf görünümünde. genişlik: \linewidth oranı (vars. 0.6)
+\NewDocumentCommand\elcizimi{ O{0.6} m o }{%
+  \par\vspace{2.5mm}%
+  {\centering
+  \begin{tikzpicture}
+    \node[inner sep=2mm,fill=white,draw=kursunkalem!45,line width=0.4pt,
+      drop shadow={opacity=0.16,shadow xshift=0.6mm,shadow yshift=-0.6mm}](gtuE){%
+      \includegraphics[width=#1\linewidth,height=0.38\textheight,keepaspectratio]{#2}};
+    \fill[notsarisi,opacity=0.7,rotate around={7:(gtuE.north west)}]
+      ([xshift=-4mm,yshift=-2mm]gtuE.north west) rectangle ++(12mm,4mm);
+    \fill[notsarisi,opacity=0.7,rotate around={-7:(gtuE.north east)}]
+      ([xshift=-8mm,yshift=-2mm]gtuE.north east) rectangle ++(12mm,4mm);
+    \node[anchor=north east,inner sep=0.8pt,font=\footnotesize\itshape,text=kursunkalem]
+      at ([yshift=-0.8mm]gtuE.south east) {\gtu@lbl@orijinalcizim\IfValueT{#3}{, \gtu@lbl@s~#3}};
+  \end{tikzpicture}\par}%
+  \vspace{2.5mm}}
 % \sayfa{n} -- orijinal notun n. sayfasının başladığı yer (sol kenar boşluğu)
 \tikzset{gtu sayfa etiketi/.style={shape=signal,signal to=east,signal pointer angle=110,
   draw=kursunkalem,fill=white,line width=0.4pt,text=kursunkalem,

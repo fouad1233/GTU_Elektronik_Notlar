@@ -49,7 +49,7 @@ $\Rightarrow$ Ayrık zamanlı FT, $X(e^{j\omega})$, $2\pi$ ile periyodiktir.
 \[ X(e^{j\omega})=\frac{ae^{j\omega}}{1-ae^{j\omega}}+\frac{1}{1-ae^{-j\omega}}=\frac{1-a^2}{1+a^2-2a\cos\omega}\qquad :\ \text{Reel} \]
 \[ X(e^{j\omega})=|X(e^{j\omega})|,\qquad \angle X(e^{j\omega})=0 \]
 
-\sekilnotu[1]{Solda $x[n]=a^{|n|}$ işaretinin çubuk (stem) grafiği: $n$ ekseni üzerinde $n=0$'da en yüksek çubuk (değeri 1), sağda $a$, $a^2$, $a^3$ değerleriyle azalan çubuklar, solda simetrik olarak azalan çubuklar; her iki uçta ``$\ldots$''. Sağda $|X(e^{j\omega})|$ grafiği: $2\pi$ ile periyodik, $\omega=0$ ve $\omega=\pm2\pi$ civarında tepeler, aralarda çukurlar; $\omega=0$ tepesi $\frac{1-a}{1+a}$, çukur değeri $\frac{1+a}{1-a}$ olarak yazılmış\footnote{Claude notu: muhtemelen tepe ve çukur değerleri yer değiştirmiş: $\omega=0$'da $|X|=\frac{1+a}{1-a}$, $\omega=\pi$'de $\frac{1-a}{1+a}$ olmalı.}; $\omega$ ekseninde tepe ve çukur konumlarında etiketsiz küçük işaretler.}
+\elcizimi[0.85]{sekiller/Sinyaller-ve-sistemler-12hafta-s1-1.png}[1]
 
 \sayfa{2}\nopagebreak
 \begin{ornek}
@@ -67,7 +67,7 @@ Reminder:
 \footnotetext{Claude notu: muhtemelen $1-e^{-j\theta}$ olmalı.}
 
 $N_1=2$ için
-\sekilnotu[2]{Solda $x[n]$ çubuk grafiği: $n=-2,\dots,2$ konumlarında birim yükseklikte (dikey eksende 1 işaretli) 5 çubuk, ayrıca $n=\pm3,\pm4$ konumlarında eksen üzerinde sıfır noktaları. Sağda $X(e^{j\omega})$ grafiği: $\omega=0$'da tepe değeri 5 (dikey eksende 5 işaretli), iki yanda küçülen yan loblar; $\omega$ ekseninde $-2\pi$, $-\pi$, $\pi$, $2\pi$ işaretli; eğri $\omega=\pm2\pi$ civarında yeniden tepe yapıyor ($2\pi$ ile periyodik).}
+\elcizimi[0.85]{sekiller/Sinyaller-ve-sistemler-12hafta-s2-1.png}[2]
 
 \vspace{2mm}
 \noindent
@@ -134,7 +134,7 @@ $N_1=2$ için
 \begin{ornek}
   $H(e^{j\omega})=\begin{cases}1, & 0\le|\omega|\le\omega_c\\ 0, & \omega_c<|\omega|<\pi\end{cases}$ \ ayrık zamanlı alçak geçiren filtrenin dürtü cevabını bulunuz.
 \end{ornek}\nopagebreak
-\sekilnotu[5]{$H(e^{j\omega})$ grafiği: $\omega$ ekseni üzerinde yüksekliği 1 olan (dikey eksende 1 işaretli) dikdörtgen darbeler; ortadaki darbe $-\omega_c$ ile $\omega_c$ arasında, diğerleri $\pm2\pi$ merkezli ve aynı genişlikte (periyodik); eksende $-2\pi$, $-\pi$, $-\omega_c$, $\omega_c$, $\pi$, $2\pi$ işaretli; iki uçta ``$\ldots$''.}
+\elcizimi[0.6]{sekiller/Sinyaller-ve-sistemler-12hafta-s5-1.png}[5]
 \begin{align*}
   h[n] &=\frac{1}{2\pi}\int_{2\pi}H(e^{j\omega})\,e^{+j\omega n}\,d\omega=\frac{1}{2\pi}\int_{-\omega_c}^{\omega_c}e^{j\omega n}\,d\omega\\
   &=\frac{1}{2\pi}\,\frac{e^{j\omega n}}{jn}\Big|_{-\omega_c}^{\omega_c}=\frac{1}{2j\pi n}\left[e^{j\omega_c n}-e^{-j\omega_c n}\right],
@@ -143,7 +143,7 @@ $N_1=2$ için
 \begin{flushright}
   $\nwarrow$ \textit{tam sayı olunca 0'ı yani $n$ eksenini keser}
 \end{flushright}
-\sekilnotu[5]{$h[n]$ grafiği (örneklenmiş sinc): $n=0$'da en yüksek çubuk (tepe), her iki yana doğru azalan pozitif çubuklar, uçlarda $n$ eksenini keserek küçük negatif çubuklar (yan loblar); arkada kesikli/gölgeli sinc zarfı; uçlarda ``$\ldots$''; eksenler $h[n]$ ve $n$.}
+\elcizimi[0.6]{sekiller/Sinyaller-ve-sistemler-12hafta-s5-2.png}[5]
 
 \begin{ornek}
   $x[n]=\alpha^n u[n]$, \ $|\alpha|<1$, \ $y[n]=$ ?\\

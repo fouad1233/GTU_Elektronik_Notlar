@@ -44,11 +44,11 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
-| [Numerik notlarim 1.ders](ders-notlari/Numerik-notlarim-1.ders.pdf) | 1. Ders – Kalkülüs Tekrarı | [PDF](dijital-notlar/Numerik-notlarim-1.ders.pdf) · 6 s. | [.tex](dijital-notlar/Numerik-notlarim-1.ders.tex) |
+| [Numerik notlarim 1.ders](ders-notlari/Numerik-notlarim-1.ders.pdf) | 1. Ders – Kalkülüs Tekrarı | [PDF](dijital-notlar/Numerik-notlarim-1.ders.pdf) · 7 s. | [.tex](dijital-notlar/Numerik-notlarim-1.ders.tex) |
 | [numerik notlarim1 vize](ders-notlari/numerik-notlarim1-vize.pdf) | Vize notlarım 1 – Temel teoremler, kök bulma, interpolasyon, nümerik türev ve integral | [PDF](dijital-notlar/numerik-notlarim1-vize.pdf) · 7 s. | [.tex](dijital-notlar/numerik-notlarim1-vize.tex) |
 | [numerik 2.ders](ders-notlari/numerik-2.ders.pdf) | 2. Ders – Tek değişkenli fonksiyonlar ve kök bulma yöntemleri | [PDF](dijital-notlar/numerik-2.ders.pdf) · 7 s. | [.tex](dijital-notlar/numerik-2.ders.tex) |
 | [numerik 3.ders](ders-notlari/numerik-3.ders.pdf) | 3. Ders – Kök bulma yöntemleri (devamı): Newton, sekant ve hata analizi | [PDF](dijital-notlar/numerik-3.ders.pdf) · 6 s. | [.tex](dijital-notlar/numerik-3.ders.tex) |
-| [Numerik 7.ders](ders-notlari/Numerik-7.ders.pdf) | 7. Ders – Nümerik Diferansiyelleme | [PDF](dijital-notlar/Numerik-7.ders.pdf) · 7 s. | [.tex](dijital-notlar/Numerik-7.ders.tex) |
+| [Numerik 7.ders](ders-notlari/Numerik-7.ders.pdf) | 7. Ders – Nümerik Diferansiyelleme | [PDF](dijital-notlar/Numerik-7.ders.pdf) · 8 s. | [.tex](dijital-notlar/Numerik-7.ders.tex) |
 | [Numerik 8.hafta](ders-notlari/Numerik-8.hafta.pdf) | 8. Hafta – Nümerik İntegralleme | [PDF](dijital-notlar/Numerik-8.hafta.pdf) · 7 s. | [.tex](dijital-notlar/Numerik-8.hafta.tex) |
 | [numerik analiz 9.ders](ders-notlari/numerik-analiz-9.ders.pdf) | Ders 9 – Diferansiyel denklemler için sayısal yöntemler: Euler ve yüksek dereceden Taylor yöntemi | [PDF](dijital-notlar/numerik-analiz-9.ders.pdf) · 5 s. | [.tex](dijital-notlar/numerik-analiz-9.ders.tex) |
 | [numerik 11.hafta](ders-notlari/numerik-11.hafta.pdf) | Ders 11 – Lineer cebir denklem sistemleri için iterasyon yöntemleri | [PDF](dijital-notlar/numerik-11.hafta.pdf) · 7 s. | [.tex](dijital-notlar/numerik-11.hafta.tex) |

@@ -10,7 +10,7 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [6. Dönem](../README.md) · 2023–2024 Bahar | ELEC322 | Control Systems | 12 ders notu · 1 dijital not · 8 sınav çalışması · 1 proje |
+| [6. Dönem](../README.md) · 2023–2024 Bahar | ELEC322 | Control Systems | 12 ders notu · 2 dijital not · 8 sınav çalışması · 1 proje |
 
 **Bu sayfada:** [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları)
 
@@ -18,7 +18,7 @@
 
 | Dosya | Tür | Bilgi | Dijital sürüm |
 |---|---|---|---|
-| [Control Systems lecture 1](ders-notlari/Control-Systems-lecture-1.pdf) | PDF | 3 s. |  |
+| [Control Systems lecture 1](ders-notlari/Control-Systems-lecture-1.pdf) | PDF | 3 s. | [PDF](dijital-notlar/Control-Systems-lecture-1.pdf) |
 | [Control Systems lecture 2](ders-notlari/Control-Systems-lecture-2.pdf) | PDF | 9 s. |  |
 | [Control Systems lecture 3](ders-notlari/Control-Systems-lecture-3.pdf) | PDF | 9 s. |  |
 | [Control Systems lecture 4](ders-notlari/Control-Systems-lecture-4.pdf) | PDF | 9 s. |  |
@@ -39,6 +39,7 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
+| [Control Systems lecture 1](ders-notlari/Control-Systems-lecture-1.pdf) | Control Systems – Lecture 1 | [PDF](dijital-notlar/Control-Systems-lecture-1.pdf) · 3 s. | [.tex](dijital-notlar/Control-Systems-lecture-1.tex) |
 | [Control Systems lecture 10](ders-notlari/Control-Systems-lecture-10.pdf) | Root Locus | [PDF](dijital-notlar/Control-Systems-lecture-10.pdf) · 7 s. | [.tex](dijital-notlar/Control-Systems-lecture-10.tex) |
 
 ## Final/Vize Çalışması
@@ -74,4 +75,4 @@ Bu projenin dosyaları GitHub deposundadır: [DC\_Motor\_Speed\_Control](https:/
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Control Systems (ELEC322)* — Semester 6, Spring 2023–24. Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design. This page lists: 12 lecture notes, 1 digital note, 8 exam-prep files, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Control Systems (ELEC322)* — Semester 6, Spring 2023–24. Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design. This page lists: 12 lecture notes, 2 digital notes, 8 exam-prep files, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

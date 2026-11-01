@@ -57,32 +57,32 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
 | [Ders1](ders-notlari/Ders1.pdf) <sub>Ders Notları</sub> | Ders 1 – Kaynaklar ve temel varsayımlar | [PDF](dijital-notlar/Ders1.pdf) · 1 s. | [.tex](dijital-notlar/Ders1.tex) |
-| [Ders2](ders-notlari/Ders2.pdf) <sub>Ders Notları</sub> | Ders 2: Hareket yasası, kütle-hız ilişkisi, elektriksel etkileşim | [PDF](dijital-notlar/Ders2.pdf) · 3 s. | [.tex](dijital-notlar/Ders2.tex) |
+| [Ders2](ders-notlari/Ders2.pdf) <sub>Ders Notları</sub> | Ders 2: Hareket yasası, kütle-hız ilişkisi, elektriksel etkileşim | [PDF](dijital-notlar/Ders2.pdf) · 4 s. | [.tex](dijital-notlar/Ders2.tex) |
 | [Ders3](ders-notlari/Ders3.pdf) <sub>Ders Notları</sub> | Elektrostatik: Coulomb yasası ve elektrik alan | [PDF](dijital-notlar/Ders3.pdf) · 5 s. | [.tex](dijital-notlar/Ders3.tex) |
-| [Ders4](ders-notlari/Ders4.pdf) <sub>Ders Notları</sub> | Elektrik alan ve potansiyel: grad, div, rot | [PDF](dijital-notlar/Ders4.pdf) · 5 s. | [.tex](dijital-notlar/Ders4.tex) |
-| [Ders5](ders-notlari/Ders5.pdf) <sub>Ders Notları</sub> | Elektrostatik potansiyel ve eş potansiyel yüzeyler | [PDF](dijital-notlar/Ders5.pdf) · 7 s. | [.tex](dijital-notlar/Ders5.tex) |
+| [Ders4](ders-notlari/Ders4.pdf) <sub>Ders Notları</sub> | Elektrik alan ve potansiyel: grad, div, rot | [PDF](dijital-notlar/Ders4.pdf) · 6 s. | [.tex](dijital-notlar/Ders4.tex) |
+| [Ders5](ders-notlari/Ders5.pdf) <sub>Ders Notları</sub> | Elektrostatik potansiyel ve eş potansiyel yüzeyler | [PDF](dijital-notlar/Ders5.pdf) · 8 s. | [.tex](dijital-notlar/Ders5.tex) |
 | [Ders6](ders-notlari/Ders6.pdf) <sub>Ders Notları</sub> | Elektrostatik potansiyel ve iş | [PDF](dijital-notlar/Ders6.pdf) · 3 s. | [.tex](dijital-notlar/Ders6.tex) |
-| [Ders7](ders-notlari/Ders7.pdf) <sub>Ders Notları</sub> | Elektriksel dipol, kompleks sayılar, Gauss teoremi | [PDF](dijital-notlar/Ders7.pdf) · 3 s. | [.tex](dijital-notlar/Ders7.tex) |
-| [Ders8](ders-notlari/Ders8.pdf) <sub>Ders Notları</sub> | Gauss–Ostrogradski teoremi, Gauss yasası | [PDF](dijital-notlar/Ders8.pdf) · 8 s. | [.tex](dijital-notlar/Ders8.tex) |
-| [Ders9](ders-notlari/Ders9.pdf) <sub>Ders Notları</sub> | Yük dağılımları ve Dirac distribüsyonu | [PDF](dijital-notlar/Ders9.pdf) · 6 s. | [.tex](dijital-notlar/Ders9.tex) |
-| [Ders10](ders-notlari/Ders10.pdf) <sub>Ders Notları</sub> | Ders 10 – Dirac delta fonksiyonu ve yük dağılımları | [PDF](dijital-notlar/Ders10.pdf) · 6 s. | [.tex](dijital-notlar/Ders10.tex) |
+| [Ders7](ders-notlari/Ders7.pdf) <sub>Ders Notları</sub> | Elektriksel dipol, kompleks sayılar, Gauss teoremi | [PDF](dijital-notlar/Ders7.pdf) · 4 s. | [.tex](dijital-notlar/Ders7.tex) |
+| [Ders8](ders-notlari/Ders8.pdf) <sub>Ders Notları</sub> | Gauss–Ostrogradski teoremi, Gauss yasası | [PDF](dijital-notlar/Ders8.pdf) · 9 s. | [.tex](dijital-notlar/Ders8.tex) |
+| [Ders9](ders-notlari/Ders9.pdf) <sub>Ders Notları</sub> | Yük dağılımları ve Dirac distribüsyonu | [PDF](dijital-notlar/Ders9.pdf) · 7 s. | [.tex](dijital-notlar/Ders9.tex) |
+| [Ders10](ders-notlari/Ders10.pdf) <sub>Ders Notları</sub> | Ders 10 – Dirac delta fonksiyonu ve yük dağılımları | [PDF](dijital-notlar/Ders10.pdf) · 7 s. | [.tex](dijital-notlar/Ders10.tex) |
 | [Ders11](ders-notlari/Ders11.pdf) <sub>Ders Notları</sub> | Yüzeysel yüke etki eden kuvvet | [PDF](dijital-notlar/Ders11.pdf) · 3 s. | [.tex](dijital-notlar/Ders11.tex) |
-| [Ders12](ders-notlari/Ders12.pdf) <sub>Ders Notları</sub> | Delta fonksiyonu ve yük yoğunluğu ifadeleri | [PDF](dijital-notlar/Ders12.pdf) · 7 s. | [.tex](dijital-notlar/Ders12.tex) |
-| [Ders13](ders-notlari/Ders13.pdf) <sub>Ders Notları</sub> | Dielektrik ortam | [PDF](dijital-notlar/Ders13.pdf) · 5 s. | [.tex](dijital-notlar/Ders13.tex) |
+| [Ders12](ders-notlari/Ders12.pdf) <sub>Ders Notları</sub> | Delta fonksiyonu ve yük yoğunluğu ifadeleri | [PDF](dijital-notlar/Ders12.pdf) · 8 s. | [.tex](dijital-notlar/Ders12.tex) |
+| [Ders13](ders-notlari/Ders13.pdf) <sub>Ders Notları</sub> | Dielektrik ortam | [PDF](dijital-notlar/Ders13.pdf) · 6 s. | [.tex](dijital-notlar/Ders13.tex) |
 | [Ders14](ders-notlari/Ders14.pdf) <sub>Ders Notları</sub> | Ders 14 – Görüntü kavramı ve yöntemi | [PDF](dijital-notlar/Ders14.pdf) · 9 s. | [.tex](dijital-notlar/Ders14.tex) |
-| [Ders15](ders-notlari/Ders15.pdf) <sub>Ders Notları</sub> | Ders 15: Lorentz kuvveti, magnetik indüksiyon, akım yoğunluğu | [PDF](dijital-notlar/Ders15.pdf) · 9 s. | [.tex](dijital-notlar/Ders15.tex) |
+| [Ders15](ders-notlari/Ders15.pdf) <sub>Ders Notları</sub> | Ders 15: Lorentz kuvveti, magnetik indüksiyon, akım yoğunluğu | [PDF](dijital-notlar/Ders15.pdf) · 15 s. | [.tex](dijital-notlar/Ders15.tex) |
 | [Uygulama1](uygulama-notlari/Uygulama1.pdf) <sub>Uygulama Notları</sub> | Vektör analizi: grad, div, rot ve koordinat sistemleri | [PDF](dijital-notlar/uygulama-notlari-Uygulama1.pdf) · 6 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama1.tex) |
 | [Uygulama2](uygulama-notlari/Uygulama2.pdf) <sub>Uygulama Notları</sub> | Yüklü küre, disk ve paralel düzlemlerin alanı | [PDF](dijital-notlar/uygulama-notlari-Uygulama2.pdf) · 5 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama2.tex) |
-| [Uygulama3](uygulama-notlari/Uygulama3.pdf) <sub>Uygulama Notları</sub> | Uygulama 3 – Laplace denklemi ve sınır değer problemleri | [PDF](dijital-notlar/uygulama-notlari-Uygulama3.pdf) · 6 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama3.tex) |
+| [Uygulama3](uygulama-notlari/Uygulama3.pdf) <sub>Uygulama Notları</sub> | Uygulama 3 – Laplace denklemi ve sınır değer problemleri | [PDF](dijital-notlar/uygulama-notlari-Uygulama3.pdf) · 7 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama3.tex) |
 | [Uygulama4](uygulama-notlari/Uygulama4.pdf) <sub>Uygulama Notları</sub> | Uygulama 4 – Yük sistemlerinde potansiyel ve enerji | [PDF](dijital-notlar/uygulama-notlari-Uygulama4.pdf) · 5 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama4.tex) |
-| [Uygulama5](uygulama-notlari/Uygulama5.pdf) <sub>Uygulama Notları</sub> | Uygulama 5 – Yük dağılımları: potansiyel, kuvvet, Gauss | [PDF](dijital-notlar/uygulama-notlari-Uygulama5.pdf) · 4 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama5.tex) |
-| [Ugulama6](uygulama-notlari/Ugulama6.pdf) <sub>Uygulama Notları</sub> | Gauss yasası uygulamaları: küre ve silindir | [PDF](dijital-notlar/uygulama-notlari-Ugulama6.pdf) · 4 s. | [.tex](dijital-notlar/uygulama-notlari-Ugulama6.tex) |
+| [Uygulama5](uygulama-notlari/Uygulama5.pdf) <sub>Uygulama Notları</sub> | Uygulama 5 – Yük dağılımları: potansiyel, kuvvet, Gauss | [PDF](dijital-notlar/uygulama-notlari-Uygulama5.pdf) · 5 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama5.tex) |
+| [Ugulama6](uygulama-notlari/Ugulama6.pdf) <sub>Uygulama Notları</sub> | Gauss yasası uygulamaları: küre ve silindir | [PDF](dijital-notlar/uygulama-notlari-Ugulama6.pdf) · 5 s. | [.tex](dijital-notlar/uygulama-notlari-Ugulama6.tex) |
 | [Uygulama 7 Vize sonrasi](uygulama-notlari/Uygulama-7-Vize-sonrasi.pdf) <sub>Uygulama Notları</sub> | Uygulama 7 (vize sonrası) – Eş merkezli küre/silindir yüzeyler | [PDF](dijital-notlar/uygulama-notlari-Uygulama-7-Vize-sonrasi.pdf) · 4 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama-7-Vize-sonrasi.tex) |
 | [Uygulama 8](uygulama-notlari/Uygulama-8.pdf) <sub>Uygulama Notları</sub> | Uygulama 8 – İletkenler: potansiyel, yüzey yükü, kapasite | [PDF](dijital-notlar/uygulama-notlari-Uygulama-8.pdf) · 6 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama-8.tex) |
 | [Uygulama 9](uygulama-notlari/Uygulama-9.pdf) <sub>Uygulama Notları</sub> | Uygulama 9 – Görüntü yöntemi (köşe, dielektrik arayüz) | [PDF](dijital-notlar/uygulama-notlari-Uygulama-9.pdf) · 6 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama-9.tex) |
-| [Cikmis 2023](final-calismasi/Cikmis-2023.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması: Çıkmış sınav 2023 | [PDF](dijital-notlar/final-calismasi-Cikmis-2023.pdf) · 5 s. | [.tex](dijital-notlar/final-calismasi-Cikmis-2023.tex) |
+| [Cikmis 2023](final-calismasi/Cikmis-2023.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması: Çıkmış sınav 2023 | [PDF](dijital-notlar/final-calismasi-Cikmis-2023.pdf) · 6 s. | [.tex](dijital-notlar/final-calismasi-Cikmis-2023.tex) |
 | [Final notu kopya](final-calismasi/Final-notu-kopya.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışma notu (Uygulama ve Ders notları) | [PDF](dijital-notlar/final-calismasi-Final-notu-kopya.pdf) · 31 s. | [.tex](dijital-notlar/final-calismasi-Final-notu-kopya.tex) |
-| [Final notu](final-calismasi/Final-notu.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması notları | [PDF](dijital-notlar/final-calismasi-Final-notu.pdf) · 31 s. | [.tex](dijital-notlar/final-calismasi-Final-notu.tex) |
+| [Final notu](final-calismasi/Final-notu.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması notları | [PDF](dijital-notlar/final-calismasi-Final-notu.pdf) · 39 s. | [.tex](dijital-notlar/final-calismasi-Final-notu.tex) |
 
 ## Çıkmış Sorular
 

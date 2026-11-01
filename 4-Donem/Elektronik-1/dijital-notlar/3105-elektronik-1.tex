@@ -5,7 +5,7 @@
 
 \section{Common-Base Amplifier}
 \noindent\sayfa{1}
-\sekilnotu[1]{Ortak bazlı yükselteç: baz toprağa bağlı; kollektör $R_C$ ile $V_{CC}$'ye ve $C_{C2}$ kuplaj kondansatörü üzerinden $V_{out}$ / $R_L$ (toprağa) yüküne bağlı; emetör $I_{bias}$ akım kaynağı (aşağı yönlü) ile beslenmiş, ayrıca $C_{C1}$ üzerinden $R_{sig}$ ve $v_{sig}$ kaynağına (toprağa) bağlı. Devreden T modele bir ok çizilmiş.}
+\elcizimi[0.5]{sekiller/3105-elektronik-1-s1-1.png}[1]
 
 \noindent\textbf{T model}
 \begin{center}
@@ -51,20 +51,20 @@ $\Rightarrow$ if $R_{sig}\ll r_e$ \quad ignore $R_{sig}$\\
 \end{itemize}
 
 \section{Common-Collector Amplifier \textcolor{kirmizikalem}{(Emitter-Follower)}}
-\sekilnotu[2]{Ortak kollektörlü yükselteç: $V_{CC}$'den $R_{B1}$ ve toprağa $R_{B2}$ ile baz gerilim bölücüsü; $V_{sig}$ -- $R_{sig}$ -- $C_{C1}$ -- baz; kollektör doğrudan $V_{CC}$'ye; emetör $R_E$ ile toprağa ve $C_{C2}$ üzerinden $R_L$ yüküne bağlı. Emetöre ok: ``Output (Emitter)''.}
+\elcizimi[0.65]{sekiller/3105-elektronik-1-s2-1.png}[2]
 
 \noindent
 \begin{minipage}[t]{0.45\linewidth}
 \centering \underline{DC}
-\sekilnotu[2]{DC eşdeğeri: $V_{th}$ kaynağı ($+$ üstte) ve $R_{th}$ üzerinden baza; kollektör $V_{CC}$'ye; emetör $R_E$ ile toprağa.}
+\elcizimi[0.35]{sekiller/3105-elektronik-1-s2-2.png}[2]
 \end{minipage}\hfill
 \begin{minipage}[t]{0.5\linewidth}
 \centering \underline{AC} \qquad \textcolor{kirmizikalem}{\okunamadi{$A\neq\infty$}}
-\sekilnotu[2]{AC eşdeğeri: $V_{sig}$ -- $R_{sig}$ -- baz; bazdan toprağa $R_{B1}/\!/R_{B2}$; kollektör toprağa (AC); emetörde $R_E$ ve $R_L$ toprağa paralel, çıkış $V_{out}$ emetörden.}
+\elcizimi[0.5]{sekiller/3105-elektronik-1-s2-3.png}[2]
 \end{minipage}
 
 \noindent\sayfa{3}
-\sekilnotu[3]{Ortak kollektörlü yükseltecin küçük işaret ($\pi$) modeli: $V_{sig}$ -- $R_{sig}$ -- $B$; $B$'den toprağa $R_{B1}/\!/R_{B2}$ (girişe $R_{in}$ oku); $B$ ile $E$ arasında $r_\pi$ ($+\,V_\pi\,-$); $C$ ile $E$ arasında $g_mV_\pi$ bağımlı akım kaynağı (aşağı yönlü) ve paralel $r_o$; $C$ toprağa bağlı. $r_o$ bir okla $E$ ile toprak arasına taşınmış (kırmızı not: ``diye geçer $r_o$''); $E$ düğümünde ayrıca $R_E$ ve $R_L$ toprağa paralel, $R_{out}$ oku $E$'ye.}
+\elcizimi[0.7]{sekiller/3105-elektronik-1-s3-1.png}[3]
 \begin{align*}
   R_{in} &= \ ?\quad (R_{B1}\,/\!/\,R_{B2})\,/\!/\,\bigl(r_\pi+(\beta+1)(R_E\,/\!/\,R_L\,/\!/\,r_o)\bigr) \\
   R_{out} &= \ ?\quad r_o\,/\!/\,R_E\,/\!/\,\left(\frac{(R_{sig}\,/\!/\,R_{B1}\,/\!/\,R_{B2})+r_\pi}{\beta+1}\right)
@@ -107,12 +107,12 @@ You can use as\\
 
 \section{Mosfet}
 \noindent\sayfa{4}
-\sekilnotu[4]{n-kanallı MOSFET kesiti: p-tipi gövde (alt kısımda ``body'' bağlantısı) içinde iki $n$ bölgesi -- solda \textbf{Source}, sağda \textbf{Drain} uçları; aralarında gövde yüzeyinin üstünde taralı oksit tabakası (ok ile ``Oxide (SiO$_2$)'') ve onun üstünde \textbf{Gate} ucu; iki $n$ bölgesi arasındaki kanal uzunluğu kırmızı çift yönlü okla $L$. Sağ üstte küçük MOSFET sembolü.}
+\elcizimi[0.7]{sekiller/3105-elektronik-1-s4-1.png}[4]
 
 \hfill Drain is positive
 
 \subsection{5.1.3 Creating a channel for current Flow}
-\sekilnotu[4]{Gate'e $+$ ucu bağlı $v_{GS}$ kaynağı (diğer ucu toprakta); gate altındaki oksidin altında, iki $n^+$ bölgesi arasında elektronlar ($\ominus$) birikerek kanalı oluşturuyor; kanal uzunluğu $L$.}
+\elcizimi[0.4]{sekiller/3105-elektronik-1-s4-2.png}[4]
 
 \textcolor{kirmizikalem}{$\vdots$}\\
 Threshold Voltage ($V_T$) -- is the min value of $v_{GS}$
@@ -151,7 +151,7 @@ Small $v_{DS}$
 $\rightarrow v$ \dots
 
 \noindent\sayfa{6}
-\sekilnotu[6]{MOSFET kesiti: gövde dikdörtgeni içinde iki $n$ bölgesi; aralarındaki kanal kırmızı taralı, drain tarafına doğru incelen (daralan) şekilde çizilmiş.}
+\elcizimi[0.5]{sekiller/3105-elektronik-1-s6-1.png}[6]
 
 \noindent\textcolor{kirmizikalem}{$\bigstar$}\quad \textbf{Saturation Current formula}
 \[

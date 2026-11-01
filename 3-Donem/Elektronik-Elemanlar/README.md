@@ -29,10 +29,10 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
-| [elektronik elemanlar 11 ve 12.hafta](ders-notlari/elektronik-elemanlar-11-ve-12.hafta.pdf) | 11. ve 12. Hafta – MOSFET | [PDF](dijital-notlar/elektronik-elemanlar-11-ve-12.hafta.pdf) · 10 s. | [.tex](dijital-notlar/elektronik-elemanlar-11-ve-12.hafta.tex) |
-| [Elektronik elemanlar notlarim](ders-notlari/Elektronik-elemanlar-notlarim.pdf) | Yarı iletken ve diyot (s. 1–20) | [PDF](dijital-notlar/Elektronik-elemanlar-notlarim-s1.pdf) · 18 s. | [.tex](dijital-notlar/Elektronik-elemanlar-notlarim-s1.tex) |
+| [elektronik elemanlar 11 ve 12.hafta](ders-notlari/elektronik-elemanlar-11-ve-12.hafta.pdf) | 11. ve 12. Hafta – MOSFET | [PDF](dijital-notlar/elektronik-elemanlar-11-ve-12.hafta.pdf) · 12 s. | [.tex](dijital-notlar/elektronik-elemanlar-11-ve-12.hafta.tex) |
+| [Elektronik elemanlar notlarim](ders-notlari/Elektronik-elemanlar-notlarim.pdf) | Yarı iletken ve diyot (s. 1–20) | [PDF](dijital-notlar/Elektronik-elemanlar-notlarim-s1.pdf) · 22 s. | [.tex](dijital-notlar/Elektronik-elemanlar-notlarim-s1.tex) |
 | [Elektronik elemanlar notlarim](ders-notlari/Elektronik-elemanlar-notlarim.pdf) | Diyot devreleri, BJT, MOSFET girişi (s. 21–40) | [PDF](dijital-notlar/Elektronik-elemanlar-notlarim-s21.pdf) · 25 s. | [.tex](dijital-notlar/Elektronik-elemanlar-notlarim-s21.tex) |
-| [Elektronik elemanlar notlarim](ders-notlari/Elektronik-elemanlar-notlarim.pdf) | MOSFET: kanal, i–v karakteristiği, çalışma bölgeleri (s. 41–46) | [PDF](dijital-notlar/Elektronik-elemanlar-notlarim-s41.pdf) · 6 s. | [.tex](dijital-notlar/Elektronik-elemanlar-notlarim-s41.tex) |
+| [Elektronik elemanlar notlarim](ders-notlari/Elektronik-elemanlar-notlarim.pdf) | MOSFET: kanal, i–v karakteristiği, çalışma bölgeleri (s. 41–46) | [PDF](dijital-notlar/Elektronik-elemanlar-notlarim-s41.pdf) · 8 s. | [.tex](dijital-notlar/Elektronik-elemanlar-notlarim-s41.tex) |
 
 ## Çıkmış Sorular
 

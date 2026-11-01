@@ -29,7 +29,7 @@ GM taşıyıcı frekans yelpazesi: 540--1600 kHz
 \[ y_2(t)=A_c\,[1+\mu\, m_{n2}(t)]\cos(2\pi f_c' t), \qquad f_c' :\ \text{Image station} \]
 RF amplifier sadece $y_1$'i geçirir.
 
-\sekilnotu[1]{Sayfanın altında yarım kalmış küçük kroki: dikey ve yatay eksen, eksenin sağında dikdörtgen biçimli bir spektrum (ortasında küçük bir çentik).}
+\elcizimi[0.4]{sekiller/Ders11-s1-1.png}[1]
 
 \sayfa{2}
 \sekilnotu[2]{Bu sayfa basılı materyal içeriyor (Figure 3.33: A superheterodyne receiver); dijitalleştirilmedi. Basılı blok diyagram: anten $\to$ RF amplifier $\to$ Mixer $\to$ IF amplifier $\to$ Detector $\to$ Audio frequency amplifier $\to$ Speaker; Local oscillator Mixer'e bağlı (RF amplifier'a kesikli çizgiyle de bağlı); Detector'dan IF amplifier'a Automatic volume control (AVC) geri beslemesi. El yazısı eklemeler: RF amplifier ve IF amplifier üzerinde (BGF); RF amplifier altında $f_c=f_{LO}-f_{IF}$; IF amplifier altında $f_{IF}=455$ kHz, $B=10$ kHz; RF amplifier çıkışı / Mixer girişi: $A_c[1+\mu m_n(t)]\cos(2\pi f_c t)$; Mixer çıkışı / IF girişi: $A_c[1+\mu m_{n1}(t)]\cos(2\pi f_{IF} t)+2f_{IF}$ frekanslı bileşen (``$2f_{IF}$ frekanslı bileşen'' kısmı turuncu çizgiyle iptal edilmiş); IF çıkışı / Detector girişi: $A_c[1+\mu m_{n1}(t)]\cos(2\pi f_{IF} t)$; hoparlör girişi: $K\,m_1(t)$; Local oscillator altında $f_{LO}=f_c+f_{IF}$ ve ``Tuning range (Ayarlama Aralığı): 995--2055 kHz''.}
@@ -197,7 +197,7 @@ PM(FZM):
 $m(t)=10\,\mathrm{sinc}(10^4 t)$ $\to$ Find the transmission BW of an FM modulated signal with $k_f=4000$
 \end{ornek}
 \[ m(t)=10\,\mathrm{sinc}(10^4 t) \;\to\; M(f)=\underset{A=\frac{1}{10^3}}{A}\,\Pi\!\left(\frac{f}{\tau}\right)=\frac{1}{10^3}\,\Pi\!\left(\frac{f}{10^4}\right) \]
-\sekilnotu[6]{$\Pi(f/10^4)$ çizimi: dikey eksenin ucunda ``$\Pi(f/10^4)$'' etiketi; eksene göre simetrik, yüksekliği 1 olan dikdörtgen darbe; yatay eksende altta ``5 kHz'' işaretli ok (darbenin yarı genişliği).}
+\elcizimi[0.4]{sekiller/Ders11-s6-1.png}[6]
 \[ B=5\ \mathrm{kHz}\qquad \beta=\frac{\Delta f}{B},\quad \Delta f=k_f\, m_p=4000\cdot10=40\ \mathrm{kHz} \]
 \[ \beta=\frac{40\mathrm{k}}{5\mathrm{k}}=8 \;\Rightarrow\; \mathrm{BG}=2B(\beta+1)=2\cdot 5\mathrm{k}\,(8+1)=90\ \mathrm{kHz} \]
 (90 kHz sonucundan okla yukarıdaki not:) mesajın BG'si 5k iken FRM'ninki 90k da çok çok büyük

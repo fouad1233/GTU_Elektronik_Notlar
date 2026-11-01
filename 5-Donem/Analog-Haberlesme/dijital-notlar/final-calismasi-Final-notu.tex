@@ -12,7 +12,7 @@
 \section{1) Dolaylı metod (Indirect method)}
 (Armstrong tekniği)
 
-\sekilnotu[1]{Blok şema: $m(t)$ girişi $\to$ [NBFM (DB-FRM)] (üstünde Narrow band Angle Modulation, altında Dar bantlı frekans modülasyonu; çıkışında turuncu $\phi_{NBFM}(t)$ etiketi) $\to$ [Frequency multiplier (Frekans çarpıcı)] (kırmızı not: genlik sınırlayıcı içerir, genlikte bozunmayı düzeltir) $\to$ WBFM (GB-FRM), Wide band frequency modulation.}
+\elcizimi[0.6]{sekiller/final-calismasi-Final-notu-s1-1.png}[1]
 
 -- Genlik ve faz bozulmasına sebep olur
 \begin{align*}
@@ -56,12 +56,12 @@ f_i(t)=f_c+\underbrace{\frac{k f_c}{2C_0}}_{k_f}\,m(t)
 * frekans kararlılığı çok iyi değil
 
 \section{FRM (FM)'nin Demodülasyonu}
-\sekilnotu[1]{Blok şema: $y_{FM}(t)$ $\to$ [d/dt] (altında FM to AM convertor) $\to$ $\dot y_{FM}(t)$ $\to$ [Envelope detector] (altında AM demodulator) $\to$ $m(t)$.}
+\elcizimi[0.6]{sekiller/final-calismasi-Final-notu-s1-2.png}[1]
 \begin{align*}
 g_{FM}(t)&=A_c\cos\Bigl(2\pi f_c t+2\pi k_f\int_{-\infty}^{t}m(z)\,dz\Bigr)\\
 \frac{dg_{FM}(t)}{dt}&=-A_c\bigl[\underbrace{2\pi f_c+2\pi k_f\,m(t)}_{\text{zarf}}\bigr]\sin(\theta(t))
 \end{align*}
-\sekilnotu[1]{Çizim: $y_{FM}(t)$ dalga şekli; kırmızı kesikli üst ve alt zarf eğrileri arasında salınan, genliği zamanla değişen işaret; sağda ok ile $y_{FM}(t)$ etiketi.}
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s1-3.png}[1]
 \[
 \frac{dy_{FM}(t)}{dt}=-A_c\Bigl[\underbrace{2\pi f_c+2\pi k_f\,m(t)}_{\text{zarf}>0}\Bigr]\sin(\theta(t))
 \]
@@ -72,7 +72,7 @@ g_{FM}(t)&=A_c\cos\Bigl(2\pi f_c t+2\pi k_f\int_{-\infty}^{t}m(z)\,dz\Bigr)\\
 \end{align*}
 $A_c$ sabit olmalıdır
 
-\sekilnotu[1]{Blok şema: $y_{FM}(t)=A_c(t)\cos(\theta(t))$ $\to$ [BP limiter] $\to$ $\tilde y_{FM}(t)=A_c\cos(\theta(t))$ $\to$ [d/dt] $\to$ [zarf detektörü] $\to$ kondansatör (DC bloklama) $\to$ $k_f m(t)$ (altında: sabit). BP limiter'dan aşağı ok ile kırmızı kesikli bir kutuya gidilir; kutuda [Hard limiter] $\to$ [BPF, C.F. $=f_c$] bulunur.}
+\elcizimi[0.6]{sekiller/final-calismasi-Final-notu-s1-4.png}[1]
 
 \section{Pratik FM demodülatörleri}
 \begin{itemize}
@@ -89,7 +89,7 @@ r(t)=\underbrace{A_c\cos(2\pi f_c t)}_{\text{Unmodulated Carrier}}+\overbrace{I\
 \[
 \text{Demodülatör çıkışı: }y_d(t)=\begin{cases}\dfrac{I}{A_c}\sin(2\pi f_i t) & \text{PM}\\[3mm]\dfrac{I\,f_i}{A_c}\cos(2\pi f_i t) & \text{FM}\end{cases}
 \]
-\sekilnotu[1]{Çizim: dikey eksen karışımın genliği; yatay eksende frekans. PM için yatay sabit doğru ($I/A_c$, PM); FM için orijinden başlayıp yaklaşık 21 kHz (net okunmuyor) civarında PM seviyesine ulaşan turuncu artan doğru ($I f/A_c$, FM); kırmızı not: böyle olmasını isteriz, FM with preemphasis and deemphasis filter.}
+\elcizimi[0.55]{sekiller/final-calismasi-Final-notu-s1-5.png}[1]
 
 \sayfa{2}
 Başta zaten FM, sonra türevini alıp PM'e geçebiliriz. Bunu yapan filtreye ön vurgulama filtresi denir.

@@ -73,10 +73,10 @@ Collector $\rightarrow$ Drain
         $R_{out}$ (intrinsic) $=r_o$
 \end{itemize}
 
-\sekilnotu[1]{Ortak kaynaklı yükselteç devresi: $V_{sig}$ kaynağı -- $R_{sig}$ -- kuplaj kondansatörü -- gate; gate'te $R_{G1}$ ($V_{DD}$'ye) ve $R_{G2}$ (toprağa) gerilim bölücüsü; drain $R_D$ üzerinden $V_{DD}$'ye bağlı ve $C_\infty$ ile $R_L$ yüküne kuplajlı; source'ta $R_S$ ve ona paralel $C_\infty$ (bypass) toprağa.}
+\elcizimi[0.6]{sekiller/0706-Elektronik-1-Mosfet-small-signal-s1-1.png}[1]
 
 $\Rightarrow$
-\sekilnotu[1]{Küçük işaret eşdeğeri: $V_{sig}$ -- $R_{sig}$ -- $G$; $G$ ile $S$ arası açık uçlar ($+\ v_{GS}\ -$); $S$ toprağa; $D$ ile toprak arasında $g_mV_{GS}$ bağımlı akım kaynağı (aşağı yönlü), $r_o$, $R_D$ ve $R_L$ paralel; çıkış $v_{out}$ drain'den. Girişe ok: $R_{in}=R_{G1}/\!/R_{G2}$; $R_D$'ye ok: $R_{out}$.}
+\elcizimi[0.85]{sekiller/0706-Elektronik-1-Mosfet-small-signal-s1-2.png}[1]
 \[
   R_{in}=R_{G1}\,/\!/\,R_{G2} \qquad\qquad R_{out}=r_o\,/\!/\,R_D
 \]
@@ -97,7 +97,7 @@ $\Rightarrow$
 \]
 
 \section{Common Source with $R_S$}
-\sekilnotu[2]{Ortak kaynaklı yükselteç ($R_S$'li): $V_{sig}$ -- $R_{sig}$ -- kuplaj kondansatörü -- gate; $R_{G1}$ ($V_{DD}$'ye) ve $R_{G2}$ (toprağa); drain $R_D$ ile $V_{DD}$'ye, $C_\infty$ ile $R_L$ yüküne; source $R_S$ ile doğrudan toprağa (bypass kondansatörü yok).}
+\elcizimi[0.65]{sekiller/0706-Elektronik-1-Mosfet-small-signal-s2-1.png}[2]
 
 \vurgu[pembe]{$V_A=\infty$ \quad Channel length modulation ignore}
 
@@ -161,7 +161,7 @@ $R_{sig}\approx 0$ $\curvearrowright$
 \section{Common-Gate}
 $V_A=\infty$\\ $r_o=\infty$
 
-\sekilnotu[3]{Ortak geçitli yükselteç: $V_{DD}$'den aşağı yönlü bir akım kaynağı source düğümünü besliyor; source düğümüne $R_{sig}$ üzerinden $v_{sig}$ kaynağı (toprağa) bağlı, oradan bakışta $R_{in}$; gate toprağa bağlı; drain $R_D$ ile toprağa ve $\infty$ kuplaj kondansatörü ile $R_L$ yüküne bağlı, çıkış $v_{out}$, kondansatör tarafından bakışta $R_{out}$.}
+\elcizimi[0.5]{sekiller/0706-Elektronik-1-Mosfet-small-signal-s3-1.png}[3]
 
 \hfill \textbf{T model önerilir}
 
@@ -209,9 +209,9 @@ $V_A=\infty$\\ $r_o=\infty$
 \]
 
 \section{Common-Drain Amplifier \textcolor{murekkep}{(Source follower)}}
-\sekilnotu[4]{Ortak drain'li yükselteç: $V_{sig}$ -- $R_{sig}$ -- gate; gate'te $R_{G1}$ ($V_{DD}$'ye) ve $R_{G2}$ (toprağa); drain $V_{DD}$'den aşağı yönlü bir akım kaynağı ile besleniyor; source $R_S$ ile toprağa ve $\infty$ kuplaj kondansatörü ile $R_L$ yüküne bağlı, çıkış $V_{out}$.}
+\elcizimi[0.75]{sekiller/0706-Elektronik-1-Mosfet-small-signal-s4-1.png}[4]
 
-\sekilnotu[4]{Küçük işaret eşdeğeri: $V_{sig}$ -- $R_{sig}$ -- $R_G$ (toprağa; $R_{in}=R_G$ oku) -- $G$ ($+$) ve $S$ ($-$) açık uçları arasında $V_{gs}$; kırmızı kutu içinde $g_mV_{gs}$ bağımlı akım kaynağı (aşağı yönlü) ve paralel $r_o$, kutunun üstü (drain) toprağa; kutunun altı (source) çıkış düğümüne iniyor; çıkış düğümünde $R_S$ ve $R_L$ toprağa, $V_{out}$; $r_o$ bir okla çıkış düğümü ile toprak arasına taşınmış olarak tekrar çizilmiş. $R_{out}\cong 1/g_m$.}
+\elcizimi[0.75]{sekiller/0706-Elektronik-1-Mosfet-small-signal-s4-2.png}[4]
 \[
   R_{in}=R_G \qquad\qquad R_{out}\cong 1/g_m
 \]

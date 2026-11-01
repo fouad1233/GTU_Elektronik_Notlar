@@ -6,7 +6,7 @@
 \sayfa{1}
 \section{Elektrostatik}
 
-\sekilnotu[1]{Sol üstte A noktasında $q_1$, sağda $q_2$ yükü; A'dan sağa doğru $\vec e_{12}$, $q_2$ noktasından sola doğru $\vec e_{21}$ birim vektörleri, aralarında kesikli çizgi ve üstte $\vec r_{12}$ vektörü. Hemen altında aynı şekil A ve B noktalarıyla (A'da $q_1$ ve $\vec e_{12}$, B'de $q_2$ ve $\vec e_{21}$), kırmızı kesikli çizgilerle ve üstünde $r_{12}=|\overrightarrow{AB}|=r_{21}$ yazısıyla.}
+\elcizimi[0.6]{sekiller/Ders3-s1-1.png}[1]
 
 \[ \vec e_{12} = \frac{\vec r_{12}}{|\vec r_{12}|}, \qquad |\vec e_{12}| = |\vec e_{21}| = 1, \qquad \vec e_{21} = -\vec e_{12} \]
 \[ \vec r_{12} = r_{12}\cdot\vec e_{12}, \qquad \vec r_{21} = r_{21}\,\vec e_{21} = -r_{12}\,\vec e_{12} \]
@@ -19,7 +19,7 @@
 
 \noindent\textit{($\vec F_{12}$: $q_1$'in $q_2$'ye uyguladığı kuvvet; \ $\vec F_{21}$: $q_2$'nin $q_1$'e uyguladığı kuvvet)}
 
-\sekilnotu[1]{A ve B noktaları arasında doğru parçası: A'dan sağa doğru $\vec e_{AB}$, B'den sola doğru $\vec e_{BA}$ birim vektörleri.}
+\elcizimi[0.45]{sekiller/Ders3-s1-2.png}[1]
 
 \[ \overrightarrow{AB}, \qquad \vec e_{AB} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|} \]
 \[ \vec e_{BA} = -\vec e_{AB} = -\frac{\overrightarrow{AB}}{|\overrightarrow{AB}|} = \frac{\overrightarrow{BA}}{|\overrightarrow{AB}|} \]
@@ -32,16 +32,16 @@ $q_2 > 0$ veya $< 0$
 
 \noindent $q_1\cdot q_2 < 0$ ise güçler birbirini çeker $\left(\begin{matrix} q_1^{+}\ q_2^{-}\\ q_2^{+}\ q_1^{-} \end{matrix}\right)$
 
-\sekilnotu[1]{Sağ altta iki şekil. Üstteki: A ve B noktaları aynı doğru üzerinde, A'nın altında $q_1$, B'nin altında $q_2$; A'dan sağa $\vec e_{AB}$, B'den sola $\vec e_{BA}$ okları; A'nın solunda sola doğru kırmızı $\vec F_{21}$, B'nin sağında sağa doğru kırmızı $\vec F_{12}$ oku (kuvvetler dışa doğru). Alttaki: A ve B noktaları, altlarında $\vec e_{AB}$ (sağa) ve $\vec e_{BA}$ (sola); kırmızı $\vec F_{21}$ A'dan B'ye doğru, kırmızı $\vec F_{12}$ B'den A'ya doğru (kuvvetler içe doğru).}
+\elcizimi[0.6]{sekiller/Ders3-s1-3.png}[1]
 
 \sayfa{2}
 \noindent İkiden fazla yük halinde superposition ilkesi geçerlidir
 
-\sekilnotu[2]{Üçgen düzeninde üç nokta yük $q_1$, $q_2$, $q_3$; aralarında kesikli çizgiler $r_{12}$ ($q_1$--$q_2$), $r_{13}$ ($q_1$--$q_3$) ve $r_{23}$ ($q_2$--$q_3$). Her yükte diğer iki yükün uyguladığı kuvvetler ok olarak (kırmızı) gösterilmiş: $q_1$'de $\vec F_{31}$ ve $\vec F_{21}$, $q_2$'de $\vec F_{12}$ ve $\vec F_{32}$, $q_3$'te $\vec F_{23}$ ve $\vec F_{13}$.}
+\elcizimi[0.6]{sekiller/Ders3-s2-1.png}[2]
 
 \[ \vec F_1 = \vec F_{31} + \vec F_{21}, \qquad \vec F_2 = \vec F_{12} + \vec F_{32}, \qquad \vec F_3 = \vec F_{23} + \vec F_{13} \]
 
-\sekilnotu[2]{Sol altta $q$ yükü; sağ üstte $q_1$, $q_2$, \ldots, $q_N$ yükleri. $q$'dan her yüke kesikli doğrular ve kırmızı $r_1$, $r_2$, $r_3$ mesafeleri; yüklerden $q$'ya doğru $\vec e_1$, $\vec e_2$, $\vec e_n$ birim vektörleri çizilmiş.}
+\elcizimi[0.4]{sekiller/Ders3-s2-2.png}[2]
 
 \[ \vec F_q = \frac{q}{4\pi\varepsilon_0}\sum_{n=1}^{N}\frac{q_n}{(r_n)^2}\,\vec e_n \]
 
@@ -49,7 +49,7 @@ $q_2 > 0$ veya $< 0$
 
 \noindent hacimsel yük yoğunluğu: $\rho = \dfrac{dQ}{dv}$ \quad $(\mathrm{C/m^3})$
 
-\sekilnotu[2]{Taralı (içi çizgili) elips biçiminde yük dağılımı (hacim); sağında $q$ noktası. Hacmin içindeki bir $dQ$ elemanından $q$'ya doğru kırmızı $\vec r$ vektörleri çizilmiş; $q$ noktasında $d\vec F_q$ oku var.}
+\elcizimi[0.65]{sekiller/Ders3-s2-3.png}[2]
 
 \[ d\vec F_q = \underbrace{\frac{1}{4\pi\varepsilon_0}}_{9\cdot 10^{9}\,\mathrm{N}}\cdot\frac{q\,dQ}{r^2}\,\vec e = \frac{1}{4\pi\varepsilon_0}\cdot\frac{q\,\rho\,dv}{r^2}\,\vec e \]
 \[ \Rightarrow\ \vec F_q = \int_v d\vec F_q = \int_v \frac{1}{4\pi\varepsilon_0}\,\frac{q\,\rho\,dv}{r^2}\cdot\vec e \]
@@ -62,7 +62,7 @@ $q_2 > 0$ veya $< 0$
 \noindent Elektrostatik alan
 \[ \vec E = \frac{1}{4\pi\varepsilon_0}\int \frac{\rho\,\vec r}{r^3}\,dv \qquad\qquad 10^{-15}\,\mathrm{m} < r < \infty \]
 
-\sekilnotu[3]{Sol altta $q$ yükü (×), sağ üstte P noktası; $q$'dan P'ye doğru ok çizilmiş, yükün yanında $\vec e_{12}$, P'ye yakın yerde $\vec r_{12}$ yazılı.}
+\elcizimi[0.3]{sekiller/Ders3-s3-1.png}[3]
 
 \[ \vec E = \frac{1}{4\pi\varepsilon_0}\,\frac{q}{(r_{12})^3}\,\vec r_{12} \]
 \[ [\vec E] = \kutula{\mathrm{V/m}} = \frac{\mathrm{N}}{\mathrm{C}}, \qquad [q] = \mathrm{C}, \qquad [F] = \mathrm{N}, \qquad [\varepsilon_0] = \mathrm{F/m} \]
@@ -81,7 +81,7 @@ $q_2 > 0$ veya $< 0$
 
 \noindent $q_1$ durgun ve $q_2$ hareketliyse Coulomb yasası bir yönde geçerlidir. Durgunun hareketliye olanı geçerlidir.
 
-\sekilnotu[3]{Solda $q_1$ noktası, ortada $q_2$ noktası ve $q_2$'den yukarı doğru çizilmiş $\vec v$ oku.}
+\elcizimi[0.35]{sekiller/Ders3-s3-2.png}[3]
 
 \[ \vec F_{12} = \frac{1}{4\pi\varepsilon_0}\,\frac{q_1 q_2}{r_{12}^{3}}\,\vec r_{12} \]
 \[ \vec F_{12} \neq -\vec F_{21} \]
@@ -89,7 +89,7 @@ $q_2 > 0$ veya $< 0$
 \sayfa{4}
 \[ \vec r = r\,\vec e_r \]
 
-\sekilnotu[4]{Solda elektron ($m_e$, $q=-e$), sağda proton ($m_p$, $q=e$), ikisi ``$\times$'' ile işaretlenmiş; şekilde ``electron'' ve ``proton'' yazıyor. Elektrondan sağa doğru $\vec F_m$, protondan sola doğru $-\vec F_m$ okları; elektrondan başlayan $\vec e_r$ birim vektörü; aşağıda iki yükü birleştiren yay biçiminde $\vec r$ vektörü.}
+\elcizimi[0.65]{sekiller/Ders3-s4-1.png}[4]
 
 \begin{align*}
 \varepsilon_0 &= \left(\tfrac{1}{36\pi}\right)\cdot 10^{-9}\ \mathrm{F/m}\\

@@ -40,13 +40,13 @@ $\hookrightarrow$ modüle edilmiş işaret \\
 \end{center}
 
 \sayfa{2}
-\sekilnotu[2]{Sol üstte $m(t)$ zaman grafiği (eksenler $t$ ve $m(t)$): $t=0$ civarında tepe yapıp sağa doğru negatif değere inen yumuşak bir işaret. Çift yönlü ok (``$F$'') ile sağdaki $M(f)$ grafiğine bağlı: $f=0$'da tepe değeri $A$ olan çan şekilli genlik spektrumu, $-B$ ile $B$ arasında; kırmızı kalemle faz eğrisi $\theta_M(f)$ (soldan sağa azalan).}
+\elcizimi[0.8]{sekiller/Ders7-s2-1.png}[2]
 
-\sekilnotu[2]{Solda $c(t)=A_c\cos(2\pi f_c t)$ grafiği: kosinüs dalgası, $t=0$'da tepe değeri $A_c$; kesikli çizgilerle $+A_c$ ve $-A_c$ seviyeleri işaretli. Çift yönlü ok (``$F$''). Sağda $C(f)=\dfrac{A_c}{2}\bigl[\delta(f-f_c)+\delta(f+f_c)\bigr]$: $-f_c$ ve $f_c$ noktalarında yukarı yönlü iki dürtü, yükseklikleri kesikli çizgiyle $A_c/2$.}
+\elcizimi[0.9]{sekiller/Ders7-s2-2.png}[2]
 
 cos normalde $-1$ ile $1$ arasında sallanır, şimdi $A_c m(t)$ ile $-A_c m(t)$ arasında sallanır.
 
-\sekilnotu[2]{Solda $y(t)=A_c\,m(t)\cos(2\pi f_c t)$ grafiği ($t$ ekseni): koyu kırmızı, hızlı salınan DSB-SC dalga biçimi $y(t)$ (etiket ``$y(t)$''); üst zarfı turuncu kesikli eğri ``$A_c m(t)$'', alt zarfı turkuaz kesikli eğri ``$-A_c m(t)$''. $t=0$'da genlik en büyük; zarf sıfırdan geçerken dalga küçülüp ters işaretle yeniden büyüyor. Sağda $Y(f)=\dfrac{A_c}{2}\bigl[M(f-f_c)+M(f+f_c)\bigr]$ spektrumu: $-f_c$ ve $f_c$ çevresinde iki çan şekilli (turuncu) genlik spektrumu, tepe seviyesi kesikli çizgiyle ``$A\,A_c/2$''; kırmızı faz eğrileri; $f$ ekseni işaretleri: $-f_c-B$, $-f_c$, $-f_c+B$ ve $f_c-B$, $f_c$, $f_c+B$. Her iki bantta $f_c$'nin altındaki yarı mavi taralı (``alt yan bant (AYB), lower side band'', mavi), üstündeki yarı turkuaz taralı (``Üst yan bant (ÜYB), upper side band'', turkuaz). Altta çift yönlü ok: $\mathrm{BG}\{y(t)\}=2B$ Hz.}
+\elcizimi[0.9]{sekiller/Ders7-s2-3.png}[2]
 
 Modülasyon işlemi sonucunda bant genişliği iki katına çıkar. (İşaret Bant geçirene döner) Mesaj işaretleri temel banttadır her zaman.
 
@@ -81,7 +81,7 @@ e(t) &= \tfrac{A_c}{2}\, m(t) + \tfrac{A_c}{2}\, m(t)\cos(2\pi\cdot 2f_c t)
 
 \[ E(f) = \frac{A_c}{2}M(f) + \frac{A_c}{4}\bigl[M(f-2f_c)+M(f+2f_c)\bigr] \]
 
-\sekilnotu[3]{$E(f)$ spektrumu ($f$ ekseni): ortada $f=0$ çevresinde, $-B$ ile $B$ arasında tepe değeri ``$A\,A_c/2$'' olan turuncu çan eğrisi (kırmızı faz eğrisi; altındaki ok ``$z(t)$'' etiketini gösteriyor, muhtemelen $Z(f)$); $-2f_c$ ve $2f_c$ çevresinde ikişer küçük çan eğrisi, tepe seviyeleri kesikli çizgiyle ``$A\,A_c/4$''. $f$ ekseni işaretleri: $-2f_c-B$, $-2f_c$, $-2f_c+B$, $-B$, $B$, $2f_c-B$, $2f_c$, $2f_c+B$. Turkuaz dikdörtgen $[-B,B]$ aralığını çevreliyor ve ``AGF'' etiketli ok ile gösteriliyor.}
+\elcizimi[0.9]{sekiller/Ders7-s3-1.png}[3]
 
 AGF Alçak geçiren filtre ile çarparsak işareti elde ederiz.
 
@@ -118,7 +118,7 @@ P_y &= \lim_{T\to\infty}\frac1T\int_{-T/2}^{T/2} y^2(t)\,dt\\
 
 \formulkutu{P_y = \frac{A_c^2}{2}P_m}
 
-\sekilnotu[4]{Yatay $t$ ekseni, düşey eksen. Kırmızı kalemle çok hızlı salınan $m^2(t)\cos(4\pi f_c t)$ dalgası; üst ve alt zarfları kesikli çizgiyle ``$m^2(t)$'' ve ``$-m^2(t)$''. Sağda süslü parantezle ``çok hızlı değişir'' ve ``$m^2(t)$ yavaş değiştiği için'' notu; turuncu bir ok bu notu, integraldeki ikinci terimin yanındaki turuncu ``0'' işaretine bağlıyor.}
+\elcizimi[0.5]{sekiller/Ders7-s4-1.png}[4]
 
 \sayfa{5}
 \subsection{Synchronous / Phase coherent demod}
@@ -206,7 +206,7 @@ E(f) &= \frac{A A_c}{4}\bigl[\delta(f-f_m)+\delta(f+f_m)\bigr]\\
 \end{center}
 
 \sayfa{7}
-\sekilnotu[7]{$E(f)$ spektrumu ($f$ ekseni): ortada $-f_m$ ve $f_m$ noktalarında iki dürtü, yükseklikleri kesikli çizgiyle ``$A A_c/4$''; bu ikisini çevreleyen kırmızı kesikli dikdörtgen ``AGF'' (okla gösterilmiş), altında kırmızı ok ve ``$z(t)$'' etiketi. Daha dışta ikişer dürtü, yükseklikleri kesikli çizgiyle ``$A A_c/8$''. $f$ ekseni işaretleri: $-f_4=-(2f_c+f_m)$, $-2f_c$, $-f_3=-(2f_c-f_m)$, $-f_m$, $f_m$, $f_3=2f_c-f_m$, $2f_c$, $2f_c+f_m=f_4$.}
+\elcizimi[0.8]{sekiller/Ders7-s7-1.png}[7]
 
 \[ P_y = \frac{A_c^2}{2}P_m = \frac{A_c^2}{2}\cdot\frac{A^2}{2} = \frac{A^2A_c^2}{4} \]
 
@@ -307,15 +307,15 @@ $B = \mathrm{BG}\{m(t)\}$
 \end{center}
 
 \subsection{Nasıl çarpım yaparız}
-\sekilnotu[8]{Devre: solda $m(t)$ gerilim kaynağı (üstü $+$, altı $-$). Kaynağın üst ucundan çıkan tel sağa gidip BGF kutusunun üst girişine, alt ucundan çıkan tel de kutunun alt girişine bağlanıyor. Üst telden aşağı sarkan ucu açık bir $a$ terminali, alt hattın üstünde ucu açık bir $b$ terminali var (aralarında boşluk). Kutu: ``BGF, BG$=2B$, MF$=f_c$''; çıkış uçları $+$ ve $-$, çıkış ifadesi $k\,m(t)\cos(2\pi f_c t)$.}
+\elcizimi[0.9]{sekiller/Ders7-s8-1.png}[8]
 
 Shunt bridge modulator (paralel köprülü modülatör)
 
-\sekilnotu[8]{Devre: solda $m(t)$ kaynağı ($\pm$); üst ucundan çıkan tel sağa gidip ucu açık $a$ terminaline, devamında ucu açık $b$ terminaline uzanıyor; alt uçtan çıkan tel aşağıdan sağa doğru ilerliyor.}
+\elcizimi[0.4]{sekiller/Ders7-s8-2.png}[8]
 
 Seri köprülü modülatör
 
-\sekilnotu[8]{Diyot köprüsü: üstte düğüm $a$, altta düğüm $b$, solda $c$, sağda $d$. $a$--$c$ arasında $D_1$, $a$--$d$ arasında $D_3$, $c$--$b$ arasında $D_2$, $d$--$b$ arasında $D_4$ diyotları; $c$ ile $d$ arasındaki yatay kolda kaynak, etiketi $A_c\cos(2\pi f_c t)$.}
+\elcizimi[0.35]{sekiller/Ders7-s8-3.png}[8]
 
 \[ D_1 \equiv D_2, \qquad D_3 \equiv D_4 \]
 
@@ -328,9 +328,9 @@ v_c < v_d &\Rightarrow \text{Diyotlar kesimde} \Rightarrow a \text{ ve } b \text
 Bu olay $T_c$ ile periyodik olarak gerçekleşir.
 
 \sayfa{9}
-\sekilnotu[9]{Solda $m(t)$ zaman grafiği ($t$ ekseni): yavaş değişen, pozitif değerden negatif değere inen bir işaret. Çift yönlü ok (``$F$'') ile sağdaki $M(f)$ grafiğine bağlı: $-B$ ile $B$ arasında, $f=0$'da tepe yapan çan şekilli spektrum.}
+\elcizimi[0.75]{sekiller/Ders7-s9-1.png}[9]
 
-\sekilnotu[9]{$w(t)$ grafiği ($t$ ekseni): dört adet küçük dikdörtgen darbe (periyodik darbe katarı). Altında $m(t)\,w(t)$ grafiği ($t$ ekseni): kırmızı $m(t)$ eğrisi ve altında dikey çubuklar halinde anahtarlanmış hali; eğri sağda negatif bölgeye iniyor. Sağda $\mathcal{F}\{m(t)w(t)\}$ spektrumu: ortada $-B$ ile $B$ arası kırmızı yüksek tepe, $-f_c$ ve $f_c$ çevresinde daha küçük iki tepe, hepsini saran geniş kesikli çan zarfı; $f$ ekseni işaretleri: $-3f_c$, $-f_c$, $-B$, $B$, $f_c$, $3f_c$.}
+\elcizimi[0.9]{sekiller/Ders7-s9-2.png}[9]
 
 \begin{center}
 \begin{tikzpicture}[>=Stealth, line width=0.7pt, kirmizikalem, font=\small]
@@ -340,7 +340,7 @@ Bu olay $T_c$ ile periyodik olarak gerçekleşir.
 \end{tikzpicture}
 \end{center}
 
-\sekilnotu[9]{Kırmızı DSB-SC dalga biçimi $\frac{2}{\pi}m(t)\cos(2\pi f_c t)$ ($t$ ekseni); kesikli zarflar: sağ uçta etiketler ``$-\frac{2}{\pi}m(t)$'' (üstte) ve ``$\frac{2}{\pi}m(t)$'' (altta); zarf sıfırdan geçerken genlik küçülüp ters işaretle yeniden büyüyor.}
+\elcizimi[0.5]{sekiller/Ders7-s9-3.png}[9]
 
 Ring modulator (Double balanced mod.) okuyunuz $\ast$
 
@@ -350,7 +350,7 @@ Ring modulator (Double balanced mod.) okuyunuz $\ast$
 Çarpıcı + AGF \hfill Senkron demodülasyon yapılmalı
 
 \begin{ornek}
-\sekilnotu[9]{Devre: solda $y(t)$ gerilim kaynağı ($\pm$); üst ucundan çıkan tel sağa gidip ucu açık $a$ terminaline, ardından $b$ terminaline (``Diyot köprüsü'' notu ve okla gösterilmiş) uzanıyor; $b$'den tel AGF kutusunun üst girişine ($+$) bağlanıyor. Alt uçtan çıkan tel kutunun alt girişine ($-$). Kutuda ``AGF, BG $=B$ Hz''; kutunun girişi ``$e(t)$'' etiketli; çıkışta $+$ ve $-$ uçları ve ``$z(t)$''.}
+\elcizimi[0.65]{sekiller/Ders7-s9-4.png}[9]
 \[ y(t) = A_c\, m(t)\cos(2\pi f_c t) \]
 \end{ornek}
 

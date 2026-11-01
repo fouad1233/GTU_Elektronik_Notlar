@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 3. Dönem
 
-GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 185 dosya, 26 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 323 dosya, 26 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
@@ -22,7 +22,7 @@ GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 185 dosya, 26 dij
 
 ## English
 
-**Semester 3 · Fall 2022–23** — 7 courses, 185 files, 26 digital notes. Click a course to see all of its files.
+**Semester 3 · Fall 2022–23** — 7 courses, 323 files, 26 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|

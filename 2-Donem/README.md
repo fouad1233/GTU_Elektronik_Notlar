@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 2. Dönem
 
-GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 48 dosya, 2 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 203 dosya, 2 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
@@ -22,7 +22,7 @@ GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 48 dosya, 2 dijit
 
 ## English
 
-**Semester 2 · Spring 2021–22** — 7 courses, 48 files, 2 digital notes. Click a course to see all of its files.
+**Semester 2 · Spring 2021–22** — 7 courses, 203 files, 2 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|

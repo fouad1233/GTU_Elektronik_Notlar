@@ -4,13 +4,13 @@
 
 [Ana sayfa](../README.md) › 6. Dönem
 
-GTÜ Elektronik Mühendisliği 6. dönem dersleri: **6 ders**, 104 dosya, 1 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 6. dönem dersleri: **6 ders**, 125 dosya, 2 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
 | [**Elektromanyetik Dalga Teorisi**](Dalga-Teorisi/) | — | Zamanla harmonik alanlar ve düzlem dalgalar, kayıplı ortamlar, yansıma ve kırılma (Brewster açısı) ve dalga kılavuzları. | 3 ders notu · 1 ödev · 1 proje |
 | [**Haberleşme Laboratuvarı**](Sayisal-Haberlesme-Lab/) | ELM366 | Genlik modülasyonu (DSB-LC/SC), SSB ve FM ile ASK modülasyonu deneyleri: ön çalışmalar ve raporlar. | 4 lab |
-| [**Kontrol Sistemleri**](Kontrol-Sistemleri/) | ELEC322 | Sistemlerin matematiksel modellenmesi (transfer fonksiyonu, durum uzayı), geçici ve kalıcı hal analizi, kararlılık, kök yer eğrisi, PID ve kompanzatör tasarımı. | 12 ders notu · 1 dijital not · 8 sınav çalışması · 1 proje |
+| [**Kontrol Sistemleri**](Kontrol-Sistemleri/) | ELEC322 | Sistemlerin matematiksel modellenmesi (transfer fonksiyonu, durum uzayı), geçici ve kalıcı hal analizi, kararlılık, kök yer eğrisi, PID ve kompanzatör tasarımı. | 12 ders notu · 2 dijital not · 8 sınav çalışması · 1 proje |
 | [**Sayısal Haberleşme**](Sayisal-Haberlesme/) | ELM365 | Örnekleme ve darbe kod modülasyonu, temel bant iletim, optimum alıcılar, sayısal modülasyon (ASK, PSK, FSK) ve bit hata olasılığı. | 14 ders notu · 1 ödev · 1 proje |
 | [**Sayısal İşaret İşlemenin Temelleri**](Sayisal-Isaret-Isleme/) | ELM367 | Ayrık zamanlı işaretler ve sistemler, konvolüsyon, z-dönüşümü, ayrık Fourier dönüşümü ve FFT, sayısal filtre yapıları. | 14 ders notu · 3 ödev |
 | [**Sayısal İşaret İşleme Laboratuvarı**](Sayisal-Isaret-Isleme-Lab/) | ELM368 | Python/Jupyter ile haftalık DSP uygulamaları (ön çalışmalar ve kodlar) ve yürüme–koşma ayırma projesi. | 6 lab · 1 proje |
@@ -21,13 +21,13 @@ GTÜ Elektronik Mühendisliği 6. dönem dersleri: **6 ders**, 104 dosya, 1 diji
 
 ## English
 
-**Semester 6 · Spring 2023–24** — 6 courses, 104 files, 1 digital note. Click a course to see all of its files.
+**Semester 6 · Spring 2023–24** — 6 courses, 125 files, 2 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|
 | [**Electromagnetic Wave Theory**](Dalga-Teorisi/) | — | Time-harmonic fields and plane waves, lossy media, reflection and refraction (Brewster angle) and waveguides. | 3 lecture notes · 1 assignment · 1 project |
 | [**Communications Laboratory**](Sayisal-Haberlesme-Lab/) | ELM366 | Experiments on amplitude modulation (DSB-LC/SC), SSB and FM, and ASK modulation: pre-lab work and reports. | 4 labs |
-| [**Control Systems**](Kontrol-Sistemleri/) | ELEC322 | Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design. | 12 lecture notes · 1 digital note · 8 exam-prep files · 1 project |
+| [**Control Systems**](Kontrol-Sistemleri/) | ELEC322 | Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design. | 12 lecture notes · 2 digital notes · 8 exam-prep files · 1 project |
 | [**Digital Communications**](Sayisal-Haberlesme/) | ELM365 | Sampling and pulse-code modulation, baseband transmission, optimum receivers, digital modulation (ASK, PSK, FSK) and bit-error probability. | 14 lecture notes · 1 assignment · 1 project |
 | [**Fundamentals of Digital Signal Processing**](Sayisal-Isaret-Isleme/) | ELM367 | Discrete-time signals and systems, convolution, the z-transform, the discrete Fourier transform and FFT, and digital filter structures. | 14 lecture notes · 3 assignments |
 | [**Digital Signal Processing Laboratory**](Sayisal-Isaret-Isleme-Lab/) | ELM368 | Weekly DSP exercises in Python/Jupyter (pre-lab work and code) and a walking-vs-running classification project. | 6 labs · 1 project |

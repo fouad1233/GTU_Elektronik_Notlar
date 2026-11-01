@@ -4,9 +4,9 @@
 \notbilgi{Elektronik Elemanlar}{MOSFET: kanal, i--v karakteristiği, çalışma bölgeleri (s. 41–46)}{Elektronik-elemanlar-notlarim.pdf}
 
 \sayfa{41}
-\sekilnotu[41]{NMOS kesiti: p tipi taban (altta B terminali), iki $n^+$ bölgesi (kırmızıyla S ve D etiketli), ortada oksit üzerinde gate. Oklarla ``SiO$_2$'', ``$t_{ox}$'' ve ``$V_{GS}>0$'' gösteriliyor. Kanal bölgesinde eksi yükler, tabanda $+$ ve $-$ işaretleri (tükenme bölgesi); ``inverted $p \rightarrow n$'' ve ``inversion'' notları.}
+\elcizimi[0.45]{sekiller/Elektronik-elemanlar-notlarim-s41-s41-1.png}[41]
 
-\sekilnotu[41]{NMOS kesiti: $S$ ve $D$ uçları toprağa bağlı (toprak sembolleri), gate üzerinde $V_{GS}>0$ oku, iki $n$ bölgesi; sağdaki ok aşağıdaki denklemlere işaret ediyor.}
+\elcizimi[0.45]{sekiller/Elektronik-elemanlar-notlarim-s41-s41-2.png}[41]
 
 \[ V_{GS} - V_{TH} = V_{OV} \;\rightarrow\; \text{overdrive} \]
 \[ |Q| = C_{ox}\,(WL)\cdot V_{OV} \]
@@ -25,7 +25,7 @@ $C_{ox}$ = Oxide capacitance of the device
 Kenar notu: * \okunamadi{}
 
 \section{Applying some $v_{DS}$}
-\sekilnotu[41]{NMOS kesiti: p tipi taban, solda $n$ bölgesi (S oku), üstte G (gate), sağda $n$ bölgesi ($V_D$ oku).}
+\elcizimi[0.35]{sekiller/Elektronik-elemanlar-notlarim-s41-s41-3.png}[41]
 
 \[ |E| = \frac{V_{DS}}{L} \]
 \[ \text{Elektron drift velocity} = \underset{\text{mobility}}{\mu_n}\,\frac{V_{DS}}{L} \]
@@ -63,24 +63,24 @@ Kenar notu: * \okunamadi{}
 \[ k_n' = \mu_n C_{ox} \]
 \[ k_n = \mu_n C_{ox}\,\frac{W}{L} = \beta \]
 
-\sekilnotu[42]{Gerilim--konum grafiği: dikey eksen ``Voltage'', yatay eksen kanal boyunca konum ($L/2$ ve $x=L$ işaretli). Üstteki kesikli yatay çizgi $V_{GS}$ seviyesi; ikinci kesikli çizgi eksenin $V_{OV}$ kadar üstünde. Sol tarafta çift başlı oklar: eksen ile ikinci çizgi arası $V_{OV}$, ikinci çizgi ile $V_{GS}$ çizgisi arası $V_{TH}$. Eksenin başlangıcından sağa yukarı doğru eğimli düz çizgi (kanal gerilimi), $x=L$'de eksenden $V_{DS}$ kadar yüksekte; sağda çift başlı oklar: alttaki $V_{DS}$, üstündeki $V_{GD}$ (kanal çizgisinden $V_{GS}$ seviyesine). $x=L/2$'de dikey çizgi ve eğik çizgiyle kesiştiği yerde küçük çift başlı ok; ok ``$(V_{OV}-\tfrac{1}{2}V_{DS})$'' notuna, dikey çizginin eksenle kesişimi ``$\tfrac{1}{2}V_{DS}$'' notuna oklarla bağlanıyor.}
+\elcizimi[0.6]{sekiller/Elektronik-elemanlar-notlarim-s41-s42-1.png}[42]
 
-\sekilnotu[42]{NMOS kesiti: S ve D uçları etiketli, ortada gate/oksit, kanal bölgesinde eksi yükler; yanında $V_D > V_S$ notu. Altında kanalın tek boyutlu çizimi: solda $S$ (toprağa bağlı), ortada $G$ (aşağı ok), sağda $D \rightarrow 0{,}5\ \mathrm{V}$ ve okunamayan birkaç kısa not; dikdörtgenin altındaki eksi işaretleri (kanal elektronları) soldan sağa azalıyor; solda daire içinde 1 ve ``yüksek derecede çeker'' notu (son kelime belirsiz), sağ uçta daire içinde 0,5.}
+\elcizimi[0.55]{sekiller/Elektronik-elemanlar-notlarim-s41-s42-2.png}[42]
 
 \sayfa{43}
 \[ i_D = k_n'\Bigl(\frac{W}{L}\Bigr)\Bigl(V_{OV}\cdot V_{DS} - \frac{1}{2}V_{DS}^2\Bigr) \]
 \formulkutu[(Triode)]{i_D = k_n'\Bigl(\frac{W}{L}\Bigr)\Bigl[(V_{GS}-V_{TH})V_{DS} - \frac{1}{2}V_{DS}^2\Bigr]}
 \okunamadi{Drain akımı}
 
-\sekilnotu[43]{$i_D$--$v_{DS}$ grafiği: orijinden çıkan üç içbükey yükselen eğri (farklı $V_{GS}$ değerleri); eğriler sağdaki dikey kesikli çizgide bitiyor, en üstteki eğri bu çizgiye yaklaşırken düzleşiyor; yatay eksen çizginin ötesine uzanıyor.}
+\elcizimi[0.45]{sekiller/Elektronik-elemanlar-notlarim-s41-s43-1.png}[43]
 
-\sekilnotu[43]{NMOS kesiti, üstte ``$V_{DS} > V_{OV}$'': solda $S$ ($n^+$ bölgesi), ortada $G$ (oksit ve kapı), sağda $D$ ($n^+$ bölgesi); kanal (eksi yükler) kaynaktan drain'e doğru inceliyor, drain ucunda okla ``Pinch-off'' (altı çizili) gösteriliyor; altta ``$P$-substrate'' (okunması belirsiz) ve $B$ ucu.}
+\elcizimi[0.55]{sekiller/Elektronik-elemanlar-notlarim-s41-s43-2.png}[43]
 
-\sekilnotu[43]{Sağda: kanalı temsil eden boru benzetmesi (solda halka biçimli kısım, ince boru, sağ uçta fışkıran su) ve altında $i_D$--$v_{DS}$ grafiği: eğri orijinden yükselip düzleşiyor; kesikli dikey çizgiden sonra yatay kalıyor, sağda ``saturated'' yazısı ve dikey bir sınır çizgisi var.}
+\elcizimi[0.5]{sekiller/Elektronik-elemanlar-notlarim-s41-s43-3.png}[43]
 
 \[ i_D = \frac{1}{2}k_n'\Bigl(\frac{W}{L}\Bigr)(V_{GS}-V_{TH})^2 \]
 
-\sekilnotu[43]{$i_D$--$v_{DS}$ eğrileri ailesi: orijinden başlayıp önce dik yükselen, sonra küçük eğimle devam eden üç eğri; eğimli kısımlar geriye doğru silik çizgilerle uzatılıp negatif $v_{DS}$ ekseninde noktayla işaretli $V_A$ noktasında buluşuyor (altında $V_A$ yazıyor).}
+\elcizimi[0.55]{sekiller/Elektronik-elemanlar-notlarim-s41-s43-4.png}[43]
 
 \[ \bigl(50\,\mathrm{V}\bigr)\ \leftarrow\ V_A = \frac{1}{\lambda} \]
 \[ i_D = \frac{1}{2}k_n'\Bigl(\frac{W}{L}\Bigr)(V_{GS}-V_{TH})^2\,(1+\lambda v_{DS}) \]
@@ -146,18 +146,18 @@ c) Transistor in deep triode region
    \kutula{\begin{array}{l} V_{OV} = 0{,}52\ \mathrm{V} \\ V_{GS} = 1{,}22\ \mathrm{V} \end{array}} \]
 \textcolor{kirmizikalem}{$\ast$} Sat $\rightarrow$ $r_{os}$
 
-\sekilnotu[45]{PMOS kesiti: ``n type substrate'' (n tipi taban) içinde iki $p^+$ bölgesi, ortada oksit üzerinde gate; üstte $S$, $G$ ve $D$ uçları, oksit için ``SiO$_2$'' oku, kanal bölgesinde $+$ işaretleri (delikler), altta $B$ ucu; altında ``pmos'' yazıyor.}
+\elcizimi[0.4]{sekiller/Elektronik-elemanlar-notlarim-s41-s45-1.png}[45]
 
 pmos $+$ nmos $\rightarrow$ cmos $\rightarrow$ \okunamadi{complementary} mos
 
-\sekilnotu[45]{Devre sembolleri: solda NMOS (gate solda, üstte $D$ ucu, sağda noktayla $B$ ucu, altta ok işaretli source ucu; altında ``Nmos'' ve $I_G = 0$); sağda PMOS (gate solda, üstte ok işaretli uç ($S$), altta $D$; altında ``pmos'' ve $I_G = 0$).}
+\elcizimi[0.65]{sekiller/Elektronik-elemanlar-notlarim-s41-s45-2.png}[45]
 
-\sekilnotu[45]{CMOS kesiti: ``p type body'' üzerinde solda NMOS (soldan sağa: $n$ bölgesi ($S$), oksit üstünde gate, $n$ bölgesi ($D$); ``Nmos'' etiketi), sağda PMOS ($p^+$ bölgesi ($D$), oksit üstünde gate ($G$), $p^+$ bölgesi ($S$)); aralarda ve sağ uçta daire içinde ``SiO$_2$'' yalıtım bölgeleri; altta daire içinde ``cmos'' ve sağ altta daire içinde ``n well''.}
+\elcizimi[0.6]{sekiller/Elektronik-elemanlar-notlarim-s41-s45-3.png}[45]
 
 \noindent\rule{\linewidth}{0.4pt}
 
 \section{\texorpdfstring{$\ast$ Table 5.1 (266)}{Table 5.1 (266)}}
-\sekilnotu[45]{Devre: NMOS'un gate'i $V_{GS}$ kaynağına bağlı ($+$ uç üstte, alt uç toprakta), source toprakta; drain, değişken bir $v_{DS}$ kaynağının (üzerinden ok geçen pil sembolü) üst ucuna bağlı, kaynağın alt ucu toprakta.}
+\elcizimi[0.5]{sekiller/Elektronik-elemanlar-notlarim-s41-s45-4.png}[45]
 
 \noindent $V_{GS} < V_{TH}$ $\rightarrow$ no channel, transistor in cutoff \okunamadi{$i_D=0$}
 
@@ -185,6 +185,6 @@ pmos $+$ nmos $\rightarrow$ cmos $\rightarrow$ \okunamadi{complementary} mos
   V_{TH} &= V_G - V_D
 \end{align*}
 \[ \kutula{V_{TH} = V_{GD}} \]
-\sekilnotu[46]{NMOS sembolü: gate ucu $+$ işaretli açık daireyle bitiyor; bu daireden yukarıdaki başka bir açık daireye (drain ucu hizasında) bir tel çıkıyor ve telin yanında $V_{TH}$ yazıyor; transistörün altında $V_{TH}$ ve source ucunda $-$ işareti var. $D$ ucu ile ``$V_{TH} = V_{GD}$'' ifadesi birlikte bir oval içine alınmış.}
+\elcizimi[0.45]{sekiller/Elektronik-elemanlar-notlarim-s41-s46-1.png}[46]
 
 \end{document}

@@ -10,7 +10,7 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [5. Dönem](../README.md) · 2023–2024 Güz | — | Electronics II | 12 ders notu · 6 dijital not · 1 sınav çalışması |
+| [5. Dönem](../README.md) · 2023–2024 Güz | — | Electronics II | 12 ders notu · 8 dijital not · 1 sınav çalışması |
 
 **Bu sayfada:** [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması)
 
@@ -22,14 +22,14 @@
 | [Ders3](ders-notlari/Ders3.pdf) | PDF | 9 s. |  |
 | [Ders4](ders-notlari/Ders4.pdf) | PDF | 13 s. | [PDF](dijital-notlar/Ders4.pdf) |
 | [Ders5](ders-notlari/Ders5.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders5.pdf) |
-| [Ders6](ders-notlari/Ders6.pdf) | PDF | 7 s. |  |
+| [Ders6](ders-notlari/Ders6.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders6.pdf) |
 | [Ders7](ders-notlari/Ders7.pdf) | PDF | 10 s. |  |
 | [Ders8](ders-notlari/Ders8.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders8.pdf) |
 | [Ders9](ders-notlari/Ders9.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Ders9.pdf) |
 | [Ders10](ders-notlari/Ders10.pdf) | PDF | 7 s. |  |
 | [Ders11](ders-notlari/Ders11.pdf) | PDF | 11 s. | [PDF](dijital-notlar/Ders11.pdf) |
 | [Ders12](ders-notlari/Ders12.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Ders12.pdf) |
-| [Ders13](ders-notlari/Ders13.pdf) | PDF | 5 s. |  |
+| [Ders13](ders-notlari/Ders13.pdf) | PDF | 5 s. | [PDF](dijital-notlar/Ders13.pdf) |
 
 ## Dijital Notlar (LaTeX)
 
@@ -39,12 +39,14 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
-| [Ders4](ders-notlari/Ders4.pdf) | Kaskod ve fark yükselteçleri | [PDF](dijital-notlar/Ders4.pdf) · 8 s. | [.tex](dijital-notlar/Ders4.tex) |
-| [Ders5](ders-notlari/Ders5.pdf) | Fark yükselteci: küçük sinyal, CMRR, ortak mod aralığı | [PDF](dijital-notlar/Ders5.pdf) · 9 s. | [.tex](dijital-notlar/Ders5.tex) |
-| [Ders8](ders-notlari/Ders8.pdf) | Aktif yüklü fark yükselteci ve frekans cevabı | [PDF](dijital-notlar/Ders8.pdf) · 6 s. | [.tex](dijital-notlar/Ders8.tex) |
-| [Ders9](ders-notlari/Ders9.pdf) | Frekans cevabı: alçak/yüksek frekans, Miller teoremi | [PDF](dijital-notlar/Ders9.pdf) · 9 s. | [.tex](dijital-notlar/Ders9.tex) |
-| [Ders11](ders-notlari/Ders11.pdf) | Feedback: General Structure, Voltage and Current Amplifiers | [PDF](dijital-notlar/Ders11.pdf) · 7 s. | [.tex](dijital-notlar/Ders11.tex) |
-| [Ders12](ders-notlari/Ders12.pdf) | Series-Series, Shunt-Shunt Feedback and Worked Examples | [PDF](dijital-notlar/Ders12.pdf) · 8 s. | [.tex](dijital-notlar/Ders12.tex) |
+| [Ders4](ders-notlari/Ders4.pdf) | Kaskod ve fark yükselteçleri | [PDF](dijital-notlar/Ders4.pdf) · 9 s. | [.tex](dijital-notlar/Ders4.tex) |
+| [Ders5](ders-notlari/Ders5.pdf) | Fark yükselteci: küçük sinyal, CMRR, ortak mod aralığı | [PDF](dijital-notlar/Ders5.pdf) · 11 s. | [.tex](dijital-notlar/Ders5.tex) |
+| [Ders6](ders-notlari/Ders6.pdf) | BJT fark yükselteci ve fark çifti problemleri | [PDF](dijital-notlar/Ders6.pdf) · 8 s. | [.tex](dijital-notlar/Ders6.tex) |
+| [Ders8](ders-notlari/Ders8.pdf) | Aktif yüklü fark yükselteci ve frekans cevabı | [PDF](dijital-notlar/Ders8.pdf) · 7 s. | [.tex](dijital-notlar/Ders8.tex) |
+| [Ders9](ders-notlari/Ders9.pdf) | Frekans cevabı: alçak/yüksek frekans, Miller teoremi | [PDF](dijital-notlar/Ders9.pdf) · 10 s. | [.tex](dijital-notlar/Ders9.tex) |
+| [Ders11](ders-notlari/Ders11.pdf) | Feedback: General Structure, Voltage and Current Amplifiers | [PDF](dijital-notlar/Ders11.pdf) · 9 s. | [.tex](dijital-notlar/Ders11.tex) |
+| [Ders12](ders-notlari/Ders12.pdf) | Series-Series, Shunt-Shunt Feedback and Worked Examples | [PDF](dijital-notlar/Ders12.pdf) · 10 s. | [.tex](dijital-notlar/Ders12.tex) |
+| [Ders13](ders-notlari/Ders13.pdf) | Feedback Amplifier Examples | [PDF](dijital-notlar/Ders13.pdf) · 7 s. | [.tex](dijital-notlar/Ders13.tex) |
 
 ## Final/Vize Çalışması
 
@@ -58,4 +60,4 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Electronics II* — Semester 5, Fall 2023–24. Multistage and differential amplifiers, current mirrors, frequency response, feedback and output stages. This page lists: 12 lecture notes, 6 digital notes, 1 exam-prep file. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Electronics II* — Semester 5, Fall 2023–24. Multistage and differential amplifiers, current mirrors, frequency response, feedback and output stages. This page lists: 12 lecture notes, 8 digital notes, 1 exam-prep file. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

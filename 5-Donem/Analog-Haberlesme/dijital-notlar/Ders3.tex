@@ -196,7 +196,7 @@ a_n &= \frac{2}{T_0}\int_{-T_0/4}^{T_0/4}1\cdot\cos(n\omega_0 t)\,dt=\frac{2}{T_
 \end{align*}
 
 \sayfa{7}
-\sekilnotu[7]{Periyodik dikdörtgen darbe katarı grafiği: yatay eksen $t$, düşey eksende $1$ işaretli; genliği $1$ ve genişliği $\tau$ olan darbeler (kırmızı çift yönlü okla $-\tau/2$ ile $\tau/2$ arası gösterilmiş). Merkez darbe $[-\tau/2,\tau/2]$ aralığında, diğer darbeler $-T_0$ ve $T_0$ etrafında ortalı; eksende $-T_0$, $-T_0/2$, $-\tau/2$, $\tau/2$, $T_0/2$, $T_0$ işaretli.}
+\elcizimi[0.7]{sekiller/Ders3-s7-1.png}[7]
 
 Ödev olarak ispatlayınız
 \[ a_0=\frac{\tau}{T_0}\,,\qquad a_n=\frac{2}{\pi n}\sin\left(n\omega_0\frac{\tau}{2}\right)\,,\qquad b_n=0 \]
@@ -204,7 +204,7 @@ a_n &= \frac{2}{T_0}\int_{-T_0/4}^{T_0/4}1\cdot\cos(n\omega_0 t)\,dt=\frac{2}{T_
 \sayfa{8}
 \section{Bipolar square wave (Çift kutuplu kare dalga)}
 
-\sekilnotu[8]{Çift kutuplu kare dalga grafiği: düşey eksen $x_b(t)$, yatay eksen $t$. Orijin etrafında ve $\pm T_0$ etrafında ortalı pozitif seviyeli darbeler, aralarında ($\pm T_0/2$ etrafında) negatif seviyeli kısımlar; eksende $-T_0$, $-T_0/2$, $T_0/2$, $T_0$ işaretli.}
+\elcizimi[0.7]{sekiller/Ders3-s8-1.png}[8]
 
 \begin{align*}
 x_b(t) &= 2x(t)-1 = 2\left[x(t)-\frac{1}{2}\right] \\
@@ -216,7 +216,7 @@ Dürtü treni (Impulse train) \\
 $x(t)=s_{T_0}(t)=\displaystyle\sum_{n=-\infty}^{\infty}\delta(t-nT_0)$
 \end{ornek}
 
-\sekilnotu[8]{Dürtü treni: düşey eksen $x(t)$, yatay eksende $-2T_0$, $-T_0$, $0$, $T_0$, $2T_0$ noktalarında yukarı yönlü dürtüler (oklar); $-T_0/2$ ve $T_0/2$ noktalarında kesikli düşey çizgiler.}
+\elcizimi[0.5]{sekiller/Ders3-s8-2.png}[8]
 
 \[ a_0=\frac{1}{T_0}\int_{T_0}x(t)\,dt=\frac{1}{T_0}\underbrace{\int_{-T_0/2}^{T_0/2}\underbrace{x(t)}_{\delta(t)}\,dt}_{1}=\frac{1}{T_0} \]
 
@@ -234,7 +234,7 @@ x(t) &= \underbrace{\frac{1}{T_0}}_{a_0=c_0}+\sum_{n=1}^{\infty}\underbrace{\fra
 \[ c_0=\frac{1}{T_0}\,,\quad c_n=\frac{2}{T_0}\,,\qquad \theta_n=0 \]
 
 \sayfa{9}
-\sekilnotu[9]{Tek taraflı spektrum: düşey eksen $c_n$ ($1/T_0$ ve $2/T_0$ seviyeleri işaretli), yatay eksen $nf_0$ ($0$, $f_0$, $2f_0$, $3f_0$ işaretli); $0$'da yüksekliği $1/T_0$, $f_0$, $2f_0$, $3f_0$'da yüksekliği $2/T_0$ olan kırmızı çubuklar.}
+\elcizimi[0.5]{sekiller/Ders3-s9-1.png}[9]
 
 \subsection{Üstel FS açılımı}
 \begin{align*}
@@ -248,10 +248,10 @@ x(t) &= s_{T_0}(t)=\sum_{n=-\infty}^{\infty}\delta(t-nT_0)=\frac{1}{T_0}\sum_{n=
 
 \[ x_n=\frac{1}{T_0}\,,\qquad |x_n|=\frac{1}{T_0}\,,\qquad \theta_n=0 \]
 
-\sekilnotu[9]{Çift taraflı spektrum: düşey eksen $x_n$ ($1/T_0$ işaretli), yatay eksen $nf_0$ ($-3f_0$, $-2f_0$, $-f_0$, $0$, $f_0$, $2f_0$, $3f_0$ işaretli); her noktada yüksekliği $1/T_0$ olan kırmızı çubuklar.}
+\elcizimi[0.6]{sekiller/Ders3-s9-2.png}[9]
 
 \begin{ornek}
-\sekilnotu[9]{Periyodik dikdörtgen darbe katarı: düşey eksen $x(t)$, merkez darbenin yüksekliği $A$; merkez darbe $-\tau/2$ ile $\tau/2$ arasında, diğer darbeler $\pm T_0$ etrafında ortalı; eksende $-T_0$, $-T_0/2$, $-\tau/2$, $\tau/2$, $T_0/2$, $T_0$ işaretli.}
+\elcizimi[0.7]{sekiller/Ders3-s9-3.png}[9]
 \end{ornek}
 
 \subsection{Üstel FS açılımı}
@@ -270,14 +270,14 @@ x_n &= \frac{1}{T_0}\int_{T_0}x(t)e^{-jn\omega_0 t}\,dt=\frac{1}{T_0}\int_{-T_0/
 
 \[ \frac{T_0}{4}<\tau<\frac{T_0}{3}\ \rightarrow\ 3f_0<\frac{1}{\tau}<4f_0 \quad\text{aralığında olsun} \]
 
-\sekilnotu[10]{$|x_n|$ grafiği: düşey eksen $|x_n|$, yatay eksen $nf_0$ ($0$, $f_0$, $2f_0$, $3f_0$, $4f_0$, $5f_0$, $6f_0$ işaretli; $3f_0$ ile $4f_0$ arasında $1/\tau$, sağda $2/\tau$ işaretli). Kırmızı çubuklar: $0$'da $Af_0\tau$, $f_0$'da $Af_0\tau\,|\mathrm{sinc}(f_0\tau)|$, $2f_0$'da $Af_0\tau\,|\mathrm{sinc}(2f_0\tau)|$, $3f_0$'da daha küçük; pembe kesikli $|\mathrm{sinc}|$ zarfı $1/\tau$'da sıfıra iniyor, $1/\tau$ ile $2/\tau$ arasında küçük bir yan lob yapıyor.}
+\elcizimi[0.6]{sekiller/Ders3-s10-1.png}[10]
 
-\sekilnotu[10]{Faz grafiği: düşey eksen ($\pi$ ve $-\pi$ işaretli), yatay eksen $nf_0$ ($-6f_0,\dots,6f_0$ işaretli). Kırmızı çubuklar: $-6f_0$, $-5f_0$, $-4f_0$'da $+\pi$ yüksekliğinde; $4f_0$, $5f_0$, $6f_0$'da $-\pi$ derinliğinde; $0$ ile $4f_0$ arasında $-\pi$ seviyesinde kesikli çizgi. Pembe ok, üstteki grafikteki $1/\tau$ noktasından bu grafiğe iniyor.}
+\elcizimi[0.85]{sekiller/Ders3-s10-2.png}[10]
 
 \[ -1=e^{-j\pi}=\underbrace{\cos\pi}_{-1}-j\underbrace{\sin\pi}_{0} \]
 
 \subsection{Ödev}
-\sekilnotu[10]{Blok diyagram: giriş oku $\rightarrow$ kutu ``$h(t)$'' $\rightarrow$ çıkış oku.}
+\elcizimi[0.5]{sekiller/Ders3-s10-3.png}[10]
 \[ x(t)=\sum_n x_n e^{jn\omega_0 t} \qquad\qquad y(t)=\sum_n y_n e^{jn\omega_0 t} \]
 \begin{align*}
 y_n &= x_n H(nf_0) \\

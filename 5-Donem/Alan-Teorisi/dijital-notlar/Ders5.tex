@@ -4,7 +4,7 @@
 \notbilgi{Alan Teorisi}{Elektrostatik potansiyel ve eş potansiyel yüzeyler}{Ders5.pdf}
 
 \sayfa{1}
-\sekilnotu[1]{$z$, $y$, $x$ eksenli koordinat sistemi; orijinden başlayan, içi kırmızı taralı bir hacimli cisim ve solunda ``$dQ=\rho\,dv$'' yazısı. Cismin içinde $\rho$ yazılı $P'(x',y',z')$ noktası (orijinden bu noktaya $\vec r''$ vektörü), cismin dışında $P(x,y,z)$ noktası; orijinden $P$'ye $\vec r$, $P'$ noktasından $P$'ye $\vec r'$ vektörleri çizilmiş.}
+\elcizimi[0.55]{sekiller/Ders5-s1-1.png}[1]
 
 \begin{align*}
 r' &= \left[(x-x')^2 + (y-y')^2 + (z-z')^2\right]^{1/2}\\
@@ -32,7 +32,7 @@ V(x,y,z) &= \frac{1}{4\pi\varepsilon_0}\iiint\limits_{x',y',z'=-\infty}^{\infty}
 \[ \Rightarrow\ \vec E(x,y,z) = \frac{1}{4\pi\varepsilon_0}\iiint\frac{\rho(x',y',z')\,\vec r'}{r'^{3}}\,dx'\,dy'\,dz' \]
 
 \sayfa{2}
-\sekilnotu[2]{Sol üstte $z$ (yukarı), $y$ (sağa), $x$ (sol aşağı) eksenleri; orijinde $q$ yazılı, kırmızı $\vec e_x$, $\vec e_y$, $\vec e_z$ birim vektörleri ve orijinden P noktasına giden kesikli $\vec r$ vektörü.}
+\elcizimi[0.4]{sekiller/Ders5-s2-1.png}[2]
 
 \[ \vec e_x \perp \vec e_y \perp \vec e_z, \qquad |\vec e_x| = |\vec e_y| = |\vec e_z| = 1 \]
 
@@ -40,7 +40,7 @@ V(x,y,z) &= \frac{1}{4\pi\varepsilon_0}\iiint\limits_{x',y',z'=-\infty}^{\infty}
 
 \[ b = |z| = |x + iy| = \sqrt{x^2 + y^2} \]
 
-\sekilnotu[2]{Karmaşık düzlem: dikey eksen $y=\mathrm{Im}(z)$, yatay eksen $x=\mathrm{Re}(z)$. Orijin O; yatay eksende A noktası (O'dan uzaklık $a$, altta yay ile gösterilmiş); sol üstte $z=x+iy$ noktası. O'dan $z$'ye kırmızı $b$ doğrusu (O'da $\psi$ açısı), O'dan A'ya ve $z$'den A'ya kırmızı doğrular.}
+\elcizimi[0.6]{sekiller/Ders5-s2-2.png}[2]
 
 \begin{align*}
 |z - z_A| &= |x + iy - a| = |b\cos\psi + i\,b\sin\psi - a|\\
@@ -61,15 +61,15 @@ c &= \sqrt{b^2 + a^2 - 2ab\cos\psi}
 
 \[ \psi = \pi/2 \ \Rightarrow\ c = \sqrt{b^2 + a^2} \]
 
-\sekilnotu[2]{Dik üçgen: dikey eksende $z=ib$ noktası (dikey kenar $b$), yatay eksende $a$ noktası (yatay kenar $a$), hipotenüs $c$; orijindeki açı $\psi=\pi/2$.}
+\elcizimi[0.35]{sekiller/Ders5-s2-3.png}[2]
 
 \sayfa{3}
-\sekilnotu[3]{Dik yamuk: sol kenar dikey, üst kenar $a$, alt kenar $b$; sol kenar üzerinde işaretli bir nokta (üst parçası $b$, alt parçası $a$). Bu noktadan yamuğun sağ üst ve sağ alt köşelerine $c$ uzunluğunda iki doğru çizilmiş; üç üçgen oluşmuş: üstte $S_2$, altta $S_1$, ortada sarı taralı $S_3$ (karşısında kırmızı eğik kenar). Açılar: sağ üst köşede $\alpha$, işaretli noktada $\beta$ ve $\alpha$, sağ alt köşede $\beta$; sol köşelerde ve işaretli noktada dik açı işaretleri.}
+\elcizimi[0.4]{sekiller/Ders5-s3-1.png}[3]
 
 \[ \underbrace{\alpha + \beta}_{\pi/2} + \gamma = \pi \]
 \[ \gamma = \pi - \pi/2 = \pi/2 \]
 
-\sekilnotu[3]{Kenarları $a$ (dikey) ve $b$ (yatay) olan dikdörtgen, bir köşegenle ikiye bölünmüş; alt üçgen $S'$ ile işaretli.}
+\elcizimi[0.3]{sekiller/Ders5-s3-2.png}[3]
 
 \[ S = a\cdot b, \qquad S' = \frac{S}{2} \]
 
@@ -111,7 +111,7 @@ e^{ix+iy} &= e^{ix}\cdot e^{iy} = (\cos x + i\sin x)(\cos y + i\sin y)\\
 
 \[ \underset{r\to\infty}{\frac{1}{r'}} = \frac{1}{r\sqrt{1\underbrace{-\frac{2r''}{r}\cos\psi + \Bigl(\frac{r''}{r}\Bigr)^2}_{0}}} = \frac{1}{r\cdot\sqrt{1}} = \frac{1}{r} \]
 
-\sekilnotu[4]{Sol uçta ortak bir noktadan çıkan eğik $r''$ doğrusu ve iki yatay doğru (üstte $r'$, altta $r$); eğik doğru ile alt doğru arasında $\alpha$ açısı işaretli.}
+\elcizimi[0.35]{sekiller/Ders5-s4-1.png}[4]
 
 \sayfa{5}
 \[ r = r' + r''\cos\psi \]
@@ -145,13 +145,13 @@ e^{ix+iy} &= e^{ix}\cdot e^{iy} = (\cos x + i\sin x)(\cos y + i\sin y)\\
 \[ \frac{\partial V}{\partial C} = \operatorname{grad}V\cdot\vec t = -\vec E\cdot\vec t \]
 \[ \vec E\cdot\vec t = -\frac{\partial V}{\partial C} \]
 
-\sekilnotu[6]{Eğri $C:\ x(s),\,y(s),\,z(s)$; eğri üzerinde iki noktada teğet vektörler ($\vec t$) çizilmiş, eğrinin sağ alt ucunda küçük bir ok işareti (muhtemelen $\vec r$) var.}
+\elcizimi[0.7]{sekiller/Ders5-s6-1.png}[6]
 
 \noindent Şayet $V = \text{sabit}$ ise $\Rightarrow\ -\dfrac{\partial V}{\partial C} = 0$ olur
 
 \noindent $\vec E\perp\vec t$, \quad $\vec E\perp\vec t_1$, \ $\vec E\perp\vec t_2$, \ \ldots, \ $\vec E\perp\vec t_n$
 
-\sekilnotu[6]{Eğri bir yüzey parçası; altında okla ``$V=\text{sbt}$''. Yüzey üzerinde $\vec t$ teğetli $C$ eğrisi ve kırmızı bir $C_1$ eğrisi çizilmiş, kesişim noktasında kırmızı ``$\vec E\perp\vec t$'' yazılı; altta kırmızı ``$V_1=\text{sbt}$''. Sağdan gelen uzun kırmızı ok bu yüzeyi aşağıdaki ``$\vec E\perp\vec t$'' satırına bağlıyor.}
+\elcizimi[0.5]{sekiller/Ders5-s6-2.png}[6]
 
 \noindent $\vec E \underset{\text{içinde}}{\subset} S$ olabilir
 
@@ -163,7 +163,7 @@ e^{ix+iy} &= e^{ix}\cdot e^{iy} = (\cos x + i\sin x)(\cos y + i\sin y)\\
 \noindent $\Rightarrow\ \vec E \perp$ \okunamadi{S} \ (altında: \okunamadi{S'ye dik})
 
 \sayfa{7}
-\sekilnotu[7]{Sol üstte kavisli bir çizgi (üzerinde $\ell$ yazılı) ve teğet vektör; kırmızı $\vec E$ oku yukarı doğru çizilmiş.}
+\elcizimi[0.3]{sekiller/Ders5-s7-1.png}[7]
 
 \[ \vec E \parallel \vec t_\ell, \qquad \ell\ \text{alan çizgisidir} \]
 \[ \vec t_\ell = \frac{dx}{ds}\,\vec e_x + \frac{dy}{ds}\,\vec e_y + \frac{dz}{ds}\,\vec e_z \]

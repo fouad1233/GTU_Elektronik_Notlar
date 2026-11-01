@@ -21,13 +21,9 @@
 \end{circuitikz}
 \end{center}
 
-\sekilnotu[1]{NMOS kesiti: p tipi gövde (içinde $+$ işaretleri, ``p''), yüzeyde iki $n$ bölgesi;
-sol $n$ bölgesinden S, sağ $n$ bölgesinden D ucu, ortada oksit üzerinde G ucu, gövdenin altından
-B ucu. Kapının altında, iki $n$ bölgesi arasında ``$-\,-\,-$'' ile gösterilen elektron kanalı;
-ok ile ``inversion \okunamadi{condition}'' notu.}
+\elcizimi[0.45]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s1-1.png}[1]
 
-\sekilnotu[1]{İkinci kesit (S, B, G, D uçları; iki $n$ bölgesi): kanal drain tarafında daralıp
-$n$ bölgesine ulaşmadan kesiliyor; ok ile ``pinch off'' yazılmış.}
+\elcizimi[0.5]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s1-2.png}[1]
 
 \begin{center}
 \begin{tikzpicture}[scale=0.9, line width=0.7pt]
@@ -80,9 +76,7 @@ $n$ bölgesine ulaşmadan kesiliyor; ok ile ``pinch off'' yazılmış.}
   V_{TH} &= V_{GD}
 \end{align*}
 
-\sekilnotu[2]{NMOS sembolü: G ucu sola ve yukarı uzatılmış, üst ucunda ``$+$''; D ucunun üstünde ``$-$'';
-ikisi arasında $V_{Th}$ yazılı (yani $V_{GD}$). Yanında ``$\uparrow$ Triode'' ve ``$\downarrow$ Saturasyon'';
-D ucunda aşağı yönlü akım oku ``$I=$''.}
+\elcizimi[0.35]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s2-1.png}[2]
 
 \sayfa{3}
 \noindent
@@ -177,10 +171,7 @@ $V_{GS} = 0{,}69\ \mathrm{V}$, \ $V_{ov} = 0{,}19\ \mathrm{V}$
 
 \sayfa{5}
 \subsection{Örnek}
-\sekilnotu[5]{PMOS sembolü: S üstte, G solda, D altta. S tarafında ``$+$'', G'de ``$-$'' ve aralarında
-$|V_{THp}| + |V_{ov}|$ yazılı. Sağda S hizasından aşağı inen bir gerilim ölçeği: üstteki kısa aralık
-``Triode'', sınır seviyesinden aşağı uzun aralık ``Sat.''; sınır seviyesinin hemen altında küçük bir
-$|V_{THp}|$ oku. D ucundan çıkan çizgi sağa ve yukarı giderek bu sınır seviyesine bağlanıyor.}
+\elcizimi[0.5]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s5-1.png}[5]
 
 \begin{ornek}[5.3]
 \noindent
@@ -378,8 +369,7 @@ b) $I_C = 100\ \mu\mathrm{A}$ \qquad $I_C = I_S\,e^{V_{BE}/V_T} \;\rightarrow\; 
 \end{cozum}
 
 \subsection{Table 6.3}
-\sekilnotu[8]{NMOS sembolü (üstünde ``NMOS''): D ucuna giren $I_D$; G--D arasında $V_{GD}$ (G'de $+$, D'de $-$),
-D--S arasında $V_{DS}$ (D'de $+$, S'de $-$), G--S arasında $V_{GS}$ (G'de $+$, S'de $-$).}
+\elcizimi[0.35]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s8-1.png}[8]
 
 \noindent
 \begin{tabular}{@{}p{0.14\linewidth}p{0.8\linewidth}@{}}
@@ -400,8 +390,7 @@ Active reg. &
 
 \noindent\rule{\linewidth}{0.4pt}
 
-\sekilnotu[8]{npn BJT sembolü: C ucuna giren $I_C$, E ucundan çıkan $I_E$; B--C arasında $V_{BC}$
-(B'de $+$, C'de $-$), B--E arasında $V_{BE}$ (B'de $+$, E'de $-$).}
+\elcizimi[0.3]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s8-2.png}[8]
 
 \noindent $V_{BE} \ge V_{BE\,on}$, \quad $V_{BE\,on} \approx 0{,}5$, \quad Forward bias (EBJ)\\
 Reverse bias\\
@@ -499,8 +488,7 @@ MOSFET $\rightarrow V_{ov} = 0{,}27\ \mathrm{V}$
 
 \subsection{JFET $\rightarrow$ Junction field effect transistor}
 
-\sekilnotu[10]{JFET kesiti: ortada $n$ kanal (üstte ``Channel''), sağında ve solunda birer $p$ bölgesi;
-iki $p$ bölgesi birbirine bağlı ve G ucuna (``(G)'') çıkıyor; D ucu üstte, S ucu altta.}
+\elcizimi[0.3]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s10-1.png}[10]
 
 \begin{center}
 \begin{circuitikz}
@@ -517,15 +505,12 @@ iki $p$ bölgesi birbirine bağlı ve G ucuna (``(G)'') çıkıyor; D ucu üstte
 \end{circuitikz}
 \end{center}
 
-\sekilnotu[10]{JFET (kutu olarak çizilmiş; G solda, D üstte, S altta) ile devre: G--S arasında ayarlı
-bir gerilim kaynağı ($i_G = 0$), D--S arasında ``$V_{DS}$ small'' kaynağı ($+$ üstte).}
+\elcizimi[0.45]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s10-2.png}[10]
 
 \noindent $V_P \rightarrow$ pinch off\\
 Cut off \ $V_{GS} \le V_P$, \ $i_D = 0$
 
-\sekilnotu[10]{JFET kesiti: iki $p$ bölgesi ve aralarındaki kanal; kesikli çizgilerle drain (üst) tarafına
-doğru genişleyen fakirleşme bölgeleri. $p$ bölgesi ile alt (S) uç arasında $V_{GS}$ kaynağı, üst (D) uç ile
-alt uç arasında ayarlı $V_{DS}$ kaynağı ($+$ üstte).}
+\elcizimi[0.55]{sekiller/elektronik-elemanlar-11-ve-12.hafta-s10-3.png}[10]
 
 \noindent Saturation (pinch off) \quad $V_P \le V_{GS} < 0$
 \begin{gather*}

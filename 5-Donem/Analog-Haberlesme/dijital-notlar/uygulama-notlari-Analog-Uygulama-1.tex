@@ -286,7 +286,7 @@ c)
 \begin{ornek}
   Determine the FS expansion of the following periodic signal
 \end{ornek}
-\sekilnotu[6]{Periyodik testere dişi işareti: yatay eksen $t$, düşey eksende $1$ ve $-1$ seviyeleri işaretli; kırmızı not ``slope $=1$''. Birbirine paralel, her biri $-1$ seviyesinden $+1$ seviyesine yükselen eğik doğru parçaları ve (yaklaşık $-2T$, $2T$, $4T$ konumlarında) süreksizlikleri gösteren kesikli düşey çizgiler var. Zaman ekseni işaretleri: $-2T$, $-T$, $T$, $2T$, $3T$, $4T$. Şeklin sağında: $y=\frac{1}{T}x$ ve $x(t)=\frac{t}{T}$.}
+\elcizimi[0.65]{sekiller/uygulama-notlari-Analog-Uygulama-1-s6-1.png}[6]
 \[ y=\frac{1}{T}\,x,\qquad x(t)=\frac{t}{T} \]
 \[ x_n=\frac{1}{T_0}\int_{T_0}x(t)\,e^{-jn\omega_0t}\,dt \]
 \[ T_0=2T\ \to\ \omega_0=\frac{2\pi}{2T}=\frac{\pi}{T} \]
@@ -321,19 +321,19 @@ $x_0$'ı ayrı olarak bul ödev
   \[ x(t)=2\sum_{n}\Lambda\!\left(\frac{t-4n}{2}\right)-\sum_{n}\Lambda(t-4n) \]
 \end{ornek}
 \[ n=0\ \to\ x_0(t)=x_1(t)=2\Lambda\!\left(\frac{t}{2}\right)-\Lambda(t) \]
-\sekilnotu[7]{Solda tepe değeri $2$, tabanı $-2$ ile $2$ arasında olan üçgen ($2\Lambda(t/2)$); içinde kırmızı kalemle çizilmiş çapraz çizgiler ve kenarlarda kırmızı çarpı işaretleri (içteki üçgen / çıkarılacak kısım). Ok ile sağdaki şekle bağlanıyor: tepe değeri $1$, tabanı $-1$ ile $1$ arasında olan üçgen $\Lambda(t)$.}
+\elcizimi[0.65]{sekiller/uygulama-notlari-Analog-Uygulama-1-s7-1.png}[7]
 
 bunların farkı
-\sekilnotu[7]{Kırmızı trapez: $t=-2$'de $0$'dan başlayıp $t=-1$'e kadar yükseliyor, $-1$ ile $1$ arasında sabit (plato), $t=1$'den $t=2$'ye düşüp $0$ oluyor. Eksen işaretleri $-2,-1,1,2$; altında $-2$ ile $2$ arasını gösteren çift uçlu ok ve ``$4$'' yazılı.}
-\sekilnotu[7]{Periyodik trapez dalgası: platolar $[-5,-3]$, $[-1,1]$ ve $[3,5]$ aralıklarında; $t=-2$ ve $t=2$ noktalarında sıfıra inen vadiler; plato kenarlarında kesikli dikey çizgiler; kırmızı noktalar $t=0$ ve $t=4$ plato ortalarında. Eksen işaretleri $-6,-5,\dots,4,5$.}
+\elcizimi[0.4]{sekiller/uygulama-notlari-Analog-Uygulama-1-s7-2.png}[7]
+\elcizimi[0.85]{sekiller/uygulama-notlari-Analog-Uygulama-1-s7-3.png}[7]
 \textcolor{kirmizikalem}{$T_0=4$ ile periyodiktir}
 
 \begin{ornek}
   Find the Fourier Transform of the following signal
 \end{ornek}
-\sekilnotu[7]{Siyah çizim: $x(t)$ ve $t$ eksenleri; $t=-\frac{1}{2f_0}$ ile $t=\frac{1}{2f_0}$ arasında, orijinde birleşen iki pozitif yarım sinüs kemeri ($|\sin(2\pi f_0 t)|$ biçimi); kemerin üstünde ``$\sin(2\pi f_0 t)$'' yazılı.}
+\elcizimi[0.65]{sekiller/uygulama-notlari-Analog-Uygulama-1-s7-4.png}[7]
 \[ X(f)=\,? \]
-\sekilnotu[7]{Kırmızı çizim: ``$\sin(2\pi f_0 t)$'' başlıklı sinüs dalgası; orijinden yükselip eksene iniyor, ilk sıfır geçişi $\frac{1}{2f_0}$ olarak işaretli, sonra eksenin altına inip tekrar yükseliyor. Sağ altta kırmızı dikdörtgen darbe: yükseklik $1$, $t=0$ ile $t=\frac{1}{2f_0}$ arasında, ortası $\frac{1}{4f_0}$ kesikli çizgiyle işaretli; üstündeki ok ``$\Pi\!\left(\frac{t-\frac{1}{4f_0}}{\frac{1}{2f_0}}\right)$'' ifadesine gidiyor.}
+\elcizimi[0.9]{sekiller/uygulama-notlari-Analog-Uygulama-1-s7-5.png}[7]
 
 \sayfa{8}
 \[ x(t)=\sin(2\pi f_0t)\cdot\Pi\!\left(\frac{t-\frac{1}{4f_0}}{\frac{1}{2f_0}}\right)-\sin(2\pi f_0t)\,\Pi\!\left(\frac{t+\frac{1}{4f_0}}{\frac{1}{2f_0}}\right) \]
@@ -393,7 +393,7 @@ Reminder
 \begin{ornek}
   Fourier transform of a signal is
 \end{ornek}
-\sekilnotu[9]{Spektrum çizimi: dikey eksen $X(f)$, yatay eksen $f$; $f=-500$ ve $f=500$ noktaları işaretli; tepe değeri $4$ olan ($f=0$'da) üçgen biçimli spektrum; kesikli yardımcı çizgiler var.}
+\elcizimi[0.3]{sekiller/uygulama-notlari-Analog-Uygulama-1-s9-1.png}[9]
 Determine and sketch the fourier transform of the signal
 \[
   x_1(t)=\mathord{\ooalign{$-x(t)$\cr\hidewidth\textcolor{kirmizikalem}{\rule[0.6ex]{2.4em}{0.6pt}}\hidewidth\cr}}
@@ -423,7 +423,7 @@ Determine and sketch the fourier transform of the signal
 \textcolor{kirmizikalem}{2. yol \quad Reminder:}
 \[ \textcolor{kirmizikalem}{t\,x(t)\to\frac{j}{2\pi}\,\frac{dX(f)}{df}} \]
 \[ x_1(t)=\mathrm{sinc}(t)\to X_1(f)=\Pi(f) \]
-\sekilnotu[10]{Sağda küçük bir çizim: eksenler $X_1(f)$ ve $f$; $f=-\frac{1}{2}$ ile $f=\frac{1}{2}$ arasında dikdörtgen darbe (yükseklik işaretlenmemiş).}
+\elcizimi[0.3]{sekiller/uygulama-notlari-Analog-Uygulama-1-s10-1.png}[10]
 \[ X_1(f)=U\!\left(f+\frac{1}{2}\right)-U\!\left(f-\frac{1}{2}\right) \]
 \[ \frac{dX_1(f)}{df}=\delta\!\left(f+\frac{1}{2}\right)-\delta\!\left(f-\frac{1}{2}\right) \]
 \[ X(f)=\frac{j}{2\pi}\Bigl[\delta\!\left(f+\frac{1}{2}\right)-\delta\!\left(f-\frac{1}{2}\right)\Bigr] \]
@@ -442,7 +442,7 @@ Determine and sketch the fourier transform of the signal
     &&x(t)=\mathrm{sinc}(t)
   \end{array}
 \]
-\sekilnotu[10]{Sağda küçük bir çizim: $f=-\frac{1}{2}$ ile $f=\frac{1}{2}$ arasında dikdörtgen darbe; eksen üzerinde $-\frac{1}{2}$, $\frac{1}{2}$ ve $f$ işaretli.}
+\elcizimi[0.3]{sekiller/uygulama-notlari-Analog-Uygulama-1-s10-2.png}[10]
 
 \sayfa{11}
 \begin{ornek}
@@ -464,7 +464,7 @@ Dualite
 \begin{ornek}
   \[ X(f)=\,?\,=\int_{-\infty}^{\infty}x(t)\,e^{-j2\pi ft}\,dt \]
 \end{ornek}
-\sekilnotu[11]{İşaret çizimi: dikey eksen $x(t)$, yatay eksen $t$. $t=-1$'de $0$'dan başlayıp $t=0$'da $1$'e çıkan, eğimi $1$ olan doğru parçası; ardından $t=0$'da $-1$'den başlayıp $t=1$'de $0$'a çıkan, eğimi $1$ olan ikinci doğru parçası. Eksen işaretleri: yatayda $-1$ ve $1$, düşeyde $1$ ve $-1$. Kırmızı notlar: ``slope $=1$'', ``$y=1(t+1)$'', ``$x(t)=t+1$'' (ilk doğru parçasının uzantısı kırmızıyla çizilmiş). Siyah notlar (ikinci doğru parçasından ok ile): ``$y+1=x$'', ``$x(t)=t-1$''.}
+\elcizimi[0.6]{sekiller/uygulama-notlari-Analog-Uygulama-1-s11-1.png}[11]
 \[ X(f)=\int_{-1}^{0}(t+1)\,e^{-j2\pi ft}\,dt+\int_{0}^{1}(t-1)\,e^{-j2\pi ft}\,dt \]
 \[ \text{sonuç}\quad=\frac{j}{\pi f}\bigl[1-\mathrm{sinc}(2f)\bigr] \]
 \[

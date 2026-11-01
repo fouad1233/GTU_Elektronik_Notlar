@@ -82,24 +82,24 @@
 
 \sayfa{6}
 \section{1- Voltage Amplifiers (Shunt (o) -- Series (I))}
-\sekilnotu[6]{Block diagram of the shunt-series voltage amplifier: source $V_s$ with series $R_s$ feeds the ``Basic Amplifier'' block; the amplifier output is connected in parallel with the load $R_L$ and the output terminals ($+V_o-$); the ``Feedback'' block has its input ($+V_o-$) connected across the output (shunt), and its output voltage $V_f$ ($+$ top, $-$ bottom) is in series with the input loop (between $V_s$/$R_s$ and the amplifier input). Orange arrows mark $R_{if}$ (looking into the source loop), $R_{in}$ (looking into the amplifier input), $R_{out}$ (looking into the amplifier output, at $R_L$) and $R_{of}$ (looking into the output terminals).}
+\elcizimi[0.9]{sekiller/Ders11-s6-1.png}[6]
 
 \section{Two port network equivalent}
-\sekilnotu[6]{Two-port equivalent: source $V_s$ with $R_s$ (top) and $R_{11}$ (bottom wire; arrow labelled $R_i$ looking into the input) in front of the ``Basic Amplifier'' box; at the output $R_{22}$ and $R_L$ are in parallel across the output terminals ($+$ top, $-$ bottom, $V_o$; arrow labelled $R_o$ looking in from the output). A curved arrow pointing at the output carries the note ``feed forward gain $A = v_o/v_s$''.}
+\elcizimi[0.9]{sekiller/Ders11-s6-2.png}[6]
 
-\sekilnotu[6]{Two sketches of the red ``Feedback'' box. Left: input terminals ($+$, $-$) open, output terminals shorted together, arrow labelled $R_{11}$ at the input side. Right: input terminals open, arrow labelled $R_{22}$ at the output side.}
+\elcizimi[0.9]{sekiller/Ders11-s6-3.png}[6]
 
 To find $\beta$
 
-\sekilnotu[6]{``Feedback'' box with current $I_1$ entering the input and $V_f$ ($+$, $-$) across the input terminals; a voltage source $V_o$ is connected across the output terminals. A red arrow pointing left (from output towards input) is drawn above the box.}
+\elcizimi[0.55]{sekiller/Ders11-s6-4.png}[6]
 
 \formulkutu{\beta = \frac{V_f}{V_o}\Big|_{I_1=0}}
 
 \sayfa{7}
 \section{Complete model}
-\sekilnotu[7]{Complete model circuit: source $V_s$ with $R_s$ feeds the input resistance $R_i$ (voltage $v_i$, $+$ top, $-$ bottom); the output side has the dependent source $A v_i$ in series with $R_o$ and the output terminals ($+v_o-$). The feedback part is a dependent voltage source $\beta V_o$ ($+$ top) in series with the input loop (between source terminal $s'$ and the bottom of $R_i$), controlled by $V_o$ (drawn as $+V_o-$ connected across the output terminals). Orange dashed boxes mark the ``A circuit'' ($R_i$, $A v_i$, $R_o$) and the ``$\beta$ circuit'' ($\beta V_o$ and $V_o$); orange arrows mark $R_{if}$ (looking into the loop from terminals $s$--$s'$) and $R_{of}$ (looking in from the output).}
+\elcizimi[0.9]{sekiller/Ders11-s7-1.png}[7]
 
-\sekilnotu[7]{Two reduced circuits. Left: source $V_s$ ($+$ top, $-$ bottom; terminals $s$ and $s'$) with $R_s$ (struck out in red) in series with $R_{if}$. Right: dependent source $A_f V_s$ in series with $R_{of}$ (top wire, struck out in red); output $+v_o-$ across a resistor labelled $R_L$ (struck out in red) with the red label $R_{of}$ next to it.}
+\elcizimi[0.85]{sekiller/Ders11-s7-2.png}[7]
 
 \begin{align*}
   A_f &= \frac{A}{1+A\beta} \\
@@ -110,20 +110,20 @@ To find $\beta$
 \sayfa{8}
 \section{2- Current Amplifiers (Series (o) -- Shunt (I))}
 \[ A = \frac{I_o}{I_i} \]
-\sekilnotu[8]{Block diagram of the series-shunt current amplifier: current source $I_s$ with parallel $R_s$ feeds the ``Basic current Amplifier'' block; the output current flows through the load $R_L$. The feedback network (``FBN'') takes the output current $I_o$ in series with the load path (orange oval and orange note ``Series'') and returns its output to the input node in parallel with $I_s$/$R_s$ (orange oval and orange note ``Shunt'').}
+\elcizimi[0.8]{sekiller/Ders11-s8-1.png}[8]
 
-\sekilnotu[8]{Two-port equivalent: $I_s$ with $R_s$ and $R_{11}$ in parallel (arrow labelled $R_i$ looking into the input) feeds the ``Basic Circuit Amplifier'' box; at the output $R_{22}$ is in series with the load $R_L$, current $I_o$ (arrow) in the output loop, and an arrow labelled $R_o$ looking in at the output terminals.}
+\elcizimi[0.9]{sekiller/Ders11-s8-2.png}[8]
 
-\sekilnotu[8]{Two sketches of the ``FBN'' box. Left: arrow labelled $R_{11}$ at the input side, output terminals open. Right: input terminals shorted together, arrow labelled $R_{22}$ at the output side.}
+\elcizimi[0.9]{sekiller/Ders11-s8-3.png}[8]
 
-\sekilnotu[8]{``FBN'' box with input current $I_f$ entering and voltage $v_1$ ($+$, $-$) across the input terminals; a current source $I_o$ is connected at the output.}
+\elcizimi[0.5]{sekiller/Ders11-s8-4.png}[8]
 
 \[ \beta = \frac{I_f}{I_o}\Big|_{v_1=0} \]
 
-\sekilnotu[8]{Complete model: current source $I_s$ (terminals $s$ and $s'$) feeds $R_i$ (voltage $v_i$, $+$ top, $-$ bottom; input current $I_i$). Output side: dependent current source $A I_i$ in parallel with $R_o$, ending at the output terminals. Feedback part: dependent current source $\beta I_o$ connected across the input nodes (parallel with $R_i$), with the output current $I_o$ (arrow) flowing in a series path at the output terminals. Orange dashed boxes: ``A circuit'' ($R_i$, $A I_i$, $R_o$) and ``$\beta$ circuit'' ($\beta I_o$ and $I_o$); orange arrows mark $R_{if}$ (looking into $s$--$s'$) and $R_{of}$ (looking in from the output).}
+\elcizimi[0.9]{sekiller/Ders11-s8-5.png}[8]
 
 \sayfa{9}
-\sekilnotu[9]{Two small circuits: left, terminals $s$ and $s'$ with the current $I_s$ (arrow) entering $R_{if}$; right, dependent current source $A_f I_s$ in parallel with $R_{of}$, with the output current $I_o$ (arrow).}
+\elcizimi[0.65]{sekiller/Ders11-s9-1.png}[9]
 
 \begin{align*}
   A_f &= \frac{A}{1+A\beta} \\
@@ -134,7 +134,7 @@ To find $\beta$
 \[ \textcolor{turuncukalem}{1+\frac{R_2}{R_1} = 1001} \]
 
 \section{Soru}
-\sekilnotu[9]{Circuit: source $V_s$ with series $R_s$ feeds $R_{id}$ (voltage $v_1$, $+$ top, $-$ bottom; red arrow $R_{in}$ looking into it). Output side: dependent source $A_o v_1$ in series with $r_o$ to the output node $v_o$, with $R_L$ to ground. $R_1$ goes from the node below $R_{id}$ to ground, and $R_2$ connects this node to the output node. Annotations: large orange triangle (op-amp outline with $+$ and $-$) with the note ``Non inverting''; dashed orange ovals ``Shunt'' (around the output node) and ``series'' (around the $R_1$ node at the input); orange arrow $R_{of}$ and red arrow $R_{out}$ pointing at the output.}
+\elcizimi[0.9]{sekiller/Ders11-s9-2.png}[9]
 
 \[ R_{in} = R_{if} - R_s \qquad\qquad R_{out} = \frac{1}{1/R_{of} - 1/R_L} \]
 
@@ -143,14 +143,14 @@ $A$, $\beta$, $A_f$, $R_i$, $R_{if}$, $R_{of}$, and $R_o$\\
 ($A_o = 10^4$, $R_{id} = \qty{100}{\kilo\ohm}$, $r_o = \qty{1}{\kilo\ohm}$, $R_L = \qty{2}{\kilo\ohm}$, $R_1 = \qty{1}{\kilo\ohm}$, $R_2 = \qty{1}{\mega\ohm}$ and $R_s = \qty{10}{\kilo\ohm}$)\\
 \underline{Feedback-type} : Shunt -- Series
 
-\sekilnotu[9]{Two-port equivalent of the circuit. Input side: terminals with $V_s$ ($+$, $-$), $R_s$ on top, $R_{id}$ with $v_1$ ($+$ top, $-$ bottom) and a resistor $R_{11}$ in the bottom wire, labelled ``$R_{11}=??$'' and, in orange, $(R_1 \| R_2)$; arrow $R_i$ looking into the input. Output side: dependent source $A_o v_1$ in series with $r_o$, then $R_{22}$ and $R_L$ in parallel; orange note $(R_1+R_2)$ with an arrow pointing to $R_{22}$; arrow $R_o$ looking in at the output terminals.}
+\elcizimi[0.85]{sekiller/Ders11-s9-3.png}[9]
 
-\sekilnotu[9]{Two small circuits of the feedback network ($R_1$, $R_2$). Left: $R_1$ from the top input node to the bottom wire, $R_2$ from the top node to a far end that is grounded (output shorted); arrow $R_{11}$ looking into the input. Right: input terminals open with $R_1$ from the top node to ground, $R_2$ from that node to the right output terminal; arrow $R_{22}$ looking into the output.}
+\elcizimi[0.9]{sekiller/Ders11-s9-4.png}[9]
 
 \[ R_{11} = R_1 \parallel R_2 \qquad\qquad R_{22} = R_1 + R_2 \]
 
 \sayfa{10}
-\sekilnotu[10]{Circuit: $R_1$ in the left vertical branch with $v_f$ ($+$ top, $-$ bottom) across it; in the top wire a resistor (labelled $R_1$ in the note, presumably $R_2$) in series with a voltage source $v_o$ on the right.}
+\elcizimi[0.35]{sekiller/Ders11-s10-1.png}[10]
 
 \[ \frac{v_f}{v_o} = \frac{R_1}{R_1+R_2} = \beta \]
 

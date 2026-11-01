@@ -25,14 +25,14 @@ I_C = I_S\, e^{\frac{V_{BE}}{V_T}}
 
 \[ f_L = \frac{1}{2\pi}\left(\underbrace{\frac{1}{R_1 C_1}}_{10} + \underbrace{\frac{1}{R_2 C_2}}_{\substack{50\,\okunamadi{Hz}\\ \Downarrow\\ \text{dominant}}} + \underbrace{\frac{1}{R_3 C_3}}_{100}\right) \]
 
-\sekilnotu[1]{Eşdeğer direnç şeması: solda toprağa bağlı $R_1$; iki açık uç (``o'' ``o'', kondansatörün olduğu yer) arasında çift yönlü ok ve üstünde ``$R_{eq}$''; sağdaki uçtan çıkan ortak düğümden toprağa bağlı $R_2$ ve $R_3$ (paralel).}
+\elcizimi[0.35]{sekiller/Ders9-s1-1.png}[1]
 
 \[ R_{eq} = R_1 + R_2 \parallel R_3 \]
 
 \section{The CE amplifier}
-\sekilnotu[1]{Ortak emiter (CE) yükselteç devresi, NPN BJT. Üstte $V_{CC}$ (yukarı ok) ve $R_C$ ile kolektör; kolektörden $C_{C2}$ kuplaj kondansatörü ile toprağa bağlı $R_L$ yük direncine ve $v_O$ çıkışına. Giriş: $V_{sig}$ kaynağı (toprağa bağlı), $R_{sig}$ ve (etiketsiz) kuplaj kondansatörü üzerinden base'e. Emiter: $C_E$ bypass kondansatörü ile toprağa ve aşağı yönlü $I$ akım kaynağı ile $-V_{EE}$'ye bağlı. Aynı devre sağda turkuaz kalemle ikinci kez çizilmiş.}
+\elcizimi[0.9]{sekiller/Ders9-s1-2.png}[1]
 
-\sekilnotu[1]{Küçük işaret eşdeğer devresi: $R_{sig}$, ardından turuncu kalemle işaretlenmiş $C_{C1}$ kondansatörü; sonraki düğümden toprağa $R_B$; aynı düğümden $r_\pi$ (üzerinde $v_\pi$, ``$+$'' ve ``$-$'' işaretli) ve bağımlı akım kaynağı $g_m v_\pi$; kaynağın sağında toprağa bağlı $R_C$ ve $R_L$, ikisinin üstünde turuncu/turkuaz kalemle işaretlenmiş $C_{C2}$; alt düğümde (emiter) kırmızı kalemle işaretlenmiş $C_E$ kondansatörü (toprağa).}
+\elcizimi[0.7]{sekiller/Ders9-s1-3.png}[1]
 
 \[ R_{CC1} = R_{sig} + R_B \parallel r_\pi \]
 
@@ -44,11 +44,11 @@ I_C = I_S\, e^{\frac{V_{BE}}{V_T}}
 \[ R_{CC2} = R_C + R_L \]
 
 \section{Soru}
-\sekilnotu[2]{Ortak base (CB) yükselteç devresi: NPN BJT, base solda toprağa bağlı; kolektör üstte $R_C$ ile $V_{DD}$'ye bağlı, ayrıca $C_{C2}$ kuplaj kondansatörü ile toprağa bağlı $R_L$'ye ve çıkışa; emiter: aşağı yönlü bir $I$ akım kaynağına ve $C_{C1}$ kuplaj kondansatörü ile toprağa bağlı $v_{sig}$ kaynağına bağlı.}
+\elcizimi[0.4]{sekiller/Ders9-s2-1.png}[2]
 
 \[ f_L = \ ? \]
 
-\sekilnotu[2]{Küçük işaret eşdeğer devresi: solda toprağa bağlı uçtan $r_\pi$ (üzerinde $v_\pi$, ``$+$'' ve ``$-$'' işaretli), alt düğümü ``E'' olarak işaretli; bağımlı akım kaynağı $g_m v_\pi$ ($r_\pi$ ve kaynak turuncu kesikli çerçeve içinde). E düğümünden aşağı $C_{C1}$ kondansatörü ve toprağa bağlı $v_{sig}$ kaynağı (turuncu kalemle işaretli). Sağda ``C'' düğümü: toprağa bağlı $R_C$ ve $C_{C2}$ üzerinden toprağa bağlı $R_L$ ($C_{C2}$ turuncu kalemle işaretli).}
+\elcizimi[0.75]{sekiller/Ders9-s2-2.png}[2]
 
 \noindent from $C_{C1}$ \qquad $R_{CC1} \approx r_e$
 
@@ -74,7 +74,7 @@ I_C = I_S\, e^{\frac{V_{BE}}{V_T}}
 \end{center}
 
 \sayfa{3}
-\sekilnotu[3]{NMOS kesit çizimi: ortada ``p-sub'' etiketli taban; üstte solda ``S'' (source) ve sağda ``D'' (drain) uçlarına çıkan oklar, altlarında iki n$^+$ bölgesi; ikisinin arasında gate (altında kesikli kanal çizgisi, üstünde ``$C_{ox}$'' benzeri bir etiket). Source ve drain bölgelerinin altından, kırmızı kalemle, tabana (toprağa) giden birer ters yönlü diyot (kavşak kapasitesi) ve yanlarında küçük kondansatör işaretleri çizilmiş.}
+\elcizimi[0.35]{sekiller/Ders9-s3-1.png}[3]
 
 \[ \textcolor{kirmizikalem}{\text{Triode Region:}}\quad C_{gs} = C_{gd} = \frac{1}{2}\,W L\,C_{ox} \]
 
@@ -117,18 +117,18 @@ I_C = I_S\, e^{\frac{V_{BE}}{V_T}}
 \[ C_{db} = \frac{C_{db0}}{\sqrt{1+\dfrac{V_{DB}}{V_0}}} \]
 
 \sayfa{4}
-\sekilnotu[4]{Ortak source MOSFET yükselteci: $V_{DD}$ (yukarı ok) --- $R_D$ --- drain düğümü; drain düğümünden doğrudan toprağa bağlı $R_L$ (kuplaj kondansatörü yok); source toprağa bağlı; gate, $R_{sig}$ üzerinden toprağa bağlı $v_{sig}$ kaynağına bağlı.}
+\elcizimi[0.4]{sekiller/Ders9-s4-1.png}[4]
 
-\sekilnotu[4]{Küçük işaret eşdeğer devresi: $v_{sig}$ (toprağa bağlı) --- $R_{sig}$ --- gate ucu (``$+$''); source ucu (``$-$''); aralarında $V_{gs}$ ve kırmızı kalemle $C_{gs}$. Gate ucundan çıkış düğümüne kırmızı kalemle çizilmiş $C_{gd}$ kondansatörü; yanında turuncu okla ``bir feedback neden oluyor''. Bağımlı akım kaynağı $g_m V_{gs}$; çıkış düğümünden toprağa $r_o$, $R_D$, $R_L$ ve kırmızı kalemle $C_{db}$; çıkış $V_{out}$.}
+\elcizimi[0.9]{sekiller/Ders9-s4-2.png}[4]
 
 \noindent Analiz yaparken açık devre yapılırlar
 
-\sekilnotu[4]{Kondansatörlerin açık devre yapıldığı eşdeğer devre: soldan toprağa bağlı $R_{sig}$, ardından gate ucu (``$+$'') ve source ucu (``$-$''), $V_{gs}$; bu iki uç arasında turuncu/kırmızı kalemle çizilmiş iki ok. Bağımlı akım kaynağı $g_m V_{gs}$; çıkış düğümünden toprağa $r_o$, $R_D$, $R_L$; $V_{out}$ hattı kırmızı ile işaretli.}
+\elcizimi[0.85]{sekiller/Ders9-s4-3.png}[4]
 
 \formulkutu{R_{gs} = R_{sig} \parallel}
 \textit{(ifade bu şekilde yarım bırakılmış)}
 
-\sekilnotu[4]{Test devresi: $R_{sig}$ altında turuncu bir ok; gate ucu ile çıkış (drain) düğümü arasında kırmızı kalemle bir $V_x$ test kaynağı (daire; gate tarafı ``$-$'', drain tarafı ``$+$'') ve $I_x$ akımı; düğümde turuncu oklar: ``$I_x$'' (sağa) ve ``$g_m V_{gs}$'' (sola). Bağımlı akım kaynağı $g_m V_{gs}$; çıkışta toprağa bağlı $R_L' = r_o \parallel R_D \parallel R_L$; $V_{out}$ hattı ve $C_{db}$ kırmızı kalemle işaretli.}
+\elcizimi[0.85]{sekiller/Ders9-s4-4.png}[4]
 
 \[ \frac{V_x}{I_x} = \ ? \]
 
@@ -181,13 +181,13 @@ V_x - R_{sig}\, I_x &= (I_x + g_m R_{sig}\, I_x)\,R_L'
 \sayfa{6}
 \sekilnotu[6]{Yapıştırılmış basılı şekil: BJT hibrit-$\pi$ yüksek frekans modeli (mavi zeminli). B ucundan $r_x$ ile B' düğümüne; B' ile E arasında $r_\pi$ ($V_\pi$, ``$+$'' üstte) ve $C_\pi$; B' ile C arasında $C_\mu$; C ile E arasında $g_m V_\pi$ bağımlı kaynağı ve $r_o$; uçlar B, C ve E.}
 
-\sekilnotu[6]{CE yükselteç devresi (NPN BJT, elle çizilmiş): üstte $V_{CC}$ (yukarı ok) ve $R_C$ ile kolektör; kolektörden $C_{C2}$ ile toprağa bağlı $R_L$ yük direncine; giriş: $v_{sig}$ (toprağa bağlı), $R_{sig}$ ve (etiketsiz) kuplaj kondansatörü ile base'e; emiter: aşağı yönlü bir akım kaynağı ve toprağa bağlı $C_{C3}$ kondansatörü.}
+\elcizimi[0.5]{sekiller/Ders9-s6-1.png}[6]
 
-\sekilnotu[6]{Yüksek frekans küçük işaret eşdeğer devresi: $v_{sig}$ (turuncu kalemle işaretli, toprağa bağlı) --- $R_{sig}$ --- B' düğümü; B' ile alt (toprak) hattı arasında $r_\pi$ ($v_\pi$, ``$+$'' üstte ``$-$'' altta) ve turuncu kalemle işaretlenmiş $C_\pi$; B' ile çıkış düğümü arasında çift çizgi ve oklarla çizilmiş $C_\mu$; bağımlı akım kaynağı $g_m v_\pi$; çıkış düğümü ``C'' olarak işaretli, ona bağlı iki direnç $R_C$ ve $R_L$ (toprağa).}
+\elcizimi[0.85]{sekiller/Ders9-s6-2.png}[6]
 
 \[ R_{C\pi} = R_{sig} \]
 
-\sekilnotu[6]{Turuncu kalemle çizilmiş test devresi: solda toprağa bağlı $R_{sig}$ ve $r_\pi$ (paralel); bunların üst düğümü ile sağdaki düğüm arasında $I_x$ test akım kaynağı (daire içinde ok) ve $V_x$ (``$+$'' solda, ``$-$'' sağda); sağ düğümden toprağa bağlı $g_m v_\pi$ bağımlı kaynağı, $R_C$ ve $R_L$; üstte ``$R_C \parallel R_L$'' notu.}
+\elcizimi[0.55]{sekiller/Ders9-s6-3.png}[6]
 
 \noindent Short circuit collector current
 
@@ -204,7 +204,7 @@ V_x - R_{sig}\, I_x &= (I_x + g_m R_{sig}\, I_x)\,R_L'
 \sekilnotu[7]{Basılı materyal: Miller teoremi şekli. Solda 1 ve 2 uçları arasında $Z$ empedansı ($I$ akımı, $V_2 = KV_1$); eşdeğeri sağda: 1 ucundan toprağa $Z_1$, 2 ucundan toprağa $Z_2$; $Z_1 = Z/(1-K)$, $Z_2 = Z/\bigl(1-\tfrac{1}{K}\bigr)$. Dijitalleştirilmedi.}
 
 \sayfa{8}
-\sekilnotu[8]{Miller teoremi uygulaması (elle çizilmiş): giriş düğümü (``$V_1$'', gate; $V_{gs}$ ``$+$'' üstte, ``$-$'' altta) ile alt (toprak) hattı arasında turuncu kalemle $Z_1$; giriş düğümü ile çıkış düğümü arasında kırmızı kalemle çizilmiş $Z$ (dikdörtgen); çıkış düğümünde bağımlı akım kaynağı $g_m V_{gs}$, $R_L'$ ve turuncu kalemle çizilmiş $Z_2$ (hepsi toprağa bağlı).}
+\elcizimi[0.65]{sekiller/Ders9-s8-1.png}[8]
 
 \begin{gather*}
 V_1 = V_{gs} \\

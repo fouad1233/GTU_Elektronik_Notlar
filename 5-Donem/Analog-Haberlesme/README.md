@@ -51,18 +51,18 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
 | [Ders2](ders-notlari/Ders2.pdf) <sub>Ders Notları</sub> | İşaretler, güç/enerji, temel işaretler ve sistemler | [PDF](dijital-notlar/Ders2.pdf) · 11 s. | [.tex](dijital-notlar/Ders2.tex) |
-| [Ders3](ders-notlari/Ders3.pdf) <sub>Ders Notları</sub> | Fourier serisi açılımları ve spektrum | [PDF](dijital-notlar/Ders3.pdf) · 10 s. | [.tex](dijital-notlar/Ders3.tex) |
+| [Ders3](ders-notlari/Ders3.pdf) <sub>Ders Notları</sub> | Fourier serisi açılımları ve spektrum | [PDF](dijital-notlar/Ders3.pdf) · 11 s. | [.tex](dijital-notlar/Ders3.tex) |
 | [Ders4](ders-notlari/Ders4.pdf) <sub>Ders Notları</sub> | Fourier serisi, Fourier dönüşümü ve özellikleri | [PDF](dijital-notlar/Ders4.pdf) · 12 s. | [.tex](dijital-notlar/Ders4.tex) |
 | [Ders5](ders-notlari/Ders5.pdf) <sub>Ders Notları</sub> | Lineer sistemlerde işaret iletimi; enerji ve güç spektral yoğunluğu | [PDF](dijital-notlar/Ders5.pdf) · 9 s. | [.tex](dijital-notlar/Ders5.tex) |
 | [Ders6](ders-notlari/Ders6.pdf) <sub>Ders Notları</sub> | Bozulmasız iletim, filtreler ve modülasyon | [PDF](dijital-notlar/Ders6.pdf) · 9 s. | [.tex](dijital-notlar/Ders6.tex) |
-| [Ders7](ders-notlari/Ders7.pdf) <sub>Ders Notları</sub> | TB-ÇYB-GM (DSB-SC-AM): modülasyon ve demodülasyon | [PDF](dijital-notlar/Ders7.pdf) · 9 s. | [.tex](dijital-notlar/Ders7.tex) |
+| [Ders7](ders-notlari/Ders7.pdf) <sub>Ders Notları</sub> | TB-ÇYB-GM (DSB-SC-AM): modülasyon ve demodülasyon | [PDF](dijital-notlar/Ders7.pdf) · 10 s. | [.tex](dijital-notlar/Ders7.tex) |
 | [Ders8](ders-notlari/Ders8.pdf) <sub>Ders Notları</sub> | Frekans karıştırıcı, DSB-SC, AM modülasyonu: güç ve verim | [PDF](dijital-notlar/Ders8.pdf) · 12 s. | [.tex](dijital-notlar/Ders8.tex) |
 | [Ders9](ders-notlari/Ders9.pdf) <sub>Ders Notları</sub> | BT-ÇYB-GM (DSB-LC-AM) modülatörleri ve demodülatörleri | [PDF](dijital-notlar/Ders9.pdf) · 7 s. | [.tex](dijital-notlar/Ders9.tex) |
 | [Ders10](ders-notlari/Ders10.pdf) <sub>Ders Notları</sub> | Ders 10 – Tek yan bant (TYB-GM) ve FDM | [PDF](dijital-notlar/Ders10.pdf) · 8 s. | [.tex](dijital-notlar/Ders10.tex) |
 | [Ders11](ders-notlari/Ders11.pdf) <sub>Ders Notları</sub> | Süperheterodin alıcı, açı modülasyonu, NBFM | [PDF](dijital-notlar/Ders11.pdf) · 8 s. | [.tex](dijital-notlar/Ders11.tex) |
-| [Ders12](ders-notlari/Ders12.pdf) <sub>Ders Notları</sub> | Açı modülasyonu, Carson kuralı, tek tonlu FM/PM | [PDF](dijital-notlar/Ders12.pdf) · 10 s. | [.tex](dijital-notlar/Ders12.tex) |
-| [Ders13](ders-notlari/Ders13.pdf) <sub>Ders Notları</sub> | Açı modülasyonu (FM): üretim, demodülasyon, gürültü | [PDF](dijital-notlar/Ders13.pdf) · 8 s. | [.tex](dijital-notlar/Ders13.tex) |
-| [Analog Uygulama 1](uygulama-notlari/Analog-Uygulama-1.pdf) <sub>Uygulama Notları</sub> | Uygulama 1: Systems, Fourier Series & Transform | [PDF](dijital-notlar/uygulama-notlari-Analog-Uygulama-1.pdf) · 11 s. | [.tex](dijital-notlar/uygulama-notlari-Analog-Uygulama-1.tex) |
+| [Ders12](ders-notlari/Ders12.pdf) <sub>Ders Notları</sub> | Açı modülasyonu, Carson kuralı, tek tonlu FM/PM | [PDF](dijital-notlar/Ders12.pdf) · 11 s. | [.tex](dijital-notlar/Ders12.tex) |
+| [Ders13](ders-notlari/Ders13.pdf) <sub>Ders Notları</sub> | Açı modülasyonu (FM): üretim, demodülasyon, gürültü | [PDF](dijital-notlar/Ders13.pdf) · 9 s. | [.tex](dijital-notlar/Ders13.tex) |
+| [Analog Uygulama 1](uygulama-notlari/Analog-Uygulama-1.pdf) <sub>Uygulama Notları</sub> | Uygulama 1: Systems, Fourier Series & Transform | [PDF](dijital-notlar/uygulama-notlari-Analog-Uygulama-1.pdf) · 12 s. | [.tex](dijital-notlar/uygulama-notlari-Analog-Uygulama-1.tex) |
 | [Analog Uygulama 2](uygulama-notlari/Analog-Uygulama-2.pdf) <sub>Uygulama Notları</sub> | Uygulama 2: LTI kanal, AM ve çoklama | [PDF](dijital-notlar/uygulama-notlari-Analog-Uygulama-2.pdf) · 10 s. | [.tex](dijital-notlar/uygulama-notlari-Analog-Uygulama-2.tex) |
 | [Analog uygulama 3](uygulama-notlari/Analog-uygulama-3.pdf) <sub>Uygulama Notları</sub> | Uygulama 3: SSB-AM, Weaver modülatörü, SSB-FDM | [PDF](dijital-notlar/uygulama-notlari-Analog-uygulama-3.pdf) · 2 s. | [.tex](dijital-notlar/uygulama-notlari-Analog-uygulama-3.tex) |
 | [Z1](final-calismasi/Z1.pdf) <sub>Final/Vize Çalışması</sub> | DSB-LC-AM sorusu çözümü (Z1) | [PDF](dijital-notlar/final-calismasi-Z1.pdf) · 3 s. | [.tex](dijital-notlar/final-calismasi-Z1.tex) |

@@ -54,7 +54,7 @@ S_T=\frac{1}{2\varepsilon}\cdot 2\varepsilon=1\ \Rightarrow\ \lim_{\varepsilon\t
 &=\frac{1}{\sqrt\pi}\lim_{z\to\infty}z\cdot\frac1z\int_{-\infty}^{\infty}e^{-x'^2}\\
 &=\frac{1}{\sqrt\pi}\int_{-\infty}^{\infty}e^{-x'}\,dx'=\frac{\sqrt\pi}{\sqrt\pi}=1\quad\text{\footnotemark}
 \end{aligned}\footnotetext{Claude notu: üs muhtemelen $-x'^2$ olmalı.}\]
-\sekilnotu[1]{Sayfanın sağ altında etiketsiz küçük bir çizim: yatay bir eksen üzerinde dik, sivri bir tepe (delta fonksiyonunun darbe gösterimi).}
+\elcizimi[0.3]{sekiller/Ders10-s1-1.png}[1]
 
 \sayfa{2}
 \[
@@ -69,7 +69,7 @@ I^2=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-x^2-y^2}\,dx\,dy
 \[
 =\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\underbrace{e^{-(x^2+y^2)}}_{f(x,y)}\,dx\,dy
 \]
-\sekilnotu[2]{Sol tarafta $xy$ düzlemi çizimi (eksenler $x$ ve $y$): düzlem kıvrık çapraz çizgilerle taranmış (tüm düzlem üzerinden integral); kırmızıyla orijinden çıkan bir yarıçap ($\rho$) ve $x$ ekseniyle yaptığı açı $\phi$ gösterilmiş. Altında kutupsal koordinatlarda küçük bir alan elemanı çizimi: orijinden çıkan iki yarıçap arasındaki $d\phi$ açısı, yarıçap $\rho$, kalınlık $d\rho$ ve taralı küçük bölge. Eşitliğin solundan alttaki integral satırına uzanan büyük kıvrık bir ok var. Sayfanın sağ üstünde ayrıca küçük bir karalama var (yatay çizgi üzerinde daireyle biten dar bir çizgi).}
+\elcizimi[0.5]{sekiller/Ders10-s2-1.png}[2]
 \begin{align*}
 &e^{-(x^2+y^2)}=e^{-\rho^2}\\
 &ds=dx\,dy\\
@@ -177,7 +177,7 @@ V=\begin{cases}V_1(x,y,z); & x>a\\ V_2(x,y,z) & x<a\end{cases}
 \[
 \vec E=\begin{cases}\vec E_1, & x>a\\ \vec E_2, & x<a\end{cases}\ \Rightarrow\ \mathrm{rot}\,\vec E=\left\{\begin{array}{ll}\mathrm{rot}\,\vec E_1; & x>a\\ \mathrm{rot}\,\vec E_2; & x<a\end{array}\right\}
 \]
-\sekilnotu[4]{Ara yüzey çizimi: kıvrık yatay bir çizgi (ara yüzey) ve ortasında kısa bir dikey çizgi; ara yüzeyin üstünde $V_1$ ve $\vec E_1=-\mathrm{grad}\,V_1$, altında $V_2$ ve $\vec E_2=-\mathrm{grad}\,V_2$ yazılı.}
+\elcizimi[0.3]{sekiller/Ders10-s4-1.png}[4]
 \[
 \vec E=-\mathrm{grad}\,V=\begin{cases}\vec E_1\\ \vec E_2\end{cases}+\vec n\,[V_1-V_2]\big|_S\,\delta(S)
 \]
@@ -206,24 +206,24 @@ V=\begin{cases}V_1(x,y,z); & x>a\\ V_2(x,y,z) & x<a\end{cases}
 \[
 \rho=\left\{\begin{array}{l}\rho_1\\ \rho_2\end{array}\right\}+\rho_s\,\delta(S)
 \]
-\sekilnotu[5]{Sol üstte 3B koordinat sistemi çizimi ($x$ ekseni sol-aşağıya, $y$ ekseni sağa, $z$ ekseni yukarı, orijin $O$). Kırmızı kesikli çizgilerle $x$ ekseni üzerinde $a$, $y$ ekseni üzerinde $b$ ve $z$ ekseni üzerinde $c$ değerlerinden gelen izdüşüm çizgileri bir noktada birleşiyor. Noktanın yanında $P(a,b,c)$ yazılı (ilk harf P mi Q mu belirsiz); altında üç ok sırasıyla $x$, $y$, $z$ harflerine iniyor. Sayfanın sağ üstünde ayrıca küçük bir çiçek karalaması var.}
+\elcizimi[0.35]{sekiller/Ders10-s5-1.png}[5]
 \[
 \rho=q\,\underbrace{\delta(x-a)}_{1/\mathrm{m}}\,\underbrace{\delta(y-b)}_{1/\mathrm{m}}\,\underbrace{\delta(z-c)}_{1/\mathrm{m}}\quad(\mathrm{C/m^3})
 \]
 \[
 \textcolor{kirmizikalem}{\rho=\frac{dq}{dv}=\infty}
 \]
-\sekilnotu[5]{3B koordinat sistemi ($x$, $y$, $z$ eksenleri); $xy$ düzlemi bir paralelkenarla gösterilmiş. $(a,b,0)$ noktasından geçen, $z$ eksenine paralel dikey kesikli bir doğru çizilmiş; doğrunun üst kısmında ``sonsuz'' yazıyor. Soldan bir okla doğru üzerindeki bir noktaya bağlanan $\rho_c$ (C/m) etiketi var. Doğrunun $xy$ düzlemini kestiği noktanın yanında $(a,b,0)$, doğrunun alt kısmında ise $(a,b,c'')$ etiketli bir nokta yazılı (etiketlerin baş harfi belirsiz, $P$ ve $P''$ gibi okunuyor).}
+\elcizimi[0.4]{sekiller/Ders10-s5-2.png}[5]
 \[
 \rho=\rho_s\,\delta(x-a)\,\delta(y-b)\quad\text{\footnotemark}\footnotetext{Claude notu: sonsuz doğru yükü için çizimdeki $\rho_c$ (C/m) beklenir; $\rho_s$ yüzey yük yoğunluğudur.}
 \]
-\sekilnotu[5]{3B koordinat sistemi; $z$ eksenini kesen yatay bir düzlem (paralelkenar) çizilmiş.}
+\elcizimi[0.3]{sekiller/Ders10-s5-3.png}[5]
 \[
 \rho=\rho_s\,\delta(z-a)\quad(\mathrm{C/m^3})
 \]
 
 \sayfa{6}
-\sekilnotu[6]{3B koordinat sistemi ($x$, $y$, $z$ eksenleri); $xy$ düzlemi paralelkenarla gösterilmiş. $(a,b,0)$ noktasından geçen dikey kesikli bir doğru; doğrunun üst ucu $z$ ekseni yüksekliğinde bir noktayla bitiyor, yanında $(a,b,z_1)$ etiketi var (baş harf $P''$ gibi okunuyor) ve doğrunun yanında ``sonlu'' yazıyor. Soldan bir okla doğruya bağlanan $\rho_c$ (C/m) etiketi; $xy$ düzlemini kestiği noktanın yanında $(a,b,0)$, altta ise $(a,b,c'')$ etiketleri var.}
+\elcizimi[0.4]{sekiller/Ders10-s6-1.png}[6]
 \[\begin{aligned}
 \rho&=\rho_c\,\delta(x-a)\,\delta(y-b)\,\bigl[u(z-z_1)+u(z-z_2)\bigr]\quad\text{\footnotemark}\\
 &=\rho_c\,\delta(x-a)\,\delta(y-b)\qquad z_2<z<z_1
@@ -234,7 +234,7 @@ V=\begin{cases}V_1(x,y,z); & x>a\\ V_2(x,y,z) & x<a\end{cases}
 \tan(x)\,\delta(x-\pi)&\\
 &=\tan(\pi)\,\delta(x-\pi)=0\quad/\!/
 \end{aligned}\footnotetext{Claude notu: $\cos 0$ olmalı.}\]
-\sekilnotu[6]{3B koordinat sistemi; $z$ eksenini kesen yatay bir düzlem (paralelkenar) çizilmiş.}
+\elcizimi[0.3]{sekiller/Ders10-s6-2.png}[6]
 \[
 \rho=\rho_s\,\delta(z-a)\,\bigl[u(y-y_1)-u(y-y_2)\bigr]\bigl[u(x-x_2)-u(x-x_1)\bigr]
 \]
