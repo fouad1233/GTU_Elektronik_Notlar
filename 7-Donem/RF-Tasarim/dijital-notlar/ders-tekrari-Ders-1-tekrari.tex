@@ -1,0 +1,223 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{RF Tasarım}{Ders 1 tekrarı: RF temelleri, gürültü, alıcı, anten, filtre}{Ders-1-tekrari.pdf}
+
+\sayfa{1}
+\section{Shannon's Capacity Theorem}
+
+\[ C = W \log(1+\mathrm{SNR}) \]
+\begin{itemize}
+  \item[$C$:] kanal kapasitesi $\left(\dfrac{\text{bit}}{\text{sn}}\right)$
+  \item[$W$:] kanalın genişliği (Hz)
+  \item[SNR:] signal to noise ratio $\left(\dfrac{P_s}{P_n}\right)$
+\end{itemize}
+
+Bit error rate
+
+\elcizimi[0.6]{sekiller/ders-tekrari-Ders-1-tekrari-s1-1.png}[1]
+
+\[ C = W \log(1+\mathrm{SNR}) \]
+$C \to$ kanal kapasite $\left(\dfrac{\text{bit}}{\text{sn}}\right)$, \quad $W \to$ BG
+
+RF ışıma yapar, anten çalıştığı bölgeye göre tasarlanmış olmalı.
+
+\elcizimi[0.8]{sekiller/ders-tekrari-Ders-1-tekrari-s1-2.png}[1]
+
+Gürültüyü minimalize etmeliyiz.
+
+\textbf{RF:} 3khz frekansından 300 GHz'e kadar olan tüm sinyaller. (100 GHz üstü milimeter wave, 10 GHz üstü microwave)
+
+\elcizimi[0.35]{sekiller/ders-tekrari-Ders-1-tekrari-s1-3.png}[1]
+\elcizimi[0.45]{sekiller/ders-tekrari-Ders-1-tekrari-s1-4.png}[1]
+
+\begin{center}
+\small
+\begin{tabular}{@{}l l l l@{}}
+ & $f$ & $\lambda = \dfrac{c}{f}$ & \\[4pt]
+VLF: {\scriptsize (very low f.)} & 3 -- 30khz & 33 km $\sim$ 10 km\footnotemark & \raisebox{-4.2ex}[0pt][0pt]{$\left.\rule[-5ex]{0pt}{10ex}\right\}$\ {\footnotesize\begin{tabular}[c]{@{}l@{}}Maritime radio navigation\\ (Denizcilikte çok uzun mesafe haberleşme)\end{tabular}}} \\[6pt]
+LF: {\scriptsize (low f.)} & 30 -- 300k & 10 km $\sim$ 1 km & \\[6pt]
+MF: {\scriptsize (medium f.)} & 300k $\sim$ 3M & 1 km $\sim$ 100m & \hspace{0.45cm}\raisebox{-2.1ex}[0pt][0pt]{$\left.\rule[-2.8ex]{0pt}{5.6ex}\right\}$\ {\footnotesize\begin{tabular}[c]{@{}l@{}}AM Radio\\ aviation\\ Navigation\end{tabular}}} \\[6pt]
+HF: & 3M $\sim$ 30M & 100 m $\sim$ 10 m & \\[6pt]
+ & & & {\footnotesize \okunamadi{?? radar}} \\[6pt]
+VHF: & 30M $\sim$ 300M & 10 m $\sim$ 1 m & $\rightarrow$ TV, FM \\[6pt]
+UHF: & 300M $\sim$ 3G & 1 m $\sim$ 100 mm & $\rightarrow$ TV, mobile, GPS, Wifi, 4G \\[6pt]
+SHF: & 3G $\sim$ 30 G & 100 mm $\sim$ 10 mm & $\rightarrow$ Wifi, satellite \\[6pt]
+EHF: & 30G $\sim$ 300 G & 10 mm $\sim$ 1 mm & $\rightarrow$ Astronomy satellite \\
+\end{tabular}
+\end{center}
+\footnotetext{Claude notu: muhtemelen 100 km olmalı.}
+
+\sayfa{2}
+\elcizimi[0.2]{sekiller/ders-tekrari-Ders-1-tekrari-s2-1.png}[2]
+
+\[ L \approx \dfrac{\lambda}{4} \qquad \text{(Anten boyu)} \]
+\[ L = \dfrac{\lambda}{4} \]
+
+frekans büyüdükçe anten küçülür.
+\[ f = \dfrac{c}{\lambda} \;\Rightarrow\; \lambda = \dfrac{c}{f} \]
+
+\section{Noise}
+
+\elcizimi[0.8]{sekiller/ders-tekrari-Ders-1-tekrari-s2-2.png}[2]
+
+varyans gürültü
+
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s2-3.png}[2]
+
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s2-4.png}[2]
+
+\subsection*{White noise}
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s2-5.png}[2]
+
+\subsection*{Pink noise}
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s2-6.png}[2]
+
+White Noise $\sim$ Thermal Noise (Shot Noise) \quad [$\rightarrow$ White Noise $N(m_0,\sigma)$]
+
+Flicker Noise $\left(\dfrac{1}{f^n}\text{ noise}\right)$ $\sim$ Pink noise \\
+(Low frequency)
+
+\sayfa{3}
++ Üst üste \okunamadi{gelirler}
+
+\elcizimi[0.6]{sekiller/ders-tekrari-Ders-1-tekrari-s3-1.png}[3]
+
+SNR oranı
+
+\elcizimi[0.7]{sekiller/ders-tekrari-Ders-1-tekrari-s3-2.png}[3]
+
+\[ \mathrm{SNR} = \dfrac{P_s\,[\mathrm{W}]}{P_n\,[\mathrm{W}]} \qquad [\,\cdot\,]^{\text{birimsiz}} \]
+
+\[ \mathrm{SNR}\,[\mathrm{dB}] = 10\log\left[\overbrace{\dfrac{P_s}{P_n}}^{\mathrm{SNR}}\right]\mathrm{dB} \]
+\[ 10\log[2\cdot\mathrm{SNR}] = \underbrace{10\log 2}_{3\,\mathrm{db}} + 10\log[\mathrm{SNR}] \]
+
+$\log[\mathrm{SNR}]$ birimi: bel \\
+$10\log[\mathrm{SNR}]$ decibel
+
+\begin{tabular}{@{}l l@{}}
+2 kat arttırırsak & 3db \\
+10 kat arttırırsak & 10 db \quad \okunamadi{} \\
+100 kat '' & 20 db \\
+\end{tabular}
+
+\begin{center}
+\fbox{\begin{minipage}{0.8\linewidth}
+\[ \mathrm{SNR}\,[\mathrm{dB}] = 10\log\left(\dfrac{P_s}{P_n}\right) \]
+\[ 10\log[2\,\mathrm{SNR}] = \underbrace{10\log 2} + 10\log[\mathrm{SNR}] \]
+2 kat artarsa 3db \underline{artar}
+\end{minipage}}
+\end{center}
+
+\[ 10\log\left[\dfrac{P_s}{1\,\mathrm{W}}\right] \to \mathrm{dBW} \]
+\[ 10\log\left[\dfrac{P_s}{1\,\mathrm{mW}}\right] \to \mathrm{dBm} \]
+
+\begin{center}
+\fbox{\begin{minipage}{0.45\linewidth}
+\[ 10\log\left[\dfrac{P_s}{1\,\mathrm{W}}\right] \to \mathrm{dBW} \]
+\[ 10\log\left[\dfrac{P_s}{1\,\mathrm{mW}}\right] \Rightarrow \mathrm{dBm} \]
+\end{minipage}}
+\end{center}
+
+\[
+\begin{aligned}
+10\log(10) &= 10\ \mathrm{dB}\\
+&\;\scriptstyle 2\ \text{kat}\\[-2pt]
+10\log(20) &= 13\ \mathrm{dB}\\
+10\log(40) &= 16\ \mathrm{dB}\\
+10\log(80) &= 19\ \mathrm{dB}\\
+10\log(100) &= 20\ \mathrm{dB}
+\end{aligned}
+\]
+
+\[ 10\log[P_s] + 10\log\left[\dfrac{1}{\underbrace{1\,\mathrm{mW}}_{10^{-3}\,\mathrm{W}}}\right] = \Bigl(P_s\,[\mathrm{dBW}] + 30\,\mathrm{dB}\Bigr)\ (\mathrm{dBm}) \]
+
+\[ \mathrm{dBW} + 30\,\mathrm{dB} = \mathrm{dBm} \]
+
+\[ \underbrace{10\log P_s}_{\mathrm{dBW}} + \underbrace{10\log\left(\dfrac{1}{10^{-3}}\right)}_{30\,\mathrm{dB}} \]
+\[ \mathrm{dBW} + 30\,\mathrm{dB} = \mathrm{dBm} \]
+
+\[ 10\log\left[\dfrac{1\,\mathrm{mW}}{1\,\mathrm{mW}}\right] = 0\ \mathrm{dBm} \]
+\[ 10\log\left[\dfrac{10\,\mathrm{mW}}{1\,\mathrm{mW}}\right] = 10\ \mathrm{dBm} \]
+
+\sayfa{4}
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s4-1.png}[4]
+
+\elcizimi[0.75]{sekiller/ders-tekrari-Ders-1-tekrari-s4-2.png}[4]
+
+\subsection*{Reciver}
+\elcizimi[0.9]{sekiller/ders-tekrari-Ders-1-tekrari-s4-3.png}[4]
+
+\subsection*{RF Front-End}
+\elcizimi[0.9]{sekiller/ders-tekrari-Ders-1-tekrari-s4-4.png}[4]
+
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s4-5.png}[4]
+
+Full duplex
+
+\elcizimi[0.4]{sekiller/ders-tekrari-Ders-1-tekrari-s4-6.png}[4]
+
+\sayfa{5}
+\section{Antennas}
+
+Log-periodic Antenna \qquad her iki \okunamadi{yönden} alır
+
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s5-1.png}[5]
+
+metal reflektör koyarsanız sadece tek yönlü $\leftarrow$ olur
+
+\elcizimi[0.85]{sekiller/ders-tekrari-Ders-1-tekrari-s5-2.png}[5]
+
+\subsection*{Patch Antenna}
+\elcizimi[0.6]{sekiller/ders-tekrari-Ders-1-tekrari-s5-3.png}[5]
+
+\elcizimi[0.6]{sekiller/ders-tekrari-Ders-1-tekrari-s5-4.png}[5]
+
+\sayfa{6}
+\section{RF Filters}
+
+\[ 20\log\dfrac{V_o}{V_i} = 10\log\left[\dfrac{P_o}{P_i}\right] = G \]
+
+\elcizimi[0.7]{sekiller/ders-tekrari-Ders-1-tekrari-s6-1.png}[6]
+
+\elcizimi[0.6]{sekiller/ders-tekrari-Ders-1-tekrari-s6-2.png}[6]
+
+\[ BW = f_2 - f_1 \]
+
+\elcizimi[0.7]{sekiller/ders-tekrari-Ders-1-tekrari-s6-3.png}[6]
+
+\[ f_0 \leftrightarrow BW \qquad f_2 \sim f_1 \]
+\[ Q = \dfrac{f_2 - f_1}{f_0}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $Q = \dfrac{f_0}{f_2 - f_1}$ olmalı.}
+
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s6-4.png}[6]
+
+\elcizimi[0.5]{sekiller/ders-tekrari-Ders-1-tekrari-s6-5.png}[6]
+
+Aktif komponentler akımı yön veriyor.
+
+\section{LNA}
+
+\elcizimi[0.35]{sekiller/ders-tekrari-Ders-1-tekrari-s6-6.png}[6]
+
+\elcizimi[0.6]{sekiller/ders-tekrari-Ders-1-tekrari-s6-7.png}[6]
+
+\[ \mathrm{SNR}_{out} = \dfrac{S_o}{N_o + N_A} = \dfrac{S_i \cdot G}{N_i G + N_A} \]
+$N_A \to$ Filtrenin kendisinden kaynaklanan ek gürültü \qquad $N_A <<<$ seçilmeli
+
+\elcizimi[0.4]{sekiller/ders-tekrari-Ders-1-tekrari-s6-8.png}[6]
+
+\[ \mathrm{SNR}_{out} < \mathrm{SNR}_{in} \]
+
+\subsection*{Requirements}
+\begin{itemize}
+  \item[--] Low noise coming from device ($\Rightarrow$ low NF) $\rightarrow$ Noise Figure
+  \item[--] Linearity ($\Rightarrow$ high $P_{1\,\mathrm{dB}}$ $\rightarrow$ 1dB Compression Point \\
+        IP3 $\rightarrow$ Third order Intercept Point)
+  \item[--] Low Power Consumption
+  \item[--] Low Area '' (Small form factor)
+  \item[--] Gain ($\Rightarrow S_{21}$)
+  \item[--] Matching to anten filter
+\end{itemize}
+
+\end{document}

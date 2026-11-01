@@ -10,7 +10,7 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [7. Dönem](../README.md) · 2024–2025 Güz | ELM667 | RF System Design for Communications | 13 ders notu · 6 ders tekrarı · 15 dijital not · 3 sınav çalışması · 8 ödev · 1 proje |
+| [7. Dönem](../README.md) · 2024–2025 Güz | ELM667 | RF System Design for Communications | 13 ders notu · 6 ders tekrarı · 16 dijital not · 3 sınav çalışması · 8 ödev · 1 proje |
 
 **Bu sayfada:** [Ders Notları](#ders-notları) · [Ders Tekrarı](#ders-tekrarı) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması) · [Ödevler](#ödevler) · [Projeler](#projeler)
 
@@ -34,14 +34,14 @@
 
 ## Ders Tekrarı
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Ders 1 tekrari](ders-tekrari/Ders-1-tekrari.pdf) | PDF | 6 s. |
-| [Ders3 tekrar](ders-tekrari/Ders3-tekrar.pdf) | PDF | 12 s. · 8,0 MB |
-| [Ders 4 tekrar](ders-tekrari/Ders-4-tekrar.pdf) | PDF | 8 s. |
-| [Ders 5 tekrar](ders-tekrari/Ders-5-tekrar.pdf) | PDF | 7 s. |
-| [Ders6 tekrari](ders-tekrari/Ders6-tekrari.pdf) | PDF | 10 s. · 7,0 MB |
-| [Ders7 tekrari](ders-tekrari/Ders7-tekrari.pdf) | PDF | 5 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Ders 1 tekrari](ders-tekrari/Ders-1-tekrari.pdf) | PDF | 6 s. | [PDF](dijital-notlar/ders-tekrari-Ders-1-tekrari.pdf) |
+| [Ders3 tekrar](ders-tekrari/Ders3-tekrar.pdf) | PDF | 12 s. · 8,0 MB |  |
+| [Ders 4 tekrar](ders-tekrari/Ders-4-tekrar.pdf) | PDF | 8 s. |  |
+| [Ders 5 tekrar](ders-tekrari/Ders-5-tekrar.pdf) | PDF | 7 s. |  |
+| [Ders6 tekrari](ders-tekrari/Ders6-tekrari.pdf) | PDF | 10 s. · 7,0 MB |  |
+| [Ders7 tekrari](ders-tekrari/Ders7-tekrari.pdf) | PDF | 5 s. |  |
 
 ## Dijital Notlar (LaTeX)
 
@@ -64,6 +64,7 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | [Ders 12](ders-notlari/Ders-12.pdf) <sub>Ders Notları</sub> | Direct conversion alıcı, dezavantajları, I/Q mismatch | [PDF](dijital-notlar/Ders-12.pdf) · 13 s. | [.tex](dijital-notlar/Ders-12.tex) |
 | [Ders 13-2](ders-notlari/Ders-13-2.pdf) <sub>Ders Notları</sub> | Faz kaydırma, Hartley/Weaver, image rejection | [PDF](dijital-notlar/Ders-13-2.pdf) · 10 s. | [.tex](dijital-notlar/Ders-13-2.tex) |
 | [Ders 13](ders-notlari/Ders-13.pdf) <sub>Ders Notları</sub> | Faz kaydırma, Hartley/Weaver, image rejection | [PDF](dijital-notlar/Ders-13.pdf) · 10 s. | [.tex](dijital-notlar/Ders-13.tex) |
+| [Ders 1 tekrari](ders-tekrari/Ders-1-tekrari.pdf) <sub>Ders Tekrarı</sub> | Ders 1 tekrarı: RF temelleri, gürültü, alıcı, anten, filtre | [PDF](dijital-notlar/ders-tekrari-Ders-1-tekrari.pdf) · 13 s. | [.tex](dijital-notlar/ders-tekrari-Ders-1-tekrari.tex) |
 | [Not](vize-calismasi/Not.pdf) <sub>Final/Vize Çalışması</sub> | Vize çalışması: Doğrusal olmama, gürültü, dinamik aralık | [PDF](dijital-notlar/vize-calismasi-Not.pdf) · 30 s. | [.tex](dijital-notlar/vize-calismasi-Not.tex) |
 | [Notes](vize-calismasi/Notes.pdf) <sub>Final/Vize Çalışması</sub> | Vize çalışması: Doğrusal olmama ve gürültü (özet) | [PDF](dijital-notlar/vize-calismasi-Notes.pdf) · 5 s. | [.tex](dijital-notlar/vize-calismasi-Notes.tex) |
 
@@ -110,4 +111,4 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *RF System Design for Communications (ELM667)* — Semester 7, Fall 2024–25. RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project. This page lists: 13 lecture notes, 6 lecture reviews, 15 digital notes, 3 exam-prep files, 8 assignments, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *RF System Design for Communications (ELM667)* — Semester 7, Fall 2024–25. RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project. This page lists: 13 lecture notes, 6 lecture reviews, 16 digital notes, 3 exam-prep files, 8 assignments, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

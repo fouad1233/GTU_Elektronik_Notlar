@@ -4,12 +4,12 @@
 
 [Ana sayfa](../README.md) › 7. Dönem
 
-GTÜ Elektronik Mühendisliği 7. dönem dersleri: **3 ders**, 826 dosya, 37 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 7. dönem dersleri: **3 ders**, 858 dosya, 38 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
 | [**Görüntü İşleme**](Goruntu-Isleme/) | ELM463 | Sayısal görüntü temelleri, nokta işlemleri ve histogram, uzamsal filtreleme, morfolojik işlemler ve bölütleme; Python laboratuvarları ve trafik işareti tespiti projesi. | 11 ders notu · 11 dijital not · 2 ödev · 6 lab · 1 proje |
-| [**Haberleşme için RF Sistem Tasarımı**](RF-Tasarim/) | ELM667 | RF alıcı-verici sistemleri: kazanç, gürültü, doğrusalsızlık (P1dB, IP3) ve sistem bütçesi; 4G LTE dönem projesi. | 13 ders notu · 6 ders tekrarı · 15 dijital not · 3 sınav çalışması · 8 ödev · 1 proje |
+| [**Haberleşme için RF Sistem Tasarımı**](RF-Tasarim/) | ELM667 | RF alıcı-verici sistemleri: kazanç, gürültü, doğrusalsızlık (P1dB, IP3) ve sistem bütçesi; 4G LTE dönem projesi. | 13 ders notu · 6 ders tekrarı · 16 dijital not · 3 sınav çalışması · 8 ödev · 1 proje |
 | [**Makine Öğrenmesinin Temelleri**](Makine-Ogrenmesi/) | ELM472 | Gözetimli ve gözetimsiz öğrenme, regresyon ve sınıflandırma, Bayesçi karar teorisi, boyut azaltma, kümeleme ve anomali tespiti, yapay sinir ağlarına giriş. | 11 ders notu · 11 dijital not · 1 sınav çalışması · 5 ödev · 1 proje |
 
 [← 6. Dönem](../6-Donem/README.md) · [Ana sayfa](../README.md)
@@ -18,10 +18,10 @@ GTÜ Elektronik Mühendisliği 7. dönem dersleri: **3 ders**, 826 dosya, 37 dij
 
 ## English
 
-**Semester 7 · Fall 2024–25** — 3 courses, 826 files, 37 digital notes. Click a course to see all of its files.
+**Semester 7 · Fall 2024–25** — 3 courses, 858 files, 38 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|
 | [**Image Processing**](Goruntu-Isleme/) | ELM463 | Digital image fundamentals, point operations and histograms, spatial filtering, morphological operations and segmentation; Python labs and a traffic-sign detection project. | 11 lecture notes · 11 digital notes · 2 assignments · 6 labs · 1 project |
-| [**RF System Design for Communications**](RF-Tasarim/) | ELM667 | RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project. | 13 lecture notes · 6 lecture reviews · 15 digital notes · 3 exam-prep files · 8 assignments · 1 project |
+| [**RF System Design for Communications**](RF-Tasarim/) | ELM667 | RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project. | 13 lecture notes · 6 lecture reviews · 16 digital notes · 3 exam-prep files · 8 assignments · 1 project |
 | [**Fundamentals of Machine Learning**](Makine-Ogrenmesi/) | ELM472 | Supervised and unsupervised learning, regression and classification, Bayesian decision theory, dimensionality reduction, clustering and anomaly detection, and an introduction to neural networks. | 11 lecture notes · 11 digital notes · 1 exam-prep file · 5 assignments · 1 project |
