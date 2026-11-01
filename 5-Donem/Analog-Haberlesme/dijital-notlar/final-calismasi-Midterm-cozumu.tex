@@ -1,0 +1,145 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{ELEC 361 Midterm Exam (Fall 2023) çözümü}{Midterm-cozumu.pdf}
+
+\sayfa{1}
+\sekilnotu[1]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\begin{align*}
+x(t)&=\sum_{k=-\infty}^{\infty}\Pi(2000t-2k)\\
+&=\sum_{k=-\infty}^{\infty}\Pi\!\left(\frac{t-\frac{1}{1000}k}{1/2000}\right)
+\end{align*}
+\[
+\Pi\!\left(\frac{t}{1/2000}\right)\Rightarrow
+\]
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.9cm,murekkep,font=\small]
+\draw[->] (-1.8,0) -- (1.8,0) node[right] {$t$};
+\draw[->] (0,0) -- (0,1.5);
+\draw[thick] (-1,0)--(-1,1)--(1,1)--(1,0);
+\node[below] at (-1,0) {$\frac{-1}{4000}$};
+\node[below] at (1,0) {$\frac{1}{4000}$};
+\end{tikzpicture}
+\qquad
+\begin{tikzpicture}[x=0.9cm,y=0.9cm,murekkep,font=\small]
+\draw[->] (-6.7,0) -- (6.7,0);
+\draw[->] (0,0) -- (0,1.8) node[above] {$x(t)$};
+\foreach \a in {-4,0,4} \draw[thick] (\a-1,0)--(\a-1,1)--(\a+1,1)--(\a+1,0);
+\foreach \tk/\lb in {-5/-5,-3/-3,-1/-1,1/1,3/3,5/5} \draw (\tk,0.05)--(\tk,-0.05) node[below] {$\frac{\lb}{4000}$};
+\node[left] at (0,1) {$1$};
+\end{tikzpicture}
+\end{center}
+\[
+T_{\text{periyot}}=\frac{1}{1000}=\frac{4}{4000}=10^{-3}\ \mathrm{sn},\qquad f_0=1\,\mathrm{kHz},\quad \omega_0=2000\pi
+\]
+
+\noindent a)
+\begin{align*}
+x(t)&=\sum_{n=-\infty}^{\infty}x_n\,e^{jn\omega_0 t},\qquad x_0=\frac{1}{T_0}\int x(t)\,dt\\
+x_n&=\frac{1}{T_0}\int x(t)\,e^{-jn\omega_0 t}\,dt
+\end{align*}
+\[
+x_0=1000\int_{-1/4000}^{1/4000}1\,dt=1000\cdot\frac{2}{4000}=\frac12
+\]
+\begin{align*}
+x_n&=\frac{1}{T_0}\int_{-1/4000}^{1/4000}1\cdot e^{-jn2\pi\overset{1000}{f_0}t}\,dt\\
+x_n&=10^3\cdot\frac{-1}{jn2\pi10^3}\Bigl[e^{-jn2\pi\cdot10^3\cdot\frac14\cdot10^{-3}}-e^{jn2\pi\cdot10^3\cdot\frac14\cdot10^{-3}}\Bigr]\\
+&=\frac{1}{\pi n}\cdot\frac{1}{2j}\Bigl[e^{j\frac{n}{2}\pi}-e^{-j\frac12 n\pi}\Bigr]=\frac{1}{\pi n}\sin\!\left(\frac{n\pi}{2}\right),\ n\neq0
+\end{align*}
+\begin{align*}
+x(t)&=\sum_{n=-\infty}^{\infty}x_n e^{jn2\pi f_0 t}=\frac12+\sum_{\substack{n\neq0\\ n\ \text{tek}}}\frac{1}{\pi n}\underline{\sin\!\left(\frac{n\pi}{2}\right)}\,e^{jn2000\pi t}\\
+&\qquad\underline{\sin\!\left(\frac{n\pi}{2}\right)}\Rightarrow\begin{cases}\ \ 1, & n=1,5,9,13\\ -1, & n=3,7,11\end{cases}
+\end{align*}
+\begin{align*}
+S_x(f)&=\sum_n|x_n|^2\,\delta(f-nf_0)\\
+&=\frac14\,\delta(f)+\sum_{\substack{n\neq0\\ n\ \text{tek}}}\frac{1}{\pi^2n^2}\,\delta(f-n1000)
+\end{align*}
+
+\sayfa{2}
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=1.1cm,murekkep,font=\small]
+\draw[->] (-4.2,0) -- (4.8,0) node[right] {$f$ (kHz)};
+\foreach \tk in {-3,0,1,2,3,4} \node[below] at (\tk,0) {$\tk$};
+\draw[->,thick,turuncukalem] (0,0) -- (0,2) node[right] {$\frac14$};
+\node[above] at (0,2.05) {$S_x(f)$};
+\foreach \tk in {-1,1} \draw[->,thick,turuncukalem] (\tk,0)--(\tk,0.8);
+\foreach \tk in {-3,3} \draw[->,thick,turuncukalem] (\tk,0)--(\tk,0.3);
+\node[above left] at (-1,0.8) {$\frac{1}{\pi^2}$};
+\node[above right] at (1,0.8) {$\frac{1}{\pi^2}$};
+\node[above right] at (3,0.3) {$\frac{1}{9\pi^2}$};
+\end{tikzpicture}
+\end{center}
+
+\noindent b)\quad
+\begin{tikzpicture}[murekkep,font=\small,baseline=-0.1cm]
+\node[draw,minimum height=0.6cm] (h) at (0,0) {$h(t)$};
+\draw[->] (-1.6,0) node[left] {$x(t)$} -- (h);
+\draw[->] (h) -- (1.6,0) node[right] {$y(t)$};
+\end{tikzpicture}
+\[
+h(t)=\underbrace{20000}_{A\tau}\,\mathrm{sinc}\bigl(10\mathrm{k}(t-10)\bigr),\qquad \tau=10\mathrm{k},\quad A=2
+\]
+\[
+\Longleftrightarrow\ H(f)=2\,\Pi\!\left(\frac{f}{10\mathrm{k}}\right)e^{-j2\pi f10}
+\]
+\[
+|H(f)|=2\,\Pi\!\left(\frac{f}{10\mathrm{k}}\right),\qquad \theta_H(f)=-2\pi\,10f
+\]
+\begin{center}
+\begin{tikzpicture}[x=0.5cm,y=0.6cm,murekkep,font=\small]
+\draw[->] (-4.5,0)--(4.5,0) node[right]{$f$};
+\draw[->] (0,0)--(0,2.8) node[above]{$|H(f)|$};
+\draw[thick] (-3,0)--(-3,2)--(3,2)--(3,0);
+\node[above right] at (0,2) {$2$};
+\node[below] at (-3,0) {$-5\mathrm{k}$}; \node[below] at (3,0) {$5\mathrm{k}$};
+\end{tikzpicture}
+\hspace{1.5cm}
+\begin{tikzpicture}[x=0.5cm,y=0.6cm,murekkep,font=\small]
+\draw[->] (-4.5,0)--(4.5,0) node[right]{$f$};
+\draw[->] (0,-2.8)--(0,2.8) node[above]{$\theta_H(f)$};
+\draw[thick] (-3,2)--(3,-2);
+\draw[dashed] (-3,0)--(-3,2); \draw[dashed] (3,0)--(3,-2);
+\node[below] at (-3,0) {$-5\mathrm{k}$}; \node[above] at (3,0) {$5\mathrm{k}$};
+\node[right] at (3,-2) {$-20\pi f$};
+\end{tikzpicture}
+\end{center}
+$\Rightarrow$ $|H(f)|$, $x(t)$'nin spektrumunun tamamında $|k|\neq 0$ olmadığından bu işaret bozulmasız değildir.
+
+\noindent c) $x(t)=20\cos(2\pi\,2\mathrm{k}\,t)+10\cos(2\pi\,4\mathrm{k}\,t)$
+\begin{align*}
+X(f)&=10\,[\delta(f-2\mathrm{k})+\delta(f+2\mathrm{k})]\\
+&\quad+5\,[\delta(f-4\mathrm{k})+\delta(f+4\mathrm{k})]
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[x=0.8cm,y=0.5cm,murekkep,font=\small]
+\draw[->] (-4.8,0)--(4.8,0) node[right]{$f$ (kHz)};
+\draw[->] (0,0)--(0,4.2) node[above]{$|X(f)|$};
+\foreach \xx/\hh in {-4/2,4/2,-2/4,2/4} \draw[->,thick,turuncukalem] (\xx,0)--(\xx,\hh);
+\draw[dashed,turuncukalem] (-2,4)--(2,4);
+\foreach \xx in {-4,-2,0,2,4} \node[below] at (\xx,0) {$\xx$};
+\end{tikzpicture}
+\end{center}
+$|H(f)|$, $X(f)$'in BG'si içinde sabit, $\theta_H(f)$'de lineer olduğu için sistem bu işaret için bozulmasızdır.
+
+\noindent $k=2,\quad t_d=10$
+
+\noindent
+\begin{tikzpicture}[murekkep,font=\small,baseline=-0.1cm]
+\node[draw,minimum height=0.6cm] (h) at (0,0) {$h(t)$};
+\draw[->] (-1.6,0) node[left] {$x(t)$} -- (h);
+\draw[->] (h) -- (1.6,0) node[right] {$y(t)=2x(t-10)$};
+\end{tikzpicture}
+\begin{align*}
+S_y(f)&=|H(f)|^2\cdot S_x(f)\\
+S_x(f)&=100\delta(f-2000)+100\delta(f+2000)+25\delta(f-4\mathrm{k})+25\delta(f+4\mathrm{k})\\
+S_y(f)&=400\delta(f-2\mathrm{k})+400\delta(f+2\mathrm{k})+100\delta(f-4\mathrm{k})+100\delta(f+4\mathrm{k})
+\end{align*}
+\[ \mathcal{F}^{-1}\downarrow \]
+\[ R_y(\tau)=800\cos(2\pi\,2\mathrm{k}\,\tau)+200\cos(2\pi\,4\mathrm{k}\,\tau) \]
+
+\noindent 1.\,yol: $P_y=R_y(0)=800+200$
+
+\noindent 2.\,yol: $P_y=\displaystyle\int_{-\infty}^{\infty}S_y(f)\,df=2\cdot400+2\cdot100=1000\ \mathrm{W}$
+
+\end{document}

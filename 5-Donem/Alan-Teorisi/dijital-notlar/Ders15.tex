@@ -1,0 +1,264 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Ders 15: Lorentz kuvveti, magnetik indüksiyon, akım yoğunluğu}{Ders15.pdf}
+
+\sayfa{1}
+\sekilnotu[1]{Sol üstte içinde ``$\times$'' ve altında ``$q$'' yazan bir daire; üstünde $\vec{v}\neq 0$.}
+
+\sekilnotu[1]{Kapalı, bulut biçimli bir bölge içinde $q_1, q_2, \dots, q_n$ yükleri; her yükten $\vec{v}_1, \vec{v}_2, \dots, \vec{v}_n$ hız okları çıkıyor.}
+
+\noindent $q_i$: \quad $i = 1,2,\dots,n$
+
+$\vec{E}$ $q_i$'lerin yarattığı alansa, \okunamadi{yüklerde} $q$'ya göre hareket halinde ise o zaman gözlenen $\vec{F}$ kuvveti $q\vec{E}$'den farklı olur ve bu fark $q$'ya ve $q$'nun $\vec{v}$'sine dik olacak şekilde ortaya çıkan magnetik indüksiyon vektörü adı verilir ve bu hareketli yükler tarafından yaratılıyor.
+
+\[ \vec{F} = q\cdot\vec{E} \]
+
+\sekilnotu[1]{$q$ yükü ve ondan çıkan $\vec{v}$ hız oku; yanında ``(zamandan bağımsız)''.}
+
+\[ \vec{F} - q\vec{E} = q\,\vec{v}\times\vec{B} \]
+\formulkutu[Lorentz kuvveti]{\vec{F} = q\vec{E} + q\,\vec{v}\times\vec{B}}
+\[ = q\,(\vec{E} + \vec{v}\times\vec{B}) \qquad\qquad \vec{B}\ ? \]
+
+\noindent $\vec{E}$'yi yaratan kaynaklar durgun yükler
+
+\noindent $\vec{B}$'yi \quad '' \qquad '' \qquad\qquad hareketli yükler
+
+\sekilnotu[1]{İki eksen takımı: solda $x,y,z$; sağda ikinci takım $x',y',z'$. İkinci takımın yanında $q$, $q_1$ yükleri ve $\vec{v}$, $\vec{v}_1$ hız okları çizilmiş.}
+
+\noindent ``iki ayrı gözlemci''
+\begin{align*}
+  \vec{v} &= \vec{v}_1 \\
+  \vec{F} &= q\,(\vec{E} + \vec{v}\times\vec{B}) \\
+  \vec{F}_1' &= q_1\,(\vec{E}' + \vec{v}'\times\vec{B}')
+\end{align*}
+\textit{(Son satırda $\vec{v}'\times\vec{B}'$ terimi çizilmiş.)}
+
+\[ \begin{aligned} q_i:\quad \vec{v}_i = 0 \qquad & \vec{B} = 0 \\ \vec{v}_i \neq 0 \qquad & \vec{B} \neq 0 \quad (t\text{'den bağımsız}) \end{aligned} \]
+
+\[ \vec{F} = q\,(\vec{E} + \vec{v}\times\vec{B}) = q\vec{E} + q\,\vec{v}\times\underbrace{\vec{B}}_{\substack{\text{Tesla}\\ \text{Weber/m}^2}} \]
+
+\[ \vec{F} = q\,\vec{v}\times\vec{B} \qquad\qquad \vec{B} = 1\,\mathrm{T} \]
+\sekilnotu[1]{$\vec{v}$ ve $\vec{B}$ vektörleri arasındaki $\theta$ açısı ($\vec{B}$ sağa, $\vec{v}$ yukarı-sağa).}
+\[ |\vec{F}| = |q|\,|\vec{v}|\,|\vec{B}|\cdot\sin\theta \]
+
+\[ \vec{v} \parallel \vec{B} \]
+\sekilnotu[1]{Solda iki paralel ok: $\vec{v}$ (üstte) ve $\vec{B}$ (altta), ikisi de sağa. ``veya'' yazısından sonra: $\vec{B}$ sola, $\vec{v}$ sağa bakan zıt yönlü iki ok, üzerinde ``$180^\circ$'' yayı. Altta küme parantezi ve ``$\vec{F}=0$''.}
+\[ \vec{F} = 0 \]
+
+\begin{align*}
+  \vec{F} &= q\,(\vec{v}\times\vec{B} + \vec{E}) \\
+  -\vec{F} &= q\,(-\vec{v}\times\vec{B}' - \vec{E}')
+\end{align*}
+\[ \Downarrow \quad \vec{B} \]
+
+\sekilnotu[1]{Eksen takımı: siyah $x,y,z$ eksenleri ($z$ yukarı, $y$ sağa, $x$ sol alta); turuncu kesikli $x',y',z'$ eksenleri ters yönlü ($z'$ aşağı, $y'$ sola, $x'$ sağ üste).}
+
+\begin{align*}
+  \vec{B}' &\neq -\vec{B} \\
+  \vec{E}' &= -\vec{E}\ \checkmark \\
+  \vec{v}' &= -\vec{v}\ \checkmark \\
+  \vec{F}' &= -\vec{F}\ \checkmark
+\end{align*}
+
+\sayfa{2}
+\noindent Pr 2 \qquad\qquad $\vec{a}(x,y,z)$ \qquad\qquad $\vec{a}(x',y',z')$
+
+\sekilnotu[2]{Eksen takımları: siyah $x,y,z$ ($z$ yukarı, $y$ sağa, $x$ sol alta); kırmızı $x',y',z'$ ters yönlü ($x'$ sağ üste, $y'$ sola, $z'$ aşağı), orijin $o'$.}
+
+\begin{align*}
+  \vec{a}'(x',y',z') &= -\vec{a} \\
+  \vec{B} = \operatorname{rot}\vec{a} &= \left(\frac{\partial}{\partial x}\vec{e}_x + \frac{\partial}{\partial y}\vec{e}_y + \frac{\partial}{\partial z}\vec{e}_z\right)\times\vec{a} \\
+  \vec{B}' = \operatorname{rot}\vec{a}' &= \left(\frac{\partial}{\partial x'}\vec{e}_{x'} + \frac{\partial}{\partial y'}\vec{e}_{y'} + \frac{\partial}{\partial z'}\vec{e}_{z'}\right)\times\vec{a}' \\
+  &= \left(\textcolor{kirmizikalem}{-}\frac{\partial}{\partial x}\vec{e}_x \textcolor{kirmizikalem}{-} \frac{\partial}{\partial y}\vec{e}_y \textcolor{kirmizikalem}{-} \frac{\partial}{\partial z}\vec{e}_z\right)\times\left(\textcolor{kirmizikalem}{-}\vec{a}\right) \\
+  &= \operatorname{rot}\vec{a} = \vec{B}
+\end{align*}
+
+\noindent $a$ kutupsal ise rot $a$ eksenel vektördür.
+
+\sekilnotu[2]{Kapalı bir bölge; içinde $\rho$ ve $dv$ etiketleri ve $\vec{v}$ hız oku.}
+
+\begin{align*}
+  dq &= \rho\, dv \\
+  d\vec{B} &= dq\,\frac{\vec{v}\times\vec{r}'}{r'^3}
+\end{align*}
+
+\sekilnotu[2]{Solda $q$ yükü (``$\times$'') ve üzerinde $\vec{v}$ oku; sağdaki $P$ noktasına çizilen $\vec{r}'$ doğrusu; $P$'de $\vec{B}$ (kırmızı ok aşağı-sağa).}
+
+\[ \vec{B}\perp\vec{r}' \qquad \vec{B}\perp\vec{v} \qquad |\vec{B}| \sim \frac{1}{r'^2}\,q\,|\vec{v}| \]
+
+\[ \vec{B} = q\cdot\frac{\vec{v}\times\vec{r}'}{r'^3} \qquad\qquad \vec{a}\times\vec{b} = \vec{c}\ \text{ise}\ \ \vec{c}\perp\vec{a},\ \vec{c}\perp\vec{b} \]
+\[ |\vec{B}| = |q|\,|\vec{v}|\cdot\frac{1}{r'^2}\cdot\sin\theta \]
+
+\noindent yük yoğunluğu $\rho$ ile dağılmışsa
+
+\begin{align*}
+  dq &= \rho\, dV \\
+  d\vec{B} &= dq\,\frac{\vec{v}\times\vec{r}'}{r'^3} \\
+  &= \rho\,\vec{v}\times\frac{\vec{r}'}{r'^3}\, dV \\
+  \vec{B} &= \int_V d\vec{B} = \int_V \rho\,\vec{v}\times\frac{\vec{r}'}{r'^3}\, dV
+\end{align*}
+
+\sekilnotu[2]{Kapalı bölge içinde $\rho$, $dV$ ve $\vec{v}$; bölgeden sağdaki $P$ noktasına $r'$ doğrusu.}
+
+\[ \underbrace{\rho}_{\mathrm{C/m^3}}\cdot\underbrace{\vec{v}}_{\mathrm{m/s}} \equiv \underbrace{\vec{J}}_{\text{hacimsel akım yoğunluğu}}\ (\mathrm{A/m^2}) \qquad\qquad \mathrm{A} = \mathrm{C/s} \]
+
+\[ \vec{B} = \frac{\mu_0}{4\pi}\int \vec{J}\times\frac{\vec{r}'}{r'^3}\, dv \qquad \vec{J}\parallel\vec{v} \qquad \vec{B}\perp\vec{r}',\ \vec{B}\perp\vec{J} \]
+\[ \vec{E} = \frac{1}{4\pi\varepsilon_0}\int \frac{\rho\,\vec{r}'}{r'^3}\, dv \]
+
+\sayfa{3}
+\sekilnotu[3]{Üstte bir yüzey (elips) ve içinden geçen oklar; yanında ``$I(t)$'', ``$S$'' ve ``$\vec{v}$'' etiketleri.}
+
+\sekilnotu[3]{Kapalı bir bölge içinde eğik bir silindir (taralı çizgiler, ucunda ``$\to S$'' oku), altında $\rho$ yükleri ve ``$\Delta t$''; bölgenin üstünde $\vec{v}$.}
+
+\[ t_0,\ t_0 + \Delta t \]
+\[ \lim_{\Delta t\to 0}\frac{\Delta q}{\Delta t} \equiv I_S(t) \qquad \text{($S$'den geçen elektrik akımının tanımı)} \]
+
+\sekilnotu[3]{Eğik silindir: solda yüksekliği gösteren ok ``$\Delta n$''; tabanda turuncu $\vec{n}$ ve $\vec{v}$ vektörleri; eğik kenar boyunca kırmızı ``$v\Delta t$''; üst tabana turuncu okla ``toplam yük $\Delta q$''.}
+
+\[ \vec{J} = \rho\vec{v} \]
+
+\[ I_{\Delta S} = \frac{\vec{v}\cdot\vec{n}\,\Delta t\,\Delta S\,\rho}{\Delta t} = \vec{J}\cdot\vec{n}\,\Delta S \]
+
+\begin{align*}
+  dq &= \rho\, dV \\
+  \Delta q &= \rho\cdot\underbrace{\vec{v}\,\Delta t\cdot\vec{n}\,\Delta S}_{dV}
+\end{align*}
+
+\sekilnotu[3]{Dik silindir: ``$n$'' oku, taban ``$S$'' ve yanında ``$V = S\cdot\ell$''.}
+
+\sekilnotu[3]{$\vec{n}$ (yukarı) ve ondan $\theta$ açısıyla ayrılan $\vec{h}'$ vektörleri; solda ``$n\cos\theta$''; sağda eğik bir silindir çizimi.}
+
+\[ \vec{n}\cdot\underbrace{\vec{h}'}_{\vec{v}\cdot\Delta t} = |\vec{n}|\,|\vec{h}'|\cdot\cos\theta = h'\cos\theta \]
+
+\[ \lim_{t\to 0}\frac{\Delta q}{\Delta t} \equiv I_S(t) \]
+
+\[ dI = \vec{J}\cdot d\vec{S} \]
+\sekilnotu[3]{Taralı bir yüzey; üzerinde yukarı yönlü normal vektör ve sağında bir ok etiketi.}
+\[ \checkmark\ \ I = \int_S dI = \int_S \vec{J}\cdot d\vec{S} = \int_S \vec{J}\cdot\vec{n}\, dS \qquad d\vec{S} = dS\cdot\vec{n} \]
+
+\noindent akım skalerdir
+
+\sekilnotu[3]{Eğri bir yüzey; üzerinde yukarı yönlü $\vec{n}$ oku ve yüzeyi dik kesen $\vec{J}$ okları, sağda ``$\vec{J}$'' etiketi.}
+
+\sekilnotu[3]{Üstte ``$1\,\mathrm{A}$'' etiketli, sargı benzeri çizgilerle gösterilmiş küçük bir silindir kesiti; altında ``$-2\,\mathrm{A}$'' etiketli taralı bir kesit.}
+
+\[ J\ [\mathrm{A/m^2}] \]
+
+\noindent hacim içinden geçen\\
+Akım diye bir şey yoktur\\
+yüzey içinden geçen akım vardır
+
+\section{3.2.1}
+\[ H = \frac{1}{4\pi}\int_{-\infty}^{\infty}\left(\mathbf{e}_z\times\frac{\vec{r}'}{r'}\right)\frac{d\xi}{r'^2} = \frac{1}{2\pi\rho}\,\mathbf{e}_\varphi \]
+\[ \vec{B} = \mu_0\vec{H} \quad \text{(boşlukta)} \]
+
+\sayfa{4}
+\[ [\vec{H}] = \mathrm{A/m} \qquad \mu_0 = 4\pi\cdot 10^{-7}\ \mathrm{H/m} \]
+\[ [\vec{B}] = \underbrace{\mathrm{Wb}}_{\text{A.Henry}}/\mathrm{m}^2 \equiv \mathrm{T} \]
+
+\sekilnotu[4]{Koordinat eksenleri: $z$ (yanında $\zeta$), $y$ (yanında kırmızı $\eta$) ve $x$ (yanında kırmızı $\xi$); $z$ ekseni boyunca kırmızı yukarı ok ve ``$I=$ sabit''; sağ üstte ``$\times\ P(\xi,\eta,\zeta)$'' noktası (üstünde ``ksi eta zeta'' yazısı).}
+
+\[ r' = |\vec{r}'| = \sqrt{(x-\xi)^2 + (y-\eta)^2 + (z-\zeta)^2} \]
+\[ \vec{r}' = (x- \]
+
+\begin{align*}
+  \vec{J} &= I\,\delta(\xi)\,\delta(\eta)\,\vec{e}_z \\
+  \vec{B} &= \mu_0\vec{H} \;\Rightarrow\; \vec{H} = \frac{1}{\mu_0}\vec{B}
+\end{align*}
+
+\[ = \frac{1}{4\pi}\iiint I\,\delta(\xi)\,\delta(\eta)\,\vec{e}_z\times\frac{(x-\xi)\vec{e}_x + (y-\eta)\vec{e}_y + (z-\zeta)\vec{e}_z}{\left[(x-\xi)^2 + (y-\eta)^2 + (z-\zeta)^2\right]^{3/2}}\, d\xi\, d\eta\, d\zeta \]
+
+\[ \int_{-\infty}^{\infty}\delta(\xi)\,f(\xi)\,d\xi = f(0) \]
+\[ \Rightarrow\ \vec{H} = \frac{I}{4\pi}\int_{\zeta=-\infty}^{\infty}\frac{x\,\vec{e}_y - y\,\vec{e}_x}{\left[x^2+y^2+(z-\zeta)^2\right]^{3/2}}\, d\zeta \]
+
+\begin{align*}
+  \vec{H} &= \frac{I}{4\pi}\,(x\vec{e}_y - y\vec{e}_x)\int_{-\infty}^{+\infty}\frac{d\zeta}{\left(\sqrt{\rho^2+(z-\zeta)^2}\right)^3} \\
+  \vec{H} &= \frac{I\,(x\vec{e}_y - y\vec{e}_x)}{4\pi}\int_{\psi=+\pi/2}^{-\pi/2}\frac{-\rho\,(1+\tan^2\psi)\,d\psi}{(\rho^2+\rho^2\tan^2\psi)^{3/2}} \\
+  &= \frac{I\rho\,(x\vec{e}_y - y\vec{e}_x)}{4\pi\rho^3}\int_{-\pi/2}^{\pi/2}\frac{d\psi}{\sqrt{1+\tan^2\psi}} \\
+  &= \frac{I}{4\pi\rho^2}\,\bigl(\underbrace{\rho\cos\phi\,\vec{e}_y - \rho\sin\phi\,\vec{e}_x}_{\vec{e}_\phi}\bigr)\int_{-\pi/2}^{\pi/2}\cos\psi\, d\psi
+\end{align*}
+
+\[ \sqrt{1+\tan^2\psi} = \sqrt{\frac{1}{\cos^2\psi}} = \frac{1}{\cos\psi} \]
+
+\begin{align*}
+  &= \frac{I}{4\pi\rho}\,\vec{e}_\phi\cdot\sin\psi\Big|_{-\pi/2}^{\pi/2} \\
+  &= \frac{I}{2\pi\rho}\,\vec{e}_\phi
+\end{align*}
+
+\[ \rho = \sqrt{x^2+y^2} \]
+
+\sekilnotu[4]{Eksen takımı: $z$ yukarı, $y$ sağa, $x$ sol alta; $xy$ düzleminde kesikli çizgilerle noktanın izdüşümü ve $\rho$ uzaklığı gösterilmiş.}
+
+\begin{align*}
+  \tan\psi &= \frac{z-\zeta}{\rho} \\
+  \rho\,(1+\tan^2\psi)\,d\psi &= -d\zeta \\
+  d\zeta &= -\rho\,(1+\tan^2\psi)\,d\psi
+\end{align*}
+
+\sayfa{5}
+\sekilnotu[5]{Eksen takımı ($z$ yukarı, $y$ sağa, $x$ sol alta); $z$ ekseni boyunca kırmızı yukarı ok ``$I$''; $xy$ düzleminde $\varphi$ açısı ve $\rho$ (turuncu); sağ üstte kesikli çizgilerle ``$P$'' noktası ve izdüşümü ``$P'(x,y,z)$''.}
+
+\sekilnotu[5]{Dikey $I$ teli (yukarı ok) ve etrafında bir çember (elips); çember üzerinde üç yerde $\vec{e}_\phi$ etiketli oklar.}
+
+\[ \vec{e}_\phi = \cos\phi\,\vec{e}_y - \sin\phi\,\vec{e}_x \]
+
+\[ \begin{aligned} V &\longleftrightarrow \vec{A} \\ \rho &\longleftrightarrow \vec{J} \\ \varepsilon_0 &\longleftrightarrow \frac{1}{\mu_0} \end{aligned} \qquad\qquad \begin{aligned} \Delta V &= -\rho/\varepsilon_0 \\ \Delta\vec{A} &= -\mu_0\vec{J} \end{aligned} \]
+\[ \left\{ \begin{aligned} \operatorname{rot}\vec{E} &= 0 \\ \operatorname{div}\vec{B} &= 0 \end{aligned} \right. \]
+
+\[ \Delta A = -\mu_0 J \]
+\[ \kutula{\vec{H} = \frac{1}{\mu_0}\operatorname{rot}\vec{A}} \]
+
+\noindent $\operatorname{div}A = 0$ \qquad rot \okunamadi{}
+
+\noindent Pr 3
+
+\sekilnotu[5]{Eksen takımı: $z$ yukarı, $x$ sağa, orijin $0$; $z$ ekseni üzerinde yukarı yönlü $I$ akımı (dikey tel); turuncu eğik $y$ ekseni; $x$ ekseni üzerinde yukarı hızlı ($\vec{v}_0$) bir $q$ yükü.}
+
+\sekilnotu[5]{Birim vektörler: yukarı $\vec{e}_z$, eğik $\vec{e}_y$, sol alta $-\vec{e}_x$; $\vec{e}_y$ ile $-\vec{e}_x$ arasında bir açı yayı.}
+
+\begin{align*}
+  \vec{B} &= \frac{\mu_0}{2\pi}\,\frac{I}{\rho}\,\vec{e}_\phi \\
+  \vec{B}_q &= \frac{\mu_0 I}{2\pi a}\,\vec{e}_y \\
+  \vec{F}_q &= q\vec{v}_0\times\vec{B}_q \\
+  &= q v_0\,\vec{e}_z\times\frac{\mu_0 I}{2\pi a}\,\vec{e}_y \\
+  \vec{F}_q &= -\frac{\mu_0\, q\, v_0\, I}{2\pi a}\,\vec{e}_x \\
+  \vec{F}_I &= -\frac{\mu_0\, q\, v_0\, I}{2\pi a}\,\vec{e}_x \\
+  \vec{F}_{I1} &= +\frac{\mu_0\, q\, v_0\, I_1}{2\pi\,(b-a)}\,\vec{e}_x
+\end{align*}
+
+\begin{align*}
+  \vec{F}_q &= \vec{F}_I + \vec{F}_{I1} \\
+  &= \frac{\mu_0\, q\, v_0}{2\pi}\,\vec{e}_x\left(\frac{I_1}{b-a} - \frac{I}{a}\right)
+\end{align*}
+
+\[ \vec{F}_q = 0 \;\Longrightarrow\; \frac{I_1}{b-a} - \frac{I}{a} = 0 \]
+\[ \kutula{I_1 = \frac{I\,(b-a)}{a}} \]
+
+\sayfa{6}
+\noindent Pr 10
+
+\[ \vec{F} = \underbrace{I_2\,\vec{l}}_{q\vec{v}} \times \underbrace{\vec{B}_T}_{\frac{\mu_0}{2\pi}\,\vec{e}_x\left(\frac{I_3}{b}-\frac{I_1}{a}\right)} \]
+
+\begin{align*}
+  \vec{B}_1 &= \frac{\mu_0 I_1}{2\pi a}\,(-\vec{e}_x) \\
+  \vec{B}_3 &= \frac{\mu_0 I_3}{2\pi b}\,\vec{e}_x
+\end{align*}
+
+\begin{align*}
+  \vec{F} &= (I_2\, l\,\vec{e}_z)\times\left(\frac{\mu_0}{2\pi}\,\vec{e}_x\left(\frac{I_3}{b}-\frac{I_1}{a}\right)\right) \\
+  &= \frac{I_2\, l\,\mu_0}{2\pi}\left(\frac{I_3}{b}-\frac{I_1}{a}\right)\vec{e}_y
+\end{align*}
+
+\[ \vec{F} = 0 \ \text{için} \qquad \frac{I_3}{b} = \frac{I_1}{a} \]
+
+\[ \begin{aligned} &q\vec{v}\,dt\times\vec{B} \\ &\vec{J}\times\vec{B} \\ &\ \| \\ &I\cdot\vec{l} \end{aligned} \qquad\qquad \vec{F} = \int_V(\vec{J}\times\vec{B})\,dv \]
+
+\noindent Sene başından geldiğimiz yere kadar \qquad 9:30 \qquad 3 soru \qquad \okunamadi{Ağu 25}:
+
+\noindent Birtane bundan\\
+Pr dikkate edin\\
+Kalan problemler\\
+3. ödevi \okunamadi{Aslıhan}
+
+\end{document}

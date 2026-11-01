@@ -1,0 +1,92 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Gauss yasası uygulamaları: küre ve silindir}{Ugulama6.pdf}
+% yerel yardımcılar: üstü çizili (sadeleştirilen) terimler
+\newcommand\iptalX[3]{\tikz[baseline=(c.base)]{\node[inner sep=0pt](c){$#2#3$};\draw[#1,line width=0.5pt](c.south west)--(c.north east);}}
+\newcommand\iptalK[2]{\iptalX{murekkep}{#1}{#2}}
+\newcommand\iptalR[2]{\iptalX{kirmizikalem}{#1}{#2}}
+\newcommand\iptal[1]{\mathpalette\iptalK{#1}}
+\newcommand\iptalk[1]{\mathpalette\iptalR{#1}}
+
+\sayfa{1}
+\sekilnotu[1]{Sol üstte: içinde $\rho_v$ yazan düzensiz biçimli bir hacim ($V$ ile etiketli); etrafında turuncu kesikli kapalı eğri. Turuncu notlar: ``Gauss yüzeyi'' (kesikli eğriyi gösteren okla) ve ``$S$ yüzeyi çiziyorum küre olan''.}
+\[ Q=\int_V \rho_v\,dV \qquad\qquad \vec D=\varepsilon_0\vec E \]
+\[ \oint_S \vec D\cdot d\vec s=Q \]
+
+\section{S32 Pr.1}
+\noindent S17 Pr.1'i : gauss ile çözünüz
+\sekilnotu[1]{Üç eksenli koordinat sistemi (dikey eksen, sağa giden yatay eksen ve sol alta giden eksen). Orijinde içinde $\rho_v$ yazan dolu daire (küre kesiti), etrafında turuncu kesikli daire $S_r$ (``$r>a$'' yazılı). Yüzeyden dışarı doğru $E_r\vec e_r$ oku; içte turuncu küçük bir yarıçap oku ve etiketi (okunaksız).}
+\[ \oint_{S_r}\varepsilon_0\vec E\cdot d\vec s=Q \]
+\[ \vec E=E_r\vec e_r+\iptalk{E_\theta\vec e_\theta}+\iptalk{E_\phi\vec e_\phi}\qquad\textcolor{kirmizikalem}{\text{\small sadece yarıçapa bağlı}} \]
+\[ \vec E=E_r(r)\,\vec e_r \]
+\[ d\vec s=r^2\sin\theta\,d\theta\,d\phi\,\vec e_r \]
+\[ \int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\varepsilon_0E_r(r)\,\vec e_r\,r^2\sin\theta\,d\theta\,d\phi\,\vec e_r=Q \]
+\[ 4\pi\varepsilon_0r^2E_r(r)=Q\ \Rightarrow\ E_r(r)=\frac{Q}{4\pi\varepsilon_0r^2} \]
+\[ \kutula{\vec E=\frac{Q}{4\pi\varepsilon_0}\frac{\vec e_r}{r^2}} \]
+
+\noindent $r<a$
+\[ Q=\int_V\rho_v\,dV \]
+\[ =\int_{r'=0}^{r}\int_{\theta'=0}^{\pi}\int_{\phi'=0}^{2\pi}\rho_v\,r'^2\sin\theta'\,dr'\,d\phi'\,d\theta' \]
+\[ =\frac{4\pi r^3}{3}\rho_v \]
+
+\sayfa{2}
+\section{Sayfa 32 Pr.2}
+\noindent S26 Pr.5'i gauss ile çözünüz. $V(\infty)=0$ halinde içteki ve dıştaki silindirin birim yükseklikteki kısmında bulunan yükü $V_a$ ve $V_b$ cinsinden yazınız.
+
+\noindent\underline{iç içe iki silindir}
+\sekilnotu[2]{Eş eksenli iki silindir: sağda enine kesit (iç daire yarıçapı $a$, dış daire yarıçapı $b$; merkezden dairelere yarıçap okları, iç dairede $V_a$, dış dairede $V_b$ yazılı), sola doğru uzanan yatay çizgiler (silindirlerin yandan görünüşü) ve altta sola oklu ``1 m'' ölçüsü. Turuncu: $Q_a$, $Q_b$ ve okla gösterilen kesikli Gauss yüzeyi $S_r$; kırmızı: ``kabukta'' notu.}
+\[ \vec E=E_\rho\vec e_\rho+E_\phi\vec e_\phi+E_z\vec e_z \]
+\[ \vec E=E_\rho(\rho)\vec e_\rho \qquad\qquad d\vec s=\rho\,d\phi\,dz\,\vec e_\rho \]
+\noindent $a<\rho<b$
+\[ \oint_{S_r}\vec D\cdot d\vec s=Q_a\ \Rightarrow\ \int_{z=0}^{1}\int_{\phi=0}^{2\pi}\varepsilon_0E_\rho(\rho)\,\rho\,d\phi\,dz=Q_a\ \text{olur} \]
+\[ 2\pi\rho\,\varepsilon_0E_\rho(\rho)=Q_a\ \text{olur} \]
+\[ \vec E=E_\rho(\rho)\vec e_\rho=\frac{Q_a}{2\pi\varepsilon_0\rho}\,\vec e_\rho \]
+\[ \vec E=-\mathrm{grad}\,V \]
+\[ \frac{Q_a}{2\pi\varepsilon_0\rho}\,\iptal{\vec e_\rho}=-\frac{\partial V}{\partial\rho}\,\iptal{\vec e_\rho} \]
+\[ \textcolor{kirmizikalem}{a<\rho<b}\qquad V(\rho)=\frac{Q_a}{2\pi\varepsilon_0}\ln\!\left(\frac{1}{\rho}\right)+C \]
+\[ \rho=a\ \Rightarrow\ V_a=\frac{Q_a}{2\pi\varepsilon_0}\ln\!\left(\frac{1}{a}\right)+C \]
+\[ \rho=b\ \Rightarrow\ V_b=\frac{Q_a}{2\pi\varepsilon_0}\ln\!\left(\frac{1}{b}\right)+C \]
+\[ \rho>b\qquad \oint_S\vec D\cdot d\vec s=Q_a+Q_b \]
+\[ \vec E=\frac{Q_a+Q_b}{2\pi\varepsilon_0\rho}\,\vec e_\rho \]
+
+\sayfa{3}
+\[ V(\rho)=\frac{Q_a+Q_b}{2\pi\varepsilon_0}\ln\!\left(\frac{1}{\rho}\right)+D \]
+
+\section{S.32 Pr.3}
+\sekilnotu[3]{Üç eksenli koordinat sistemi ($z$ yukarı, $y$ sağa, $x$ sol alta). Orijinde iki eş merkezli daire (iç yarıçap $a$, dış yarıçap $b$; yarıçaplar çizgiyle gösterilmiş). İç dairenin yakınında $V_a$ ve $Q_a$, dış dairenin yanında $Q_b$ ve $V_b$ yazılı; iki daire arasında kırmızı kesikli Gauss yüzeyi.}
+\noindent\textcolor{kirmizikalem}{ispatla}
+\[ \kutula{\frac{1}{a}Q_a+\frac{1}{b}Q_b=4\pi\varepsilon_0V_0} \]
+\noindent olduğunu gösteriniz
+\[ a<r<b\qquad \oint_{S_r}\vec D\cdot d\vec s=Q_a \]
+\[ \vec E=E_r(r)\,\vec e_r\,,\qquad d\vec s=r^2\sin\theta\,d\phi\,d\theta\,\vec e_r \]
+\[ \int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\varepsilon_0E_r\,r^2\sin\theta\,d\theta\,d\phi=Q_a \]
+\[ 4\pi\varepsilon_0r^2E_r=Q_a \]
+\[ E_r=\frac{Q_a\,\vec e_r}{4\pi\varepsilon_0r^2}\,,\qquad \vec E=-\mathrm{grad}\,V \]
+\[ \frac{Q_a\,\vec e_r}{4\pi\varepsilon_0r^2}=-\frac{\partial V}{\partial r}\,\vec e_r \]
+\[ \kutula{V(r)=\frac{Q_a}{4\pi\varepsilon_0r}+C} \]
+\[ \begin{array}{rcl} V_a&=&\dfrac{Q_a}{4\pi\varepsilon_0a}+C\\[2mm] -\ V_b&=&\dfrac{Q_b\footnotemark}{4\pi\varepsilon_0b}+C\\ \hline \end{array} \]
+\footnotetext{Claude notu: muhtemelen $Q_a$ olmalı (sonuçtaki ifade $Q_a$ içeriyor).}
+\[ \kutula{V_a-V_b=\frac{Q_a}{4\pi\varepsilon_0}\left(\frac{1}{a}-\frac{1}{b}\right)} \]
+
+\sayfa{4}
+\[ Q_a=\frac{(V_a-V_b)\,4\pi\varepsilon_0}{\left(\dfrac{1}{a}-\dfrac{1}{b}\right)} \]
+\[ r>b\qquad \oint_{S_r}\vec D\cdot d\vec s=Q_a+Q_b \]
+\[ \kutula{\vec E=\frac{Q_a+Q_b}{4\pi\varepsilon_0r^2}\,\vec e_r} \]
+\noindent Burdan $\vec E=-\mathrm{grad}\,V\ \Rightarrow\ V(r)=\dfrac{Q_a+Q_b}{4\pi\varepsilon_0r}+D$
+\[ V(\infty)=0\ \Rightarrow\ D=0 \]
+\[ \begin{array}{rcl} V_b&=&\dfrac{Q_a+Q_b}{4\pi\varepsilon_0b}\\[2mm] +\ V_a-V_b&=&\dfrac{Q_a}{4\pi\varepsilon_0}\left(\dfrac{1}{a}-\dfrac{1}{b}\right)\\ \hline \end{array} \]
+\[ 4\pi\varepsilon_0V_a=\iptal{\frac{Q_a}{b}}+\frac{Q_b}{b}+\frac{Q_a}{a}-\iptal{\frac{Q_a}{b}} \]
+\[ \left(\frac{Q_a}{a}+\frac{Q_b}{b}=4\pi\varepsilon_0V_a\right) \]
+
+\begin{dikkat}
+\textbf{Önemli yerler}
+\begin{itemize}
+\item Kolomb kanunu
+\item süperposition
+\item Enerji
+\item $\Delta V=0$ sorusu gelebilir
+\item $\Delta V=-\dfrac{\rho}{\varepsilon_0}$ \ : Poisson denklemi
+\end{itemize}
+\end{dikkat}
+\end{document}

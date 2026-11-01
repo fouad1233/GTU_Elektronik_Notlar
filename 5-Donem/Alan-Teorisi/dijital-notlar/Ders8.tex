@@ -1,0 +1,375 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Gauss--Ostrogradski teoremi, Gauss yasası}{Ders8.pdf}
+
+\sayfa{1}
+\section{Gauss--Ostrogradski Teo:}
+
+\sekilnotu[1]{Kapalı, düzensiz biçimli bir yüzey; sağ üstte yüzeyden dışarı bir ok ve yanında $d\vec s=ds\cdot\vec n$. Yüzeyin sağ kenarının yanında ``$S$''; yüzeyin içinden dışarı, sağa uzanan bir çizginin ucunda ``$v$''. Sol alttan bloğun içine giren bir ok, kuyruğunda ``$\mathrm{div}\,\vec A$''.}
+
+\[
+\int_{v}\mathrm{div}\,\vec A=\int_{S}\vec A\cdot ds
+\]
+
+\sekilnotu[1]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; orijinde $q$ yükü. Orijinden kesikli bir $r$ vektörü, kırmızı çizilmiş kapalı bir bölgenin içindeki $P$ noktasına (× ile işaretli, yanında küçük bir ok) gidiyor. Bölgenin yüzeyi üzerinde kırmızı $\vec n$ ve $d\vec s$ okları; yanında ``$S$'', sağ kenarında ``$v$''. Şeklin sağında yazı: ``$q$ $v$ bölgenin dışında''.}
+
+\[
+\vec E=\frac{q}{4\pi\varepsilon_0}\,\frac{\vec e_r}{r^2}=\frac{q\cdot\vec r}{4\pi\varepsilon_0 r^3}
+\]
+\[
+\vec D\triangleq\varepsilon_0\vec E=\frac{q}{4\pi}\,\frac{\vec r}{r^3}
+\]
+$\swarrow$ Deplasman \\ (yer değiştirme vektörü)
+
+\[
+\int_{S}\vec D\cdot ds=\int_{v}\mathrm{div}\,\vec D\cdot dv=\int_{v}\mathrm{div}\left(\frac{q}{4\pi}\,\frac{\vec r}{r^3}\right)dv
+\]
+\[
+=\frac{q}{4\pi}\int_{v}{\color{kirmizikalem}-}\,\mathrm{div}\left({\color{kirmizikalem}-}\frac{\vec r}{r^3}\right)dv
+\]
+\[
+=-\frac{q}{4\pi}\int_{v}\underbrace{\mathrm{div}\,\mathrm{grad}\left(\frac{1}{r}\right)}_{\Delta(1/r)}dv
+\]
+
+{\color{morkalem}
+\[
+\frac{\partial}{\partial x}\vec e_x+\frac{\partial}{\partial y}\vec e_y+\frac{\partial}{\partial z}\vec e_z
+\]
+\[
+f(x,y,z)\ \Rightarrow\ \mathrm{grad}\,f=\vec\nabla\cdot f=\frac{\partial f}{\partial x}\vec e_x+\frac{\partial f}{\partial y}\vec e_y+\frac{\partial f}{\partial z}\vec e_z
+\]}
+
+\sayfa{2}
+{\color{morkalem}
+\[
+\mathrm{div}\,\mathrm{grad}\,f=\frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}+\frac{\partial^2 f}{\partial z^2}=\Delta f
+\qquad\underline{\text{laplacian}}
+\]}
+
+\[
+r=\sqrt{x^2+y^2+z^2}\ \Rightarrow\ \frac{1}{r}=(x^2+y^2+z^2)^{-1/2}
+\]
+\[
+\Delta\Bigl((x^2+y^2+z^2)^{-1/2}\Bigr)
+\]
+
+veya küresel koordinatlarda çözersiniz
+
+\begin{align*}
+f(r,\theta,\phi)\footnotemark&=\frac{1}{r^2}\,\frac{\partial}{\partial r}\Bigl(r^2\,\frac{\partial f}{\partial r}\Bigr)+\underbrace{\frac{1}{r^2\sin\theta}\,\frac{\partial}{\partial\theta}\Bigl(\sin\theta\,\frac{\partial f}{\partial\theta}\Bigr)}_{\textcolor{kirmizikalem}{0}}\\
+&\quad+\underbrace{\frac{1}{r^2\sin^2\theta}\,\frac{\partial^2 f}{\partial\phi^2}}_{\textcolor{kirmizikalem}{0}}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $\Delta f(r,\theta,\phi)$ olmalı.}
+
+\[
+f=\frac{1}{r}=f(r)
+\]
+\[
+\frac{\partial(1/r)}{\partial\theta}=\frac{\partial(1/r)}{\partial\phi}=0
+\]
+
+\[
+\Delta(1/r)=\frac{1}{r^2}\,\frac{\partial}{\partial r}\Bigl(r^2\,\underbrace{\frac{\partial}{\partial r}(1/r)}_{-1/r^2}\Bigr)
+=\frac{1}{r^2}\,\frac{\partial}{\partial r}\Bigl[-r^2\,\frac{1}{r^2}\Bigr]
+\]
+\[
+=-1\,\frac{\partial}{\partial r}(1)=0\ \Rightarrow\ (r\neq 0)
+\]
+
+$(r\neq 0)$ ise $q\notin v$ ise $\displaystyle\int_{S}\vec D\cdot ds=0$
+
+\sayfa{3}
+\sekilnotu[3]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; orijinde $q$ yükü. Orijin çevresinde kırmızı küçük bir daire ($r'$ yarıçaplı; kırmızı $r'$ vektörü ve kırmızı $d\vec s'$ okları), bunu çevreleyen turuncu düzensiz kapalı bir yüzey (siyah $d\vec s$ okları; turuncu ``$v$'' yazısı ve oku). İki yüzey arasındaki bölge yeşil radyal çizgilerle taranmış; yeşil yazı: ``$v''=v-v'$, $q\notin v''$''.}
+
+{\color{kirmizikalem}$S'$: $r'$ yarıçaplı bir küre yüzeyi}
+
+$v''$ bölgesi $S\cup S'$ yüzeylerini kuşatır
+
+\[
+\vec r\in v''\ \Rightarrow\ \Delta(1/r)=0
+\]
+\[
+\Rightarrow\ \int_{v''}\mathrm{div}\,\vec D\cdot dv''=\int_{S+S'}\vec D\,(d\vec s+d\vec s')
+\]
+\[
+\Rightarrow\ -\frac{q}{4\pi}\int_{v''}\overbrace{\Delta(1/r)}^{0}dv''
+\]
+\[
+=\int_{S+S'}\vec D\,(d\vec s+d\vec s')=0\;=\int_{S}\vec D\,d\vec s+\int_{S'}\vec D\cdot d\vec s'=0
+\]
+
+\[
+\int_{S}\vec D\cdot d\vec s=\,??\qquad(r=0\in v)\qquad q\in v
+\]
+
+\[
+\int_{S}\vec D\cdot d\vec s=-\int_{S'}\vec D\cdot d\vec s'
+\]
+$q$'nun $S'$ de yarattığı $\vec D$: \quad $\vec D=\dfrac{q}{4\pi}\,\dfrac{\vec r'}{(r')^3}$
+
+\sekilnotu[3]{Küçük bir daire (küre): merkezinde küçük bir nokta, merkezden çembere giden bir doğru parçası ve yanında ``$a$'' (yarıçap olabilir).}
+\[
+\begin{aligned}
+ds&=a^2\sin\theta\,d\theta\,d\phi\\
+dv&=r^2\sin\theta\,d\theta\,d\phi\footnotemark
+\end{aligned}
+\]
+\footnotetext{Claude notu: muhtemelen $dv=r^2\sin\theta\,dr\,d\theta\,d\phi$ olmalı.}
+
+\[
+d\vec s'=-\vec e_{r'}\cdot\underbrace{r'^2\sin\theta\,d\theta\,d\phi}_{ds'}
+\]
+\[
+\vec D\cdot d\vec s'=\frac{q}{4\pi}\,\frac{r'\cdot}{r'^3}\Bigl(\vec e_{r'}\cdot r'^2\sin\theta'\,d\theta\,d\phi\Bigr)
+\]
+
+\sayfa{4}
+\[
+\int_{S'}\vec D\cdot ds'=-\int_{\theta'=0}^{\pi}\int_{\phi'=0}^{2\pi}-\frac{q}{4\pi}\,\sin\theta'\,d\theta'\,d\phi'
+\]
+\[
+=\frac{q}{4\pi}\,\underbrace{\int_{\theta'=0}^{\pi}\sin\theta'\,d\theta'}_{\textcolor{kirmizikalem}{2}}\ \underbrace{\int_{\phi'=0}^{2\pi}d\phi'}_{\textcolor{kirmizikalem}{2\pi}}
+\]
+\[
+=\frac{q}{4\pi}\cdot 4\pi=q
+\]
+
+\[
+\int_{S}\vec D\cdot d\vec s=Q_{\text{iç}}+\frac{Q_{\text{yüzey}}}{2}
+\]
+
+\sekilnotu[4]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; orijinde ``$-2C$'' yazısı. Orijin merkezli üç kırmızı çember (küre kesiti). $z$ ekseni üzerinde en iç çemberin tepesinde bir nokta: oklu ``$P_2(0,0,1/2)$'' yazısı, yanında ``$-4C$''. Ortadaki çemberin yanında kırmızı bir ok ve ``$\sqrt3$ yarıçaplı'' yazısı; yakınında bir nokta olarak ``$P_1(1,1,1)$'' ve altında ``$1\,C$''. En dış çemberin sol üstünde kırmızı ``$S'$'', ortadaki çemberin sol altında ``$S$'' etiketi.}
+
+$1/2$ yarıçaplı küre yüzeyi\\
+tekillik için koyulur yüzey üzerinde yük olduğu için
+
+\[
+\int_{S}\vec D\cdot d\vec s=-2C+\left(\frac{-4C}{2}\right)
+\]
+\[
+=-2C-2C=-4C
+\]
+
+\[
+[\vec D]=\mathrm{C/m^2}
+\]
+\[
+[\vec E]=\mathrm{V/m}\qquad\qquad [V]=\mathrm{V_o}
+\]
+\[
+\int_{S}\vec D\cdot d\vec s=-2C-4C=-6C
+\]
+
+\[
+\int_{S'}\vec D\cdot d\vec s'=-2C-4C+1C=-5C
+\]
+
+\sayfa{5}
+{\color{kirmizikalem}Sınav 2 ya da 3 soru}
+
+\[
+\int_{S}\vec D\cdot d\vec s=\int_{v}\mathrm{div}\,\vec D\cdot dv=\underbrace{\int_{v}\rho\,dv}_{v\text{'deki }Q\text{ yükü}}
+\]
+\[
+=Q_{\text{iç}}
+\]
+\[
+\rho=\frac{dQ}{dv}\qquad(v\text{ içindeki h.y.y.}\quad[\rho]=\mathrm{C/m^3})
+\]
+
+\formulkutu[Maxwell]{\mathrm{div}\,\vec D=\rho}
+
+Boşlukta
+\[
+\vec D=\varepsilon_0\vec E\ \Rightarrow\ \mathrm{div}\,\vec E=\frac{\rho}{\varepsilon_0}
+\]
+\[
+\vec E=-\mathrm{grad}\,V
+\]
+\[
+\Rightarrow\ -\underbrace{\mathrm{div}\,\mathrm{grad}\,V}_{\Delta V}=\frac{\rho}{\varepsilon_0}\ \Rightarrow\ \Delta V=-\frac{\rho}{\varepsilon_0}
+\]
+
+$v$'de $\rho\neq 0\ \Rightarrow\ v$'deki $V$ pot fonksiyonun
+\[
+\kutula{\Delta V=-\rho/\varepsilon_0}\ \Rightarrow\ V=\frac{1}{4\pi\varepsilon_0}\int_{v}\frac{\rho}{r'}\,dv
+\]
+$\downarrow$ Poisson denklemi
+
+$v$'de $\rho=0$ (yani yük yok) $\Rightarrow$
+\formulkutu[Laplace]{\Delta V=0}
+
+\sekilnotu[5]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı. Solda içinde ``$\rho$'' yazan kapalı bir bölge (kaynak); onu çevreleyen daha büyük kırmızı bir kapalı eğri ve kırmızı bir okla gösterilen ``poisson'' yazısı. Sağda içinde ``$V=?$'' yazan kapalı bir bölge; sağ kenarından bir ok ``$\Delta V=0$'' yazısına gidiyor; altında ``bunu yaratan kaynak bölgenin dışında''.}
+
+\sayfa{6}
+\noindent S: 32\\ pr 5
+
+\sekilnotu[6]{Eksenler ($z$ yukarı, $y$ sağa, $x$ sol-aşağı) ve orijin merkezli siyah bir daire (küre): içinde bir yarıçap çizgisi ve ``$a$'' etiketi (üst solda ve sağ yarıda), sağ altta bir çizgiyle gösterilen ``$Q$'' ve altta ``$v$''. Küreyi çevreleyen daha büyük kırmızı bir çember; sağ üstünde kırmızı ``$S_r$'' etiketi.}
+
+\[
+v=\frac{4\pi a^3}{3}
+\]
+homojen yayılmış $\swarrow$
+\[
+\kutula{\rho\triangleq\frac{dQ}{dv}}\ \Rightarrow\ \frac{Q}{v}=\rho=\frac{3Q}{4\pi a^3}\qquad(\mathrm{C/m^2})\footnotemark
+\]
+\footnotetext{Claude notu: hacimsel yük yoğunluğu için birim C/m$^3$ olmalı.}
+
+\[
+Q=\int_{v}\rho\,dv=\int_{r=0}^{a}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{3Q}{4\pi a^3}\,r^2\sin\theta\,d\theta\,d\phi\,dr
+\]
+\[
+=\frac{3Q}{4\pi a^3}\int_{r=0}^{a}r^2\,dr\int_{\theta=0}^{\pi}\sin\theta\,d\theta\int_{\phi=0}^{2\pi}d\phi
+\]
+\[
+=\frac{3Q}{4\pi a^3}\,\frac{a^3}{3}\cdot 2\cdot 2\pi=Q
+\]
+
+\[
+V=V(r)\qquad,\ r>a\qquad\vec E=-\mathrm{grad}\,V=-\frac{\partial V}{\partial r}\,\vec e_r
+\]
+\[
+\vec D=\varepsilon_0\vec E=-\underbrace{\varepsilon_0\,\frac{\partial V}{\partial r}}_{D(r)}\,\vec e_r
+\]
+\[
+d\vec s=r^2\sin\theta\,d\theta\,d\phi\,\vec e_r
+\]
+\[
+\int_{S_r}\vec D\cdot d\vec s=Q\ \Rightarrow\ \int_{S_r}\underbrace{D(r)\,\vec e_r}_{\vec D}\ \overset{1}{\cdot}\ \underbrace{\vec e_r\cdot r^2\sin\theta\,d\theta\,d\phi}_{d\vec s_r}=Q
+\]
+\[
+\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}D(r)\,r^2\sin\theta\,d\theta\,d\phi=Q
+\]
+
+\sayfa{7}
+\[
+\Rightarrow\ D(r)\,r^2\int_{\theta=0}^{\pi}\sin\theta\,d\theta\int_{\phi=0}^{2\pi}d\phi=Q
+\]
+\[
+D(r)\,r^2\,4\pi=Q
+\]
+\[
+D(r)=\frac{Q}{4\pi r^2}\ \Rightarrow\ \vec D=\frac{Q}{4\pi r^2}\,\vec e_r
+\]
+
+o zaman merkezde tek bir yük gibi küre davranır $r>a$ için
+
+\[
+\vec D(r)=\frac{Q}{4\pi r^2}\,\vec e_r=-\varepsilon_0\,\frac{\partial V}{\partial r}\,\vec e_r
+\]
+\[
+\textcolor{turuncukalem}{V=\int\frac{\partial V}{\partial r}\,dr=\int\frac{-Q}{4\pi\varepsilon_0 r^2}\,dr}\ \Rightarrow\ V(r)=\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{r}+V_0
+\]
+\[
+r\to\infty\ \Rightarrow\ V=0\ \Rightarrow\ V_0=0
+\]
+
+\[
+V(r)=\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{r}+V_0
+\]
+\[
+\lim_{r\to\infty}V(r)=V_0=0
+\]
+\[
+r>a:\qquad V=\frac{Q}{4\pi\varepsilon_0}\cdot\frac{1}{r}
+\]
+\[
+\Delta V=\frac{Q}{4\pi\varepsilon_0}\,\underbrace{\Delta(1/r)}_{0}=0
+\]
+
+\textcolor{kirmizikalem}{A}\quad\underline{$0<r<a$}
+
+\sekilnotu[7]{Dikey bir eksen (ok başı yukarıda) ve orijin merkezli iki daire: büyük daire ($a$ yarıçaplı; yarıçap çizgisi üzerinde ``$a$'') ve içindeki küçük taralı daire (içinde ``$r$''). Küçük daireden bir ok ``$\rho=\dfrac{3Q}{4\pi a^3}$'' yazısına gidiyor; sol altta ``$S_r$'' etiketi bir eğriyle küçük daireyi gösteriyor.}
+
+\sayfa{8}
+\[
+\vec D=D(r)\,\vec e_r
+\]
+\[
+\int_{S_r}\vec D\cdot d\vec s_r=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}D(r)\,\underbrace{\vec e_r\cdot\vec e_r}_{1}\,r^2\sin\theta\,d\theta\,d\phi=\int_{v_r}\rho\,dv_r
+\]
+\[
+D(r)\,r^2\int_{\theta=0}^{\pi}\sin\theta\,d\theta\int_{0}^{2\pi}d\phi=\int\frac{3Q}{4\pi a^3}\,dv_r
+\]
+\[
+\Rightarrow\ D(r)\,r^2\,4\pi=\frac{3Q}{4\pi a^3}\,v_r=\frac{3Q}{4\pi a^3}\,\frac{4\pi r^3}{3}
+\]
+
+\[
+\int_{v_r}dv_r=v_r=\frac{4\pi r^3}{3}
+\]
+\[
+\int_{v_r}dv_r=\int_{0}^{r}\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\underbrace{r^2\sin\theta\,d\theta\,d\phi\,dr}_{dv_r=dr\,ds_r}
+\]
+\[
+=\int_{r=0}^{r}r^2\,dr\underbrace{\int_{\theta=0}^{\pi}\sin\theta\,d\theta}_{2}\underbrace{\int_{\phi=0}^{2\pi}d\phi}_{2\pi}
+\]
+\[
+\frac{r^3}{3}\Big|_0^r=\frac{r^3}{3}
+\]
+\[
+\frac{4\pi r^3}{3}
+\]
+
+\[
+\Rightarrow\ D(r)\,r^2\,4\pi=\frac{Q\cdot r^3}{a^3}
+\]
+\[
+\Rightarrow\ D(r)=\frac{Q\,r}{4\pi a^3}
+\]
+\[
+\vec D=\kutula{\frac{Q}{4\pi a^3}\,r}\,\vec e_r=\kutula{-\varepsilon_0\,\frac{\partial V}{\partial r}}\,\vec e_r
+\]
+
+\sayfa{9}
+\[
+\frac{\partial V}{\partial r}=-\frac{Q}{4\pi\varepsilon_0 a^3}\,r
+\]
+\[
+V=-\frac{Q}{8\pi\varepsilon_0 a^3}\,r^2+\widetilde{V_0}
+\]
+\[
+\underbrace{V\Big|_{r=a^+}}_{\downarrow}=\underbrace{V\Big|_{r=a^-}}_{\downarrow}
+\]
+\[
+\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{r}\Big|_{r=a}=-\frac{Q}{8\pi\varepsilon_0 a^3}\,r^2\Big|_{r=a}+\widetilde{V_0}
+\]
+\[
+\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{a}=-\frac{Q}{8\pi\varepsilon_0 a}+\widetilde{V_0}
+\]
+\[
+\widetilde{V_0}=\frac{3Q}{8\pi\varepsilon_0 a}
+\]
+
+$0<r<a$
+
+\formulkutu{V(r)=-\frac{Q}{8\pi\varepsilon_0 a}\left[\frac{r^2}{a^2}-3\right]}
+
+$r>a$:
+\[
+V(r)=\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{r}
+\]
+
+\sekilnotu[9]{$V(r)$--$r$ grafiği: dikey eksen $V(r)$, yatay eksen $r$ (ok ucunda ``$r$''); yatay eksende $r=a$ noktası işaretli. Kırmızı eğri dikey eksenin yüksek bir noktasından başlar, $r=a$'ya kadar azalır, $r=a$'da hafif bir omuz yapar, sonra $1/r$ gibi azalarak $r$ eksenine yaklaşır. Eğrinin başlangıç noktasından sağ üste doğru bir ok, ``$3Q/(8\pi\varepsilon_0 a)$'' etiketine gider. Ayrıca kutulu $V(r)$ ifadesinin solundan başlayıp sayfanın sol kenarı boyunca aşağı inen ve en alttaki ``$V(r)=\dots$'' satırını gösteren kırmızı kavisli bir ok vardır.}
+
+\[
+V(r)=-\frac{Q\,r^2}{8\pi\varepsilon_0 a^3}+\frac{3Q}{8\pi\varepsilon_0 a}
+\]
+\[
+\Delta V=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial V}{\partial r}\right)=-\frac{Q}{8\pi\varepsilon_0 a^3}\,\Delta(r^2)
+\]
+
+\sayfa{10}
+\[
+=-\frac{Q}{8\pi\varepsilon_0 a^3}\cdot\frac{1}{r^2}\cdot\frac{\partial}{\partial r}\Big[\overbrace{r^2\,\frac{\partial(r^2)}{\partial r}}^{2r^3}\Big]
+\]
+\[
+=-\frac{Q}{4\pi\varepsilon_0 a^3}\cdot\frac{3\,r^2}{r^2}\footnotemark=-\kutula{\frac{3Q}{4\pi a^3}}\;\frac{\rho}{\varepsilon_0}
+\]
+\footnotetext{El yazısında pay ve paydadaki $r^2$ terimleri çizilerek sadeleştirilmiş.}
+\[
+=-\frac{\rho}{\varepsilon_0}
+\]
+
+\end{document}

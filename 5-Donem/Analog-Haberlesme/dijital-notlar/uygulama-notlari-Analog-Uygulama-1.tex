@@ -1,0 +1,488 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{Uygulama 1: Systems, Fourier Series \& Transform}{Analog-Uygulama-1.pdf}
+
+\sayfa{1}
+\begin{ornek}
+  Classify these system into linear and non linear
+  \begin{enumerate}[label=\alph*),nosep,leftmargin=*]
+    \item $y(t)=2x(t)-3$
+    \item $y(t)=e^{-t}x(t)$
+  \end{enumerate}
+\end{ornek}
+Linearity Cond:
+\[
+  \left.\begin{aligned}
+    x_1(t)&\xrightarrow{T[\cdot]}y_1(t)\\
+    x_2(t)&\xrightarrow{T[\cdot]}y_2(t)
+  \end{aligned}\right\}
+  \quad T\bigl[ax_1(t)+bx_2(t)\bigr]\overset{?}{=}a\underbrace{T[x_1(t)]}_{y_1(t)}+b\underbrace{T[x_2(t)]}_{y_2(t)}
+\]
+a)
+\begin{align*}
+  x_1(t)&\to y_1(t)=2x_1(t)-3\\
+  x_2(t)&\to y_2(t)=2x_2(t)-3\\
+  x_3(t)&=ax_1(t)+bx_2(t)\\
+  &\to y_3(t)=2x_3(t)-3=2ax_1(t)+2bx_2(t)-3\\
+  &\overset{?}{\neq}a\bigl(2x_1(t)-3\bigr)+b\bigl(2x_2(t)-3\bigr)
+\end{align*}
+\vurgu[pembe]{non lineer!}
+
+b) $y(t)=e^{-t}x(t)$
+\begin{align*}
+  x_1(t)&\to y_1(t)=e^{-t}x_1(t)\\
+  x_2(t)&\to y_2(t)=e^{-t}x_2(t)\\
+  x_3(t)&=ax_1(t)+bx_2(t)\\
+  &\to y_3(t)=e^{-t}x_3(t)=e^{-t}ax_1(t)+e^{-t}bx_2(t)\\
+  &\overset{?}{=}a\underbrace{y_1(t)}_{e^{-t}x_1(t)}+b\underbrace{y_2(t)}_{e^{-t}x_2(t)}\quad\checkmark
+\end{align*}
+\vurgu[pembe]{lineer system}
+
+\begin{ornek}
+  Determine whether the following systems are time variant or time invariant
+  \begin{enumerate}[label=\alph*),nosep,leftmargin=*]
+    \item $y(t)=2x(t)+3$
+    \item $y(t)=(t+2)\,x(t)$
+  \end{enumerate}
+\end{ornek}
+Time invariant cond:
+\[ x(t)\to y(t),\qquad x(t-t_0)\to y(t-t_0) \]
+a)
+\[
+  \left.\begin{aligned}
+    x_1(t)&\to\overset{2x_1(t)+3}{y_1(t)}\\
+    x_2(t)&=x(t-t_0)
+  \end{aligned}\right\}
+  \quad y_2(t)\overset{?}{=}y_1(t-t_0)
+\]
+\[ 2x_2(t)+3=2x(t-t_0)+3\overset{?}{=}2x_1(t-t_0)+3\quad\checkmark \]
+zamanda değişmez
+
+\sayfa{2}
+b)
+\begin{align*}
+  x_1(t)&\to y_1(t)=(t+2)\,x_1(t)\\
+  x_2(t)=x_1(t-t_0)&\to y_2(t)=(t+2)\,x_2(t)\\
+  y_2(t)&=(t+2)\,x_1(t-t_0)\\
+  y_2(t)&\overset{?}{=}y_1(t-t_0)\\
+  (t+2)\,x_1(t-t_0)&\overset{?}{\neq}(t-t_0+2)\,x_1(t-t_0)
+\end{align*}
+time variant
+\begin{ornek}
+  A system is causal if its input at any time $t_0$ depends on the input at times prior to $t_0$
+\end{ornek}
+\[ y(t_0)=T\bigl[x(t):t\le t_0\bigr] \]
+A nessesary an sufficent condition for an LTI system to be causal is that \underline{its impulse response $h(t)$,} \textcolor{kirmizikalem}{[the output when the input is $\delta(t)$]} must be a causal siggnal for $t<0$, we must have $h(t)=0$
+
+$h(t)=\Pi\!\left(\dfrac{t-3}{6}\right)$, LTI system is causal?
+\begin{center}
+  \begin{tikzpicture}[ax/.style={-{Stealth[length=2mm]},line width=0.6pt}]
+    % (1) A Pi(t/tau)
+    \node[kirmizikalem] at (0,2.0) {$A\,\Pi(t/\tau)$};
+    \draw[ax] (-1.7,0) -- (1.9,0);
+    \draw[ax] (0,-0.1) -- (0,1.6);
+    \node[right] at (0,1.45) {$A$};
+    \draw[kirmizikalem,line width=0.9pt] (-1,0) -- (-1,1.1) -- (1,1.1) -- (1,0);
+    \node[kirmizikalem,below,font=\small] at (-1,0) {$-\tau/2$};
+    \node[kirmizikalem,below,font=\small] at (1,0) {$\tau/2$};
+    % (2) Pi(t/6)
+    \begin{scope}[shift={(5.6,0)}]
+      \node at (0,2.0) {$\Pi(t/6)$};
+      \draw[ax] (-1.7,0) -- (1.9,0);
+      \draw[ax] (0,-0.1) -- (0,1.6);
+      \draw[line width=0.9pt] (-1.05,0) -- (-1.05,1.1) -- (1.05,1.1) -- (1.05,0);
+      \node[below,font=\small] at (-1.05,0) {$-3$};
+      \node[below,font=\small] at (1.05,0) {$3$};
+    \end{scope}
+    % (3) h(t)
+    \begin{scope}[shift={(10.6,0)}]
+      \node at (0.8,2.0) {$h(t)=\Pi\!\left(\frac{t-3}{6}\right)$};
+      \draw[ax] (-0.5,0) -- (3.0,0) node[right]{$t$};
+      \draw[ax] (0,-0.1) -- (0,1.6);
+      \draw[line width=0.9pt] (0,0) -- (0,1.1) -- (2.1,1.1) -- (2.1,0);
+      \node[left,font=\small] at (0,1.1) {$1$};
+      \node[below,font=\small] at (0,0) {$0$};
+      \node[below,font=\small] at (2.1,0) {$6$};
+      \draw[->] (0.6,-0.1) -- (0.6,-0.6);
+      \node[below,font=\small] at (0.6,-0.6) {causal};
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+\begin{ornek}
+  Determine the Fourier Series Expansion of the following signals.
+\end{ornek}
+
+\sayfa{3}
+\[ \text{a)}\quad x(t)=\sum_{n=-\infty}^{\infty}\Lambda(t-n)\,u(t-n) \]
+\[ \text{b)}\quad x(t)=\sum_{n=-\infty}^{\infty}(-1)^n\,\delta(t-nT) \]
+\section{Fourier Seri Açılımları}
+Trigonometrik FS:
+\[ x(t)=a_0+\sum_{n=1}^{\infty}\bigl(a_n\cos(n\omega_0t)+b_n\sin(n\omega_0t)\bigr) \]
+\[
+  \begin{aligned}
+    a_0&=\frac{1}{T_0}\int_{T_0}x(t)\,dt,\qquad a_n=\frac{2}{T_0}\int_{T_0}x(t)\cos(n\omega_0t)\,dt\\
+    b_n&=\frac{2}{T_0}\int_{T_0}x(t)\sin(n\omega_0t)\,dt
+  \end{aligned}
+\]
+kompleks ExpFS:
+\[ x(t)=\sum_{n=-\infty}^{\infty}x_n\,e^{jn\omega_0t},\qquad x_n=\frac{1}{T_0}\int_{T_0}x(t)\,e^{-jn\omega_0t}\,dt \]
+\formulkutu[ikisi arasındaki \okunamadi{bağıntı}]{x_n=\frac{a_n-jb_n}{2}}
+a) önce $n=0$ ve $n=1$ için çizelim
+\[ n=0\ \to\ \Lambda(t)\,u(t) \]
+\begin{center}
+  \begin{tikzpicture}[ax/.style={-{Stealth[length=2mm]},line width=0.6pt},cv/.style={line width=0.9pt}]
+    \begin{scope}
+      \draw[ax] (-1.5,0) -- (1.7,0) node[right]{$t$};
+      \draw[ax] (0,-0.05) -- (0,1.5);
+      \draw[cv] (-1,0) -- (0,1) -- (1,0);
+      \node[below,font=\small] at (-1,0) {$-1$};
+      \node[below,font=\small] at (1,0) {$1$};
+    \end{scope}
+    \begin{scope}[shift={(5.3,0)}]
+      \draw[ax] (-1.5,0) -- (1.9,0) node[right]{$t$};
+      \draw[ax] (0,-0.05) -- (0,1.5);
+      \draw[cv] (0,1) -- (1.7,1);
+      \node[left,font=\small] at (0,1) {$1$};
+    \end{scope}
+    \begin{scope}[shift={(10.6,0)}]
+      \draw[ax] (-1.5,0) -- (1.7,0);
+      \draw[ax] (0,-0.05) -- (0,1.5);
+      \draw[cv] (0,0) -- (0,1) -- (1,0);
+      \node[left,font=\small] at (0,1) {$1$};
+      \node[below,font=\small] at (1,0) {$1$};
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+\[ n=1\ \to\ \Lambda(t-1)\,u(t-1) \]
+\begin{center}
+  \begin{tikzpicture}[ax/.style={-{Stealth[length=2mm]},line width=0.6pt},cv/.style={line width=0.9pt}]
+    \begin{scope}[kirmizikalem]
+      \node[anchor=east] at (-1.6,0.9) {$A\,\Lambda(t/2)$};
+      \draw[ax] (-2.3,0) -- (2.4,0) node[right]{$t$};
+      \draw[ax] (0,-0.05) -- (0,1.6);
+      \draw[cv] (-2,0) -- (0,1.2) -- (2,0);
+      \node[right] at (0,1.35) {$A$};
+      \node[below,font=\small] at (-2,0) {$-2$};
+      \node[below,font=\small] at (2,0) {$2$};
+    \end{scope}
+    \begin{scope}[shift={(8,0)}]
+      \draw[ax] (-1.2,0) -- (3.4,0) node[right]{$t$};
+      \draw[ax] (0,-0.05) -- (0,1.5);
+      \draw[dashed,line width=0.4pt] (0,1) -- (3.0,1);
+      \draw[cv] (1,0) -- (1,1) -- (2,0);
+      \node[left,font=\small] at (0,1) {$1$};
+      \node[below,font=\small] at (1,0) {$1$};
+      \node[below,font=\small] at (2,0) {$2$};
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+\[ \sum_{n=-\infty}^{\infty}\Lambda(t-n)\,u(t-n) \]
+\begin{center}
+  \begin{tikzpicture}[ax/.style={-{Stealth[length=2mm]},line width=0.6pt},cv/.style={line width=0.9pt}]
+    \begin{scope}[x=0.85cm,y=1.6cm]
+      \draw[ax] (-4.6,0) -- (4.9,0) node[right]{$t$};
+      \draw[ax] (0,-0.03) -- (0,1.3) node[right]{$x(t)$};
+      \draw[dashed,line width=0.4pt] (-4.3,1) -- (4.6,1);
+      \foreach \n in {-4,-3,...,3} \draw[cv] (\n,1) -- (\n+1,0);
+      \foreach \n in {-4,-3,...,4} \draw[dashed,line width=0.4pt] (\n,0) -- (\n,1);
+      \foreach \n in {-4,-3,...,4} \node[below,font=\small] at (\n,0) {$\n$};
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+
+\sayfa{4}
+kompleks FS
+\[
+  \begin{aligned}
+    x_0&=\frac{1}{T_0}\int_{T_0}x(t)\,dt\\
+    &=\frac{1}{T_0}\int x(t)\,dt\\
+    &=\int_0^1(1-t)\,dt=\frac{1}{2}
+  \end{aligned}
+\]
+\underline{$T_0=1$}
+\[ y-y_0=\underset{-1}{\overset{\text{doğrunun eğimi}}{m}}\,(x-x_0) \]
+\[ y-1=(-1)\,x \]
+\[ y(t)=1-t \]
+\underline{$T_0=1$}
+\[
+  n\neq0\ \to\ x_n=\int_0^1x(t)\,e^{-jn2\pi t}=\int_0^1(1-t)\,e^{-jn2\pi t}\,dt
+  =\int_0^1e^{-jn2\pi t}\,dt\ \underbrace{-\int_0^1t\,e^{-jn2\pi t}\,dt}_{I_1}
+\]
+\[ \omega_0=\frac{2\pi}{T_0} \]
+\[ \downarrow\ \ -\frac{1}{jn2\pi}\,e^{-jn2\pi t}\Big|_0^1=\frac{-1}{jn2\pi}\Bigl[e^{-jn2\pi}-e^{0}\Bigr] \]
+\[ I_1=\int_0^1t\,e^{-jn2\pi t}\,dt \]
+\formulkutu[kısmi integrasyon]{\left.uv\right|_a^b-\int_a^b v\,du}
+\[
+  \begin{aligned}
+    u&=t & e^{-jn2\pi t}\,dt&=dv\\
+    du&=dt & \frac{-1}{jn2\pi}\,e^{-jn2\pi t}&=v
+  \end{aligned}
+\]
+\[ =\left(t\cdot\frac{-1}{jn2\pi}\,e^{-jn2\pi t}\right)\Bigg|_0^1-\int_0^1-\frac{1}{jn2\pi}\,e^{-jn2\pi t}\,dt \]
+\[ =-\frac{1}{jn2\pi}\,e^{-jn2\pi}+\frac{1}{n^24\pi^2}\,e^{-jn2\pi}-\frac{1}{n^24\pi^2} \]
+\[ x_n=\frac{1}{jn2\pi}+\frac{1}{n^24\pi^2}-\frac{1}{n^24\pi^2}\,e^{-jn2\pi} \]
+\[ =\frac{1}{jn2\pi}+\frac{1}{n^24\pi^2}\Bigl[1-\underbrace{e^{-jn2\pi}}_{1}\Bigr]=\frac{1}{jn2\pi} \]
+\[ \text{Üstel FS:}\quad\kutula{x(t)=\frac{1}{2}+\sum_{n\neq0}\frac{1}{jn2\pi}\,e^{jn2\pi t}} \]
+
+\sayfa{5}
+\[ x_n=\frac{a_n-jb_n}{2}=\overset{\text{$j$ ile çarpalım}}{\frac{1}{jn2\pi}}=-\frac{j}{n2\pi} \]
+\[ a_n=0,\qquad b_n=\frac{1}{n\pi} \]
+\[ x(t)=\frac{1}{2}+\sum_{n=1}^{\infty}\frac{1}{\pi n}\sin(2\pi nt) \]
+b)
+\[ \begin{aligned} n=0&\to\delta(t)\\ n=1&\to-\delta(t-T) \end{aligned} \]
+\begin{center}
+  \begin{tikzpicture}[ax/.style={-{Stealth[length=2mm]},line width=0.6pt},ar/.style={-{Stealth[length=2mm]},line width=1pt}]
+    \draw[ax] (-1.5,0) -- (2.0,0) node[right]{$t$};
+    \draw[ar] (0,0) -- (0,1.0);
+    \node[below,font=\small] at (0,0) {$0$};
+    \begin{scope}[shift={(6.5,0)}]
+      \draw[ax] (-1.2,0) -- (2.4,0) node[right]{$t$};
+      \draw[ar] (1.2,0) -- (1.2,-1.0);
+      \node[above,font=\small] at (1.2,0) {$T$};
+      \node[below,font=\small] at (0,0) {$0$};
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+c)
+\begin{center}
+  \begin{tikzpicture}[ax/.style={-{Stealth[length=2mm]},line width=0.6pt},ar/.style={-{Stealth[length=2mm]},line width=1pt}]
+    \draw[ax] (-3.7,0) -- (4.9,0) node[right]{$t$};
+    \draw[line width=0.6pt] (0,-1.3) -- (0,1.5);
+    \foreach \n/\lab in {-3/-3T,-2/-2T,-1/-T,0/0,1/T,2/2T,3/3T,4/4T} {
+      \ifodd\n
+        \draw[ar] (\n,0) -- (\n,-0.9); \node[right,font=\small] at (\n,-0.4) {$\lab$};
+      \else
+        \draw[ar] (\n,0) -- (\n,0.9); \node[below,font=\small] at (\n,0) {$\lab$};
+      \fi}
+    \node[right,font=\small] at (0,0.9) {$1$};
+  \end{tikzpicture}
+\end{center}
+\textcolor{kirmizikalem}{Dürtü katarının FS açılımı}
+\[ x(t)=\sum_n\delta(t-nT_0)=\frac{1}{T_0}\sum_n e^{jn\omega_0t} \]
+\[ x(t)=\underbrace{\sum_n\delta(t-n2T)}_{}\;-\;\underbrace{\sum_n\delta(t-T-n2T)}_{} \]
+\begin{center}
+  \begin{tikzpicture}[ax/.style={-{Stealth[length=2mm]},line width=0.6pt},ar/.style={-{Stealth[length=2mm]},line width=1pt}]
+    \begin{scope}[x=0.7cm]
+      \draw[ax] (-4.8,0) -- (5.2,0);
+      \foreach \n/\lab in {-4/-4T,-2/-2T,0/0,2/2T,4/4T} {
+        \draw[ar] (\n,0) -- (\n,0.9); \node[below,font=\small] at (\n,0) {$\lab$};}
+    \end{scope}
+    \begin{scope}[shift={(8.2,0)},x=0.7cm]
+      \draw[ax] (-4.8,0) -- (5.2,0);
+      \foreach \n/\lab in {-3/-3T,-1/-T,1/T,3/3T} {
+        \draw[ar] (\n,0) -- (\n,0.9); \node[below,font=\small] at (\n,0) {$\lab$};}
+    \end{scope}
+  \end{tikzpicture}
+\end{center}
+\[ x(t)=\frac{1}{2T}\sum_n e^{jn\frac{2\pi}{2T}t}-\frac{1}{2T}\sum_n e^{jn\frac{2\pi}{2T}(t-T)} \]
+\[ =\frac{1}{2T}\sum_n\Bigl\{e^{jn\frac{\pi}{T}t}-e^{jn\frac{\pi}{T}t}\,\underbrace{e^{-jn\frac{\pi}{T}\cdot T}}_{(-1)^n}\Bigr\} \]
+\[ \textcolor{kirmizikalem}{e^{-jn\pi}=\cos(-n\pi)+j\sin(-n\pi)=(-1)^n} \]
+\[ =\frac{1}{2T}\sum_n e^{jn\frac{\pi}{T}\cdot t}\,\bigl(1-(-1)^n\bigr) \]
+\[ x_n=\frac{1}{2T}\bigl(1-(-1)^n\bigr)=\begin{cases}\dfrac{1}{T}&n\ \text{tek}\\[2mm] 0&n\ \text{çift}\end{cases} \]
+
+\sayfa{6}
+\formulkutu{\Rightarrow\ x(t)=\sum_n x_n\,e^{jn\frac{\pi}{T}\cdot t},\qquad x_n=\begin{cases}1/T,&n\ \text{tek}\\ 0,&n\ \text{çift}\end{cases}}
+\begin{ornek}
+  Determine the FS expansion of the following periodic signal
+\end{ornek}
+\sekilnotu[6]{Periyodik testere dişi işareti: yatay eksen $t$, düşey eksende $1$ ve $-1$ seviyeleri işaretli; kırmızı not ``slope $=1$''. Birbirine paralel, her biri $-1$ seviyesinden $+1$ seviyesine yükselen eğik doğru parçaları ve (yaklaşık $-2T$, $2T$, $4T$ konumlarında) süreksizlikleri gösteren kesikli düşey çizgiler var. Zaman ekseni işaretleri: $-2T$, $-T$, $T$, $2T$, $3T$, $4T$. Şeklin sağında: $y=\frac{1}{T}x$ ve $x(t)=\frac{t}{T}$.}
+\[ y=\frac{1}{T}\,x,\qquad x(t)=\frac{t}{T} \]
+\[ x_n=\frac{1}{T_0}\int_{T_0}x(t)\,e^{-jn\omega_0t}\,dt \]
+\[ T_0=2T\ \to\ \omega_0=\frac{2\pi}{2T}=\frac{\pi}{T} \]
+\noindent\begin{minipage}{\linewidth}
+\[
+  \begin{aligned}
+    x_n&=\frac{1}{2T}\int_{-T}^{T}\frac{t}{T}\,e^{-jn\frac{\pi}{T}}\,dt\\
+    &=\frac{1}{2T^2}\int_{-T}^{T}e^{-jn\frac{\pi t}{T}}\,dt\text{\footnotemark}
+  \end{aligned}
+\]
+\footnotetext{Claude notu: birinci satırda üstelde, ikinci satırda ise integrandda $t$ çarpanı yazılmamış; sonraki adımlara göre ($u=t$) muhtemelen $x_n=\frac{1}{2T^2}\int_{-T}^{T}t\,e^{-jn\frac{\pi t}{T}}\,dt$ olmalı.}
+\end{minipage}
+\[
+  \begin{aligned}
+    u&=t & e^{-jn\frac{\pi t}{T}}\,dt&=dv\\
+    du&=dt & -\frac{1}{jn\frac{\pi}{T}}\,e^{-jn\frac{\pi t}{T}}&=v
+  \end{aligned}
+\]
+\[
+  \begin{aligned}
+    &=\frac{1}{2T^2}\Biggl[\Bigl(t\cdot\frac{-1}{jn\frac{\pi}{T}}\,e^{-jn\frac{\pi t}{T}}\Bigr)\Bigg|_{-T}^{T}\\
+    &\qquad-\int_{-T}^{T}-\frac{1}{jn\frac{\pi}{T}}\,e^{-jn\frac{\pi t}{T}}\,dt\Biggr]
+  \end{aligned}
+\]
+Sonuca giderken $e^{jn\pi}=(-1)^n$
+
+$x_0$'ı ayrı olarak bul ödev
+
+\sayfa{7}
+\begin{ornek}
+  Classify the following signal into periodic or non periodic
+  \[ x(t)=2\sum_{n}\Lambda\!\left(\frac{t-4n}{2}\right)-\sum_{n}\Lambda(t-4n) \]
+\end{ornek}
+\[ n=0\ \to\ x_0(t)=x_1(t)=2\Lambda\!\left(\frac{t}{2}\right)-\Lambda(t) \]
+\sekilnotu[7]{Solda tepe değeri $2$, tabanı $-2$ ile $2$ arasında olan üçgen ($2\Lambda(t/2)$); içinde kırmızı kalemle çizilmiş çapraz çizgiler ve kenarlarda kırmızı çarpı işaretleri (içteki üçgen / çıkarılacak kısım). Ok ile sağdaki şekle bağlanıyor: tepe değeri $1$, tabanı $-1$ ile $1$ arasında olan üçgen $\Lambda(t)$.}
+
+bunların farkı
+\sekilnotu[7]{Kırmızı trapez: $t=-2$'de $0$'dan başlayıp $t=-1$'e kadar yükseliyor, $-1$ ile $1$ arasında sabit (plato), $t=1$'den $t=2$'ye düşüp $0$ oluyor. Eksen işaretleri $-2,-1,1,2$; altında $-2$ ile $2$ arasını gösteren çift uçlu ok ve ``$4$'' yazılı.}
+\sekilnotu[7]{Periyodik trapez dalgası: platolar $[-5,-3]$, $[-1,1]$ ve $[3,5]$ aralıklarında; $t=-2$ ve $t=2$ noktalarında sıfıra inen vadiler; plato kenarlarında kesikli dikey çizgiler; kırmızı noktalar $t=0$ ve $t=4$ plato ortalarında. Eksen işaretleri $-6,-5,\dots,4,5$.}
+\textcolor{kirmizikalem}{$T_0=4$ ile periyodiktir}
+
+\begin{ornek}
+  Find the Fourier Transform of the following signal
+\end{ornek}
+\sekilnotu[7]{Siyah çizim: $x(t)$ ve $t$ eksenleri; $t=-\frac{1}{2f_0}$ ile $t=\frac{1}{2f_0}$ arasında, orijinde birleşen iki pozitif yarım sinüs kemeri ($|\sin(2\pi f_0 t)|$ biçimi); kemerin üstünde ``$\sin(2\pi f_0 t)$'' yazılı.}
+\[ X(f)=\,? \]
+\sekilnotu[7]{Kırmızı çizim: ``$\sin(2\pi f_0 t)$'' başlıklı sinüs dalgası; orijinden yükselip eksene iniyor, ilk sıfır geçişi $\frac{1}{2f_0}$ olarak işaretli, sonra eksenin altına inip tekrar yükseliyor. Sağ altta kırmızı dikdörtgen darbe: yükseklik $1$, $t=0$ ile $t=\frac{1}{2f_0}$ arasında, ortası $\frac{1}{4f_0}$ kesikli çizgiyle işaretli; üstündeki ok ``$\Pi\!\left(\frac{t-\frac{1}{4f_0}}{\frac{1}{2f_0}}\right)$'' ifadesine gidiyor.}
+
+\sayfa{8}
+\[ x(t)=\sin(2\pi f_0t)\cdot\Pi\!\left(\frac{t-\frac{1}{4f_0}}{\frac{1}{2f_0}}\right)-\sin(2\pi f_0t)\,\Pi\!\left(\frac{t+\frac{1}{4f_0}}{\frac{1}{2f_0}}\right) \]
+\[ x(t)=\underbrace{\sin(2\pi f_0t)}_{x_1(t)}\Bigl[\underbrace{\Pi\Bigl(2f_0\bigl(t-\tfrac{1}{4f_0}\bigr)\Bigr)-\Pi\Bigl(2f_0\bigl(t+\tfrac{1}{4f_0}\bigr)\Bigr)}_{x_2(t)}\Bigr] \]
+\[
+  \begin{aligned}
+    x(t)&=x_1(t)\cdot x_2(t)\\
+    \downarrow\\
+    X(f)&=X_1(f)\circledast X_2(f)
+  \end{aligned}
+\]
+\[ \textcolor{kirmizikalem}{\sin(2\pi f_0t)\xrightarrow{\mathcal{F}}-\frac{1}{2j}\Bigl[\delta(f+f_0)-\delta(f-f_0)\Bigr]\quad\leftarrow X_1(f)} \]
+\[ \textcolor{kirmizikalem}{A\,\Pi\!\left(\frac{t}{\tau}\right)\xrightarrow{\mathcal{F}}A\,\tau\,\mathrm{sinc}(f\tau)} \]
+\[ \textcolor{kirmizikalem}{x(t-t_0)\to X(f)\,e^{-j2\pi ft_0}} \]
+\[
+  x_2(t)=\Pi\Bigl(\underbrace{2f_0}_{\tau=\frac{1}{2f_0}}\bigl(t-\underbrace{\tfrac{1}{4f_0}}_{t_0=\frac{1}{4f_0}}\bigr)\Bigr)-\Pi\Bigl(2f_0\bigl(t+\underbrace{\tfrac{1}{4f_0}}_{t_0=-\frac{1}{4f_0}}\bigr)\Bigr)
+\]
+\[
+  \begin{aligned}
+    X_2(f)&=\frac{1}{2f_0}\,\mathrm{sinc}\Bigl(f\cdot\frac{1}{2f_0}\Bigr)e^{-j2\pi f\cdot\frac{1}{4f_0}}\\
+    &\quad-\frac{1}{2f_0}\,\mathrm{sinc}\Bigl(f\cdot\frac{1}{2f_0}\Bigr)\cdot e^{j2\pi f\cdot\frac{1}{4f_0}}\\
+    &=\frac{j}{f_0}\cdot\mathrm{sinc}\Bigl(\frac{f}{2f_0}\Bigr)\sin\Bigl(\frac{\pi f}{2f_0}\Bigr)
+  \end{aligned}
+\]
+\[ \textcolor{kirmizikalem}{X(f)=X_2(f)\circledast\Bigl[\frac{1}{2j}\bigl(\delta(f-f_0)-\delta(f+f_0)\bigr)\Bigr]} \]
+\[ \textcolor{kirmizikalem}{=\frac{1}{2j}\underbrace{X_2(f)\circledast\delta(f-f_0)}_{X_2(f-f_0)}-\frac{1}{2j}\underbrace{X_2(f)\circledast\delta(f+f_0)}_{X_2(f+f_0)}} \]
+\[ \textcolor{kirmizikalem}{\begin{aligned} x(t)\,\delta(t-t_0)&=x(t_0)\cdot\delta(t-t_0)\\ x(t)\circledast\delta(t-t_0)&=x(t-t_0) \end{aligned}} \]
+
+\sayfa{9}
+\begin{ornek}
+  \[ x(t)=4\Lambda\!\left(\frac{t}{4}\right)\cos(2\pi f_0t) \]
+  Find the Fourier Transform
+\end{ornek}
+\textcolor{kirmizikalem}{Reminder:}
+\[
+  \begin{aligned}
+    A\Lambda(t/\tau)&\to A\tau\,\mathrm{sinc}^2(f\tau)\\
+    \cos(2\pi f_0t)&\to\frac{1}{2}\delta(f-f_0)+\frac{1}{2}\delta(f+f_0)\\
+    x(t)\cos(2\pi f_0t)&\to\frac{1}{2}\bigl[X(f-f_0)+X(f+f_0)\bigr]
+  \end{aligned}
+\]
+
+\begin{ornek}
+  \[ x(t)=\Lambda(2t+3)-\Lambda(3t-2) \]
+  Find the fourier transform
+\end{ornek}
+Reminder
+\[
+  \begin{aligned}
+    A\Lambda(t/\tau)&\to A\tau\,\mathrm{sinc}^2(f\tau)\\
+    x(t-t_0)&\to X(f)\,e^{-j2\pi ft_0}
+  \end{aligned}
+\]
+\[ x(t)=\underbrace{\Lambda\!\left(\frac{t+3/2}{1/2}\right)}_{\substack{A=1\\ \tau=1/2\\ t_0=-3/2}}-\underbrace{\Lambda\!\left(\frac{t-2/3}{1/3}\right)}_{\substack{A=1\\ \tau=1/3\\ t_0=2/3}} \]
+\[ X(f)=\frac{1}{2}\,\mathrm{sinc}^2\!\left(\frac{f}{2}\right)e^{j2\pi f\frac{3}{2}}-\frac{1}{3}\,\mathrm{sinc}^2\!\left(\frac{f}{3}\right)e^{-j2\pi f\frac{2}{3}} \]
+
+\begin{ornek}
+  Fourier transform of a signal is
+\end{ornek}
+\sekilnotu[9]{Spektrum çizimi: dikey eksen $X(f)$, yatay eksen $f$; $f=-500$ ve $f=500$ noktaları işaretli; tepe değeri $4$ olan ($f=0$'da) üçgen biçimli spektrum; kesikli yardımcı çizgiler var.}
+Determine and sketch the fourier transform of the signal
+\[
+  x_1(t)=\mathord{\ooalign{$-x(t)$\cr\hidewidth\textcolor{kirmizikalem}{\rule[0.6ex]{2.4em}{0.6pt}}\hidewidth\cr}}
+  +x(t)\underbrace{\cos(2000\pi t)}_{\displaystyle\textcolor{kirmizikalem}{2\pi f_0t}}
+  +\overset{\textcolor{kirmizikalem}{\uparrow\,x(t)}}{2x(t)}\underbrace{\cos^2(3000\pi t)}_{\displaystyle\textcolor{kirmizikalem}{\frac{1}{2}\bigl[1+\cos(6000\pi t)\bigr]}}
+\]
+\textit{(Not: $-x(t)$ terimi kırmızı kalemle çizilerek iptal edilmiş.)}
+
+\sayfa{10}
+\[
+  \begin{aligned}
+    X_1(f)&=\frac{1}{2}X(f-1000)+\frac{1}{2}X(f+1000)+\frac{1}{2}X(f-3000)+{}\\
+    &\quad\frac{1}{2}X(f+3000)
+  \end{aligned}
+\]
+\[ \cos^2\alpha=\frac{1}{2}\bigl(1+\cos2\alpha\bigr) \]
+
+\begin{ornek}
+  \[ x(t)=t\,\mathrm{sinc}(t) \]
+  Find the fourier transform
+\end{ornek}
+\textcolor{kirmizikalem}{1. yol}
+\[ \mathrm{sinc}(t)=\frac{\sin(\pi t)}{\pi t}\qquad\textcolor{kirmizikalem}{\longrightarrow\ 2\pi f_0t} \]
+\[ x(t)=\frac{1}{\pi}\sin(\pi t)\qquad\begin{aligned}[t]2\pi f_0t&=\pi t\\ f_0&=\,?\,=\frac{1}{2}\end{aligned} \]
+\[ X(f)=\frac{1}{2j\pi}\,\delta\!\left(f-\frac{1}{2}\right)-\frac{1}{2j\pi}\,\delta\!\left(f+\frac{1}{2}\right) \]
+
+\textcolor{kirmizikalem}{2. yol \quad Reminder:}
+\[ \textcolor{kirmizikalem}{t\,x(t)\to\frac{j}{2\pi}\,\frac{dX(f)}{df}} \]
+\[ x_1(t)=\mathrm{sinc}(t)\to X_1(f)=\Pi(f) \]
+\sekilnotu[10]{Sağda küçük bir çizim: eksenler $X_1(f)$ ve $f$; $f=-\frac{1}{2}$ ile $f=\frac{1}{2}$ arasında dikdörtgen darbe (yükseklik işaretlenmemiş).}
+\[ X_1(f)=U\!\left(f+\frac{1}{2}\right)-U\!\left(f-\frac{1}{2}\right) \]
+\[ \frac{dX_1(f)}{df}=\delta\!\left(f+\frac{1}{2}\right)-\delta\!\left(f-\frac{1}{2}\right) \]
+\[ X(f)=\frac{j}{2\pi}\Bigl[\delta\!\left(f+\frac{1}{2}\right)-\delta\!\left(f-\frac{1}{2}\right)\Bigr] \]
+
+\begin{ornek}
+  \[ x(t)=\mathrm{sinc}(t)\circledast\mathrm{sinc}(t)=\mathrm{sinc}(t) \]
+  Prove.
+\end{ornek}
+\[ \textcolor{kirmizikalem}{\mathcal{F}\{x_1(t)\ast x_2(t)\}=X_1(f)\cdot X_2(f)} \]
+\[
+  \begin{array}{rcl}
+    x_1(t)=\mathrm{sinc}(t)&\longrightarrow&X_1(f)=\Pi(f)\\
+    x_2(t)=\mathrm{sinc}(t)&\longrightarrow&X_2(f)=\Pi(f)\\
+    &&X(f)=\Pi(f)\\
+    &&\downarrow\mathcal{F}^{-1}\\
+    &&x(t)=\mathrm{sinc}(t)
+  \end{array}
+\]
+\sekilnotu[10]{Sağda küçük bir çizim: $f=-\frac{1}{2}$ ile $f=\frac{1}{2}$ arasında dikdörtgen darbe; eksen üzerinde $-\frac{1}{2}$, $\frac{1}{2}$ ve $f$ işaretli.}
+
+\sayfa{11}
+\begin{ornek}
+  \[ x(t)=\frac{1}{1+t^2}\qquad\qquad X(f)=\,? \]
+\end{ornek}
+\textcolor{kirmizikalem}{Reminder:}
+\[ \textcolor{kirmizikalem}{e^{-\alpha|t|}\to\frac{2\alpha}{\alpha^2+(2\pi f)^2}}\ \to\ \frac{2\alpha}{4\pi^2}\Bigl[\frac{1}{\frac{\alpha^2}{4\pi^2}+f^2}\Bigr] \]
+Dualite
+\[
+  \begin{aligned}
+    x(t)&\to X(f)\\
+    X(t)&\to x(-f)
+  \end{aligned}
+\]
+\[ \frac{\alpha^2}{4\pi^2}=1\ \to\ \alpha^2=4\pi^2\ \Rightarrow\ \alpha=2\pi \]
+\[ X(t)=\frac{2\cdot2\pi}{4\pi^2}\Bigl[\frac{1}{1+t^2}\Bigr]=\frac{1}{\pi}\,\frac{1}{1+t^2} \]
+\[ x(-f)=e^{-\alpha|-f|}=e^{-\alpha|f|}=\pi\cdot e^{-\alpha|f|}=\pi\cdot e^{-2\pi|f|} \]
+
+\begin{ornek}
+  \[ X(f)=\,?\,=\int_{-\infty}^{\infty}x(t)\,e^{-j2\pi ft}\,dt \]
+\end{ornek}
+\sekilnotu[11]{İşaret çizimi: dikey eksen $x(t)$, yatay eksen $t$. $t=-1$'de $0$'dan başlayıp $t=0$'da $1$'e çıkan, eğimi $1$ olan doğru parçası; ardından $t=0$'da $-1$'den başlayıp $t=1$'de $0$'a çıkan, eğimi $1$ olan ikinci doğru parçası. Eksen işaretleri: yatayda $-1$ ve $1$, düşeyde $1$ ve $-1$. Kırmızı notlar: ``slope $=1$'', ``$y=1(t+1)$'', ``$x(t)=t+1$'' (ilk doğru parçasının uzantısı kırmızıyla çizilmiş). Siyah notlar (ikinci doğru parçasından ok ile): ``$y+1=x$'', ``$x(t)=t-1$''.}
+\[ X(f)=\int_{-1}^{0}(t+1)\,e^{-j2\pi ft}\,dt+\int_{0}^{1}(t-1)\,e^{-j2\pi ft}\,dt \]
+\[ \text{sonuç}\quad=\frac{j}{\pi f}\bigl[1-\mathrm{sinc}(2f)\bigr] \]
+\[
+  \begin{aligned}
+    &=\underbrace{\int_{-1}^{0}t\,e^{-j2\pi ft}\,dt}_{\textcolor{kirmizikalem}{I_1}}+\underbrace{\int_{-1}^{0}e^{-j2\pi ft}\,dt}_{\displaystyle\frac{-1}{j2\pi f}\,e^{-j2\pi ft}\Big|_{-1}^{0}}\\
+    &\quad+\underbrace{\int_{0}^{1}t\,e^{-j2\pi ft}\,dt}_{\textcolor{kirmizikalem}{I_2}}-\underbrace{\int_{0}^{1}e^{-j2\pi ft}\,dt}_{\displaystyle\frac{-1}{j2\pi f}\,e^{-j2\pi ft}\Big|_{0}^{1}}
+  \end{aligned}
+\]
+
+\sayfa{12}
+\textcolor{kirmizikalem}{kısmi integrasyon}
+\[ \textcolor{kirmizikalem}{\int_a^b u\,dv=u\,v\Big|_a^b-\int_a^b v\,du} \]
+\[ I_1=\int_{-1}^{0}t\,e^{-j2\pi ft}\,dt= \]
+\[
+  \begin{array}{ll}
+    u=t & e^{-j2\pi ft}\,dt=dv\\
+    du=dt & {}=\dfrac{-1}{j2\pi f}\,e^{-j2\pi ft}=v
+  \end{array}
+\]
+\[ {}=\Bigl(t\,\frac{-1}{j2\pi f} \]
+\end{document}

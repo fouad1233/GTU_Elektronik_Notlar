@@ -1,0 +1,1075 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\newcommand{\ustucizili}[1]{\tikz[baseline=(X.base)]{\node(X)[inner sep=1pt]{$#1$};\draw[kursunkalem](X.south west)--(X.north east);}}
+\begin{document}
+\notbilgi{Matematik II}{Çok değişkenli fonksiyonlar, çok katlı integraller (s. 21–32)}{MAT-2.pdf}
+
+\sayfa{21}
+\section{TAYLOR DİFERANSİYEL YAKLAŞIMI İLE YAKLAŞIK DEĞER HESAPLAMA}
+
+$f(x,y)=x^3+y^4+1\ \longrightarrow\ (1,2)$ noktasında teğet düzlem denklemi
+\begin{align*}
+f(1,2)&=1+16+1=18\\
+f(1{,}003,\,2{,}001)&=\ ?\qquad (1{,}003)^3+(2{,}001)^4+1\ \ \text{işlem zorluğu}
+\end{align*}
+\[ f(a+\Delta x,\,b+\Delta y)\approx f(a,b)+f_x(a,b)\cdot\Delta x+f_y(a,b)\cdot\Delta y \]
+\[ a=1\quad b=2\quad \Delta x=0{,}003\quad \Delta y=0{,}001 \]
+\begin{align*}
+f(1+\Delta x,\,2+\Delta y)&\approx f(1,2)+f_x(1,2)\,\Delta x+f_y(1,2)\,\Delta y\qquad f_x=3x^2\quad f_y=4y^3\\
+&\approx 18+3\cdot 0{,}003+32\cdot 0{,}001\\
+&=18+0{,}009+0{,}032=\underline{18{,}041}
+\end{align*}
+
+\begin{ornek}
+Diferansiyel yakl.\ kullan.\ $\sqrt{(2{,}06)^2+5\cdot(0{,}97)^4}$ değerini yaklaşık olarak hesapla.
+\end{ornek}
+\begin{align*}
+f(x,y)&=\sqrt{x^2+5y^4}\ \longrightarrow\ f(2{,}06,\,0{,}97)=\ ?\\
+a&=2\quad b=1\quad \Delta x=0{,}06\quad \Delta y=-0{,}03\qquad (2+0{,}06,\ 1-0{,}03)\\
+f(2,1)&=3\\
+f_x&=\tfrac12\,(x^2+5y^4)^{-1/2}\cdot 2x\qquad f_x(2,1)=\tfrac23\\
+f_y&=\tfrac12\,(x^2+5y^4)^{-1/2}\cdot 20y^3\qquad f_y(2,1)=\tfrac{10}{3}\\
+f(2{,}06,\,0{,}97)&=3+\tfrac23\cdot 0{,}06+\left(\tfrac{10}{3}\cdot(-0{,}03)\right)\\
+&=3+0{,}04-0{,}1=\underline{2{,}94}
+\end{align*}
+
+\section{İKİ DEĞİŞKENLİ FONKSİYONLARDA YEREL MAKSİMUM VE YEREL MİNİMUM, EYER NOKTALARINI BULMA}
+
+$f_x=0\quad f_y=0\ \longrightarrow$ \okunamadi{ikisinin} çözümünü sağlayan $(x,y)$ ikililerine kritik noktalar \okunamadi{denir}. Kritik noktalar yerel max, min, eyer noktası adaydır.
+
+\medskip\noindent\textbf{Sınıflama Metodu:} $D=f_{xx}\cdot f_{yy}-(f_{xy})^2$ \quad $(x_0,y_0)$'da
+\begin{enumerate}
+\item $D(x_0,y_0)>0,\ f_{xx}(x_0,y_0)>0$ ise $(x_0,y_0)$ yerel min.
+\item $D(x_0,y_0)>0,\ f_{xx}(x_0,y_0)<0$ ise $(x_0,y_0)$ yerel max.
+\item $D(x_0,y_0)<0$ ise eyer noktası.
+\item $D(x_0,y_0)=0$ ise başka tekniklere başvurulmalıdır.
+\end{enumerate}
+
+\begin{ornek}
+$f(x,y)=x^2+2xy$ fonks.\ nun yerel max, min ve eyer noktasını bulunuz.
+\end{ornek}
+\noindent\textbf{1. adım:} $\nabla f=0$
+\begin{align*}
+f_x=0&\ \longrightarrow\ 2x+2y=0\quad \kutula{y=0}\\
+f_y=0&\ \longrightarrow\ 2x=0\quad \kutula{x=0}
+\end{align*}
+$(0,0)$ kritik nokta
+
+\noindent\textbf{2. adım:} $D=f_{xx}\cdot f_{yy}-(f_{xy})^2\qquad f_{xx}=2\quad f_{yy}=0\quad f_{xy}=2$
+\[ D=2\cdot 0-4=-4 \]
+\noindent\textbf{3. adım:} $D(0,0)=-4<0\ \longrightarrow$ eyer noktası $\longrightarrow (0,0)$
+
+\begin{ornek}
+$f(x,y)=2xy-5x^2-2y^2+4x-4$ fonks.\ yerel min, max, eyer noktasını bul.
+\end{ornek}
+\noindent\textbf{1.} $\nabla f=0\qquad f_x=0:\ 2y-10x+4=0\qquad f_y=0:\ 2x-4y=0$
+\[ x=2y\qquad 2y-20y+4=0\qquad y=\tfrac29,\ x=\tfrac49 \]
+\[ D=f_{xx}\cdot f_{yy}-(f_{xy})^2\qquad f_{xx}=-10\quad f_{yy}=-4\quad f_{xy}=2 \]
+\[ D=40-4=36\qquad D\!\left(\tfrac49,\tfrac29\right)=36>0 \]
+\[ f_{xx}\!\left(\tfrac49,\tfrac29\right)=-10<0\qquad \left(\tfrac49,\tfrac29\right)\longrightarrow \text{yerel max.} \]
+
+\begin{ornek}
+$f(x,y)=2y^3+2x^2y-x^2-y$ fonks.\ nun $D=\{(x,y);\ x^2+y^2\le 1\}$ kapalı bölgesindeki alabileceği mutlak max ve min değerlerini bulunuz.
+\end{ornek}
+\noindent\textbf{1. adım:} $(x-a)^2+(y-b)^2=r^2\qquad M=(0,0)\quad r=1$
+\sekilnotu[21]{Orijin merkezli birim disk çizimi (içi taralı); eksenlerde $-1$ ve $1$ değerleri işaretli; disk içinde birkaç nokta işaretli.}
+\noindent\textbf{2. adım:} Köşe koordinatları yoktur.
+
+\noindent\textbf{3. adım:} $\nabla f=0\qquad f_x=0\quad f_y=0$
+\begin{align*}
+f_x&=4xy-2x=0\ \Longrightarrow\ 2x\,(2y-1)=0\qquad x=0,\ y=\tfrac12\\
+f_y&=6y^2+2x^2-1=0\ \longrightarrow\ 6y^2-1=0\qquad y=\pm\tfrac{1}{\sqrt6}\\
+y=\tfrac12&\Longrightarrow \tfrac32+2x^2-1=0\Longrightarrow 2x^2=-\tfrac12\qquad x^2=-\tfrac14\ (\times)
+\end{align*}
+\[ \left(0,\tfrac{1}{\sqrt6}\right)\ \vee\ \left(0,-\tfrac{1}{\sqrt6}\right)\ \longrightarrow \]
+\noindent\textbf{4. adım:} $x^2+y^2=1$
+\[ f(x,y)=2y^3+2x^2y-x^2-y\ \longleftarrow\ x^2=1-y^2 \]
+\begin{align*}
+x^2=1-y^2&\Longrightarrow f(y)=2y^3+2(1-y^2)\,y-(1-y^2)-y\\
+&=y^2+y-1\qquad f'(y)=2y+1=0\qquad y=-\tfrac12\\
+x^2&=\tfrac34\ \longrightarrow\ x=\tfrac{\sqrt3}{2}\qquad x=-\tfrac{\sqrt3}{2}\qquad \left(\tfrac{\sqrt3}{2},-\tfrac12\right)\ \text{ve}\ \left(-\tfrac{\sqrt3}{2},-\tfrac12\right)
+\end{align*}
+\noindent\textbf{5. adım:}
+\begin{align*}
+f\!\left(0,\tfrac{1}{\sqrt6}\right)&=2\cdot\tfrac{1}{6\sqrt6}-\tfrac{1}{\sqrt6}=-\tfrac{2}{3\sqrt6}\\
+f\!\left(0,-\tfrac{1}{\sqrt6}\right)&=2\cdot\tfrac{-1}{6\sqrt6}+\tfrac{1}{\sqrt6}=\tfrac{2}{3\sqrt6}\\
+f\!\left(\tfrac{\sqrt3}{2},-\tfrac12\right)&=2\cdot\tfrac{-1}{8}+2\cdot\tfrac34\left(-\tfrac12\right)-\tfrac34+\tfrac12=-\tfrac54\\
+f\!\left(-\tfrac{\sqrt3}{2},-\tfrac12\right)&=2\cdot\tfrac{-1}{8}+2\cdot\tfrac34\cdot\left(-\tfrac12\right)-\tfrac34+\tfrac12=-\tfrac54
+\end{align*}
+\[ \text{Mutlak max}\longrightarrow \tfrac{2}{3\sqrt6}\qquad \text{mutlak min}\longrightarrow -\tfrac54 \]
+
+\section{ÇOK DEĞİŞKENLİ FONKSİYONLARDA KAPALI BİR BÖLGE İÇİN MUTLAK MAKSİMUM VE MİNİMUM BULMA}
+
+$f(x,y)=\dots$
+\sekilnotu[21]{Üç boyutlu eksen takımı çizimi: $z=f(x,y)$ ve $f(x,y)$ etiketleri; $xy$-düzleminde taralı iki bölge (soldaki dikdörtgenimsi, sağdaki elips biçimli); $x$ ve $y$ eksenleri işaretli.}
+Girdileri sınırlanmış bir bölgede $f(x,y)$'nin mutlak max/min aranır.
+
+\noindent\textbf{1. adım:} Bizi sınırlayan bölgeyi çizmeli ve tüm sınır fonksiyonlarını belirlemeliyiz.
+
+\noindent\textbf{2. adım:} Mutlak max ve min adaylarını belirleriz.
+
+\noindent\textbf{2.1 adım:} Köşe koordinatları direkt adaylardır.
+
+\noindent\textbf{2.2 adım:} $\nabla f=0\Longrightarrow f_x=0,\ f_y=0\Longrightarrow$ Kritik noktalardan kapalı bölge içine düşenler adaydır.
+
+\noindent\textbf{2.3 adım:} Sınır fonks.\ da krit.\ nokt.\ tespit edilir.
+
+\sayfa{22}
+\noindent\textbf{3. adım:} Bütün adaylar $f(x,y)$'ye konulur. Çıkan sonuçlardan en büyüğü mutlak max, en küçüğü mutlak min dir.
+
+\begin{ornek}
+$f(x,y)=2x+2y-x^2-y^2$ fonks.\ nun $x=0,\ x=2,\ y=0,\ y=2$ doğruları tarafından sınırlanan bölgedeki mutlak max ve min değerleri $=\,?$
+\end{ornek}
+\noindent\textbf{1. adım:}
+\sekilnotu[22]{Kare bölge çizimi: $x=0$ ve $x=2$ düşey doğruları ile $y=0$ ve $y=2$ yatay doğruları arasında kalan taralı kare.}
+\noindent\textbf{2. adım:} Köşe adaydır. \quad $(0,0),\ (2,0),\ (2,2),\ (0,2)$
+
+Kritik noktalar adaydır. ($f(x,y)$'nin)
+\begin{align*}
+\nabla f=0\qquad &f_x=2-2x=0\Longrightarrow x=1\\
+(1,1)\ \longleftarrow\ &f_y=2-2y=0\Longrightarrow y=1
+\end{align*}
+\noindent\textbf{Sınır fonksiyonları:} $y=0\Longrightarrow f(x)=2x-x^2$
+\[ (1,0)\ \longleftarrow\ x=1\ \longleftarrow\ 0=2-2x=f'(x) \]
+\begin{align*}
+y=2&\Longrightarrow f(x)=2x-x^2\longrightarrow f'(x)=0\Longrightarrow 2-2x=0\Longrightarrow x=1\quad (1,2)\\
+x=0&\Longrightarrow f(y)=2y-y^2\Longrightarrow f'(y)=2-2y=0\Longrightarrow y=1\quad (0,1)\\
+x=2&\Longrightarrow f(y)=2y-y^2\Longrightarrow f'(y)=2-2y=0\Longrightarrow y=1\quad (2,1)
+\end{align*}
+\noindent\textbf{3. adım:} Adaylar $\longrightarrow (2,1),\ (0,1),\ (1,2),\ (1,0),\ (1,1),\ (0,0),\ (2,0),\ (0,2),\ (2,2)$
+\begin{align*}
+f(2,1)&=4+2-4-1=1 & f(1,1)&=2+2-1-1=2\\
+f(0,1)&=2-1=1 & f(1,2)&=2+4-1-4=1\\
+f(1,0)&=2-1=1 & f(0,0)&=0\quad f(0,2)=0\\
+f(2,0)&=0\quad f(2,2)=0 & \text{Mutlak max}&=2\Longrightarrow (1,1)
+\end{align*}
+\[ \text{Mutlak min}=0\Longrightarrow (0,0),\ (0,2),\ (2,0),\ (2,2) \]
+
+\begin{ornek}
+$f(x,y)=x^2-y^2$ fonk.\ veriliyor. Köşe koor.\ $(0,0),\ (-1,1),\ (1,1)$ olan üçgen üzerindeki $f(x,y)$'nin max ve min değerleri $=\,?$
+\end{ornek}
+\sekilnotu[22]{Köşeleri $(-1,1)$, $(1,1)$ ve $(0,0)$ olan taralı üçgen; koordinat eksenleri çizili. Kenarlar: üstte $y=1$, solda $y=-x$ (ok ile), sağda $x=y$ (ok ile).}
+\[ f(0,0)=0\qquad f(1,1)=0\qquad f(-1,1)=0 \]
+Köşe koordinatları
+\begin{align*}
+\nabla f=0\Longrightarrow\ &f_x=2x=0\longrightarrow x=0\\
+(0,0)\ \longleftarrow\ &f_y=-2y=0\longrightarrow y=0
+\end{align*}
+\[ f(0,1)=-1 \]
+\[ f(x,1)=x^2-1\longrightarrow f'(x)=0\longrightarrow f'(x)=2x=0\qquad x=0\quad \kutula{(0,1)} \]
+\begin{align*}
+x=y&\longrightarrow f(x)=0\longrightarrow f'(x)=0\\
+x=-y&\longrightarrow f(x)=0\longrightarrow f'(x)=0
+\end{align*}
+Köşe koordinatlarında buradaki ile aynı \okunamadi{sonuca} sahip olan vardır.
+\[ \text{Max değer: }0\longrightarrow (0,0),\ (-1,1),\ (1,1)\qquad \text{min değer: }-1\longrightarrow (0,1) \]
+
+\section{LAGRANGE ÇARPANI METODU}
+$f(x,y)$ veya $f(x,y,z)$ gibi çok değ.\ fonks.\ maks veya min bulma metodudur. Bu fonksiyonları sınırlayan bir denklem üzerinde,
+\begin{itemize}
+\item[$*$] $f(x,y)=x^2+2xy$ nin $x-3y=10$ denkl.\ sağl.\ nokt.\ max, min.
+\item[$*$] $f(x,y,z)=xyz$ nin $x^2+y^2+z^2=9$ \ ''\ ''\ '' max, min.
+\end{itemize}
+\noindent\textbf{1. adım:} Bizi sınırlayan denklemi $g(x,y)$ veya $g(x,y,z)$ fonksiyonuna çevirmeliyiz.
+
+\noindent\textbf{2. adım:} $\nabla f=\lambda\cdot\nabla g\ \longrightarrow$ lagrange çarpanı
+\[ \nabla f=\langle f_x,f_y\rangle\ /\ \langle f_x,f_y,f_z\rangle \]
+Bu eşitliği sağlayan durumları çözeriz.
+\[ \nabla g=\langle g_x,g_y\rangle\qquad \langle f_x,f_y\rangle=\lambda\cdot\langle g_x,g_y\rangle \]
+\[ f_y=\lambda\cdot g_y\ \cdots\qquad f_x=\lambda\cdot g_x\ \cdots \]
+
+\noindent\textbf{3. adım:} Bizi sınırlayan denkleme eşitliği sağl.\ durumları \okunamadi{kullanarak} max ve min adayı nokt.\ bulucaz.
+
+\noindent\textbf{4. adım:}
+\begin{align*}
+f(\qquad\ )&=\text{en büyük}\longrightarrow\text{max değer}\\
+f(\qquad\ )&=\text{en küçük}\longrightarrow\text{min değer}
+\end{align*}
+
+\begin{ornek}
+$f(x,y)=5x-3y$ fonks.\ $x^2+y^2=136$ eşitliğini sağlayan nokt.\ daki max ve min nokta $=\,?$
+\end{ornek}
+\noindent\textbf{1. adım} $\longrightarrow g(x,y)=x^2+y^2=136$
+
+\noindent\textbf{2. adım} $\longrightarrow \nabla f=\lambda\cdot\nabla g\longrightarrow \langle 5,-3\rangle=\lambda\cdot\langle 2x,2y\rangle$
+\[ 5=2x\lambda\longrightarrow x=\tfrac{5}{2\lambda}\qquad -3=2\lambda y\longrightarrow y=\tfrac{-3}{2\lambda} \]
+\noindent\textbf{3. adım} $\longrightarrow \tfrac{25}{4\lambda^2}+\tfrac{9}{4\lambda^2}=136\qquad \lambda=\pm\tfrac14$
+
+\noindent\textbf{4. adım} $\longrightarrow \lambda=\tfrac14\to(10,-6)\qquad \lambda=-\tfrac14\to(-10,6)$
+\[ f(x,y)=5x-3y\longrightarrow \underbrace{f(10,-6)=68}_{\text{max değer}}\ ,\ \underbrace{f(-10,6)=-68}_{\text{min değer}} \]
+
+\begin{ornek}
+$f(x,y)=4x^2+10y^2$ fonks.\ $x^2+y^2=4$ denkl.\ sağlayan nokt.\ daki max ve min $=\,?$
+\end{ornek}
+\noindent\textbf{1. adım:} $g(x,y)=x^2+y^2-4$
+
+\noindent\textbf{2. adım:} $\nabla f=\lambda\cdot\nabla g\qquad \langle 8x,20y\rangle=\lambda\cdot\langle 2x,2y\rangle$
+\begin{align*}
+8x=2x\lambda&\longrightarrow \underline{x=0}\quad \ustucizili{\lambda=4}\\
+20y=2y\lambda&\longrightarrow \underline{y=0}\quad \ustucizili{\lambda=10}
+\end{align*}
+\noindent\textbf{3. adım:}
+\begin{align*}
+x=0&\longrightarrow y^2=4\quad y=\pm 2\longrightarrow (0,2)\ \text{ve}\ (0,-2)\\
+y=0&\longrightarrow x^2=4\longrightarrow x=\pm 2\longrightarrow (2,0)\ \text{ve}\ (-2,0)
+\end{align*}
+\noindent\textbf{4. adım:} $f(x,y)=4x^2+10y^2$
+\begin{align*}
+f(0,2)&=40 & f(0,-2)&=40 & \text{max değer}&=40\\
+f(2,0)&=16 & f(-2,0)&=16 & \text{min değer}&=16
+\end{align*}
+Max nokt.\ $\longrightarrow (0,2),\ (0,-2)$
+
+Min \ '' \ $\longrightarrow (2,0),\ (-2,0)$
+
+\begin{ornek}
+Yüzey alanı $54\ \mathrm{cm}^2$ olan dik dörtgenler prizması biçimindeki kutunun max hacme sahip olmasını sağlayan kenar uzunluklarını lagrange çarpanı yöntemi ile bul.
+\end{ornek}
+\noindent $f(x,y,z)\longrightarrow$ maksimum \qquad $g(x,y,z)\longrightarrow$ sınırlayan fonksiyon
+
+\noindent\textbf{1. adım}
+\sekilnotu[22]{Dikdörtgenler prizması (kutu) çizimi; kenarlar $x$, $y$ ve $z$ ile etiketli.}
+\begin{align*}
+\text{Hacim}&=x\cdot y\cdot z\\
+f(x,y,z)&=xyz\\
+2xy+2xz+2yz&=54\\
+xy+xz+yz&=27
+\end{align*}
+Bizi sınırlayan fonks.: $g(x,y,z)=xy+xz+yz-27$
+
+\noindent\textbf{2. adım}
+\begin{align*}
+\nabla f&=\lambda\cdot\nabla g\\
+\langle yz,xz,xy\rangle&=\lambda\cdot\langle y+z,\,x+z,\,x+y\rangle\\
+yz&=\lambda\cdot(y+z)\longrightarrow \lambda=\tfrac{yz}{y+z}\\
+xz&=\lambda\cdot(x+z)\longrightarrow \lambda=\tfrac{xz}{x+z}\\
+xy&=\lambda\cdot(x+y)\longrightarrow \lambda=\tfrac{xy}{x+y}
+\end{align*}
+\[ \frac{yz}{y+z}=\kutula{\frac{xz}{x+z}}=\frac{xy}{x+y}\qquad (x+z)\cdot yz=(y+z)\cdot xz\qquad z^2(y-x)=0\quad z\neq0 \]
+\[ (x+z)\cdot xy=(x+y)\cdot xz\qquad x\neq0\qquad \underline{z=y\qquad y=x} \]
+\noindent\textbf{3. adım:} $xy+xz+yz=27\qquad 3a^2=27$
+\[ \text{max hacim}\ \longleftarrow\ 27=f(3,3,3)\ \longleftarrow\ a=3 \]
+
+\sayfa{23}
+\begin{ornek}
+$f(x,y)=4x^2+10y^2$ fonks.\ $x^2+y^2\le 4$ diski üzerindeki max ve min nokt.\ ve bu nokt.\ karşılık gelen değerler $=\,?$
+\end{ornek}
+\noindent\textbf{1. adım:} $x^2+y^2=4\qquad M(0,0)\quad r=2$
+\sekilnotu[23]{Orijin merkezli, yarıçapı 2 olan taralı disk; eksenlerde $2$ ve $-2$ değerleri işaretli.}
+\noindent\textbf{2. adım:} İç bölgedeki max min aday
+\[ \nabla f=0\qquad \langle f_x,f_y\rangle=0\qquad f_x=0\quad f_y=0 \]
+\[ \left.\begin{aligned} f_x&=8x=0\quad x=0\\ f_y&=20y=0\quad y=0\end{aligned}\right\}\ (0,0) \]
+\noindent\textbf{3. adım:} $g(x,y)=x^2+y^2-4\qquad \nabla f=\lambda\cdot\nabla g$
+\[ \langle 8x,20y\rangle=\lambda\cdot\langle 2x,2y\rangle\qquad 8x=\lambda\cdot 2x\qquad 20y=\lambda\cdot 2y \]
+\[ x=0\ \vee\ \lambda=4 \]
+\noindent\textbf{1. durum} $\longrightarrow x=0\longrightarrow y^2=4\quad y=\pm2\longrightarrow (0,2)\ \text{ve}\ (0,-2)$
+
+\noindent\textbf{2. durum} $\longrightarrow \lambda=4\longrightarrow 20y=8y\longrightarrow y=0\longrightarrow x^2=4\longrightarrow x=\pm2\quad (2,0)\ \vee\ (-2,0)$
+
+\noindent\textbf{4. adım:}
+\begin{align*}
+(0,0)&\Longrightarrow f(0,0)=\underline{0} & (0,2)&\Longrightarrow f(0,2)=\underline{40}\\
+(2,0)&\Longrightarrow f(2,0)=16 & (0,-2)&\Longrightarrow f(0,-2)=40\\
+(-2,0)&\Longrightarrow f(-2,0)=16 & \text{max değer}&\longrightarrow 40\longrightarrow(0,2)\vee(0,-2)
+\end{align*}
+\[ \text{Min değer}\longrightarrow 0\longrightarrow (0,0) \]
+
+\begin{ornek}
+$f(x,y,z)=4y-2z$ fonks.\ nun $2x-y-z=2$ ve $x^2+y^2=1$ şartlarını sağl.\ nokt.\ daki en büyük ve en küçük değerlerini bul. \quad $\longrightarrow$ İki tane sınırlayan fonk.\ var.
+\end{ornek}
+\[ \left.\begin{matrix} f\\ g\\ \lambda \end{matrix}\right\}\ \nabla f=\lambda\cdot\nabla g
+\qquad\qquad
+\left.\begin{matrix} f\\ g\\ h\\ \lambda,\mu \end{matrix}\right\}\ \nabla f=\lambda\cdot\nabla g+\mu\cdot\nabla h \]
+\noindent\textbf{1. adım:} $g(x,y,z)=2x-y-z-2\qquad h(x,y,z)=x^2+y^2-1$
+
+\noindent\textbf{2. adım:} $\nabla f=\lambda\cdot\nabla g+\mu\cdot\nabla h\qquad x^2+y^2=1\longrightarrow \tfrac{4}{\mu^2}+\tfrac{9}{\mu^2}=1$
+\[ \langle 0,4,-2\rangle=\lambda\cdot\langle 2,-1,-1\rangle+\mu\cdot\langle 2x,2y,0\rangle\qquad \mu=\pm\sqrt{13} \]
+\[ \left.\begin{aligned} 0&=2\lambda+2\mu x &\quad -4&=2\mu x\longrightarrow x=\tfrac{-2}{\mu}\\ 4&=-\lambda+2\mu y &\quad 6&=2\mu y\longrightarrow y=\tfrac{3}{\mu}\\ -2&=-\lambda+0 \end{aligned}\right\}\longrightarrow \lambda=2 \]
+\[ \mu=\sqrt{13}\longrightarrow x=\tfrac{-2}{\sqrt{13}},\ y=\tfrac{3}{\sqrt{13}},\ z=\tfrac{-7}{\sqrt{13}}-2 \]
+\[ \mu=-\sqrt{13}\longrightarrow x=\tfrac{2}{\sqrt{13}},\ y=\tfrac{-3}{\sqrt{13}},\ z=\tfrac{7}{\sqrt{13}}-2 \]
+\noindent\textbf{3. adım:} $f(x,y,z)=4y-2z$
+\begin{align*}
+\text{max nokt.}\quad&\left(\tfrac{-2}{\sqrt{13}},\tfrac{3}{\sqrt{13}},\left(\tfrac{-7}{\sqrt{13}}-2\right)\right)\\
+&f\!\left(\tfrac{-2}{\sqrt{13}},\tfrac{3}{\sqrt{13}},\left(\tfrac{-7}{\sqrt{13}}-2\right)\right)=\tfrac{26}{\sqrt{13}}+4\quad\text{max değer}\\
+\text{min nokt.}\quad&\left(\tfrac{2}{\sqrt{13}},\tfrac{-3}{\sqrt{13}},\left(\tfrac{7}{\sqrt{13}}-2\right)\right)\\
+&f\!\left(\tfrac{2}{\sqrt{13}},\tfrac{-3}{\sqrt{13}},\left(\tfrac{7}{\sqrt{13}}-2\right)\right)=\tfrac{-26}{\sqrt{13}}+4\quad\text{min değer}
+\end{align*}
+
+\begin{ornek}
+$f(x,y)=x\cdot y$ fonks.\ $\frac{x^2}{4}+\frac{y^2}{2}=1$ elipsi üzerindeki max ve min noktaları bul.
+\end{ornek}
+\noindent\textbf{1. adım:} $\frac{x^2}{4}+\frac{y^2}{2}=1\longrightarrow \frac{x^2}{4}+\frac{y^2}{2}-1=0\longrightarrow g(x,y)=\frac{x^2}{4}+\frac{y^2}{2}-1$
+
+\noindent\textbf{2. adım:} $\nabla f=\lambda\cdot\nabla g\longrightarrow\langle y,x\rangle=\lambda\cdot\langle \tfrac{x}{2},y\rangle$
+\[ y=\lambda\cdot\tfrac{x}{2}\longrightarrow\lambda=\tfrac{2y}{x}\qquad x=\lambda\cdot y\longrightarrow\lambda=\tfrac{x}{y} \]
+\[ \frac{2y}{x}=\frac{x}{y}\ \Longrightarrow\ x^2=2y^2\ \Longrightarrow\ \frac{2y^2}{4}+\frac{y^2}{2}=1\ \Longrightarrow\ y^2=1 \]
+\[ x=\pm\sqrt2\ \longleftarrow\ x^2=2\ \longleftarrow\ y=1\qquad\qquad y=\pm1 \]
+\[ x=\pm\sqrt2\ \longleftarrow\ x^2=2\ \longleftarrow\ y=-1 \]
+\[ (\sqrt2,1),\ (-\sqrt2,1),\ (\sqrt2,-1),\ (-\sqrt2,-1) \]
+\noindent\textbf{3. adım:} $f(x,y)=x\cdot y\Longrightarrow f(\sqrt2,1)=\sqrt2$
+\[ f(-\sqrt2,1)=-\sqrt2\qquad f(\sqrt2,-1)=-\sqrt2\qquad f(-\sqrt2,-1)=\sqrt2 \]
+\[ \text{Max değer}\longrightarrow\sqrt2\longrightarrow(\sqrt2,1)\ \text{ve}\ (-\sqrt2,-1) \]
+\[ \text{Min değer}\longrightarrow-\sqrt2\longrightarrow(-\sqrt2,1)\ \text{ve}\ (\sqrt2,-1) \]
+
+\section{ÇİFT KATLI İNTEGRAL NEDİR VE NEYİ HESAPLAR?}
+\[ \int f(x)\,dx\ \longrightarrow\ \iint f(x,y)\,dx\,dy \]
+$*$ üst üste 2 defa integral alma işlemidir.
+
+$*$ 2 farklı değişkene göre integral alınır.
+
+\noindent\underline{NEYİ HESAPLAR?}
+\begin{enumerate}[label=\arabic*)]
+\item ALAN HESAPLAMA\\
+Sabit sayılı fonks.\ da olur $\longrightarrow \iint 1\,dx\,dy=$ Alan
+\item HACİM HESAPLAMA\\
+$\iint f(x,y)\,dx\,dy=$ Hacim Hesapla.
+\end{enumerate}
+\[ \int_2^5\!\!\int_1^3 1\,dx\,dy=\text{ALAN}\qquad \int_2^5\!\!\int_1^3 (x+2y)\,dx\,dy=\text{HACİM} \]
+
+\section{SINIRLARI VERİLMİŞ Ç.K. İNTEGRALLERİ HESAPLAMA}
+\begin{ornek}
+$\displaystyle\int_2^5\left(\kutula{\int_1^3 (x+2y)\,dx}\right)dy=\ ?$
+\end{ornek}
+$\longrightarrow$ integral alma sırası içerden dışa doğru gider.
+\begin{align*}
+\left(\frac{x^2}{2}+2xy\right)\Big|_1^3&=\left(\frac92+6y\right)-\left(\frac12+2y\right)=4+4y\\
+\int_2^5(4+4y)\,dy&=\left(4y+2y^2\right)\Big|_2^5=(20+50)-(8+8)=70-16\ \ \text{HACİM}\longleftarrow 54
+\end{align*}
+
+\begin{ornek}
+$\displaystyle\int_1^3\int_x^{x^2} xy\,dy\,dx=\ ?$ \quad $\longrightarrow$ dıştaki sınır daima sayılardan oluşur.
+\end{ornek}
+\begin{align*}
+\int_x^{x^2}xy\,dy&=\left(\frac{x\,y^2}{2}\right)\Big|_x^{x^2}=\frac{x\cdot x^4}{2}-\frac{x\cdot x^2}{2}=\frac{x^5-x^3}{2}\\
+\int_1^3\left(\frac{x^5}{2}-\frac{x^3}{2}\right)dx&=\left(\frac{x^6}{12}-\frac{x^4}{8}\right)\Big|_1^3=\left(\frac{3^6}{12}+\frac18\right)-\left(\frac{3^4}{8}+\frac1{12}\right)
+\end{align*}
+
+\begin{ornek}
+$\displaystyle\int_1^2\int_y^{y^3}1\,dx\,dy=\ ?$ \quad $\longleftarrow$ ALAN
+\end{ornek}
+\begin{align*}
+\longrightarrow\ x\Big|_y^{y^3}&=y^3-y\\
+\int_1^2(y^3-y)\,dy&=\left(\frac{y^4}{4}-\frac{y^2}{2}\right)\Big|_1^2=\frac94
+\end{align*}
+
+\sayfa{24}
+\section{Ç.K. İNTEGRALDE SINIR BELİRLEME}
+2 çeşit vardır. Sınır belirlenmesi için ALAN verilir.
+
+\noindent\textbf{1. çeşit:} Verilen alan DİKDÖRTGEN ise integralin iki sınırında SAYI olur.
+\[ \int_2^5\!\!\int_1^3 f(x,y)\,dx\,dy \]
+\noindent\textbf{2. çeşit:} Verilen alan DİKDÖRTGEN değil ise integralin sınırlarından biri SAYI, diğeri ise FONKSİYON olur?
+\[ \int_1^3\!\!\int_x^{x^3} f(x,y)\,dy\,dx \]
+
+\subsection*{VERİLEN ALAN DİKDÖRTGEN İSE:}
+2 sınır da sayı olur.
+\begin{ornek}
+$\displaystyle\iint_R (x+y)\,dA$, $R$ bölgesi $x=2,\ x=5,\ y=3$ ve $y=4$ doğruları ile sınırlanmaktadır. Bu integralin sonucu $=\,?$
+\end{ornek}
+iki sınır da sayı $\longrightarrow 2\le x\le 5,\ \ 3\le y\le 4$
+\sekilnotu[24]{Eksen takımında $x=2$, $x=5$, $y=3$, $y=4$ doğruları ile sınırlanan taralı dikdörtgen; eksenlerde $2$, $5$, $3$, $4$ değerleri işaretli; taralı alana ok çizilmiş ve yanında dikdörtgen yazıyor.}
+\[ \int_2^5\!\!\int_3^4 (x+y)\,dy\,dx=\int_3^4\!\!\int_2^5 (x+y)\,dx\,dy \]
+$\bullet$ iki sınır da sayı ise integral alma sırası direkt sınırların yerinin değiştirilmesi ile değiştirilebilir.
+\begin{align*}
+\int_2^5\!\!\int_3^4 (x+y)\,dy\,dx&=\int_2^5\left(xy+\frac{y^2}{2}\right)\Big|_3^4 dx=\int_2^5\left(x+\frac72\right)dx=\left(\frac{x^2}{2}+\frac{7x}{2}\right)\Big|_2^5\\
+&=30-9=21\ \longrightarrow\ \text{HACİM}
+\end{align*}
+
+\subsection*{VERİLEN ALAN DİKDÖRTGEN DEĞİLSE:}
+1 sınır SAYI
+
+1 sınır FONKSİYON sınırı \qquad $\text{Sayı}\ \longleftarrow\ \int\!\!\int\ \longrightarrow\ \text{Fonksiyon sınırı}$
+\begin{ornek}
+$\displaystyle\iint_R xy\,dA$, $R$ bölgesi $y=x^2$ ve $y=2x$ fonk.\ nın sınırladığı bölgededir. Bu integralin sonucu?
+\end{ornek}
+\sekilnotu[24]{$y$ ekseninde $4$, $x$ ekseninde $2$ işaretli; $y=x^2$ parabolü ile $y=2x$ doğrusu arasında kalan taralı bölge; $y=2x$ doğrusundan sola yatay ok ile $x=y/2$; parabol için $x=\sqrt y$ ve $x=-\sqrt y$ yazılı.}
+Arada kalan alan dikdörtgen değil.
+
+kesişme nokt.\ $\longrightarrow x^2=2x,\quad x^2-2x=0,\quad x=0,\quad x=2$
+
+\noindent Sayı sınır $x$'te: $0\le x\le 2$\\
+Fonksiyon sınırı $y$'de: $x^2\le y\le 2x$ \quad Aşağıdan yukarı
+
+\noindent Sayı sınır $y$'de: $0\le y\le 4$\\
+Fonksiyon sınırı $x$'de: $\frac y2\le x\le\sqrt y$ \quad soldan sağa
+\[ \int_0^2\!\!\int_{x^2}^{2x} xy\,dy\,dx\ =\ \int_0^4\!\!\int_{y/2}^{\sqrt y} xy\,dx\,dy \]
+
+\begin{ornek}
+$\displaystyle\iint_R (x+y)\,dA$, $R$ bölgesi $y=\sqrt x,\ x=4$ ve $x$ ekseni tarafından sınırlanmaktadır. İntegralin sınırları $=\,?$
+\end{ornek}
+\sekilnotu[24]{$R$ bölgesi: $y=\sqrt x$ eğrisinin altında, $x$ ekseninin üstünde ve $x=4$ doğrusunun solunda kalan taralı alan; eksenlerde $4$ ve $2$ işaretli; eğri $\sqrt x$ olarak etiketli.}
+\noindent$\to$ Sayı sınır $x$'te $\to 0\le x\le 4$
+
+\noindent$\to$ Dikdörtgen değil. $\to$ Fonks.\ sınırı $y$'de $\to 0\le y\le\sqrt x$ \quad aşağıdan yukarı
+\[ \int_0^4\!\!\int_0^{\sqrt x}(x+y)\,dy\,dx \]
+
+\section{Ç.K. İNTEGRALDE İNTEGRAL ALMA SIRASININ DEĞİŞTİRİLMESİ}
+\begin{ornek}
+$\displaystyle\int_0^\pi\!\!\int_x^\pi \frac{\sin y}{y}\,dy\,dx$ integral alma sırasını değiştirerek integralini hesaplayınız.
+\end{ornek}
+$*$ İntegrali hesaplanamayan Ç.K.\ int.\ de yapılır.
+
+\noindent\textbf{1. adım:}
+\[ \left.\begin{aligned} x&\le y\le\pi\\ 0&\le x\le\pi\end{aligned}\right\}\ \text{sınırlar çıkarılır}\qquad y=x\ \text{ve}\ y=\pi \]
+\sekilnotu[24]{$y=x$ doğrusu ve $y=\pi$ yatay doğrusu; her iki eksende $\pi$ ve orijin işaretli; $(0,0)$, $(0,\pi)$, $(\pi,\pi)$ köşeli üçgen taralı.}
+\noindent\textbf{2. adım:} sayı sınırları $y$'ye $0\le y\le\pi$, fonksiyon sınırları $x$'e $0\le x\le y$ soldan sağa
+\[ \int_0^\pi\!\!\int_0^y\frac{\sin y}{y}\,dx\,dy=\frac{\sin y}{y}\cdot x\Big|_0^y=\sin y\qquad \int_0^\pi\sin y\,dy=-\cos y\Big|_0^\pi=2 \]
+
+\begin{ornek}
+$\displaystyle\int_0^3\!\!\int_{x^2}^{9}x^3e^{y^3}\,dy\,dx$ integrasyon sırasını değiştirerek hesaplayınız.
+\end{ornek}
+\noindent\textbf{1. adım:} $0\le x\le 3\to$ Sayı sınırı
+
+$x^2\le y\le 9\to$ Fonksiyon sınırı $\to y=x^2\ /\ y=9$ \quad Aşağıdan yukarı
+
+sayı sınırı $y$'ye $\to 0\le y\le 9$
+
+fonk.\ sınırı $x$'e $\to 0\le x\le\sqrt y$ \quad soldan sağa
+\sekilnotu[24]{$y=x^2$ parabolü ($-3\le x\le 3$) ve $y=9$ yatay doğrusu; eksenlerde $-3$, $0$, $3$ ve $9$ işaretli; sağ yarıda ($0\le x\le 3$) parabol ile $y=9$ arasındaki bölge dikey çizgilerle taralı, sol yarı seyrek taralı.}
+\noindent\textbf{2. adım:}
+\begin{align*}
+\int_0^9\!\!\int_0^{\sqrt y}x^3e^{y^3}\,dx\,dy&=\int_0^9\frac{x^4}{4}\,e^{y^3}\Big|_0^{\sqrt y}=\int_0^9\frac{y^2}{4}\,e^{y^3}\\
+\int_0^9\frac{y^2}{4}\,e^{y^3}dy&\Rightarrow y^3=u\quad du=dy\cdot 3y^2\ \Rightarrow\ \frac1{12}\int e^u\,du=e^{y^3}\cdot\frac1{12}\Big|_0^9
+\end{align*}
+
+\begin{ornek}
+$\displaystyle\int_0^8\!\!\int_{\sqrt[3]{y}}^{2}\sqrt{x^4+1}\,dx\,dy$ integral alma sırasını değiştirerek integralini hesaplayınız.
+\end{ornek}
+\noindent\textbf{1. adım:} $0\le y\le 8\to$ Sayı sınırı
+
+$\sqrt[3]{y}\le x\le 2\to$ Fonks.\ sınırı \quad $x=\sqrt[3]{y}$ \quad $y=x^3$ \quad $x=2$ \quad soldan sağa
+
+sayı sınırı $x$'e $\Rightarrow 0\le x\le 2$
+
+fonks.\ sınırı $y$'ye $\Rightarrow 0\le y\le x^3$ \quad aşağıdan yukarı
+\sekilnotu[24]{$y=x^3$ eğrisi ($x=\sqrt[3]{y}$ olarak etiketli) ve $x=2$ düşey doğrusu; $y$ ekseninde $8$, $x$ ekseninde $2$ işaretli; $x$ ekseni, eğri ve $x=2$ arasındaki bölge taralı.}
+\noindent\textbf{2. adım:} $\displaystyle\int_0^2\!\!\int_0^{x^3}\sqrt{x^4+1}\,dy\,dx$
+\begin{align*}
+&=\int_0^2\sqrt{x^4+1}\cdot y\Big|_0^{x^3}dx=\int_0^2\sqrt{x^4+1}\cdot x^3\,dx\qquad u=x^4+1\quad du=4x^3\,dx\\
+\frac{17\sqrt{17}}{6}-\frac16&=\frac16\Big|\sqrt{(x^4+1)^3}\Big|_0^2=\Big|_0^2\frac14\cdot\frac23\cdot\sqrt{u^3}=\int_0^2\sqrt u\cdot\frac14\,du
+\end{align*}
+$*$ trigonometrik ifadelerde fonks.\ değiştirirken ifade tersine çevrilir.
+\[ \cos x=y\ \longrightarrow\ x=\arccos y \]
+
+\sayfa{25}
+\section{Ç.K. İNTEGRAL YARDIMI İLE ALAN HESAPLAMA}
+\sekilnotu[25]{Dikdörtgen taban $D$ üzerinde yükselen üç boyutlu katı çizimi (üstü bulut benzeri, yanları yatay çizgilerle taralı); tabanda taralı bir üçgen bölge işaretli. Katıdan ve tabandan çıkan oklar aşağıdaki integrallere gidiyor.}
+\[ \iint_D f(x,y)\,dx\,dy=\text{Hacim} \]
+$\longrightarrow$ Alan için 1 \okunamadi{koyulur}.
+\[ \iint_D \kutula{1}\,dA=\text{Alan} \]
+\noindent\textbf{ÖRN:}
+\sekilnotu[25]{$y=x^2$ parabolü ve $x=2$ doğrusu; $x$ ekseninde $2$ işaretli; parabolün altında, $x=0$ ile $x=2$ arasında kalan bölge taralı.}
+$\longrightarrow$ Tek katlı integral
+\[ \int_0^2 x^2\,dx=\frac{x^3}{3}\Big|_0^2=\frac83 \]
+$\longrightarrow$ Çift katlı integral
+\[ \iint_D 1\,dA\ \longrightarrow\ \begin{cases}0\le x\le 2\\ 0\le y\le x^2\end{cases}\ \text{veya}\ \begin{cases}0\le y\le 4\\ \sqrt y\le x\le 2\end{cases} \]
+\[ \int_0^2\!\!\int_0^{x^2}1\,dy\,dx=\int_0^4\!\!\int_{\sqrt y}^{2}1\,dx\,dy=\int_0^2 y\Big|_0^{x^2}dx=\int_0^2x^2=\frac83 \]
+
+\section{Ç.K. İNTEGRALDE ORTALAMA DEĞER HESAPLAMA}
+$f(x,y)\longrightarrow R$ bölgesine karşılık gelen $f(x,y)$ değerlerinin ortalaması
+\sekilnotu[25]{Elips biçimli bir taban üzerinde $R$ bölgesi (taralı) ve üzerinde yükselen katı çizimi; yükseklik süslü ayraçla $h$ olarak gösterilmiş.}
+$f(x,y)$ \okunamadi{yüksekliği}
+\[ \text{ortalama değer}=\frac{\kutula{\displaystyle\iint_R f(x,y)\,dA}}{\kutula{\displaystyle\iint_R 1\,dA}} \]
+(pay: $f(x,y)$ ile $R$ bölgesi arasındaki hacim; payda: $R$ bölgesinin alanı)
+
+\noindent $R$ bölgesi dikdörtgen olursa:
+\[ \begin{aligned}a&\le x\le b\\ c&\le y\le d\end{aligned}\qquad \text{Ort. değer}=\frac{1}{(b-a)(d-c)}\iint_R f(x,y)\,dA \]
+\begin{ornek}
+$f(x,y)=x+y$ fonks.\ $R=\overset{a\ \ b}{\underset{x}{[1,3]}}\times\overset{c\ \ d}{\underset{y}{[1,2]}}$ dikdörtgensel bölgesindeki ortalama değer$\,=\,?$
+\end{ornek}
+\begin{align*}
+\text{Ort. Değer}&=\frac{1}{(3-1)(2-1)}\int_1^3\!\!\int_1^2 (x+y)\,dy\,dx=\frac12\int_1^3\left[xy+\frac{y^2}{2}\right]_1^2dx\\
+&=\frac12\int_1^3\left(2x+2-x-\frac12\right)dx=\frac12\int_1^3\left(x+\frac32\right)dx=\frac72
+\end{align*}
+\begin{ornek}
+$f(x,y)=x\cdot y$ fonks.\ $y=x^2$ ve $y=x$ eğrileri taraf.\ sınırlanan bölge için ort.\ değer$\,=\,?$
+\end{ornek}
+\sekilnotu[25]{$y=x$ doğrusu ile $y=x^2$ parabolü arasında kalan, orijinden $(1,1)$ noktasına uzanan taralı bölge; eksenlerde $1$ işaretli.}
+\[ \text{Ort. Değer}=\frac{\displaystyle\iint_R xy\,dA}{\displaystyle\iint_R 1\,dA}=\frac{\displaystyle\int_0^1\!\!\int_{x^2}^{x}xy\,dy\,dx}{\displaystyle\int_0^1\!\!\int_{x^2}^{x}1\,dy\,dx}=\frac{\frac1{24}}{\frac16}=\frac14 \]
+
+\section{KUTUPSAL KOORDİNATLAR NEDİR?}
+\noindent\textbf{Kutupsal Koordinatlar} $(r,\theta)$
+\sekilnotu[25]{Orijinden çıkan ışın üzerinde $(r,\theta)$ noktası; $r$ ışının uzunluğu, $\theta$ ise $x$ ekseni ile yapılan açı olarak işaretli.}
+\[ r=\sqrt{x^2+y^2} \]
+$r$ orjine olan uzaklık
+
+$\theta=x$ ekseni ile yapılan açı
+
+\noindent\textbf{Kartezyen Koordinatlar} $(x,y)$
+\sekilnotu[25]{$(x,y)$ noktası; eksenlerden $|x|$ ve $|y|$ uzaklığında olduğu, dikdörtgen çizilerek gösterilmiş.}
+Kartezyen ve kutupsal koordinatlar aynı noktayı bize farklı bir şekilde gösterir.
+
+\noindent$(2,120)\ \longrightarrow$
+\sekilnotu[25]{Eksen takımında pozitif $x$ ekseni ile $120^\circ$ açı yapan ve orijinden $2$ birim uzaklıktaki nokta; açı yayı $120^\circ$ olarak işaretli.}
+\noindent Kartezyen koor.\ $\to$ Kutupsal koor.\ geçiş
+
+\begin{ornek}
+$(2,-2)$ kutupsal koordinatı$\,=\,?$
+\end{ornek}
+\sekilnotu[25]{$(2,-2)$ noktası dördüncü bölgede; eksenlerde $2$ ve $-2$ işaretli; $45^\circ$ ve $315^\circ$ açıları ile $2\sqrt2$ uzunluğu gösterilmiş.}
+\[ r=2\sqrt2\qquad \theta=315^\circ\qquad \underline{(2\sqrt2,\,315^\circ)} \]
+\begin{ornek}
+$(3,3\sqrt3)$ kutupsal koordinatı$\,=\,?$
+\end{ornek}
+\sekilnotu[25]{$(3,3\sqrt3)$ noktası birinci bölgede; $y$ ekseninde $3\sqrt3$, $x$ ekseninde $3$ işaretli; uzunluk $6$, açı $60^\circ$ ($\pi/3$) olarak gösterilmiş.}
+\[ (3,3\sqrt3)\qquad (6,60^\circ)=(6,\pi/3) \]
+\noindent Kutupsaldan kartezyene dönüş:
+\[ (6,\pi/2)=(0,6)\qquad (4,2\pi/3)=(-2,2\sqrt3) \]
+
+\section{KARTEZYEN DENKLEMLERİ KUTUPSAL DENKLEMLERE ÇEVİRME}
+\noindent Kartezyen Denklem \hfill Kutupsal Denklem\footnote{Claude notu: sağdaki ifade aşağıdaki işlemle uyuşmuyor; muhtemelen $r\cos\theta+r\sin\theta=5$ olmalı.}
+\[ x+y=5\ \longrightarrow\ r\cdot\cos\theta+\sin^2\theta=1 \]
+\begin{align*}
+x&=\cos\theta\cdot r & x^2+y^2&=r^2\\
+y&=\sin\theta\cdot r & r\cos\theta+r\sin\theta&=5
+\end{align*}
+\begin{ornek}
+$e^{2x}=y$ kut.\ denklemine çevir.
+\end{ornek}
+\[ x=r\cos\theta\qquad y=r\sin\theta\qquad e^{2r\cos\theta}=r\sin\theta \]
+\begin{ornek}
+$(x-1)^2+y^2=4$ kut.\ denkl.\ çevir.
+\end{ornek}
+\[ (r\cos\theta-1)^2+(r\sin\theta)^2=4 \]
+
+\section{KUT. DENK. KART. DENK. ÇEVİRME}
+\[ x=r\cos\theta\qquad y=r\sin\theta\qquad r^2=x^2+y^2\qquad r=\sqrt{x^2+y^2} \]
+\[ \sin\theta=\frac{y}{\sqrt{x^2+y^2}}\qquad \cos\theta=\frac{x}{\sqrt{x^2+y^2}} \]
+
+\section{KUTUPSAL KOORDİNATLARDA TÜREV}
+\[ r=f(\theta)\qquad \frac{dr}{d\theta}=f'(\theta)\qquad r=3+5\cos\theta\qquad \frac{dr}{d\theta}=-5\sin\theta \]
+\[ \begin{aligned}x&=f(t)\\ y&=g(t)\end{aligned}\qquad \frac{dy}{dx}=\frac{dy/dt}{dx/dt}\ \Big\}\ \text{parametrik türev} \]
+\[ r=f(\theta)\Longrightarrow\left.\begin{aligned}x&=r\cos\theta\\ y&=r\sin\theta\end{aligned}\right\}\ \left.\begin{aligned}x&=f(\theta)\cos\theta\\ y&=f(\theta)\sin\theta\end{aligned}\right.\qquad \frac{dy}{dx}=\frac{dy/d\theta}{dx/d\theta} \]
+\[ =\frac{f'(\theta)\sin\theta+f(\theta)\cos\theta}{f'(\theta)\cos\theta+f(\theta)\sin\theta} \]
+\begin{ornek}
+$r=5+2\sin\theta$ ise $dy/dx=\,?$ \quad $\dfrac{dr}{d\theta}=2\cos\theta$\footnote{Claude notu: paydaki işaret muhtemelen $f'(\theta)\cos\theta-f(\theta)\sin\theta$ olmalı (genel formülde de, bu örnekte de aynı işaret yazılmış).}
+\end{ornek}
+\[ \frac{dy}{dx}=\frac{2\cos\theta\cdot\sin\theta+(5+2\sin\theta)\cos\theta}{2\cos\theta\cdot\cos\theta+(5+2\sin\theta)\sin\theta} \]
+
+\section{KUT. KOOR. TEĞET DOĞRU DENKLEMİ BULMA}
+$r=f(\theta),\ \theta=\theta_0$ nokt.\ çizilen teğet doğru:
+\sekilnotu[25]{Orijinden geçen eksenler ve bir eğri (iç içe halkalı, limaçon benzeri); eğri üzerinde $(x_0,y_0)$ noktası ve ona çizilen teğet doğru; $\theta=\pi/4$ doğrultusu işaretli; altta ``$\theta=\pi/4$ nokt. çizilen teğet doğru'' yazıyor.}
+\noindent\textbf{1. adım:} $\left.\dfrac{dy}{dx}\right|_{\theta=\theta_0}=$ teğetin eğimi
+
+\noindent\textbf{2. adım:} $x=r\cos\theta=f(\theta_0)\cos\theta_0=x_0\qquad y=r\sin\theta=f(\theta_0)\sin\theta_0=y_0$
+
+\noindent\textbf{3. adım:} $(y-y_0)=m\cdot(x-x_0)$
+
+\sayfa{26}
+\begin{ornek}
+$r=3+8\sin\theta$ eğrisine $\theta=\pi/6$ nokt.\ çizilen teğet doğrunun denklemini bulunuz.
+\end{ornek}
+\noindent\textbf{1. adım:}
+\[ \left.\frac{dy}{dx}\right|_{\theta=\frac{\pi}{6}}=\frac{\frac{dr}{d\theta}\sin\theta+r\cos\theta}{\frac{dr}{d\theta}\cos\theta-r\sin\theta} \]
+\[ \frac{11\sqrt3}{5}=\frac{\frac{11\sqrt3}{2}}{\frac52}=\frac{8\cos\theta\sin\theta+(3+8\sin\theta)\cos\theta}{8\cos\theta\cos\theta-(3+8\sin\theta)\sin\theta} \]
+\noindent\textbf{2. adım:}
+\[ \left.\begin{aligned}x&=r\cos\theta=(3+8\sin\theta)\cos\theta=\tfrac{7\sqrt3}{2}\\ y&=r\sin\theta=(3+8\sin\theta)\sin\theta=\tfrac72\end{aligned}\right\}\ \left(\tfrac{7\sqrt3}{2},\tfrac72\right) \]
+\noindent\textbf{3. adım:} $(y-y_0)=m\cdot(x-x_0)\longrightarrow y-\tfrac72=\tfrac{11\sqrt3}{5}\left(x-\tfrac{7\sqrt3}{2}\right)$
+
+\section{KARDİOİD NEDİR VE NASIL ÇİZİLİR?}
+Kutupsal Denklemle $(r,\theta)\longrightarrow r=1+\sin\theta$
+
+Grafiklerin özel bir şekline kardioid denir $\longrightarrow$ \underline{KALP ŞEKLİ}
+\sekilnotu[26]{Kalp biçimli eğri (kardioid); dikey ve yatay eksenler çizili; eğri oklarla ``kardioid'' olarak etiketli, altta ok ile ``KALP ŞEKLİ'' yazıyor.}
+\begin{ornek}
+$r=1+\cos\theta$ grafiğini çizin.
+\end{ornek}
+\noindent\textbf{1. adım:}
+\[ \begin{array}{c|ccccc} \theta & 0^\circ & 90^\circ & 180^\circ & 270^\circ & 360^\circ\\\hline r & 2 & 1 & 0 & 1 & 2\end{array} \]
+\noindent\textbf{2. adım:}
+\sekilnotu[26]{Kutupsal grafik: $0^\circ$ yönünde $2$, $90^\circ$ yönünde $1$, orijinde $0$ ve $270^\circ$ yönünde $1$ değerli noktalar işaretli; noktalar oklu, kalp biçimli bir eğri ile birleştirilmiş; altta ``KARDİOİD'' yazıyor.}
+\begin{ornek}
+$r=1+\sin\theta$ grafiğini çiziniz.
+\end{ornek}
+\noindent\textbf{1. adım}
+\[ \begin{array}{c|ccccc} \theta & 0^\circ & 90^\circ & 180^\circ & 270^\circ & 360^\circ\\\hline r & 1 & 2 & 1 & 0 & 1\end{array} \]
+\noindent\textbf{2. adım}
+\sekilnotu[26]{Kutupsal grafik: $90^\circ$ yönünde $2$, $180^\circ$ yönünde $-1$ ve $0^\circ$ yönünde $1$ değerleri işaretli noktalar; $270^\circ$ ve $360^\circ$ yönleri etiketli; noktalar oklu bir eğri ile birleştirilmiş; ``KARDİOİD'' yazıyor.}
+
+\section{ÇEMBER BELİRTEN KUTUPSAL EĞRİLERİN GRAFİĞİNİ ÇİZME}
+\noindent\textbf{1. çeşit} $\longrightarrow r=a,\ a>0$ \quad Merkezi $(0,0)$, yarıçapı $a$ olan çember
+
+\noindent\textbf{2. çeşit} $\longrightarrow r=a\cos\theta,\ a\neq0,$ Merkezi $\left(\tfrac a2,0\right)$, yarıçapı $=\left|\tfrac a2\right|$
+
+\noindent\textbf{3. çeşit} $\longrightarrow r=b\sin\theta,\ b\neq0,$ Merkezi $\left(0,\tfrac b2\right)$, yarıçapı $=\left|\tfrac b2\right|$
+
+\noindent$r=a\cos\theta+b\sin\theta,\ a\neq0\ b\neq0,$ Merkezi $\left(\tfrac a2,\tfrac b2\right)$ yarıçapı $=\ \ldots$
+
+\begin{ornek}
+$r=2$
+\end{ornek}
+\sekilnotu[26]{Orijin merkezli, yarıçapı 2 olan çember; eksenlerde $2$ ve $-2$ işaretli.}
+\begin{align*}
+x&=r\cos\theta\\
+y&=r\sin\theta\\
+r&=\sqrt{x^2+y^2}\\
+\sqrt{x^2+y^2}&=2\\
+x^2+y^2&=4
+\end{align*}
+$M(0,0)\quad r=2$
+
+\begin{ornek}
+$r=4\cos\theta$ \quad $M(2,0)$ \quad $r=2$
+\end{ornek}
+\sekilnotu[26]{Merkezi $(2,0)$ olan, orijinden geçen çember; merkezin yanında $2$ yazıyor, eksenler çizili.}
+\[ \sqrt{x^2+y^2}=4\cdot\frac{x}{\sqrt{x^2+y^2}}\qquad (x-2)^2+y^2=4 \]
+\begin{ornek}
+$r=-3\cos\theta$ \quad $M\left(-\tfrac32,0\right)$ \quad $r=\tfrac32$\footnote{Claude notu: merkez $(-3/2,0)$ olduğundan alttaki denklem muhtemelen $(x+\tfrac32)^2+y^2=\tfrac94$ olmalı.}
+\end{ornek}
+\sekilnotu[26]{Merkezi $(-3/2,0)$ olan, orijinden geçen çember; merkezin altında $-3/2$ yazıyor, eksenler çizili.}
+\[ \sqrt{x^2+y^2}=-3\cdot\frac{x}{\sqrt{x^2+y^2}}\qquad \left(x-\tfrac32\right)^2+y^2=\tfrac94 \]
+
+\section{KARDİOİD ALAN HESAPLAMA}
+\begin{ornek}
+$r=1+\cos\theta$ kardioidinin grafiğini çiziniz ve 1. bölgede kardioidin iç bölgesinde kalan alanı hesaplayınız.
+\end{ornek}
+\[ \begin{array}{c|ccccc} \theta & 0^\circ & 90^\circ & 180^\circ & 270^\circ & 360^\circ\\\hline r & 2 & 1 & 0 & 1 & 2\end{array} \]
+\sekilnotu[26]{Kardioid çizimi: $y$ ekseni ($90^\circ$) üzerinde $1$ ve $-1$, $x$ ekseni üzerinde $2$ ($0^\circ$) işaretli; $180^\circ$ ve $270^\circ$ yönleri etiketli; 1. bölgedeki iç bölge taralı; eğri oklarla yönlendirilmiş.}
+\begin{align*}
+\text{Alan}&=\kutula{\frac12\int_{\theta_1}^{\theta_2}r^2\,d\theta}=\frac12\int_0^{\pi/2}(1+\cos\theta)^2\,d\theta\\
+&=\frac12\int_0^{\pi/2}(1+2\cos\theta+\cos^2\theta)\,d\theta=\frac12\left(\theta+2\sin\theta+\frac\theta2+\frac{\sin2\theta}{4}\right)\Big|_0^{\pi/2}\\
+&=\underline{\underline{\tfrac{3\pi}{8}+1}}
+\end{align*}
+$\cos^2\theta=\dfrac{1+\cos2\theta}{2}$
+
+\begin{ornek}
+$r=\sin(2\theta)$ kardioidini çiziniz ve kardioidin içinde kalan bölgenin alanını hesaplayınız.
+\end{ornek}
+\[ \begin{array}{c|ccccccccc} \theta & 0^\circ & 45^\circ & 90^\circ & 135^\circ & 180^\circ & 225^\circ & 270^\circ & 315^\circ & 360^\circ\\\hline r & 0 & 1 & 0 & -1 & 0 & 1 & 0 & -1 & 0\end{array} \]
+\[ A=\frac12\int_{\theta_1}^{\theta_2}r^2\,d\theta=8\cdot\frac12\int_0^{\pi/4}(\sin2\theta)^2\,d\theta=4\int_0^{\pi/4}\frac{1-\cos4\theta}{2}\,d\theta \]
+\[ (\sin2\theta)^2=\frac{1-\cos4\theta}{2}\qquad =4\left(\frac\theta2-\frac{\sin4\theta}{8}\right)\Big|_0^{\pi/4} \]
+\[ =\underline{\pi/2} \]
+
+\begin{ornek}
+$r=1+\cos\theta$ kardioidinin içinde ve $r=1$ çemberinin dışında kalan alanı bulunuz.
+\end{ornek}
+\sekilnotu[26]{Kardioid ve birim çember ($r=1$) birlikte çizili; $y$ ekseni ($90^\circ$) üzerinde $1$ ve $-1$, $x$ ekseni üzerinde $2$ ve $-1$ işaretli; $180^\circ$, $270^\circ$, $360^\circ$ yönleri etiketli; çemberin dışında kalan, kardioidin sağ tarafındaki bölge taralı; oklar çizili.}
+\[ A=\frac12\int_{\alpha_1}^{\alpha_2}\left(r_1^2-r_2^2\right)d\theta \]
+\[ A=2\cdot\frac12\int_0^{\pi/2}\left((1+\cos\theta)^2-1^2\right)d\theta\qquad \frac{\cos2\theta+1}{2} \]
+\[ =\int_0^{\pi/2}\left(2\cos\theta+\cos^2\theta\right)d\theta=2+\frac\pi4 \]
+
+\begin{ornek}
+$r=8\cos\theta$ çemberinin içinde, $r=2\sec\theta$ doğrusunun sağında kalan bölgenin alanını bulunuz.
+\end{ornek}
+\sekilnotu[26]{$r=2\sec\theta$ doğrusu ($x=2$) ve merkezi $(4,0)$ olan çember; çemberin doğrunun sağında kalan kısmı taralı; $\pi/3$ açısı, $2\sqrt3$ uzunluğu, $2$ ve $4$ değerleri işaretli.}
+$\longrightarrow\ \left(\tfrac a2,0\right)\quad r=\left|\tfrac a2\right|\qquad M(4,0)\quad r=4$
+\[ r\cos\theta=2\quad r=\frac{2}{\cos\theta}\qquad x=2\quad x=r\cos\theta\quad y=r\sin\theta \]
+\[ 8\cos\theta=\frac{2}{\cos\theta}\longrightarrow\cos\theta=\pm\frac12\qquad \theta=\frac\pi3,\ -\frac\pi3 \]
+\[ A=\frac12\int_\alpha^\beta r^2\,d\theta=2\cdot\frac12\int_0^{\pi/3}(8\cos\theta)^2\,d\theta-\frac{2\cdot2\sqrt3}{2}\cdot2=\frac{32\pi}{3}+4\sqrt3 \]
+
+\sayfa{27}
+\section{ÇİFT KATLI İNTEGRALLERİ KUTUPSAL KOORDİNATLARA DÖNÜŞTÜREREK ÇÖZME}
+Çember denklemi $\to x^2+y^2=r^2$
+\begin{enumerate}[label=\arabic*)]
+\item $y=\sqrt{r^2-x^2}$
+\item $y=-\sqrt{r^2-x^2}$
+\item $x=\sqrt{r^2-y^2}$
+\item $x=-\sqrt{r^2-y^2}$
+\end{enumerate}
+\sekilnotu[27]{Her denklemin yanında bir ok ve küçük bir çizim: (1) üst yarım çember, (2) alt yarım çember, (3) sağ yarım çember, (4) sol yarım çember; eksenlerde $r$ ve $-r$ değerleri işaretli.}
+\noindent\underline{Kutupsal Koordinatlara Çevrim}
+\begin{enumerate}[label=\arabic*)]
+\item $x=r\cos\theta\quad y=r\sin\theta$
+\item $x^2+y^2=r^2$
+\item $dx\,dy=r\,dr\,d\theta$
+\end{enumerate}
+\[ \underbrace{\iint f(x,y)\,dx\,dy}_{\text{sınırlar }x,\,y}=\underbrace{\iint f(r,\theta)\,r\,dr\,d\theta}_{\text{sınırlar }r\text{ ve }\theta} \]
+\begin{ornek}
+$\displaystyle\iint_R e^{\kutula{x^2+y^2}}\,dA$, $R$ bölgesi merkezi orijin olan birim $R$ çember. Buna göre integralin sonucu nedir?
+\end{ornek}
+\sekilnotu[27]{Birim disk (taralı); eksenlerde $-1$ ve $1$ işaretli, yarıçap $r$ gösterilmiş, $0^\circ$ etiketli.}
+\[ \begin{aligned}0&\le r\le 1\\0&\le\theta\le 2\pi\end{aligned}\qquad \int_0^{2\pi}\!\!\int_0^1 e^{\kutula{r^2}}\kutula{r\,dr}\,d\theta\qquad \frac{du}{2}\to du=2r\,dr \]
+\[ =\int_0^{2\pi}\!\!\int e^u\cdot\frac{du}{2}\Big|_0^1=\int_0^{2\pi}\frac12e^{r^2}\Big|_0^1=\int_0^{2\pi}\frac{e-1}{2}\,d\theta=(e-1)\pi \]
+\begin{ornek}
+$\displaystyle\int_{-1}^{1}\!\!\int_0^{\sqrt{1-x^2}}dy\,dx=\,?$ \quad Sınırlarında çember denklemi içerenler kutupsal koord.\ dönüş.\ çözülmelidir?
+\end{ornek}
+\[ \begin{aligned}0&\le y\le\sqrt{1-x^2}\\-1&\le x\le 1\end{aligned}\ \longrightarrow\ y=0,\ y=\sqrt{1-x^2} \]
+\sekilnotu[27]{Üst yarım disk (taralı); eksenlerde $-1$ ve $1$ işaretli, $y=0$ etiketli; yanında $0\le r\le 1$ ve $0\le\theta\le\pi$ yazıyor.}
+\[ \int_0^\pi\!\!\int_0^1 r\,dr\,d\theta=\frac{r^2}{2}\Big|_0^1=\frac12\qquad \int_0^\pi\frac12\,d\theta=\frac\theta2\Big|_0^\pi=\frac\pi2 \]
+\begin{ornek}
+$\displaystyle\int_0^3\!\!\int_0^{\sqrt{9-y^2}}e^{-(x^2+y^2)}\,dx\,dy=\,?$
+\end{ornek}
+\[ 0\le y\le 3\qquad 0\le x\le\sqrt{9-y^2}\qquad x=0,\ x=\sqrt{9-y^2} \]
+\sekilnotu[27]{$x=0$ doğrusu ile yarıçapı $3$ olan çemberin birinci bölgedeki çeyreği (taralı); eksenlerde $3$, $-3$, $0$ ve $x=0$ işaretli.}
+\[ 0\le r\le 3\qquad 0\le\theta\le\pi/2\qquad x^2+y^2=r^2 \]
+\[ \int_0^{\pi/2}\!\!\int_0^3\left(e^{-r^2}\,r\,dr\right)d\theta\ \longrightarrow\ u\qquad \int e^{-u}\,\frac{du}{2} \]
+\[ =\int_0^{\pi/2}\left[-\frac12e^{-r^2}\right]_0^3 \]
+\[ \frac\pi2\left(-\frac12e^{-9}+\frac12\right)=\left(-\frac12e^{-9}+\frac12\right)\cdot\theta\Big|_0^{\pi/2}\ \longleftarrow\ \int_0^{\pi/2}\left(-\frac12e^{-9}+\frac12\right)d\theta \]
+
+\section{MERKEZİ ORJİN OLMAYAN ÇEMBER İÇİN Ç.K. İNTEGRALDE KUTUPSAL DÖNÜŞÜM}
+\begin{ornek}
+$\displaystyle\iint_R(12-6x-4y)\,dA$ integralinin sonucunu $R:\ x^2+y^2=2y$ çemberinin iç bölgesi olmak üzere bulunuz.
+\end{ornek}
+\noindent\textbf{1. adım:}
+\[ x^2+y^2=r^2\longrightarrow r^2=2r\sin\theta\qquad x=r\cos\theta\qquad y=r\sin\theta \]
+\[ r=a\sin\theta\to M\left(0,\tfrac a2\right)\ r=\left|\tfrac a2\right|\qquad r=2\sin\theta \]
+\[ r=a\cos\theta\to M\left(\tfrac a2,0\right)\to r=\left|\tfrac a2\right|\qquad dx\,dy=r\,dr\,d\theta \]
+\sekilnotu[27]{Merkezi $(0,1)$ olan, $x$ eksenine orijinde teğet, yarıçapı $1$ olan taralı çember; merkez işaretli; $x$ ekseninde $\pi$ ve $0$ işaretli. Yanında orijin merkezli küçük taralı bir çember ve $0\le\theta\le2\pi$ yazısı.}
+\noindent\textbf{2. adım:} $0\le\theta\le\pi\qquad 0\le r\le2\sin\theta$
+\[ \int_0^\pi\!\!\int_0^{2\sin\theta}(12-6r\cos\theta-4r\sin\theta)\,r\,dr\,d\theta \]
+\[ -\frac83\int_0^\pi\left(1-2\cos2\theta+\frac{1+\cos4\theta}{2}\right)d\theta=\int_0^\pi\left[6r^2-2r^3\cos\theta-\frac{4r^3}{3}\sin\theta\right]_0^{2\sin\theta}d\theta \]
+\[ =8\pi \]
+\begin{ornek}
+$\displaystyle\int_0^\pi\!\!\int_0^{2\sin\theta}r\,dr\,d\theta$ integralini kartezyen koordinatlara çeviriniz.
+\end{ornek}
+\noindent\textbf{1. adım:} $0\le r\le2\sin\theta\longrightarrow r=0$ ve $r=2\sin\theta\qquad M(0,1)\quad r=1$
+\[ 0\le\theta\le\pi \]
+\sekilnotu[27]{Merkezi $(0,1)$ olan, $x$ eksenine orijinde teğet taralı birim çember; $y$ ekseninde $\pi/2$, $x$ ekseninde $\pi$ ve $0$ işaretli; sağ yarısı için $x=\sqrt{2y-y^2}$, sol yarısı için $x=-\sqrt{2y-y^2}$ okla gösterilmiş; yanında $\pi r^2=\pi$ yazıyor.}
+\noindent\textbf{2. adım:} $r\,dr\,d\theta=dx\,dy$
+\[ x=r\cos\theta\quad y=r\sin\theta\quad \okunamadi{dy dx} \]
+\[ x^2+y^2=r^2\qquad r=2\sin\theta\qquad 0\le y\le 2 \]
+\[ x^2+y^2=2y\ \longleftarrow\ r=\frac{2y}{r}\qquad -\sqrt{2y-y^2}\le x\le\sqrt{2y-y^2}\qquad x^2=2y-y^2 \]
+\[ x=\pm\sqrt{2y-y^2} \]
+\noindent\textbf{3. adım:}
+\[ \int_0^2\!\!\int_{-\sqrt{2y-y^2}}^{\sqrt{2y-y^2}}1\,dx\,dy=\pi \]
+
+\section{ÇİFT K. İNTEGRALDE DEĞİŞKEN DEĞİŞTİRME}
+\[ \iint_R f(x,y)\,dA\ \Rightarrow\ (x,y)\Rightarrow(u,v)\qquad (r,\theta)\longrightarrow\text{özel değişken değiştirme} \]
+$\downarrow$ $dx\,dy$ \qquad $du$ ve $dv\ \longrightarrow\ \iint_S f(u,v)\,dA$
+\sekilnotu[27]{$xy$-düzleminde eşkenar dörtgen biçimli, taralı $R$ bölgesi; altta $uv$-düzleminde taralı dikdörtgen biçimli $S$ bölgesi ($u$ ekseni etiketli).}
+$R$ bölgesi $x$ ve $y$'nin sınırlarını belirlemek oldukça zorlu bir bölge ise değişken değiştirme yöntemine başvurulur.
+\[ x=g(u,v)\qquad y=h(u,v) \]
+\[ \iint_R f(x,y)\,dA\ \Rightarrow\ \iint_S f\big(g(u,v),h(u,v)\big)\,\kutula{|J|}\,du\,dv \]
+\[ \frac{\partial x}{\partial u}\cdot\frac{\partial y}{\partial v}-\frac{\partial x}{\partial v}\cdot\frac{\partial y}{\partial u}=J=\begin{vmatrix}\frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\[2pt]\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{vmatrix}\ \longleftarrow\ \text{determinant - jacobian} \]
+
+\sayfa{28}
+\begin{ornek}
+$R$ bölgesi $0\le x\le 2$ ve $x\le y\le x+4$ tarafından sınırlanan kapalı bölge olm.\ üzere, $\displaystyle\iint_R xy\,dA$ int.\ $x=2u$ ve $y=4v+2u$ dönüşümü yap., çözünüz.
+\end{ornek}
+\noindent\textbf{1. adım:} Jacobian hesaplanmalı
+\[ J=\begin{vmatrix}\frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\[2pt]\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{vmatrix}=\begin{vmatrix}2&0\\2&4\end{vmatrix}=8 \]
+\noindent\textbf{2. adım:} $x$ ve $y$'li bölge çizilmeli ($R$ bölgesi)
+\[ 0\le x\le 2\qquad x\le y\le x+4\qquad y=x\quad y=x+4 \]
+\sekilnotu[28]{$xy$-düzleminde $y=x$ ve $y=x+4$ paralel doğruları ile $x=0$ ve $x=2$ düşey doğruları arasında kalan taralı paralelkenar; $x$ ekseninde $-4$, $0$, $2$ işaretli; doğrular $y=x$ ve $y=x+4$ olarak etiketli, oklarla gösterilmiş.}
+\begin{align*}
+x&=2u\\
+x=0&\longrightarrow 2u=0\quad u=0\\
+x=2&\longrightarrow 2u=2\quad u=1\\
+y&=4v+2u\\
+y=x&\longrightarrow 4v+2u=2u\quad v=0\\
+y=x+4&\longrightarrow 4v+2u=2u+4\quad v=1
+\end{align*}
+\sekilnotu[28]{$uv$-düzleminde $0\le u\le1$, $0\le v\le1$ taralı birim kare; eksenlerde $0$ ve $1$ işaretli.}
+\[ 0\le u\le1\qquad 0\le v\le1 \]
+\noindent\textbf{3. adım:} $\displaystyle\iint_R xy\,dA\qquad x=2u\quad y=4v+2u$
+\[ \int_0^1\!\!\int_0^1 2u\,(4v+2u)\,|8|\,du\,dv \]
+\[ \int_0^1\!\!\int_0^1(64uv+32u^2)\,du\,dv\ =\ \ (v\to u) \]
+\[ \int_0^1\left[32u^2v+\frac{32u^3}{3}\right]_0^1=\int_0^1\left(32v+\frac{32}{3}\right)dv=\frac{80}{3} \]
+
+\begin{ornek}
+$\displaystyle\iint_R (x-y)^2\,dA$ integ.\ hesapla. $R$ bölgesi köşe koordinatları $(0,0),(1,1),(2,0),(1,-1)$ olan kapalı dairesel bölge.
+\end{ornek}
+\noindent\textbf{1. adım:}
+\sekilnotu[28]{$xy$-düzleminde köşeleri $(0,0)$, $(1,1)$, $(2,0)$, $(1,-1)$ olan taralı eşkenar dörtgen; kenar doğruları $y=x$, $y=-x+2$, $y=-x$, $y=x-2$ olarak etiketli; eksenlerde $-1$ ve $1$ işaretli.}
+\noindent\textbf{2. adım:} uygun değişken değiştirme. \quad $u=y-x\quad v=y+x$ olsun.
+
+\noindent\textbf{3. adım:} $u=0\quad u=-2\qquad v=0\quad v=2$
+\sekilnotu[28]{$uv$-düzleminde $-2\le u\le0$, $0\le v\le2$ taralı dikdörtgen; $u$ ekseninde $-2$, $v$ ekseninde $2$ işaretli; $v=2$ etiketli.}
+\[ -2\le u\le0\qquad 0\le v\le2 \]
+\noindent\textbf{4. adım:}
+\[ J=\begin{vmatrix}\frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\[2pt]\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{vmatrix}\ \longleftarrow\ \begin{aligned}u&=y-x\\v&=y+x\end{aligned}\ \longrightarrow\ y=\frac{u+v}{2}\quad x=\frac{v-u}{2}\ \longrightarrow\ \begin{vmatrix}-\frac12&\frac12\\[2pt]\frac12&\frac12\end{vmatrix}=-\frac12 \]
+\[ \iint_R (x-y)^2\,dA=\int_0^2\!\!\int_{-2}^0 u^2\left|-\tfrac12\right|du\,dv=\int_0^2\frac{u^3}{6}\Big|_{-2}^0dv=\frac83 \]
+
+\section{İNTEGRAL ALMA BÖLGESİ ELİPS OLAN ÇİFT KATLI İNTEGRALLER}
+\begin{ornek}
+$\displaystyle\iint_R x^2\,dA$ integralini $R=\{(x,y)\,|\,25x^2+4y^2\le100\}$ integral alma bölgesi için çöz.
+\end{ornek}
+\noindent\textbf{1. adım:}
+\sekilnotu[28]{$xy$-düzleminde, $y$ ekseni doğrultusunda uzun, orijin merkezli taralı elips ($R$); eksenlerde $5$, $-5$, $2$, $-2$ işaretli.}
+\[ \frac{x^2}{a^2}+\frac{y^2}{b^2}=1\ \longrightarrow\ \frac{x^2}{4}+\frac{y^2}{25}=1\qquad a=2\quad b=5 \]
+İntegral alma bölgesi ELİPS ise değişken değiştirme yaparak ÇEMBERE dönüştürülecek.
+\[ \left.\begin{aligned}x&=2u\\y&=5v\end{aligned}\right\}\ \frac{4u^2}{4}+\frac{25v^2}{25}\le1\ \Rightarrow\ u^2+v^2\le1 \]
+\noindent\textbf{2. adım:}
+\[ J\ (\text{jacobian})=\begin{vmatrix}\frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\[2pt]\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{vmatrix}=\begin{vmatrix}2&0\\0&5\end{vmatrix}=10\qquad \begin{aligned}0&\le r\le1\\0&\le\theta\le2\pi\end{aligned} \]
+\sekilnotu[28]{$uv$-düzleminde orijin merkezli, yarıçapı 1 olan taralı birim disk ($D$); eksenlerde $1$ ve $-1$ işaretli.}
+\[ \iint_R x^2\,dA=\iint_D 4u^2\,|10|\,du\,dv \]
+\[ \iint_D 40u^2\,du\,dv \]
+\noindent\textbf{Kutupsal}
+\begin{align*}
+x&=r\cos\theta\longrightarrow u=r\cos\theta\\
+y&=r\sin\theta\longrightarrow v=r\sin\theta\\
+x^2+y^2&=r^2\longrightarrow u^2+v^2=r^2\\
+dx\,dy&=r\,dr\,d\theta\longrightarrow du\,dv=r\,dr\,d\theta
+\end{align*}
+\[ \int_0^{2\pi}\!\!\int_0^1 40r^2\cos^2\theta\cdot r\,dr\,d\theta \]
+\[ 10\pi=\int_0^{2\pi}10\cos^2\theta\,d\theta=\int_0^{2\pi}\!\!\int_0^1 40r^3\cos^2\theta\,dr\,d\theta\qquad \cos^2\theta=\frac{1+\cos2\theta}{2} \]
+
+\section{ÜÇ KATLI İNTEGRAL NEYİ HESAPLAR?}
+\[ \iiint_E f(x,y,z)\,dV\ \longrightarrow\ \int_e^f\!\!\int_c^d\!\!\int_a^b f(x,y,z)\,dx\,dy\,dz \]
+\noindent\textbf{HACİM HESAPLAR}
+\[ V=\iiint_E 1\,dV \]
+\begin{ornek}
+$\displaystyle\int_{3}^{-2}\!\!\int_{2}^{7}\!\!\int_{1}^{5}dx\,dy\,dz=\text{HACİM}$
+\end{ornek}
+\begin{ornek}
+$\displaystyle\int_1^4\!\!\int_{2x}^{x^2}\!\!\int_{x+y}^{x-y}dz\,dy\,dx=\text{HACİM}$
+\end{ornek}
+\noindent\textbf{NE HESAPLADIĞI BELLİ OLM. DURUM}
+\[ \iiint_E\underbrace{f(x,y,z)}_{\text{fonksiyon değeri}}\,\underbrace{dV}_{\text{Hacim}} \]
+\begin{ornek}
+$\displaystyle\int_3^{\okunamadi{3}}\!\!\int_2^5\!\!\int_1^4 (x+\okunamadi{3}\,y)\,dx\,dy\,dz$ = Hacim hesaplıyor.
+\end{ornek}
+\begin{ornek}
+$\displaystyle\int_2^3\!\!\int_1^2\!\!\int_0^1\kutula{8xyz\,dz}\,dy\,dx=\,?$
+\end{ornek}
+\[ =\int_2^3\!\!\int_1^2\frac{8xyz^2}{2}\Big|_0^1\,dy\,dx\qquad \int_2^3\frac{4xy^2}{2}\Big|_1^2dx \]
+\[ =\int_2^3 6x\,dx=3x^2\Big|_2^3=15 \]
+\begin{ornek}
+$\displaystyle\int_0^1\!\!\int_0^{3-3x}\!\!\int_0^{3-3x-y}dz\,dy\,dx=\,?$\footnote{Claude notu: aşağıdaki son satırda dış integralin üst sınırı $3$ yazılmış; muhtemelen $1$ olmalı (sonuç $3/2$ buna göre).}
+\end{ornek}
+\[ =\int_0^1\kutula{\int_0^{3-3x}(3-3x-y)\,dy}\,dx \]
+\[ =\int_0^3\left[3y-3xy-\frac{y^2}{2}\right]_0^{3-3x}dx=\frac32 \]
+
+\sayfa{29}
+\[ \int_0^1\!\!\int_0^1\kutula{\int_0^1(x^2+y^2+z^2)\,dx}\,dy\,dz=\,?\ \longrightarrow\ \int_0^1\!\!\int_0^1\left(\frac{x^3}{3}+y^2x+z^2x\right)\Big|_0^1 \]
+\[ =\int_0^1\kutula{\int_0^1\left(\frac13+y^2+z^2\right)dy}\,dz=\int_0^1\left(\frac y3+\frac{y^3}{3}+z^2y\right)\Big|_0^1=\int_0^1\left(\frac23+z^2\right)dz \]
+\[ =1 \]
+
+\section{ÜÇ KATLI İNTEGRAL HESAPLAMADA BİLİNMESİ GEREKEN GRAFİK ÇİZİMLERİ}
+\noindent\textbf{1)} Düzlem Grafikleri $\longrightarrow ax+by+cz+d=0$
+\[ \begin{aligned}x&=2\\y&=-4\\z&=1\end{aligned}\qquad \begin{aligned}x+z&=4\\x-3z&=0\end{aligned}\qquad \begin{aligned}x+y+z&=4\\x+2y+3z&=12\end{aligned} \]
+\sekilnotu[29]{Düzlem çizimleri: (i) $x=2$ düzlemi: $x$ ekseninde $2$ noktasından geçen, $yz$-düzlemine paralel taralı dikdörtgen düzlem parçası; ``$x=2$ noktasında sağa, sola, yukarı ve aşağı sonsuza devam eder.'' yazıyor. (ii) $y=-3$ düzlemi: $xz$-düzlemine paralel taralı düzlem parçası; $y$ ekseninde $-3$ işaretli, ``$y=-3$'' yazıyor. (iii) $x+2z=4$ düzlemi: $(x,z)$ noktaları tabloda $(0,2)$ ve $(4,0)$; $y$ eksenine paralel taralı düzlem parçası; ``$y$ eksenine teması yok.'' yazıyor. (iv) $x+2y+3z=6$ düzlemi: tabloda $(x,y,z)=(0,0,2)$, $(6,0,0)$, $(0,3,0)$; eksenlerde $2$ ($z$), $3$ ($y$), $6$ ($x$) işaretli; birinci bölgedeki taralı üçgen düzlem parçası ve ``tetrahedron'' yazıyor.}
+\noindent\textbf{2)} Küre $\longrightarrow x^2+y^2+z^2=r^2$
+\sekilnotu[29]{Taralı küre çizimi: ``$x^2+y^2+z^2=16$'' yazıyor; eksenlerde $4$ ve $-4$ işaretli. Yanında taralı yarım küre çizimi; ``diğer tarafı yok.'' notu.}
+\noindent Yarım küre: $x=\sqrt{16-y^2-z^2}$
+
+\noindent\textbf{3)} Koni $\longrightarrow z=\sqrt{x^2+y^2}$
+\sekilnotu[29]{Üst yarı koni çizimi ($z$ ekseni boyunca, ucu orijinde); ``$z=\sqrt{x^2+y^2}$'' etiketli. Yanında $x=\sqrt{y^2+z^2}$ konisi ($x$ ekseni boyunca) için eş merkezli taralı daireler halinde çizim; ``$x=\sqrt{y^2+z^2}$'' yazıyor.}
+\noindent\textbf{4)} Çift taraflı koni $\longrightarrow z^2=\sqrt{x^2+y^2}$\footnote{Claude notu: çift taraflı koni için muhtemelen $z^2=x^2+y^2$ olmalı.}
+\sekilnotu[29]{Uçları orijinde birleşen iki koni (çift taraflı koni) çizimi; eksenler etiketli.}
+
+\noindent\textbf{5)} Silindir $\longrightarrow x^2+y^2=r^2$
+
+$x^2+y^2=9\ \longrightarrow\ z$ ekseni olmadığından dolayı $z$ ekseni boyunca sonsuza kadar uzar.
+\sekilnotu[29]{Dikey silindir çizimi (üst ve alt tabanları elips); $z$ ekseni boyunca uzanıyor; eksenlerde $3$ ve $-3$ işaretli.}
+$x^2+z^2=9\ \longrightarrow$
+\sekilnotu[29]{$y$ ekseni boyunca uzanan yatay silindir çizimi; $z$ ve $y$ eksenlerinde $3$ ve $-3$ işaretli.}
+\noindent\textbf{6)} \okunamadi{Paraboloit} $\longrightarrow y=x^2+z^2$
+\sekilnotu[29]{Paraboloit çizimleri: (i) $y=x^2+z^2$ paraboloidi ($y$ ekseni yönünde açılan). (ii) $z=9-x^2-y^2$ aşağı doğru açılan paraboloid; $z$ ekseninde $9$, $x$ ve $y$ eksenlerinde $3$ ve $-3$ işaretli; ok ile ``$z=9-x^2-y^2$''. (iii) $z=1+x^2+y^2$ yukarı doğru açılan küçük paraboloid; $z$ ekseninde $1$ işaretli.}
+
+\section{ÜÇ KATLI İNTEGRALDE SINIR BELİRLEME}
+\[ \iiint_E f(x,y,z)\,dV\qquad dV=dx\,dy\,dz=dx\,dz\,dy=dy\,dx\,dz=dy\,dz\,dx=dz\,dy\,dx=dz\,dx\,dy \]
+$E\ \longrightarrow$ Sınırların belirlenmesini sağlayan hacim
+\sekilnotu[29]{$xy$-düzlemindeki taralı bir taban bölgesi üzerinde yükselen katı; altta $z_1=u(x,y)$, üstte $z_2=v(x,y)$ yüzeyleri ile sınırlı; içinde $f$ yazıyor; $z$ ekseninde $z_1$ ve $z_2$ işaretli; tabana dik izdüşüm oku var. Altında $u(x,y)\le z\le v(x,y)$ yazıyor.}
+\[ \iiint_E f(x,y,z)\,dV\ \longrightarrow\ \begin{cases}\text{1. sınır: fonksiyon}\\\text{2. sınır: fonksiyon}\\\text{3. sınır: sabit sayı}\end{cases} \]
+Bu hacmin $xy$ düzlemi üzerine dik izdüşüm alanı ile $x$ ve $y$ sınırı belirlenir.
+\sekilnotu[29]{$xy$-düzleminde taralı bir bölge; ok ile ``1 sınır sayı'' gösteriliyor.}
+$\longrightarrow$ 1 sınır sayı
+
+1 sınır fonksiyon olarak belirleyip sınır belirlemeyi bitiririz.
+\sekilnotu[29]{Üç integral işareti; soldaki (en dış) integralden ok ile ``sayı''ya, ortadakinden ``Fonks.''a, sağdakinden (en iç) ``fonks.''a oklar çizilmiş.}
+\begin{ornek}
+$\displaystyle\iiint_E 2x\,dV=\,?$ \quad $E$ bölgesi $2x+3y+z=6$ düzlemi ile eksenler arasında 1. bölgede kalan hacim.
+\end{ornek}
+\sekilnotu[29]{Birinci bölgede, $2x+3y+z=6$ düzlemi ile eksenlerin sınırladığı taralı tetrahedron; eksenlerde $z$: $6$, $y$: $2$, $x$: $3$ işaretli; ok ile $z=6-2x-3y$ ve $0\le z\le 6-2x-3y$; tabanda $z=0$ okla gösterilmiş. Tabloda $2x+3y+z=6$ için $(x,y,z)=(0,0,6)$, $(0,2,0)$, $(3,0,0)$. Altta $xy$-düzlemine izdüşüm: köşeleri $(0,0)$, $(3,0)$, $(0,2)$ olan taralı üçgen (düşey bir şerit işaretli); ``$xy$ üzerine izdüşüm'' yazıyor.}
+\[ 0\le y\le\frac{6-2x}{3}\qquad 0\le x\le 3\qquad \frac x3+\frac y2=1\qquad 2x+3y=6\qquad y=\frac{6-2x}{3} \]
+\[ z=6-2x-3y\qquad 0\le z\le 6-2x-3y \]
+
+\sayfa{30}
+\[ \int_0^3\int_0^{\frac{6-2x}{3}}\int_0^{6-2x-3y}2x\,dz\,dy\,dx \]
+\begin{ornek}
+$\displaystyle\iiint_E\sqrt{3x^2+3z^2}\,dV=\,?$ \quad $E$ bölgesi $y=2x^2+2z^2$ ve $y=8$ düzlemi tarafından sınırlanan hacimdir. $\longrightarrow$ \okunamadi{paraboloit}
+\end{ornek}
+\sekilnotu[30]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol alta doğru. $y=2x^2+2z^2$ paraboloidi $y$ ekseni yönünde açılıyor (ok ile ``$y=2x^2+2z^2$''), $y=8$ düzleminde kesilmiş ve kesit diski taralı (ok ile ``$y=8$''). Yanında dikdörtgen biçiminde küçük bir çizim; sağında $8=2x^2+2z^2$ ve $4=x^2+z^2$ yazıyor.}
+\[ 2x^2+2z^2\le y\le 8 \]
+\[ x^2+z^2=4 \]
+\sekilnotu[30]{$xz$-düzleminde yarıçapı $2$ olan taralı daire; $z$ ekseni yukarı, $x$ ekseni sağa; eksenlerde $2$ ve $-2$ işaretli; daire içinde düşey bir kiriş çizilmiş ve uç noktaları işaretli. Çembere ok ile ``$x^2+z^2=4$'' gösteriliyor; üst yaya ok ile ``$z=\sqrt{4-x^2}$'', alt yaya ok ile ``$z=-\sqrt{4-x^2}$'' yazıyor.}
+\[ -2\le x\le 2 \]
+\noindent$xz$ üzerine izdüşüm
+\[ -\sqrt{4-x^2}\le z\le\sqrt{4-x^2} \]
+\[ \int_{-2}^{2}\int_{-\sqrt{4-x^2}}^{\sqrt{4-x^2}}\int_{2x^2+2z^2}^{8}\sqrt{3z^2+3x^2}\,dy\,dz\,dx \]
+
+\section{SONSUZ BÖLGEDE ÜÇ KATLI İNTEGRAL HESAPLAMA}
+\begin{ornek}
+$\displaystyle\iiint e^{-(x+3y+5z)}\,dx\,dy\,dz$ integralinde $V$ bölgesi $x\ge0$, $y\ge0$ ve $z\ge0$ olduğuna göre integralin sonucu nedir?
+\end{ornek}
+\sekilnotu[30]{Birinci bölgeyi gösteren eksen takımı ($z$ yukarı, $y$ sağa, $x$ sol alta doğru; $x$ ucunda $\infty$ yazıyor); birinci bölge gri çizgilerle taranmış.}
+\[ \begin{aligned}0&\le x\le+\infty\\0&\le y\le+\infty\\0&\le z\le+\infty\end{aligned}\qquad \int_0^\infty\!\!\int_0^\infty\!\kutula{\int_0^\infty e^{-x-3y-5z}\,dx}\,dy\,dz \]
+\[ \lim_{t\to\infty}\int_0^t e^{-x-3y-5z}\,dx\ \ \nearrow \]
+\[ \int_0^\infty\!\!\int_0^\infty\left.\left(\frac{e^{-x-3y-5z}}{-1}\right)\right|_0^\infty dy\,dz=\int_0^\infty\kutula{\int_0^\infty e^{-3y-5z}\,dy}\,dz \]
+\[ \ustucizili{-e^{-\infty}}+e^{-3y-5z} \]
+\[ \int_0^\infty\left.\left(\frac{e^{-3y-5z}}{-3}\right)\right|_0^\infty dz=\int_0^\infty\left(\ustucizili{-\tfrac13e^{-\infty}}+\tfrac13\cdot e^{-5z}\right)dz=\int_0^\infty\tfrac13e^{-5z}\,dz=\frac1{15} \]
+
+\section{ÜÇ KATLI İNTEGRALDE SİLİNDİRİK KOOR.LAR}
+\noindent$\mathbb{R}^2$ de $\to(x,y)\ \longrightarrow\ (r,\theta)$ \quad (kartezyen koordinatla kutupsal koor.)
+\[ x=r\cos\theta\qquad y=r\sin\theta\qquad x^2+y^2=r^2\qquad dy\,dx=dx\,dy=r\,dr\,d\theta \]
+\noindent$\mathbb{R}^3$ de $\to(x,y,z)\ \longrightarrow\ (r,\theta,z)$ \quad (kartezyen koor., silindirik koor.)
+\[ x=r\cos\theta\qquad y=r\sin\theta\qquad z=z\qquad x^2+y^2=r^2 \]
+\[ dx\,dy\,dz=r\,dz\,dr\,d\theta \]
+\[ \iiint f(x,y,z)\,dx\,dy\,dz=\int_{\theta_1}^{\theta_2}\int_{r_1}^{r_2}\int_{z_1}^{z_2}f(r\cos\theta,r\sin\theta,z)\,r\,dz\,dr\,d\theta \]
+\noindent$z=x$ ve $y$ yerine\footnote{Claude notu: muhtemelen ``$z=z$; $x$ ve $y$ yerine'' demek istenmiş.}\quad $x=r\cos\theta$, $y=r\sin\theta$
+
+\begin{ornek}
+$z=\sqrt{x^2+y^2}$ konisi ile $z=2$ düzlemi arasında kalan hacmi hesaplayınız.
+\end{ornek}
+\[ \iiint_E 1\,dV \]
+\noindent\textbf{1. adım:}
+\sekilnotu[30]{Koni çizimi: $z$ ekseni yukarı, $y$ sağa, $x$ sol alta doğru; koninin ucu orijinde, $z=2$ düzlemi paralelkenar olarak çizilmiş ve koni bu düzlemle kesilmiş (kesit elips); $z$ ekseni üzerinde $2$ işaretli, koni ile düzlem arasında kalan hacim koyu taralı. Ok ile ``$\sqrt{x^2+y^2}\le z\le2$'' gösteriliyor. Sağda küçük, yan görünüşlü ikinci bir koni çizimi: üzerinde ``$z=2$'' ve ``$z=\sqrt{x^2+y^2}$'' etiketli.}
+\[ x=r\cos\theta\qquad y=r\sin\theta\qquad z=z\qquad x^2+y^2=r^2 \]
+\[ \sqrt{x^2+y^2}\le z\le2\qquad \sqrt{r^2}\le z\le2\qquad r\le z\le2 \]
+\noindent\textbf{2. adım:}
+\sekilnotu[30]{$xy$-düzleminde yarıçapı $2$ olan taralı daire; $y$ ekseni yukarı, $x$ ekseni sağa; eksenlerde $2$ ve $-2$ işaretli; $x$ ekseninin başında ``$0^\circ$'' yazıyor.}
+\[ \begin{aligned}2&=\sqrt{x^2+y^2}\\4&=x^2+y^2\\0&\le r\le2\\0&\le\theta\le2\pi\end{aligned} \]
+\noindent\textbf{3. adım:}
+\[ \iiint_E 1\,dV=\int_0^{2\pi}\int_0^2\kutula{\int_r^2 1\cdot r\,dz}\,dr\,d\theta\qquad\longrightarrow\qquad r\,dz\Big|_r^2=2r-r^2 \]
+\[ \int_0^{2\pi}\int_0^2(2r-r^2)\,dr\,d\theta=\int_0^{2\pi}\frac43\,d\theta=\frac{8\pi}{3} \]
+
+\begin{ornek}
+$\displaystyle\iiint y\,dV$, $E$ bölgesi $z=x+2$ düzleminin altında, $E$ $xy$ düzleminin üstünde ve $x^2+y^2=4$ silindirinin içindeki hacim olmak üzere, integralin sonucunu silindirik koor. dönüş. hesapla.
+\end{ornek}
+\sekilnotu[30]{Silindir çizimi: $z$ ekseni yukarı, $y$ sağa, $x$ sol alta doğru; alt taban elips (ok ile ``$z=0$''), üst yüz $z=x+2$ düzlemiyle eğik kesilmiş; eksenlerde $2$ ve $-2$ işaretli; yan yüzey koyu taralı. Sağ üstte ``$z=x+2$'' başlıklı küçük tablo: $(z,x)=(2,0)$ ve $(0,-2)$; ok ile eğik kesilmiş küçük bir silindir çizimine bağlanıyor.}
+\[ x=r\cos\theta\qquad y=r\sin\theta\qquad x^2+y^2=r^2 \]
+\[ 0\le z\le x+2\qquad 0\le z\le r\cos\theta+2 \]
+\sekilnotu[30]{$xy$-düzleminde yarıçapı $2$ olan taralı daire; $y$ ekseni yukarı, $x$ ekseni sağa; eksenlerde $2$ ve $-2$ işaretli.}
+\[ 0\le r\le2\qquad 0\le\theta\le2\pi \]
+\[ \iiint_E y\,dV=\int_0^{2\pi}\int_0^2\int_0^{r\cos\theta+2}\underbrace{r\sin\theta\cdot r}_{r^2\sin\theta}\,dz\,dr\,d\theta= \]
+\[ =\int_0^{2\pi}\int_0^2\left(r^3\sin\theta\cos\theta+2r^2\sin\theta\right)dr\,d\theta=\int_0^{2\pi}\left(2\sin2\theta+\frac{16}{3}\sin\theta\right)d\theta \]
+\[ =\left.-\frac{2\cos2\theta}{2}-\frac{16}{3}\cos\theta\right|_0^{2\pi}=0 \]
+
+\begin{ornek}
+$E$ bölgesi $x^2+y^2+z^2=4$ küresinin birinci sekizde kalan parçası olm. üz., $\displaystyle\iiint_E xyz\,dV$ integralini silindirik koor. kull. hesaplayınız.
+\end{ornek}
+\noindent\textbf{1. adım:} $z=\sqrt{4-x^2-y^2}$
+\sekilnotu[30]{Kürenin birinci sekizde kalan parçası (koyu taralı); $x$, $y$, $z$ eksenlerinde $2$ işaretli; tabanda ``$z=0$'' yazıyor.}
+\noindent\textbf{2. adım:}
+\[ 0\le r\le2\qquad 0\le\theta\le\frac\pi2\qquad 0\le z\le\sqrt{4-x^2-y^2}\qquad 0\le z\le\sqrt{4-r^2} \]
+\[ x=r\cos\theta\qquad y=r\sin\theta\qquad x^2+y^2=r^2 \]
+\sekilnotu[30]{$xy$-düzleminde birinci bölgedeki taralı çeyrek daire; $y$ ekseninde $2$ ve $\pi/2$, $x$ ekseninde $2$ işaretli.}
+\noindent\textbf{3. adım:}
+\[ \iiint_E xyz\,dV=\int_0^{\pi/2}\int_0^2\int_0^{\sqrt{4-r^2}}r\cos\theta\cdot r\sin\theta\cdot z\cdot r\,dz\,dr\,d\theta=\frac43 \]
+
+\sayfa{31}
+\section{ÜÇ KATLI İNTEGRALDE KÜRESEL KOORDİNATLAR}
+\noindent$\underset{\text{kartezyen koor.lar}}{(x,y,z)}\ \longrightarrow\ (\rho,\theta,\phi)$ \quad küresel koor.lar
+\sekilnotu[31]{Sol çizim: $z$ yukarı, $y$ sağa, $x$ sol alta doğru eksenler; uzayda $(x,y,z)$ noktası ve eksen düzlemlerine kesikli izdüşüm çizgileri; yanında okla ``$z$ ekseni ile noktanın arasındaki açı'' ve ``$x$ ekseni ile nokt. izdüşümünün yaptığı açı'' yazıyor. Sağ çizim: $z$ ekseninin ucunda ``$0^\circ$''; orijinden $(x,y,z)=(\rho,\theta,\phi)$ noktasına çizilmiş doğru ile $z$ ekseni arasındaki açı $\phi$, $xy$-düzleminde $x$ ekseni ile izdüşüm arasındaki açı $\theta$ ($x$ ekseninde ``$0^\circ$''); ``$\rho=\sqrt{x^2+y^2+z^2}$'', ``$0\le\theta\le2\pi$'', ``$0\le\phi\le\pi$'' ve ``nokt. orjine olan uzaklığı'' yazıyor.}
+\[ (x,y,z)\longrightarrow(\rho,\theta,\phi)\qquad f(x,y,z)\longrightarrow f(\rho,\theta,\phi) \]
+\[ x=\rho\cdot\sin\phi\cdot\cos\theta\qquad y=\rho\cdot\sin\phi\cdot\sin\theta\qquad z=\rho\cdot\cos\phi \]
+\[ x^2+y^2+z^2=\rho^2\qquad \rho\ge0\qquad 0\le\theta\le2\pi\qquad 0\le\phi\le\pi \]
+\[ dV=\rho^2\cdot\sin\phi\cdot d\rho\cdot d\theta\cdot d\phi \]
+\[ \iiint_E f(x,y,z)\cdot dV=\iiint f(\rho,\theta,\phi)\cdot\rho^2\sin\phi\cdot d\rho\cdot d\theta\cdot d\phi \]
+\sekilnotu[31]{Sağdaki üç integral işaretinin altında yukarı oklar ve soldan sağa $\phi$, $\theta$, $\rho$ yazıyor; $E$ altına okla ``küresel hacim varsa'' notu.}
+\begin{ornek}
+$E$ bölgesi $x^2+y^2+z^2=1$ küresinin üst yarısı olm. üz., $\displaystyle\iiint_E 16z\,dV$ integralini küresel koorlara dönüştürerek çözünüz.
+\end{ornek}
+\sekilnotu[31]{Üst yarım küre (kubbe) çizimi: $z$ ekseni yukarı (ucunda ``$0^\circ$''), $y$ ekseni sağa (ucunda $\pi/2$), $x$ ekseni sol alta doğru (ucunda ``$0^\circ$''); eksenlerde $1$ işaretli; kubbe gri taramalı.}
+\[ 0\le\rho\le1\qquad 0\le\theta\le2\pi\qquad 0\le\phi\le\frac\pi2 \]
+\[ x=\rho\sin\phi\cos\theta\qquad y=\rho\sin\phi\sin\theta\qquad z=\rho\cos\theta\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $z=\rho\cos\phi$ olmalı.}
+\[ x^2+y^2+z^2=\rho^2\qquad dV=\rho^2\sin\phi\,d\rho\,d\theta\,d\phi \]
+\[ \int_0^{\pi/2}\int_0^{2\pi}\int_0^1 16\rho\cdot\cos\phi\cdot\rho^2\cdot\sin\phi\,d\rho\,d\theta\,d\phi=\int_0^{\pi/2}\int_0^{2\pi}2\sin2\phi\,d\theta\,d\phi \]
+\[ =\int_0^{\pi/2}4\pi\sin2\phi\,d\phi=-4\pi\,\frac{\cos2\phi}{2}\Big|_0^{\pi/2}=4\pi \]
+\begin{ornek}
+$D$ bölgesi $z=\sqrt{3x^2+3y^2}$ konisi ve $x^2+y^2+z^2=9$ ile $x^2+y^2+z^2=81$ küreleri arasında kalan hacimsel bölge olm. üz. int.ini küresel koor. çevirerek hesaplayınız.
+\end{ornek}
+\sekilnotu[31]{Çizim: $z$ ekseni yukarı, $y$ sağa, $x$ sol alta doğru; yarıçapı $3$ ve $9$ olan iki eş merkezli küre ve orijinden çıkan bir koni; iki küre arasında koninin içinde kalan bölge koyu mavi taramalı. Eksenlerde $\pm3$, $\pm9$ işaretli; koninin kürelerle kesiştiği yerlerde $\frac92$ ve $\frac32$ yazıyor; ok ile ``$60^\circ$'' ve ok ile ``$z=\sqrt{3x^2+3y^2}$'' etiketli. Sağda $xy$-düzleminde taralı bir daire: $y$ ekseni yukarı, $x$ ekseni sağa; eksenlerde $\pm\frac92$ ve $\pm\frac32$ gibi değerler işaretli.}
+\[ 3\le\rho\le9\qquad 0\le\theta\le2\pi\qquad 0\le\phi\le\frac\pi6 \]
+\[ \begin{aligned}z=\sqrt{3x^2+3y^2}\ \longrightarrow\ x^2+y^2+(3x^2+3y^2)&=9\\4(x^2+y^2)&=9\\x^2+y^2&=\tfrac94\end{aligned} \]
+\[ \begin{aligned}z=\sqrt{3x^2+3y^2}\ \longrightarrow\ x^2+y^2+(3x^2+3y^2)&=81\\4(x^2+y^2)&=81\\x^2+y^2&=\tfrac{81}{4}\end{aligned} \]
+\[ \int_0^{\pi/6}\int_0^{2\pi}\int_3^9\frac{1}{\rho^2}\cdot\rho^2\sin\phi\,d\rho\,d\theta\,d\phi=\kutula{12\pi-6\pi\sqrt3} \]
+\[ dV=\rho^2\cdot\sin\phi\cdot d\rho\cdot d\theta\cdot d\phi\qquad x^2+y^2+z^2=\rho^2 \]
+\[ z=\rho\cdot\cos\phi\qquad x=\rho\cdot\sin\phi\cdot\cos\theta\qquad y=\rho\cdot\sin\phi\cdot\sin\theta \]
+
+\begin{ornek}
+$\displaystyle\iiint_V\frac{z^6\,e^{-3(x^2+y^2+z^2)^{1/2}}}{(x^2+y^2+z^2)^4}\,dx\,dy\,dz$ integralinde $V$ tüm uzaydır. Buna göre, bu int.in sonucu $=\,?$
+\end{ornek}
+\[ \begin{aligned}-\infty&\le x\le\infty\\-\infty&\le y\le\infty\\-\infty&\le z\le\infty\end{aligned}\ \left\{\begin{aligned}0&\le\rho\le\infty\\0&\le\theta\le2\pi\\0&\le\phi\le\pi\end{aligned}\right.\ \longrightarrow\ \begin{aligned}x&=\rho\cdot\sin\phi\cdot\cos\theta\\y&=\rho\cdot\sin\phi\cdot\sin\theta\\z&=\rho\cdot\cos\phi\end{aligned} \]
+\[ \int_0^\pi\int_0^{2\pi}\int_0^\infty\frac{\rho^6\cdot\cos^6\phi\cdot e^{-3\rho}}{\rho^8}\ \longrightarrow\ \rho^2\sin\phi\,d\rho\,d\theta\,d\phi \]
+\[ x^2+y^2+z^2=\rho^2\qquad dx\,dy\,dz=\rho^2\sin\phi\,d\rho\,d\theta\,d\phi \]
+\[ =\int_0^\pi\cos^6\phi\cdot\sin\phi\,d\phi\cdot\int_0^{2\pi}1\,d\theta\cdot\int_0^\infty e^{-3\rho}\,d\rho=\int_0^\pi-u^6\,du=\left.-\frac{u^7}{7}\right|_0^\pi=\frac27\footnotemark \]
+\footnotetext{Claude notu: $u=\cos\phi$ dönüşümünde sınırlar $u$ cinsinden $1$ ve $-1$ olmalı; $2/7$ sonucu buna göre doğrudur.}
+\[ \cos\phi=u\qquad\int_0^{2\pi}1\,d\theta\ \longrightarrow\ 2\pi \]
+\[ -\sin\phi\,d\phi=du\qquad =\int_0^\infty e^{-3\rho}\,d\rho=\left.\frac{e^{-3\rho}}{-3}\right|_0^\infty=\ustucizili{\frac{e^{-\infty}}{-3}}+\frac{e^0}{3}=\frac13 \]
+\[ \kutula{\frac{4\pi}{21}}=\frac27\cdot2\pi\cdot\frac13 \]
+
+\section{ÜÇ KATLI İNTEGRALDE İNTEGRAL ALMA SIRASI DEĞİŞTİRME}
+\[ \iiint_E f(x,y,z)\,dV \]
+\subsection*{$dz\ \longrightarrow$ önce $z$'nin değişimi}
+hacimsel bölgenin $x,y$ düzlemine izdüşümleri $\longrightarrow\ dx\,dy\quad dy\,dx$
+\sekilnotu[31]{$xy$-düzleminde ($y$ ekseni yukarı, $x$ ekseni sağa) birinci bölgede taralı dik üçgen.}
+\subsection*{$dy\ \longrightarrow$ önce $y$'nin değişimi}
+$x$-$z$ düz. izdüşüm $\longrightarrow\ dx\,dz\quad dz\,dx$
+\sekilnotu[31]{$xz$-düzleminde ($z$ ekseni yukarı, $x$ ekseni sağa) birinci bölgede taralı dik üçgen.}
+\subsection*{$dx\ \longrightarrow$ önce $x$'in değişimi}
+$y$-$z$ düz. izdüşüm $\longrightarrow\ dz\,dy\ -\ dy\,dz$
+\sekilnotu[31]{$yz$-düzleminde ($z$ ekseni yukarı, $y$ ekseni sağa) orijin merkezli taralı daire.}
+\noindent\textcircled{1} $dz\,dx\,dy$ \quad \textcircled{2} $dz\,dy\,dx$ \quad \textcircled{3} $dy\,dx\,dz$ \quad \textcircled{4} $dy\,dz\,dx$ \quad \textcircled{5} $dx\,dy\,dz$ \quad \textcircled{6} $dx\,dz\,dy$
+\[ \int_1^2\int_3^4\int_{-1}^{1}(x+y+z)\,dz\,dy\,dx=\int_3^4\int_1^2\int_{-1}^{1}(x+y+z)\,dz\,dx\,dy \]
+\noindent Bu tarz integrallerde izdüşüm alınmadan sıra değiştirme yapılabilir.
+\begin{ornek}
+$\displaystyle\iiint_E f(x,y,z)\,dV$, $E$ hacimsel bölgesi $x+2y+3z=6$ düzlemi ile $x=0$, $y=0$, $z=0$ düzlemi arasında kalan küresel\footnote{Claude notu: muhtemelen ``hacimsel'' olmalı.} bölge olm. üz., tüm integral alma sıralarını yazınız.
+\end{ornek}
+\sekilnotu[31]{Tetrahedron çizimi (okla ``tetrahedron'' yazıyor): $z$ ekseni yukarı ($z$ ekseninde $2$ işaretli), $y$ ekseni sağa ($y$ ekseninde $3$ işaretli), $x$ ekseni sol alta doğru ($x$ ekseninde $6$ işaretli); $x+2y+3z=6$ düzlemi ile koordinat düzlemleri arasında kalan taralı tetrahedron. Sağında ``$x+2y+3z=6$'' yazıyor ve altında eksen kesim noktalarını ($6$, $3$, $2$ ve sıfırlar) gösteren küçük bir tablo var.}
+\[ \text{\textcircled{1}}\ \ \int_0^3\int_0^{6-2y}\int_0^{\frac{6-x-2y}{3}}f(x,y,z)\,dz\,dx\,dy \]
+\[ \text{\textcircled{2}}\ \ \int_0^6\int_0^{\frac{6-x}{2}}\int_0^{\frac{6-x-2y}{3}}f(x,y,z)\,dz\,dy\,dx \]
+\[ \text{\textcircled{3}}\ \ \int_0^6\int_0^{6-x/3}\int_0^{6-x-3z/2}f(x,y,z)\,dy\,dz\,dx\footnotemark \]
+\footnotetext{Claude notu: paydalar tüm ifadeye ait olmalı: $\frac{6-x}{3}$ ve $\frac{6-x-3z}{2}$ (aşağıdaki eşitsizliklerde de aynı biçimde).}
+\[ \text{\textcircled{1}}\ \ \begin{aligned}0&\le z\le\frac{6-x-2y}{3}\\0&\le x\le6-2y\\0&\le y\le3\end{aligned} \]
+\sekilnotu[31]{$xy$-düzleminde ($y$ ekseninde $3$, $x$ ekseninde $6$ işaretli) birinci bölgede taralı üçgen; ``$x+2y=6$'' yazıyor; yatay bir çizgi ve aşağı doğru ok ile $x$'in sınırı gösteriliyor.}
+\[ \text{\textcircled{2}}\ \ \begin{aligned}0&\le z\le6-x-2y/3\\0&\le y\le6-x/2\\0&\le x\le6\end{aligned} \]
+\[ \text{\textcircled{3}}\ \ \begin{aligned}0&\le y\le6-x-3z/2\\0&\le x\le6\\0&\le z\le6-x/3\end{aligned} \]
+\sekilnotu[31]{$xz$-düzleminde ($z$ ekseninde $2$, $x$ ekseninde $6$ işaretli) birinci bölgede taralı üçgen; okla ``$x+3z=6$'' yazıyor.}
+\[ \text{\textcircled{4}}\ \ \begin{aligned}0&\le y\le6-x-3z/2\\0&\le x\le6-3z\qquad 0\le z\le2\end{aligned} \]
+
+\sayfa{32}
+\[ \text{\textcircled{5}}\ \ 0\le x\le6-2y-3z \]
+\sekilnotu[32]{$yz$-düzleminde ($z$ ekseninde $2$, $y$ ekseninde $3$ işaretli) birinci bölgede taralı üçgen; ``$2y+3z=6$'' yazıyor.}
+\[ \begin{aligned}0&\le z\le2\\0&\le y\le6-3z/2\end{aligned} \]
+\[ \text{\textcircled{6}}\ \ \begin{aligned}0&\le x\le6-2y-3z\\0&\le y\le3\\0&\le z\le6-2y/3\end{aligned} \]
+\begin{ornek}
+$\displaystyle\int_{-1}^{1}\int_{x^2}^{1}\int_0^{1-y}dz\,dy\,dx$ integralinde integral alma sırasını $dx\,dy\,dz$ olacak biçimde tekrar yazınız.
+\end{ornek}
+\noindent\textbf{1. adım:}
+\sekilnotu[32]{$xy$-düzleminde ($y$ ekseni yukarı, $x$ ekseni sağa) $y=x^2$ parabolü ile $y=1$ doğrusu arasında kalan taralı bölge; eksenlerde $1$ ve $-1$ işaretli; ``$y=1$'' yazıyor.}
+\[ \begin{aligned}0&\le z\le1-y\\x^2&\le y\le1\\-1&\le x\le1\end{aligned}\qquad \begin{array}{l|l}y=x^2&x=1\\y=1&x=-1\end{array} \]
+\sekilnotu[32]{Üç boyutlu çizim: $z$ ekseni yukarı ($z$ ekseninde $1$; okla ``$z=1-y$'' etiketi), $y$ ekseni sağa ($1$ işaretli), $x$ ekseni sol alta doğru ($1$ işaretli); kesikli çizgi ve okla ``$z=0$'' (taban); $z=1-y$ düzleminin altında, parabolik tabanın üzerinde kalan taralı cisim.}
+\[ 0\le y\le1-z \]
+\sekilnotu[32]{$yz$-düzleminde ($z$ ekseninde $1$, $y$ ekseninde $1$ işaretli) taralı üçgen; ``$z=1-y$'' yazıyor.}
+\[ -\sqrt y\le x\le\sqrt y\qquad 0\le z\le1 \]
+\[ \int_0^1\int_0^{1-z}\int_{-\sqrt y}^{\sqrt y}1\,dx\,dy\,dz=\frac{8}{15} \]
+
+\section{YOĞUNLUK FONKSİYONUNDAN Ü.K. İNTEGRAL İLE KÜTLE HESAPLAMA}
+\sekilnotu[32]{Taralı, düzensiz bir düzlemsel bölge; içinde ``$R$'' yazıyor.}
+\noindent$\rho(x,y)\longrightarrow$ belli bir alana yerleştirilmiş kütle var.
+\[ M=\iint_R\rho(x,y)\,dA\ \longrightarrow\ \text{Çift katlı integraldeki hali.} \]
+\sekilnotu[32]{Taralı üç boyutlu bir kutu (dikdörtgenler prizması), içinde ``$V$'' yazıyor; okla ``$\rho(x,y,z)=\ldots$'' gösteriliyor.}
+\noindent Üç katlı integrallerde hacimsel bölgedeki kütlenin integral fonks. vardır.
+\[ m=\iiint_V\rho(x,y,z)\,dV \]
+\begin{ornek}
+$x+2y+3z=6$ düzlemi ve koordinat düzlemleri tarafından sınırlı hacimsel bölge için yoğunluk fonksiyonu $\rho(x,y,z)=x^2yz$ dir. Buna göre, bu bölgenin kütlesini bulunuz.
+\end{ornek}
+\sekilnotu[32]{Tetrahedron çizimi: $z$ ekseni yukarı ($2$ işaretli), $y$ sağa ($3$ işaretli), $x$ sol alta doğru ($6$ işaretli); ``$x+2y+3z=6$'' yazıyor ve okla $0\le z\le\frac{6-x-2y}{3}$ gösteriliyor. Sağında $xy$-düzleminde ($y$ ekseninde $3$, $x$ ekseninde $6$ işaretli) taralı üçgen.}
+\[ 0\le x\le6\qquad 0\le y\le6-x/2 \]
+\[ m=\iiint_V\rho(x,y,z)\,dV=\int_0^6\int_0^{\frac{6-x}{2}}\int_0^{\frac{6-x-2y}{3}}x^2yz\,dz\,dy\,dx=\frac{108}{35} \]
+
+\section{YOĞUNLUK FONKSİYONUNDAN Ü.K. İNT. İLE MOMENTLERİ BULMA}
+\[ M_{xy}=\iiint_V z\cdot\rho(x,y,z)\,dV\ \longrightarrow\ x\text{-}y\text{ düzlemine göre eylemsizlik momenti} \]
+\[ M_{yz}=\iiint_V x\cdot\rho(x,y,z)\,dV\ \longrightarrow\ y\text{-}z\text{ düz. göre eylemsizlik moment} \]
+\[ M_{xz}=\iiint_V y\cdot\rho(x,y,z)\,dV\ \longrightarrow\ x\text{-}z\text{ düz. göre eylemsizlik momenti} \]
+\sekilnotu[32]{Sağ altta içinde ``$V$'' yazan bir kutu (dikdörtgenler prizması) çizimi; yanında ``$\rho(x,y,z)=xyz$'' yazıyor.}
+
+\begin{ornek}
+$x+y+z=2$ düzlemi ile koor. düzl. arasında kalan hacimsel bölgeye yerleştirilmiş cismin yoğunluk fonks. $\rho(x,y,z)=x+2$ olarak veriliyor. Bu cismin momentini bulunuz.
+\end{ornek}
+\sekilnotu[32]{Tetrahedron çizimi: $z$ yukarı, $y$ sağa, $x$ sol alta doğru; üç eksende de $2$ işaretli; birinci bölgede taralı tetrahedron. Sağda $xy$-düzleminde ($y$ ekseninde $2$, $x$ ekseninde $2$ işaretli) taralı üçgen; okla ``$x+y=2$'' yazıyor.}
+\[ 0\le z\le2-x-y\qquad 0\le x\le2\qquad 0\le y\le2-x \]
+\[ M_{xy}=\int_0^2\int_0^{2-x}\int_0^{2-x-y}z\cdot(x+2)\,dz\,dy\,dx \]
+\[ M_{yz}=\int_0^2\int_0^{2-x}\int_0^{2-x-y}x\cdot(x+2)\,dz\,dy\,dx\qquad M_{xz}=\int_0^2\int_0^{2-x}\int_0^{2-x-y}y(x+2)\,dz\,dy\,dx \]
+
+\section{YOĞUNLUK FONKS.DAN Ü.K. İNT. İLE AĞIRLIK MERKEZİ BULMA}
+\sekilnotu[32]{Silindir çizimi, içinde ``$V$'' yazıyor; okla ``$\rho(x,y,z)$'' gösteriliyor.}
+\noindent\textbf{1. adım:} KÜTLE: $\displaystyle m=\iiint_V\rho(x,y,z)\,dV$
+
+\noindent\textbf{2. adım:} $\displaystyle M_{xy}=\iiint_V z\cdot\rho(x,y,z)\,dV$
+\[ M_{xz}=\iiint_V y\cdot\rho(x,y,z)\,dV\qquad M_{yz}=\iiint_V x\cdot\rho(x,y,z)\,dV \]
+\noindent\textbf{3. adım:} Ağırlık merkezi:
+\[ G(\bar x,\bar y,\bar z)\qquad \bar x=\frac{M_{yz}}{m}\qquad \bar y=\frac{M_{xz}}{m}\qquad \bar z=\frac{M_{xy}}{m} \]
+\begin{ornek}
+Yoğunluğu $\rho(x,y,z)=xyz$ olan bir köşesi orjinde ve boyutları pozitif yönde $2,3,4$ br olan dikdörtgenler prizmasının ağırlık merkezinin koord. bulunuz.
+\end{ornek}
+\sekilnotu[32]{Kutu (dikdörtgenler prizması) çizimi: $z$ ekseninde $4$, $y$ ekseninde $3$, $x$ ekseninde $2$ işaretli; kutu taralı.}
+\[ 0\le x\le2\qquad 0\le y\le3\qquad 0\le z\le4 \]
+\[ m=\int_0^4\int_0^3\int_0^2xyz\,dx\,dy\,dz=72 \]
+\[ M_{xy}=\int_0^4\int_0^3\int_0^2xyz^2\,dx\,dy\,dz=192 \]
+\[ M_{yz}=\int_0^4\int_0^3\int_0^2x^2yz\,dx\,dy\,dz=96\qquad M_{xz}=\int_0^4\int_0^3\int_0^2xy^2z\,dx\,dy\,dz=144 \]
+\sekilnotu[32]{Sayfanın altında ``UUE'' benzeri, üç boyutlu (gölgeli şerit) harflerle çizilmiş bir logo; sağ altta sayfa numarası $32$ daire içinde.}
+\end{document}

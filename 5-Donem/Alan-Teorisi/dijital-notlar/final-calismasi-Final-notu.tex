@@ -1,0 +1,760 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Final çalışması notları}{Final-notu.pdf}
+
+\sayfa{1}
+\section{Uygulama 7 -- iç içe iki küre}
+\sekilnotu[1]{İç içe iki daire (küre kesiti): iç yarıçap $a$ (potansiyel $V_a$), dış yarıçap $b$ (potansiyel $V_b$); dışarıdan yukarı doğru $V_b$ etiketi, içteki dairede $V_a$ ve merkezden çizilen $a$ yarıçapı, sol üstte $b$.}
+\[ V(r)=\frac{V_a-V_b}{\frac1a-\frac1b}\cdot\frac1r+\frac{aV_a-bV_b}{a-b}\qquad a<r<b \]
+\[ r<a\quad \vec E=0\ \ \text{(içerde yük yok)}\qquad \text{integral:}\ \vec E=-\operatorname{grad}V,\ \ V(r)=C\ \text{olur} \]
+\[ V(a)=V_a=C\ \Rightarrow\ \kutula{r<a\quad V(r)=V_a} \]
+\begin{align*}
+&r>b\quad \Delta V=0\qquad \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2\frac{\partial V}{\partial r}\right)=0\\
+&r^2\frac{\partial V}{\partial r}=-A\ \Rightarrow\ \frac{\partial V}{\partial r}=-\frac{A}{r^2}\\
+&V(r)=\frac Ar+B\\
+&r\to\infty\quad V(r)=0\ \text{olmalıdır}\ \Rightarrow\ B=0\\
+&r=b\quad V(b)=V_b=\frac Ab\ \Rightarrow\ A=bV_b\\
+&V(r)=\frac{bV_b}{r}
+\end{align*}
+O zaman
+\begin{align*}
+&a<r<b\quad \vec E=-\operatorname{grad}V=\frac{V_a-V_b}{\frac1a-\frac1b}\,\frac{1}{r^2}\,\vec e_r\\
+&r<a\quad \vec E=0\\
+&r>b\quad \vec E=-\operatorname{grad}V=-\frac{\partial}{\partial r}\!\left(\frac{bV_b}{r}\right)\vec e_r\\
+&\phantom{r>b\quad \vec E}=\frac{bV_b}{r^2}\,\vec e_r
+\end{align*}
+\[ r=a\ \text{da}\quad \kutula{\vec E=\frac{\vec E^{+}(a)+\vec E^{-}(a)}{2}} \]
+\begin{align*}
+&=\frac12\left[\frac{V_a-V_b}{\frac1a-\frac1b}\cdot\frac{1}{a^2}\right]\vec e_r\\
+&=\frac12\,\frac ba\left[\frac{V_a-V_b}{b-a}\right]\vec e_r
+\end{align*}
+\textbf{$a$ yüzeyindeki yüke etkiyen kuvvet??}
+\begin{center}
+\vurgu{$d\vec F=\rho_s\,ds\,\vec E\qquad ds=a^2\sin\theta\,d\phi\,d\theta$}\\[3pt]
+\vurgu{$\operatorname{div}\vec D=\rho_s$}
+\end{center}
+\[ \kutula{\begin{aligned}\text{sınır koşulu: }&\rho_s=\vec n\cdot\vec D=\vec n\cdot\varepsilon\vec E\\&=\vec e_r\cdot\varepsilon\cdot\vec E\end{aligned}} \]
+$a$ noktasında
+\[ \rho_s=\varepsilon\cdot\frac12\cdot\frac ba\left[\frac{V_a-V_b}{b-a}\right] \]
+
+\section{Ders 9: Değişik türden yük dağılımları ve Dirac Distribüsyonu}
+\begin{center}
+hacimsel $\rho_v\ [\mathrm{C/m^3}]$ \qquad yüzeysel $\rho_s\ [\mathrm{C/m^2}]$ \qquad çizgisel $\rho_c\ [\mathrm{C/m}]$
+\end{center}
+\sekilnotu[1]{Kırmızı dikdörtgen prizma ve turuncu $x,y,z$ eksenleri ($z$ yukarı, $y$ sağa, $x$ sol-aşağı); sınırlar $a,b$ ($x$), $c,d$ ($y$), $e,f$ ($z$) olarak işaretli. Prizmanın içinden geçen, çizgilerle taralı dik düzlem $x=0$ yüzeyini (yüzeysel yük) gösteriyor; düzlemin yanında $\rho_s(y,z)$ etiketi var.}
+$x=0$'da $\rho_s(y,z)\ [\mathrm{C/m^2}]$ yük yoğunluğu olsun. Bu yüzeysel yük yoğunluğuna ilişkin hacimsel yük yoğunluğu:
+\[ \underset{[\mathrm{C/m^3}]}{\rho_v(x,y,z)}=\underset{[\mathrm{C/m^2}]}{\rho_s(y,z)}\,\underset{[1/\mathrm{m}]}{\delta(x)} \]
+\subsection*{$\delta(x)$'in özellikleri}
+1) $a\le x\le b$, $c\le y\le d$, $e\le z\le f$ prizması içindeki toplam yük $\bigl(\rho_v(x,y,z)=\rho_s(y,z)\,\delta(x)\bigr)$
+\begin{align*}
+&Q=\int_{x=a}^{b}\int_{y=c}^{d}\int_{z=e}^{f}\rho_v(x,y,z)\,dx\,dy\,dz\\
+&Q=\int_{x=a}^{b}\int_{y=c}^{d}\int_{z=e}^{f}\rho_s(y,z)\,\delta(x)\,dx\,dy\,dz\\
+&=\int_{x=a}^{b}\delta(x)\,dx\int_{y=c}^{d}\int_{z=e}^{f}\rho_s(y,z)\,dy\,dz
+\end{align*}
+\[ \Rightarrow\ \begin{cases} a,b<0, & Q=0\\ a,b>0, & Q=0\\ a<0<b, & Q=\displaystyle\int_{y=c}^{d}\int_{z=e}^{f}\rho_s(y,z)\,dy\,dz \end{cases} \]
+\[ \text{çünkü}\quad \int_{x=a}^{b}\delta(x)\,dx=\begin{cases}0, & ab>0\\ 1, & a<0<b\end{cases} \]
+2) $g(x)\,\delta(x)=g(0)\,\delta(x)$
+
+3)
+\[ \int_a^b\delta(x)\,dx=\begin{cases}0, & ab>0\\ 1, & a<0<b\end{cases}\qquad a\to-\infty,\ b\to x \]
+\[ \int_{-\infty}^{x}\delta(x)\,dx=\begin{cases}0, & x<0\\ 1, & x>0\end{cases}=u(x)\quad\text{birim basamak fonksiyonu} \]
+\[ \kutula{\delta(x)=\frac{\partial u(x)}{\partial x}} \]
+
+\sayfa{2}
+\[ d\vec F=\rho_s\,ds\,\vec E_{orta} \]
+\begin{align*}
+&d\vec F=\frac{\varepsilon}{2}\,\frac ba\left[\frac{V_a-V_b}{b-a}\right]\left(a^2\sin\theta\,d\phi\,d\theta\right)\\
+&\qquad\left[\frac12\,\frac ba\left(\frac{V_a-V_b}{b-a}\right)\vec e_r\right]\\
+&\vec F=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{\varepsilon}{4}\,b^2\left[\frac{V_a-V_b}{b-a}\right]^2\sin\theta\,d\phi\,d\theta\,\vec e_r\\
+&\vec F=\varepsilon\pi\,b^2\left(\frac{V_a-V_b}{b-a}\right)^2\vec e_r
+\end{align*}
+$r=b$ için
+\begin{align*}
+&\vec E=\frac{\vec E^{+}(b)+\vec E^{-}(b)}{2}\\
+&=\frac12\left[\frac{bV_b}{b^2}+\frac{ab}{b^2}\left(\frac{V_a-V_b}{b-a}\right)\right]\\
+&=\frac12\left[\frac{V_b(b-a)+a(V_a-V_b)}{b(b-a)}\right]\\
+&=\frac{bV_b-2aV_b+aV_a}{2b(b-a)}\,\vec e_r
+\end{align*}
+\begin{align*}
+&\rho_s=\varepsilon\cdot\vec n\cdot\vec E=\varepsilon\,\vec e_r\,\vec E\\
+&\rho_s=\frac{\varepsilon}{2b(b-a)}\left[bV_b-2aV_b+aV_a\right]\\
+&ds=b^2\sin\theta\,d\theta\,d\phi\\
+&d\vec F=\rho_s\,ds\,\vec E\\
+&=\frac{\varepsilon}{2b(b-a)}\left[bV_b-2aV_b+aV_a\right]\left(b^2\sin\theta\,d\theta\,d\phi\right)\\
+&\qquad\cdot\left[\frac{bV_b-2aV_b+aV_a}{2b(b-a)}\right]\vec e_r\\
+&\vec F=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}d\vec F\\
+&=\varepsilon\pi\left[\frac{bV_b-2aV_b+aV_a}{b-a}\right]^2\vec e_r
+\end{align*}
+2)
+\sekilnotu[2]{Sonsuz silindir: solda yatay kesik çizgiler (silindirin yan görünüşü); sağda kesit olarak iç içe iki daire, iç daire yarıçapı $a$ ($V_a$), dış daire yarıçapı $b$ ($V_b$, okla gösterilmiş); sağa doğru $z$ ekseni oku. Altında ``Sonsuz silindir'' yazıyor.}
+
+4)
+\sekilnotu[2]{$f(x)$ (dikey) ve $x$ (yatay) eksenleri; $x=0$'da süreksizlik. $x<0$ için alçakta dalgalı eğri $f_-(x)$, $x>0$ için yukarıda dalgalı eğri $f_+(x)$; sıçrama süslü parantezle $\Delta f$ olarak gösterilmiş.}
+\[ f(x)=\begin{cases}f_-(x), & x<0\\ f_+(x), & x>0\end{cases} \]
+$x=0$'da süreksizlik var
+\begin{align*}
+&f(x)=f_+(x)\,u(x)+f_-(x)\,u(-x)\\
+&f'(x)=f'_+(x)\,u(x)+\underbrace{f_+(x)\,\delta(x)}_{f_+(0)\,\delta(x)}+f'_-(x)\,u(-x)\\
+&\qquad\ -\underbrace{f_-(x)\,\delta(x)}_{f_-(0)\,\delta(x)}
+\end{align*}
+\begin{align*}
+&f'(x)=\overbrace{\bigl[f'_-(x)\,u(-x)+f'_+(x)\,u(x)\bigr]}^{\{f'(x)\}}\\
+&\qquad+\underbrace{\bigl[f_+(0)-f_-(0)\bigr]\delta(x)}_{[|f|]\,\delta(x)}
+\end{align*}
+\[ f'(x)=\underbrace{\{f'(x)\}}_{\text{Regüler kısım}}+\underbrace{[|f|]\,\delta(x)}_{\text{Tekil (Singüler kısım)}} \]
+\begin{align*}
+&\operatorname{grad}V=\frac{\partial V}{\partial x}\vec e_x+\frac{\partial V}{\partial y}\vec e_y+\frac{\partial V}{\partial z}\vec e_z\qquad (x=0\text{'da bir süreksizlik olsun})\\
+&\frac{\partial V}{\partial x}=\left\{\frac{\partial V}{\partial x}\right\}+\bigl[|V\vec e_x|\bigr]\delta(x)\\
+&\frac{\partial V}{\partial y}=\left\{\frac{\partial V}{\partial y}\right\}\\
+&\frac{\partial V}{\partial z}=\left\{\frac{\partial V}{\partial z}\right\}
+\end{align*}
+\sekilnotu[2]{Küçük 3B eksen eskizi: $x,y,z$ eksenleri ve $x=0$ düzlemini gösteren eğik bir paralelkenar; normal ok $x$ yönünde. Kırmızı bir çizgi $+[|V\vec e_x|]\delta(x)$ terimini aşağıdaki $\operatorname{grad}V$ ifadesine bağlıyor.}
+$V$'nin süreksizliği herhangi bir $S$ yüzeyi üzerinde olsaydı
+\sekilnotu[2]{Eğri bir $S$ yüzeyi kesiti (dalgalı çizgi) ve üzerinde yukarı doğru $\vec n$ normal oku.}
+\[ \operatorname{grad}V=\{\operatorname{grad}V\}+\bigl[|V\hat n|\bigr]\delta(s) \]
+5) $x=0$'da süreksizliği olan $\vec E(x,y,z)$ için
+\begin{align*}
+&\operatorname{div}\vec E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}+\frac{\partial E_z}{\partial z}\\
+&\frac{\partial E_x}{\partial x}=\left\{\frac{\partial E_x}{\partial x}\right\}+\bigl[|E_x|\bigr]\delta(x)\\
+&\frac{\partial E_y}{\partial y}=\left\{\frac{\partial E_y}{\partial y}\right\},\qquad \frac{\partial E_z}{\partial z}=\left\{\frac{\partial E_z}{\partial z}\right\}
+\end{align*}
+
+\sayfa{3}
+\begin{align*}
+&a<\rho<b\\
+&V(\rho)=\frac{V_a-V_b}{\ln a-\ln b}\ln\rho-\frac{V_a\ln b-V_b\ln a}{\ln a-\ln b}\\
+&\rho<a\quad \vec E=0,\ \vec E=-\operatorname{grad}V\Rightarrow V(\rho)=C\ \ \text{(sabit)}\\
+&\Rightarrow V(\rho)=V_a\\
+&\rho>b\quad \Delta V=0\\
+&\frac1\rho\frac{\partial}{\partial\rho}\!\left(\rho\frac{\partial V}{\partial\rho}\right)=0,\quad \rho\frac{\partial V}{\partial\rho}=A\\
+&\Rightarrow\frac{\partial V}{\partial\rho}=\frac A\rho\Rightarrow V(\rho)=A\ln\rho+B\\
+&a<\rho<b\quad \vec E=-\operatorname{grad}V=-\frac{V_a-V_b}{\ln a-\ln b}\,\frac1\rho\,\vec e_\rho\\
+&\rho<a\quad \vec E=0\\
+&\rho>b\quad \vec E=-\operatorname{grad}V=-\frac{\partial}{\partial\rho}\bigl(A\ln\rho\bigr)\vec e_\rho\\
+&\qquad\qquad\ \ =-\frac A\rho\,\vec e_\rho\\
+&\rho=a\quad \vec E(a)=\frac{\vec E^{+}(a)+\vec E^{-}(a)}{2}\\
+&\qquad\qquad\ \ =-\frac12\,\frac{V_a-V_b}{\ln a-\ln b}\,\frac1a\,\vec e_\rho
+\end{align*}
+\begin{center}
+\vurgu{$d\vec F=\rho_s\,ds\,\vec E$}\\[2pt]
+\vurgu{$ds=a\,d\phi\,dz$}\\[2pt]
+\vurgu{$\rho_s=\vec n\cdot\vec D=\vec n\cdot\varepsilon\cdot\vec E$}
+\end{center}
+\begin{align*}
+&d\vec F=\frac{\varepsilon}{2}\,\frac{V_a-V_b}{\ln a-\ln b}\,\frac1a\,(a\,d\phi\,dz)\,\frac12\,\frac{V_a-V_b}{\ln a-\ln b}\cdot\frac1a\,\vec e_\rho\\
+&\vec F=\int_{z=0}^{1}\int_{\phi=0}^{2\pi}\frac{\varepsilon}{4a}\,\frac{(V_a-V_b)^2}{(\ln a-\ln b)^2}\,d\phi\,dz\,\vec e_\rho\\
+&=\frac{\varepsilon\pi}{2a}\,\frac{(V_a-V_b)^2}{(\ln a-\ln b)^2}\,\vec e_\rho
+\end{align*}
+\begin{align*}
+&\rho=b\quad \vec E(b)=\frac{\vec E^{+}(b)+\vec E^{-}(b)}{2}\\
+&=-\frac12\left[\frac Ab+\frac{V_a-V_b}{\ln a-\ln b}\,\frac1b\right]\vec e_\rho\\
+&=-\frac12\,\frac{A(\ln a-\ln b)+(V_a-V_b)}{b(\ln a-\ln b)}\,\vec e_\rho\\
+&ds=b\,d\phi\,dz,\quad \rho_s=\vec e_\rho\cdot\varepsilon\cdot\vec E\\
+&=-\frac\varepsilon2\cdot\frac{A(\ln a-\ln b)+(V_a-V_b)}{b(\ln a-\ln b)}\\
+&d\vec F=\frac\varepsilon2\cdot\frac{A(\ln a-\ln b)+(V_a-V_b)}{b(\ln a-\ln b)}\,(b\,d\phi\,dz)
+\end{align*}
+
+\textbf{Toplarsak}
+\begin{align*}
+&\operatorname{Div}\vec E=\left\{\operatorname{div}\vec E\right\}+\bigl[|E_x|\bigr]\delta(x)\\
+&=\left\{\operatorname{div}\vec E\right\}+\bigl[|\vec E\cdot\vec e_x|\bigr]\delta(x)
+\end{align*}
+Genel durumda bir $S$ yüzeyinde süreksizlik varsa:
+\begin{align*}
+&\operatorname{div}\vec E=\left\{\operatorname{div}\vec E\right\}+\bigl[|\hat n\cdot\vec E|\bigr]\delta(s)\\
+&\operatorname{rot}\vec E=\left\{\operatorname{rot}\vec E\right\}+\bigl[|\hat n\times\vec E|\bigr]\delta(s)
+\end{align*}
+6) Süreksizlik $x=0$ yerine $x=h$'da olursa
+\[ \delta(x)\to\delta(x-h)\qquad \int_a^b\delta(x-h)\,dx=\begin{cases}1, & a<h<b\\ 0, & \text{diğer}\end{cases} \]
+\begin{align*}
+&f(x)\,\delta(x-h)=f(h)\,\delta(x-h)\\
+&\frac{\partial u(x-h)}{\partial x}=\delta(x-h)
+\end{align*}
+\sekilnotu[3]{Dikey eksen $x=0$'da, yatay $x$ ekseni; $x=h$'da kesik dikey çizgi ve $h$ işareti. Solda alçakta dalgalı eğri $f_-(x)$, $x=h$'dan sonra daha yukarıda dalgalı eğri $f_+(x)$; sıçrama süslü parantezle $\Delta f$ olarak gösterilmiş.}
+\[ f'(x)=\{f'(x)\}+\underbrace{\bigl[f(h+0)-f(h-0)\bigr]}_{\Delta f}\,\delta(x-h) \]
+7) Bir $C$ eğrisi $S_1$ ve $S_2$ yüzeylerinin arakesiti olsun. $C$ üzerinde bulunan $\rho_c\ [\mathrm{C/m}]$ için hacimsel yük yoğunluğu
+\[ \rho_v(x,y,z)=\rho_c\,\delta(S_1)\,\delta(S_2) \]
+$S_1:\ x=a$'da süreksiz ise $\underbrace{\delta(x-a)}_{\delta_1}\,\underbrace{\delta(y-b)}_{\delta_2}$ \qquad $S_2:\ y=b$
+
+\textbf{Örneğin} $z$ eksenine yerleştirilmiş $\rho_c$ için $\rho_v(x,y,z)=\rho_c\,\delta(x)\,\delta(y)$
+
+8) $(x_0,y_0,z_0)$ noktasında bulunan $q$ noktasal yükü için hacimsel yük yoğunluğu
+\[ \rho_v=q\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0) \]
+\sekilnotu[3]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; $z$ ekseninin sağında bir nokta ``$\bullet\ q\,(x_0,y_0,z_0)$'' olarak işaretli.}
+
+\sayfa{4}
+\begin{align*}
+&\qquad\cdot\frac12\cdot\frac{A(\ln a-\ln b)+(V_a-V_b)}{b(\ln a-\ln b)}\,\vec e_\rho\\
+&\vec F=\int_{z=0}^{1}\int_{\phi=0}^{2\pi}\frac{\varepsilon}{4b}\left[\frac{A(\ln a-\ln b)+(V_a-V_b)}{\ln a-\ln b}\right]^2\vec e_\rho\,d\phi\,dz\\
+&=\frac{\varepsilon\pi}{2b}\left[\frac{A(\ln a-\ln b)+(V_a-V_b)}{\ln a-\ln b}\right]^2\vec e_\rho
+\end{align*}
+
+\section{Uygulama 8 (sayfa 43)}
+\sekilnotu[4]{Basılı soru metni (Pr.-2) ve basılı şekil (a) içeriyor; dijitalleştirilmedi. Soru özeti: $x=0$ ve $x=d$ iletken düzlemleri $V_0$ ve $V_d$ potansiyelinde, aradaki bölge $\varepsilon$ permitiviteli ve kaynaksız; potansiyel fonksiyonu, iletkenler üzerindeki yükler ve $C=Q_d/(V_d-V_0)$ isteniyor. Şekilde $x$ ekseni yukarı; altta $x=0$ (O), $\varepsilon_1$, $V_0$; üstte $x=d$, $\varepsilon_3$, $V_d$; ortada $\varepsilon$ (2).}
+a)
+
+O zaman ara bölgede:
+\begin{align*}
+&\Delta V=0\Rightarrow\frac{\partial^2V}{\partial x^2}=0\Rightarrow V(x)=Ax+B\\
+&x=0\Rightarrow V(0)=V_0=B\\
+&x=d\Rightarrow V(d)=V_d=Ad+V_0\\
+&A=\frac{V_d-V_0}{d}\\
+&\Rightarrow V(x)=\frac{V_d-V_0}{d}\,x+V_0
+\end{align*}
+\[ \vec E=-\operatorname{grad}V=-\frac{V_d-V_0}{d}\,\vec e_x \]
+$x=d$ düzleminde
+\[ \underbrace{\varepsilon_3E_n^{(3)}}_{0}-\varepsilon E_n^{(2)}=\rho_{s,d} \]
+\textbf{düzlemler iletken olduğundan kapattığı bölgenin içinde olan elektrik alanı dışarıya geçirmez.}
+\begin{align*}
+&\rho_{s,d}=-\varepsilon\left(-\frac{V_d-V_0}{d}\right)\\
+&=\frac{\varepsilon\,(V_d-V_0)}{d}\\
+&Q_d=\int_S\rho_{s,d}\,ds=\frac{\varepsilon}{d}\,(V_d-V_0)
+\end{align*}
+\begin{center}
+\vurgu{$C=\dfrac{Q_d}{V_d-V_0}=\dfrac{\varepsilon}{d}$}
+\end{center}
+$x=0$ düzleminde
+\[ \varepsilon E_n^{(2)}-\varepsilon_1E_n^{(1)}=\rho_{s,0}\ \Rightarrow\ \rho_{s,0}=-\frac{\varepsilon}{d}\,(V_d-V_0) \]
+$=$ \okunamadi{}
+
+\section{S41 Pr1}
+\[ \Delta\!\left(\frac1{r'}\right)=-4\pi\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0) \]
+olduğunu gösteriniz
+\sekilnotu[4]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; kaynak noktası $(x_0,y_0,z_0)$ ile alan noktası $P(x,y,z)$ arasında $r'$ uzaklığı çizilmiş.}
+\begin{align*}
+&V=\frac{1}{4\pi\varepsilon_0}\,\frac{q}{r'}\\
+&\text{Poisson:}\quad \Delta V=-\frac{\rho}{\varepsilon_0}\quad\text{(hacim içinde yük varsa)}
+\end{align*}
+\begin{align*}
+&\rho_v=q\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)\\
+&\Delta\Bigl(\underbrace{\frac{1}{4\pi\varepsilon_0}\,\frac{q}{r'}}_{V}\Bigr)=\frac{-q}{\varepsilon_0}\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)\\
+&\frac{1}{4\pi}\,\Delta\!\left(\frac{1}{r'}\right)=-\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)\\
+&\Delta\!\left(\frac{1}{r'}\right)=-4\pi\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)
+\end{align*}
+Silindirik koordinatlarda olursa silindirik koordinatlardaki uzunluk $\rho^2=(x-x_0)^2+(y-y_0)^2$ olmak üzere
+\[ \Delta\!\left(\ln\frac1\rho\right)=-2\pi\,\delta(x-x_0)\,\delta(y-y_0) \]
+\sekilnotu[4]{Kırmızı silindir; ekseni boyunca mavi çizgi yük ($\rho_c$ etiketli, $z$ ekseni yukarı); solda silindir boyunca süslü parantez ve $\ell$ (uzunluk).}
+\[ Q=\ell\,\rho_c\ \ (\ell\text{ uzunluğu boyunca}),\qquad \oint_S\varepsilon_0\vec E\cdot d\vec S=\ell\,\rho_c \]
+\begin{align*}
+&\vec E=E_\rho(\rho)\,\vec e_\rho\qquad d\vec S=\rho\,d\phi\,dz\,\vec e_\rho\\
+&\int_{z=0}^{\ell}\int_{\phi=0}^{2\pi}\varepsilon_0E_\rho(\rho)\,\rho\,d\phi\,dz=\ell\rho_c\\
+&2\pi\ell\varepsilon_0\rho\,E_\rho(\rho)=\ell\rho_c\\
+&E_\rho(\rho)=\frac{\rho_c}{2\pi\varepsilon_0\rho}\ \Rightarrow\ \vec E=\frac{\rho_c}{2\pi\varepsilon_0\rho}\,\vec e_\rho
+\end{align*}
+\[ \vec E=-\operatorname{grad}V\ \Rightarrow\ \frac{\rho_c}{2\pi\varepsilon_0\rho}=-\frac{\partial V}{\partial\rho}\ \Rightarrow\ V=\frac{\rho_c}{2\pi\varepsilon_0}\ln\frac1\rho+V_0 \]
+\[ \Delta V=-\frac{\rho_v}{\varepsilon_0}\quad\text{ve}\quad \rho_v=\rho_c\,\delta(x-x_0)\,\delta(y-y_0) \]
+
+\sayfa{5}
+\sekilnotu[5]{Katmanlı ortam şeması: solda dikey $x$ ekseni, üzerinde $O$, $c$ ve $d$ işaretli. En altta (1) bölgesi ($\varepsilon$, $V_0$); üstünde gri katman $\varepsilon_1$ (2) ($0<x<c$); onun üstünde sarı katman $\varepsilon_2$ (3) ($c<x<d$); en üstte (4) bölgesi ($\varepsilon$, $V_d$).}
+Ara bölgede $\Delta V=0$
+\[ V(x)=\begin{cases}Ax+B, & 0<x<c\\ Dx+F, & c<x<d\end{cases} \]
+\begin{align*}
+&x=0\text{'da }V(0)=V_0=B\\
+&x=d\text{'de }V(d)=V_d=Dd+F\\
+&F=V_d-Dd\\
+&x=c\text{ noktasında }V^{(2)}(c)=V^{(3)}(c)\\
+&Ac+V_0=Dc+F\\
+&Ac+V_0=Dc+V_d-Dd
+\end{align*}
+\[ \kutula{Ac+V_0=D(c-d)+V_d} \]
+$x=c$ de
+\[ \varepsilon_2E_n^{(3)}-\varepsilon_1E_n^{(2)}=0\qquad\text{(yük yok)} \]
+\[ \varepsilon_1\frac{\partial V^{(2)}}{\partial x}-\varepsilon_2\frac{\partial V^{(3)}}{\partial x}=0 \]
+\[ \kutula{\varepsilon_1A=\varepsilon_2D\ \Rightarrow\ D=A\,\frac{\varepsilon_1}{\varepsilon_2}} \]
+\[ Ac+V_0=A\,\frac{\varepsilon_1}{\varepsilon_2}\,(c-d)+V_d \]
+\[ A=\frac{\varepsilon_2(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)} \]
+\[ D=\frac{\varepsilon_1(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)} \]
+\[ F=V_d-Dd=\frac{cV_d(\varepsilon_2-\varepsilon_1)+\varepsilon_1dV_0}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)} \]
+\[ V(x)=\begin{cases}\dfrac{\varepsilon_2(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)}\,x+V_0, & 0<x<c\\[2ex]\dfrac{\varepsilon_1(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)}\,x+\dfrac{cV_d(\varepsilon_2-\varepsilon_1)+\varepsilon_1dV_0}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)}, & c<x<d\end{cases} \]
+
+\begin{align*}
+&\Delta\!\left(\frac{\rho_c}{2\pi\varepsilon_0}\ln\!\left(\frac1\rho\right)\right)+\Delta V_0=\frac{-\rho_c}{\varepsilon_0}\,\delta(x-x_0)\,\delta(y-y_0)\\
+&\frac{\rho_c}{2\pi\varepsilon_0}\,\Delta\!\left(\ln(1/\rho)\right)=\frac{-\rho_c}{\varepsilon_0}\\
+&\Delta\!\left(\ln(1/\rho)\right)=-2\pi\,\delta(x-x_0)\,\delta(y-y_0)
+\end{align*}
+
+\section{Ders 10}
+\[ V=\begin{cases}V_1(x,y,z); & x>a\\ V_2(x,y,z) & x<a\end{cases} \]
+\[ \Rightarrow\ \operatorname{grad}V=\{\operatorname{grad}V\}+\vec e_x\underbrace{\bigl[V_1-V_2\bigr]\Big|_{x=a}}_{\Delta V|_{x=a}}\,\delta(x-a) \]
+\[ \{\operatorname{grad}V\}=\begin{cases}\operatorname{grad}V_1; & x>a\\ \operatorname{grad}V_2; & x<a\end{cases} \]
+\[ \vec D=\begin{cases}\vec D_1, & x>a\\ \vec D_2, & x<a\end{cases} \]
+\[ \Rightarrow\operatorname{div}\vec D=\begin{cases}\operatorname{div}\vec D_1; & x>a\\ \operatorname{div}\vec D_2; & x<a\end{cases}+\vec e_x\cdot\bigl(\vec D_1-\vec D_2\bigr)\Big|_{x=a}\delta(x-a) \]
+\[ \vec E=\begin{cases}\vec E_1, & x>a\\ \vec E_2, & x<a\end{cases}\ \Rightarrow\ \operatorname{rot}\vec E=\begin{cases}\operatorname{rot}\vec E_1; & x>a\\ \operatorname{rot}\vec E_2; & x<a\end{cases} \]
+çünkü $\vec e_x\times\vec e_x=0$
+\sekilnotu[5]{Dikey bir çizgi (ara yüzey) ve onu kesen dalgalı bir eğri; çizginin sağında üstte $V_1$ ve $\vec E_1=-\operatorname{grad}V_1$, altta $V_2$ ve $\vec E_2=-\operatorname{grad}V_2$ yazıyor.}
+\[ \vec E=-\operatorname{grad}V=\begin{cases}\vec E_1, & x>a\\ \vec E_2, & x<a\end{cases}+\vec n\,\bigl[V_1-V_2\bigr]\Big|_S\delta(s) \]
+\begin{align*}
+&\vec D_1=\varepsilon_1\vec E_1\\
+&\vec D_2=\varepsilon_2\vec E_2
+\end{align*}
+\[ \vec D=\begin{cases}\vec D_1; & \text{üst }(S)\\ \vec D_2; & \text{alt }(S)\end{cases} \]
+\[ \operatorname{div}\vec D=\begin{cases}\operatorname{div}\vec D_1 & \text{üst}(S)\\ \operatorname{div}\vec D_2 & \text{alt}(S)\end{cases}+\underbrace{\vec n\cdot\bigl(\vec D_1-\vec D_2\bigr)\Big|_S}_{\rho_s}\delta(s) \]
+\[ \Rightarrow\ \rho=\begin{cases}\rho_1\\ \rho_2\end{cases}+\rho_s\,\delta(s) \]
+
+\sayfa{6}
+\[ \vec E(x)=\begin{cases}-\dfrac{\varepsilon_2(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)}\,\vec e_x, & 0<x<c\\[2ex]-\dfrac{\varepsilon_1(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)}\,\vec e_x, & c<x<d\end{cases} \]
+\begin{align*}
+&x=0\text{ da }\ \rho_{s,0}=\varepsilon_1E_n^{(2)}-\underbrace{\varepsilon E_n^{(1)}}_{0}\\
+&=-\frac{\varepsilon_1\varepsilon_2(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)}\\
+&x=d\text{'da }\ \rho_{s,d}=\underbrace{\varepsilon E_n^{(4)}}_{0}-\varepsilon_2E_n^{(3)}\\
+&\rho_{s,d}=\frac{\varepsilon_1\varepsilon_2(V_d-V_0)}{\varepsilon_1d+c(\varepsilon_2-\varepsilon_1)}
+\end{align*}
+
+\section{S.44 Pr5}
+\sekilnotu[6]{Basılı soru metni (Pr.-5) içeriyor; dijitalleştirilmedi. Özet: iletken cismin dışındaki $V$ potansiyeli biliniyorsa $S$ üzerindeki toplam yükün $Q=-\int_S\varepsilon\,\frac{\partial V}{\partial n}\,dS$ ile bulunabileceği gösterilecek ($n$: $S$'in dışına yönelmiş normal, $\varepsilon$: dış ortamın dielektrik sabiti).}
+\sekilnotu[6]{Düzensiz kapalı bir $S$ eğrisi: içinde ``(1) iletken'', dışında ``(2)''; yüzeyden dışarı yönelen $\hat n$ normal oku.}
+\vurgu{iletkenlerin sadece yüzeyinde yük birikir}
+\[ \varepsilon E_n^{(2)}-\underbrace{\varepsilon E_n^{(1)}}_{0}=\rho_s \]
+\[ \rho_s=\varepsilon E_n^{(2)}\ \Rightarrow\ \rho_s=-\varepsilon\frac{\partial V}{\partial n} \]
+\[ Q=\int_S\rho_s\,ds=-\int_S\varepsilon\frac{\partial V}{\partial n}\,ds \]
+
+\section{S.44 Pr6}
+\sekilnotu[6]{Basılı soru metni (Pr.-6) içeriyor; dijitalleştirilmedi. Özet: $R$ yarıçaplı iletken küre üzerinde potansiyel $V_0$; küre üzerindeki $Q$ yükü ve $C=Q/V_0$ isteniyor.}
+\sekilnotu[6]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; merkezde $R$ yarıçaplı küre, içi turuncu taralı ve turuncu okla ``iletken'' yazıyor; $V_0$ etiketi var.}
+küre iletken olduğu için içinde yük birikmez, içerde $\Delta V=0$
+\[ \frac{1}{r^2}\frac{\partial}{\partial r}\!\left(r^2\frac{\partial V}{\partial r}\right)=0\ \Rightarrow\ V(r)=\frac Ar+B \]
+\begin{align*}
+&r\to\infty,\ V(r)\to0\Rightarrow B=0\\
+&r=R,\ V(R)=V_0\Rightarrow\frac AR=V_0\Rightarrow A=V_0R\\
+&V(r)=\frac{V_0R}{r}
+\end{align*}
+\begin{center}
+\vurgu{$ds=r^2\sin\theta\,d\theta\,d\phi$}
+\end{center}
+\[ Q=-\int_S\varepsilon\frac{\partial V}{\partial n}\,ds \]
+
+\sekilnotu[6]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; uzayda bir nokta yük, koordinatları kırmızı kesik çizgilerle eksenlere indirilmiş ($a$ ($x$), $b$ ($y$), $c$ ($z$)); noktanın yanında $q$ ve $(a,b,c)$ koordinatlı bir etiket var.}
+\[ \rho=q\,\underbrace{\delta(x-a)}_{1/\mathrm m}\,\underbrace{\delta(y-b)}_{1/\mathrm m}\,\underbrace{\delta(z-c)}_{1/\mathrm m}\ [\mathrm{C/m^3}] \]
+\sekilnotu[6]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; dikey kesik çizgi ``sonsuz'' uzunlukta çizgisel yükü gösteriyor ($\rho_c\ [\mathrm{C/m}]$ okla belirtilmiş); çizginin $xy$ düzlemini deldiği nokta kırmızıyla $P(a,b,0)$.}
+\[ \rho=\rho_c\,\delta(x-a)\,\delta(y-b) \]
+\sekilnotu[6]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; $z$ ekseni üzerinde $a$ yüksekliğinde yatay bir düzlem (paralelkenar), $\rho_s$ etiketli.}
+\[ \rho=\rho_s\,\delta(z-a)\ [\mathrm{C/m^3}] \]
+yük dağılımı sonlu ise sadece o bölgede geçerli olur.
+
+\section{Ders 11}
+\subsection*{Yüzeysel yüke etki eden kuvvet}
+$q_1$---$q_n$ tane yük olsun
+
+$q_1$ yüküne etkiyen kuvvet
+\[ \vec F_1=\frac{q_1}{4\pi\varepsilon}\sum_{i=2}^{n}q_i\,\frac{\vec r_i}{r_i^3} \]
+\sekilnotu[6]{Düzensiz kapalı bir bölge; içinde bir noktayı ($P$) çevreleyen küçük kırmızı daire ($S_\mu$ küresi), noktadan çıkan $r'$ vektörü, ``$\rho_v$'' etiketi ve ``yük yoğunluğu ile yükleri dağıtalım'' yazan bir ok.}
+$P$ noktasına etki eden kuvveti hesaplayalım. $S_\mu$ küresi dışında bulunan bütün yükleri içerdeki birim yüke etki kuvvet Elektrik Alan. Bu kuvvet hesaplayıp $\mu\to0$'a götürürse $P$ noktasındaki elektrik alanı bulunur
+
+\sayfa{7}
+\begin{align*}
+&=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\varepsilon\,\frac{V_0R}{r^2}\,\underbrace{r^2\sin\theta\,d\theta\,d\phi}_{ds}\\
+&Q=4\pi\varepsilon V_0R\\
+&C=\frac{Q}{V_0}=4\pi\varepsilon R
+\end{align*}
+
+\section{Pr.-7}
+\sekilnotu[7]{Basılı soru metni (Pr.-7) ve şekil içeriyor; dijitalleştirilmedi. Özet: boşlukta $R$ yarıçaplı sonsuz uzun iletken silindir, $\rho=1$ yüzeyine göre $V_0$ potansiyelinde; birim uzunluktaki parçası üzerindeki $Q$ yükü ve $C=Q/V_0$ isteniyor. Şekil: yatay silindir, kesikli $\rho=1$ yüzeyi ($V=V_0$), silindir yüzeyi $V=V_R$, $z$ ekseni, yarıçap $R$.}
+\begin{align*}
+&\rho>R\quad \Delta V=0\qquad V(\rho)=A\ln\rho+B\\
+&\rho=1,\quad V_0=A\ln1+B\Rightarrow B=V_0\\
+&\rho=R,\quad V_R=A\ln R+V_0\Rightarrow A=\frac{V_R-V_0}{\ln R}\\
+&V(\rho)=\frac{\ln\rho}{\ln R}\,(V_R-V_0)+V_0
+\end{align*}
+\[ Q=-\int_S\varepsilon\frac{\partial V}{\partial n}\,ds=-\varepsilon\int_{z=0}^{1}\int_{\phi=0}^{2\pi}\frac{V_R-V_0}{\rho\ln R}\,\rho\,d\phi\,dz \]
+\[ Q=-2\pi\varepsilon\,\frac{V_R-V_0}{\ln R}\ \Rightarrow\ C=\frac{Q}{V_0}=-\frac{2\pi\varepsilon\,(V_R-V_0)}{V_0\ln R} \]
+
+\section{Pr.-8}
+\sekilnotu[7]{Basılı soru metni (Pr.-8, şıklar a--e) ve şekil içeriyor; dijitalleştirilmedi. Özet: $Q$ yüklü, $a$ yarıçaplı küçük iletken küre, iletken ve yüksüz bir küresel kabuğun ($b$ iç, $c$ dış yarıçap) oyuğuna yerleştirilmiş; oyuktaki alan, kabuğun iç/dış yüzey yükleri, kabuk dışındaki alan, kürenin iç çepere dokundurulup çıkarılması ve küre yeniden $Q$ ile yüklenirse sonuçların değişimi soruluyor. Şekil: kırmızı küresel kabuk, içinde küçük küre, $b$ ve $c$ yarıçap okları, bölge numaraları.}
+\[ \oint_S\vec D\cdot d\vec S=Q \]
+\[ \int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\varepsilon E_r\,r^2\sin\theta\,d\phi\,d\theta=Q \]
+\[ E_r=\frac{Q}{4\pi\varepsilon r^2}\ \Rightarrow\ \vec E=\frac{Q}{4\pi\varepsilon r^2}\,\vec e_r \]
+
+\[ \vec E(P)=\frac{1}{4\pi\varepsilon}\lim_{\mu\to0}\int_{V-V_\mu}\rho_v\,\frac{\vec r\,'}{r'^3}\,dV \]
+Şimdi yüklerin bir regüler $S$ yüzeyi üzerine $\rho_s$ yoğunluğu ile dağılmış bulunduklarını düşünelim ve $S$ üzerindeki bir $P$ noktasında birim yüke etki eden $E(P)$ kuvvetini hesaplamaya çalışalım.
+\sekilnotu[7]{Kavisli bir $S$ yüzeyi (siyah yay) üzerinde $P$ noktası; $P$ çevresinde küçük mavi $S_\mu$ yüzeyi; $P$'nin hemen üstünde ve altında $P_+$ ve $P_-$ noktaları; yüzeye dik ``normal vektör'' $\hat n$ oku; $P_\pm$ noktalarından yüzey üzerindeki kaynak noktalarına çizilmiş $r'$ vektörleri (mavi/turkuaz oklar); $ds$ elemanı; ``$\rho_s$ yoğunluğu'' ve ``$S$ yüzeyi'' yazıları.}
+\sekilnotu[7]{``$S_\mu$ nedir'': $S$ yüzeyini kesen turuncu bir silindir; kesilen taralı kısım $S_\mu$; yanında ``$S$ yüzeyi'' yazıyor. Sağda kitaptan basılı küçük bir şekil ($S$ yüzeyi, $P$ noktası, $ds$) var.}
+$P$ noktası üzerindeki elektrik alanı bulalım.
+\[ \vec E(P)=\frac{1}{4\pi\varepsilon}\lim_{\mu\to0}\int_{S-S_\mu}\rho_s\,\frac{\vec r\,'}{r'^3}\,ds \]
+\textbf{Daha basit bir yol bulmaya çalışalım}
+\begin{align*}
+\vec E(P_+)&=\frac{1}{4\pi\varepsilon}\int_{S-S_\mu}\rho_s\,\frac{\vec r_+'}{r_+'^3}\,ds+\overbrace{\frac{1}{4\pi\varepsilon}\int_{S_\mu}\rho_s\,\frac{\vec r_+'}{r_+'^3}\,ds}^{e(h,\mu)\,\hat n}\\
+\vec E(P_-)&=\frac{1}{4\pi\varepsilon}\int_{S-S_\mu}\rho_s\,\frac{\vec r_-'}{r_-'^3}\,ds+\underbrace{\frac{1}{4\pi\varepsilon}\int_{S_\mu}\rho_s\,\frac{\vec r_-'}{r_-'^3}\,ds}_{-e(h,\mu)\,\hat n}
+\end{align*}
+(h'yi 0'a götürsek)
+\begin{align*}
+&\lim_{P_+\to P}\vec E(P_+)=\vec E(P)+e(0,\mu)\,\hat n\\
+&\lim_{P_-\to P}\vec E(P_-)=\vec E(P)-e(0,\mu)\,\hat n\\
+&\vec E^{+}(P)=\vec E(P)+e(0,\mu)\,\hat n\\
+&\vec E^{-}(P)=\vec E(P)-e(0,\mu)\,\hat n
+\end{align*}
+\textbf{$\mu\to0$'a götürürsek}
+\begin{align*}
+&\vec E^{+}(P)=\vec E(P)+e(0)\,\hat n\\
+&+\ \vec E^{-}(P)=\vec E(P)-e(0)\,\hat n\\
+&\vec E(P)=\tfrac12\left[\vec E^{+}(P)+\vec E^{-}(P)\right]
+\end{align*}
+\textbf{$\Rightarrow$ Herhangi bir $\rho_s\,ds$ yüzeysel yüküne etki eden kuvveti} $d\vec F=\frac12\,\rho_s\,ds\,\bigl[\vec E^{+}+\vec E^{-}\bigr]$
+
+\sayfa{8}
+b) kabuğun iç ve dış yüzeylerinde biriken yükler nedir?
+
+kabuk iletken malzemeden yapıldığı için $\vec E=0,\ r\in(b,c)$
+\begin{align*}
+&r=b\quad \rho_{s,b}=\underbrace{\varepsilon_1E_n^{(2)}}_{0}-\varepsilon E_n^{(1)}\\
+&\rho_{s,b}=\frac{-\varepsilon Q}{4\pi\varepsilon b^2}=\frac{-Q}{4\pi b^2}\\
+&Q_b=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{-Q}{4\pi b^2}\,b^2\sin\theta\,d\phi\,d\theta\\
+&Q_b=-Q
+\end{align*}
+kabuk nötr olduğundan dış yüzeyde $Q_c=-Q_b=Q$ kadar yük toplanır
+
+c) $r>c$ iken
+\[ \oint_S\vec D\cdot d\vec S=Q+Q_b+Q_c=Q \]
+\[ \Rightarrow\ \vec E=\frac{Q}{4\pi\varepsilon r^2}\,\vec e_r \]
+
+d) küçük küre konum değiştirirse $Q_b$'nin dağılımı düzgün olmaktan çıkar, fakat toplam değeri asla değişmez. Tersine küçük küredeki $Q$ yükü $Q_b$'yi nötralize eder, sadece $Q_c$ kalır ve düzgün yayılmıştır.
+
+$r<c$ için $\vec E=0$ olur
+
+$r>c$ için $\vec E$ eskisi gibidir
+\sekilnotu[8]{Sayfanın altında basılı çözüm metni (şık e ve d'nin cevabı: $Q_c=2Q$, $\vec E=\frac{2Q}{4\pi\varepsilon r^2}\vec e_r$ ($r>c$), Van de Graaff jeneratörü prensibi) bulunuyor; dijitalleştirilmedi.}
+
+\section{Sayfa 55 problem 1}
+\sekilnotu[8]{Basılı soru metni (Pr.-1: $z=0$ ve $z=h$ düzlemlerinde $\rho_0$ ve $\rho_h$ yüzeysel yükleri; a--e şıkları) içeriyor; dijitalleştirilmedi.}
+\sekilnotu[8]{Dikey $z$ ekseni ($0$ ve $h$ işaretli) ve iki yatay çizgi: altta $z=0$ düzlemi (sağ ucunda $\rho_0$), üstte $z=h$ düzlemi (sağ ucunda ok ve $\rho_h$); sağ uçtan kırmızı kıvrımlı okla ``yüzey'' yazıyor.}
+sadece $\rho_h$'nin etkisi var diyelim
+
+a) \vurgu{$\vec E(0)=\dfrac{-\rho_h}{2\varepsilon}\,\vec e_z$}\qquad $\vec E(h)=\dfrac{+\rho_0}{2\varepsilon}\,\vec e_z$
+
+b) $z>h$:
+\[ \vec E=\frac{(\rho_0+\rho_h)}{2\varepsilon}\,\vec e_z \]
+$0<z<h$:
+\[ \vec E=\frac{(\rho_0-\rho_h)}{2\varepsilon}\,\vec e_z \]
+$z<0$
+\[ \vec E=\frac{-(\rho_0+\rho_h)\,\vec e_z}{2\varepsilon} \]
+c) $z=0$:
+\begin{align*}
+&\vec E(0)=\tfrac12\left[\vec E^{+}(0)+\vec E^{-}(0)\right]\\
+&=\frac12\left[\frac{(\rho_0-\rho_h)-\rho_0-\rho_h}{2\varepsilon}\right]\vec e_z=\frac{-\rho_h}{2\varepsilon}\,\vec e_z
+\end{align*}
+$z=h$:
+\begin{align*}
+&\vec E(h)=\tfrac12\left[\vec E^{+}(h)+\vec E^{-}(h)\right]\\
+&\vec E(h)=\frac12\left[\frac{\rho_0+\rho_h+\rho_0-\rho_h}{2\varepsilon}\right]\vec e_z=\frac{\rho_0}{2\varepsilon}\,\vec e_z
+\end{align*}
+d) $z=0$ düzleminde $S$ alan parçasına etki eden kuvvet
+\[ d\vec F=\rho_0\,dS\,\frac{\left[\vec E^{+}(0)+\vec E^{-}(0)\right]}{2} \]
+\[ \vec F=\frac{-\rho_0\rho_hS}{2\varepsilon}\,\vec e_z \]
+e)
+\begin{align*}
+&\rho_h=\rho_0\Rightarrow\vec F=\frac{-\rho_0^2}{2\varepsilon}\,\vec e_z\\
+&\rho_h=-\rho_0\Rightarrow\vec F=\frac{\rho_0^2}{2\varepsilon}\,\vec e_z
+\end{align*}
+
+\sayfa{9}
+\section{Uygulama 9 -- Görüntü Teorisi (sayfa 57)}
+\sekilnotu[9]{Basılı soru metni (Pr.-6) ve küçük şekil içeriyor; dijitalleştirilmedi. Özet: birbirine dik iki iletken yarı-düzlemin sınırladığı bölgede $(a,b)$ noktasında noktasal $q$ yükü var; düzlemler topraklanınca $q$ yüküne etki eden kuvvet soruluyor (yer çekimi ihmal).}
+\sekilnotu[9]{$x$ ve $y$ eksenleri; $y$ ekseni boyunca ve pozitif $x$ ekseni boyunca taralı iletken düzlemler; $q$ yükü $(a,b)$ noktasında ($r$ uzaklığı kırmızı kesikli çizgiyle gösterilmiş); turuncu kesikli dikdörtgenle görüntü yükler: $(-a,b)$ ve $(a,-b)$ noktalarında $-q$, $(-a,-b)$ noktasında $q$ (turuncu etiketler).}
+\begin{align*}
+&\vec F=\frac{q^2}{4\pi\varepsilon(2a)^2}\,(-\vec e_x)+\frac{q^2}{4\pi\varepsilon(2b)^2}\,(-\vec e_y)\\
+&\quad+\frac{q^2}{4\pi\varepsilon|\vec r|^2}\,\vec e_r\\
+&|\vec r|=2\sqrt{a^2+b^2}\\
+&\vec e_r=\frac{\vec r}{|\vec r|}=\frac{2a\,\vec e_x+2b\,\vec e_y}{2\sqrt{a^2+b^2}}=\frac{a\,\vec e_x+b\,\vec e_y}{\sqrt{a^2+b^2}}\\
+&\Rightarrow\vec F=\frac{q^2}{16\pi\varepsilon}\Biggl[\vec e_x\Bigl(-\frac{1}{a^2}+\frac{a}{(a^2+b^2)^{3/2}}\Bigr)\\
+&\qquad\qquad\qquad+\vec e_y\Bigl(-\frac{1}{b^2}+\frac{b}{(a^2+b^2)^{3/2}}\Bigr)\Biggr]
+\end{align*}
+sayfa 57
+\sekilnotu[9]{Basılı soru metinleri (Pr.-5: $z=0$ iletken düzlemi, $z=a$ çizgisi üzerinde $\rho_c$ yoğunluklu çizgisel yük, 1--4 şıkları; Pr.-7: Pr.-5'in şekildeki dörtte bir uzay için çözümü) ve şekil içeriyor; dijitalleştirilmedi.}
+
+\section{Ders 12}
+\subsection*{2.5.2 Dipol Dağılımları}
+\begin{align*}
+&\int_{-\infty}^{\infty}\underbrace{f(x)}_{u}\,\underbrace{\delta'(x-x_0)}_{v'}\,dx\\
+&=f(x)\,\delta(x-x_0)\Big|_{x=-\infty}^{x=\infty}-\int_{-\infty}^{\infty}\underbrace{f'(x)\,\delta(x-x_0)}_{f'(x_0)\,\delta(x-x_0)}\,dx\\
+&=f(x_0)\Bigl[\underbrace{\lim_{x\to\infty}\delta(x-x_0)}_{0}-\underbrace{\lim_{x\to-\infty}\delta(x-x_0)}_{0}\Bigr]-f'(x_0)\cdot1\\
+&=-f'(x_0)
+\end{align*}
+\[ \int_{-\infty}^{\infty}f(x)\,\delta^{(n)}(x-x_0)\,dx=(-1)^nf^{(n)}(x_0) \]
+\[ \langle\delta^{(n)}(x-x_0),f(x)\rangle=(-1)^nf^{(n)}(x_0) \]
+\[ \delta'(x-x_0)=\lim_{\Delta\to0}\frac{\delta(x-x_0+\Delta)-\delta(x-x_0)}{\Delta} \]
+\sekilnotu[9]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; $z$ ekseni üzerinde $P_1(0,0,d/2)$ noktasında $+q$ ve $P_2(0,0,-d/2)$ noktasında $-q$ yükleri (dipol); orijinin iki yanında $d/2$ uzaklık işaretleri.}
+\[ p=q\cdot d\ \ \text{sabit} \]
+\begin{align*}
+&\rho=q\,\delta(x)\delta(y)\delta(z-d/2)-q\,\delta(x)\delta(y)\delta(z+d/2)\\
+&=q\,\delta(x)\delta(y)\left[\frac{\delta(z-d/2)-\delta(z+d/2)}{d}\right]d\\
+&=-q\,d\,\delta(x)\delta(y)\left[\frac{\delta(z+d/2)-\delta\bigl(\overbrace{z-d/2}^{z'}\bigr)}{d}\right]\\
+&=-p\,\delta(x)\delta(y)\left[\frac{\delta(z'+d)-\delta(z')}{d}\right]\\
+&\rho_{dipol}=\lim_{\substack{d\to0\\q\to\infty}}\rho\\
+&\qquad=\lim_{\substack{d\to0\\q\to\infty}}(-p)\,\delta(x)\delta(y)\left[\frac{\delta(z'+d)-\delta(z')}{d}\right]\\
+&=-\delta(x)\delta(y)\lim_{\substack{d\to0\\q\to\infty}}p\lim_{\substack{d\to0\\q\to\infty}}\left[\frac{\delta(z'+d)-\delta(z')}{d}\right]\\
+&=-\delta(x)\delta(y)\,p\,\delta'(z')\\
+&\rho_{dipol}=-p\,\delta(x)\delta(y)\,\delta'(z-d/2)
+\end{align*}
+
+\sayfa{10}
+\sekilnotu[10]{$x$ ve $y$ eksenleri; $y$ ekseni boyunca (üstte) ve $x$ ekseni boyunca (altta) taralı iletken yarı-düzlemler; $(a,b)$ noktasında çizgisel yük $\rho_c$ (kesik çizgilerle eksenlere bağlı); turuncu kesikli dikdörtgenle görüntü çizgisel yükler ve eksenlerde $-a$, $-b$ işaretleri (turuncu etiketler $\pm\rho_c$). Sağ üstte ``$z$ ekseni boyunca eksi sonsuzdan sonsuza'' notu.}
+\begin{center}
+\vurgu{Sonsuz uzun çizgisel yük dağılımı için $\vec E=\dfrac{\rho_c}{2\pi\varepsilon\rho}\,\vec e_\rho$}
+\end{center}
+\begin{align*}
+&\vec E=\frac{-\rho_c}{2\pi\varepsilon\,2a}\,\vec e_x-\frac{\rho_c}{2\pi\varepsilon\,2b}\,\vec e_y\\
+&\quad+\frac{\rho_c}{2\pi\varepsilon\,2\sqrt{a^2+b^2}}\left(\frac{a\,\vec e_x+b\,\vec e_y}{\sqrt{a^2+b^2}}\right)\\
+&\vec E=\frac{-\rho_c}{4\pi\varepsilon(a^2+b^2)}\left[\vec e_x\,\frac{b^2}{a}+\vec e_y\,\frac{a^2}{b}\right]\\
+&\vec F=\int_{z=0}^{z=1}\rho_c\,\vec E\,dz=\rho_c\vec E\\
+&=\frac{-\rho_c^2}{4\pi\varepsilon(a^2+b^2)}\left[\vec e_x\,\frac{b^2}{a}+\vec e_y\,\frac{a^2}{b}\right]
+\end{align*}
+\sekilnotu[10]{Basılı soru metni (Pr.-8) ve şekil içeriyor; dijitalleştirilmedi. Özet: $z>0$ ve $z<0$ bölgelerinin dielektrik sabitleri $\varepsilon_1$ ve $\varepsilon_2$; $z>0$ bölgesindeki $M_0$ noktasına konan $q$ yükünün potansiyelinin $V(M)=\frac{q}{4\pi\varepsilon_1r'}+\frac{q(\varepsilon_1-\varepsilon_2)}{4\pi\varepsilon_1(\varepsilon_1+\varepsilon_2)r_1'}$ ($z>0$), $V(M)=\frac{2q\varepsilon_2}{4\pi\varepsilon_2(\varepsilon_1+\varepsilon_2)r'}$ ($z<0$) olduğu gösterilecek ve $z=0$ düzleminde biriken toplam yük bulunacak. Şekilde el yazısıyla $M_0$ yanında $(a,b,c)$ ve görüntü noktasının yanında ``görüntü'' yazıyor.}
+1) Denk problem çözülmeden sınır değerleri yazalım
+\begin{align*}
+&z>0\quad \Delta V=\frac{-\rho_v}{\varepsilon_1}=\frac{-q}{\varepsilon_1}\,\delta(x-a)\delta(y-b)\delta(z-c)\\
+&z<0\quad \Delta V=0\\
+&z=0\quad\text{sınır problemleri}\\
+&V_1=V_2\qquad \vec n\cdot\vec D_1=\vec n\cdot\vec D_2\\
+&\vec e_z\cdot\vec D_1=\vec e_z\cdot\vec D_2
+\end{align*}
+
+$d\to0$'a gidiyorda
+\begin{align*}
+&\rho_{z\,dipol}=-p\,\delta(x)\delta(y)\delta'(z)\\
+&\rho_{y\,dipol}=-p\,\delta(x)\delta'(y)\delta(z)\\
+&\rho_{x\,dipol}=-p\,\delta'(x)\delta(y)\delta(z)
+\end{align*}
+\[ \rho_{dipol}=-\operatorname{div}\vec p \]
+\[ =-\operatorname{div}\bigl[\vec p\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)\bigr] \]
+\textbf{örnek} $\vec p=p\,\vec e_z$
+\[ =-\operatorname{div}\bigl[p\,\vec n\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)\bigr] \]
+\[ \kutula{\operatorname{div}(\vec A\,f)=f\operatorname{div}\vec A+\vec A\cdot\operatorname{grad}f} \]
+\begin{align*}
+&=-\delta(x-x_0)\delta(y-y_0)\delta(z-z_0)\,\underbrace{\operatorname{div}(p\,\vec n)}_{0}\\
+&\quad-p\,\vec n\cdot\operatorname{grad}\bigl[\delta(x-x_0)\delta(y-y_0)\delta(z-z_0)\bigr]
+\end{align*}
+çünkü $\operatorname{div}\vec n=0$
+\[ \kutula{\operatorname{div}\vec e_x=\frac{\partial1}{\partial x}=0} \]
+\[ \Rightarrow\rho_{x\,dipol}=-p\,\vec e_x\cdot\operatorname{grad}\bigl[\delta(x-x_0)\delta(y-y_0)\delta(z-z_0)\bigr] \]
+ve $\operatorname{grad}\bigl[\delta(x-x_0)\delta(y-y_0)\delta(z-z_0)\bigr]$
+\begin{align*}
+&=\delta'(x-x_0)\delta(y-y_0)\delta(z-z_0)\,\vec e_x\\
+&\quad+\delta(x-x_0)\delta'(y-y_0)\delta(z-z_0)\,\vec e_y\\
+&\quad+\delta(x-x_0)\delta(y-y_0)\delta'(z-z_0)\,\vec e_z
+\end{align*}
+ve $\vec e_x\cdot\vec e_x=1$ \quad diğerleri $0$
+\[ \Rightarrow\rho_{x\,dipol}=-p\,\delta'(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0) \]
+\sekilnotu[10]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol-aşağı; $z$ ekseni üzerinde $P_1(0,0,d/2)$ noktasında $+q$ ve $P_2(0,0,-d/2)$ noktasında $-q$ (dipol); orijinin iki yanında $d/2$ işaretleri.}
+\[ \rho_{dipol}=-p\,\vec n\cdot\operatorname{grad}\bigl[\delta(x)\delta(y)\delta(z)\bigr] \]
+\[ V=\frac{1}{4\pi\varepsilon_0}\iiint\frac{\rho_{dipol}}{r'}\,\underbrace{dv}_{dx'\,dy'\,dz'} \]
+\[ r'=\sqrt{(x-x')^2+(y-y')^2+(z-z')^2} \]
+
+\sayfa{11}
+\textbf{Şimdi de denk problemden bakalım}
+
+$z>0\qquad \varepsilon_2=\varepsilon_1$ seçelim
+\sekilnotu[11]{Eksenler: $z$ yukarı, $x$ sağa; $z>0$ bölgesi $\varepsilon_1$, $z<0$ bölgesi $\varepsilon_2$. $z=c$ yüksekliğinde ``$M_0$ noktası $(a,b,c)$''; $z=-c$ noktasında görüntü $M_1$ (turuncu, ``görüntüsü'' yazıyor); $x$ ekseni üzerinde $M$ noktası. $M_0M$ uzaklığı $r'$, $M_1M$ uzaklığı $r_1'$; $M$ noktasında $\vec e\,'$ ve $\vec e_1'$ birim vektörleri; orijinde turuncu $\vec n=\vec e_z$ oku.}
+$M$'nin $z>0$ iken $M_0$ noktasında kaynaklanan potansiyel
+\begin{align*}
+&V_1=\frac{q}{4\pi\varepsilon_1r'}+\frac{\alpha q}{4\pi\varepsilon_1r_1'}\\
+&\vec E_1=-\operatorname{grad}V_1=\frac{q}{4\pi\varepsilon_1}\left(\frac{1}{r'^2}\,\vec e\,'+\frac{\alpha}{r_1'^2}\,\vec e_1'\right)\\
+&V_1\Big|_{z=0}=\frac{q}{4\pi\varepsilon_1}\left(\frac1r+\frac\alpha r\right)\\
+&=\frac{q}{4\pi\varepsilon_1r}\,(1+\alpha)\\
+&\vec e_z\cdot\vec D_1\Big|_{z=0}=\frac{q}{4\pi}\left(\frac{\vec e_z\cdot\vec e\,'\big|_{z=0}}{r^2}+\alpha\,\frac{\vec e_z\cdot\vec e_1'\big|_{z=0}}{r^2}\right)
+\end{align*}
+\sekilnotu[11]{Eksenler: $z$ yukarı, $x$ sağa; $M_0$ (üstte) ve $M_1$ (altta) noktaları eksene $c$ uzaklıkta (turuncu $c$ işaretleri); $x$ ekseni üzerinde $M$ noktası (kırmızı kesikli dikey çizgi); $M_0M$ ve $M_1M$ uzaklıkları $r$, açılar $\theta$ (turuncu); $M$'de $\vec e_1'\big|_{z=0}$ ve $\vec e\,'\big|_{z=0}$ vektörleri. Altta $\vec e_z$, $\vec e_1'$, $\vec e\,'$ içeren küçük bir vektör diyagramı ve ``$-\cos\theta$'' (turuncu) yazıyor.}
+\[ =\frac{q}{4\pi r^2}\bigl(-\cos\theta+\alpha\cos\theta\bigr) \]
+\[ \kutula{=\frac{q\,c}{4\pi r^3}\,(\alpha-1)} \]
+$z<0$ bölgesinde $\varepsilon_1=\varepsilon_2$ olduğunu varsayarak $M_0$'a bir $q_1$ yükü yerleştirerek denk problemi tanımlayalım
+
+\[ V(x,y,z)=\frac{1}{4\pi\varepsilon_0}\iiint\limits_{x'y'z'=-\infty}^{\infty}\frac{-p\,\vec n\cdot\operatorname{grad}\bigl[\delta(x')\delta(y')\delta(z')\bigr]}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\,dx'\,dy'\,dz' \]
+\begin{align*}
+V&=\frac{-p\,\vec n}{4\pi\varepsilon_0}\Biggl[\vec e_x\iiint\limits_{x'y'z'=-\infty}^{\infty}\frac{\delta'(x')\delta(y')\delta(z')}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\,dx'dy'dz'\\
+&\qquad+\vec e_y\iiint\limits_{x'y'z'=-\infty}^{\infty}\frac{\delta(x')\delta'(y')\delta(z')}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\,dx'dy'dz'\\
+&\qquad+\vec e_z\iiint\limits_{x'y'z'=-\infty}^{\infty}\frac{\delta(x')\delta(y')\delta'(z')}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\,dx'dy'dz'\Biggr]
+\end{align*}
+\[ \delta(y')\,f(y')=f(0)\,\delta(y') \]
+\begin{align*}
+V&=\frac{-p\,\vec n}{4\pi\varepsilon_0}\Biggl[\vec e_x\iiint\limits_{x'y'z'=-\infty}^{\infty}\frac{\delta'(x')\delta(y')\delta(z')}{\sqrt{(x-x')^2+y^2+z^2}}\,dx'dy'dz'\\
+&\qquad+\vec e_y\iiint\limits_{x'y'z'=-\infty}^{\infty}\frac{\delta(x')\delta'(y')\delta(z')}{\sqrt{x^2+(y-y')^2+z^2}}\,dx'dy'dz'\\
+&\qquad+\vec e_z\iiint\limits_{x'y'z'=-\infty}^{\infty}\frac{\delta(x')\delta(y')\delta'(z')}{\sqrt{x^2+y^2+(z-z')^2}}\,dx'dy'dz'\Biggr]
+\end{align*}
+\[ \int_{x'=-\infty}^{\infty}\frac{\delta'(x')}{\sqrt{(x-x')^2+y^2+z^2}}\,dx'\cdot\underbrace{\int_{-\infty}^{\infty}\delta(y')\,dy'}_{1}\,\underbrace{\int_{-\infty}^{\infty}\delta(z')\,dz'}_{1} \]
+\begin{align*}
+V&=\frac{-p\,\vec n}{4\pi\varepsilon_0}\Biggl[\vec e_x\int_{x'=-\infty}^{\infty}\bigl[(x-x')^2+y^2+z^2\bigr]^{-1/2}\delta'(x')\,dx'\\
+&\qquad+\vec e_y\int_{y'=-\infty}^{\infty}\bigl[x^2+(y-y')^2+z^2\bigr]^{-1/2}\delta'(y')\,dy'\\
+&\qquad+\vec e_z\int_{z'=-\infty}^{\infty}\bigl[x^2+y^2+(z-z')^2\bigr]^{-1/2}\delta'(z')\,dz'\Biggr]
+\end{align*}
+\[ \int_{-\infty}^{\infty}\delta^{(n)}(x-x_0)\,f(x)=(-1)^nf^{(n)}(x_0) \]
+\begin{align*}
+V&=\frac{-p\,\vec n}{4\pi\varepsilon_0}\Biggl[\vec e_x\cdot\frac12\cdot\frac{2(x-x')(-1)}{\bigl[(x-x')^2+y^2+z^2\bigr]^{3/2}}\Bigg|_{x'=0}\\
+&\qquad+\vec e_y\,\frac{(y-y')(-1)}{\bigl[x^2+z^2+(y-y')^2\bigr]^{3/2}}\Bigg|_{y'=0}\\
+&\qquad+\vec e_z\,\frac{(z-z')(-1)}{\bigl[x^2+y^2+(z-z')^2\bigr]^{3/2}}\Bigg|_{z'=0}\Biggr]
+\end{align*}
+
+\sayfa{12}
+\sekilnotu[12]{İki benzer şekil: $z$ yukarı, $x$ sağa eksenler; $z>0$ bölgesi $\varepsilon_1$, $z<0$ bölgesi $\varepsilon_2$; $z>0$'da ``$\beta q$'' yüklü $N_0$ ($=M_0$) noktası (altından eksene kesikli dikey çizgi); $N_0$'dan $z<0$ bölgesindeki $M$ noktasına $r'$ doğrusu ve $M$'de $\vec e\,'$ oku. İkinci şekilde turuncu bir açı ve kırmızı $r'$ çizgisi var.}
+\[ V_2=\frac{\beta q}{4\pi\varepsilon_2r'} \]
+\begin{align*}
+&\vec E_2=-\operatorname{grad}V_2\\
+&=-\frac{\partial V}{\partial r'}\,\vec e\,'\\
+&=\frac{\beta q}{4\pi\varepsilon_2r'^2}\,\vec e\,'
+\end{align*}
+\begin{align*}
+&z=0\quad V_2\Big|_{z=0}=\frac{\beta q}{4\pi\varepsilon_2r'}\\
+&\vec e_z\cdot\vec D_2\Big|_{z=0}=\frac{\beta q}{4\pi r^2}\,\vec e_z\cdot\vec e\,'\Big|_{z=0}\\
+&=-\frac{\beta q}{4\pi r^2}\cos\theta\\
+&=-\frac{\beta q\,c}{4\pi r^3}
+\end{align*}
+\[ V_1\Big|_{z=0}=V_2\Big|_{z=0} \]
+\[ \frac{q}{4\pi\varepsilon_1r}\,(1+\alpha)=\frac{\beta q}{4\pi\varepsilon_2r} \]
+\[ \Rightarrow\ \kutula{\varepsilon_2(1+\alpha)=\varepsilon_1\beta} \]
+\[ \vec e_z\cdot\vec D_1\Big|_{z=0}=\vec e_z\cdot\vec D_2\Big|_{z=0} \]
+\[ \Rightarrow\ \frac{q\,c}{4\pi r^3}\,(\alpha-1)=\frac{-\beta q\,c}{4\pi r^3} \]
+\[ (\alpha-1)=-\beta\ \Rightarrow\ \kutula{1-\alpha=\beta} \]
+\begin{align*}
+&\Rightarrow\alpha=\frac{\varepsilon_1-\varepsilon_2}{\varepsilon_1+\varepsilon_2}\\
+&\beta=\frac{2\varepsilon_2}{\varepsilon_1+\varepsilon_2}\qquad V_1=\frac{q}{4\pi\varepsilon_1r'}+\frac{\alpha q}{4\pi\varepsilon_1r_1'}
+\end{align*}
+\[ V(M)=\begin{cases}V_1, & z>0\\ V_2, & z<0\end{cases}=\begin{cases}\dfrac{q}{4\pi\varepsilon_1r'}+\dfrac{q(\varepsilon_1-\varepsilon_2)}{4\pi\varepsilon_1(\varepsilon_1+\varepsilon_2)r_1'}, & z>0\\[2ex]\dfrac{2q\varepsilon_2}{4\pi\varepsilon_2(\varepsilon_1+\varepsilon_2)r'}, & z<0\end{cases} \]
+$z=0$ düzleminde biriken yükü bulalım
+\[ \Delta V=\frac{-\rho_v(x,y,z)}{\varepsilon}\qquad V\Big|_{z=0}=V_0 \]
+
+\[ V=\frac{p\,\vec n}{4\pi\varepsilon_0}\left[\frac{x\vec e_x+y\vec e_y+z\vec e_z}{(x^2+y^2+z^2)^{3/2}}\right]=\frac{p\cdot\vec n}{4\pi\varepsilon_0}\left[\frac{\vec r}{r^3}\right] \]
+\[ \vec E=-\operatorname{grad}V=\frac{-p}{4\pi\varepsilon_0}\,\vec n\operatorname{div}\!\left(\frac{\vec r}{r^3}\right) \]
+\[ \operatorname{grad}(\vec a\cdot\vec b)=\vec a\operatorname{div}\vec b+\underbrace{\vec b\operatorname{div}\vec a}_{0}\qquad(\vec a\to\vec n) \]
+\sekilnotu[12]{Küçük 3B eksen eskizi ($z$ yukarı, $y$ sağa, $x$ sol-aşağı); orijinden çıkan $\vec r$ vektörü ve yanında ``$z=r\cos\theta$'' yazıyor.}
+\begin{align*}
+&\vec n=\vec e_z\qquad V=\frac{p\,\vec e_z\cdot\vec r}{4\pi\varepsilon_0r^3}\\
+&=\frac{p\,z}{4\pi\varepsilon_0r^3}\\
+&=\frac{p\,r\cos\theta}{4\pi\varepsilon_0r^3}=\frac{p\cos\theta}{4\pi\varepsilon_0r^2}
+\end{align*}
+\[ \Delta V=\frac{-\rho}{\varepsilon_0}\quad\text{(Poisson denkleminin çözümü)}\qquad V=\frac{1}{4\pi\varepsilon_0}\iiint\frac{\rho}{r'}\,dv \]
+
+\section{Ders 13}
+Boş uzayda $\vec E=-\operatorname{grad}V\qquad \vec D=\varepsilon_0\vec E\qquad \vec D\parallel\vec E$
+\sekilnotu[12]{Düzensiz kapalı bir bölge; içinde $\varepsilon$ ve küçük bir oval içinde ``$\rho_{\text{dış}}$'' yazıyor.}
+\[ \Delta V=\frac{-\rho_{\text{dış}}}{\varepsilon_0} \]
+\[ \operatorname{div}\vec D=\operatorname{div}(\varepsilon_0\vec E)=\rho=\rho_{\text{dış}} \]
+\subsection*{Boş olmayan ortam}
+\sekilnotu[12]{Çizgilerle taralı düzensiz bir bölge; üstünde $\rho_{\text{dış}}$, altında $\rho_{\text{iç}}=\bar\rho$ yazıyor.}
+Olayları yaratan dış yüklerin yoğunluğu olsun. Zamanla ortamın fiziksel varlığından ötürü iç yükler yer değiştirerek belirginleşir ve yarattığı alan $\vec E$'ye katkıda bulunur.
+\sekilnotu[12]{Sayfanın altında basılı kitap metni (denklemler (2.16) ve (2.17); kısmen sarı vurgulu) bulunuyor; dijitalleştirilmedi. Özet: dış yüklerin yoğunluğu $\rho$, belirginleşen iç yüklerin yoğunluğu $\bar\rho$; $\operatorname{div}\varepsilon_0\vec E=\rho+\bar\rho$ (2.16); $\bar\rho(\vec E)=-\operatorname{div}[\varepsilon_0\chi(\vec E)\vec E]$ (2.17).}
+
+\sayfa{13}
+\begin{align*}
+&V=f(x,y,z)-f(x,y,-z)+V_0\\
+&\Delta V=\Delta f(x,y,z)-\underbrace{\Delta f(x,y,-z)}_{0}+\underbrace{\Delta V_0}_{0}
+\end{align*}
+sadece $z>0$ potansiyelin \okunamadi{etkisini}
+\[ \rho(x,y,z)=-\varepsilon_1\,\Delta V\Big|_{z>0} \]
+
+\begin{align*}
+&\operatorname{div}(\varepsilon_0\vec E)=\rho=\rho_{\text{dış}}+\bar\rho\\
+&\bar\rho=-\operatorname{div}\bigl(\varepsilon_0\,\chi(\vec E)\,\vec E\bigr)\\
+&\Rightarrow\operatorname{div}(\varepsilon_0\vec E)-\bar\rho=\rho_{\text{dış}}\\
+&\operatorname{div}(\varepsilon_0\vec E)+\operatorname{div}\bigl(\varepsilon_0\,\chi(\vec E)\cdot\vec E\bigr)=\rho_{\text{dış}}\\
+&\operatorname{div}\Bigl(\varepsilon_0\underbrace{\bigl(1+\chi(\vec E)\bigr)}_{\varepsilon_r>1}\cdot\vec E\Bigr)=\rho_{\text{dış}}
+\end{align*}
+\begin{align*}
+&\vec D=\varepsilon_0\varepsilon_r\vec E=\varepsilon\vec E\\
+&\Rightarrow\operatorname{div}\vec D=\rho_{\text{dış}}=\operatorname{div}(\varepsilon\vec E)\\
+&\Delta V=\frac{-\rho_{\text{dış}}}{\varepsilon_0}
+\end{align*}
+\[ \vec E=-\operatorname{grad}V\qquad \vec D=\varepsilon\vec E\qquad \operatorname{rot}\vec E=0 \]
+\[ \operatorname{div}\vec D=\rho_{\text{dış}}\qquad \vec F=q\vec E \]
+yüzey üzerinde potansiyel sabitse ve içerde yük yoksa iç bölgede potansiyel sabittir, elektrik alan da sabittir ve içerde $\rho=0$
+\subsection*{Görüntü kavramı ve yöntemi}
+\sekilnotu[13]{Eksenler: $z$ yukarı; yatay eksen boyunca taralı iletken düzlem (solunda ``$z=0$, $v=0$'' yazıyor); üstte (I) bölgesi $\varepsilon_1$, altta (II) bölgesi $\varepsilon_2$; $z>0$'da $q$ yükü ($\bullet\,q$) ve $P(x,y,z)$ noktası; turuncu notlar: $\vec D_1\neq0$, düzlem üzerine okla $\rho_s\neq0$, düzlemin altında $\vec D_2=0$ ve ``çünkü yük yok''.}
+\begin{align*}
+&\rho_s=\vec e_z\bigl(\vec D_1-\underbrace{\vec D_2}_{0}\bigr)\Big|_{z=0}\\
+&=\vec e_z\cdot\vec D_1\Big|_{z=0}=-\vec e_z\,\varepsilon_1\operatorname{grad}V_1\Big|_{z=0}
+\end{align*}
+$z<0$ bölgesi ($\varepsilon_2$ dielektrik sabitli değil)
+\begin{align*}
+&V_2=0\ \text{sabit}\\
+&\vec E_2=0;\ \vec D_2=0
+\end{align*}
+II'nci bölgede yük olmadığından ve $z=0$ yüzeyi üzerinde $V=0$ sabit olduğundan bölge iletkendir ve potansiyeli $V_2=0$ olur
+
+$z>0$ bölgesi ($\varepsilon_1$ dielektrik sabitli bölge)
+\[ V_1=?\qquad \vec E=-\operatorname{grad}V_1;\ \vec D_1=\varepsilon_1\vec E_1=-\varepsilon_1\operatorname{grad}V_1 \]
+\[ \rho=q\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)\neq0 \]
+
+\sayfa{14}
+I'nci bölge ise II gibi iletken bir bölge değil $V_1\neq0$
+
+(I) $V_1$'in sağladığı diferansiyel denklem ve sınır koşul dikkate alınmalı:
+\[ z>0\text{ da }\left\{\begin{aligned}&\Delta V_1=\frac{-\rho}{\varepsilon_1}=\frac{-q\,\delta(x-x_0)\delta(y-y_0)\delta(z-z_0)}{\varepsilon_1}\\&V_1\Big|_{z=0}=0\qquad\lim_{z\to\infty}V_1\ \text{için }\infty\end{aligned}\right. \]
+\textbf{Eşörnek problem:} ($z>0$ bölgesi bakımından)
+\sekilnotu[14]{Solda ``yüzey yerine yük koyduk'' notu ve ``$=$''; $z$ ekseni dikey çizgi; yatay kesikli çizgi ($z=0$ düzlemi, sağ ucunda ``$\rho_s$ $V=0$''), üstünde ve altında $\varepsilon_1$; üstte $P_0(x_0,y_0,z_0)$ noktasında $q$ yükü, altta $P_1(x_0,y_0,-z_0)$ noktasında görüntü yük; düzlem üzerindeki bir noktadan $P_0$'a $r_1$ (kırmızı) ve $P_1$'e $r_2$ (turuncu) çizgileri, yatay $\ell$ uzaklığı.}
+\[ z>0\text{ da }\Delta V_1=\frac{-\rho_1}{\varepsilon_1}=\frac{-q\,\delta(x-x_0)\delta(y-y_0)\delta(z-z_0)}{\varepsilon_1} \]
+\[ V_q\Big|_{z=0}=\frac{q}{4\pi\varepsilon_1r_1}\qquad V_{-q}\Big|_{z=0}=\frac{-q}{4\pi\varepsilon_1r_2} \]
+\[ r_1=r_2=\sqrt{z_0^2+\ell^2} \]
+\textbf{$\star$ Sadece tüm uzay homojense \okunamadi{çalışan yöntem} geçerli}
+\[ V\Big|_{z=0}=V_q\Big|_{z=0}+V_{-q}\Big|_{z=0}=0 \]
+\sekilnotu[14]{Yatay ve dikey eksenler; solda $P$ noktası ve sol üst/sol altta $\varepsilon_1$ etiketleri, sağ üstte $q$, sağ altta $-q$ yükleri; $P$'den $q$'ya ve $-q$'ya çizilen doğrular ($r_1$ kırmızı, $r_2$ turuncu), düzlemle kesişimlerde ``$z=0$'' etiketleri.}
+\[ V_P=\frac{q}{4\pi\varepsilon_1r_1}-\frac{q}{4\pi\varepsilon_1r_2}=\frac{q}{4\pi\varepsilon_1}\left(\frac1{r_1}-\frac1{r_2}\right) \]
+\[ V_P\Big|_{z=0}=0 \]
+\begin{align*}
+&z>0\quad V_1=\frac{q}{4\pi\varepsilon_1}\left(\frac1{r_1}-\frac1{r_2}\right)\\
+&z<0\quad V_2=0
+\end{align*}
+
+\sayfa{15}
+\begin{align*}
+&\Rightarrow\vec E_1=-\operatorname{grad}V_1=\frac{q}{4\pi\varepsilon_1}\left(\frac{\vec r_1}{r_1^3}-\frac{\vec r_2}{r_2^3}\right)\\
+&\vec D_1=\varepsilon_1\vec E_1=\frac{q}{4\pi}\left(\frac{\vec r_1}{r_1^3}-\frac{\vec r_2}{r_2^3}\right)\\
+&\rho_s\Big|_{z=0}=\vec e_z\bigl(\vec D_1-\vec D_2\bigr)\Big|_{z=0}=\vec e_z\cdot\vec D_1\Big|_{z=0}\\
+&\rho_s=\frac{q}{4\pi}\,\vec e_z\left(\frac{\vec r_1}{r_1^3}\Big|_{z=0}-\frac{\vec r_2}{r_2^3}\right)\Big|_{z=0}\\
+&\vec r_1\Big|_{z=0}=r_1\vec n_1\Big|_{z=0}
+\end{align*}
+\sekilnotu[15]{Yatay ve dikey ($z$) eksenler; eksen üzerindeki bir noktadan sağa doğru iki çizgi: yukarıda kırmızı $r_1$ çizgisi $q$ yüküne (sağ üst), aşağıda turuncu $r_2$ çizgisi $-q$ yüküne (sağ alt); sol uçta $\theta$ açıları, $\vec r_1$, $\vec r_2$, $\vec n$ vektörleri ve $\varepsilon_1$ etiketleri; altta turuncu ``$|\vec r_1|=|\vec r_2|$'' ve ``$\vec r_1\neq\vec r_2$'' notları.}
+\begin{align*}
+&\vec r_1\Big|_{z=0}=r_1\Big|_{z=0}\,\vec n_1\Big|_{z=0}=r_1\bigl[\cos\theta\,\vec e_\ell-\sin\theta\,\vec e_z\bigr]\\
+&\vec r_2\Big|_{z=0}=r_2\Big|_{z=0}\,\vec n_2\Big|_{z=0}=r_2\bigl[\cos\theta\,\vec e_\ell+\sin\theta\,\vec e_z\bigr]
+\end{align*}
+\begin{align*}
+&\rho_s=\frac{q}{4\pi}\,\vec e_z\left(\underbrace{\frac{\vec r_1\big|_{z=0}}{(r_1\big|_{z=0})^3}}_{r^3}-\underbrace{\frac{\vec r_2\big|_{z=0}}{(r_2\big|_{z=0})^3}}_{r^3}\right)\\
+&=\frac{q}{4\pi}\,\frac{\vec e_z}{r^3}\Bigl(\vec r_1\big|_{z=0}-\vec r_2\big|_{z=0}\Bigr)\\
+&=\frac{q}{4\pi r^3}\,\vec e_z\Bigl[r\cos\theta\,\vec e_\ell-r\sin\theta\,\vec e_z-\\
+&\qquad\qquad\ \ r\cos\theta\,\vec e_\ell+r\sin\theta\,\vec e_z\Bigr]\\
+&=\frac{-q\sin\theta}{2\pi r^2}\qquad\text{ve}\quad\sin\theta=\frac{\mbox{karşı}}{\mbox{hipo}}=\frac{z_0}{r}\\
+&=\frac{-q\,z_0}{2\pi r^3}\quad(\mathrm{C/m^2})
+\end{align*}
+\textbf{yüzeyin üzerindeki yük 0 değildir ve değişkendir}
+\sekilnotu[15]{İki küçük şekil ``$=$'' ile bağlı; ilkinde dikey taralı (turuncu çizgili) iletken yüzey ve $\varepsilon_1$ bölgesinde $q$ ve $-q$ yükleri, ikincisinde eşdeğer ortam: üstte $-q$ ve $q$, altta $q$ ve $-q$ yükleri, $\varepsilon_1$ ve $\varepsilon_2$ etiketleri. Şekillerin arasında çift yönlü yay ok ve ``bu bölge için'' yazıyor.}
+
+\sayfa{16}
+\sekilnotu[16]{İki nokta yük: sol altta $q_1$, sağ üstte $q_2$, aralarında kesikli çizgi ve $r$ uzaklığı; $q_1$'in oluşturduğu potansiyel $V=\frac{q_1}{4\pi\varepsilon r}$ olarak yazılmış.}
+$q_1$ başta vardı, $q_2$ uzaktan getirildi
+\begin{align*}
+&W=q_2\bigl(V_1-\underbrace{V_\infty}_{0}\bigr)=q_2\,\frac{q_1}{4\pi\varepsilon r}\\
+&\Rightarrow W=\frac12\sum_{i=1}^{n}q_iV_i
+\end{align*}
+3 tane yük var olsun
+\begin{align*}
+&W=W_{13}+W_{23}+W_{12}\\
+&=\frac{q_3q_1}{4\pi\varepsilon r_{13}}+\frac{q_3\cdot q_2}{4\pi\varepsilon r_{23}}+\frac{q_1\cdot q_2}{4\pi\varepsilon r_{12}}
+\end{align*}
+\sekilnotu[16]{Düzensiz bir hacim (turuncu taramalı), $v$ etiketi; turuncu notlar: $dv\Rightarrow dq=\rho\,dv$ ve $\rho=\frac{dq}{dv}$.}
+\[ dW=\tfrac12\,\rho\,dv\cdot V \]
+\begin{align*}
+&W=\frac12\int_v\rho V\,dv=\frac12\int\underbrace{\rho}_{\operatorname{div}\vec D}V\,dv\\
+&=\frac12\int\operatorname{div}\vec D\;V\,dv
+\end{align*}
+\begin{align*}
+&\vec E=-\operatorname{grad}V=-\frac{\partial V}{\partial n}\,\vec n\\
+&=\frac12\int\rho V\,dv=\frac12\int\vec E\cdot\underbrace{\vec D}_{\varepsilon\vec E}\,dv\\
+&=\frac12\int\varepsilon|\vec E|^2\,dv
+\end{align*}
+\textbf{Kapasite problemi:}
+\[ C=\frac{Q}{V_S} \]
+\sekilnotu[16]{Yanında $S'$ benzeri bir etiket bulunan boş bir daire (kapasite problemi için kapalı yüzey).}
+\sekilnotu[16]{Paralel plaka kondansatör: üstte $V_2$ potansiyelinde ve $Q$ yüklü (ok) plaka, altta $V_1$ potansiyelinde ve $-Q$ yüklü (ok) plaka; plakalar arası mesafe solda süslü parantezle $d$; arada çizgili alan ve $\varepsilon$ etiketi.}
+\begin{align*}
+&Q=C(V_2-V_1)\\
+&-Q=C(V_1-V_2)\\
+&W=\frac12\,Q\,(V_2-V_1)=\frac12\,\frac{Q^2}{C}\\
+&=\frac12\,C\,(V_2-V_1)^2=\frac{\varepsilon}{2d}\,S'\,(V_1-V_2)^2
+\end{align*}
+\begin{center}
+\vurgu{$\Rightarrow\ C=\dfrac{\varepsilon S'}{d}$}
+\end{center}
+
+\sayfa{17}
+Bir kürenin kapasitesi
+\sekilnotu[17]{Küçük bir daire (küre) ve merkezden çizilen $R$ yarıçapı; dışa doğru kısa çizgiler (alan çizgileri), üstte $\varepsilon$ etiketi. Sağ tarafta kesikli kısa dikey bir işaret var.}
+\[ C=4\pi\varepsilon R \]
+
+\end{document}

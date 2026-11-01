@@ -1,0 +1,258 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Yük dağılımları ve Dirac distribüsyonu}{Ders9.pdf}
+
+\sayfa{1}
+\textbf{Ders 9}
+\section{Değişik Türden yük dağılımları ve Dirac Distribüsyonu}
+
+\begin{center}
+\begin{tabular}{ccc}
+\underline{hacimsel} & \underline{yüzeysel} & \underline{çizgisel}\\[2pt]
+$\rho_v\ [\mathrm{C/m^3}]$ & $\rho_s\ [\mathrm{C/m^2}]$ & $\rho_c\ \left[\frac{\mathrm{C}}{\mathrm{m}}\right]$
+\end{tabular}
+\end{center}
+
+\sekilnotu[1]{Üç boyutlu koordinat sistemi (turuncu oklar): $z$ yukarı, $y$ sağa, $x$ sol alta doğru. Eksenler boyunca kırmızı ile çizilmiş bir dikdörtgen prizma; $x$ ekseni üzerinde $a$ (orijine yakın) ve $b$ (sol altta), $y$ ekseni üzerinde $c$ (solda) ve $d$ (sağda), $z$ yönünde $e$ (alt ön köşe) ve $f$ (üst sol köşe ve sağ kenarın altı) işaretli. Prizmayı ve çevresini kesen, eğik paralel siyah çizgilerle gösterilmiş bir düzlem ($x=0$ yüzeysel yük tabakası); sağ üstte ``$\rho_s(y,z)$'' etiketi.}
+
+$x=0$'da $\rho_s(y,z)\ \left[\frac{\mathrm{C}}{\mathrm{m}^2}\right]$ yük yoğunluğu olsun, bu yüzeysel yük yoğunluğuna ilişkin hacimsel yük yoğunluğu
+\[
+\underset{[\mathrm{C/m^3}]}{\rho_v(x,y,z)}=\underset{[\mathrm{C/m^2}]}{\rho_s(y,z)}\,\underset{[1/\mathrm{m}]}{\delta(x)}
+\]
+
+\noindent\textbf{$\delta(x)$'in özellikleri} $\heartsuit$
+
+\noindent 1) $a\le x\le b$, $c\le y\le d$, $e\le z\le f$ prizması içindeki toplam yük $\bigl(\rho_v(x,y,z)=\rho_s(y,z)\,\delta(x)\bigr)$
+\begin{align*}
+Q&=\int_{x=a}^{b}\int_{y=c}^{d}\int_{z=e}^{f}\rho_v(x,y,z)\,dx\,dy\,dz
+=\iiint\limits_{x=a\;y=c\;z=e}^{\;b\quad d\quad f}\rho_s(y,z)\,\delta(x)\,dx\,dy\,dz\\
+&=\int_{x=a}^{b}\delta(x)\,dx\int_{y=c}^{d}\int_{z=e}^{f}\rho_s(y,z)\,dy\,dz\ \Rightarrow\
+\begin{aligned}[t]
+&a,b<0,\ Q=0\\
+&a,b>0,\ Q=0\\
+&a<0<b,\ Q=\int_{y=c}^{d}\int_{z=e}^{f}\rho_s(y,z)\,dy\,dz
+\end{aligned}
+\end{align*}
+\[
+\int_{x=a}^{b}\delta(x)\,dx=\begin{cases}0, & ab>0\\ 1, & a<x<b\end{cases}
+\]
+
+\noindent 2) $\rho_v(x,y,z)=f(x)\,\rho_s(y,z)\,\delta(x)$ olsun\\
+$f(0)=0$ olursa\\
+$\delta(x)$ nedeniyle $x\neq 0$ $\rho_v=0$
+
+\sayfa{2}
+\noindent $f(x)$ nedeniyle $x=0$ $\rho_v=0$\\
+$f(x)\,\delta(x)=0$ ve $f(0)=0$\\
+$f(x)=g(x)-g(0)$ olsun\\
+$\bigl[g(x)-g(0)\bigr]\,\delta(x)=0$
+
+\formulkutu{g(x)\,\delta(x)=g(0)\,\delta(x)}
+
+\[
+\text{3)}\quad\int_a^b\delta(x)\,dx=\begin{cases}0, & ab>0\\ 1, & a<x<b\end{cases}
+\]
+$a\to-\infty,\ b\to x$
+\[
+\int_{-\infty}^{x}\delta(x)\,dx=\begin{cases}0, & x<0\\ 1, & x>0\end{cases}=u(x)\quad\text{birim basamak fonksiyonu}
+\]
+
+\formulkutu{\delta(x)=\frac{\partial u(x)}{\partial x}}
+
+\noindent 4)
+
+\sekilnotu[2]{Dikey eksen $f(x)$, yatay eksen $x$ (sağ uçta ok); orijinin altında ``$x=0$''. $x<0$ tarafında alçakta, hafif dalgalı yatay bir eğri ``$f_-(x)$''; $x>0$ tarafında daha yüksekte benzer bir eğri ``$f_+(x)$''. $x=0$'da iki seviye arasında düşey bir süslü parantez ve yanında ``$\Delta f$''; sağında ``süreksizlik var''.}
+
+\[
+f(x)=\begin{cases}f_-(x), & x<0\\ f_+(x), & x>0\end{cases}
+\]
+$x=0$'da süreksizlik var
+\[
+f(x)=f_+(x)\,u(x)+f_-(x)\,u(-x)
+\]
+\begin{align*}
+f'(x)&=f_+'(x)\,u(x)+\underbrace{f_+(x)\,\delta(x)}_{f_+(0)\,\delta(x)}+f'(x)\,u(-x)\footnotemark+f_-'(x)\,u(-x)\\
+&\quad-\underbrace{f_-(x)\,\delta(x)}_{f_-(0)\,\delta(x)}
+\end{align*}
+\footnotetext{El yazısında satırın ortasındaki bu terim büyük bir çarpı ile çizilerek iptal edilmiş.}
+
+\sayfa{3}
+\[
+f'(x)=\underbrace{\Big[f_-'(x)\,u(-x)+f_+'(x)\,u(x)\Big]}_{\{f'(x)\}}+\underbrace{\Big[f_+(0)-f_-(0)\Big]\delta(x)}_{[|f|]\,\delta(x)}
+\]
+\[
+f'(x)=\underbrace{\{f'(x)\}}_{\text{Regüler kısım}}+\underbrace{[|f|]\,\delta(x)}_{\text{Tekil (singüler kısım)}}
+\]
+
+\[
+\operatorname{grad}V=\frac{\partial V}{\partial x}\,\vec e_x+\frac{\partial V}{\partial y}\,\vec e_y+\frac{\partial V}{\partial z}\,\vec e_z\ \Big|,
+\]
+\noindent $x=0$'da bir süreksizlik olsun
+
+\sekilnotu[3]{Küçük koordinat sistemi: $z$ yukarı, $y$ sağa, $x$ sol alta doğru; orijin çevresinde $z$ yönünde birkaç paralel düşey çizgi ($x=0$ süreksizlik yüzeyi) ve orijinde $\vec e_x$ ile adlandırılmış bir ok. Yukarıdaki ``$x=0$'da bir süreksizlik olsun'' ifadesinden bu şekle doğru inen kırmızı kavisli bir çizgi var; ayrıca $\partial V/\partial x$ satırında $|V|$ mavi ile daire içine alınmış ve buradan sağdaki $[|V\vec e_x|]\,\delta(x)$ terimine mavi bir yay çizilmiş.}
+
+\begin{align*}
+\frac{\partial V}{\partial x}&=\left\{\frac{\partial V}{\partial x}\right\}+[|V|]\,\delta(x)\quad+[|V\vec e_x|]\,\delta(x)\\
+\frac{\partial V}{\partial y}&=\left\{\frac{\partial V}{\partial y}\right\}\\
+\frac{\partial V}{\partial z}&=\left\{\frac{\partial V}{\partial z}\right\}
+\end{align*}
+
+\noindent $V$'nin süreksizliği herhangi bir $S$ yüzeyi üzerinde olsaydı,
+
+\sekilnotu[3]{Dalgalı bir çizgi ($S$ yüzeyi) ve ondan yukarı doğru çıkan, ``$n$'' ile adlandırılmış bir normal vektör oku.}
+
+\[
+\operatorname{grad}V=\{\operatorname{grad}V\}+[|V\hat n|]\,\delta(s)
+\]
+
+\noindent 5) $x=0$'da süreksizliği olan $\vec E(x,y,z)$ için
+\[
+\operatorname{div}\vec E=\frac{\partial E_x}{\partial x}+\frac{\partial E_y}{\partial y}+\frac{\partial E_z}{\partial z}
+\]
+\begin{align*}
+\frac{\partial E_x}{\partial x}&=\left\{\frac{\partial E_x}{\partial x}\right\}+[|E_x|]\,\delta(x)\\
+\frac{\partial E_y}{\partial y}&=\left\{\frac{\partial E_y}{\partial y}\right\}
+\end{align*}
+
+\sayfa{4}
+\[
++\ \frac{\partial E_z}{\partial z}=\left\{\frac{\partial E_z}{\partial z}\right\}
+\]
+\noindent\rule{0.85\linewidth}{0.4pt}
+\[
+\operatorname{div}\vec E=\{\operatorname{div}\vec E\}+[|E_x|]\,\delta(x)
+\]
+\[
+=\{\operatorname{div}\vec E\}+[|\vec E\cdot\vec e_x|]\,\delta(x)
+\]
+
+\noindent Genel durumda bir $s$ yüzeyinde süreksizlik varsa
+\[
+\operatorname{div}\vec E=\{\operatorname{div}\vec E\}+[|\hat n\cdot\vec E|]\,\delta(s)
+\]
+\[
+\operatorname{rot}\vec E=\{\operatorname{rot}\vec E\}+[|\hat n\times\vec E|]\,\delta(s)
+\]
+
+\noindent 6) Süreksizlik $x=0$ yerine $x=h$'da olursa\\
+$\delta(x)\to\delta(x-h)$
+\[
+\int_a^b\delta(x-h)\,dx=\begin{cases}1, & a<h<b\\ 0, & \text{diğer}\end{cases}
+\]
+\[
+f(x)\,\delta(x-h)=f(h)\,\delta(x-h)
+\]
+\[
+\frac{\partial u(x-h)}{\partial x}=\delta(x-h)
+\]
+
+\sekilnotu[4]{Dikey eksen yukarı oklu, yatay eksen sağa oklu. Yatay eksende $x=h$ noktası ``$h$'' ile işaretli ve oradan yukarı doğru kesikli düşey bir çizgi çıkıyor. Solda, daha alçakta ``$f_-(x)$'' eğrisi; sağda, daha yüksekte ``$f_+(x)$'' eğrisi; $x=h$'da iki seviye arasında süslü parantez ve yanında ``$\Delta f$''.}
+
+\[
+f'(x)=\{f'(x)\}+\Big[\underbrace{|f(h+0)-f(h-0)|}_{\Delta f}\Big]\,\delta(x-h)
+\]
+
+\noindent 7) Bir $C$ eğrisi $S_1$ ve $S_2$ yüzeylerin ara kesiti olsun. $C$ üzerinde bulunan $\rho_c\ [\mathrm{C/m}]$ için hacimsel yük yoğunluğu
+\[
+\rho_v(x,y,z)=\rho_c\,\delta(S_1)\,\delta(S_2)
+\]
+\noindent $S_1: x=a$\\
+$S_2: y=b$
+\[
+\underbrace{\delta(x-a)}_{S_1}\,\underbrace{\delta(y-b)}_{S_2}
+\]
+
+\sayfa{5}
+\noindent Örneğin $z$ eksenine yerleştirilmiş çizgisel
+\[
+\rho_v(x,y,z)=\rho_c\,\delta(x)\,\delta(y)
+\]
+
+\noindent 8) $(x_0,y_0,z_0)$ noktasında bulunan $q$ noktasal yük için hacimsel yük yoğunluğu
+\[
+\rho_v=q\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)
+\]
+
+\sekilnotu[5]{Koordinat sistemi: $z$ yukarı, $y$ sağa, $x$ sol alta doğru. Eksenlerin sağ üstünde küçük bir nokta ve yanında ``$q(x_0,y_0,z_0)$'' etiketi.}
+
+\begin{ornek}[1]
+$\Delta\!\left(\frac{1}{r'}\right)=-4\pi\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)$ olduğunu gösteriniz
+\[
+r'=\sqrt{(x-x_0)^2+(y-y_0)^2+(z-z_0)^2}
+\]
+\end{ornek}
+
+\sekilnotu[5]{Koordinat sistemi: $z$ yukarı, $y$ sağa, $x$ sol alta doğru. Solda $q$ noktası (yanında ``$(x_0,y_0,z_0)$''), sağ üstte ``$P(x,y,z)$'' noktası; ikisini birleştiren doğru parçasının altında ``$r'$''.}
+
+\[
+V=\frac{1}{4\pi\varepsilon_0}\,\frac{q}{r'}
+\]
+\[
+\Delta V=-\frac{\rho_v}{\varepsilon_0}\quad\text{Poisson}\qquad\text{hacim içinde yük varsa}
+\]
+\[
+\Delta V=0\quad\text{Laplace denklemi}\qquad\text{hacimde yük yoksa}
+\]
+\[
+\rho_v=q\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)
+\]
+\[
+\Delta\!\left(\frac{1}{4\pi\varepsilon_0}\,\frac{q}{r'}\right)=-\frac{q}{\varepsilon_0}\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)
+\]
+\[
+\frac{1}{4\pi}\,\Delta\!\left(\frac{1}{r'}\right)=-\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)
+\]
+
+\sayfa{6}
+\[
+\Delta\!\left(\frac{1}{r'}\right)=-4\pi\,\delta(x-x_0)\,\delta(y-y_0)\,\delta(z-z_0)
+\]
+\noindent\textit{silindirik koordinatlardaki uzunluk} $\downarrow$\\
+$\rho^2=(x-x_0)^2+(y-y_0)^2$ olmak üzere
+\[
+\Delta\!\left(\ln\left(\frac{1}{\rho}\right)\right)=-2\pi\,\delta(x-x_0)\,\delta(y-y_0)
+\]
+
+\sekilnotu[6]{Yukarı oklu $z$ ekseni boyunca çizgisel yük: eksen üzerinde kırmızı dalgalı bir çizgi, üst ucunda kırmızı ``$\rho_c$''. Eksenin çevresinde kırmızı ile çizilmiş bir silindir; solda silindirin yüksekliğini gösteren bir boy oku ve ``$\ell$'' etiketi.}
+
+\[
+Q=\ell\cdot\rho_c\quad(\ell\ \text{uzunluğu boyunca})
+\]
+\[
+\oint_S\varepsilon_0\,\vec E\cdot d\vec s=\ell\rho_c
+\qquad
+\begin{aligned}
+\vec E&=E_\rho(\rho)\,\vec e_\rho\\
+d\vec s&=\rho\,d\phi\,dz\,\vec e_\rho
+\end{aligned}
+\]
+\[
+\int_{z=0}^{\ell}\int_{\phi=0}^{2\pi}\varepsilon_0\,E_\rho(\rho)\,\rho\,d\phi\,dz=\ell\rho_c
+\]
+\[
+2\pi\ell\varepsilon_0\,\rho\,E_\rho(\rho)=\ell\rho_c
+\]
+\[
+E_\rho(\rho)=\frac{\rho_c}{2\pi\varepsilon_0\rho}\ \Rightarrow\ \vec E=\frac{\rho_c}{2\pi\varepsilon_0\rho}\,\vec e_\rho
+\]
+\[
+\vec E=-\operatorname{grad}V\ \Rightarrow\ \frac{\rho_c}{2\pi\varepsilon_0\rho}=-\frac{\partial V}{\partial\rho}
+\]
+\[
+\Rightarrow\ V=\frac{\rho_c}{2\pi\varepsilon_0}\ln\left(\frac{1}{\rho}\right)+V_0
+\]
+\[
+\Delta V=-\frac{\rho_v}{\varepsilon_0}\qquad\text{ve}\qquad\rho_v=\rho_c\,\delta(x-x_0)\,\delta(y-y_0)
+\]
+\[
+\Delta\!\left(\frac{\rho_c}{2\pi\varepsilon_0}\ln\left(\frac{1}{\rho}\right)+V_0\right)=-\frac{\rho_c}{\varepsilon_0}\,\delta(x-x_0)\,\delta(y-y_0)
+\]
+\[
+\frac{\rho_c}{2\pi\varepsilon_0}\,\Delta\!\left(\ln\left(\frac{1}{\rho}\right)\right)=-\frac{\rho_c}{\varepsilon_0}
+\]
+\[
+\Delta\!\left(\ln\left(\frac{1}{\rho}\right)\right)=-2\pi\,\delta(x-x_0)\,\delta(y-y_0)
+\]
+
+\end{document}

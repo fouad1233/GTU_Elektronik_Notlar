@@ -1,0 +1,1488 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Matematik II}{Seriler, vektörler ve çok değişkenli fonksiyonlar (s. 1–20)}{MAT-2.pdf}
+
+\sayfa{1}
+\section{Seri Testleri}
+
+\subsection{1) n. terim testi (nth term test) (Iraksaklık testi) (Limit Testi)}
+
+\begin{align*}
+\sum_{n=0}^{\infty} a_n \;&\longrightarrow\; \lim_{n\to\infty}(a_n)\neq 0 &&\text{Bu seri ıraksaktır.}\\
+&\longrightarrow\; \lim_{n\to\infty}(a_n)=0 &&\begin{array}{l}\text{Bu test işe yaramaz. Seri hâlen}\\ \text{ıraksak veya yakınsak olabilir.}\end{array}
+\end{align*}
+
+\begin{gather*}
+\lim_{n\to\infty}2=2 \qquad \lim_{n\to\infty}n=\infty \qquad \lim_{n\to\infty}n^2=\infty\\
+\lim_{n\to\infty}3^n=\infty \qquad \lim_{n\to\infty}3^{-n}=0 \qquad \lim_{n\to\infty}\frac1n=0
+\end{gather*}
+
+\[ \lim_{n\to\infty}\frac{P(n)}{Q(n)} \]
+\begin{enumerate}[label=\arabic*)]
+\item Paydanın derecesi $>$ Payın derecesi $\Rightarrow$ sonuç $=0$, \quad $\displaystyle\lim_{n\to\infty}\frac{2n+3}{n^2+1}=0$,
+\item Paydanın derecesi $=$ Payın derecesi $\Rightarrow$ sonuç = derecesi belirleyen terimlerin katsayıları\okunamadi{nın oranı}, \quad $\displaystyle\lim_{n\to\infty}\frac{n^2}{4n^2-1}=\frac14$
+\item Paydanın derecesi $<$ Payın derecesi $\Rightarrow$ sonuç \okunamadi{} $\begin{cases}\to+\infty\\ \to-\infty\end{cases}$ \quad $\displaystyle\lim_{n\to\infty}\frac{4n^2-5n+3}{2n-7}=\infty$
+\end{enumerate}
+
+\[ \text{Derece belirlemede kural}\ \to\ \kutula{n^n>n!}>\kutula{7^n>5^n}>\kutula{n^{100}>n^3>n^2}>\log_a b>\text{trigonometrik} \]
+
+\[ \lim_{n\to\infty}\frac{3^n+1}{n^{100}+n+1}\ \to\ {+\infty}\ \text{\okunamadi{}}\ =\ +\infty \]
+
+\subsection{2) Geometrik seri testi}
+Üstel fonk. olan serilerdir. $(2^n,\ 3^{-n},\ (\tfrac12)^n,\ \dots)$
+
+\[ \sum_{n=0}^{\infty} r^n \;\longrightarrow\; \text{üs $n$ yapıldıktan sonra} \;\longrightarrow\; \text{geometrik seri} \]
+\begin{gather*}
+|r|\ge1 \Rightarrow \text{seri ıraksaktır.}\\
+\Rightarrow\ |r|<1 \Rightarrow \text{seri yakınsaktır.}
+\end{gather*}
+
+\begin{gather*}
+\sum_{n=0}^{\infty}5^n,\quad r=5\ge1,\quad \text{ıraksak}\\
+\sum_{n=0}^{\infty}3^{-n}\to\sum_{n=0}^{\infty}\Big(\frac13\Big)^{n}\Rightarrow \Big|\frac13\Big|<1,\quad \text{yakınsak}\\
+\sum_{n=1}^{\infty}3^{n+1}\to\sum_{n=1}^{\infty}3\cdot3^{n}\Rightarrow |3|\ge1,\quad \text{ıraksak}
+\end{gather*}
+
+\subsection{3) P serisi testi}
+$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{p}}$ $\longrightarrow$ toplama, çıkarma durumunda ifade olmamalıdır. / \okunamadi{çarpma durumu, sayı çarpanı}
+
+\[ \sum_{n=1}^{\infty}\frac{1}{n^{p}}:\qquad p>1 \Rightarrow \text{seri yakınsak}\qquad p\le1 \Rightarrow \text{seri ıraksak} \]
+
+\subsection{4) İntegral Testi}
+\[ \sum_{n=1}^{\infty}a_n \;\longrightarrow\; \begin{array}{l}\textcircled{1}\ \text{negatif terim seride bulunmamalı}\\ \textcircled{2}\ a_n\text{'in integrali hesaplanabilir olmalı}\end{array} \]
+\[ \int_{1}^{\infty}a_n\,dn=\text{sonuç}\ \begin{cases} c \to \text{SERİ YAKINSAK}\\ \infty\to\text{SERİ IRAKSAK}\end{cases} \]
+
+\begin{align*}
+\sum_{n=1}^{\infty}\frac{1}{1+n^2}\ &\to\ \text{negatif değil},\ \text{integral alınabilir}\ \to\ \int_{1}^{\infty}\frac{1}{1+n^2}\,dn\\
+&=\lim_{t\to\infty}\int_{1}^{t}\frac{1}{1+n^2}\,dn=\lim_{t\to\infty}\Big[\arctan(n)\Big]_{1}^{t}\\
+&=\lim_{t\to\infty}\big(\arctan t-\arctan(1)\big)
+\end{align*}
+\begin{gather*}
+{*}\ \arctan(1)=\tfrac{\pi}{4}\qquad {*}\ \arctan(\infty)=\tfrac{\pi}{2}\\
+{*}\ \arctan(-1)=-\tfrac{\pi}{4}\qquad {*}\ \arctan(-\infty)=-\tfrac{\pi}{2}
+\end{gather*}
+\[ {}=\frac{\pi}{2}-\frac{\pi}{4}=\frac{\pi}{4}\ \to\ \text{sabit sayı}\ \to\ \text{Bu seri yakınsaktır.} \]
+
+\begin{align*}
+\sum_{n=2}^{\infty}\frac{\ln n}{n}\ &\to\ \text{tüm terimler pozitif},\ \text{integral alınabilir}\\
+\int_{2}^{\infty}\frac{\ln n}{n}\,dn&=\lim_{t\to\infty}\int_{2}^{t}\frac{\ln n}{n}\,dn=\lim_{t\to\infty}\left(\frac{(\ln n)^2}{2}\Big|_{2}^{t}\right)\\
+&=\lim_{t\to\infty}\left(\frac{(\ln t)^2}{2}-\frac{(\ln 2)^2}{2}\right)=\infty-\frac{(\ln 2)^2}{2}=\infty\ \to\ \text{Bu seri ıraksaktır.}
+\end{align*}
+
+\sayfa{2}
+\subsection{5) Karşılaştırma Testleri (comparison tests)}
+\subsubsection{Doğrudan Karşılaştırma Testi (5.1)}
+\[ \sum_{n=1}^{\infty}a_n \;\longrightarrow\; \sum_{n=1}^{\infty}b_n \quad\text{(ne old. bildi. seri)} \]
+$a_n<b_n \Rightarrow \sum b_n$ serisi yakınsak ise $\sum a_n$ de yakınsak olur.
+
+$b_n<a_n \Rightarrow \sum b_n$ serisi ıraksak ise $\sum a_n$ de ıraksak olur.
+
+\[ \sum_{n=1}^{\infty}\frac{1}{n^3+1}=a_n \qquad b_n=\frac{1}{n^3}\ \to\ \text{yakınsak $p$-testi} \]
+\[ \frac{1}{n^3+1}<\frac{1}{n^3} \qquad a_n=\text{yakınsak} \]
+
+\subsubsection{(5.2) Limit Karşılaştırma Testi}
+\[ \sum_{n=1}^{\infty}a_n \to \sum_{n=1}^{\infty}b_n \qquad \lim_{n\to\infty}\left(\frac{a_n}{b_n}\right)=\text{sonuç}>0\ \text{ve}\ \neq+\infty \]
+\[ 0<\text{sonuç}<\infty \;\to\; a_n\ \text{ve}\ b_n \to \begin{array}{l}\text{ıraksak}\\ \text{yakınsak}\end{array} \]
+\[ \sum_{n=2}^{\infty}\frac{1}{n^3-2} \qquad \frac{1}{n^3-2}>\underbrace{\frac{1}{n^3}}_{\text{yakınsak}} \qquad \text{DKT olmuyor.} \]
+\[ \text{LKT}\to\lim_{n\to\infty}\left(\frac{\frac{1}{n^3-2}}{\frac{1}{n^3}}\right)=\lim_{n\to\infty}\left(\frac{n^3}{n^3-2}\right)=\underset{\text{sonsuz değil}}{1>0} \]
+İki seri de yakınsaktır.
+
+\subsection{6) Oran Testi (ratio test)}
+\[ \sum_{n=1}^{\infty}a_n \to \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|=\text{sonuç}\ \begin{cases}>1 & \text{ıraksak}\\ <1 & \text{yakınsak}\\ =1 & \text{bu test işe yaramaz.}\end{cases} \]
+İçinde:
+\begin{itemize}[nosep]
+\item faktöriyel
+\item üstel fonk.
+\end{itemize}
+barındıran serileri çok büyük ihtimalle çözer,
+\[ \sum_{n=0}^{\infty}\frac{n!}{5^n}\to\lim_{n\to\infty}\left|\frac{\dfrac{(n+1)!}{5^{n+1}}}{\dfrac{n!}{5^n}}\right|=\lim_{n\to\infty}\left|\frac{n+1}{5}\right|=+\infty\ \ \text{ıraksaktır.} \]
+\begin{align*}
+\sum_{n=1}^{\infty}\frac{(-10)^n}{4^{2n+1}(n+1)}\ &\to\ \lim_{n\to\infty}\left|\frac{\dfrac{(-10)^{n+1}}{4^{2n+3}(n+2)}}{\dfrac{(-10)^n}{4^{2n+1}(n+1)}}\right|\\
+&=\lim_{n\to\infty}\left|\frac{-10(n+1)}{4^2(n+2)}\right|=\frac{10}{16}<1\ \ \text{yakınsaktır.}
+\end{align*}
+
+\subsection{7) Kök Testi (Root Test)}
+$\sum_{n=1}^{\infty}(a_n)^n$ veya $\sum_{n=1}^{\infty}(a_n)^{2n}$ veya $\sum_{n=1}^{\infty}(a_n)^{n+1}$ \dots\ $\to\ \sqrt[n]{a_n^n},\ \sqrt[2n]{a_n^{2n}},\ \sqrt[n+1]{a_n^{n+1}},\ \dots$
+\[ \lim_{n\to\infty}\sqrt[n]{|a_n^n|}=\lim_{n\to\infty}|a_n|=\text{sonuç}\ \begin{cases}>1 & \text{IRAKSAK}\\ <1 & \text{YAKINSAK}\\ =1 & \text{bu test işe yaramaz.}\end{cases} \]
+
+\subsection{8) Alterne Seri Testi}
+$(-1)^n$ içeren serilere denir. Bu diziler alterne seri testi ile çözülür.
+
+$\displaystyle\sum_{n=1}^{\infty}(-1)^n=-1+2-3+4-\cdots$\footnote{Claude notu: muhtemelen $\sum_{n=1}^{\infty}(-1)^n n$ olmalı.} \qquad $\cos(\pi n)=1,-1$ \qquad $\cos0=1$, $\cos2\pi=1$, $\cos(\pi n)=(-1)^n$; $\cos\pi=-1$, $\cos3\pi=-1$
+
+\[ \sum_{n=1}^{\infty}(-1)^n a_n \;\to\; \text{alterne seri},\ \text{seri yakınsak}\ \begin{cases}\text{1. Koşul}\to\text{Her $n$ için $a_n$ pozitif olmalı.}\\ \text{2. Koşul}\to\text{Her $n$ için $a_n>a_{n+1}$}\\ \text{3. Koşul}\to\displaystyle\lim_{n\to\infty}a_n=0\end{cases} \]
+değil ise seri yakınsak değildir, ıraksak da denemez.
+
+\sayfa{3}
+\subsection{Geo. Serilerin Top. Bulma}
+\begin{gather*}
+|r|<1\ \to\ \text{serinin top.}\ \to\ \frac{a_1}{1-r}\qquad /\\
+|r|\ge1\ \to\ \text{serinin top.}\ \to\ +\infty,\ -\infty
+\end{gather*}
+
+\section{Mutlak Yakınsaklık ve Koşullu Yakınsaklık}
+(absolutely convergent and conditionally convergent)
+
+Alterne seriler için konuşulan kavramlardır. $\displaystyle\sum_{n=1}^{\infty}(-1)^n a_n$
+
+\underline{Mutlak yakınsaklık:}
+\[ \sum_{n=1}^{\infty}\left|(-1)^n a_n\right|=\sum_{n=1}^{\infty}a_n \]
+$\to$ eğer yakınsak çıkarsa mutlak yakınsak olur.\\
+$\to$ eğer ıraksak çıkarsa bu seri mutlak yakınsak değildir.
+
+\subsection{Koşullu Yakınsaklık}
+1. Koşul: Seri mutlak yakınsak değil ise\\
+2. Koşul: Seri alterne seri testi ile yakınsak çıkarsa\\
+Bu seriye koşullu yakınsak denir.
+
+Alterne seri mutlak yakınsak ve koşullu yakınsak değilse bu seri ıraksak olur.
+
+\[ \sum_{n=1}^{\infty}\left|(-1)^n\frac{1}{n^2}\right|=\sum_{n=1}^{\infty}\frac{1}{n^2}\ \to\ \text{$p$ serisi testi},\ p=2>1\ \text{yakınsak} \]
+$\displaystyle\sum_{n=1}^{\infty}(-1)^n\frac{1}{n^2}$ serisi mutlak yakınsaktır.
+
+\begin{align*}
+\sum_{n=1}^{\infty}(-1)^n\frac{n}{\sqrt{n^2+1}}\ &\to\ \sum_{n=1}^{\infty}\left|(-1)^n\frac{n}{\sqrt{n^2+1}}\right|\\
+&=\sum_{n=1}^{\infty}\frac{n}{\sqrt{n^2+1}}\ \to\ \begin{array}{c}\text{$n$. terim testi}\\ \displaystyle\lim_{n\to\infty}\frac{n}{\sqrt{n^2+1}}\neq0\end{array}\ \text{ıraksaktır.}
+\end{align*}
+Bu seri mutlak yakınsak değildir. Koşullu yakınsaklığa bakalım.
+
+\[ \text{Koşullu yakınsaklık}\ \to\ \text{Alterne seri testi}\ \to\ \frac{n}{\sqrt{n^2+1}}\ \to\ \text{pozitif} \]
+\[ \downarrow\ a_n\not>a_{n+1}\ \to\ \frac{n}{\sqrt{n^2+1}}>\frac{n+1}{\sqrt{(n+1)^2+1}}=\frac{1}{\sqrt2}<\frac{2}{\sqrt5} \]
+Koşullu yakınsak değildir. Bu seri ıraksaktır.
+
+\section{Kuvvet Serileri (Power Series)}
+\begin{gather*}
+\sum_{n=1}^{\infty}a_n\ \to\ \sum_{n=1}^{\infty}\frac{n+1}{n^2-3n}\ \text{(seri)},\quad \sum_{n=0}^{\infty}2\cdot3^n\ \text{(seri)}\\
+\to\ \sum_{n=1}^{\infty}2^{-n}=\frac12+\frac14+\frac18+\cdots
+\end{gather*}
+Seri içine $(x-a)^n$ biçiminde $x$'e bağlı üstlü bir ifadenin gelmesiyle kuvvet serileri oluşur.
+
+$\displaystyle\sum_{n=1}^{\infty}2^n(x-1)^n$ (Kuvvet serisi), $\displaystyle\sum_{n=0}^{\infty}3n\,x^n$ \qquad $\displaystyle\sum_{n=0}^{\infty}n\,x^n=0+x+2x^2+3x^3+\cdots$
+\[ \sum_{n=1}^{\infty}\frac{n}{n+1}(x-2)^n=\frac12(x-2)^1+\frac23(x-2)^2+\cdots \]
+
+$\displaystyle\sum_{n=0}^{\infty}a_n(x-x_0)^n$ $\to$ Bu seri $x$'in hangi değerleri için yakınsak hangi değerleri için ıraksak olur?\\
+$\to$ yakınsaklık aralığı / yakınsaklık yarıçapı, yakınsaklık merkezi\\
+$\to$ fonksiyonların Taylor ve Maclaurin açılımlarını inceleyeceğiz. Taylor ve Maclaurin açılımları kuvvet serilerinin çıkışına neden oluyor.
+
+\sayfa{4}
+\section{Kuvvet Serilerinin Yakınsaklık Aralığı ve Yarıçapı (interval and radius of convergence)}
+\[ \sum_{n=1}^{\infty}\frac{(-1)^n n}{4^n}(x+3)^n \qquad \text{yakınsaklık aralığı, yarıçapı?} \]
+
+\underline{1. Adım:} Oran Testi $\to$
+\[ \lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|<1\ \text{yakınsak}\ \to\ \lim_{n\to\infty}\left|\frac{\dfrac{(-1)^{n+1}(n+1)}{4^{n+1}}(x+3)^{n+1}}{\dfrac{(-1)^n n}{4^n}(x+3)^n}\right| \]
+\[ \downarrow\ \frac{|x+3|}{4}<1\ \leftarrow\ |x+3|\underbrace{\lim_{n\to\infty}\left|\frac{n+1}{4n}\right|}_{1/4}\ \leftarrow\ \lim_{n\to\infty}\left|\frac{(n+1)(x+3)}{4n}\right|\ \hookleftarrow \]
+\[ -4<x+3<4\ \to\ \underset{\text{yakınsak}}{\kutula{-7<x<1}} \]
+$x=-7$ ve $x=1$ için yakınsaklık bu testle tespit edilemedi.
+\[ \text{yakınsaklık yarıçapı}=\frac{1-(-7)}{2}=4 \qquad \text{yakınsaklık merkezi}=\frac{-7+1}{2}=-3 \]
+
+\underline{2. Adım:} $x=1$, $x=-7$ en baştaki kuvvet serisinde yerine konur.
+\begin{align*}
+\sum_{n=1}^{\infty}\frac{(-1)^n n}{4^n}(x+3)^n\ &\Longrightarrow\ \sum_{n=1}^{\infty}\frac{(-1)^n n}{4^n}(-4)^n=\sum_{n=1}^{\infty}n\\
+&\to\ \begin{array}{l}\text{yakınsak ?}\\ \text{ıraksak ?}\end{array}\ \to\ \begin{array}{l}\text{$n$.terim testi}\\ \displaystyle\lim_{n\to\infty}n=\infty\neq0\ \text{ıraksaktır.}\end{array}
+\end{align*}
+\begin{align*}
+\sum_{n=1}^{\infty}\frac{(-1)^n n}{4^n}4^n&\to\sum_{n=1}^{\infty}(-1)^n n\ \xrightarrow{\text{alterne seri testi}}\ \sum_{n=1}^{\infty}\left|(-1)^n n\right|\\
+&=\sum_{n=1}^{\infty}n=\lim_{n\to\infty}n=\infty\neq0\quad\text{(mutlak yakınsak değil)}
+\end{align*}
+\begin{align*}
+\sum_{n=1}^{\infty}\frac{(-1)^n n}{4^n}4^n\ &\to\ \text{Koşullu yakınsaklık için alterne seri testi}\\
+&\to\ \begin{cases}\text{her $n$ için $a_n$ poz.}\ \checkmark\\ \text{her $n$ için $a_n>a_{n+1}$}\ \times\end{cases}\ \to\ \text{Bu seri ıraksaktır.}
+\end{align*}
+
+\underline{3. Adım:} Yakınsaklık aralığı $\to$ $\kutula{-7<x<1}$
+
+\bigskip
+\[ \sum_{n=0}^{\infty}n!\,(2x+1)^n \qquad \text{yakınsaklık aralığı, yarıçapı?} \]
+\begin{align*}
+\text{oran testi}&\to\lim_{n\to\infty}\left|\frac{a_{n+1}}{a_n}\right|<1\to\lim_{n\to\infty}\left|\frac{(n+1)!\,(2x+1)^{n+1}}{n!\,(2x+1)^n}\right|<1\\
+&\to|2x+1|\underbrace{\lim_{n\to\infty}|n+1|}_{\infty}<1
+\end{align*}
+\begin{gather*}
+\begin{array}{l}\text{yakınsaklık yarıçapı }(R)=0\\ \text{yakınsaklık aralığı yoktur.}\end{array}\ \leftarrow\ \begin{array}{c}\text{Bu değerde sadece yakınsak}\\ x=-\frac12\end{array}\ \leftarrow\ 2x+1=0\\
+\leftarrow\ |2x+1|\ge0\ \leftarrow\ |2x+1|\cdot\infty<1
+\end{gather*}
+
+\bigskip
+\[ \sum_{n=1}^{\infty}\frac{(x-6)^n}{n^n} \]
+\begin{align*}
+&\to\ \text{oran testi}\to\lim_{n\to\infty}\left|\frac{\dfrac{(x-6)^{n+1}}{(n+1)^{n+1}}}{\dfrac{(x-6)^n}{n^n}}\right|<1\\
+&\to\ |x-6|\underbrace{\lim_{n\to\infty}\left|\frac{n^n}{(n+1)^{n+1}}\right|}_{0^{+}}<1\ \to\ |x-6|\cdot0<1
+\end{align*}
+\[ R=\infty \qquad x\text{'in yakınsaklık aralığı}\to(-\infty,+\infty) \]
+
+\bigskip
+\[ \sum_{n=1}^{\infty}\frac{2^n}{n}(4x-8)^n \]
+\begin{align*}
+&\to\lim_{n\to\infty}\left|\frac{\dfrac{2^{n+1}(4x-8)^{n+1}}{n+1}}{\dfrac{2^n(4x-8)^n}{n}}\right|<1\\
+&\to\ 2|4x-8|\underbrace{\lim_{n\to\infty}\left|\frac{n}{n+1}\right|}_{1}<1\ \to\ 2|4x-8|<1
+\end{align*}
+\[ \downarrow\ |x-2|<\frac18 \]
+\[ R=\frac{\frac{17}{8}-\frac{15}{8}}{2}=\frac18\ \leftarrow\ \frac{15}{8}<x<\frac{17}{8}\ \leftarrow\ -\frac18<x-2<\frac18 \]
+
+\[ x=\frac{15}{8}:\quad\sum_{n=1}^{\infty}\frac{2^n}{n}\left(-\frac12\right)^n\ \to\ \text{alterne seri T.} \]
+\begin{gather*}
+\sum_{n=1}^{\infty}\frac{(-1)^n}{n}\ \to\ \sum_{n=1}^{\infty}\left|\frac{(-1)^n}{n}\right|\\
+\sum_{n=1}^{\infty}\frac1n\ \to\ \text{P serisi testi}\ (p\le1\to\text{ıraksak})\ \to\ \text{mutlak yakınsak değil.}
+\end{gather*}
+\[ \text{alterne seri T.}\ \to\ \begin{cases}\text{her $n$ için $\frac1n$ poz.}\ \checkmark\\ \text{her $n$ için $a_n>a_{n+1}$}\ \checkmark\\ \displaystyle\lim_{n\to\infty}\frac1n=0\ \checkmark\ \text{edilir.}\end{cases}\ \to\ \begin{array}{l}\text{koşullu yakınsaklık}\\ \text{Aralığa dahil}\end{array} \]
+
+\[ x=\frac{17}{8}:\quad\sum_{n=1}^{\infty}\frac{2^n}{n}\left(\frac12\right)^n\ \to\ \sum_{n=1}^{\infty}\frac1n\ \to\ \text{$p$ serisi testi} \]
+Aralığa dahil değildir. Iraksaktır.
+\[ \text{Yakınsaklık Aralığı:}\quad \kutula{\frac{15}{8}\le x<\frac{17}{8}} \]
+
+\sayfa{5}
+\section{Taylor ve Maclaurin Seri Açılımları}
+\[ f(x)\ \to\ \text{sonsuz defa türevlenebilir ise}\ \to\ \text{Seri haline getirilir.} \]
+\begin{gather*}
+f(x)=x^3+x^2-x+1\ \to\ \text{Sınırlı türev sayısına sahip.}\\
+f'(x)=3x^2+2x-1,\quad f''(x)=6x+2,\quad f'''(x)=6,\quad f^{4}(x)=0\ \cdots
+\end{gather*}
+$f(x)=e^{2x}\to f'(x)=e^{2x}\cdot2\to f''(x)=e^{2x}\cdot4\to f'''(x)=e^{2x}\cdot8\to f^{4}(x)=e^{2x}\cdot16$ $\to$ sonsuz defa türevlenebilir. Bu nedenle Taylor ve Maclaurin seri açılımı elde edilebilir.
+
+\sekilnotu[5]{Büyük bir daire ve onun içinde (sol tarafta) küçük bir daire. Büyük daireyi gösteren ok: ``Taylor açılımı''; küçük daireyi gösteren ok: ``Maclaurin açılımı (Alt kümesi)''.}
+
+$f(x)$'in $x=x_0$ seri açılımına TAYLOR
+
+$f(x)$'in $x=0$ seri açılımına MACLAURIN
+
+\subsection{Taylor Açılımı $x=x_0$}
+\begin{align*}
+f(x)&=\underbrace{f(x_0)}_{\text{1. terim}}+\underbrace{f'(x_0)(x-x_0)}_{\text{2. terim}}+\underbrace{\frac{f''(x_0)(x-x_0)^2}{2!}}_{\text{3. terim}}\\
+&\quad+\underbrace{\frac{f'''(x_0)(x-x_0)^3}{3!}}_{\text{4. terim}}+\cdots=\kutula{\sum_{n=0}^{\infty}}
+\end{align*}
+
+\subsection{Maclaurin Açılımı $x=0$}
+\[ f(x)=f(0)+f'(0)\,x+\frac{f''(0)\,x^2}{2!}+\frac{f'''(0)\,x^3}{3!}+\cdots \]
+
+$f(x)=e^x$'in $x=1$ nok. taylor açılımının ilk dört terimi? $f'(x)=e^x$, $f''(x)=e^x\ \cdots$
+\begin{gather*}
+\text{1. terim: }f(1)=e\qquad \text{2. terim: }f'(1)(x-1)=e(x-1)\\
+\text{3. terim: }\frac{f''(1)(x-1)^2}{2!}=\frac{e(x-1)^2}{2}\qquad \text{4. terim: }\frac{f'''(1)(x-1)^3}{3!}=\frac{e(x-1)^3}{6}\\
+f(x)\cong e+e(x-1)+\frac{e(x-1)^2}{2}+\frac{e(x-1)^3}{6}+\cdots
+\end{gather*}
+
+$f(x)=\cos x$ Maclaurin açılımına göre ilk 5 terimini bulunuz.
+\begin{gather*}
+\text{1. terim: }f(0)=1\qquad \text{2. terim: }\underset{0}{f'(0)}(x-0)=0\\
+\text{3. terim: }\frac{f''(0)(x-0)^2}{2!}=\frac{-x^2}{2}\\
+f'(x)=-\sin x,\quad f''(x)=-\cos x,\quad f'''(x)=\sin x,\quad f^{4}(x)=\cos x\\
+\text{4. terim: }\frac{f'''(0)(x-0)^3}{\underset{3!}{6}}=0\qquad \text{5. terim: }\frac{f^{4}(0)(x-0)^4}{4!}=\frac{x^4}{24}\\
+f(x)\cong1-\frac{x^2}{2}+\frac{x^4}{24}+\cdots
+\end{gather*}
+
+3.Derece Taylor Polinomu $\to$ $x^3$'üne kadar açılım yapılacak,\\
+4.Derece Taylor Polinomu $\to$ $x^4$ '' '' '' ''
+
+\section{Taylor ve Maclaurin Serilerini Bulma}
+\underline{Taylor Seri Formülü}\\
+$f(x)=$ sonsuz defa türevlenebilir, $x=x_0$ noktasında
+\begin{align*}
+f(x)&=\sum_{n=0}^{\infty}\frac{f^{(n)}(x_0)\,(x-x_0)^n}{n!}\\
+&=f(x_0)+f'(x_0)(x-x_0)^1+\frac{f''(x_0)(x-x_0)^2}{2!}+\cdots
+\end{align*}
+\underline{Maclaurin Seri Formülü} $\Rightarrow$ $x=0$ da taylor seri formülü
+
+$f(x)=e^x$ \quad $x=4$ nok. 2. dereceden taylor polinomunu bulunuz.
+\[ \begin{array}{l}f(x)=e^x\\ f'(x)=e^x\\ f''(x)=e^x\\ f'''(x)=e^x\\ f^{4}(x)=e^x\\ \vdots\end{array} \]
+\[ \sum_{n=0}^{\infty}\frac{f^{n}(4)}{n!}(x-4)^n\ \longrightarrow\ \sum_{n=0}^{\infty}\frac{e^4(x-4)^n}{n!}\ \to\ n=2:\ \sum_{n=0}^{2}\frac{e^4(x-4)^n}{n!} \]
+\[ e^x=P_2(x)=e^4+e^4(x-4)+\frac{e^4(x-4)^2}{2!} \]
+
+\sayfa{6}
+$f(x)=\dfrac1x$ \quad $x=2$ nok. Taylor serisi
+\begin{gather*}
+\sum_{n=0}^{\infty}\frac{f^{(n)}(2)\,(x-2)^n}{n!}\\
+f(x)=\frac1x\ (n=0)\qquad f'(x)=-x^{-2}\ (n=1)\\
+f''(x)=2x^{-3}\ (n=2)\qquad f'''(x)=-6x^{-4}\ (n=3)\\
+f^{n}(x)=(-1)^n\,n!\,x^{-n-1}\ (n=n)
+\end{gather*}
+\[ \frac1x=\sum_{n=0}^{\infty}\frac{(-1)^n\,2^{-n-1}\,n!\,(x-2)^n}{n!}\ \to\ \sum_{n=0}^{\infty}(-1)^n\,2^{-n-1}(x-2)^n \]
+
+$f(x)=\cos2x$ \quad maclaurin serisi $\to$ $x=0$
+\begin{gather*}
+\sum_{n=0}^{\infty}\frac{f^{(n)}(0)\,x^n}{n!}\\
+f(x)=\cos2x\ (n=0)\quad f'(x)=-2\sin2x\ (n=1)\quad f''(x)=-4\cos2x\ (n=2)\\
+f'''(x)=8\sin2x\ (n=3)\quad f^{4}(x)=16\cos2x\ (n=4)\quad f^{5}(x)=-32\sin2x\ (n=5)\\
+f^{n}(x)=\begin{cases}n=2a & (-1)^{n/2}\,2^n\cos2x\\ n=2a-1 & (-1)^{(n+1)/2}\,2^n\sin2x\end{cases}
+\end{gather*}
+
+\subsection{$1/(1-x)$ ifadesinin Maclaurin Serisi ve Yerine Koyma Metodu}
+\[ \kutula{\frac{1}{1-x}=\sum_{n=0}^{\infty}x^n}=1+x+x^2+x^3+\cdots\ \longrightarrow\ \text{Yakınsaklık aralığı}\ -1<x<1 \]
+
+\subsection{Yerine Koyma Metodu}
+$\dfrac{1}{1+x}$'in maclaurin serisini, yakınsaklık aralığını bul.
+\[ \frac{1}{1-(-x)}=\sum_{n=0}^{\infty}(-x)^n \qquad \begin{array}{l}\text{Yakınsaklık Aralığı}\\ -1<-x<1\\ -1<x<1\end{array} \]
+$\dfrac{1}{2x-3}$ '' '' '' '' '' ''
+\[ \frac{1}{1-(-2x+4)}=\sum_{n=0}^{\infty}(-2x+4)^n \qquad \text{Yakınsaklık Aralığı}\to\ \begin{array}{l}-1<-2x+4<1\\ -5<-2x<-3\end{array}\ \to\ \begin{array}{l}3<2x<5\\ \frac32<x<\frac52\end{array} \]
+
+\subsection{$e^x$ ifadesinin Mac. Ser. ve Y. Koyma Metodu}
+\[ e^x=\sum_{n=0}^{\infty}\frac{x^n}{n!}=1+x+\frac{x^2}{2!}+\cdots\ \longrightarrow\ \text{Yakınsaklık Aralığı}\ -\infty<x<\infty \]
+
+\subsection{Yerine Koyma Metodu}
+\begin{gather*}
+e^{x^2}\to\sum_{n=0}^{\infty}\frac{x^{2n}}{n!}\qquad e^{2x-1}\to\sum_{n=0}^{\infty}\frac{(2x-1)^n}{n!}\\
+x^3e^{4x}\to x^3\sum_{n=0}^{\infty}\frac{(4x)^n}{n!}=\sum_{n=0}^{\infty}\frac{x^3(4x)^n}{n!}
+\end{gather*}
+
+$\displaystyle\int e^{x^3}dx$ integralini Mac. serisinin ilk 2 terimini kullanarak hesaplayınız.
+\[ e^{x^3}=\sum_{n=0}^{\infty}\frac{x^{3n}}{n!}=\kutula{1+x^3}+\cdots\ \to\ \int(1+x^3)\,dx \]
+
+$\sin x$ ifa. Mac. Ser. ve Y.K.M.\footnote{Claude notu: muhtemelen $x-\frac{x^3}{3!}+\frac{x^5}{5!}-\cdots$ olmalı.}
+\[ \sin x=\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n+1}}{(2n+1)!}=x+\frac{x^3}{3!}+\frac{x^5}{5!}+\cdots \]
+\begin{gather*}
+\text{Yak. Ara.}\ -\infty<x<\infty\\
+\sin3x\to\sum_{n=0}^{\infty}\frac{(-1)^n(3x)^{2n+1}}{(2n+1)!}\\
+x^2\sin5x\to\sum_{n=0}^{\infty}\frac{x^2(-1)^n(5x)^{2n+1}}{(2n+1)!}\\
+\sin(x^2)\to\sum_{n=0}^{\infty}\frac{(-1)^n x^{4n+2}}{(2n+1)!}
+\end{gather*}
+
+\medskip
+$f(x)=\cos3x$ \quad 6.derece Mac.ser. açılımı?
+\[ \cos x=\sum_{n=0}^{\infty}\frac{(-1)^n x^{2n}}{(2n)!}\ \Rightarrow\ \cos3x=\sum_{n=0}^{\infty}\frac{(-1)^n(3x)^{2n}}{(2n)!} \]
+\[ \text{\okunamadi{$\cos3x$}}=1-\frac{9x^2}{2}+\frac{81x^4}{24}-\frac{729x^6}{720} \]
+$f(x)=\cos(x^3)$ yak. aralığı ve yarıçapı?
+\[ \cos(x^3)=\sum_{n=0}^{\infty}\frac{(-1)^n x^{6n}}{(2n)!} \qquad \begin{array}{l}\text{Y.A.}=(-\infty,\infty)\\ \text{Y. yarıçapı}=\infty\end{array} \]
+
+\sayfa{7}
+\section{Vektör uzunluğu}
+\begin{gather*}
+\vec u=(x_1,y_1)\ \to\ |\vec u|=\sqrt{x_1^2+y_1^2}\qquad /\\
+\vec u=(x_1,y_1,z_1)\ \to\ \|\vec u\|=\sqrt{x_1^2+y_1^2+z_1^2}
+\end{gather*}
+
+\subsection{Birim Vek. Olm. Vek. Bir. Vektör yapma}
+\[ \frac{\vec u}{|\vec u|}\ \to\ \text{birim vektörü bulmamızı sağlar.} \]
+\sekilnotu[7]{Üstte uzun bir ok ($\vec u$), altında aynı doğrultuda daha kısa bir ok.}
+\[ \frac{\vec u}{|\vec u|}=1\ \to\ \text{birim vektör} \]
+
+\subsection{İç Çarpım (Dot Product or Scalar Product)}
+$\vec u\cdot\vec v$ veya $\langle\vec u,\vec v\rangle$ olarak gösterilir. Sonuç bir sayıdır.
+\[ \vec u\cdot\vec v=\langle\vec u,\vec v\rangle=x_1x_2+y_1y_2+z_1z_2 \]
+\[ \vec u=(x_1,y_1,z_1)\qquad \vec v=(x_2,y_2,z_2) \]
+\begin{gather*}
+\vec u\cdot\vec v>0\ \text{ise}\ \alpha\ \text{dar açıdır},\quad 0^\circ<\alpha<90^\circ\\
+\vec u\cdot\vec v=0\ \text{ise}\ \alpha=90^\circ\text{'dir.}\\
+\vec u\cdot\vec v<0\ \text{ise}\ \alpha\ \text{geniş açıdır},\quad 90^\circ<\alpha<180^\circ
+\end{gather*}
+\sekilnotu[7]{Ortak başlangıç noktasından çıkan iki ok: $\vec u$ sağ üste, $\vec v$ sağa doğru; aralarında $\alpha$ (dar) açısı işaretli.}
+
+\subsection{İki Vektörün Diklik ve Paralellik Şartı}
+\sekilnotu[7]{Dik vektörler: ortak başlangıç noktasından yukarı $\vec u$, sağa $\vec v$; köşede dik açı işareti.}
+\[ \vec u\cdot\vec v=0 \]
+$\to$ iki vektörün iç çarpımı 0 ise birbirlerine diktir.
+
+\sekilnotu[7]{Paralel vektörler: üst üste iki sıra ok; solda $\vec u$ ve $\vec v$ zıt yönlü, sağda $\vec u$ ve $\vec v$ aynı yönlü; yanında $\vec u\parallel\vec v$ yazıyor.}
+\[ \vec u=(x_1,y_1,z_1)\qquad \vec v=(x_2,y_2,z_2)\qquad \frac{x_1}{x_2}=\frac{y_1}{y_2}=\frac{z_1}{z_2}\ \text{ise} \]
+vektörler birbirlerine paralel dir
+
+\subsection{İki Vektör Arasındaki Açıyı Bulma}
+\sekilnotu[7]{Ortak başlangıç noktasından $\vec A$ sağ üste, $\vec B$ sağa doğru; aralarında $\alpha$ açısı.}
+\[ \cos\alpha=\frac{\vec A\cdot\vec B}{|\vec A|\cdot|\vec B|} \]
+
+\subsection{Dik İzdüşüm Vektörünü Bulma}
+\sekilnotu[7]{$\vec a$ sağ üste, $\vec b$ sağa doğru; $\vec a$'nın ucundan $\vec b$ doğrultusuna kesikli dik çizgi; $\vec b$ üzerindeki parça ``Dik izdüşüm vektörü'' olarak etiketli.}
+Dik izd. Vek. uzunluğu $\to$ $\dfrac{\vec a\cdot\vec b}{|\vec b|}$ \quad (vektör kimin üzerine düşürüyorsa vek. \okunamadi{yönünde})
+\[ \text{Dik izdüşüm vektörü}\ \to\ \underset{\substack{\text{a'nın b üzerine oluş.}\\ \text{dik izdüşüm vek. uzun.}}}{\left(\frac{\vec a\cdot\vec b}{|\vec b|}\right)}\cdot\underset{\text{b'nin birim vek.}}{\left(\frac{\vec b}{|\vec b|}\right)} \]
+
+\subsection{Düzlemde Üçgen Alanını Vek. Yardımıyla Hesaplama}
+\sekilnotu[7]{Üçgen: üstte $A(x_1,y_1)$, solda altta $B(x_2,y_2)$, sağda altta $C(x_3,y_3)$; $\overrightarrow{AB}$ ve $\overrightarrow{AC}$ kalın oklarla gösterilmiş.}
+$\to$ öncelikle köşe vek. \quad $\overrightarrow{AB}=B-A$, \quad $\overrightarrow{AC}=C-A$
+\[ A(ABC)=\frac12\left|\det(\overrightarrow{AB},\overrightarrow{AC})\right| \]
+ÖR: $A(1,-3)$, $B(2,1)$, $C(4,3)$ üç. Alan ?
+
+\sekilnotu[7]{Örnek üçgen: üstte $A(1,-3)$, sağda $C(4,3)$, solda altta $B(2,1)$.}
+\begin{align*}
+A(ABC)&=\frac12\left|\det(\overrightarrow{AB},\overrightarrow{AC})\right|\\
+&=\frac12\left|\begin{vmatrix}1&4\\3&6\end{vmatrix}\right|=3
+\end{align*}
+
+\subsection{İki Vektör Arasındaki Uzaklığı Bulma}
+\sekilnotu[7]{Ortak başlangıç noktasından $\vec u$ ve $\vec v$; uçları arasındaki doğru parçası taralı gösterilmiş.}
+\[ \to\ \|\vec u-\vec v\| \]
+ÖR: $\vec u=(1,2,3)$, $\vec v=(2,-3,4)$
+\[ \to\ \|(-1,5,-1)\|=\sqrt{(-1)^2+25+(-1)^2}=\sqrt{27}=3\sqrt3 \]
+
+\subsection{Vektörel Çarpım (Cross Product)}
+\[ \vec A\times\vec B\ \to\ \text{cross product}\ \to\ \text{vek. çarp. sonucu yine bir vek. dür.} \]
+\sekilnotu[7]{$\vec A\times\vec B$ yukarı doğru; $\vec A$ sağ üste, $\vec B$ sağa doğru, aralarında taralı açı.}
+$\to$ A ve B'nin vektörel çarpımı, her iki vektöre de diktir!
+\[ \vec A\times\vec B\perp\vec A\qquad \vec A\times\vec B\perp\vec B \]
+\begin{gather*}
+\vec A=(x_1,y_1,z_1)\qquad \vec B=(x_2,y_2,z_2)\\
+\vec A\times\vec B=\begin{vmatrix}i&j&k\\x_1&y_1&z_1\\x_2&y_2&z_2\end{vmatrix}\quad\text{det. sonucu bize vek. çarp. verir.}
+\end{gather*}
+ÖR: $\vec A=(1,2,3)$ \quad $\vec B=(2,1,-1)$
+
+\sekilnotu[7]{Determinant, köşegen çizgileriyle (Sarrus yöntemi) işaretlenmiş; solda dikey bir not: \okunamadi{}.}
+\begin{align*}
+\vec A\times\vec B&=\begin{vmatrix}i&j&k\\1&2&3\\2&1&-1\end{vmatrix}=(-2i+k+6j)-(4k+3i-j)\\
+&=-5i+7j-3k\\
+\vec A\times\vec B&=(-5,7,-3)
+\end{align*}
+\[ \vec A\cdot\vec A\times\vec B=0\qquad \vec B\cdot\vec A\times\vec B=-10+7+3=0 \]
+
+\sayfa{8}
+\subsection{Uzayda Üçgen Alanını Vektör Yardımıyla Bulma}
+\sekilnotu[8]{Üçgen: üstte $A$, solda altta $B$, sağda altta $C$.}
+Düzlem $\to \mathrm{R}^2 \to (x,y)$\\
+Uzay $\to \mathrm{R}^3 \to (x,y,z)$
+\[ A(ABC)=\frac{\|\overrightarrow{AB}\times\overrightarrow{AC}\|}{2} \]
+ÖR: $\overrightarrow{CA}=(1,2,-1)$ \quad $\overrightarrow{CB}=(3,4,1)$
+\begin{align*}
+\frac{\|\overrightarrow{CA}\times\overrightarrow{CB}\|}{2}\ &\to\ \begin{vmatrix}i&j&k\\1&2&-1\\3&4&1\end{vmatrix}=6i-4j-2k\\
+&=(6,-4,-2)
+\end{align*}
+\begin{align*}
+A(ABC)&=\frac{\sqrt{36+16+4}}{2}\\
+&=\frac{2\sqrt{14}}{2}=\sqrt{14}
+\end{align*}
+
+\subsection{Köşe Koordinatları Bilinen Dörtyüzlünün Hacmini Bulma (Volume of tetrahedron)}
+\sekilnotu[8]{Dörtyüzlü (tetrahedron): üstte $A(x_1,y_1,z_1)$, içte $D(x_4,y_4,z_4)$, solda altta $B(x_2,y_2,z_2)$, sağda altta $C(x_3,y_3,z_3)$ köşeleri.}
+\[ \text{Piramit Hacmi}=\frac{\text{(Taban Alanı)}\cdot\text{(Yükseklik)}}{3} \]
+\underline{1. yol (Lineer Cebir):}
+\[ \text{Hacim}=\pm\frac16\begin{vmatrix}x_1&y_1&z_1&1\\x_2&y_2&z_2&1\\x_3&y_3&z_3&1\\x_4&y_4&z_4&1\end{vmatrix} \]
+\underline{2. yol (Calc-2) (Vekt. ile):}
+\[ \text{Hacim}=\left|\frac{\overrightarrow{BA}\cdot(\overrightarrow{BD}\times\overrightarrow{BC})}{6}\right|=\left|\frac16\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix}\right| \]
+
+\subsection{Uzayda Paralelkenar Alanını Vek. Yard. ile Bulma}
+\sekilnotu[8]{Paralelkenar: solda üstte $A$, sağda üstte $D$, solda altta $B$, sağda altta $C$.}
+\[ A(ABCD)=\|\overrightarrow{BA}\times\overrightarrow{BC}\| \]
+ÖR: $A(-1,3,2)$, $B(4,1,0)$, $C(2,1,5)$
+
+\sekilnotu[8]{Örnek paralelkenar: $A$ ve $D$ üstte, $B$ ve $C$ altta.}
+\begin{align*}
+A(ABCD)&=\|(-5,2,2)\times(-2,0,5)\|\\
+&\to\ \begin{vmatrix}i&j&k\\-5&2&2\\-2&0&5\end{vmatrix}=(10i+0-4j)-(-4k+0-25j)\\
+&=10i+21j+4k=(10,21,4)
+\end{align*}
+\[ \sqrt{100+441+16}=\kutula{\sqrt{557}} \]
+
+\subsection{Uzayda Doğru Denklemi Yazma}
+\sekilnotu[8]{Bir doğru; üzerinde $A(x_0,y_0,z_0)$ noktası ve doğruya paralel $\vec u=(a,b,c)$ vektörü işaretli.}
+Yazacağımız doğru üzerinde bir nokta ve doğruya paralel bir vektör gereklidir.
+\[ \frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}=t \]
+Parametrik doğru denklemi:
+\[ x=at+x_0\qquad y=bt+y_0\qquad z=ct+z_0 \]
+ÖR: $A(-1,2,3)$ \quad $\vec u=(2,1,5)$ \quad A'dan geçen $\vec u$'ya paralel doğru = ?
+\[ \kutula{\frac{x+1}{2}=\frac{y-2}{1}=\frac{z-3}{5}}\ \to\ \text{doğrunun kapalı denklemi} \]
+Doğ. Par. D.:
+\begin{gather*}
+x=2t-1\\
+y=t+2\\
+z=5t+3
+\end{gather*}
+
+ÖR: $A(-1,2,5)$, $\vec u=(3,0,5)$ \quad A'dan geç. $\vec u$'ya paral. doğru ?
+\[ \frac{x+1}{3}=\begin{array}{l}\text{Bu noktada}\\ \text{paydaya 0}\\ \text{yazılamayacağından}\\ y=2,\end{array}=\frac{z-5}{5} \]
+\begin{gather*}
+x=3t-1\\
+y=2\\
+z=5t+5
+\end{gather*}
+\sekilnotu[8]{Sağda, ``y = 2'' ve ``z = 5t+5'' yanında çatı biçiminde ($\Lambda$) küçük, silik bir çizim; altında bir çizgi.}
+
+ÖR: $A(-1,3,5)$ \quad $B(2,1,7)$ nokt. geç. doğ. denklemi ?
+\sekilnotu[8]{Alt solda $A(-1,3,5)$ noktasından sağ üstte $B(2,1,7)$ noktasına çizilmiş kalın doğru parçası.}
+\[ \overrightarrow{AB}=(3,-2,2) \]
+\[ \frac{x+1}{3}=\frac{y-3}{-2}=\frac{z-5}{2} \]
+\begin{gather*}
+x=3t-1\\
+y=-2t+3\\
+z=2t+5
+\end{gather*}
+
+\subsection{Düzlem Denk. Yazma}
+\sekilnotu[8]{Bir düzlem (paralelkenar biçiminde); sol altta $(x_0,y_0,z_0)$ noktası, düzleme dik yukarı doğru ok (dik açı işaretli), yanında ``Normal'' etiketi ve $\vec N=(a,b,c)$.}
+2 şey gerekli!
+\begin{itemize}[nosep]
+\item Düzlem üzerinde bir nokta.
+\item Düzleme dik vektör.
+\end{itemize}
+\[ \vec N=(a,b,c)\qquad \kutula{4(x-2)+7(y-1)-6(z+3)=0}\ \leftarrow\ (4,7,-6)=\vec u\times\vec v \]
+\[ \kutula{a(x-x_0)+b(y-y_0)+c(z-z_0)=0} \]
+ÖR: $A(-1,2,3)$ nok. geç. $\vec u=(2,1,5)$ vek. dik \okunamadi{düz.} denk.?
+\begin{gather*}
+2(x+1)+1(y-2)+5(z-3)=0\\
+2x+2+y-2+5z-15=0
+\end{gather*}
+
+ÖR: $A(2,1,-3)$ nokt. geç. $\vec u=(1,2,3)$ \quad $\vec v=(3,0,2)$ vekt. üzerinde old. düz. denk.?
+\sekilnotu[8]{Bir düzlem parçası (paralelkenar); sol altta $(2,1,-3)$ noktası, düzlem içinde $\vec u$ ($(1,2,3)$) ve $\vec v$ ($(3,0,2)$) vektörleri. Bu örnekten yukarıdaki $(4,7,-6)=\vec u\times\vec v$ kutusuna kıvrık bir ok gidiyor.}
+$\vec u$ ve $\vec v$'nin vekt. çarp. düz. dik vekt. verir. \textbf{!}
+
+\subsection{Üçlü Vekt. Çarpım ve Uyg. (Triple Product)}
+$\bullet\to$ iç çarpım \qquad $\times\to$ vektörel çarpım
+\[ \vec a\cdot(\vec b\times\vec c)\ \to\ \text{Triple Product} \]
+1. yol: $\vec b\times\vec c$ bulunur, $\vec a$ ile çarpılır.
+
+2. yol:
+\[ \vec a\cdot(\vec b\times\vec c)=\begin{vmatrix}a_1&a_2&a_3\\b_1&b_2&b_3\\c_1&c_2&c_3\end{vmatrix} \]
+\[ \vec a=(a_1,a_2,a_3)\qquad \vec c=(c_1,c_2,c_3)\qquad \vec b=(b_1,b_2,b_3) \]
+\sekilnotu[8]{Kesikli çizgilerle çizilmiş paralel yüzlü (prizma); bir köşeden çıkan üç ok ($\vec a$, $\vec b$, $\vec c$).}
+üçlü çarpım bize bir prizmanın hacmini verir. \quad Hacim $=|\vec a\cdot(\vec b\times\vec c)|$
+
+Eğer hacim 0 çıkarsa bu üç vektör ($\vec a,\vec b,\vec c$) aynı düzlem üstündedir.
+\sekilnotu[8]{Bir düzlem parçası (paralelkenar) ve içinde aynı noktadan çıkan üç vektör.}
+\[ \text{Hacim}=|\vec a\cdot(\vec b\times\vec c)|=0 \]
+
+\sayfa{9}
+\subsection{Geçtiği Üç Nokta Bilinen Düzlem Denk. Bulma}
+ÖR: $A(1,2,0)$ \quad $B(3,-1,4)$, \quad $C(2,1,1)$ nokt. geç. düz. denk.?
+\sekilnotu[9]{Bir düzlem (paralelkenar) üzerinde $A$, $B$, $C$ noktaları; $\overrightarrow{AB}\times\overrightarrow{AC}$ normal vektörü düzleme dik olarak aşağı sola doğru çizilmiş.}
+$\overrightarrow{AB}\times\overrightarrow{AC}$ düz. dik bir normal vekt. verir.
+\begin{align*}
+\overrightarrow{AB}&=(2,-3,4)\\
+\overrightarrow{AC}&=(1,-1,1)
+\end{align*}
+\[ \overrightarrow{AB}\times\overrightarrow{AC}=\begin{vmatrix}i&j&k\\2&-3&4\\1&-1&1\end{vmatrix}=i+2j+k=(1,2,1) \]
+\begin{gather*}
+1\cdot(x-2)+2\cdot(y-1)+1\cdot(z-1)=0\\
+x+2y+z-5=0
+\end{gather*}
+Düz. üzer. herhangi bir nokt. kull. kontrol edilebilir.
+
+\subsection{İki Düzlem Arasındaki Açı}
+\sekilnotu[9]{Birbirini kesen iki düzlem; $\alpha$ açısı işaretli, normal vektörler $\vec N_1$ ve $\vec N_2$ düzlemlere dik çizilmiş. Sağda ``Normal vektörleri arasındaki açı'' başlıklı yandan görünüş: $\vec N_1$ ve $\vec N_2$ arasındaki açı $180-\alpha$ olarak gösterilmiş.}
+\[ \cos(180-\alpha)=\frac{\vec N_1\cdot\vec N_2}{|\vec N_1|\cdot|\vec N_2|} \]
+ÖR: $x-2y+z=5$ düz. ile $2x+y-3z=1$ düz. arası açı?
+\begin{gather*}
+\vec N_1=(1,-2,1)\qquad \vec N_2=(2,1,-3)\qquad \alpha\to\text{düz. arası açı.}\\
+\cos(180-\alpha)=\frac{2+(-2)+(-3)}{\sqrt6\cdot\sqrt{14}}=\frac{-3}{\sqrt{84}}\qquad \alpha=180-\arccos\!\left(\frac{-3}{\sqrt{84}}\right)
+\end{gather*}
+
+\subsection{Uzayda Bir Nokt. Bir Doğ. Uzaklığı}
+\sekilnotu[9]{Bir doğru üzerinde $A(x_1,y_1,z_1)$ noktası ve doğrultman vektörü $\vec u=(a,b,c)$; doğru dışında $B(x_0,y_0,z_0)$ noktası; $B$'den doğruya dik uzaklık $d$.}
+\begin{gather*}
+\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}=t\\
+x=at+x_0\qquad y=bt+y_0\qquad z=ct+z_0
+\end{gather*}
+1. adım: $\overrightarrow{BA}$ elde edilir.\\
+2. adım: $\|\overrightarrow{BA}\times\vec u\|$ bul.\\
+3. adım: $\|\vec u\|$ bul.
+\[ d=\frac{\|\overrightarrow{BA}\times\vec u\|}{\|\vec u\|} \]
+ÖR: $A(0,2,3)$ nokt. \quad $\dfrac{x-3}{2}=\dfrac{y-1}{1}=\dfrac{z+1}{2}$ doğr. uzak.?
+\sekilnotu[9]{Doğru dışında $A(0,2,3)$, doğru üzerinde $B(3,1,-1)$; $\vec u=(2,1,2)$ doğrultman vektörü; $A$'dan doğruya dik uzaklık $d$. Paydalardaki $2,1,2$ sayıları daire içine alınmış ve altlarında $a$, $b$, $c$ yazıyor.}
+\begin{align*}
+\overrightarrow{BA}&=(-3,1,4)\\
+\overrightarrow{BA}\times\vec u&=\begin{vmatrix}i&j&k\\-3&1&4\\2&1&2\end{vmatrix}=-2i+14j-5k\\
+&=(-2,14,-5)
+\end{align*}
+\[ \|\overrightarrow{BA}\times\vec u\|=15\qquad \|\vec u\|=3 \]
+\[ d=\frac{15}{3}=\kutula{5} \]
+
+\subsection{Uzayda Bir Doğru İle Düzlem Arasındaki Açı}
+\sekilnotu[9]{Bir düzlemi kesen doğru; doğrunun yön vektörü $\vec u=(a,b,c)$, düzleme dik $\vec N$ vektörü; $\alpha$ ve $\beta$ açıları işaretli.}
+\begin{gather*}
+\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}\\
+x=at+x_0\quad y=bt+y_0\quad z=ct+z_0\qquad ax+by+cz+d=0
+\end{gather*}
+\sekilnotu[9]{Aşağıda: yukarı doğru $\vec N$ ve ona göre $\vec u$ vektörü; $\beta$ ve $\alpha$ açıları işaretli.}
+\[ \cos\beta=\sin\alpha=\frac{\vec u\cdot\vec N}{|\vec u|\cdot|\vec N|} \]
+ÖR: Denk. $\dfrac{x-1}{5}=\dfrac{y+2}{3}=\dfrac{z-1}{-1}$ ol. doğ. ile $2x+y-z+3=0$ düz. arası açı?
+\begin{gather*}
+\vec u=(5,3,-1)\qquad \vec N=(2,1,-1)\\
+\sin\alpha=\frac{10+3+1}{\sqrt{35}\cdot\sqrt6}=\frac{14}{\sqrt{210}}\qquad \alpha=\arcsin\!\left(\frac{14}{\sqrt{210}}\right)
+\end{gather*}
+
+\subsection{Bir Noktanın Bir Düzleme Olan Uzaklığı Bulma}
+\sekilnotu[9]{Bir düzlem (paralelkenar) ve üstünde $A(x_0,y_0,z_0)$ noktası; $A$'dan düzleme dik uzaklık $h$ (dik açı işaretli).}
+\[ ax+by+cz+d=0\ \checkmark \]
+\[ h=\frac{|ax_0+by_0+cz_0+d|}{\sqrt{a^2+b^2+c^2}} \]
+ÖR: $A(1,-2,5)$ nokt. $3x+4y-12z+17=0$ düzl. uzakl.?
+\[ h=\frac{|3-8-60+17|}{\sqrt{9+16+144}}=\frac{48}{13} \]
+
+\subsection{Uzayda Doğru Birbirine Göre Durumları}
+Doğ. paralel ise Doğrultman vekt. de paraleldir
+\sekilnotu[9]{Paralel doğrular: iki paralel doğru çifti, üzerlerinde $\vec u_1$ ve $\vec u_2$ vektörleri çizili.}
+\begin{gather*}
+\vec u_1\parallel\vec u_2\qquad \frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}\\
+\vec u_1=(a_1,b_1,c_1)\qquad \vec u=(a,b,c)\qquad \vec u_2=(a_2,b_2,c_2)\\
+\frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2}
+\end{gather*}
+Doğ. dik ise Doğrultman vekt. de diktir.
+\sekilnotu[9]{Birbirini dik kesen iki doğru; üzerlerinde $\vec u_1$ ve $\vec u_2$ vektörleri.}
+\[ \vec u_1\perp\vec u_2\qquad \vec u_1\cdot\vec u_2=0 \]
+
+\subsection{Uzayda İki Doğru Arasındaki Açı}
+\sekilnotu[9]{Birbirini kesen iki doğru: $d_1$ (sağ) ve $d_2$ (sol); aralarındaki $\alpha$ açısı işaretli; doğrultman vektörleri $\vec u_1$ ve $\vec u_2$ oklarla gösterilmiş.}
+$d_1$'in doğrultmanı (Paralel vektörü)\\
+$d_2$'nin doğrultmanı
+\[ \cos\alpha=\frac{\vec u_1\cdot\vec u_2}{|\vec u_1|\cdot|\vec u_2|} \]
+\sekilnotu[9]{Sağda: $(x_0,y_0,z_0)$ noktasından geçen, yön vektörü $\vec u=(a,b,c)$ olan bir doğru; yanında $\frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}$ yazıyor.}
+\[ x=at+x_0\qquad y=bt+y_0\qquad z=ct+z_0 \]
+ÖR: $l_1:\ \dfrac{x-2}{3}=\dfrac{y+1}{4}=\dfrac{z-5}{-2}$ \qquad $\vec u_1=(3,4,-2)$
+\[ l_2:\ x=3t-5,\quad y=2t+1,\quad z=t-3\ \to\ \vec u_2=(3,2,1) \]
+\[ \cos\alpha=\frac{9+8-2}{\sqrt{29}\cdot\sqrt{14}} \]
+
+\subsection{İki Düz. Birbirine Göre Durumları}
+İki düzlem paralel ise normalleri de paraleldir.
+\[ \vec N_1=(a_1,b_1,c_1)\parallel\vec N_2=(a_2,b_2,c_2)\qquad \frac{a_1}{a_2}=\frac{b_1}{b_2}=\frac{c_1}{c_2} \]
+İki düzlem dik ise norm. de diktir.
+\[ \vec N_1\perp\vec N_2\qquad \vec N_1\cdot\vec N_2=0 \]
+ÖR: $2x-3y+5z=10$ ile $(a-1)x+by+10z=3$ paralel. $a,b=\,$?
+\[ \frac{2}{a-1}=\frac{-3}{b}=\frac{5}{10}\qquad a=5\quad b=-6 \]
+
+\sayfa{10}
+\subsection{Uzayda Bir Doğru ve Bir Düzlemin Birbirine Göre Durumları}
+1. Paralel $\to$ normal vekt. ile doğrultman vek. birbirine dik olur.
+\sekilnotu[10]{Bir düzlem (paralelkenar) ve ona paralel çizilmiş $\vec v$ vektörü; düzlemden dışarı dik $\vec N$ vektörü (dik açı işaretli).}
+\[ \vec u\cdot\vec N=0 \]
+2. Dik $\to$ normal vek. ile doğrultman vek. birbirine paralel olur.
+\sekilnotu[10]{Bir düzlem (paralelkenar); düzleme dik, yukarı doğru çizilmiş paralel $\vec u$ ve $\vec N$ vektörleri.}
+\[ \vec u\parallel\vec N \]
+ÖR: $2x-3y+4z=5$ düz. \quad $\dfrac{x-1}{3}=\dfrac{y+2}{4}=\dfrac{z-1}{m}$ doğ. paralel. $m=$ ?
+\begin{gather*}
+\vec N=(2,-3,4)\qquad \vec u=(3,4,m)\\
+\vec N\perp\vec u\qquad 2\cdot3-3\cdot4+4\cdot m=0\qquad m=\frac32
+\end{gather*}
+
+\subsection{Bir Doğru İle Bir Düzlemin Kesişme Nokt. Bulma}
+\sekilnotu[10]{Üç durum yan yana (süslü parantezlerle ayrılmış): 1. durum: doğru düzlemi deler (``Bir nokt. kesişirler.''); 2. durum: doğru düzleme paralel (``kesişmezler.''); 3. durum: doğru düzlemin içinde (``Sonsuz kesişme vardır.'').}
+\[ \frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}\qquad \begin{array}{l}x=at+x_0\\ y=bt+y_0\\ z=ct+z_0\end{array}\quad\text{Doğru denklemi} \]
+\[ ax+by+cz+d=0\ \to\ \text{düzlem denk.} \]
+\begin{itemize}[nosep]
+\item Doğru Denk. her zaman parametrik hale getirilip düzlem denk. yerine yazılır. Daha sonra buradan ``t'' değerini bulup $x,y,z$ denklemlerini bulacağız.
+\end{itemize}
+``t''ler için birkaç durum vardır:
+\begin{itemize}[nosep]
+\item 1 nokt. kesişme $\to$ $t=\ldots$ bir sayı çıkar.
+\item Doğ. düzlem paralel $\to$ t'ler birbirini götürür $5\neq0$
+\item Doğ. düzlem üzerinde $\to$ t'ler '' '' $0=0$ $\{\mathrm{R}\}$
+\end{itemize}
+ÖR: $2x-3y+4z=12$ düz. ile $\dfrac{x-1}{4}=\dfrac{y+3}{2}=\dfrac{z-5}{-1}$ doğ. var ise kesişme nokt.?
+\begin{gather*}
+2(4t+1)-3(2t-3)+4(-t+5)=12\qquad \begin{array}{l}x=4t+1\\ y=2t-3\\ z=-t+5\end{array}\\
+t=\frac{19}{2}\qquad x=39,\ y=16,\ z=-\frac92
+\end{gather*}
+
+\subsection{Uzayda İki Doğrunun Kesişim Nok. Bulma}
+ÖR: $l_1$: $x=4t-1,\ y=t+3,\ z=1$ \quad ve \quad $l_2$: $x=12s-13,\ y=6s+1,\ z=3s+2$ doğ. kesişiyor ise kesişme nokt.?
+\begin{itemize}[nosep]
+\item Eğer doğrular paramet. değilse paramet. hale getirilir
+\item Biri $t$'li diğeri $s$'li olmalı.
+\end{itemize}
+\begin{gather*}
+4t-1=12s-13\ \to\ 4t-12s=-12\\
+t+3=6s+1\ \to\ -2t+12s=4\\
+t=-4,\quad s=-\frac13
+\end{gather*}
+$z$'i de denk. sağladığında oluyorsa kesiş. denektir.
+\[ x=-17,\quad y=-1,\quad z=1 \]
+
+\subsection{İki Düzlemin Kesiştiği Doğ. Denk. Yazma}
+\sekilnotu[10]{Birbirini kesen iki düzlem; $\vec N_1$ ve $\vec N_2$ normal vektörleri, kesişim doğrusu boyunca $\vec N_1\times\vec N_2$ vektörü. Sağda yandan görünüş: $\vec N_2$ yukarı, $\vec N_1$ sağa, $\vec N_1\times\vec N_2$ sola doğru; dik açı işaretli.}
+ÖR: $x+y+z=1$ düz. ile $x+y=2$ düz. kesiş. doğru denk.?
+
+1. adım: $\vec N_1=(1,1,1)$ \quad $\vec N_2=(1,1,0)$
+\[ \vec N_1\times\vec N_2=\begin{vmatrix}i&j&k\\1&1&1\\1&1&0\end{vmatrix}=-i+j=(-1,1,0) \]
+2. adım:
+\begin{gather*}
+x=1-y-z\\
+x=2-y\\
+z=-1\qquad y=\mathrm{R}\ \text{(1 verdim)}\qquad x=1
+\end{gather*}
+\sekilnotu[10]{Solda: $\vec u=(-1,1,0)$ yön vektörlü eğik bir doğru ve üzerinde $(1,1,-1)$ noktası.}
+3. adım: $\dfrac{x-1}{-1}=\dfrac{y-1}{1},\ z=0$\footnote{Claude notu: muhtemelen $z=-1$ olmalı.} $\to$ Kapalı denkl. \qquad $\left.\begin{array}{l}x=-t+1\\ y=1+t\\ z=-1\end{array}\right\}$ vekt. denkl.
+
+\subsection{Bir Düz. Dışındaki Bir Nokt. En Yakın Nokt. Koordinatlarını Bulma}
+ÖR: $x+y+2z=5$ düz. $A(1,1,1)$ nokt. en yak. old. nokt. koor. bulunuz.
+\sekilnotu[10]{Bir düzlem (paralelkenar) ve üstünde $A(1,1,1)$ noktası; düzleme dik $\vec N$ vektörü (dik açı işaretli).}
+\[ x+y+2z=5\qquad \text{1. adım: düz. normal }\vec N=(1,1,2)\text{ vekt. bulunur.} \]
+2. adım: Düz. dik doğ. denklemi yazılır. $(x,y,z)=\text{Nokta}+t\cdot(\text{doğrultman})$
+\[ (x,y,z)=(1,1,1)+t(1,1,2)\qquad x=t+1,\ y=t+1,\ z=2t+1 \]
+3. adım: Doğ. düz. kesişme nokt. bulunur.
+\begin{gather*}
+1+t+1+t+2\cdot(2t+1)=5\qquad 6t=1\qquad t=\frac16\\
+x=\frac76\quad y=\frac76\quad z=\frac43\qquad \left(\frac76,\frac76,\frac43\right)
+\end{gather*}
+
+\subsection{Bir Doğ. Dışındaki Bir Nokt. En Yak. Nok. Bulma}
+$\dfrac{x-1}{2}=\dfrac{y}{1}=\dfrac{z-1}{2}$ doğ. üzer. hangi nokt., dışındaki $A(1,1,1)$ nokt. en yakın nokt.?
+\sekilnotu[10]{Bir düzlem parçası içinde $A(1,1,1)$ noktası, doğru üzerinde $B$ noktası; $\vec u=(2,1,2)$ doğrultman vektörü; $A$'dan doğruya dik (dik açı işaretli).}
+1. adım: Doğ.'nun doğrultman (paralel) vekt. elde edilir
+
+2. adım: Doğ. dik ol. ve $A(1,1,1)$ nokt. geçen düz. denkl. yazılır
+\begin{gather*}
+(x-1)\cdot2+(y-1)\cdot1+2(z-1)=0\\
+2x+y+2z=5\qquad x=2t+1,\ y=t,\ z=2t+1
+\end{gather*}
+3. adım: Doğ. düz. kesişme nokt. bulunur.
+\begin{gather*}
+2\cdot(2t+1)+y+2\cdot(2t+1)=5\\
+t=\frac19\qquad x=\frac{11}{9}\quad y=\frac19\quad z=\frac{11}{9}\qquad B\left(\frac{11}{9},\frac19,\frac{11}{9}\right)
+\end{gather*}
+
+\sayfa{11}
+\subsection{Vektör Değerli Fonksiyon}
+\begin{itemize}[nosep]
+\item Vektörlerin fonksiyonlaştırılmış biçimine denir.
+\end{itemize}
+ÖR: $\vec u(t)=(t+1,t^2)\to\mathrm{R}^2$
+\begin{gather*}
+\vec u(0)=(1,0)\quad t=0\\
+\vec u(1)=(2,1)\quad t=1\\
+\vec u(2)=(3,4)\quad t=2
+\end{gather*}
+\sekilnotu[11]{$xy$ düzleminde koordinat ekseni ($x$ ekseninde 1, 2, 3; $y$ ekseninde 1, 4 işaretli); orijinden $(1,0)$, $(2,1)$, $(3,4)$ noktalarına giden $\vec u(t)$ vektörleri ve uçlarını birleştiren eğri; sağ üstte $\vec u(t)$ etiketi.}
+vektörlerin uç nokt. birleştirmeyle oluş. eğriye $\vec r(t)$ deniyor.
+\[ \vec r(t)=\left(t^2,\ln t,\sqrt{t+1}\right)\qquad \mathrm{R}^3\text{'lü vekt. değerli fonksiyon} \]
+
+\subsection{Vektör Değerli Fonksiyonlarda Tanım Kümesi Bulma}
+\begin{gather*}
+\mathrm{R}^2\Rightarrow\vec r(t)=(f(t),g(t))=\langle f(t),g(t)\rangle\\
+\mathrm{R}^3\Rightarrow\vec r(t)=(f(t),g(t),h(t))
+\end{gather*}
+\[ \vec r(t)=\left(t^2+1,\frac{1}{t-3}\right)\qquad /\qquad \vec r(t)=\left(\ln t,\frac{1}{t-3},t+5\right) \]
+\[ \begin{array}{ccc}\vec r(t)=(&f(t),&g(t))\\ \downarrow&\downarrow&\downarrow\\ D_1\cap D_2\ \text{Domain}&D_1&D_2\end{array} \]
+\[ \begin{array}{cccc}\vec r(t)=(&f(t),&g(t),&h(t))\\ \downarrow&\downarrow&\downarrow&\downarrow\\ D_1\cap D_2\cap D_3&D_1&D_2&D_3\end{array} \]
+ÖR: $\vec r(t)=\left(t^2+1,\dfrac{1}{t-3}\right)$ \quad Tanım Kümesi $=\mathrm{R}-\{3\}$ \quad $D_1=\mathrm{R}$, $D_2=\mathrm{R}-\{3\}$
+
+ÖR: $\vec r(t)=\left(\ln t,\dfrac{1}{t-3},t+5\right)$ \quad $D_1\cap D_2\cap D_3$ \quad $D_1=(0,\infty)$, $D_2=\mathrm{R}-\{3\}$, $D_3=\mathrm{R}$
+\sekilnotu[11]{Üç sayı doğrusu şeması: $D_1=(0,\infty)$ için 0'da dikey çizgi ve sağı taralı; $D_2=\mathrm{R}-\{3\}$ için doğru taralı ve 3 noktasında dikey çizgi; $D_3=\mathrm{R}$ için tüm doğru taralı.}
+\[ D_1\cap D_2\cap D_3=(0,\infty)-\{3\} \]
+
+\subsection{Vektör Değerli Fonksiyonların Limiti}
+\begin{gather*}
+\mathrm{R}^2\to\vec r(t)=(f(t),g(t))\\
+\mathrm{R}^3\to\vec r(t)=(f(t),g(t),h(t))
+\end{gather*}
+\begin{gather*}
+\lim_{t\to a}\vec r(t)=\left(\lim_{t\to a}f(t),\ \lim_{t\to a}g(t)\right)\\
+\lim_{t\to a}\vec r(t)=\left(\lim_{t\to a}f(t),\ \lim_{t\to a}g(t),\ \lim_{t\to a}h(t)\right)
+\end{gather*}
+Herhangi birinin limiti yoktur ise vektör değerli fonks. o nokt. limiti yoktur.
+
+ÖR: $\vec r(t)=\left(\dfrac1t,t^2-2t+1\right)$ \quad a) $\displaystyle\lim_{t\to3}\vec r(t)$ \quad b) $\displaystyle\lim_{t\to\infty}\vec r(t)$ \quad c) $\displaystyle\lim_{t\to0}\vec r(t)$
+\[ \text{c)}\ \lim_{t\to0}\vec r(t)=\left(\lim_{t\to0}\frac1t,\ \lim_{t\to0}(t^2-2t+1)\right)\ \to\ 1 \]
+\[ \frac10\ \to\ \begin{cases}\displaystyle\lim_{t\to0^+}\frac1t=\infty\\[2mm] \displaystyle\lim_{t\to0^-}\frac1t=-\infty\end{cases}\ \text{limit yok}\qquad \text{limiti yoktur.} \]
+\begin{gather*}
+\text{a)}\ \lim_{t\to3}\vec r(t)=\left(\frac13,4\right)\\
+\text{b)}\ \lim_{t\to\infty}\vec r(t):\ \left(\lim_{t\to\infty}\frac1t,\ \lim_{t\to\infty}(t^2-2t+1)\right)=(0,\infty)
+\end{gather*}
+
+\subsection{Vektör Değerli Fonks. Türevi}
+\[ \mathrm{R}^3\to\frac{d}{dt}\left(\vec r(t)\right)=\vec r\,'(t)=(f'(t),g'(t),h'(t)) \]
+$\mathrm{R}^2\to\vec r\,'(t)=(f'(x),g'(x))$\footnote{Claude notu: muhtemelen $(f'(t),g'(t))$ olmalı.}
+
+ÖR: $\vec r(t)=(\ln(3t+1),\tan t,t^3-4t+1)$
+
+$\vec r\,'(t)=\left(3\cdot\dfrac{1}{3t+1},\ 1+\tan^2(t),\ 3t-4\right)$\footnote{Claude notu: muhtemelen üçüncü bileşen $3t^2-4$ olmalı.}
+\[ \vec r\,'(1)=\left(\frac34,\ 1+\tan^2(1),\ -1\right) \]
+
+\subsection{Vektör Değerli Fonksiyonların İntegrali}
+\begin{align*}
+\mathrm{R}^2&\to\text{Belirsiz integral}\to\int\vec r(t)\,dt=\left(\int f(t)\,dt,\ \int g(t)\,dt\right)\\
+\mathrm{R}^3&\to\text{Belirli integral}\to\int_a^b\vec r(t)\,dt\\
+&=\left(\int_a^b f(t)\,dt,\ \int_a^b g(t)\,dt,\ \int_a^b h(t)\,dt\right)
+\end{align*}
+ÖR: $\vec r(t)=\left(2t+1,\dfrac1t,e^t\right)$ \quad $\displaystyle\int\vec r(t)\,dt=?$
+\begin{align*}
+\int\vec r(t)\,dt&=\left(t^2+t+c_1,\ \ln|t|+c_2,\ e^t+c_3\right)\\
+&=\left(t^2+t,\ \ln|t|,\ e^t\right)+(c_1,c_2,c_3)
+\end{align*}
+ÖR: $\vec r(t)=\left(t-2,\sin t,\dfrac{1}{t+3}\right)$ \quad $\displaystyle\int_1^2\vec r(t)\,dt=?$
+\begin{align*}
+\int_1^2\vec r(t)\,dt&=\left(\left[\frac{t^2}{2}-2t\right]_1^2,\ \Big[-\cos t\Big]_1^2,\ \Big[\ln|t+3|\Big]_1^2\right)\\
+&=\left(-\frac12,\ \cos1-\cos2,\ \ln5-\ln4\right)
+\end{align*}
+
+\subsection{Teğet Vektör ve Birim Teğet Vektör}
+$\mathrm{R}^2\to$ Teğet Vektör: $\vec r\,'(t)=(f'(t),g'(t))$\\
+$\to$ Birim Teğet vekt.: $T=\dfrac{\vec r\,'(t)}{\|\vec r\,'(t)\|}$
+
+$\mathrm{R}^3$'te de aynıdır. $\vec r\,'(t)=(f'(t),g'(t),h'(t))$
+
+ÖR: $\vec r(t)=(2t+1,t^2,\ln t)$
+
+a) Teğet vekt. $\to$ $\vec r\,'(t)=\left(2,2t,\dfrac1t\right)$
+
+b) Birim Teğet vekt. $\to$
+\begin{align*}
+T(t)&=\frac{\vec r\,'(t)}{\|\vec r\,'(t)\|}=\frac{\left(2,2t,\frac1t\right)}{\sqrt{4+4t^2+\frac{1}{t^2}}}\\
+&=\left(\frac{2}{\sqrt{\frac{4t^4+4t^2+1}{t^2}}},\ \frac{2t}{\sqrt{\frac{4t^4+4t^2+1}{t^2}}},\ \frac{1}{t\sqrt{\frac{4t^4+4t^2+1}{t^2}}}\right)
+\end{align*}
+c) $t=2$ için teğet vekt. ve Bir. Teğ. vekt. ?
+\[ \vec r\,'(2)=\left(2,4,\frac12\right)\qquad T(2)=\left(\frac{2}{\frac92},\frac{4}{\frac92},\frac{\frac12}{\frac92}\right)=\left(\frac49,\frac89,\frac19\right) \]
+
+\subsection{Normal Vektör ve Birim Normal Vektör}
+Normal vektör, Birim teğet vekt. türevine eşittir.\\
+$\to T'(t)$ \quad Birim Normal vekt.: $\vec N(t)=\dfrac{\vec T\,'(t)}{\|\vec T\,'(t)\|}$\\
+Birim Normal vekt. olab. için $\vec T\,'(t)\neq0$.
+
+ÖR: $\vec r(t)=(2t,t^2,t^3)$
+
+a) Normal vekt. $\Rightarrow$ $\vec r\,'(t)=(2,2t,3t^2)\to\vec T(t)=\left(\dfrac{2}{\sqrt{9t^4+4t^2+4}},\ \dfrac{2t}{\text{\okunamadi{}}},\ \dfrac{3t^2}{\text{\okunamadi{}}}\right)$
+\begin{align*}
+T'(t)=\Bigg(&\frac{-8t+16t^3}{(4+4t^2+9t^4)^{3/2}},\ \frac{2-8t^2-36t^4}{(4+4t^2+9t^4)^{3/2}},\\
+&\frac{6t-12t^3-54t^5}{(4+4t^2+9t^4)^{3/2}}\Bigg)
+\end{align*}
+
+\sayfa{12}
+\subsection{İkinci Dik Vektör}
+\begin{gather*}
+\vec B(t)=\vec T(t)\times\vec N(t)\qquad \vec B(t)\perp\vec T(t),\quad \vec B(t)\perp\vec N(t)\\
+\vec T(t)=\frac{\vec r\,'(t)}{\|\vec r\,'(t)\|}\ \ \text{(Birim Teğet vekt.)}\\
+\vec T\,'(t)\to\text{dik vektör (normal vekt.)}\\
+\vec N(t)=\frac{\vec T\,'(t)}{\|\vec T\,'(t)\|}
+\end{gather*}
+ÖR: $\vec r(t)=(t,3\sin t,3\cos t)$ ikinci dik vekt.?
+\[ \vec T(t)=\frac{\vec r\,'(t)}{\|\vec r\,'(t)\|}=\frac{(1,3\cos t,-3\sin t)}{\sqrt{10}} \]
+\[ \vec N(t)=\frac{\vec T\,'(t)}{\|\vec T\,'(t)\|}=\frac{\left(0,\frac{-3\sin t}{\sqrt{10}},\frac{-3\cos t}{\sqrt{10}}\right)}{\frac{3}{\sqrt{10}}}\ \to\ (0,-\sin t,-\cos t) \]
+\begin{align*}
+\vec B(t)=\vec T(t)\times\vec N(t)&=\begin{vmatrix}i&j&k\\\frac{1}{\sqrt{10}}&\frac{3\cos t}{\sqrt{10}}&\frac{-3\sin t}{\sqrt{10}}\\0&-\sin t&-\cos t\end{vmatrix}\\
+&=-\frac{3}{\sqrt{10}}\,i+\frac{1}{\sqrt{10}}\cos t\,j-\frac{1}{\sqrt{10}}\sin t\,k\\
+&=\left(-\frac{3}{\sqrt{10}},\ \frac{1}{\sqrt{10}}\cos t,\ -\frac{1}{10}\sin t\right)\footnotemark
+\end{align*}
+\footnotetext{Claude notu: muhtemelen son bileşen $-\frac{1}{\sqrt{10}}\sin t$ olmalı.}
+
+\subsection{Vektör Değerli Fonks. Yay Uzunluğu Bulma}
+\[ \mathrm{R}^2\to\vec r(t)=(f(t),g(t)),\quad a\le t\le b \]
+\sekilnotu[12]{Bir eğri parçası; yanında ``yay uzunluğu'' etiketi, altında $a$ ve $b$ uç noktaları.}
+\begin{align*}
+\text{Yay uzunluğu}&=\int_a^b\|r'(t)\|\,dt\\
+&=\int_a^b\sqrt{(f'(t))^2+(g'(t))^2}\,dt
+\end{align*}
+\[ \mathrm{R}^3\to\text{yay uzun.:}\quad \int_a^b\sqrt{(f'(t))^2+(g'(t))^2+(h'(t))^2}\,dt \]
+ÖR: $\vec r(t)=(2t,3\sin(2t),3\cos(2t))$, $0\le t\le2\pi$ \quad \okunamadi{ilgili} vekt. değ. fonks. yay uzunluğu?
+\begin{align*}
+\text{Yay uzunluğu}&=\int_0^{2\pi}\sqrt{4+36\cos^2 2t+36\sin^2 2t}\,dt=\int_0^{2\pi}\sqrt{40}\,dt\\
+&=\sqrt{40}\,t\Big|_0^{2\pi}=4\sqrt{10}\,\pi\qquad \vec r\,'(t)=(2,6\cos2t,-6\sin2t)
+\end{align*}
+
+\subsection{Eğrilik (Curvature)}
+Bir vektör değerli fonksiyonun ($\vec r(t)$) temsil ettiği eğrinin yön değiştirme hızına eğrilik denir.
+\sekilnotu[12]{Yanda bir eğri çizimi; ``yukarı veya aşağı gitmesi'' notu.}
+\begin{gather*}
+\vec r(t)=(f(t),g(t))\\
+\vec r(t)=(f(t),g(t),h(t))
+\end{gather*}
+\[ K=\frac{\|\vec T\,'(t)\|}{\|\vec r\,'(t)\|}\ \to\ r'(t)\neq0\qquad \text{(1. formül)} \]
+\[ K=\frac{\|\vec r\,'(t)\times\vec r\,''(t)\|}{\|\vec r\,'(t)\|^3}\qquad \text{(2. formül)} \]
+
+ÖR: $\vec r(t)=(t,3\sin t,3\cos t)$, Eğrilik = ?
+\begin{gather*}
+\vec r\,'(t)=(1,3\cos t,-3\sin t)\\
+\vec r\,''(t)=(0,-3\sin t,-3\cos t)
+\end{gather*}
+\begin{align*}
+\vec r\,'(t)\times\vec r\,''(t)&=\begin{vmatrix}i&j&k\\1&3\cos t&-3\sin t\\0&-3\sin t&-3\cos t\end{vmatrix}\\
+&=-9i+3\cos t\,j-3\sin t\,k\\
+&=(-9,3\cos t,-3\sin t)
+\end{align*}
+\begin{gather*}
+\|\vec r\,'(t)\times\vec r\,''(t)\|=\sqrt{81+9\cos^2t+9\sin^2t}=3\sqrt{10}\\
+\|\vec r\,'(t)\|=\sqrt{1+9\cos^2t+9\sin^2t}=\sqrt{10}\\
+K=\frac{3\sqrt{10}}{(\sqrt{10})^3}=\frac{3}{10}
+\end{gather*}
+
+\subsection{Çok Değişkenli Fonksiyonlar}
+$f(x)=x^2+8$ $\downarrow$ Tek girdiye sahip fonk. lara tek değişkenli fonksiyon denir\\
+$f(x,y)=x^2+y^2-1$ $\downarrow$ iki değişkenli fonksiyon\\
+$f(x,y,z)=x\cdot y\cdot z+5$ $\downarrow$ üç değişkenli fonksiyon
+
+Değişken sayısı 2 ve daha fazla olan fonksiyonlara çok değişkenli fonksiyon denir.\\
+Calc-1 $\to$ tek değ. fonks. ların limit, türev, integrali\\
+Calc-2 $\to$ çok '' '' '' ''
+
+Tek. değ. fonklarda sonuç bir eğri iken çok değ. fonklarda sonuç bir yüzey dir
+\sekilnotu[12]{Cümlelerin yanında küçük çizimler: tek değişkenli fonksiyonlar için bir eğri çizimi, çok değişkenli fonksiyonlar için bir yüzey çizimi.}
+ÖR: $f(x)=3x^2-x+1$ \quad $f(x,y)=x^2-2xy+1$\\
+$f(3)=25$ \qquad $f(1,2)=-2$
+\sekilnotu[12]{Solda $xy$ düzlemi: $x$ ekseninde 3, $y$ ekseninde 25 işaretli, $(3,25)$ noktası kesikli çizgilerle gösterilmiş. Sağda üç boyutlu koordinat ekseni ($x$ sol alta, $y$ sağa, $z$ yukarı; 1, 2, $-2$ değerleri işaretli) ve $(1,2,-2)$ noktası; taralı bir bölge ve birkaç nokta.}
+
+\subsection{Çok Değişkenli Fonks. da Tanım Kümesi Bulma}
+$f(x)=$ tek değişkenli fonksiyon
+\sekilnotu[12]{$xy$ düzleminde koordinat ekseni; ``y fonksiyon'' etiketi.}
+\[ \left.\begin{array}{l}f(x,y)\\ f(x,y,z)\\ f(x,y,z,t)\\ \vdots\end{array}\right\}\ \text{çok değişkenli fonksiyonlar} \]
+R $-$ tanımsız yapanlar\\
+$f(x,y)$: $\mathrm{R}^2-$ tanımsız yapanlar
+\sekilnotu[12]{$f(x,y)$ için $xy$ düzleminde taralı bölge çizimi.}
+$f(x,y,z)=\ldots$
+\sekilnotu[12]{Üç boyutlu koordinat ekseni çizimi ve yanında ``?'' işareti.}
+ÖR: $f(x,y)=x^2+y^2-3$ \quad Tanım K.? \quad Tanım Kümesi $\to\mathrm{R}^2$
+\sekilnotu[12]{$xy$ düzleminin tamamı taralı.}
+ÖR: $f(x,y)=\dfrac{y}{x-3}$\\
+$\to x-3=0$ \quad $x\neq3$
+\sekilnotu[12]{$xy$ düzleminde $x=3$ dikey çizgisi (3 işaretli); çizginin iki yanı taralı.}
+
+\sayfa{13}
+\subsection{Çok Değ. Fonk. Tanım Kümesi Bulma (devamı)}
+\[ f(x,y)=\frac{x^2+y^2}{x-y+4}\ \to\ x-y+4\neq0,\quad x-y\neq-4 \]
+\sekilnotu[13]{$xy$ düzleminde $x-y=-4$ doğrusu kesikli çizgiyle ($x$ ekseninde $-4$, $y$ ekseninde 4 işaretli); düzlemin geri kalanı yatay çizgilerle taralı.}
+
+\[ \underset{0\ \ 0}{x-y+6\ge0}\ \leftarrow\ f(x,y)=\sqrt{x-y+6} \]
+\sekilnotu[13]{$xy$ düzleminde $x-y+6=0$ doğrusu ($x$ ekseninde $-6$, $y$ ekseninde 6 işaretli); orijin işaretli; doğrunun orijini içeren (sağ alt) tarafı taralı.}
+
+\[ f(x,y)=\frac{2x}{y-x^2}\ \to\ \begin{array}{l}y-x^2=0\\ y=x^2\\ \underline{y\neq x^2}\end{array} \]
+\sekilnotu[13]{$xy$ düzleminde $y=x^2$ parabolü kesikli çizilmiş; parabolün her iki yanı (içi ve dışı) taralı.}
+
+\[ \underset{\ }{x+2y>0}\ \leftarrow\ f(x,y)=\frac{1}{\sqrt{x+2y}} \]
+\sekilnotu[13]{$xy$ düzleminde $x+2y=0$ doğrusu; doğrunun sağ üst tarafı taralı; sol tarafta bir nokta kesikli çizgilerle işaretli ($x$ ekseninde $-12$, $y$ ekseninde 1).}
+
+\[ f(x,y)=\ln(x-y-5)\ \to\ x-y-5>0\qquad \underset{0\ \ 0}{x-y>5} \]
+\[ \log_a b:\quad b>0,\quad a\neq1,\quad a>0 \]
+\sekilnotu[13]{$xy$ düzleminde $x-y=5$ doğrusu ($x$ ekseninde 5, $y$ ekseninde $-5$ işaretli); doğrunun sağ alt tarafı taralı.}
+
+Bu ifadeyi tanımsız yapabilecek hiçbir şey yoktur $\leftarrow$ $f(x,y,z)=x^2+y^2-4z$\\
+Girdileri üç boyutlu old. dolayı $\mathrm{R}^3\Rightarrow$ T.K.
+
+\[ f(x,y,z)=\frac{2x}{y-z}\qquad y-z\neq0,\quad y\neq z \]
+Bunun dışındaki tüm $(x,y,z)$'ler tanım kümesinde yer alır.
+\sekilnotu[13]{Üç boyutlu koordinat ekseni ($x$, $y$, $z$) ve içinde $y=z$ düzlemini gösteren paralelkenar; $x$ ekseni yanından düzleme doğru bir ok.}
+
+\[ f(x,y)=\sqrt{x^2-y^2}+\sqrt{x^2+y^2-1}\qquad \text{T.K.=?} \]
+\[ x^2-y^2\ge0\ \cap\ x^2+y^2-1\ge0 \]
+\[ \begin{array}{ll}x^2\ge y^2 & x^2+y^2\ge1\\ x^2=y^2 & x^2+y^2=1\\ x=y & \\ x=-y & \end{array}\qquad \begin{array}{rr}1&0\\0&1\\-1&0\\0&-1\end{array} \]
+\sekilnotu[13]{Orijin merkezli birim çember ve $y=x$ ile $y=-x$ doğruları (``y=-x'' solda, ``y=x'' sağda yazılı); çemberin dışında, doğruların sol ve sağ taraflarındaki bölgeler yoğun taralı.}
+
+\[ f(x,y)=y+\arccos x\qquad \text{T.K.=?} \]
+\[ \left.\begin{array}{l}\arcsin x\\ \arccos x\end{array}\right\}\ -1\le x\le1\qquad y\in\mathrm{R}\qquad -1\le x\le1 \]
+$\arcsin 2\to$ tanımsız
+\sekilnotu[13]{$xy$ düzleminde $x=-1$ ve $x=1$ dikey doğruları arasındaki şerit ($y$ eksenine paralel) taralı; eksende $-1$ ve 1 işaretli.}
+
+\[ f(x,y)=\frac{\ln(x-y)}{\sqrt{4-x^2-y^2}\,\sqrt{x^2+y^2-1}}\qquad \text{T.K.=?} \]
+\begin{align*}
+x-y>0&\to x>y\to x=y\\
+4-x^2-y^2>0&\to 4>x^2+y^2\\
+x^2+y^2-1>0&\to x^2+y^2>1
+\end{align*}
+\[ 1<x^2+y^2<4\ \to\ \text{Halka}\qquad M(0,0),\quad r_1=1,\ r_2=2 \]
+\sekilnotu[13]{Orijin merkezli iç içe iki çember (yarıçaplar 1 ve 2; eksenlerde $-2$, $-1$, 1, 2 işaretli) ve $y=x$ doğrusu (``x=y'' yazılı); doğrunun sağ-alt tarafı taralı, halkanın bu tarafta kalan kısmı koyu taralı.}
+
+\[ f(x,y,z)=\sqrt x+\sqrt y+\sqrt z\qquad \text{T.K.=?} \]
+\[ x\ge0\qquad y\ge0\qquad z\ge0 \]
+\sekilnotu[13]{Üç boyutlu koordinat ekseni ($x$ sol alta, $y$ sağa, $z$ yukarı; $z$ ekseninde 2 işaretli); pozitif bölgeyi gösteren taralı kutu biçimli çizim; $x$ etiketine bir ok gidiyor.}
+
+\[ f(x,y)=\ln(x+y)\ \to\ x+y>0\ \to\ x=-y\qquad \begin{array}{cc}0&3\\3&0\end{array} \]
+\sekilnotu[13]{$xy$ düzleminde $y=-x$ doğrusu (``x=-y'' yazılı); doğrunun sağ üst tarafı taralı.}
+
+\[ f(x,y)=\sqrt{xy-1}\ \to\ \underset{0\ \ 0}{xy-1\ge0}\qquad \begin{array}{l}xy-1=0\\ xy=1,\quad y=\frac1x\end{array} \]
+\sekilnotu[13]{$xy$ düzleminde $y=1/x$ hiperbolünün iki kolu (1. ve 3. bölgede); kolların eksenlerden uzak (dış) tarafları taralı.}
+
+\subsection{Çok Değişkenli Fonksiyonlarda Görüntü Kümesi (Range) Bulma}
+\[ f(x,y)=x^2+y^2\ \to\ \text{paraboloid}\ \Rightarrow\ \mathrm{R}^3 \]
+\[ x=0,\ y=0\to x^2+y^2=0\ \text{en küçük}\qquad x^2+y^2>0 \]
+\[ G=[0,+\infty) \]
+\sekilnotu[13]{Üç boyutlu koordinat ekseni ($z$ yukarı, $y$ sağa, $x$ sol alta) ve yukarı açılan paraboloid; $xy$ düzlemi taralı.}
+
+\[ f(x,y)=x+3y-2\quad \text{G.K.?}\qquad \begin{array}{c}-\infty<x<\infty\\ -\infty<3y<\infty\\ \hline -\infty<x+3y-2<\infty\end{array} \]
+\[ \text{G.K}=(-\infty,\infty) \]
+\sekilnotu[13]{Üç boyutlu eksende düzlemin eksenleri kestiği noktalar: $x$ ekseninde 2, $y$ ekseninde $2/3$, $z$ ekseninde $-2$; üçgen biçimli parça taralı.}
+
+\[ f(x,y)=\underset{3}{\overset{0}{\kutula{x^2+y^2}}}+3\quad \text{G.K.=?}\qquad \text{G.K}=[3,+\infty) \]
+\[ f(x,y)=\underset{-5}{\overset{0}{\kutula{\sqrt{x^2+4y^2}}}}-5\quad \text{G.K.=?}\qquad \text{G.K}=[-5,+\infty) \]
+\[ f(x,y)=x\cdot y+1\quad \text{G.K.=?}\qquad -\infty<x<\infty,\quad -\infty<y<\infty \]
+\[ -\infty<x\cdot y<\infty\ \Rightarrow\ \underline{-\infty<x\cdot y+1<\infty}\qquad \text{G.K}=(-\infty,\infty) \]
+\[ f(x,y)=\frac{1}{x^2+y^2}\quad \text{G.K.=?}\qquad x\neq0,\quad y\neq0 \]
+\[ x^2+y^2>0\ \to\ \text{sonuç sıfıra yaklaşır (sonsuzda)}\qquad \text{G.K}=(0,\infty) \]
+
+\sayfa{14}
+\subsection{Çok Değiş. Fonks. da Limit}
+$\displaystyle\lim_{x\to a}f(x)\ \to$ Calc-1 $\to$ Tek değ. fonks.\\
+$\displaystyle\lim_{(x,y)\to(a,b)}f(x,y)\ \to$ Calc-2 $\to$ Çok değ. fonks. $\to$ bir yüzeyi belirtir.
+\sekilnotu[14]{Üç boyutlu koordinat ekseni ($z$ yukarı, $y$ sağa, $x$ sol alta); $xy$ düzleminde $(a,b)$ noktası ($y$ ekseninde $b$, $x$ ekseninde $a$ işaretli, kesikli çizgilerle); üstünde bir yüzey parçası ve yüzey üzerindeki noktaya her yönden gelen oklar. Yanında: ``Bir yönün bile sonucu farklı çıkarsa limit yoktur.''}
+\begin{gather*}
+x=a\ \text{boyunca}\Rightarrow\lim_{y\to b}f(a,y)=\ldots\\
+x=b\ \text{boyunca}\,\footnotemark\Rightarrow\lim_{x\to a}f(x,b)=\ldots\\
+y=\frac{b}{a}x\ \text{boyunca}\Rightarrow\lim_{x\to a}f\left(x,\frac{b}{a}x\right)=\ldots
+\end{gather*}
+\footnotetext{Claude notu: muhtemelen $y=b$ boyunca olmalı.}
+Her yönden yaklaşıp limitlerin sonuçların aynı çıkması beklenir
+
+1. Fonks. gibi davranan çok değ. limitler:
+\[ \lim_{(x,y)\to(a,b)}f(x,y)=f(a,b) \]
+2. $\dfrac00$ belirsizliği ile karşılaşılınca:
+\begin{enumerate}[label=2.\arabic*,nosep]
+\item Çarpanlarına ayırma ile sadeleşme
+\item içinde kök varsa eşlenik çarpımı yapıp ardından sadeleşme
+\item Kutupsal dönüşüm uygulayarak sadeleşme arama
+\item O noktada limitin varolmadığını ispatlamak için çeşitli yönlerden yaklaşacağız.
+\end{enumerate}
+3. $\varepsilon,\delta$'lı formül ile bir noktada limitin varolduğunu ispatlama.
+
+\subsection{Fonksiyon Gibi Davranan Çok Değişkenli Limitler}
+$(a,b)$ sıralı ikilisi $f(x,y)$ fonksiyonunu tanımsız yapmaz ise o limit fonksiyon gibi davranır.
+\begin{gather*}
+\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b)\\
+\lim_{(x,y)\to(1,2)}(x-3y+4)=1-6+4=-1\\
+\lim_{(x,y)\to(0,0)}\left(\frac{x+2y^2+3}{y^2-4}\right)=\frac{3}{-4}
+\end{gather*}
+
+\subsection{Çok Değ. Limitlerde $0/0$ Belirsizliğinden Çarpanlara Ayırma ile Kurtarma}
+\[ \lim_{(x,y)\to(0,0)}\left(\frac{x^2-y^2}{2x+2y}\right)=\frac00\ \to\ \lim_{(x,y)\to(0,0)}\frac{(x-y)(x+y)}{2(x+y)}=\frac{x-y}{2} \]
+\[ 0=\frac{0-0}{2} \]
+
+\begin{gather*}
+\lim_{(x,y)\to(1,1)}\frac{2x^2-xy-y^2}{x^2-y^2}=\,?\ =\frac00\\
+\to\ \frac{(x-y)(2x+y)}{(x-y)(x+y)}=\frac{2x+y}{x+y}=\frac32
+\end{gather*}
+\begin{align*}
+\lim_{(x,y)\to(2,-2)}\left(\frac{x^3+y^3}{x^2-y^2}\right)&=\frac{(x+y)(x^2-xy+y^2)}{(x-y)(x+y)}\\
+&=\frac{x^2-xy+y^2}{x-y}=\frac{12}{4}=\kutula{3}
+\end{align*}
+
+\subsection{Çok Değ. Limit. de $0/0$ Belirsiz. Eşlenik Çarpımı ile Kurtulma}
+Kök içeren $\frac00$ belirsizliklerinde eşlenik çarpımı kullanılır.
+\begin{align*}
+\lim_{(x,y)\to(0,0)}\left(\frac{x^2+y^2}{\sqrt{x^2+y^2+1}-1}\right)&=\,?\ \frac00\\
+&=\frac{(x^2+y^2)\left(\sqrt{x^2+y^2+1}+1\right)}{(x^2+y^2)}=\sqrt{x^2+y^2+1}+1=2
+\end{align*}
+
+\subsection{Çok Değ. Limit. de $0/0$ Belirsiz. de Kutupsal Dönüşüm Yöntemi}
+$(x,y)\to$ kartezyen koordinatlar
+\sekilnotu[14]{Eksenler ve $p(x,y)$ noktası (eksenlere kesikli dikmelerle).}
+$(r,\theta)\to$ kutupsal koordinatlar
+\sekilnotu[14]{Eksenler ve orijinden çıkan, $x$ ekseniyle $\theta$ açısı yapan $r$ uzunluklu ışın.}
+\[ f(x,y)\ \xrightarrow[\substack{x=r\cos\theta\\ y=r\sin\theta\\ x^2+y^2=r^2}]{}\ f(r,\theta) \]
+\[ \lim_{(x,y)\to(0,0)}\left(\frac{x^3+y^3}{x^2+y^2}\right)=\,?\ =\frac00\ \to\ \begin{array}{l}\text{Çarpanlara ayırma}\ \times\\ \text{eşlenik çarpım}\ \times\\ \text{kutupsal dönüşüm}\end{array} \]
+\[ \left.\begin{array}{l}r\cos\theta=0\\ r\sin\theta=0\end{array}\right\}\ \theta\text{'nın aynı olm. dolayı her iki }(\sin\theta,\cos\theta) \]
+durumunu da 0 yapamayacağından limit $r$'ye bağlı olarak devam eder.
+\[ \lim_{r\to0}\frac{r^3\cos^3\theta+r^3\sin^3\theta}{r^2}=\lim_{r\to0}\,r(\cos^3\theta+\sin^3\theta) \]
+$=r(\cos^3\theta+\sin^3\theta)\to$ sonuç $\cos\theta$'ya ve $\sin\theta$'ya bağlı çıkarsa limit yoktur.\\
+$=0$ \quad $\to$ sonuç sayı çıkarsa limit vardır ve 0 olur.
+\begin{align*}
+\lim_{(x,y)\to(0,0)}\left(\frac{x^2y^2}{x^4+3y^4}\right)&=\,?\ \frac00\\
+&\to\lim_{r\to0}\frac{r^2\cos^2\theta\cdot r^2\sin^2\theta}{r^4\cos^4\theta+3r^4\sin^4\theta}\\
+&=\lim_{r\to0}\frac{r^4\cos^2\theta\sin^2\theta}{r^4(\cos^4\theta+3\sin^4\theta)}
+\end{align*}
+$=\dfrac{\cos^2\theta\cdot\sin^2\theta}{\cos^4\theta+3\sin^4\theta}\to$ $\theta$'nın aldığı sonuçlara göre $(0,0)$ nokt. da farklı sonuçlar elde ederiz.\\
+$\to(0,\theta)$ \quad $\hookrightarrow$ Limiti yoktur.
+\sekilnotu[14]{$(0,\theta)$ noktasına farklı $\theta$ yönlerinden yaklaşıldığını gösteren, üç küçük ok çizimi.}
+
+\sayfa{15}
+\subsection{Çok Değ. Limitlerde $0/0$ Bel. siz. de Limitin Varolmadığını İspatlama}
+\[ \lim_{(x,y)\to(a,b)}f(x,y)=\frac00\ \begin{array}{ll}\to&\text{Çarpanlara ayırma}\\ \to&\text{eşlenik çarpımı}\\ \to&\text{kutupsal dönüşüm yöntemi}\\ \to&\text{limitin varolmadığını ispatlamak}\end{array} \]
+\sekilnotu[15]{$(a,b)$ noktası; noktaya her yönden (üstten, soldan, sağdan, çaprazlardan) gelen oklar.}
+Çeşitli yönlerden yaklaşılan bir noktada eğer yönlerin limitleri farklı çıkarsa bu noktada limit yoktur, eğer limitleri aynı çıkarsa limitin varlığı buradan tespit edilemez.
+\begin{align*}
+x=a\ \text{boyunca}&\qquad\lim_{y\to b}f(a,y)\\
+y=b\ \text{boyunca}&\qquad\lim_{x\to a}f(x,b)\\
+y=\frac{b}{a}x\ \text{boyunca}&\qquad\lim_{x\to a}f\left(x,\frac{b}{a}x\right)
+\end{align*}
+\sekilnotu[15]{$(a,b)$ noktası; noktaya üstten dikey ok, sağ üstten çapraz ok (yanında ``$y=\frac{b}{a}x$'') ve sağdan yatay ok geliyor; oklar soldaki $\lim f(a,y)$, $\lim f(x,b)$ ve $\lim f(x,\frac{b}{a}x)$ ifadelerine kıvrık oklarla bağlı.}
+
+\[ \text{ÖR: }\lim_{(x,y)\to(0,0)}\frac{x^2y^2}{x^4+3y^4}=\frac00 \]
+\sekilnotu[15]{Eksen takımı ve orijin $(0,0)$; orijine $x=0$ (dikey, yukarıdan), $y=0$ (yatay) ve $y=x$ doğruları boyunca gelen oklar.}
+\begin{align*}
+x=0\ \text{boyunca}\to\lim_{y\to0}\frac{0}{3y^4}&=\lim_{y\to0}0=0\\
+y=0\ \text{boyunca}\to\lim_{x\to0}\frac{0}{x^4}&=\lim_{x\to0}0=0\\
+\intertext{\hfill $\leftarrow$ farklı çıkana kadar devam.}
+y=x\ \text{boyunca}\to\lim_{x\to0}\frac{x^4}{x^4+3x^4}&=\lim_{x\to0}\frac14=\frac14
+\end{align*}
+$\dfrac14\neq0$ \quad \underline{limit yoktur.}
+
+Eğer sağlayaydı $y=x^2,\ y=x^3,\ldots$'e bakabilirdik.
+\[ \text{ÖR: }\lim_{(x,y)\to(0,0)}\frac{x^3y}{x^6+y^2} \]
+\begin{gather*}
+x=0\ \text{boyunca}\to\lim_{y\to0}\frac{0}{y^2}=0\ \Big/\ y=0\ \text{boyunca}\to\lim_{x\to0}\frac{0}{x^6}=0\\
+y=x\ \text{boyunca}\to\lim_{x\to0}\frac{x^4}{x^6+x^2}=\lim_{x\to0}\frac{x^2}{x^4+1}=0\\
+y=x^2\ \text{//}\to\lim_{x\to0}\frac{x^5}{x^6+x^4}=\lim_{x\to0}\frac{x}{x^2+1}=0\\
+y=x^3\ \text{//}\to\lim_{x\to0}\frac{x^6}{x^6+x^6}=\frac12\ \to\ \frac12\neq0
+\end{gather*}
+limiti yoktur.
+
+\[ \lim_{(x,y)\to(0,1)}\frac{x+y-1}{\sqrt{x^2+(y-1)^2}}\qquad\text{limit var olm. ispatla.} \]
+\sekilnotu[15]{Eksenler; $y$ ekseni üzerinde $(0,1)$ noktası; noktaya yukarıdan $x=0$ doğrusu boyunca inen ok.}
+\[ x=0\ \text{boyunca}\Rightarrow\lim_{y\to1}\frac{y-1}{\sqrt{(y-1)^2}}=\frac{y-1}{|y-1|}\ \to\ \begin{cases}\displaystyle\lim_{y\to1^+}\frac{y-1}{y-1}=1\\[2mm]\displaystyle\lim_{y\to1^-}\frac{y-1}{-(y-1)}=-1\end{cases} \]
+1 nokt. limit yoktur. $(0,1)$ noktasında limit yoktur.
+
+\[ \text{ÖR: }\lim_{(x,y)\to(0,0)}\frac{4xy}{\sqrt{x^2+y^2}}=\frac00\ \to\ \text{sadeleştirme ile }\tfrac00\text{ dan kurtulma }\times \]
+\[ \hookrightarrow\ \text{Belli yönlerde yaklaşma:}\quad\begin{array}{l}x=0\\ y=0\\ y=x\quad y=x^3\\ y=x^2\end{array} \]
+Kutupsal dönüşüm:
+\begin{gather*}
+\left.\begin{array}{l}x=r\cos\theta=0\\ y=r\sin\theta=0\end{array}\right\}\to r=0\\
+x^2+y^2=r^2\\
+\lim_{r\to0}\frac{4r^2\cos\theta\sin\theta}{\sqrt{r^2}}=\lim_{r\to0}4r\cos\theta\sin\theta
+\end{gather*}
+\okunamadi{=0}\ \ limit sonucu var ve 0'dır.
+
+\[ \text{ÖR: }\lim_{(x,y)\to(2,-1)}\frac{5\cdot(x-2)^3\cdot(y+1)}{(x-2)^6+2(y+1)^2}=\frac00 \]
+\begin{center}
+$\times$ Çarpanlara ayırma \qquad $\times$ Belli yönlerde yaklaşma \qquad Kutupsal dönüşüm $\checkmark$
+\end{center}
+\sekilnotu[15]{Eksenler ve $(2,-1)$ noktası ($x$ ekseninde $2$, $y$ ekseninde $-1$ işaretli); noktaya $x=2$ (dikey, yukarıdan) ve $y=-1$ (yatay, soldan) boyunca gelen oklar, kesikli $y=x-3$ doğrusu (altında ``$y=x-3$; $-1$, $2$''); sol altta dışa doğru bir ok. Üstteki yan notlar oklarla soldaki hesaplara bağlı.}
+\begin{gather*}
+y=-1\ \text{boyunca:}\quad\lim_{x\to2}\frac{0}{(x-2)^6}=0\\
+x=2\ \text{boyunca:}\quad\lim_{y\to-1}\frac{0}{2(y+1)^2}=\lim_{y\to-1}0=0\\
+y=x-3\ \text{boyunca:}\quad\lim_{x\to2}\frac{5(x-2)^4}{(x-2)^6+2(x-2)^2}\\
+\lim_{x\to2}\frac{5(x-2)^2}{(x-2)^4+2}=\frac02=0
+\end{gather*}
+Kutupsal Dönüşüm:
+\[ \begin{array}{lll}(x,y)\to(0,0)&r\cos\theta=x&x-2=r\cos\theta\\ x\to2&r\sin\theta=y&y+1=r\sin\theta\ \ !\\ y\to-1&r\cos\theta=0&\\ &r\sin\theta=0\ \to\ \underline{\underline{r=0}}&\end{array} \]
+\begin{align*}
+\lim_{r\to0}\frac{5\cdot r^3\cos^3\theta\cdot r\sin\theta}{r^6\cos^6\theta+2r^2\sin^2\theta}&=\lim_{r\to0}\frac{5r^2\cos^3\theta\sin\theta}{r^4\cos^6\theta+2\sin^2\theta}\\
+&=\lim_{r\to0}\frac{5r^2\cos^3\theta\cdot\sin\theta}{r^4\cos^6\theta+2\sin^2\theta}=\frac{0}{2\sin^2\theta}=0
+\end{align*}
+$\sin\theta\neq0$ iken sonuç 0'dır.\\
+Eğer $\sin\theta=0$ olursa $\frac00$ belirsizliği devam eder. Bu da bize bu limitin olmadığını gösterir.
+
+\sayfa{16}
+\subsection{Çok Değişkenli Fonksiyonlarda Süreklilik}
+$f(x,y)$'nin $(a,b)$ nokt. da sürekli olabilmesi için:
+\begin{enumerate}[label=(\arabic*),nosep]
+\item $f(a,b)$ tanımlı olmalı [$(a,b)$ nokt. $f(x,y)$'nin tanım kümesinde olmalıdır]
+\item $\displaystyle\lim_{(x,y)\to(a,b)}f(x,y)$ var olmalı.
+\item $\displaystyle\lim_{(x,y)\to(a,b)}f(x,y)=f(a,b)$
+\end{enumerate}
+Her yönde sürekli olmalı
+\sekilnotu[16]{Yazıdan bulut biçimli bir şekle ok çiziliyor: şeklin içinde bir noktaya her yönden gelen oklar; şeklin yanında büyük bir onay işareti ($\checkmark$).}
+
+\subsubsection{Parçalı olmayan fonksiyonlarda süreklilik}
+\begin{gather*}
+f(x,y)=x^2+y^2-1\ \to\ \text{sürekli old. en geniş küme}\ \mathbb{R}^2\\
+f(x,y)=\frac{x^2+y^2}{x+y}\ \to\ \text{sürekli old. en geniş küme}\\
+x+y=0\ \to\ \underline{x=-y}\qquad\mathbb{R}^2-\{(x,y)\mid x=-y,\ x,y\in\mathbb{R}\}\\
+f(x,y)=\sqrt{x-y+2}\ \to\ \text{sürekli old. en geniş küme}\\
+x-y+2\ge0\qquad x-y+2\\
+\mathbb{R}^2-\{(x,y)\mid x-y+2<0,\ x,y\in\mathbb{R}\}
+\end{gather*}
+
+\subsubsection{Parçalı fonksiyonlarda süreklilik}
+\[ f(x,y)=\begin{cases}x^2+y^2, & (x,y)\neq(1,-2)\ \text{iken}\\ k, & (x,y)=(1,-2)\ \text{iken}\end{cases} \]
+her $(x,y)$ için sürekli ise $k$ kaçtır?
+\[ \begin{array}{ccc}\displaystyle\lim_{(x,y)\to(1,-2)}\overset{(x^2+y^2)}{f(x,y)}&=&f(1,-2)\\ \downarrow&&\downarrow\\ 1^2+(-2)^2&=&k\end{array}\ \Longrightarrow\ \begin{array}{l}1+4=k\\ 5=k\end{array} \]
+
+\[ \text{ÖR: }f(x,y)=\begin{cases}\dfrac{xy}{x^2+y^2}, & (x,y)\neq(0,0)\\[2mm] 0, & (x,y)=(0,0)\end{cases}\qquad\underset{0\ \ \ 0}{x^2+y^2=0} \]
+sürekli old. en geniş aralık ?
+\[ \lim_{(x,y)\to(0,0)}\underset{\substack{\uparrow\\ \tfrac00}}{\frac{xy}{x^2+y^2}}\ \overset{?}{=}\ \underset{\substack{\downarrow\\ 0}}{f(0,0)}\ \Longrightarrow\ (0,0)\ \text{noktası süreksizdir.} \]
+\begin{gather*}
+x=0\ \text{boyunca}:\ \lim_{y\to0}\frac{0}{y^2}=0\\
+y=0\ \text{boyunca}:\ \lim_{x\to0}\frac{0}{x^2}=0\\
+y=x\ \text{boyunca}:\ \lim_{x\to0}\frac{x^2}{2x^2}=\frac12
+\end{gather*}
+$\dfrac12\neq0$ \quad limit yoktur.
+
+\[ f(x,y)=\begin{cases}\dfrac{2x^2y-x^3}{x^2+y^2}, & (x,y)\neq(0,0)\\[2mm] 0, & (x,y)=(0,0)\end{cases}\quad\text{olar. veriliyor.} \]
+Buna göre, $f(x,y)$ fonks. $(0,0)$ nokt. da sürekli mi?
+
+$x$'e göre kısmi türev
+\[ f_x(x,y)=\begin{cases}\dfrac{(4xy-3x^2)\cdot(x^2+y^2)-(2x^2y-x^3)\cdot2x}{(x^2+y^2)^2}, & (x,y)\neq(0,0)\\[2mm] 0, & (x,y)=(0,0)\end{cases} \]
+\[ f_x(x,y)=\begin{cases}\dfrac{4xy^3-x^4-3x^2y^2}{(x^2+y^2)^2}, & (x,y)\neq(0,0)\\[2mm] 0, & (x,y)=(0,0)\end{cases} \]
+\[ \lim_{(x,y)\to(0,0)}f_x(x,y)=\underbrace{f_x(0,0)}_{0} \]
+\[ \lim_{(x,y)\to(0,0)}\frac{4x\cdot y^3-x^4-3x^2y^2}{(x^2+y^2)^2}\ \begin{array}{l}\nearrow\ x=0:\ \displaystyle\lim_{y\to0}\frac{0}{y^4}=0\\[2mm] \to\ y=0:\ \displaystyle\lim_{x\to0}\frac{-x^4}{x^4}=-1\\[2mm] \searrow\end{array} \]
+$0\neq-1$\\
+limit yoktur.\\
+Sürekli değildir.
+
+İlk başta $x$'e göre kısmi türev alınıp daha sonra sürekliliğine bakılır
+
+\sayfa{17}
+\subsection{Kısmi Türev}
+$f(x,y)$ veya $f(x,y,z)$ \hfill $\displaystyle\left.\frac{\partial f}{\partial x}\right|_{(1,2)}=f_x(1,2)$
+\[ \frac{\partial f}{\partial x}=f_x\qquad\frac{\partial f}{\partial y}=f_y\qquad\left.\frac{\partial f}{\partial y}\right|_{\substack{x=1\\ y=0}}=f_y(1,0) \]
+\[ \text{ÖRN: }f(x,y)=x^2y^3-5xy^2+x^3-2y+1 \]
+\begin{align*}
+\text{a)}\ \frac{\partial f}{\partial x}&=\,?\ \Rightarrow\ 2xy^3-5y^2+3x^2\\
+\text{b)}\ \frac{\partial f}{\partial y}&=\,?\ \Rightarrow\ 3x^2y^2-10xy-2\\
+\text{c)}\ \frac{\partial^2f}{\partial x^2}&=f_{xx}=2y^3+6x\\
+\text{d)}\ \frac{\partial^2f}{\partial y^2}&=f_{yy}=6x^2y-10x\\
+\text{e)}\ \frac{\partial^2f}{\partial y\,\partial x}&=f_{xy}=6xy^2-10y
+\end{align*}
+\begin{center}
+$f_{xy}=f_{yx}$\\ $\uparrow$\\ önce $x$, daha sonra $y$'ye göre türev alınır
+\end{center}
+\[ \text{ÖRN: }f(x,y,z)=xyz+e^{x^2}+\cos(xy)-\ln z \]
+\[ \frac{\partial^3f}{\partial x\,\partial y\,\partial z}=f_{zyx}=1 \]
+
+\subsection{Kısmi Türevde Limit Tanım Kuralları}
+\[ f(x,y)\ \begin{array}{ll}\to&f_x(x,y)=\displaystyle\lim_{h\to0}\frac{f(x+h,y)-f(x,y)}{h}\\[4mm] \searrow&f_y(x,y)=\displaystyle\lim_{h\to0}\frac{f(x,y+h)-f(x,y)}{h}\end{array} \]
+\[ \text{ÖRN: }f(x,y)=x^2+y^2 \]
+a) $f_x$ limit tanım kuralına göre bulunuz.\\
+b) $f_y$ \ // \ // \ // \ // \ //
+\begin{align*}
+\text{a)}\ \lim_{h\to0}\frac{(x+h)^2+y^2-x^2-y^2}{h}&=\lim_{h\to0}\frac{2xh+h^2}{h}\\
+&=\lim_{h\to0}(2x+h)=2x
+\end{align*}
+\begin{align*}
+\text{b)}\ \lim_{h\to0}\frac{x^2+(y+h)^2-x^2-y^2}{h}&=\lim_{h\to0}\frac{2yh+h^2}{h}=\lim_{h\to0}(2y+h)\\
+&=2y
+\end{align*}
+\begin{gather*}
+f(x,y,z)\ \to\ f_x=\lim_{h\to0}\frac{f(x+h,y,z)-f(x,y,z)}{h}\\
+\hookrightarrow\ f_y=\lim_{h\to0}\frac{f(x,y+h,z)-f(x,y,z)}{h}\\
+\hookrightarrow\ f_z=\lim_{h\to0}\frac{f(x,y,z+h)-f(x,y,z)}{h}
+\end{gather*}
+
+\subsection{Kısmi Türevin Geometrik Yorumu}
+\sekilnotu[17]{Üç boyutlu eksenler ($z$ yukarı, $y$ sağa, $x$ sol alta); $y=2$ ve $x=1$ düzlemlerini gösteren iki düzlem (dikey bir çerçeve ve eğik bir paralelkenar) bir yüzey parçasını ($f(x,y)$, ok ile işaretli) keser; kesişim eğrileri kalın çizilmiş. Ortak noktadan geçen iki teğet doğru ``$f_x(1,2)$'' ve ``$f_y(1,2)$'' diye etiketli; $x$ ekseninde $1$, $y$ ekseninde $2$ işaretli.}
+$f_x(1,2)=\ \underline{y=2\ \text{düzleminde}}$ $f(x,y)$ fonks. teğet doğrunun eğimini bulunuz.\\
+$f_y(1,2)=\ x=1$ düzleminde teğet doğ. eğim. bul.
+\begin{gather*}
+f_x(1,2)=f(x,2)\\
+f_2'(1)=f_x(1,2)\ \text{eğim}\\
+f_y(1,2)=\ldots\ \text{eğim}
+\end{gather*}
+
+\subsection{Toplam Diferansiyel}
+$z=f(x,y)$ girdiler $x$ ve $y$ \okunamadi{denir}. Çıktı $z$ olu\okunamadi{r}
+\sekilnotu[17]{Üç boyutlu eksenler ($z$ yukarı, $y$ sağa, $x$ sol alta); ortada bulut biçimli bir çizim (yüzeyi temsil ediyor).}
+\begin{gather*}
+\Delta z=f_x\cdot\Delta x+f_y\cdot\Delta y\\
+\Rightarrow\ dz=\frac{\partial z}{\partial x}\cdot dx+\frac{\partial z}{\partial y}\,dy
+\end{gather*}
+Toplam diferansiyel
+
+$f(x,y)=z$ \quad $(1,3)\to(1{,}1,\,3)\to x$'teki $0{,}1$'lik değişimi bulmak için toplam diferansiyel uygulanır
+\begin{gather*}
+dz=f_x(1,3)\cdot dx+f_y(1,3)\cdot dy\\
+\Rightarrow\ dz=5\underset{0{,}1}{dx}-3\underset{0}{dy}=\underline{\underline{0{,}5}}
+\end{gather*}
+
+ÖRN: $f(x,y)=(x^2+y-2)^4+(x-y+2)^3$ fonks. $(1,-2)$ nokt. daki toplam türevi $df$'i bulunuz.
+\begin{gather*}
+df=f_x(1,-2)\cdot dx+f_y(1,-2)\cdot dy\\
+f_x(x,y)=4(x^2+y-2)^3\cdot2x+3(x-y+2)^2\cdot1\\
+f_x(1,-2)=-141\qquad f_y(x,y)=4(x^2+y-2)^3\cdot1+3(x-y+2)^2\cdot(-1)\\
+f_y(1,-2)=-183\qquad df(1,-2)=\underline{-141\cdot dx-183\,dy}
+\end{gather*}
+
+ÖRN: $x=r\sin\theta\cos\varphi$ bağımlı değ. $x$ olac. biçimde toplam d.f. nedir?
+\begin{align*}
+dx&=\frac{\partial x}{\partial r}\cdot dr+\frac{\partial x}{\partial\theta}\cdot d\theta+\frac{\partial x}{\partial\varphi}\cdot d\varphi\\
+\Rightarrow\ dx&=(\sin\theta\cos\varphi)\,dr+(r\cos\theta\cos\varphi)\,d\theta-r\sin\theta\sin\varphi)\,d\varphi
+\end{align*}
+
+\sayfa{18}
+\subsection{Kısmi Türevde Zincir Kuralı}
+$f(x,y)$ veya $f(x,y,z)$
+\[ \frac{\partial f}{\partial x}=f_x\ \text{veya}\ \frac{\partial f}{\partial y}=f_y\ \ldots \]
+\[ \text{ÖRN: }f(x,y)=x^2y-y^2+x\cdot y^3-2x+1 \]
+\[ \text{a)}\ \frac{\partial f}{\partial x}=2xy+y^3-2\qquad\text{b)}\ \frac{\partial f}{\partial y}=x^2-2y+3xy^2 \]
+$f(x,y)$ başka değişkenlere bağlı olarak yazılırsa zincir kuralı uygulanır.
+\[ x=u+2v\qquad y=3uv\ \cdots\Rightarrow\ \frac{\partial f}{\partial u} \]
+\begin{gather*}
+\text{ÖRN: }f(x,y)=x^2y^3+3xy-2x+1\\
+x=2u+3v\qquad y=u^2\cdot v
+\end{gather*}
+\[ \text{a)}\ \frac{\partial f}{\partial u}=\,?\qquad\frac{\partial f}{\partial x}\cdot\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\cdot\frac{\partial y}{\partial u} \]
+\[ =(2xy^3+3y-2)\cdot2+(3x^2y^2+3x)\cdot2uv \]
+\[ \text{b)}\ \left.\frac{\partial f}{\partial v}\right|_{\substack{u=1\\ v=2}}=\,?\qquad\frac{\partial f}{\partial x}\cdot\frac{\partial x}{\partial v}+\frac{\partial f}{\partial y}\cdot\frac{\partial y}{\partial v}= \]
+\begin{gather*}
+=(2xy^3+3y-2)\cdot3+(3x^2y^2+3x)\cdot u^2\\
+=396+400=796\,\footnotemark
+\end{gather*}
+\footnotetext{Claude notu: $(3x^2y^2+3x)u^2=792$ olduğundan muhtemelen $396+792=1188$ olmalı.}
+\[ \text{ÖRN: }f(x,y,z)=x^2+y^2+z^2+1\qquad\begin{array}{l}x=p^2+r^2\\ y=pr\\ z=2p-3r\end{array} \]
+\[ \frac{\partial f}{\partial r}=\,? \]
+\[ \frac{\partial f}{\partial x}\cdot\frac{\partial x}{\partial r}+\frac{\partial f}{\partial y}\cdot\frac{\partial y}{\partial r}+\frac{\partial f}{\partial z}\cdot\frac{\partial z}{\partial r}= \]
+\[ =2x\cdot2r+2y\cdot p+2z\cdot(-3)=4xr+2yp-6z \]
+ÖRN: $F=F(x-y,\,y-z,\,z-x)$ fonks. da $u=x-y,\ v=y-z,\ w=z-x$ dönüşümleri yapılırsa $\dfrac{\partial f}{\partial x}+\dfrac{\partial f}{\partial y}+\dfrac{\partial f}{\partial z}$ toplamı ne olur?
+\[ \begin{array}{l}F=F(u,v,w)\\ u=x-y\\ v=y-z\qquad w=z-x\end{array} \]
+\[ \left\{\begin{array}{l}\dfrac{\partial F}{\partial x}=\dfrac{\partial F}{\partial u}\cdot\dfrac{\partial u}{\partial x}+\dfrac{\partial F}{\partial w}\cdot\dfrac{\partial w}{\partial x}\\[3mm] =F_u\cdot1+F_v\cdot0-F_w=F_u-F_w\end{array}\right. \]
+\begin{align*}
+\frac{\partial F}{\partial y}&=\frac{\partial F}{\partial u}\cdot\frac{\partial u}{\partial y}+\frac{\partial F}{\partial v}\cdot\frac{\partial v}{\partial y}+\frac{\partial F}{\partial w}\cdot\frac{\partial w}{\partial y}\\
+&=F_u\cdot(-1)+F_v\cdot1+F_w\cdot0=F_v-F_u\\
+\frac{\partial F}{\partial z}&=\frac{\partial F}{\partial u}\cdot\frac{\partial u}{\partial z}+\frac{\partial F}{\partial v}\cdot\frac{\partial v}{\partial z}+\frac{\partial F}{\partial w}\cdot\frac{\partial w}{\partial z}\\
+&=F_u\cdot0+F_v\cdot(-1)+F_w\cdot1=F_w-F_v\qquad\frac{\partial F}{\partial x}+\frac{\partial F}{\partial y}+\frac{\partial F}{\partial z}=0
+\end{align*}
+
+\[ \text{ÖRN: }\frac{\partial}{\partial y}\left[f(xy,e^{xy})\right]\ \text{ifadesinin eşiti?} \]
+\begin{align*}
+u=xy\quad v=e^{xy}&\ \Rightarrow\ f(u,v)\\
+\frac{\partial f(u,v)}{\partial y}&=\frac{\partial f}{\partial u}\cdot\frac{\partial u}{\partial y}+\frac{\partial f}{\partial v}\cdot\frac{\partial v}{\partial y}\\
+&=\frac{\partial f}{\partial u}\cdot x+\frac{\partial f}{\partial v}\cdot e^{xy}\cdot x
+\end{align*}
+
+\subsection{Kısmi Türevde Kapalı Fonksiyon Türevi}
+\[ x^2y+z^3x+zy=x^2+y^2-1\ \to\ \begin{array}{l}\text{Kapalı fonksiyon}\\ \text{türevi;}\end{array} \]
+\[ \frac{\partial z}{\partial x}=\,?\qquad\frac{\partial y}{\partial x}=\,?\qquad\frac{\partial x}{\partial z}=\,?\ \to\ \begin{array}{l}\text{değişkenler}\\ \text{eşitliğin herhangi}\\ \text{bir tarafında yalnız}\\ \text{kalamaz.}\end{array} \]
+\[ \text{ÖRN: }x^2y+z^3x+zy=x^2+y^2-1\qquad\frac{\partial z}{\partial x}=\,? \]
+\[ 2xy+3z^2\frac{\partial z}{\partial x}\cdot x+z^3\cdot1+\frac{\partial z}{\partial x}\cdot y=2x \]
+\begin{center}
+$y$ sabit\\ $z\to x$'e bağlı fonksiyon\\ $x\to x$'e göre türev
+\end{center}
+ardından $\dfrac{\partial z}{\partial x}$'i yalnız bırakınca türevi bulunmuş olur.
+\begin{gather*}
+\frac{\partial z}{\partial x}\cdot(3z^2x+y)=2x-2xy-z^3\\
+\frac{\partial z}{\partial x}=\frac{2x-2xy-z^3}{3z^2x+y}
+\end{gather*}
+\[ \text{ÖR: }e^{xy}+z^2x=\cos(zx)+\ln x-2\ \text{ ise }\ \frac{\partial y}{\partial z}=\,? \]
+$x=$ sabit\\ $y\to z$'ye bağlı fonks.\\ $z$'ye göre türev
+\begin{gather*}
+e^{xy}\cdot x\cdot\frac{\partial y}{\partial z}+2zx=-\sin(zx)\cdot x\\
+\frac{\partial y}{\partial z}=\frac{-x\sin(zx)-2zx}{x\cdot e^{xy}}\ \leftarrow\ x\cdot e^{xy}\cdot\frac{\partial y}{\partial z}=-x\cdot\sin(zx)-2zx
+\end{gather*}
+\[ \text{ÖRN: }\begin{array}{l}u=x^3y-y^2+x\\ v=3xy-x^2\end{array}\quad\text{denklem sistemi veriliyor.} \]
+$x=-1,\ y=1$ old. noktada $\left(\dfrac{\partial x}{\partial u}\right)_v$ ve $\left(\dfrac{\partial y}{\partial u}\right)_v$ ifadelerin değerini bulunuz.
+\[ \underline{\text{1. adım}}\qquad\begin{array}{l}x=x(u,v)\\ y=y(u,v)\end{array}\quad\text{alınmalı} \]
+\[ \underline{\text{2. adım}}\qquad x=-1,\ y=1 \]
+\begin{gather*}
+1=3x^2\cdot\frac{\partial x}{\partial u}\cdot y+x^3\cdot\frac{\partial y}{\partial u}-2y\cdot\frac{\partial y}{\partial u}+\frac{\partial x}{\partial u}\\
+0=3\cdot\frac{\partial x}{\partial u}\cdot y+3x\cdot\frac{\partial y}{\partial u}-2x\cdot\frac{\partial x}{\partial u}\\
+1=3\frac{\partial x}{\partial u}-\frac{\partial y}{\partial u}-2\frac{\partial y}{\partial u}+\frac{\partial x}{\partial u}\\
+0=3\frac{\partial x}{\partial u}-3\frac{\partial y}{\partial u}+2\frac{\partial x}{\partial u}
+\end{gather*}
+\[ \left.\begin{array}{l}1=4\dfrac{\partial x}{\partial u}-3\dfrac{\partial y}{\partial u}\\[3mm] 0=5\dfrac{\partial x}{\partial u}-3\dfrac{\partial y}{\partial u}\end{array}\right] \]
+\[ \Rightarrow\ \left(\frac{\partial x}{\partial u}\right)_v=\frac{5}{3}\qquad\left(\frac{\partial x}{\partial u}\right)_v=-1\,\footnotemark \]
+\footnotetext{Claude notu: sayfanın alt kenarında kesik; muhtemelen $\left(\frac{\partial y}{\partial u}\right)_v=-\frac{5}{3}$ ve $\left(\frac{\partial x}{\partial u}\right)_v=-1$ olmalı.}
+
+\sayfa{19}
+\subsection{Gradyan Vektörü}
+$f(x,y)$ veya $f(x,y,z)$ çok değişkenli fonksiyonlardan elde edilen vektöre denir.
+\[ f(x,y)\to\nabla f=(f_x,f_y)\ \Big/\ f(x,y,z)\to\nabla f=(f_x,f_y,f_z) \]
+\sekilnotu[19]{Bulut biçimli bir şekil (yanında ``$f(x,y)$''); içinde iki dikey ok: $(0,-2)$ noktasından ``$\nabla f(0,-2)$'' ve $(1,3)$ noktasından şeklin dışına uzanan ``$\nabla f(1,3)$''.}
+Bir fonksiyona dik bir vektördür.
+\[ \text{ÖRN: }f(x,y)=x^2y+y^3-x+1\ \text{ ise gradyan vektörü }(\nabla f)=\,? \]
+\[ \nabla f=(2xy-1,\ x^2+3y^2)\qquad\nabla f(1,1)=(1,4) \]
+\sekilnotu[19]{Küçük bir bulut içinde $(1,1)$ noktasından yukarı doğru ok; okun ucunda ``$(1,4)$''.}
+\[ \text{ÖRN: }f(x,y,z)=x^2+y^2+z^2+1\ \text{ ise }\nabla f(1,1,-2)=\,? \]
+\[ \nabla f=(2x,2y,2z)\qquad\nabla f(1,1,-2)=(2,2,-4) \]
+fonksiyona dik gradyan vektör
+\[ \text{ÖRN: }f(x,y,z)=e^{x+y}\cos z+(y+1)\sin^{-1}x\ \to\ \arcsin x \]
+fonks. için $\nabla f$'i $\left(0,0,\frac{\pi}{6}\right)$ nokt. da hesaplayınız.
+\sekilnotu[19]{Bulut biçimli bir şekil; içinde $(0,0,\pi/6)$ noktasından yukarı doğru ok, yanında ``$\nabla f(0,0,\pi/6)$ gradyan vektör''.}
+\begin{align*}
+\nabla f&=(f_x,f_y,f_z)\\
+\nabla f&=\Bigl(\cos z\cdot e^{x+y}\cdot1+(y+1)\cdot\frac{1}{\sqrt{1-x^2}},\\
+&\qquad e^{x+y}\cdot1\cdot\cos z+\sin^{-1}x,\ -e^{x+y}\cdot\sin z\Bigr)\\
+\nabla f(0,0,\pi/6)&=\Bigl(\frac{\sqrt3}{2}\cdot1+1,\ 1\cdot\frac{\sqrt3}{2}\cdot1+0,\ 1\cdot\bigl(-\tfrac12\bigr)\Bigr)\\
+&=\Bigl(\frac{\sqrt3}{2}+1,\ \frac{\sqrt3}{2},\ -\frac12\Bigr)
+\end{align*}
+
+\subsection{Yönlü Türev}
+$f(x,y)$ veya $f(x,y,z)\to$ Bir fonksiyonun bir yön boyunca (vektör) türevini alıca\okunamadi{z}. Böylece fonksiyonun o noktada ``$\cup$'' veya ``$\cap$'' olup olmadığını anlayacağız.
+\sekilnotu[19]{Bulut biçimli bir yüzey (``$f(x,y)$''); üzerinde $(x_0,y_0)$ noktası ve oradan geçen bir kesit; altında ``$\cap$'' ve ``$\cup$'' işaretleri.}
+\[ D_{\vec{u}}f(x_0,y_0)=\nabla f(x_0,y_0)\cdot\frac{\vec{u}}{|\vec{u}|}\qquad\text{(dot product)'ı yapım} \]
+ÖRN: $f(x,y)=x^2y+y^3+xy-2$ fonks. nun $A(1,-2)$ nokt. da $\vec{u}=(1,3)$ vektörü boyunca yönlü türevi$=\,?$
+\begin{gather*}
+D_{\vec{u}}f(1,-2)=\nabla f(1,-2)\cdot\frac{\vec{u}}{|\vec{u}|}\\
+\nabla f=(f_x,f_y)=(2xy+y,\ x^2+3y^2+x)\qquad\nabla f(1,-2)=(-6,14)\\
+\frac{\vec{u}}{|\vec{u}|}=\frac{(1,3)}{\sqrt{1+9}}=\left(\frac{1}{\sqrt{10}},\frac{3}{\sqrt{10}}\right)\\
+D_{\vec{u}}f(1,-2)=(-6,14)\cdot\left(\frac{1}{\sqrt{10}},\frac{3}{\sqrt{10}}\right)\\
+=-\frac{6}{\sqrt{10}}+\frac{42}{\sqrt{10}}=\frac{36}{\sqrt{10}}
+\end{gather*}
+
+ÖRN: $f(x,y,z)=x^2+y^2+z^2+1$ fonks. nun $A(1,2,-1)$ nokt. da $B(2,1,-2)$ nokt. a doğru yönlü türevi$=\,?$
+\begin{gather*}
+A\longrightarrow B\qquad\overrightarrow{AB}=(1,-1,-1)\qquad\frac{\overrightarrow{AB}}{|\overrightarrow{AB}|}=\frac{(1,-1,-1)}{\sqrt3}\\
+=\left(\frac{1}{\sqrt3},\frac{-1}{\sqrt3},\frac{-1}{\sqrt3}\right)\\
+\nabla f=(f_x,f_y,f_z)=(2x,2y,2z)\\
+\nabla f(1,2,-1)=(2,4,-2)\\
+D_{\overrightarrow{AB}}f(1,2,-1)=(2,4,-2)\cdot\left(\frac{1}{\sqrt3},\frac{-1}{\sqrt3},\frac{-1}{\sqrt3}\right)\\
+=\frac{2}{\sqrt3}-\frac{4}{\sqrt3}+\frac{2}{\sqrt3}=\underline{\underline{0}}
+\end{gather*}
+\sekilnotu[19]{Bulut biçimli bir şekil; içinde bir noktadan çıkan eğri, eğriye teğet bir yön oku ve küçük bir dik açı işareti; şeklin sağ altında yıldız işareti.}
+
+\subsection{Maksimum ve Minimum Yönlü Türev}
+\begin{itemize}[label=$\ast$,nosep]
+\item Yönlü türev max değerini yön vektörünün $\nabla f$ olması durumunda gerçekleştirir.
+\item Yönlü türev min değerini yön vektörünün $-\nabla f$ olması durumunda gerçekleştirir.
+\end{itemize}
+ÖRN: $f(x,y)=x^2y+xy-1$ fonks. nun $A(1,-3)$ nokt. daki max ve min yönlü türev değer\okunamadi{i}
+\begin{gather*}
+\underline{\text{max}}\quad\vec{u}=\nabla f\qquad\nabla f=(f_x,f_y)=(2xy+y,\ x^2+x)\\
+D=\nabla f\cdot\frac{\vec{u}}{|\vec{u}|}\qquad\nabla f(1,-3)=(-9,2)\qquad\sqrt{85}\\
+\text{max}\Rightarrow D=(-9,2)\cdot\frac{(-9,2)}{\sqrt{81+4}}=\frac{81}{\sqrt{85}}+\frac{4}{\sqrt{85}}=\frac{85}{\sqrt{85}}\ \uparrow\\
+\text{max yönlü türev}\to|\nabla f|=\sqrt{81+4}=\sqrt{85}\\
+\text{min yönlü türev}\to-|\nabla f|=-\sqrt{85}
+\end{gather*}
+ÖRN: $f(x,y,z)=x^2+y^2+z^2-1$ fonks. $(-1,1,2)$ nokt. max ve min yönlü türevi$=\,?$
+\begin{gather*}
+\text{max}=|\nabla f|\qquad\text{min}=-|\nabla f|\qquad\nabla f=(2x,2y,2z)\\
+\nabla f(-1,1,2)=(-2,2,4)\qquad\text{max}=\sqrt{4+4+16}=\sqrt{24}\\
+\text{min}=-\sqrt{24}
+\end{gather*}
+ÖRN: $f(x,y,z)=x^2y+x\sqrt{1+z}$ fonks. $(1,2,3)$ nokt. daki $\vec{v}=(2\hat{\imath}+\hat{\jmath}-2\hat{k})$ vekt. yönündeki yönlü türevi$=\,?$
+\begin{gather*}
+D_{\vec{v}}f(1,2,3)=\nabla f(1,2,3)\cdot\frac{\vec{v}}{|\vec{v}|}\\
+\nabla f=(f_x,f_y,f_z)=\left(2xy+\sqrt{1+z},\ x^2,\ x\cdot\frac12\left(\sqrt{1+z}\right)^{-1}\cdot1\right)\\
+\nabla f(1,2,3)=\left(6,1,\frac14\right)\\
+\frac{\vec{v}}{|\vec{v}|}=\frac{(2,1,-2)}{\sqrt{4+1+4}}=\left(\frac23,\frac13,-\frac23\right)\\
+D_{\vec{v}}f=\left(6,1,\frac14\right)\cdot\left(\frac23,\frac13,-\frac23\right)=4+\frac13-\frac16=\frac{25}{6}
+\end{gather*}
+ÖRN: $f(x,y)=x^2y+e^{xy}\sin y$ fonks. nun $P(1,0)$ nokt. da:\\
+a) en hızlı arttığı ve en hızlı azaldığı yönleri bulunuz.\\
+b) en hızlı arttığı ve en hızlı azaldığı yön. deki doğrultu türevlerini hesaplayınız.
+
+\sayfa{20}
+a) $\nabla f(1,0)\to$ en hızlı arttığı yön $=(0,2)$\\
+$\nabla f(1,0)\to$ en hızlı azaldığı yön $=(0,-2)$
+\begin{align*}
+\nabla f=(f_x,f_y)&=\Bigl(2xy+\sin y\cdot e^{xy}\cdot y,\\
+&\qquad x^2+e^{xy}\cdot x\cdot\sin y+e^{xy}\cdot\cos y\Bigr)\\
+\nabla f(1,0)&=(0,1+1)=(0,2)
+\end{align*}
+b) $|\nabla f(1,0)|=$ en hızlı arttığı yöndeki doğrultu türevi $=\sqrt{0^2+2^2}=2$\\
+$-|\nabla f(1,0)|=$ en hızlı azaldığı yöndeki doğrultu türevi $=-2$
+
+ÖRN: $f(x,y)=x^2+y^2-3xy$ fonks. nun $A(1,3)$ nokt. da $x$ ekseni ile pozitif yönde $60^\circ$ açı yapan vektör boyunca doğrultu türevini hesaplayınız.
+\[ \nabla f(1,3)\cdot\frac{\vec{u}}{|\vec{u}|}=\text{doğrultu türevi} \]
+\[ \nabla f=(f_x,f_y)=(2x-3y,\ 2y-3x)\qquad\nabla f(1,3)=(-7,3) \]
+\sekilnotu[20]{Eksenler ($x$ yatay, $y$ düşey); orijinden $x$ ekseni ile $60^\circ$ yapan bir ok (ucunda ``$(\frac12,\frac{\sqrt3}{2})$''); okun yatay bileşeni $\frac12$, düşey bileşeni $\frac{\sqrt3}{2}$ olarak işaretli.}
+\begin{gather*}
+(-7,3)\cdot\left(\frac12,\frac{\sqrt3}{2}\right)\\
+=-\frac72+\frac{3\sqrt3}{2}
+\end{gather*}
+
+\subsection{Bir Yüzeye Teğet Düzlem Denklemini Bulma (Tangent Plane)}
+\sekilnotu[20]{Bir paralelkenar (düzlem) ve üzerinde ``Nokta'' diye işaretli bir nokta; noktadan düzleme dik yukarı ``$\nabla f(x_0,y_0,z_0)$'' oku; yanında ``$f$'' harfi (yüzey).}
+$f(x,y)$ ve $f(x,y,z)$ birer yüzey. Teğet nokta $\to$ hem düzlem üzerinde hem de yüzey üzerindedir.\\
+$\nabla f=(f_x,f_y,f_z)$ gradyan vektör düzleme dik
+
+\subsubsection{Düzlem denklemi yazma}
+\sekilnotu[20]{Paralelkenar biçiminde bir düzlem; üzerinde $(x_0,y_0,z_0)$ noktası ve düzleme dik yukarı doğru $\vec{N}=(a,b,c)$ oku (küçük dik açı işaretiyle).}
+\begin{itemize}[label=$\ast$,nosep]
+\item Düzleme dik vektör
+\item Düzlemin üzerinde bir nokta.
+\end{itemize}
+\[ \vec{N}=(a,b,c)\qquad a(x-x_0)+b\cdot(y-y_0)+c\cdot(z-z_0)=0 \]
+ÖRN: $x^2+y^2+z^2=3$ yüzeyine $(1,1,1)$ nokt. a çizilen teğet düzlemin denklemi nedir?
+\sekilnotu[20]{Paralelkenar (düzlem) üzerinde $(1,1,1)$ noktası; noktadan düzleme dik yukarı ok, yanında ``$\nabla f(1,1,1)=(2,2,2)$''; solda aynı şeklin küçük bir kopyası ve ``$\nabla f(1,1,1)$'' oku.}
+\begin{align*}
+\text{1. adım}&\quad f(x,y,z)=x^2+y^2+z^2-3\\
+\text{2. adım}&\quad\nabla f=(2x,2y,2z)\qquad\nabla f(1,1,1)=(2,2,2)\\
+\text{3. adım}&\quad2(x-1)+2(y-1)+2(z-1)=0\\
+&\quad2x+2y+2z-6=0\quad\text{teğet düzlem denklemi}
+\end{align*}
+
+ÖRN: $f(x,y)=x^2+y^3-1$ yüzeyine $(1,2)$ noktasında çizilen teğet düzlem denklemi nedir?
+\begin{align*}
+\text{1. adım:}&\quad z=x^2+y^3-1\qquad0=x^2+y^3-z-1\\
+&\quad f(x,y,z)=x^2+y^3-z-1\\
+\text{2. adım:}&\quad z=1+8-1\qquad z=8\qquad(1,2,8)
+\end{align*}
+\sekilnotu[20]{Paralelkenar (düzlem) üzerinde $(1,2,8)$ noktası; noktadan dik yukarı ok, ucunda ``$\nabla f(1,2,8)=(2,12,-1)$''.}
+\begin{align*}
+\text{3. adım:}&\quad\nabla f=(2x,3y^2,-1)\\
+&\quad\nabla f(1,2,8)=(2,12,-1)\\
+\text{teğet düz. denk.}\to&\quad2(x-1)+12(y-2)-1\cdot(z-8)=0\\
+&\quad2x+12y-z-18=0
+\end{align*}
+
+\subsection{Bir Yüzeye Normal Doğru Denklemini Bulma}
+$f(x,y)$ ve $f(x,y,z)$ \quad normal doğru
+\sekilnotu[20]{Bulut biçimli bir yüzey; üzerinde $(x_0,y_0,z_0)$ noktası, noktadan yukarı ``$\nabla f(x_0,y_0,z_0)$'' oku (dik açı işaretiyle) ve aşağı uzanan düz çizgi (normal doğru); yanlarda ``normal doğru'' ve ``normal doğru $\parallel\nabla f(\ldots)$'' notları.}
+Uzayda doğru denk.: $(x_0,y_0,z_0)$ \quad $\vec{u}=(a,b,c)$
+\[ \frac{x-x_0}{a}=\frac{y-y_0}{b}=\frac{z-z_0}{c}=t \]
+ÖRN: $x^2+y^2+z^3=3$ yüzeyine $(1,1,1)$ nokt. dan çizilen normal doğrunun denk.?
+\sekilnotu[20]{Elips içinde $(1,1,1)$ noktası ve noktadan yukarı ``$\nabla f(1,1,1)$'' oku (dik açı işaretiyle); yanında eğik bir doğru üzerinde ``$(1,1,1)$'' ve ok ucunda ``$\nabla f(1,1,1)=(2,2,3)$''.}
+\begin{align*}
+\text{1. adım:}&\quad f(x,y,z)=x^2+y^2+z^3-3\\
+\text{2. adım:}&\quad\nabla f(1,1,1)=\,?\qquad\nabla f=(2x,2y,3z^2)\qquad\nabla f(1,1,1)=(2,2,3)\\
+\text{3. adım:}&\quad t=\frac{x-1}{2}=\frac{y-1}{2}=\frac{z-1}{3}\\
+&\quad x=2t+1\qquad y=2t+1\qquad z=3t+1
+\end{align*}
+ÖRN: $f(x,y)=x^2+y^2-1$ yüzeyine $(1,3)$ nokt. dan çizilen normal doğrunun denklemi$=\,?$
+\begin{align*}
+\text{1. adım:}&\quad z=x^2+y^2-1\qquad f(x,y,z)=x^2+y^2-z-1\\
+\text{2. //}:&\quad z=1+9-1\qquad z=9\qquad(1,3,9)\\
+\text{3. //}:&\quad\nabla f(1,3,9)=(2x,2y,-1)=(2,6,-1)\\
+\text{4. //}:&\quad\text{normal doğru}\to\frac{x-1}{2}=\frac{y-3}{6}=\frac{z-9}{-1}=t
+\end{align*}
+
+\subsection{Çok Değişkenli Fonksiyonlarda Lineer Yaklaşım Fonksiyonu Bulma}
+\sekilnotu[20]{Bulut biçimli yüzey (``$f(x,y)$'') ve ona değen eğik bir düzlem (paralelkenar; oklu yazı ``$ax+by+cz=d$''); değme noktası $(a,b)$ işaretli.}
+\[ L(x,y)=f(a,b)+f_x(a,b)\cdot x+f_y(a,b)\cdot y\,\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $L(x,y)=f(a,b)+f_x(a,b)(x-a)+f_y(a,b)(y-b)$ olmalı.}
+ÖRN: $f(x,y)=x^2-2x^3+y^2+1$ fonks. nun $(-2,1)$ nokt. da $L(x,y)$ lineerizasyon fonksiyonunu bulunuz.
+\begin{gather*}
+L(x,y)=f(-2,1)+f_x(-2,1)\cdot x+f_y(-2,1)\cdot y\\
+f(-2,1)=4+24+1+1=30\,\footnotemark\\
+f_x(x,y)=2x-6x^2\ \Rightarrow\ f_x(-2,1)=-4-24=-28\\
+f_y(x,y)=2y\ \Rightarrow\ f_y(-2,1)=2\\
+L(x,y)=30-28x+2y\ \Rightarrow\ L(x,y)=-28x+2y+30
+\end{gather*}
+\footnotetext{Claude notu: $f(x,y)=x^2-2x^3+y^2+1$ için muhtemelen $f(-2,1)=4+16+1+1=22$ olmalı.}
+
+\end{document}

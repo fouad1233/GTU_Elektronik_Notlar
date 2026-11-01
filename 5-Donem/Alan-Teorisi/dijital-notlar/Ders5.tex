@@ -1,0 +1,183 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Elektrostatik potansiyel ve eş potansiyel yüzeyler}{Ders5.pdf}
+
+\sayfa{1}
+\sekilnotu[1]{$z$, $y$, $x$ eksenli koordinat sistemi; orijinden başlayan, içi kırmızı taralı bir hacimli cisim ve solunda ``$dQ=\rho\,dv$'' yazısı. Cismin içinde $\rho$ yazılı $P'(x',y',z')$ noktası (orijinden bu noktaya $\vec r''$ vektörü), cismin dışında $P(x,y,z)$ noktası; orijinden $P$'ye $\vec r$, $P'$ noktasından $P$'ye $\vec r'$ vektörleri çizilmiş.}
+
+\begin{align*}
+r' &= \left[(x-x')^2 + (y-y')^2 + (z-z')^2\right]^{1/2}\\
+\vec r'' &= \overrightarrow{OP'} = x'\,\vec e_x + y'\,\vec e_y + z'\,\vec e_z\\
+\vec r &= x\,\vec e_x + y\,\vec e_y + z\,\vec e_z
+\end{align*}
+\[ \vec E = -\operatorname{grad}V \]
+\[ \vec r' = \vec r - \vec r'' = x\,\vec e_x + y\,\vec e_y + z\,\vec e_z - x'\,\vec e_x - y'\,\vec e_y - z'\,\vec e_z \]
+
+\[ \int_v dV = \frac{1}{4\pi\varepsilon_0}\int_v \frac{dQ}{r'} \]
+\[ V = \frac{1}{4\pi\varepsilon_0}\int_v \frac{\rho}{r'}\,dv \]
+\formulkutu{V = \frac{1}{4\pi\varepsilon_0}\int \frac{\rho}{r'}\,dv \qquad \text{(coulomb potansiyel)}}
+
+\noindent potansiyel fonksiyonu
+\begin{align*}
+V(x,y,z) &= \frac{1}{4\pi\varepsilon_0}\iiint\limits_{x',y',z'=-\infty}^{\infty}\frac{\rho(x',y',z')}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\,dx'\,dy'\,dz' + V_0
+\end{align*}
+
+\begin{align*}
+\vec E = -\operatorname{grad}V &= -\operatorname{grad}\Bigl\{\frac{1}{4\pi\varepsilon_0}\iiint\limits_{x',y',z'=-\infty}^{+\infty}\frac{\rho(x',y',z')}{r'}\,dx'\,dy'\,dz' + V_0\Bigr\}\\
+&= -\operatorname{grad}_{(x,y,z)}\Bigl\{\frac{1}{4\pi\varepsilon_0}\iiint\frac{\rho(x',y',z')}{r'}\,dx'\,dy'\,dz'\Bigr\}
+\end{align*}
+\noindent\textit{(Satırın sonunda $-\operatorname{grad}V_0$ yazılıp üstü çizilmiş.)}
+\[ = -\frac{1}{4\pi\varepsilon_0}\iiint\limits_{x',y',z'=-\infty}^{\infty}\rho(x',y',z')\,\underbrace{\operatorname{grad}\!\left(\frac{1}{r'}\right)}_{-\vec r'/r'^{3}}\,dx'\,dy'\,dz' \]
+\[ \Rightarrow\ \vec E(x,y,z) = \frac{1}{4\pi\varepsilon_0}\iiint\frac{\rho(x',y',z')\,\vec r'}{r'^{3}}\,dx'\,dy'\,dz' \]
+
+\sayfa{2}
+\sekilnotu[2]{Sol üstte $z$ (yukarı), $y$ (sağa), $x$ (sol aşağı) eksenleri; orijinde $q$ yazılı, kırmızı $\vec e_x$, $\vec e_y$, $\vec e_z$ birim vektörleri ve orijinden P noktasına giden kesikli $\vec r$ vektörü.}
+
+\[ \vec e_x \perp \vec e_y \perp \vec e_z, \qquad |\vec e_x| = |\vec e_y| = |\vec e_z| = 1 \]
+
+\[ r' = \sqrt{r^2 + r''^2 - 2\cdot r\cdot r''\cos\varphi} \qquad \text{(cosinüs teoremi)} \]
+
+\[ b = |z| = |x + iy| = \sqrt{x^2 + y^2} \]
+
+\sekilnotu[2]{Karmaşık düzlem: dikey eksen $y=\mathrm{Im}(z)$, yatay eksen $x=\mathrm{Re}(z)$. Orijin O; yatay eksende A noktası (O'dan uzaklık $a$, altta yay ile gösterilmiş); sol üstte $z=x+iy$ noktası. O'dan $z$'ye kırmızı $b$ doğrusu (O'da $\psi$ açısı), O'dan A'ya ve $z$'den A'ya kırmızı doğrular.}
+
+\begin{align*}
+|z - z_A| &= |x + iy - a| = |b\cos\psi + i\,b\sin\psi - a|\\
+&= |(b\cos\psi - a) + i\,b\sin\psi|
+\end{align*}
+\[ z_A = a > 0 \]
+
+\[ b = |z| \]
+\[ \psi = \arctan\!\left(\frac{y}{x}\right) \in [-\pi,\pi], \qquad \arg(z) = \psi \ \ (\text{psi}) \]
+\[ z = x + iy = \underbrace{b\cos\psi}_{x} + i\,\underbrace{b\sin\psi}_{y} \]
+\[ z = |z|\Bigl(\cos(\underbrace{\arg z}_{\psi}) + i\sin(\underbrace{\arg z}_{\psi})\Bigr) \]
+
+\begin{align*}
+|z - z_A| &= c = \sqrt{(b\cos\psi - a)^2 + (b\sin\psi)^2}\\
+c &= \sqrt{b^2\cos^2\psi + a^2 - 2ab\cos\psi + b^2\sin^2\psi}\\
+c &= \sqrt{b^2 + a^2 - 2ab\cos\psi}
+\end{align*}
+
+\[ \psi = \pi/2 \ \Rightarrow\ c = \sqrt{b^2 + a^2} \]
+
+\sekilnotu[2]{Dik üçgen: dikey eksende $z=ib$ noktası (dikey kenar $b$), yatay eksende $a$ noktası (yatay kenar $a$), hipotenüs $c$; orijindeki açı $\psi=\pi/2$.}
+
+\sayfa{3}
+\sekilnotu[3]{Dik yamuk: sol kenar dikey, üst kenar $a$, alt kenar $b$; sol kenar üzerinde işaretli bir nokta (üst parçası $b$, alt parçası $a$). Bu noktadan yamuğun sağ üst ve sağ alt köşelerine $c$ uzunluğunda iki doğru çizilmiş; üç üçgen oluşmuş: üstte $S_2$, altta $S_1$, ortada sarı taralı $S_3$ (karşısında kırmızı eğik kenar). Açılar: sağ üst köşede $\alpha$, işaretli noktada $\beta$ ve $\alpha$, sağ alt köşede $\beta$; sol köşelerde ve işaretli noktada dik açı işaretleri.}
+
+\[ \underbrace{\alpha + \beta}_{\pi/2} + \gamma = \pi \]
+\[ \gamma = \pi - \pi/2 = \pi/2 \]
+
+\sekilnotu[3]{Kenarları $a$ (dikey) ve $b$ (yatay) olan dikdörtgen, bir köşegenle ikiye bölünmüş; alt üçgen $S'$ ile işaretli.}
+
+\[ S = a\cdot b, \qquad S' = \frac{S}{2} \]
+
+\[ S_1 = \frac{a\cdot b}{2} = S_2 \]
+\[ S_3 = \frac{c\cdot c}{2} = \frac{c^2}{2} \]
+\[ S_1 + S_2 + S_3 = \frac{ab}{2} + \frac{ab}{2} + \frac{c^2}{2} \]
+\[ \underbrace{S_T}_{\text{trapez}} = ab + \frac{c^2}{2} = \frac{(a+b)(a+b)}{2} \]
+\[ 2ab + c^2 = a^2 + b^2 + 2ab \]
+\[ c^2 = a^2 + b^2 \]
+
+\noindent OGR
+\[ \underbrace{e^{i\alpha} = \cos\alpha + i\sin\alpha}_{\text{Euler formülü}}, \qquad e^{-i\alpha} = \cos\alpha - i\sin\alpha \]
+
+\begin{align*}
+e^{i(x+y)} &= \cos(x+y) + i\sin(x+y)\\
+e^{ix+iy} &= e^{ix}\cdot e^{iy} = (\cos x + i\sin x)(\cos y + i\sin y)\\
+&= \cos(x+y) + i\sin(x+y)
+\end{align*}
+\[ \Downarrow \]
+\[ \underbrace{(\cos x\cos y - \sin x\sin y)}_{\cos(x+y)} + i\,\underbrace{(\sin x\cos y + \cos x\sin y)}_{\sin(x+y)} \]
+
+\sayfa{4}
+\noindent Sonsuzda küresel cismin noktasal yük gibi davrandığını ispatlayalım
+
+\[ r' = \sqrt{r^2 + r''^2 - 2r\,r''\cos\psi} \]
+
+\begin{align*}
+&\frac{1}{4\pi\varepsilon_0}\iiint_{v}\frac{\rho(x',y',z')}{(r^2 + r''^2 - 2rr''\cos\psi)^{1/2}}\,dv\\
+&= \frac{1}{4\pi\varepsilon_0}\iiint\limits_{\substack{x',\,y',\,z'\\ (v)}}\frac{\rho(x',y',z')}{r\left[1 - \frac{2}{r}\,r''\cos\psi + \frac{r''^2}{r^2}\right]^{1/2}}\,dx'\,dy'\,dz'\\
+&= \frac{1}{4\pi\varepsilon_0 r}\int_v \rho(x',y',z')\Bigl[1\underbrace{- \frac{2}{r}\,r''\cos\psi + \Bigl(\frac{r''}{r}\Bigr)^2}_{\ll 1}\Bigr]^{-1/2}dv
+\end{align*}
+
+\[ r \gg r'', \qquad \frac{r''}{r} \ll 1, \qquad \Bigl(\frac{r''}{r}\Bigr)^2 \lll 1 \]
+\[ (1-x)^{-1/2} \approx 1 + \frac{1}{2}x - \frac{1}{8}\,?\,x^2 - \ldots \qquad |x| \ll 1 \]
+
+\[ = \frac{1}{4\pi\varepsilon_0 r}\int_v \rho(x',y',z')\,\underbrace{\Bigl[1 + \overbrace{\frac{r''}{r}\cos\psi - \frac{r''^2}{2r^2}}^{\ll 1}\Bigr]}_{1} \]
+
+\[ \approx \frac{1}{4\pi\varepsilon_0 r}\underbrace{\int_v \rho(x',y',z')\,dv}_{Q\ \text{dersek}} = \frac{Q}{4\pi\varepsilon_0 r} \]
+
+\[ \underset{r\to\infty}{\frac{1}{r'}} = \frac{1}{r\sqrt{1\underbrace{-\frac{2r''}{r}\cos\psi + \Bigl(\frac{r''}{r}\Bigr)^2}_{0}}} = \frac{1}{r\cdot\sqrt{1}} = \frac{1}{r} \]
+
+\sekilnotu[4]{Sol uçta ortak bir noktadan çıkan eğik $r''$ doğrusu ve iki yatay doğru (üstte $r'$, altta $r$); eğik doğru ile alt doğru arasında $\alpha$ açısı işaretli.}
+
+\sayfa{5}
+\[ r = r' + r''\cos\psi \]
+\[ r' \approx r - r''\cos\psi \approx r\left[1 - \frac{r''}{r}\cos\psi\right] \]
+\[ 1/r' \approx \frac{1}{r}\left[1 - \frac{r''}{r}\cos\psi\right]^{-1} \]
+\[ \approx \frac{1}{r}\left(1 + \frac{r''}{r}\cos\psi\right) = 1/r \]
+
+\[ e^{ir} \approx e^{ir'} = e^{i(r - r''\cos\psi)} \]
+\[ = e^{ir}\cdot e^{-ir''\cos\psi} \]
+
+\noindent $f(x,y,z) = \text{sbt} \ \Rightarrow$ yüzey ailesi verir
+\[ r = \sqrt{x^2 + y^2 + z^2} = \text{sabit} \]
+
+\noindent O zaman $V(x,y,z) = \text{sbt} \ \Rightarrow$ Eş potansiyel yüzeyleri
+\[ \vec E = -\operatorname{grad}V \]
+
+\noindent $f(x,y,z)$: \ $x = x(s)$, \ $y = y(s)$, \ $z = z(s)$ \ ($C$ eğrisi)
+\[ f(C) = f\bigl(x(s),\,y(s),\,z(s)\bigr) \]
+\[ \Rightarrow\ \frac{\partial f}{\partial C} \mathrel{\widehat{=}} \frac{\partial f}{\partial s} \]
+\[ = \frac{\partial f}{\partial x}\frac{\partial x}{\partial s} + \frac{\partial f}{\partial y}\frac{\partial y}{\partial s} + \frac{\partial f}{\partial z}\frac{\partial z}{\partial s} \]
+
+\noindent $f(x,y,z)$ fonksiyonun parametrik denklemleri $x = x(s)$, $y = y(s)$ ve $z = z(s)$ olan bir $C$ eğrisi boyunca türevi
+
+\sayfa{6}
+\begin{align*}
+\frac{\partial f}{\partial C} &= \underbrace{\left(\frac{\partial f}{\partial x}\,\vec e_x + \frac{\partial f}{\partial y}\,\vec e_y + \frac{\partial f}{\partial z}\,\vec e_z\right)}_{\operatorname{grad}f\,=\,\vec\nabla f}\\
+&\qquad \underbrace{\left(\frac{\partial x}{\partial s}\,\vec e_x + \frac{\partial y}{\partial s}\,\vec e_y + \frac{\partial z}{\partial s}\,\vec e_z\right)}_{\vec t\ \text{(teğet denklem)}}
+\end{align*}
+
+\[ \frac{\partial f}{\partial C} = \operatorname{grad}f\cdot\vec t \]
+\[ \frac{\partial V}{\partial C} = \operatorname{grad}V\cdot\vec t = -\vec E\cdot\vec t \]
+\[ \vec E\cdot\vec t = -\frac{\partial V}{\partial C} \]
+
+\sekilnotu[6]{Eğri $C:\ x(s),\,y(s),\,z(s)$; eğri üzerinde iki noktada teğet vektörler ($\vec t$) çizilmiş, eğrinin sağ alt ucunda küçük bir ok işareti (muhtemelen $\vec r$) var.}
+
+\noindent Şayet $V = \text{sabit}$ ise $\Rightarrow\ -\dfrac{\partial V}{\partial C} = 0$ olur
+
+\noindent $\vec E\perp\vec t$, \quad $\vec E\perp\vec t_1$, \ $\vec E\perp\vec t_2$, \ \ldots, \ $\vec E\perp\vec t_n$
+
+\sekilnotu[6]{Eğri bir yüzey parçası; altında okla ``$V=\text{sbt}$''. Yüzey üzerinde $\vec t$ teğetli $C$ eğrisi ve kırmızı bir $C_1$ eğrisi çizilmiş, kesişim noktasında kırmızı ``$\vec E\perp\vec t$'' yazılı; altta kırmızı ``$V_1=\text{sbt}$''. Sağdan gelen uzun kırmızı ok bu yüzeyi aşağıdaki ``$\vec E\perp\vec t$'' satırına bağlıyor.}
+
+\noindent $\vec E \underset{\text{içinde}}{\subset} S$ olabilir
+
+\[ V(C) = \text{sbt} \]
+\[ \frac{\partial V}{\partial C} = \frac{\partial\,\text{sbt}}{\partial C} = 0 \]
+\noindent $\Rightarrow$ Eş potansiyel yüzey üzerinde
+\[ \vec E\cdot\vec t = 0 \qquad\qquad \vec E\perp\vec t \]
+\[ \Rightarrow\ \text{Eş pot. yüzeyi}\ \Rightarrow\ \frac{\partial V}{\partial C_1} = \vec E\cdot\vec t_1 \]
+\noindent $\Rightarrow\ \vec E \perp$ \okunamadi{S} \ (altında: \okunamadi{S'ye dik})
+
+\sayfa{7}
+\sekilnotu[7]{Sol üstte kavisli bir çizgi (üzerinde $\ell$ yazılı) ve teğet vektör; kırmızı $\vec E$ oku yukarı doğru çizilmiş.}
+
+\[ \vec E \parallel \vec t_\ell, \qquad \ell\ \text{alan çizgisidir} \]
+\[ \vec t_\ell = \frac{dx}{ds}\,\vec e_x + \frac{dy}{ds}\,\vec e_y + \frac{dz}{ds}\,\vec e_z \]
+\[ \frac{E_x}{\frac{dx}{ds}} = \frac{E_y}{\frac{dy}{ds}} = \frac{E_z}{\frac{dz}{ds}} \]
+
+\[ \vec E = E_x\,\vec e_x + E_y\,\vec e_y + E_z\,\vec e_z \]
+\[ \vec t_\ell = \frac{dx}{ds}\,\vec e_x + \frac{dy}{ds}\,\vec e_y + \frac{dz}{ds}\,\vec e_z \]
+\[ \vec E \propto \vec t_\ell \ \Rightarrow\ \frac{E_x}{\frac{dx}{ds}} = \frac{E_y}{\frac{dy}{ds}} = \frac{E_z}{\frac{dz}{ds}} \]
+
+\noindent Alan çizgileri:
+\formulkutu{\frac{E_x}{dx} = \frac{E_y}{dy} = \frac{E_z}{dz} = \text{sabit}}
+
+\[ \vec a \parallel \vec b \]
+\[ \vec b = k\,\vec a \]
+\[ k = \frac{b_x}{a_x} = \frac{b_y}{a_y} = \frac{b_z}{a_z} = \text{sbt} \]
+
+\end{document}

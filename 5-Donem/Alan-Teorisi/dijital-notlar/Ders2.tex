@@ -1,0 +1,78 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Ders 2: Hareket yasası, kütle-hız ilişkisi, elektriksel etkileşim}{Ders2.pdf}
+
+\sayfa{1}
+\section{Çekme yasası}
+\noindent \textcolor{kirmizikalem}{sükunetteki kütle}
+
+\sekilnotu[1]{Solda kütle $m_0$ ve sağa doğru $\vec{F}_0$ oku, üstünde ivme $\vec{\gamma}_0$ (kırmızı); sağda kütle $m_1$ (``kütle'' notu), sola doğru $\vec{F}_1$ oku (``kuvvet'' notu) ve ivme $\vec{\gamma}_1$ (``ivme'' notu).}
+
+\begin{align*}
+  m_1 &= \frac{\gamma_0}{\gamma_1}\,m_0 \\
+  \vec{F}_0 &= m_0\vec{\gamma}_0 = -m_1\vec{\gamma}_1 = -\vec{F}_1 \\
+  \vec{F}_0 &= m_0\frac{d\vec{v}_0}{dt} = -m_1\frac{d\vec{v}_1}{dt} \\
+  \vec{F}_0 &= \frac{d}{dt}\bigl[m_0\vec{v}_0\bigr]
+\end{align*}
+
+\section{Hareket yasası}
+\sekilnotu[1]{Sol altta kırmızı ``$m(v)$'' etiketli cisimden sağa doğru kırmızı $\vec{F}$ oku.}
+\[ \Rightarrow\ \vec{F} = \frac{d}{dt}\bigl[m(v)\,\vec{v}\bigr] \]
+
+\[ m(v) = \frac{m_0}{\sqrt{1-\dfrac{v^2}{c_0^2}}} \]
+
+\sekilnotu[1]{Eğri bir yol: başlangıç noktası ``$\times$'' ve $B$ noktası; yol üzerinde ``$m(v)$'' etiketli cisim, $\vec{F}$ ve $d\vec{r}$ okları (``$dt$''); ``konum vektörü'' notlu bir ok.}
+
+\[ \vec{v} = \frac{d\vec{r}}{dt} \quad\Rightarrow\quad d\vec{r} = \vec{v}\,dt \]
+
+\begin{align*}
+  \frac{d}{dt}\bigl[m(v)\vec{v}\bigr]\cdot\vec{v} &= \left[\frac{dm(v)}{dt}\,\vec{v} + m(v)\,\frac{d\vec{v}}{dt}\right]\cdot\vec{v} \\
+  &= \frac{dm(v)}{dt}\,\underbrace{\vec{v}\cdot\vec{v}}_{v\cdot v} + m(v)\,\underbrace{\frac{d\vec{v}}{dt}\cdot\vec{v}}_{\substack{\frac{d\vec{v}}{dt}\parallel\vec{v} \\ \frac{dv\cdot v}{dt}}}
+\end{align*}
+
+\[ \text{iş} = W_{AB} = \int_A^B \vec{F}\cdot d\vec{r} = \int_A^B \frac{d}{dt}\bigl[m(v)\cdot\vec{v}\bigr]\,\vec{v}\,dt \]
+
+\[ \Rightarrow\ \ = \int_A^B \frac{d}{dt}\bigl[m(v)\,\vec{v}\bigr]\cdot v\,dt \]
+
+\[ \Rightarrow\ \ \kutula{\begin{array}{l} \displaystyle\int f'(t)\,g(t)\,dt \\ = f(t)\,g(t) \\ \displaystyle -\int f(t)\,g'(t)\,dt \end{array}} \qquad\qquad \kutula{\vec{a}\cdot\vec{a} = a^2} \]
+
+\begin{align*}
+  = m(v)\,v\cdot v\Big|_A^B - \int_A^B m(v)\,v\,\frac{dv}{dt}\,dt \qquad\quad = \frac{dm(v)}{dt}\,v^2 + m(v)\,\frac{dv}{dt}\,v = \frac{d}{dt}\bigl[m(v)\,v\bigr]\cdot v
+\end{align*}
+
+\[ = m(v_B)\,v_B^2 - m(v_A)\,v_A^2 - \int_A^B \frac{m_0\,v}{\sqrt{1-\dfrac{v^2}{c_0^2}}}\,dv \]
+
+\begin{align*}
+  {}= W_{AB} &= \frac{m_0}{\sqrt{1-\frac{v_B^2}{c_0^2}}}\,v_B^2 - \frac{m_0}{\sqrt{1-\frac{v_A^2}{c_0^2}}}\,v_A^2 \\
+  &\quad + \frac{c_0^2 m_0}{2}\int_A^B \left(1-\frac{v^2}{c_0^2}\right)^{-1/2}\left(\frac{-2v}{c_0^2}\right)dv
+\end{align*}
+\[ \longrightarrow\ \left.\frac{\left(1-\dfrac{v^2}{c_0^2}\right)^{1/2}}{1/2}\right|_A^B \qquad\qquad \kutula{\begin{array}{l} \displaystyle\int f^n(x)\,f'(x)\,dx \\ \displaystyle = \frac{f^{n+1}(x)}{n+1} + C \end{array}} \]
+
+\begin{align*}
+  &= \frac{m_0 v_B^2}{\sqrt{1-\frac{v_B^2}{c_0^2}}} - \frac{m_0 v_A^2}{\sqrt{1-\frac{v_A^2}{c_0^2}}} \\
+  &\quad + \frac{c_0^2 m_0}{2}\left[2\left(1-\frac{v_B^2}{c_0^2}\right)^{1/2} - 2\left(1-\frac{v_A^2}{c_0^2}\right)^{1/2}\right]
+\end{align*}
+
+\begin{align*}
+  &= \frac{m_0}{\sqrt{1-\frac{v_B^2}{c_0^2}}}\left[v_B^2 + c_0^2\left(1-\frac{v_B^2}{c_0^2}\right)\right] \\
+  &\quad - \frac{m_0}{\sqrt{1-\frac{v_A^2}{c_0^2}}}\left[v_A^2 + c_0^2\left(1-\frac{v_A^2}{c_0^2}\right)\right]
+\end{align*}
+\textit{(Her iki köşeli parantezde $v^2$ ve $-v^2/c_0^2\cdot c_0^2$ terimleri çizilmiş; parantezlerin üstüne ``$c_0^2$'' yazılmış.)}
+
+\sayfa{2}
+\[ = m_0 c_0^2 \left[ \frac{1}{\sqrt{1-\dfrac{v_B^2}{c_0^2}}} - \frac{1}{\sqrt{1-\dfrac{v_A^2}{c_0^2}}} \right] \]
+
+\noindent \textcolor{kirmizikalem}{binom açılımı \quad çok küçük \quad $v_A / v_B \ll c_0$}
+\[ \textcolor{kirmizikalem}{\left(1 - \frac{v_{A/B}^2}{c_0^2}\right)^{-1/2} \approx 1 + \frac{1}{2}\,\frac{v_{A/B}^2}{c_0^2}} \]
+
+\[ \textcolor{kirmizikalem}{\approx m_0 c_0^2 \left[ 1 + \frac{1}{2}\frac{v_B^2}{c_0^2} - 1 + \frac{1}{2}\frac{v_A^2}{c_0^2} \right] = \frac{1}{2} m_0 v_B^2 - \frac{1}{2} m_0 v_A^2} \]
+\[ \textcolor{kirmizikalem}{\approx \frac{1}{2} m_0 \left( v_B^2 - v_A^2 \right)} \]
+
+\section{Elektriksel etkileşim yasası}
+\[ \textcolor{kirmizikalem}{e \approx -1{,}6\cdot 10^{-19}\ \mathrm{C}} \]
+\[ \textcolor{kirmizikalem}{p = -e} \]
+
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\end{document}

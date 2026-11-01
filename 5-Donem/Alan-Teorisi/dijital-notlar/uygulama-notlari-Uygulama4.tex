@@ -1,0 +1,138 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Uygulama 4 -- Yük sistemlerinde potansiyel ve enerji}{Uygulama4.pdf}
+
+\sayfa{1}
+\noindent\underline{Sayfa 27.Pr11}
+
+\sekilnotu[1]{Üstte doğru parçası: sol uçta $A$ noktası (yük $Q$), sağ uçta $B$ noktası (yük $Q$), ortada $C$ noktası (yük $q$). Altta $x$ ekseni (``mesafe ekseni''): $-a$ ($A$'nın altı), $0$, $x_0$ ($C$'nin altı, kesikli dikme) ve $a$ ($B$'nin altı) işaretli. Sağ üstte kutu içinde nokta yük potansiyeli formülü.}
+
+\formulkutu{V=\frac{Q}{4\pi\varepsilon_0\,r}}
+
+a)
+\begin{align*}
+  V_C &= \frac{Q}{4\pi\varepsilon_0(x_0+a)}+\frac{Q}{4\pi\varepsilon_0(a-x_0)} \\
+      &= \frac{Q}{4\pi\varepsilon_0}\Bigl[\frac{1}{a+x_0}+\frac{1}{a-x_0}\Bigr] \\
+      &= \frac{Q}{4\pi\varepsilon_0}\,\frac{2a}{a^2-x_0^2} \\
+  V_C &= \frac{Q}{2\pi\varepsilon_0}\,\frac{a}{a^2-x_0^2}
+\end{align*}
+
+\formulkutu{\text{potansiyel enerji}\quad W_C=qV_C=\frac{qQa}{2\pi\varepsilon_0}\,\frac{1}{a^2-x_0^2}}
+
+b) $q$ yükü serbest bırakılırsa ne olur
+\[ W_T=\overbrace{\underbrace{W_{P_C}}_{\text{C noktasında potansiyel enerji}}}^{\text{potansiyel enerji}}+\overbrace{W_{K_C}}^{0}\ \to\ \text{cisim hareketsiz} \]
+\[ W_T=\frac{qQa}{2\pi\varepsilon_0}\,\frac{1}{a^2-x_0^2} \]
+\[ W_T=W_{P_x}+W_{K_c}=\frac{qQa}{2\pi\varepsilon_0}\,\frac{1}{a^2-x^2}+\frac{1}{2}mv^2 \]
+\[ =\frac{qQa}{2\pi\varepsilon_0}\,\frac{1}{a^2-x_0^2} \]
+\[ v=\sqrt{\frac{aqQ}{m\pi\varepsilon_0}\Bigl(\frac{1}{a^2-x_0^2}-\frac{1}{a^2-x^2}\Bigr)} \]
+
+\sayfa{2}
+\noindent c) Bu hızın 0 olduğu nokta
+
+\medskip
+\noindent $x=x_0$ \ ve $x=-x_0$ \quad $v=0$ olur \quad yük $-x_0$, $x_0$ arasında harmonic hareket yapar
+
+\medskip
+\noindent $x=0$ iken hız maksimumdur
+
+\bigskip
+\noindent d) başlangıçta serbest bırakılmaz ve $v_0$ hızıyla bırakılırsa sonuç nasıl değişir
+
+\medskip
+\noindent C noktasında
+\[ W_T=W_{P_C}+W_{K_C} \]
+\formulkutu{=\frac{qQa}{2\pi\varepsilon_0}\,\frac{1}{a^2-x_0^2}+\frac{1}{2}mv_0^2}
+
+\noindent Herhangi bir $x$ noktasında
+\[ W_T=\frac{qQa}{2\pi\varepsilon_0}\,\frac{1}{a^2-x^2}+\frac{1}{2}mv^2= \]
+\[ =\frac{qQa}{2\pi\varepsilon_0}\,\frac{1}{a^2-x_0^2}+\frac{1}{2}mv_0^2 \]
+(Kırmızı kalemle iki satırda da $2\pi\varepsilon_0$ ve $\tfrac{1}{2}$ içindeki $2$'ler çizilmiş.)
+\[ \Rightarrow\ v^2=\frac{aQq}{m\pi\varepsilon_0}\,\frac{1}{a^2-x_0^2}-\frac{qQa}{m\pi\varepsilon_0}\,\frac{1}{a^2-x^2}+v_0^2 \]
+\[ v=\sqrt{\frac{qQa}{m\pi\varepsilon_0}\Bigl(\frac{1}{a^2-x_0^2}-\frac{1}{a^2-x^2}\Bigr)+v_0^2} \]
+
+\noindent salındığı noktalar $x_1$ ve $x_{-1}$ olsun
+\begin{align*}
+  v(x_1) &= 0 \\
+  v(-x_1) &= 0
+\end{align*}
+\[ \frac{qQa}{m\pi\varepsilon_0}\Bigl(\frac{1}{a^2-x_0^2}-\frac{1}{a^2-x_1^2}\Bigr)+v_0^2=0 \]
+
+\sayfa{3}
+\[ \Rightarrow\ \frac{1}{a^2-x_1^2}=\frac{1}{a^2-x_0^2}+\frac{m\pi\varepsilon_0}{aqQ}\,v_0^2 \]
+\[ x_1=\pm\sqrt{a^2-\frac{1}{\dfrac{1}{a^2-x_0^2}+\dfrac{m\pi\varepsilon_0 v_0^2}{aqQ}}} \]
+
+\noindent $x_1$ her zaman $x_0$'dan her zaman büyüktür.
+
+\medskip
+\noindent{\color{kirmizikalem}\underline{S.27 Pr12}}
+
+\sekilnotu[3]{Eksenler: $z$ yukarı, $x$ sağa, orijin $O$. $z$ ekseninde $z=h$ noktasında yük $Q$ (``$A$'' etiketli) ve $z=-h$ noktasında yük $Q$ (``$A_2$'' etiketli). Üstteki yükten $x$ ekseni üzerindeki $x$ noktasına kesikli çizgi çizilmiş, üzerinde $\sqrt{x^2+h^2}$ yazılı.}
+
+\noindent a) $P(x,0,0)$ noktasında \quad $V=?$ \ $\vec E=??$
+\[ V(x,0,0)=\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{\sqrt{x^2+h^2}}+\frac{Q_1}{4\pi\varepsilon_0}\,\frac{1}{\sqrt{x^2+h^2}} \]
+\[ \vec E=-\operatorname{grad}V=-\frac{\partial}{\partial x}\Bigl(\frac{2Q}{4\pi\varepsilon_0}\,\frac{1}{\sqrt{x^2+h^2}}\Bigr)\vec e_x \]
+\formulkutu{\vec E=\frac{Q}{2\pi\varepsilon_0}\,\frac{x}{(x^2+h^2)^{3/2}}\,\vec e_x}
+
+\noindent b) $P(x_0,0,0)$ noktasına $-q$ yükü yerleştiriliyor. Bu noktanın sahip olduğu potansiyel enerji ve üzerine etki eden kuvvet nedir?
+\begin{align*}
+  W_{P_0} &= -q\,V(x_0,0,0) = -\frac{qQ}{2\pi\varepsilon_0}\,\frac{1}{\sqrt{x_0^2+h^2}} \\
+  \vec F &= -q\,\vec E(x_0,0,0) = -\frac{qQ}{2\pi\varepsilon_0}\,\frac{x_0}{(x_0^2+h^2)^{3/2}}\,\vec e_x
+\end{align*}
+
+\sayfa{4}
+\noindent c) $-q$ yükü $v_0=0$ ile serbest bırakılıyor. Bu yükün $(-a,0,0)$ ve $(a,0,0)$ arasında salınım yaptığını gösteriniz
+\[ W_T=W_{P_{x_0}}+\overbrace{W_{K_{x_0}}}^{0}=\frac{-qQ}{2\pi\varepsilon_0\sqrt{x_0^2+h^2}} \]
+
+\noindent herhangi bir $x$ noktasında
+\[ W_T=W_{P_x}+\frac{1}{2}mv^2 \]
+\[ \frac{-qQ}{2\pi\varepsilon_0\sqrt{x_0^2+h^2}}=\frac{-qQ}{2\pi\varepsilon_0\sqrt{x^2+h^2}}+\frac{1}{2}mv^2 \]
+(Kırmızı kalemle $2\pi\varepsilon_0$ ve $\tfrac{1}{2}$ içindeki $2$'ler çizilmiş.) \qquad $a=x_0$
+\[ v=\pm\sqrt{\frac{qQ}{m\pi\varepsilon_0}\Bigl(\frac{1}{\sqrt{x^2+h^2}}-\frac{1}{\sqrt{x_0^2+h^2}}\Bigr)} \]
+\begin{align*}
+  x &= x_0 \\
+  x &= -x_0
+\end{align*}
+
+\noindent d) $\vec v_0=v_0\,\vec e_x$ olsun
+
+\noindent $v_0$ pozitif veya negatiftir
+
+\noindent yükün $(-x_1,0,0)$ ve $(x_1,0,0)$ arasında salınım yaptığını gösteriniz, $x_1$'i bulunuz
+
+\noindent $x_1>a$ olduğunu gösteriniz.
+\[ W_T=W_{P_{x_0}}+\frac{1}{2}mv_0^2=\frac{-qQ}{2\pi\varepsilon_0\sqrt{x_0^2+h^2}}+\frac{1}{2}mv_0^2 \]
+\noindent herhangi bir $x$ noktasında
+\[ W_T=\frac{-qQ}{2\pi\varepsilon_0\sqrt{x^2+h^2}}+\frac{1}{2}mv^2 \]
+
+\sayfa{5}
+\[ =\frac{-qQ}{2\pi\varepsilon_0\sqrt{x_0^2+h^2}}+\frac{1}{2}mv_0^2 \quad\text{($x_0$'daki)} \]
+\[ \Rightarrow\ v=\sqrt{\frac{qQ}{m\pi\varepsilon_0}\Bigl(\frac{1}{\sqrt{x^2+h^2}}-\frac{1}{\sqrt{x_0^2+h^2}}\Bigr)+v_0^2} \]
+
+\noindent $v(-x_1)=0$ ve $v(x_1)=0$ olduğunu gösteriniz.
+\[ \sqrt{\frac{qQ}{m\pi\varepsilon_0}\Bigl(\frac{1}{\sqrt{x_1^2+h^2}}-\frac{1}{\sqrt{x_0^2+h^2}}\Bigr)+v_0^2}=0 \]
+\[ \frac{qQ}{m\pi\varepsilon_0}\,\frac{1}{\sqrt{x_1^2+h^2}}-\frac{qQ}{m\pi\varepsilon_0}\,\frac{1}{\sqrt{x_0^2+h^2}}+v_0^2=0 \]
+\[ \Rightarrow\ \frac{1}{\sqrt{x_1^2+h^2}}=\frac{1}{\sqrt{x_0^2+h^2}}-\frac{m\pi\varepsilon_0}{qQ}\,v_0^2 \]
+\[ x_1^2+h^2=\frac{1}{\Bigl(\dfrac{1}{\sqrt{x_0^2+h^2}}-\dfrac{m\pi\varepsilon_0 v_0^2}{qQ}\Bigr)^2} \]
+\[ \Rightarrow\ x_1=\pm\sqrt{\frac{1}{\Bigl(\dfrac{1}{\sqrt{x_0^2+h^2}}-\dfrac{m\pi\varepsilon_0 v_0^2}{qQ}\Bigr)^2}-h^2} \]
+\[ x_1>a=x_0 \]
+
+\sayfa{6}
+\sekilnotu[6]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol alta doğru (kırmızı ok). Orijin merkezli kırmızı bir daire (küre kesiti); içinde $Q$. Yanında ``küre $\rho_s$ yüzeysel yük yoğunluğuna sahip'' yazısı.}
+
+\noindent a) $V=?$
+
+\noindent b) $\vec E$
+
+\noindent c) $V(r)$ ve $\vec E(r)$ r'ye bağımlı değişimi nedir
+\[ Q=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\rho_s\,a^2\sin\theta\,d\phi\,d\theta \]
+\[ Q=4\pi a^2\rho_s\ \Rightarrow\ \rho_s=\frac{Q}{4\pi a^2} \]
+\[ dV=\frac{\rho_s\,ds}{4\pi\varepsilon_0\,r'} \]
+\[ V=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}dV=\int_{\theta=0}^{\pi}\int_{0}^{2\pi}\frac{\rho_s\,ds}{4\pi\varepsilon_0\,r'} \]
+\begin{align*}
+  ds &= a^2\sin\theta\,d\phi\,d\theta \\
+  \rho_s &= \frac{Q}{4\pi a^2}
+\end{align*}
+\[ \vec E=-\operatorname{grad}V \]
+
+\end{document}

@@ -1,0 +1,613 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik Elemanlar}{Yarı iletken ve diyot (s. 1--20)}{Elektronik-elemanlar-notlarim.pdf}
+
+\sayfa{1}
+{\small\color{kursunkalem}(Sol üstte okunamayan kısa bir not: \okunamadi{}.)}
+
+\noindent Kitap (ders içeriğine ok ile bağlanmış): \textit{Physics of Semiconductor Devices}, Sze S. M., 2ed edition.
+
+\noindent \textbf{Ders içeriği:} Katı yapılar, Elektron \okunamadi{için} hareketleri, yalıtkan, iletkenler, yarı iletken fiziği.
+
+\medskip
+\noindent \textcircled{\small 1} Diyot $\rightarrow$ (PN Junction)\quad
+\begin{circuitikz}[scale=0.6, transform shape]\draw (0,0) to[D] (1.6,0);\end{circuitikz}
+
+\noindent \textcircled{\small 2} BJT (Bipolar Junction Transistor)\quad
+\begin{circuitikz}[scale=0.45, transform shape]\draw (0,0) node[npn]{};\end{circuitikz}
+
+\noindent \textcircled{\small 3} FET (Field effect transistor) \ {\small\color{kursunkalem}(üstüne küçük harflerle: ``Alan etkili transistör'')}
+
+\noindent \qquad JFET\ {\small\color{kursunkalem}(altında küçük: ``Junction'')}, \qquad MOSFET $\rightarrow$
+\begin{circuitikz}[scale=0.45, transform shape]\draw (0,0) node[nmos]{};\end{circuitikz}
+\ $\nearrow$ AC, \ $\searrow$ \textcircled{DC}
+
+\section{Kaynaklar}
+\noindent Ders kitabı: $\star$ \textit{Microelectronic Circuits} $\rightarrow$ 2016 \quad (Sedra, Smith) \quad
+--- The Oxford Series in electrical and computer engineering
+
+\noindent Elektronik $\rightarrow$ Mehmet Sait Türköz $\rightarrow$ Birsen Yayınevi, 2004
+
+\section{Değerlendirme}
+\begin{itemize}
+  \item 1 ödev ($\sim$\%\okunamadi{5}), 1 proje $\rightarrow$ \textcircled{LTSpice}
+  \item Vize $\rightarrow$ \%30
+  \item Final $\rightarrow$ \%50
+\end{itemize}
+
+\sayfa{2}
+{\small\color{kursunkalem}(Sol üst köşede küçük: ``Ders 1'')}
+\section{Semiconductors}
+\begin{itemize}
+  \item Intrinsic Semiconductors (Has yarıiletken)
+  \item Doped Semiconductor (katkılı ,,)
+\end{itemize}
+$\rightarrow$ Elemental Semi $\rightarrow$ \fbox{Silicon}, \ Germanyum\\
+$\hookrightarrow$ GaAs $\rightarrow$ Gallium Arsenide, \quad $\rightarrow$ compound semi
+
+\sekilnotu[2]{Silikon kristal kafesi (solda küçük: ``Intrinsic (Has yarıiletken) Silicon''): $3\times3$ düzende içinde $+4$ yazan daireler (iyon çekirdekleri); komşu çekirdekler arasında kovalent bağları gösteren oval çizgiler ve bağların üstünde/altında ``$-$'' (elektron) işaretleri. Sağ üstte (kırmızı) ``Outer shell (dış yörünge)''. Ortadaki çekirdeğin yanında ok ile ``Hole''; sağda ok ile ``covalent \okunamadi{Bonds}''; kırmızı bir çizgi serbest elektrondan ``free electron'' yazısına gidiyor.}
+$0^\circ$K'de tüm bağlar \okunamadi{mükemmel} $\rightarrow$ $T\uparrow$
+
+\subsection{Hole (Elektron boşluğu)}
+{\small\color{kursunkalem}(Sol kenarda eğik, küçük: ``Boşluk hareketi nasıl oluyor?'' \okunamadi{}.)}
+
+\sekilnotu[2]{Boşluğun hareketi: altı satır halinde küçük daire dizileri (her daire bir elektron, üstünde ``$-$''). Her satırda bir daire eksik (boşluk) ve boşluk satır satır sola kayıyor (1. satırda sağdan ikinci konumda, 6. satırda en solda). İlk satırın üstünde küçük bir ok. Sağda mavi/siyah ok $\rightarrow$ ``elektron hareketi''; altında kırmızı ok $\leftarrow$ ``gerçekteki boşluk hareketi''.}
+
+\subsection{Recombination (Rekombinasyon)}
+\sekilnotu[2]{Tek satır daire dizisi, içinde bir boşluk; çizgiyle sağdaki ``free electron'' notuna (üstünde küçük daire içinde elektron işareti) bağlanmış.}
+anhilate: serbest elektronun boşlukla yer değiştirmesi
+
+\noindent Termal dengede (Has yarı iletkende)\\
+Thermal generation $=$ Recombination\\
+\hspace*{1.5em}sıcaklıkla birlikte yeni boş elektron \okunamadi{oluşması}
+
+\sayfa{3}
+\sekilnotu[3]{Sayfanın üstünde, çerçevenin dışına taşan enerji bandı çizimi: üstte yatay çizgi $E_c$ (ok ile ``Conduction Band Energy''), altta yatay çizgi $E_v$ (ok ile ``\okunamadi{Valence} Band Energy''); aralarında dikey ok ve ``Bandgap $\rightarrow$ 1,1 eV''.}
+
+\subsection{Free carriers (Serbest Taşıyıcı)}
+\begin{itemize}
+  \item electrons (Elektron)
+  \item holes (Boşluk)
+\end{itemize}
+
+\noindent (Has yarı iletken)
+\formulkutu{n = p = n_i}
+$\rightarrow$ (3,1) $\rightarrow$ sayfa (138)\\
+$n$: elektron sayısı, \quad $p$: holes (Boşluk) sayısı
+
+\[ n_i = B\,T^{3/2}\,e^{-E_g/2kT} \]
+\begin{itemize}
+  \item $E_g$: Band gap Energy (Band aralığı ,,)
+  \item $B$: Parametre (silikon) $= 7{,}3\cdot10^{15}\ \mathrm{cm^{-3}K^{-3/2}}$
+\end{itemize}
+\[ T = 300\ \mathrm{K} \;\Rightarrow\; n_i = 1{,}5\times10^{10}\ \text{carriers/cm}^3 \]
+silicon $\rightarrow$ $5\cdot10^{22}$ atom/cm$^3$
+
+\subsection{Doped (katkılı) semiconductor}
+\formulkutu{n\cdot p = n_i^2}
+$\hookrightarrow$ Has yarıiletken ve katkılı yarıiletken için geçerli.
+
+\sekilnotu[3]{Katkılı silikon kafesi: $3\times3$ düzende $+4$ daireleri ve aralarında kovalent bağ ovalleri; orta satırın ortasındaki çekirdek $+5$ (büyük daire). Üst satırın ortasında bir serbest elektron (daire içinde ``$-$''), ok ile ``Free electron''. $+5$ çekirdeğinden ok ile ``Pentavalent atom'' $\hookrightarrow$ ``impurity atom''. Çizimden aşağıdaki ``n tipi'' kutusuna kavisli bir ok gidiyor.}
+
+\[ p_n \cdot n_n = n_i^2 \]
+{\small\color{kursunkalem}(Alt indisler daire içine alınmış: $n$ indisleri ``yarıiletkenin tipi'', $i$ indisi ``intrinsic''.)}
+
+\medskip
+\noindent \fbox{n tipi:}
+
+\noindent\fbox{\parbox{0.9\linewidth}{%
+$p_n$ : n-tipi yarıiletkende boşluk sayısı\\
+$n_n$ : \ ,, \quad ,, \quad elektron sayısı}}
+
+\medskip
+\noindent \textbf{Doped semiconductor}
+\begin{itemize}
+  \item n-tipi yarıiletken: çoğunluk taşıyıcıları elektronlar
+  \item p-tipi yarıiletken: çoğunluk taşıyıcı boşluk
+\end{itemize}
+
+\sayfa{4}
+\subsection{p tipi}
+\sekilnotu[4]{Silikon kafesi: $3\times3$ düzende $+4$ daireleri ve kovalent bağ ovalleri; orta satırın ortasındaki çekirdek $+3$. Bu çekirdekten sağa doğru üç ok (etiketlere) ve alttan, boş bağa doğru bir ok çıkıyor.}
+\begin{itemize}
+  \item Trivalent (Bor)
+  \item impurity Atom
+  \item $N_A$: Acceptor Atom (+3 valance electron)\\ \hspace*{1em}$N_A$ : p tipi yarı iletken
+  \item $N_D$: Donor Atoms (+5 valance electron)\\ \hspace*{1em}$\llcorner$ n tipi yarı iletken
+\end{itemize}
+
+\[ n_p \cdot p_p = n_i^2 \]
+$p_p$ : p-tipi yarıiletkendeki boşluk sayısı\\
+$n_p$ = p-tipi yarıiletkendeki elektron sayısı
+
+\medskip
+\noindent\fbox{\parbox{0.9\linewidth}{%
+$p_n \cdot n_n = n_i^2$\\[1mm]
+\textcircled{$N_D$} $\rightarrow$ \fbox{n-tipi} yarıiletken\\[1mm]
+\fbox{$n_n \simeq N_D$}\\[1mm]
+$\Big\{\;\fbox{$p_n = \dfrac{n_i^2}{N_D}$}\;\Big\}$ n tipi yarıiletken}}
+
+\medskip
+\noindent \fbox{p-tipi yarıiletken}
+
+\noindent \fbox{$p_p \simeq N_A$} $\rightarrow$ Acceptor Atom yoğ.
+
+\[ p_p\, n_p = n_i^2 \;\Rightarrow\; \boxed{n_p \simeq \frac{n_i^2}{N_A}} \quad \text{(Elektron sayısı)} \]
+
+\sayfa{5}
+\begin{center}
+\begin{tabular}{lcc}
+  \toprule
+   & n-tipi: & p-tipi: \\ \midrule
+  Çoğunluk taşıyıcıları (Majority carriers) & electrons & holes \\
+  Azınlık taşıyıcıları (minority carriers) & holes & electrons \\ \bottomrule
+\end{tabular}
+\end{center}
+
+\begin{ornek}[3.2]
+  (sayfa 131) n-type silicon, katkı yoğunluğu (dopant concentration) $N_D = 10^{17}/\mathrm{cm}^3$,
+  electron ve boşluk yoğunluğunu $T = 300$ K bulunuz.
+\end{ornek}
+\begin{cozum}
+  \[ n_n = N_D \simeq 10^{17}/\mathrm{cm}^3 \]
+  \[ p_n = \frac{n_i^2}{N_D} \;\Rightarrow\; n_i = 1{,}5\cdot10^{10}/\mathrm{cm}^3 \]
+  \[ p_n = \frac{(1{,}5\cdot10^{10})^2}{10^{17}} = 2{,}25\cdot10^{3}/\mathrm{cm}^3 \]
+\end{cozum}
+
+\section{Current Flow in semiconductors}
+(sürükleme akımı)
+\subsection{Drift Current}
+\[ v_{p\text{-}drift} = \mu_p \cdot E \qquad \text{(Elektrik alanı)} \]
+{\small\color{kursunkalem}(Küçük notlar: $v_{p\text{-}drift}$ için ``hızı''; $\mu_p$ için ``mobilite hole''.)}
+\[ \mu_p = 480\ \mathrm{cm^2/V\!\cdot\!s} \]
+\[ v = \mu\cdot E \quad \text{(hızı; Elektrik alanı)}, \qquad
+   \frac{\mathrm{cm}}{\mathrm{s}} = \mu\cdot\frac{\mathrm{V}}{\mathrm{cm}} \;\Rightarrow\; \frac{\mathrm{cm}^2}{\mathrm{V\cdot s}} \]
+\[ v_{n\,drift} = -\mu_n \cdot E \]
+Elektron mobilitesi $\hookrightarrow$ $1350\ \mathrm{cm^2/V\!\cdot\!s}$
+
+\sayfa{6}
+\sekilnotu[6]{Üç boyutlu dikdörtgen prizma (çubuk); üstünde sağa doğru ok ``$\rightarrow E$''. Ön yüzde ``$+$'' $\rightarrow$ ``Hole'' (sağa ok) ve ``$-$'' $\leftarrow$ ``electrons'' (sola ok).}
+
+\noindent in one second:
+\[ I_p = A\,q\,p\,v_{p\,drift} \]
+\[ A\cdot q\cdot p\cdot v \quad (A:\ \mathrm{cm}^2,\ q:\ \mathrm{C},\ p:\ 1/\mathrm{cm}^3,\ v:\ \mathrm{cm/s}) \;\rightarrow\; \mathrm{C} \]
+
+\[ I_p = A\,q\,p\,\mu_p\,E \]
+{\small\color{kursunkalem}(Soldaki küçük not: ``\okunamadi{deliklerin}''.)}
+
+$\rightarrow$ $J$ $\rightarrow$ current density
+\[ J_p = \frac{I_p}{A} = q\cdot p\cdot\mu_p\cdot E \]
+{\small\color{kursunkalem}(Soldaki küçük not: ``elektronların''.)}
+\[ I_n = -A\cdot q\cdot n\cdot v_{n\,drift} \qquad (v_{n\,drift} = -\mu_n E) \]
+\[ J_n = \frac{I_n}{A} = q\cdot n\cdot\mu_n\cdot E \]
+\[ J = J_p + J_n = q\,(p\mu_p + n\mu_n)\,E \]
+\[ J = \sigma\cdot E \qquad \hookrightarrow \text{conductivity (iletkenlik)} \]
+\[ \rho = \frac{1}{\sigma} = \frac{1}{q\,(p\mu_p + n\mu_n)} \qquad (\rho:\ \text{resistivity}) \]
+\[ \rho = \frac{E}{J}, \qquad \rho = R\,\frac{A}{\ell} \quad (A:\ \text{kesit alanı},\ \ell:\ \text{uzunluk}) \]
+
+\sayfa{7}
+\begin{ornek}[3.3]
+  Resistivity $=$ ?\\
+  a) intrinsic silicon\\
+  b) p-type \ ,, $\rightarrow$ $N_A = 10^{16}/\mathrm{cm}^3$\\[1mm]
+  $n_i = 1{,}5\cdot10^{10}/\mathrm{cm}^3$\\
+  has yarıiletken $\rightarrow$ $\mu_n = 1350\ \mathrm{cm^2/V\!\cdot\!s}$, \ $\mu_p = 470\ \mathrm{cm^2/V\!\cdot\!s}$\\
+  katkılı yarıiletken $\rightarrow$ $\mu_n = 1110\ \mathrm{cm^2/V\!\cdot\!s}$, \ $\mu_p = 400\ \mathrm{cm^2/V\!\cdot\!s}$
+\end{ornek}
+\begin{cozum}
+  \textbf{a)}
+  \[ p = n = n_i = 1{,}5\cdot10^{10}/\mathrm{cm}^3 \]
+  \[ \rho = \frac{1}{q\,(p\mu_p + n\mu_n)} = \frac{1}{1{,}6\cdot10^{-19}\,(1{,}5\cdot10^{10}\cdot 470 + 1{,}5\cdot10^{10}\cdot1350)} \]
+  \[ = 2{,}28\times10^{\okunamadi{5}}\ \Omega\,\mathrm{cm} \;\rightarrow\; \text{Has yarıiletken} \]
+  \textbf{b)} p tipi yarıiletken
+  \[ p_p \simeq N_A = 10^{16} \]
+  \[ n_p = \frac{n_i^2}{N_A} = \frac{(1{,}5\cdot10^{10})^2}{10^{16}} = 2{,}25\cdot10^{4}/\mathrm{cm}^3 \]
+  \[ \rho = \frac{1}{q\,(p\mu_p + n\mu_n)} = \frac{1}{1{,}6\times10^{-19}\,(10^{16}\times400 + 2{,}25\times10^{4}\times1110)} \]
+  \noindent $\displaystyle \simeq \frac{1}{1{,}6\times10^{-19}\times10^{16}\times400} = 1{,}66\ \Omega\,\mathrm{cm}$\footnote{Claude notu: $1/0{,}64 \approx 1{,}56$ olduğundan muhtemelen $1{,}56\ \Omega\,\mathrm{cm}$ olmalı.}
+\end{cozum}
+
+\sayfa{8}
+\section{Diffusion Current}
+\sekilnotu[8]{Üç boyutlu çubuk; sol uca ok ile ``Hole injection'', çubuğun içinde çok sayıda ``$+$'' işareti; altında sağa doğru ok ve ``$x$''.}
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt]
+  \draw[->] (-0.3,0) -- (3.4,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,2.2) node[above] {$p(x)$};
+  \draw[murekkep,domain=0:3.2,smooth,variable=\x] plot ({\x},{1.9*exp(-1.1*\x)});
+  \node[left,align=right,font=\small] at (0,1.2) {Hole\\ concentration};
+\end{tikzpicture}
+\end{center}
+
+\formulkutu{J_p = -q\,D_p\,\frac{dp(x)}{dx}}
+$D_p$: difüzyon sabiti (Boşluk)
+\[ J_n = q\,D_n\,\frac{dn(x)}{dx} \qquad (D_n:\ \text{elektron difüzyon sabiti}) \]
+
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt]
+  \draw[->] (0,0) -- (3.4,0);
+  \draw[->] (0,0) -- (0,2.2) node[above] {$n(x)$};
+  \draw[murekkep,domain=0:3.2,smooth,variable=\x] plot ({\x},{1.9*exp(-1.3*\x)});
+  \node[left,align=right,font=\small] at (0,1.2) {Electron\\ concentration};
+\end{tikzpicture}
+\end{center}
+Diffusion constants $\hookrightarrow$ $D_p = 12\ \mathrm{cm^2/s}$, \quad $D_n = 35\ \mathrm{cm^2/s}$
+
+\begin{ornek}[3.4]
+  $p(x) = p_0\,e^{-x/L_p}$\\
+  Find the hole density at $x = 0$.\\
+  $p_0 = 10^{16}/\mathrm{cm}^3$, \ $L_p = 1\,\mu$m, \ $D_p = 12\ \mathrm{cm^2/s}$\\
+  $I_p = {}$? \quad (Bar cross sectional Area $10\ \mu\mathrm{m}^2$)
+\end{ornek}
+\begin{cozum}
+  \begin{align*}
+    J_p &= -q\,D_p\,\frac{dp(x)}{dx} \\
+        &= -q\,D_p\,\frac{d}{dx}\left[p_0\,e^{-x/L_p}\right] \\
+        &= q\,\frac{D_p}{L_p}\,p_0\,e^{-x/L_p} \\
+    J_p(0) &= q\,\frac{D_p}{L_p}\,p_0 \\
+        &= 1{,}6\cdot10^{-19}\cdot\frac{12}{1\cdot10^{-4}}\cdot10^{16} = 192\ \mathrm{A/cm^2}
+  \end{align*}
+  \[ I_p = J_p\times A \;\Rightarrow\; 192\cdot10^{-7} = 19{,}2\ \mu\mathrm{A} \]
+\end{cozum}
+
+\sayfa{9}
+\section{Relationship between $D$ and $\mu$}
+\noindent \fbox{Einstein relationship}
+\[ \frac{D_n}{\mu_n} = \frac{D_p}{\mu_p} = V_T \]
+$V_T$ $\rightarrow$ Termal Gerilim, Thermal Voltage $\rightarrow$
+\[ V_T = \frac{kT}{q} \]
+{\small\color{kursunkalem}(Çok küçük, silik notlar ok ile: $k$ için ``Boltzmann sabiti'', $T$ için ``sıcaklık'', $q$ için ``\okunamadi{yük}''.)}
+\[ T = 300\ \mathrm{K} \;\Rightarrow\; V_T \simeq 25{,}9\ \mathrm{mV} \]
+\[ \simeq 26\ \mathrm{mV},\ 25\ \mathrm{mV} \]
+
+\sayfa{10}
+{\small\color{kursunkalem}(Sol üst köşede küçük: ``2. Ders'')}
+\section{PN Junction}
+$n_i = 1{,}5\cdot10^{10}$ silikonda \qquad\qquad $n\cdot p = n_i^2$
+
+\sekilnotu[10]{Üç gösterim. (1) Dikdörtgenin sol yarısı ``P-type silicon'', sağ yarısı ``n-type silicon''; her iki uçta kalın metal kontak; sol uçtan ok ile ``Anode'' ve ``metal kontakt'' notu, sağ uçtan ok ile ``Cathode''. (2) Daha küçük kutu: ``Anode --- P | N --- Cathode''. (3) Altında, iki yanında uzantı çizgileri olan diyot sembolü.}
+
+\subsection{Open circuit}
+\sekilnotu[10]{Açık devre PN eklemi: büyük dikdörtgen; sol bölge (köşesinde ``P'') içinde dağınık ``$+$'' işaretleri; ortada dikey iki sütun halinde daire içine alınmış işaretler (solda ``$-$'', sağda ``$+$''; tükenme bölgesi, üstünde süslü parantez); sağ bölge (n) içinde dağınık ``$-$'' işaretleri ve birkaç ``$+$''. Üstte oklar: ``holes diff'' $\rightarrow$ (iki kez), $\leftarrow$ ``electrons diff'' ve altı çizili ``$I_{Diff}$''. Sağ kenarda oval içinde ``uncovered Atom'' ve ona giden uzun, kavisli bir ok.}
+\begin{itemize}
+  \item Depletion Region (Fakirleşmiş bölge) (Burada taşıyıcı yok) (recombination olur)
+  \item Sol bölgenin altında: Majority carriers (çoğunluk T); ilk önce difüzyon gerçekleşir
+  \item Ortada, ok ile $E$: (Elektrik alan oluşur (difüzyon))
+  \item Sağ bölgenin altında: Çoğunluk T
+  \item Sağda: $\leftarrow$ $I_S$ (drift current); $\leftarrow$ holes drift; electrons drift $\rightarrow$
+  \item Band Charges (Hareketsizdir, sabittir) \quad (ok ile tükenme bölgesindeki yüklere bağlı)
+\end{itemize}
+
+\noindent Artıyükler elektrik alanla aynı yönde, eksiler ise ters yönde.
+
+\noindent Dengede $\Rightarrow$ \quad $I_D = I_S$ \quad ($I_D$: difüzyon akımı; \ $I_S$: drift current)
+
+\noindent {\small\color{kursunkalem}Elektrik alan neticesinde}
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt]
+  \draw[->] (0,0) -- (4.6,0) node[right] {$x$};
+  \draw[->] (0,0) -- (0,2.5);
+  \node[rotate=90] at (-0.35,1.25) {Potential};
+  \draw[murekkep] (0,0.1) -- (1.6,0.1) .. controls (2.2,0.1) and (2.1,1.9) .. (2.8,1.9) -- (3.6,1.9);
+  \draw[<->] (3.6,0.1) -- (3.6,1.9);
+  \node[right,align=left] at (3.65,1.0) {Barrier\\ Voltage\\ ($V_0$)};
+\end{tikzpicture}
+\end{center}
+
+\[ V_0 = V_T\,\ln\!\left(\frac{N_A\,N_D}{n_i^2}\right) \]
+$N_A$: Acceptor atom (+3) p tipi; \quad $N_D$: Donor atom (+5) n tipi
+
+\sayfa{11}
+\section{Farklı katkı yoğunluklarında pn jonksiyonu}
+\noindent $N_A > N_D$
+
+\sekilnotu[11]{Dikdörtgen PN eklemi: sol (p) bölgede çoğunlukla ``$+$'' ve birkaç ``$-$'' işareti; ortada dar bir sütun halinde 6 daire içinde ``$-$'' ($-x_p$ ile $0$ arası), onun yanında daha geniş bir bölgede iki sütun halinde daire içinde ``$+$'' ($0$ ile $x_n$ arası); sağ (n) bölgede çoğunlukla ``$-$'' ve birkaç ``$+$''. Altında $-x_p$, $0$, $x_n$ işaretleri; sol altta küçük ``depletion \okunamadi{region}'' notu; $N_A>N_D$ yazısının üstünde çok küçük, okunamayan notlar. Sağda çerçeve içinde $x_n/x_p = N_A/N_D$ (ok ile $x_n$'e küçük bir not: \okunamadi{uzunluk}).}
+
+\[ \left.\begin{aligned} |Q_+| &= q\,A\,x_n\,N_D \\ |Q_-| &= q\,A\,x_p\,N_A \end{aligned}\right\}\;\rightarrow\; q\,A\,x_n\,N_D = q\,A\,x_p\,N_A \]
+\formulkutu{\frac{x_n}{x_p} = \frac{N_A}{N_D}}
+
+\noindent $x_n$ : n tipi bölgedeki fakirleşmiş bölgenin uzunluğu\\
+$x_p$ : p tipi \ ,, \ ,, \ ,, \ ,,
+
+\[ W = x_n + x_p = \sqrt{\frac{2\varepsilon_s}{q}\left(\frac{1}{N_A}+\frac{1}{N_D}\right)V_0} \qquad (W:\ \text{the width of depletion region}) \]
+\[ \varepsilon_s = \varepsilon_r\cdot\varepsilon_0 = (11{,}7)\,(8{,}85\cdot10^{-14}\ \mathrm{F/cm}) \]
+
+\noindent $\displaystyle \frac{x_n}{x_p} = \frac{N_A}{N_D} \;\Rightarrow\; x_p = x_n\,\frac{N_A}{N_D}$\footnote{Claude notu: muhtemelen $x_p = x_n\,N_D/N_A$ olmalı; sağdaki türetmede de böyle kullanılmış.}
+\hfill (sağdaki türetme:)
+\begin{align*}
+  x_n + x_p &= W \\
+  x_n + x_n\,\frac{N_D}{N_A} &= W \\
+  x_n\left(1 + \frac{N_D}{N_A}\right) &= W \\
+  \boxed{x_n = \frac{N_A}{N_A + N_D}\,W} & \\
+  \boxed{x_p = W\,\frac{N_D}{N_A + N_D}} &
+\end{align*}
+
+\[ |Q_+| = |Q_-| = Q_J \]
+\[ Q_J = A\,q\left(\frac{N_A N_D}{N_A + N_D}\right)W \]
+\formulkutu{Q_J = A\sqrt{2\varepsilon_s\,q\left(\frac{N_A N_D}{N_A + N_D}\right)V_0}}
+
+\sayfa{12}
+\section{The PN junction with an Applied Voltage}
+\sekilnotu[12]{Sol üst: ``Open circuit'' (kutulu başlık). P|N dikdörtgeni, uçlarda kalın metal kontaklar; ortada daire içinde ``$-$'' (sol sütun) ve ``$+$'' (sağ sütun) işaretlerinden oluşan dar tükenme bölgesi. Altında oklar $\rightarrow I_D$ ve $\leftarrow I_S$. Daha altta potansiyel basamağı (S biçimli eğri), yüksekliği $V_0$.}
+\sekilnotu[12]{Sağ üst: ``Reverse bias'' (kutulu başlık). Aynı yapı; üstünde dış kaynak $V_R$ (iki uca dolanan teller), tükenme bölgesi daha geniş (solda $-$, sağda $+$ daireleri birbirinden uzak). Altında $\rightarrow I_D$ ve $\leftarrow I_S$. Potansiyel basamağı, yüksekliği $(V_0 + V_R)$.}
+\sekilnotu[12]{Sol alt: ``Forward bias'' (kutulu başlık). Aynı yapı; üstte dış kaynak $V_F$, tükenme bölgesi daha dar (daire sütunları birbirine yakın). Altında uzun ok $\rightarrow I_D$ ve kısa $\leftarrow I_S$. Potansiyel basamağı, yüksekliği $(V_0 - V_F)$.}
+
+\subsection{Reverse}
+\[ W = x_n + x_p = \sqrt{\frac{2\varepsilon_s}{q}\left(\frac{1}{N_A}+\frac{1}{N_D}\right)(V_0 + V_R)} \]
+\[ Q_J = A\sqrt{2\varepsilon_s\,q\left(\frac{N_A N_D}{N_A+N_D}\right)(V_0 + V_R)} \]
+
+\noindent Reverse $\rightarrow$ $I = I_S$
+
+\noindent Forward $\rightarrow$ \fbox{$I = I_S\left(e^{V/V_T} - 1\right)$}
+
+\bigskip
+\sekilnotu[12]{Sağ altta diyot sembolü (anot solda), üstünde sola doğru küçük ok; solda ``$+$'' (yanında kırmızı, okunamayan küçük not), sağda ``$-$''; altında ``$I_S$'' yazısı.}
+\noindent \fbox{$I_D = I_S\,e^{V_D/nV_T}$} \qquad $V_T = \dfrac{kT}{q}$ \ \okunamadi{$\approx 25$ mV}
+
+\medskip
+\noindent $I_S$ sıcaklıktan çok etkilenir
+
+\sayfa{13}
+\section{The PN Junction with applied Voltage}
+{\small\color{kursunkalem}(Sol kenarda küçük bir yıldız işareti.)}
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt, scale=0.95]
+  \draw[->] (-3.2,0) -- (3.4,0) node[right] {$V$};
+  \draw[->] (0,-1.7) -- (0,2.7) node[above] {$I$};
+  \draw[murekkep] (-2.6,-1.6) .. controls (-2.5,-0.5) and (-2.45,-0.05) .. (-2.1,0) -- (0.4,0)
+        .. controls (0.9,0.05) and (1.1,0.6) .. (1.3,1.4) .. controls (1.4,1.8) and (1.5,2.1) .. (1.75,2.5);
+  \node[below,font=\scriptsize] at (-2.4,0) {$-10$ V};
+  \node[below,font=\scriptsize] at (-1.2,0) {$-5$ V};
+  \node[below,font=\scriptsize] at (0.65,0) {$0{,}7$};
+  \node[right,font=\small,align=left] at (2.0,2.3) {Standart Diyot (silikon)};
+\end{tikzpicture}
+\end{center}
+
+\sekilnotu[13]{Grafiğin altında üç diyot gösterimi: (1) diyot sembolü, solda ``$V_1$'' ($+$), sağda ``$V_2$'' ($-$), üstünde küçük bir ok; (2) iki ucunda nokta olan ``P | n'' kutusu; (3) silindirik fiziksel diyot (sağ ucuna yakın kalın bant), sol ucunda ``$+$'', sağ ucunda ``$-$''; üstünde ``ileri'' ve ``$V_1 > V_2$''.}
+
+\noindent \fbox{Reverse Breakdown}
+\begin{itemize}
+  \item[$\rightarrow$] Zenner effect $\rightarrow$ elektrik alanın etkisiyle bağların kopması
+  \item[$\rightarrow$] Avalanche effect
+\end{itemize}
+
+\sayfa{14}
+\section{Capacitive effects}
+\begin{itemize}
+  \item[$\rightarrow$] \fbox{Depletion} or junction capacitance $\rightarrow$ Reverse region
+\end{itemize}
+\[ Q_J = A\sqrt{2\varepsilon_s\,q\,\frac{N_A N_D}{N_A+N_D}\,(V_0 + V_R)} \]
+\[ Q_J = \alpha\sqrt{V_0 + V_R} \]
+\[ \alpha = A\sqrt{2\varepsilon_s\,q\,\frac{N_A N_D}{N_A+N_D}} \]
+
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt]
+  \draw[->] (0,0) -- (4.2,0) node[below] {$V_R$};
+  \draw[->] (0,0) -- (0,2.6) node[left] {$Q_J$};
+  \draw[murekkep] (0,0.2) .. controls (0.1,1.4) and (0.6,1.9) .. (3.0,2.2);
+  \draw[kursunkalem,dashed] (1.3,0) -- (1.3,2.05);
+  \node[below,font=\small] at (1.3,0) {$V_R$};
+  \node[font=\small] at (1.9,2.65) {slope $= C_j$};
+\end{tikzpicture}
+\end{center}
+
+\[ C_j = \left.\frac{dQ_J}{dV_R}\right|_{V_R = V_0} \]
+\[ \boxed{C_j = \frac{\alpha}{2\sqrt{V_0 + V_R}}} \;\longrightarrow\; C_j = \frac{C_{j0}}{\sqrt{1 + \dfrac{V_R}{V_0}}} \qquad (C_{j0}:\ V_R = 0) \]
+{\small\color{kursunkalem}(Sağ kenarda küçük: ``sayfa 169'')}
+
+\medskip
+\noindent \textbf{Difüzyon kapasitesi (Diffusion capacitance)} \hfill $\rightarrow$ Forward Bias, minority carriers in effect
+\[ C_d = \left(\frac{\tau_T}{V_T}\right) I \qquad (C_d:\ \text{incremental diffusion capacitance};\ \tau_T:\ \text{mean transit time}) \]
+$\rightarrow$ sayfa 169--170 \ Şekil \okunamadi{ok.}
+
+\sayfa{15}
+{\small\color{kursunkalem}(Sol üst köşede küçük: ``Ders 3'')}
+\section{The ideal Diode}
+\sekilnotu[15]{Sol üst: ideal diyot sembolü, üstünde ``(ideal)'' ve akım oku; solda ``Anode'', sağda ``Cathode'', altında $+\ V\ -$. Altında $i$--$V$ eksenleri: $V$ ekseninin solu ``Reverse bias'' (sola ok), sağı ``Forward Bias'' (sağa ok); karakteristik eğrisi çizilmemiş.}
+\sekilnotu[15]{Sağ üst: iki anahtar modeli. (1) Açık anahtar, $+\ \ -$ uçları ve $i$ oku: $v<0 \Rightarrow i=0$, ``Reverse (off) (Geri yön) (kesim)''. (2) Kapalı anahtar (kısa devre): $i>0 \Rightarrow v=0$, ``Forward (on) (ileri yön) (iletim)''.}
+
+\noindent
+\begin{minipage}[t]{0.47\linewidth}
+\centering
+\begin{circuitikz}[scale=0.8, transform shape]
+  \draw (0,3) node[above] {10V} to[R=$1\,\mathrm{k}\Omega$] (0,1.5) to[D*, l_=$0$ V, i_=$10$ mA] (0,0) node[ground]{};
+\end{circuitikz}\\
+iletim (on)
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\centering
+\begin{circuitikz}[scale=0.8, transform shape]
+  \draw (0,3) node[above] {10V} to[R=$1\,\mathrm{k}\Omega$] (0,1.5) to[D, invert, i_=$0$ A] (0,0) node[ground]{};
+\end{circuitikz}\\
+kesim (off)
+\end{minipage}
+
+\bigskip
+\noindent \textbf{Yarım dalga doğrultucu (ideal diyot)}
+\begin{center}
+\begin{circuitikz}[scale=0.9, transform shape]
+  \draw (0,0) to[V] (0,2.2) to[D, l=(ideal)] (3,2.2) to[short, -o] (4.4,2.2) node[right] {$+$};
+  \draw (3,2.2) to[R=$R$] (3,0) to[short, -o] (4.4,0) node[right] {$-$};
+  \draw (0,0) -- (3,0);
+  \draw (1.5,0) node[ground] {};
+\end{circuitikz}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt]
+  \draw[->] (-0.2,0) -- (6.4,0) node[right] {$t$};
+  \draw[->] (0,-1.2) -- (0,1.5) node[above] {$v_S$};
+  \draw[murekkep,domain=0:6.0,smooth,variable=\x,samples=60] plot ({\x},{1.1*sin(120*\x)});
+  \draw[kursunkalem,dashed] (0,1.1) -- (5.6,1.1);
+  \node[left] at (0,1.1) {$V_p$};
+\end{tikzpicture}
+\end{center}
+
+\noindent \underline{1. durum:} Giriş kaynağı pozitifken
+\sekilnotu[15]{Eşdeğer devre: kaynak ($+$ üstte), üst koldaki diyot yerine iki küçük halka arasında düz tel (kısa devre), yük direnci; çıkış ucuna ``$v_O = v_I$'', tele ``$V_D = 0$ (kısa devre) short circuit''.}
+
+\noindent \underline{Giriş kaynağı negatifken}
+\sekilnotu[15]{Eşdeğer devre: kaynak ($-$ üstte), üst kolda ``$+\ v_D\ -$'' ile gösterilen açık devre (iki halka arası boş), akım $i_D = 0$, yük direnci ve $+/-$ çıkış uçları.}
+
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt]
+  \draw[->] (-0.2,0) -- (6.4,0) node[right] {$t$};
+  \draw[->] (0,-0.5) -- (0,1.5) node[above] {$v_O$};
+  \foreach \a in {0, 3}{
+    \draw[murekkep,domain=0:1.5,smooth,variable=\x,samples=30] plot ({\a+\x},{1.1*sin(120*\x)});
+  }
+\end{tikzpicture}
+\end{center}
+
+\sayfa{16}
+\begin{ornek}[4.1]
+  \begin{center}
+  \begin{circuitikz}[scale=0.85, transform shape]
+    \draw (0,0) to[V, l_=$V_S$] (0,2.4) to[R=$100\,\Omega$] (2.2,2.4) to[D, l=(ideal)] (4,2.4)
+          to[battery2, l=$12$ V] (4,0) -- (0,0);
+  \end{circuitikz}
+  \end{center}
+  $V_S$: tepe değeri $24$ V olan sinüs. \quad a) Peak value of diode current\\
+  b) Maximum reverse-bias voltage of the diode?\\
+  c) Fraction of each cycle during which the diode conducts (periyodun kaçında diyot iletimdedir?)
+\end{ornek}
+\begin{cozum}
+  \textbf{c)}
+  \begin{center}
+  \begin{tikzpicture}[line width=0.7pt]
+    \draw[->] (-0.3,0) -- (5.2,0) node[right] {$t$};
+    \draw[->] (0,-0.4) -- (0,2.6) node[above] {$V_S$ (24 V)};
+    \draw[murekkep,domain=0:3.0,smooth,variable=\x,samples=40] plot ({\x},{2.2*sin(60*\x)});
+    \draw[kursunkalem,dashed] (0,1.1) -- (4.4,1.1);
+    \node[left] at (0,1.1) {12 V};
+    \draw[kursunkalem,dashed] (0.5,0) -- (0.5,1.1);
+    \draw[kursunkalem,dashed] (1.5,0) -- (1.5,2.2);
+    \draw[kursunkalem,dashed] (2.5,0) -- (2.5,1.1);
+    \node[below] at (0.5,0) {$30^\circ$};
+    \node[below] at (1.5,0) {$\pi/2$};
+    \node[below] at (2.5,0) {$150^\circ$};
+    \draw (0.5,-0.7) .. controls (1.1,-1.0) and (1.9,-1.0) .. (2.5,-0.7);
+  \end{tikzpicture}
+  \end{center}
+  \[ 150^\circ - 30^\circ = 120^\circ \;\rightarrow\; 1/3\ \text{cycle} \]
+  \textbf{a)}
+  \[ I_D = \frac{24 - 12}{100} = 0{,}12\ \mathrm{A} \]
+  \textbf{b)} Diyot sembolü (anot solda): sol uçta $-24$, sağ uçta $12$ V.
+  \[ -24 - 12 = -36\ \mathrm{V} \qquad \text{(uçlar arasına düşen negatif gerilim)} \]
+\end{cozum}
+
+\noindent \fbox{Lojik kapılar}
+
+\sayfa{17}
+\begin{ornek}[4.2]
+  \textbf{a)} \sekilnotu[17]{Devre (a): ``$D_1$'' diyodunun anodu toprağa bağlı, katodu aşağıda $B$ düğümüne iniyor. Sağda $+10$ V $\rightarrow$ $10\,\mathrm{k}\Omega$ $\rightarrow$ çıkış düğümü $V$ (altında küçük toprak işareti) $\rightarrow$ ``$D_2$'' diyodu (anot üstte), katodu $B$ düğümüne bağlı. $B$ düğümünden $5\,\mathrm{k}\Omega$ ile $-10$ V'a.}
+\end{ornek}
+\begin{cozum}
+  {\small\color{kursunkalem}(Sol kenarda: ``Çözmek için varsayımda bulunalım'')}\\
+  $D_1$ is on ve $D_2$ is on \ ($\checkmark$ işaretli)
+  \sekilnotu[17]{Çözüm devresi: $+10$ V, $10\,\mathrm{k}\Omega$ üzerinde $1$ mA aşağı; $V$ düğümü $(0\,\mathrm{V})$; $D_2$ üzerinde $1$ mA; $D_1$ üzerinde $1$ mA, $D_1$'in anodu $(0\,\mathrm{V})$ toprakta; $B$ düğümü $(0\,\mathrm{V})$, $D_2$ katodundan $B$'ye ok; $5\,\mathrm{k}\Omega$ üzerinde $2$ mA aşağı, ucu $-10$ V.}
+  \noindent iletimde akım akar ve \okunamadi{diyot} kısa devre gibi davranır.
+\end{cozum}
+
+\begin{ornek}[4.2\,(b)]
+  \sekilnotu[17]{Devre (b): $+10$ V $\rightarrow$ $5\,\mathrm{k}\Omega$ $\rightarrow$ çıkış düğümü $V$ (altında $(0)$; sağında $+V$ ve toprağa $-$ ucu) $\rightarrow$ $D_2$ (akım oku aşağı); $D_1$ anodu toprakta, katodu $B$ düğümünde; $D_2$ katodu $B$'ye bağlı; $B$ düğümü $(0\,\mathrm{V})$, ondan $10\,\mathrm{k}\Omega$ ile $-10$ V'a, üzerinde $1$ mA aşağı. $D_1$'in yanında ``sağlanmaz'' ve daire içinde \okunamadi{$-1$ mA}.}
+\end{ornek}
+\begin{cozum}
+  Varsayım: $D_1$ is on and $D_2$ is on $\Rightarrow$ varsayım yanlış\\
+  $D_1$ ve $D_2$ kesimde:
+  \sekilnotu[17]{Eşdeğer devre: toprağa bağlı açık uç (boşta), $+10$ V $\rightarrow$ $5\,\mathrm{k}\Omega$ $\rightarrow$ $V$ düğümü, aşağıda iki açık uç $-10$ V ve $-10$ V olarak işaretli, ortadan $10\,\mathrm{k}\Omega$ ile $-10$ V'a. Yanında ``$\Delta V > 0$'', ``hipotez yanlış''.}
+\end{cozum}
+
+\sayfa{18}
+\noindent $D_1$ is off and $D_2$ is on \ ($\checkmark$ işaretli)
+\sekilnotu[18]{Sol devre: $D_1$ anodu toprakta, yanında ``off''; $D_2$ yanında ``on'' ve $1{,}33$ mA aşağı ok. Sağda $+10$ V $\rightarrow$ $5\,\mathrm{k}\Omega$ $\rightarrow$ çıkış düğümü $V$ $\rightarrow$ $D_2$; $D_1$ ve $D_2$ katodları $B$ düğümünde, $B$ düğümü daire içinde ``$3{,}3$ V'' (muhtemelen $3{,}33$ V); $B$'den $10\,\mathrm{k}\Omega$ ile $-10$ V'a, üzerinde $1{,}33$ mA aşağı. Altında $\Delta V = \okunamadi{-3{,}33}$.}
+$\rightarrow$
+\sekilnotu[18]{Eşdeğer devre: $+10$ V $\rightarrow$ $5\,\mathrm{k}\Omega$ $\rightarrow$ iki halka arasında kapalı anahtar ($D_2$ kısa devre) $\rightarrow$ $B$ düğümü $\rightarrow$ $10\,\mathrm{k}\Omega$ $\rightarrow$ $-10$ V.}
+\[ I = \frac{20\,\mathrm{V}}{15\,\mathrm{k}} = 1{,}33\ \mathrm{mA} \]
+
+\bigskip
+\noindent \textbf{\textcolor{kirmizikalem}{Exercise 4.6}} \ (sf. 183)
+\sekilnotu[18]{Dört devre (a)--(d), hepsi ideal diyot + direnç + çıkış düğümü $V$; her birinin yanında daire içine alınmış (soluk) bir durum notu. (a) $+5$ V $\rightarrow$ $2{,}5\,\mathrm{k}\Omega$ $\rightarrow$ $V$ $\rightarrow$ aşağı bakan diyot $\rightarrow$ toprak; not: ``on''. (b) $+5$ V $\rightarrow$ $2{,}5\,\mathrm{k}\Omega$ $\rightarrow$ $V$ $\rightarrow$ yukarı bakan diyot (anot topraktan yana) $\rightarrow$ toprak; not: ``off''. (c) üstte toprak $\rightarrow$ yukarı bakan diyot $\rightarrow$ $V$ düğümü $\rightarrow$ $2{,}5\,\mathrm{k}\Omega$ $\rightarrow$ $-5$ V; not: ``off''. (d) üstte toprak $\rightarrow$ aşağı bakan diyot $\rightarrow$ $V$ düğümü $\rightarrow$ $2{,}5\,\mathrm{k}\Omega$ $\rightarrow$ $-5$ V; not: ``on''.}
+
+\noindent {\small\color{kursunkalem}(Fotoğrafın sağ kenarında bir sonraki sayfanın yarısı da görünüyor; içeriği s.~19'da aktarılmıştır.)}
+
+\sayfa{19}
+\section{4.2 Terminal Characteristics of Junction Diodes}
+\noindent
+\begin{minipage}[c]{0.56\linewidth}
+\centering
+\begin{tikzpicture}[line width=0.7pt, scale=0.9]
+  \draw[<->] (-3.0,0) -- (3.3,0);
+  \draw[<->] (0,-2.0) -- (0,2.5);
+  \draw[murekkep] (-2.4,-2.0) .. controls (-2.35,-0.6) and (-2.3,-0.05) .. (-1.9,0) -- (0.9,0)
+        .. controls (1.15,0) and (1.3,0.3) .. (1.4,1.0) -- (1.5,2.3);
+  \node[below,font=\scriptsize] at (0.95,0) {0,5 V};
+  \node[below right,font=\scriptsize] at (1.4,0) {0,7 V};
+  \node[left,font=\scriptsize] at (0,0.35) {$I_S$};
+  \node[above,font=\scriptsize] at (-2.0,0.05) {$-V_{ZK}$};
+  \draw[->] (0,1.9) -- (3.0,1.9) node[above,font=\scriptsize,pos=0.55] {Forward};
+  \draw[<->] (-2.9,-0.55) -- (-2.2,-0.55);
+  \node[below,font=\scriptsize,align=center] at (-2.6,-0.55) {break\\ down};
+  \draw[->] (-2.2,-0.55) -- (-0.1,-0.55) node[above,font=\scriptsize,pos=0.5] {reverse};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.40\linewidth}
+\textbf{The Forward-Bias Region}
+\[ i = I_S\left(e^{v/V_T} - 1\right) \]
+\centering
+\begin{circuitikz}[scale=0.7, transform shape]
+  \draw (0,0) to[D, o-o, v=$\,$, i=$i$] (3,0);
+  \node[above,font=\small] at (0,0.05) {$+$};
+  \node[above,font=\small] at (3,0.05) {$-$};
+\end{circuitikz}
+\end{minipage}
+
+\[ i \simeq I_S\,e^{v/V_T} \qquad\qquad V = V_T\,\ln\frac{i}{I_S} \]
+{\small\color{kursunkalem}(Solda küçük bir not: ``\okunamadi{iki değerin}'', iki akım için ok.)}
+\begin{align*}
+  I_1 &= I_S\,e^{V_1/V_T} \\
+  I_2 &= I_S\,e^{V_2/V_T}
+\end{align*}
+\[ \frac{I_2}{I_1} = e^{(V_2 - V_1)/V_T} \]
+\[ V_2 - V_1 = V_T\,\ln\frac{I_2}{I_1} \]
+\[ V_2 - V_1 = (\ln 10\; V_T)\,\log\frac{I_2}{I_1} = \Big(\underbrace{2{,}3\,V_T}_{60\ \mathrm{mV}}\Big)\log\frac{I_2}{I_1} \]
+{\small\color{kursunkalem}(Soluk, küçük not: ``\okunamadi{Wafer, IC process, IC package}''.)}
+
+\medskip
+\noindent \fbox{$i \simeq -I_S$} $\rightarrow$ Reverse Region
+
+\begin{ornek}[4.4]
+  \sekilnotu[19]{Devre: $V_{DD} = 5$ V pil (solda), $R = 1\,\mathrm{k}\Omega$ üstte, sağda aşağı bakan diyot; diyot üzerinde $V_D$ ($+$ üstte, $-$ altta), akım oku $I_D$.}
+  The diode current is $1$ mA @ $0{,}7$ V
+\end{ornek}
+\begin{cozum}
+  \noindent \fbox{\parbox{0.9\linewidth}{%
+  ideal diyot modeli\\
+  $V_D = 0\ \mathrm{V}$\\
+  $\displaystyle I_D = \frac{5-0}{1} = 5\ \mathrm{mA}$}}
+
+  \medskip
+  \noindent \fbox{\parbox{0.9\linewidth}{%
+  constant Voltage drop model (sabit gerilim düşümü modeli)\\
+  $V_D = 0{,}7\ \mathrm{V}$\\
+  $\displaystyle I_D = \frac{5-0{,}7}{1} = 4{,}3\ \mathrm{mA}$}}
+\end{cozum}
+
+\sayfa{20}
+\section{Exponential model}
+\[ I_D = \frac{V_{DD} - V_D}{R} \quad \textcircled{1} \qquad\qquad V_2 - V_1 = 2{,}3\,V_T\,\log\frac{I_2}{I_1} \quad \textcircled{2} \]
+\[ I_D = \frac{5 - 0{,}7}{1} = 4{,}3\ \mathrm{mA} \]
+\[ V_2 = V_1 + 0{,}06\,\log\frac{I_2}{I_1} \;\Longrightarrow\; V_2 = 0{,}738\ (\mathrm{V}) \]
+\noindent $V_1 = 0{,}7$ V, \quad $I_1 = 1$ mA (ok ile $I_1$'e), \quad $I_2 = 4{,}3$ mA
+
+\medskip
+\noindent \underline{\textcolor{kirmizikalem}{Iteration 2nd}}
+\begin{align*}
+  I_D &= \frac{5 - 0{,}738}{1} = \kutula{4{,}262\ \mathrm{mA}} \\
+  V_2 &= 0{,}738 + 0{,}06\left[\frac{4{,}262}{4{,}3}\right] \\
+      &= \kutula{0{,}738\ \mathrm{V}}
+\end{align*}
+\footnote{Claude notu: muhtemelen $0{,}06\,\log\!\left[\frac{4{,}262}{4{,}3}\right]$ olmalı (sonuç $\approx 0{,}738$ V).}
+\noindent {\small\color{kursunkalem}(Sağda, $V_2 = 0{,}738$ sonucundan kavisli bir çizgiyle bağlanmış not:)} ``Virgülden sonra 3 basamak aynı olduğundan iterasyonu durduruz''
+
+\end{document}

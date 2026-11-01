@@ -1,0 +1,60 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{Uygulama 3: SSB-AM, Weaver modülatörü, SSB-FDM}{Analog-uygulama-3.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 1, 5) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{2}
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Sayfanın üstünde 3.16 numaralı basılı soru kırpıntısı var.)}
+
+\noindent 1)\quad $\hat m(t)=m_n(t)\ \to$ hilbert transform
+\begin{gather*}
+m(t)=\cos\!\left(2000\pi t-\tfrac{\pi}{2}\right)+2\sin\!\left(2000\pi t-\tfrac{\pi}{2}\right)\footnotemark\\
+\hat m(t)=\sin(2000\pi t)-2\cos(2000\pi t)
+\end{gather*}
+\footnotetext{Claude notu: soldaki ifade muhtemelen $\hat m(t)$ olmalı (her bileşen $-\pi/2$ kaydırılmış).}
+
+\[ \text{2)}\quad y_{SSB}=A_c\bigl(m(t)\cos(2\pi f_ct)+m_n(t)\sin(2\pi f_ct)\bigr) \]
+\[ A_c=100\ ,\ f_c=800\ \mathrm{kHz},\ m(t)=\cos(2000\pi t)+2\sin(2000\pi t) \]
+\[ y_{LSB}(t)=100\bigl(\cos(2\pi\,1\mathrm{k}\,t)+2\sin \]
+
+\noindent sinüsten çıkarılma \okunamadi{başlar}
+
+\[ |a+bj|=\sqrt{a^2+b^2} \]
+\[ y_{LSB}(t)= \]
+
+\sayfa{3}
+\sekilnotu[3]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Üstte basılı 3.17 numaralı Weaver SSB modülatörü sorusu ve Şekil P-3.17 var. El yazısı eklemeler: $f_1$ osilatörünün yanında $\cos(2\pi f_1t)$ ve $f_2$ osilatörünün yanında $\cos(2\pi f_2t)$.)}
+
+\noindent $\star$\quad $|f_1-f_m|<W$ and $f_1+f_m>W$
+
+\sayfa{4}
+\sekilnotu[4]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. (Üstte basılı 3.24 numaralı SSB-FDM sorusu ve $|M_i(f)|$ şekli var. El yazısı eklemeler: sağ üstte ``K alt kanal'' ve ``L grup''; ``guard band'' ifadesinin altında ``koruma bandı''.)}
+
+\begin{center}
+\begin{tikzpicture}[x=0.5cm,y=1cm,>=stealth,font=\small]
+\draw[->] (3,0) -- (23.5,0);
+\draw[->] (7,0) -- (7,2.4);
+\draw[thick] (10,0) .. controls (10.4,1.4) and (12.4,1.4) .. (13,0);
+\draw[thick] (14,0) .. controls (14.4,1.4) and (16.4,1.4) .. (17,0);
+\draw[thick] (18,0) .. controls (18.4,1.4) and (20.4,1.4) .. (21,0);
+\node[anchor=west] at (9,2.5) {\scriptsize $K=3\to$ 3 subchannel};
+\node at (17.5,2.4) {\scriptsize örnek};
+\node[below] at (10,0) {\scriptsize 10 kHz};
+\draw[<->] (10,-0.7) -- (13,-0.7);
+\node[below] at (11.5,-0.7) {\scriptsize 3k};
+\node[below] at (13.7,-0.7) {\scriptsize 1k};
+\node[below] at (14,0) {\scriptsize 14};
+\node[anchor=north east,inner sep=1pt] at (17.4,0) {\scriptsize 17k};
+\node[anchor=north west,inner sep=1pt] at (17.7,0) {\scriptsize 18k};
+\node[below] at (21,0) {\scriptsize 21k};
+\end{tikzpicture}
+\end{center}
+
+\noindent 2)\quad $L=6$\qquad $K=10$
+
+\noindent 3)
+
+\sekilnotu[4]{3) şekli: solda dikey eksen, sağa doğru oklu yatay eksen (ucunda $k$ gibi okunan bir etiket). Yatay eksende 10'dan 50'ye uzanan ilk grup: grubun içinde küçük üçgen biçimli alt bantlar (ilk ikisinin içinde $m_1$ ve $m_2$ gibi küçük etiketler, ortada kesikli çizgi ``- - -'', sonuncusu $m_{10}$ gibi); eksen altında 10, 13, 14, 17, 46, 49, 50 işaretli; grubun altında 10'dan 50'ye eğri okla ``40 kHz''. Grubun üstünde büyük yarım daire yayı, etiketi $L_1$. Yanında 50'den başlayan ikinci grup (küçük üçgen dizisi) ve üzerinde ikinci büyük yay, etiketi $L_2$. Sağda kesikli çizgi ve ``300--540 kHz'' notu.}
+
+\end{document}

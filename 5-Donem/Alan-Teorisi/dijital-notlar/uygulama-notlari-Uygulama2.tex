@@ -1,0 +1,116 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Yüklü küre, disk ve paralel düzlemlerin alanı}{Uygulama2.pdf}
+% yerel yardımcılar: üstü çizili (sadeleştirilen) terimler
+\newcommand\iptalX[3]{\tikz[baseline=(c.base)]{\node[inner sep=0pt](c){$#2#3$};\draw[#1,line width=0.5pt](c.south west)--(c.north east);}}
+\newcommand\iptalK[2]{\iptalX{murekkep}{#1}{#2}}
+\newcommand\iptalR[2]{\iptalX{kirmizikalem}{#1}{#2}}
+\newcommand\iptal[1]{\mathpalette\iptalK{#1}}
+\newcommand\iptalk[1]{\mathpalette\iptalR{#1}}
+
+\sayfa{1}
+\section{S17 Pr.1}
+\noindent\textit{çözümlü sayfa 7}
+\sekilnotu[1]{Üç eksenli koordinat sistemi ($z$ yukarı, $y$ sağa, $x$ sol alta); $z$ ekseni üzerinde $P(0,0,z_0)$ noktası. Orijinde $O$ ve kırmızı $q$ işareti; orijin merkezli, turuncu taralı bir küre (içinde $\rho_v$ yazılı, yüzeyinde yarıçap etiketi $a$). Küre içinde $dq$ yüklü bir eleman ve koordinatları $(x,y,z)$.}
+\[ \text{Toplam yük: }q=\int_V\rho_v\,dv=\int_{r=0}^{a}\int_{\phi=0}^{2\pi}\int_{\theta=0}^{\pi}\rho_v\,r^2\sin\theta\,dr\,d\phi\,d\theta \]
+\[ dv=r^2\sin\theta\,dr\,d\theta\,d\phi\qquad\qquad\begin{array}{l} x=r\sin\theta\cos\phi\\ y=r\sin\theta\sin\phi\\ z=r\cos\theta \end{array} \]
+\noindent\textit{Tek noktada olsaydı:}
+\[ \vec F=\frac{1}{4\pi\varepsilon_0}\frac{qQ}{R^2}\,\vec e_R \]
+\noindent ispatlayalım
+\[ dq=\rho_v\,dV=\rho_v\,r^2\sin\theta\,dr\,d\phi\,d\theta \]
+\[ d\vec F=\frac{1}{4\pi\varepsilon_0}\frac{dq\,Q}{R^2}\,\vec e_R=\frac{1}{4\pi\varepsilon_0}\,Q\rho_v\,r^2\sin\theta\,dr\,d\theta\,d\phi\,\frac{\vec R}{R^3} \]
+\[ \vec R=-x\vec e_x-y\vec e_y+(z_0-z)\vec e_z \]
+\[ =-r\sin\theta\cos\phi\,\vec e_x-r\sin\theta\sin\phi\,\vec e_y+(z_0-r\cos\theta)\vec e_z \]
+{\small
+\[ R=\sqrt{r^2\sin^2\theta\cos^2\phi+r^2\sin^2\theta\sin^2\phi+z_0^2-2z_0r\cos\theta+r^2\cos^2\theta} \]
+\[ =\sqrt{r^2\sin^2\theta+z_0^2-2z_0r\cos\theta+r^2\cos^2\theta}\qquad=\sqrt{r^2+z_0^2-2z_0r\cos\theta} \]
+}
+\[ =R \]
+\[ \vec F=\iiint_V d\vec F=\int_{\phi=0}^{2\pi}\int_{\theta=0}^{\pi}\int_{r=0}^{a}\frac{1}{4\pi\varepsilon_0}\,Q\rho_v\,r^2\sin\theta\,dr\,d\theta\,d\phi \]
+{\small
+\[ \frac{\vec R}{R^3}=\left[\frac{-r\sin\theta\cos\phi\,\vec e_x-r\sin\theta\sin\phi\,\vec e_y+(z_0-r\cos\theta)\vec e_z}{\left(r^2+z_0^2-2z_0r\cos\theta\right)^{3/2}}\right] \]
+}
+\[ \textcolor{kirmizikalem}{0\qquad\phi\ \text{integrali 0'dan }2\pi\text{'ye}} \]
+
+\sayfa{2}
+{\small
+\[ =\int_{\theta=0}^{\pi}\int_{r=0}^{a}\frac{1}{4\pi\varepsilon_0}\,Q\rho_v\,r^2\sin\theta\,\frac{\textcolor{kirmizikalem}{2\pi}\,(z_0-r\cos\theta)\vec e_z}{\left(r^2+z_0^2-2z_0r\cos\theta\right)^{3/2}}\,dr\,d\theta \]
+}
+\[ (z_0-r\cos\theta)=\frac{2z_0^2-2z_0r\cos\theta}{2z_0} \]
+\[ =\frac{z_0^2+R^2-r^2}{2z_0}\qquad\textcolor{kirmizikalem}{\to\ \text{Allah bilir nasıl oldu}} \]
+\[ =\frac{1}{2z_0}\left[R^2+(z_0^2-r^2)\right] \]
+\[ R^2=r^2+z_0^2-2rz_0\cos\theta \]
+\[ 2R\,dR=2rz_0\sin\theta\,d\theta \]
+{\small
+\[ \vec F=\frac{1}{4\pi\varepsilon_0}\frac{2\pi Q\vec e_z}{2z_0^2}\int_{r=0}^{a}\rho_v\,r\,dr\int_{R=z_0-r}^{z_0+r}\left[\frac{z_0^2+R^2-r^2}{R^3}\right]R\,dR \]
+}
+\[ =\frac{1}{4\pi\varepsilon_0}\frac{4\pi Q\vec e_z}{z_0^2}\int_{r=0}^{a}\rho_v\,r^2\,dr \]
+
+\section{Neyse yeni soruya geçelim}
+\noindent\textcolor{kirmizikalem}{S.19 pr.4}\ Mithat İdemen'in \\
+\textcolor{kirmizikalem}{S.22 k.soru \ elimizdeki baskıda}
+
+\noindent $x^2+y^2\le a^2,\ z=0$ \qquad $\rho_s$ yük yoğunluğu
+\[ \vec E(P_+)=e(h,a)\,\vec e_z \]
+\noindent a)
+\sekilnotu[2]{Mavi çizim: $xy$ düzleminde yarıçapı $a$ olan mavi taralı disk (``yüzeyi'' yazılı); eksenler: $x$ sol alta, $y$ sağa, $z$ yukarı. $z$ ekseni üzerinde $P_+(0,0,h)$ noktası ve $\vec e_z$ birim vektörü. Diskte ``herhangi bir nokta'' $(x,y,0)$ ve $dq=\rho_s\,ds$; orijinden bu noktaya kırmızı bir çizgi ve $\rho$, $\phi$ gibi küçük etiketler. Altta iki küçük vektör ayrıştırma çizimi: $\vec e_R$ birim vektörünün $z$ bileşeni $\cos\alpha\,\vec e_z$, yatay bileşeni solda $-\sin\alpha\,\vec e_x$, sağda $\sin\alpha\,\vec e_x$.}
+
+\sayfa{3}
+\noindent a)\ $\vec e_{r_1}+\vec e_{r_2}=2\cos\alpha\,\vec e_z$ \\
+Herhangi bi nokta için geçerlidir
+\[ dq=\rho_s\,ds=\rho_s\,\rho\,d\rho\,d\phi \qquad\qquad \begin{array}{l} x=\rho\cos\phi\\ y=\rho\sin\phi\\ ds=\rho\,d\rho\,d\phi \end{array} \]
+\[ \vec r_1=-x\vec e_x-y\vec e_y+h\vec e_z \]
+\[ \vec r_1=-\rho\cos\phi\,\vec e_x-\rho\sin\phi\,\vec e_y+h\vec e_z \]
+\[ r=\sqrt{\rho^2+h^2}\quad/\!/ \]
+{\small
+\[ d\vec E(P_+)=\frac{dq}{4\pi\varepsilon_0}\frac{\vec r_1}{r_1^3}=\frac{\rho_s}{4\pi\varepsilon_0}\frac{\rho\,d\rho\,d\phi}{(\rho^2+h^2)^{3/2}}\left[h\vec e_z-\rho\cos\phi\,\vec e_x-\rho\sin\phi\,\vec e_y\right] \]
+\[ \vec E(P_+)=\int_S d\vec E(P_+)=\frac{\rho_s}{4\pi\varepsilon_0}\int_{\rho=0}^{a}\int_{\phi=0}^{2\pi}\frac{\rho\,d\rho\,d\phi}{(\rho^2+h^2)^{3/2}}\Bigl[h\vec e_z-\overset{\textcolor{kirmizikalem}{0}}{\iptalk{\rho\cos\phi\,\vec e_x}}-\overset{\textcolor{kirmizikalem}{0}}{\iptalk{\rho\sin\phi\,\vec e_y}}\Bigr] \]
+}
+\[ =\frac{\rho_s}{4\pi\varepsilon_0}\left[h\vec e_z\int_{\rho=0}^{a}\frac{\rho\,d\rho}{(\rho^2+h^2)^{3/2}}\underbrace{\int_{\phi=0}^{2\pi}d\phi}_{2\pi}\right] \]
+\[ =\frac{\rho_s\,h\vec e_z}{2\varepsilon_0}\int_{\rho=0}^{a}\frac{\rho\,d\rho}{(\rho^2+h^2)^{3/2}} \]
+\[ \textcolor{kirmizikalem}{\kutula{\int_x\frac{x}{(x^2+a^2)^{3/2}}=\frac{-1}{\sqrt{x^2+a^2}}+C}} \]
+\[ =\frac{\rho_s\,h\vec e_z}{2\varepsilon_0}\left(-\frac{1}{\sqrt{\rho^2+h^2}}\right)_{\rho=0}^{a}= \]
+\[ =\frac{\rho_s\,h\vec e_z}{2\varepsilon_0}\left(\frac{1}{h}-\frac{1}{\sqrt{a^2+h^2}}\right)=\frac{\rho_s\,\vec e_z}{2\varepsilon_0}\left(1-\frac{h}{\sqrt{a^2+h^2}}\right) \]
+\[ \Rightarrow\ \vec e(h,a)=\frac{\rho_s\,\vec e_z}{2\varepsilon_0}\left(1-\frac{h}{\sqrt{a^2+h^2}}\right) \]
+
+\noindent b)
+\sekilnotu[3]{Mavi çizim: $xy$ düzleminde yarıçapı $a$ olan disk (``yüzeyi'' yazılı); eksenler: $x$ sol alta, $y$ sağa, $z$ yukarı. $z$ ekseni üzerinde yukarıda $P_+(0,0,h)$, aşağıda $P_-(0,0,-h)$ noktası ve $-\vec e_z$ oku; iki nokta arasında siyah kesikli çizgiler.}
+\[ \vec E(P_-)=-\vec E(P_+)=e(h,a)\left[-\vec e_z\right] \]
+\[ =-e(h,a)\,\vec e_z \]
+
+\sayfa{4}
+\[ \text{c)}\ \lim_{h\to0}\vec E(P_+)=\frac{\rho_s\vec e_z}{2\varepsilon_0}\lim_{h\to0}\underbrace{\left(1-\frac{h}{\sqrt{a^2+h^2}}\right)}_{1} \]
+\[ =\frac{\rho_s\vec e_z}{2\varepsilon_0} \]
+\noindent daireye yaklaştıkça $a$ ve $h$ bağlantısı azalır $0$ olunca yok olur sonsuz düzlemden gibi olur.
+\[ \lim_{h\to0}\vec E(P_-)=-\frac{\rho_s\vec e_z}{2\varepsilon_0} \]
+\noindent d)\ $a\to\infty\ \rightarrow$
+\[ \lim_{a\to\infty}E(P_+)=\frac{\rho_s\vec e_z}{2\varepsilon_0}\lim_{a\to\infty}\left(1-\frac{h}{\sqrt{a^2+h^2}}\right) \]
+\[ =\frac{\rho_s\vec e_z}{2\varepsilon_0} \]
+\[ \lim_{a\to\infty}\vec E(P_-)=-\frac{\rho_s\vec e_z}{2\varepsilon_0} \]
+
+\section{Pr.5}
+\sekilnotu[4]{Bu sayfada basılı bir soru metni (-5., şıklar a, b, c) yer alıyor; dijitalleştirilmedi.}
+\sekilnotu[4]{Mavi el çizimi: $z$ ekseni boyunca üst üste iki paralel düzlem (mavi taralı paralelkenarlar). Alttaki $z=0$ düzlemi (``$\rho_0$'' yazılı, sağda ``$z=0$''), üstteki $z=h$ düzlemi (``$\rho_h$'' yazılı; $z$ ekseninde ``$h$'' işareti). Eksenler: $z$ yukarı, $y$ sağa, $x$ sol alta.}
+
+\sayfa{5}
+\noindent a)\ $\vec E=\,?$ \qquad $z>h$ \quad\textit{seçtiğimiz noktanın $z$'si}
+\[ \vec E_{\mathrm{I}}=\vec E_0^{+}+\vec E_h^{+}=\frac{\rho_0\vec e_z}{2\varepsilon_0}+\frac{\rho_h\vec e_z}{2\varepsilon_0} \]
+\[ =\frac{(\rho_0+\rho_h)\vec e_z}{2\varepsilon_0} \]
+\[ 0<z<h\ \Rightarrow\ \vec E_0^{+}+\vec E_h^{-}=\frac{(\rho_0-\rho_h)\vec e_z}{2\varepsilon_0} \]
+\[ z<0\ \Rightarrow\ \vec E_0^{-}+\vec E_h^{-}=-\frac{(\rho_0+\rho_h)\vec e_z}{2\varepsilon_0} \]
+
+\noindent b)\ $\rho_0=\rho_h$
+\[ \begin{aligned}
+\vec E_{\mathrm{I}}&=\frac{2\rho_0\vec e_z}{2\varepsilon_0}=\frac{\rho_0\vec e_z}{\varepsilon_0}\\
+\vec E_{\mathrm{II}}&=0\\
+\vec E_{\mathrm{III}}&=-\frac{\rho_0\vec e_z}{\varepsilon_0}
+\end{aligned} \]
+
+\noindent c)\ $\rho_0=-\rho_h$
+\[ \begin{aligned}
+\vec E_{\mathrm{I}}&=0\\
+\vec E_{\mathrm{II}}&=\frac{\rho_0\vec e_z}{\varepsilon_0}\\
+\vec E_{\mathrm{III}}&=0
+\end{aligned} \]
+\end{document}

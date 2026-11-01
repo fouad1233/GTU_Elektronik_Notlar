@@ -1,0 +1,175 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Uygulama 3 -- Laplace denklemi ve sınır değer problemleri}{Uygulama3.pdf}
+
+\sayfa{1}
+\begin{align*}
+  V(x,y,z) &= \frac{1}{4\pi\varepsilon_0}\int_V \frac{\rho(x,y,z)}{R'}\,dx\,dy\,dz \\
+  \vec E(x,y,z) &= -\operatorname{grad}V(x,y,z) \\
+  \operatorname{rot}\vec E &= -\operatorname{rot}\operatorname{grad}V \\
+  \Rightarrow\ \operatorname{rot}\vec E &= 0 \qquad \text{(Elektrostatikte)}
+\end{align*}
+\[ \operatorname{div}\operatorname{grad}V=\Delta V=\frac{\partial^2 V}{\partial x^2}+\frac{\partial^2 V}{\partial y^2}+\frac{\partial^2 V}{\partial z^2} \]
+
+{\color{kirmizikalem}\underline{silindirik:}}
+\[ \Delta V=\frac{1}{\rho}\frac{\partial}{\partial\rho}\Bigl(\rho\frac{\partial V}{\partial\rho}\Bigr)+\frac{1}{\rho^2}\frac{\partial^2 V}{\partial\phi^2}+\frac{\partial^2 V}{\partial z^2} \]
+
+{\color{kirmizikalem}\underline{küresel:}}
+\begin{align*}
+  \Delta V &= \frac{1}{r^2}\frac{\partial}{\partial r}\Bigl(r^2\frac{\partial V}{\partial r}\Bigr)+\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\Bigl(\sin\theta\frac{\partial V}{\partial\theta}\Bigr) \\
+  &\quad+\frac{1}{r^2\sin\theta}\frac{\partial^2 V}{\partial\phi^2}\footnotemark
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $r^2\sin^2\theta$ olmalı.}
+
+\vurgu{içerde yük yoksa $\rho=0$} $\Rightarrow \Delta V=0$ \ (laplacian) \qquad Laplacian denklemi
+
+\medskip
+\noindent{\color{kirmizikalem}\underline{Sayfa 26 -- Pr.4}}
+
+\sekilnotu[1]{Basılı soru metni: ``Pr.4. $z=0$ ve $z=d$ düzlemleri, sırasıyla, $V=0$ ve $V=V_0$ potansiyellerine sahiptirler ve bu düzlemler arasındaki bölgede yük yoktur. Bu bölgede $V=\frac{V_0}{d}z$, $\mathbf{E}=-\frac{V_0}{d}\mathbf{e}_z$ olduğunu gösteriniz.'' Altında el çizimi: $z$ ekseni yukarı, $y$ sağa, $x$ sol alta doğru; üstte yatay çizgi $z=d$ (sağ ucunda $V=V_0$), altta yatay çizgi $z=0$ (sağ ucunda $V=0$); aradaki bölge eğik çizgilerle taranmış ve içinde $\rho=0$ yazılı.}
+
+Ara bölgede $V$ ve $\vec E$ ifadeleri nedir
+
+\[ \Delta V=0 \]
+\[ \Delta V=\overbrace{\frac{\partial^2 V}{\partial x^2}}^{0}+\overbrace{\frac{\partial^2 V}{\partial y^2}}^{0}+\frac{\partial^2 V}{\partial z^2}=0 \qquad \text{(değişim yok)} \]
+\[ \Rightarrow\ \frac{\partial^2 V}{\partial z^2}=0 \ \overset{\text{integral}}{\Longrightarrow}\ \frac{\partial V}{\partial z}=A \ \Rightarrow\ V(z)=Az+B \]
+
+\sayfa{2}
+\begin{align*}
+  z=0 &\ \Rightarrow\ V(0)=0 \\
+  z=d &\ \Rightarrow\ V(d)=V_0
+\end{align*}
+\[ V(0)=B=0 \]
+\[ V(d)=Ad=V_0 \]
+\[ A=\frac{V_0}{d} \]
+\[ \Rightarrow\ V(z)=\frac{V_0}{d}\,z \]
+\[ \vec E=-\operatorname{grad}V=-\overbrace{\frac{\partial V}{\partial x}}^{0}\vec e_x-\overbrace{\frac{\partial V}{\partial y}}^{0}\vec e_y-\frac{\partial V}{\partial z}\vec e_z \]
+\[ =-\frac{\partial}{\partial z}\Bigl(\frac{V_0}{d}\,z\Bigr)\vec e_z=-\frac{V_0}{d}\,\vec e_z \]
+
+\medskip
+\noindent{\color{kirmizikalem}\underline{S26.Pr5}}
+
+\sekilnotu[2]{Basılı soru metni: ``Pr.-5. Aynı eksenli, $a$ ve $b$ yarıçaplı, sonsuz uzun iki silindir arasındaki bölgede kaynak yoktur ve bu silindirler üzerinde potansiyel sabit $V_a$ ve $V_b$ değerlerine sahiptir. Potansiyel fonksiyonun açık ifadesini yazınız. Alan şiddetinin bir iletkenden diğerine nasıl değiştiğini gösteren eğriyi çiziniz.'' Basılı şekil: iç içe iki eş eksenli silindirin kesiti (gri halka), iç yarıçap $a$ ($V_a$), dış yarıçap $b$ ($V_b$); $\rho$, $\phi$ ve sağa doğru $z$ ekseni gösterilmiş. El yazısıyla eklenenler: halkanın üstünde ``$\rho=0$'', sağında ``$a\le\rho\le b$'' ve ``$V(\rho)$''.}
+
+\noindent Silindirik koordinatlar \\
+$\rho,\ \phi,\ z \to$ $z$'de sonsuza gider \\
+$\downarrow$ \okunamadi{açıya} bağımlı değil, simetriktir \qquad $z$'ye bağımlı değil
+
+\medskip
+$\rho=0$ iken $\Delta V=0$
+
+\okunamadi{genel} $\leftarrow$
+\[ \Delta V=\frac{1}{\rho}\frac{\partial}{\partial\rho}\Bigl(\rho\frac{\partial V}{\partial\rho}\Bigr)+\frac{1}{\rho^2}\overbrace{\frac{\partial^2 V}{\partial\phi^2}}^{0}+\overbrace{\frac{\partial^2 V}{\partial z^2}}^{0}=0 \]
+\[ =\frac{1}{\rho}\frac{\partial}{\partial\rho}\Bigl(\rho\frac{\partial V(\rho)}{\partial\rho}\Bigr)=0 \]
+\[ \Rightarrow\ \frac{\partial}{\partial\rho}\Bigl(\rho\frac{\partial V(\rho)}{\partial\rho}\Bigr)=0 \]
+\[ \Rightarrow\ \rho\frac{\partial V(\rho)}{\partial\rho}=A \ \Rightarrow\ \frac{\partial V(\rho)}{\partial\rho}=\frac{A}{\rho} \]
+\[ V(\rho)=A\ln\rho+B \]
+
+\sayfa{3}
+\begin{align*}
+  \rho=a\ \text{iken}\ V(a) &= V_a \\
+  \rho=b\ \text{iken}\ V(b) &= V_b
+\end{align*}
+\begin{align*}
+  \rho=a \ &\Rightarrow\ A\ln a+B=V_a \\
+  \rho=b \ &\Rightarrow\ -A\ln b-B=-V_b
+\end{align*}
+\[ A(\ln a-\ln b)=V_a-V_b \]
+\[ \Rightarrow\ \kutula{A=\frac{V_a-V_b}{\ln\!\Bigl(\dfrac{a}{b}\Bigr)}} \]
+
+$B$'yi bulalım
+\[ A\ln a+B=V_a \]
+\[ \frac{V_a-V_b}{\ln\!\Bigl(\dfrac{a}{b}\Bigr)}\cdot\ln a+B=V_a \ \Rightarrow\ B=V_a-\ln a\,\frac{V_a-V_b}{\ln\!\Bigl(\dfrac{a}{b}\Bigr)} \]
+\[ B=-\frac{V_a\ln b-V_b\ln a}{\ln\!\Bigl(\dfrac{a}{b}\Bigr)} \]
+
+\formulkutu{V(\rho)=\frac{V_a-V_b}{\ln\!\Bigl(\dfrac{a}{b}\Bigr)}\ln\rho-\frac{V_a\ln b-V_b\ln a}{\ln\!\Bigl(\dfrac{a}{b}\Bigr)}}
+
+\[ \vec E=-\operatorname{grad}V=-\frac{\partial V(\rho)}{\partial\rho}\,\vec e_\rho \]
+\[ \vec E(\rho)=-\frac{1}{\rho}\,\frac{V_a-V_b}{\ln\!\Bigl(\dfrac{a}{b}\Bigr)}\,\vec e_\rho \]
+
+\medskip
+\noindent kartezyen \ $\operatorname{grad}V=\dfrac{\partial V}{\partial x}\vec e_x+\dfrac{\partial V}{\partial y}\vec e_y+\dfrac{\partial V}{\partial z}\vec e_z$
+
+\medskip
+\noindent Silindirik \ $\operatorname{grad}V=\dfrac{\partial V}{\partial\rho}\vec e_\rho+\cdots$
+
+\sayfa{4}
+\sekilnotu[4]{$|\vec E|$--$\rho$ grafiği: dikey eksen $|\vec E|$, yatay eksen $\rho$; yatay eksende $\rho=a$ ve $\rho=b$ işaretli. Eğri $\rho=a$'da en yüksekte başlayıp $\rho=b$'ye doğru azalıyor (eğri üzerinde ``$1/\rho$'' yazılı). Başlangıç değeri $\dfrac{|V_a-V_b|}{\ln(a/b)}\cdot\dfrac{1}{a}$, bitiş değeri $\dfrac{|V_a-V_b|}{\ln(a/b)}\cdot\dfrac{1}{b}$.}
+
+\noindent{\color{kirmizikalem}\underline{S26.Pr6}} \ iç içe küre
+
+\sekilnotu[4]{Eksenler: $z$ yukarı, $y$ sağa, $x$ sol alta doğru. Merkezde iç içe iki daire (küre kesiti): iç yarıçap $a$ (içinde $V_a$), dış yarıçap $b$ (yanında $V_b$); iki daire arasındaki kabuk bölgesi sarı vurgulanmış.}
+
+Ara bölgede $a\le r\le b$ \quad $V$, $\vec E$ ifadeleri
+
+\[ \Delta V=0\ \Rightarrow \]
+\begin{align*}
+  \Delta V &= \frac{1}{r^2}\frac{\partial}{\partial r}\Bigl(r^2\frac{\partial V}{\partial r}\Bigr)+\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\Bigl(\sin\theta\frac{\partial V}{\partial\theta}\Bigr) \\
+  &\quad+\frac{1}{r^2\sin^2\theta}\frac{\partial^2 V}{\partial\phi^2}=0
+\end{align*}
+$r,\ \phi,\ \theta$: sadece $r$'ye bağlı
+
+\[ \frac{1}{r^2}\frac{\partial}{\partial r}\Bigl(r^2\frac{\partial V}{\partial r}\Bigr)=0 \qquad \text{($1/r^2$ çizilmiş)} \]
+\[ \Rightarrow\ r^2\frac{\partial V}{\partial r}=-A \quad \text{olsun} \]
+\[ \Rightarrow\ \frac{\partial V}{\partial r}=\frac{-A}{r^2} \ \Rightarrow\ V(r)=\frac{A}{r}+B \]
+\begin{align*}
+  r=a,\ V(a)=V_a &\quad\Rightarrow\quad V_a=\frac{A}{a}+B \\
+  r=b,\ V(b)=V_b &\quad\Rightarrow\quad -V_b=-\frac{A}{b}-B
+\end{align*}
+\[ V_a-V_b=A\Bigl(\frac{1}{a}-\frac{1}{b}\Bigr) \]
+\[ A=\frac{V_a-V_b}{\dfrac{1}{a}-\dfrac{1}{b}} \]
+
+\sayfa{5}
+\[ V_a=\frac{A}{a}+B \ \Rightarrow\ V_a=\frac{1}{a}\,\frac{V_a-V_b}{\left(\dfrac{1}{a}-\dfrac{1}{b}\right)}+B \]
+\[ B=V_a-\frac{1}{a}\,\frac{V_a-V_b}{\dfrac{1}{a}-\dfrac{1}{b}} \]
+\[ =V_a-\frac{ab}{a}\,\frac{V_a-V_b}{b-a} \]
+\[ B=\frac{V_a(b-a)-b(V_a-V_b)}{b-a} \]
+\[ B=\frac{bV_b-aV_a}{b-a}=\frac{aV_a-bV_b}{a-b} \]
+
+\formulkutu{V(r)=\frac{V_a-V_b}{\dfrac{1}{a}-\dfrac{1}{b}}\,\frac{1}{r}+\frac{aV_a-bV_b}{a-b}}
+
+\[ \vec E(r)=-\operatorname{grad}V=-\frac{\partial V(r)}{\partial r}\,\vec e_r \]
+\[ =-\frac{\partial}{\partial r}\Bigl(\frac{V_a-V_b}{\dfrac{1}{a}-\dfrac{1}{b}}\,\frac{1}{r}\Bigr)\vec e_r \]
+\[ =\frac{V_a-V_b}{\dfrac{1}{a}-\dfrac{1}{b}}\,\frac{1}{r^2}\,\vec e_r \]
+
+\medskip
+\noindent{\color{kirmizikalem}\underline{S.26 Pr9}}
+
+\sekilnotu[5]{Basılı soru metni: ``Pr.-9. Bir elektrostatik alanda $\mathbf{E}=A\frac{\cos\theta}{r^3}\mathbf{e}_r+B\frac{\sin\theta}{r^3}\mathbf{e}_\theta$ olduğu gözlenmiştir ($A,B$ = sabit). a) $A$ ile $B$ arasındaki ilişkiyi bulunuz. b) Potansiyel fonksiyonunu belirleyiniz.''}
+
+a) $\operatorname{rot}\vec E=0$
+\[ \vec E=E_r\vec e_r+E_\theta\vec e_\theta+E_\phi\vec e_\phi \]
+\[ \Rightarrow\ E_\phi=0,\quad E_r=\frac{A\cos\theta}{r^3},\quad E_\theta=B\,\frac{\sin\theta}{r^3} \]
+\begin{align*}
+  \operatorname{rot}\vec E &= \frac{1}{r\sin\theta}\Bigl[\overbrace{\frac{\partial}{\partial\theta}(\sin\theta\,E_\phi)}^{0}-\overbrace{\frac{\partial E_\theta}{\partial\phi}}^{0}\Bigr]\vec e_r \\
+  &\quad+\frac{1}{r}\Bigl[\frac{1}{\sin\theta}\overbrace{\frac{\partial E_r}{\partial\phi}}^{0}-\overbrace{\frac{\partial}{\partial r}(rE_\phi)}^{0}\Bigr]\vec e_\theta
+\end{align*}
+
+\sayfa{6}
+\[ +\frac{1}{r}\Bigl[\frac{\partial}{\partial r}(rE_\theta)-\frac{\partial E_r}{\partial\theta}\Bigr]\vec e_\phi=0 \]
+\[ \frac{1}{r}\Bigl[\frac{\partial}{\partial r}(rE_\theta)-\frac{\partial E_r}{\partial\theta}\Bigr]\vec e_\phi=0 \]
+\[ \Rightarrow\ \frac{\partial}{\partial r}(rE_\theta)=\frac{\partial E_r}{\partial\theta} \]
+\[ \frac{\partial}{\partial r}\Bigl(rB\,\frac{\sin\theta}{r^3}\Bigr)=\frac{\partial}{\partial\theta}\Bigl(A\,\frac{\cos\theta}{r^3}\Bigr) \]
+\[ -2B\,\frac{\sin\theta}{r^3}=-A\,\frac{\sin\theta}{r^3} \]
+\formulkutu{A=2B}
+
+b) $\vec E=-\operatorname{grad}V$
+\[ =-\frac{\partial V}{\partial r}\vec e_r-\frac{1}{r}\frac{\partial V}{\partial\theta}\vec e_\theta-\underbrace{\frac{1}{r\sin\theta}\frac{\partial V}{\partial\phi}}_{0}\vec e_\phi \]
+\[ E_r\vec e_r+E_\theta\vec e_\theta=-\frac{\partial V}{\partial r}\vec e_r-\frac{1}{r}\frac{\partial V}{\partial\theta}\vec e_\theta \]
+\[ \kutula{E_r=-\frac{\partial V}{\partial r}}\ \text{(bunu seçerim)}\,,\quad E_\theta=-\frac{1}{r}\frac{\partial V}{\partial\theta} \qquad V(r,\theta) \]
+\[ V=-\int E_r\,dr+\underbrace{f(\theta)}_{\text{thetaya bağımlılık için}} \]
+\[ =-\int\frac{A}{r^3}\cos\theta\,dr+f(\theta) \]
+\[ =\frac{A}{2r^2}\cos\theta+f(\theta)=V \]
+\[ E_\theta=-\frac{1}{r}\frac{\partial V}{\partial\theta}\ \Rightarrow\ B\,\frac{\sin\theta}{r^3}=-\frac{1}{r}\frac{\partial}{\partial\theta}\Bigl(\frac{A}{2r^2}\cos\theta+f(\theta)\Bigr) \]
+
+\sayfa{7}
+\[ \Rightarrow\ \frac{B\sin\theta}{r^2}=+\frac{A}{2r^2}\sin\theta-\frac{\partial f(\theta)}{\partial\theta} \]
+Önceden $A=2B$ olduğunu biliyorduk
+\[ \frac{A\sin\theta}{2r^2}=\frac{A}{2r^2}\sin\theta-\frac{\partial f(\theta)}{\partial\theta} \]
+\[ \Rightarrow\ \frac{\partial f(\theta)}{\partial\theta}=0\ \Rightarrow\ f(\theta)=C \]
+\[ V=\frac{A}{2r^2}\cos\theta+f(\theta)=\frac{A}{2r^2}\cos\theta+C \]
+\[ \vec r\to\infty\ \Rightarrow\ \vec E\to0\ \Rightarrow\ \vec V\to0 \]
+\[ \lim_{r\to\infty}V=0+C=0\ \Rightarrow\ C=0 \]
+
+\end{document}

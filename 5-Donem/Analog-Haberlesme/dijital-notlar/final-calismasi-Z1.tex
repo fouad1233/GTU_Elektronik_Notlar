@@ -1,0 +1,87 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{DSB-LC-AM sorusu çözümü (Z1)}{Z1.pdf}
+
+\sayfa{1}
+\sekilnotu[1]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. Basılı soruda a3) ve a4) maddeleri yeşil fosforlu kalemle işaretlenmiş.}
+
+\noindent a1)
+\[ m_n(t)=\frac{m(t)}{m_p}\qquad m_p=10+20+10=40 \]
+\begin{align*}
+m_n(t)&=\frac{10}{40}+\frac{20}{40}\cos(2\pi\,1\mathrm{k}\,t)-\frac{10}{40}\cos(2\pi\,2\mathrm{k}\,t)\\
+&=\frac14+\frac12\cos(2\pi\,1\mathrm{k}\,t)-\frac14\cos(2\pi\,2\mathrm{k}\,t)
+\end{align*}
+\begin{align*}
+P_{m_n}(t)&=\left(\frac14\right)^2+\frac{\left(\frac12\right)^2}{2}+\frac{\left(\frac14\right)^2}{2}\\
+&=\frac1{16}+\frac18+\frac1{32}=\frac{2+4+1}{32}=\frac{7}{32}
+\end{align*}
+\[ \eta=\frac{\mu^2P_{m_n}}{1+\mu^2P_{m_n}}=0{,}11 \]
+\[ 0{,}11+0{,}11\,\mu^2P_{m_n}=\mu^2P_{m_n} \]
+\[ \frac{\mu^2P_{m_n}(1-0{,}11)}{(0{,}89)}=\frac{0{,}11}{0{,}89} \]
+\[ \mu^2=\frac{0{,}11}{0{,}89\cdot\frac{7}{32}}=0{,}565 \]
+\[ \kutula{\Rightarrow\mu=0{,}75} \]
+\begin{align*}
+P_c&=\kutula{\frac{30^2}{2}=450\ \mathrm{W}}\\
+P_s&=\frac{\mu^2A_c^2}{2}P_{m_n}\\
+P_s&=\kutula{55{,}62\ \mathrm{W}}
+\end{align*}
+
+\noindent a2)
+\begin{align*}
+y(t)&=A_c\bigl[1+\mu\,m_n(t)\bigr]\cos(2\pi\overset{5\mathrm{k}}{f_c}t)\\
+&=30\Bigl[1+\frac34\Bigl[\frac14+\frac12\cos(2\pi\,1\mathrm{k}\,t)-\frac14\cos(2\pi\,2\mathrm{k}\,t)\Bigr]\Bigr]\cos(2\pi\,5\mathrm{k}\,t)
+\end{align*}
+\begin{align*}
+&=30\cos(2\pi\,5\mathrm{k}\,t)+\frac{3}{16}\footnotemark{}\cos(2\pi\,5\mathrm{k}\,t)+\frac38\cos(2\pi\,1\mathrm{k}\,t)\cos(2\pi\,5\mathrm{k}\,t)\\
+&\quad-\frac{3}{16}\cos(2\pi\,2\mathrm{k}\,t)\cos(2\pi\,5\mathrm{k}\,t)\\
+&=30{,}19\cos(2\pi\,5\mathrm{k}\,t)+\frac{3}{16}\cos(2\pi\,6\mathrm{k}\,t)+\frac{3}{16}\cos(2\pi\,4\mathrm{k}\,t)\\
+&\quad-\frac{3}{32}\cos(2\pi\,7\mathrm{k}\,t)-\frac{3}{32}\cos(2\pi\,3\mathrm{k}\,t)
+\end{align*}
+\footnotetext{Claude notu: muhtemelen 30 çarpanı modülasyon terimlerine de dağıtılmalı: $30\cdot\frac{3}{16}=\frac{45}{8}$, $30\cdot\frac{3}{8}=\frac{45}{4}$ vb.}
+
+\sayfa{2}
+\begin{align*}
+Y(f)&=\frac{30{,}19}{2}\,[\delta(f-5\mathrm{k})+\delta(f+5\mathrm{k})]+\frac{3}{32}\,[\delta(f-6\mathrm{k})+\delta(f+6\mathrm{k})]\\
+&\quad+\frac{3}{32}\,[\delta(f-4\mathrm{k})+\delta(f+4\mathrm{k})]-\frac{3}{64}\,[\delta(f-7\mathrm{k})+\delta(f+7\mathrm{k})]\\
+&\quad-\frac{3}{64}\,[\delta(f-3\mathrm{k})+\delta(f+3\mathrm{k})]
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.9cm,murekkep,font=\small]
+\draw[->] (-1,0)--(8.2,0) node[right]{$f$};
+\draw[->] (0,0)--(0,3.6) node[above]{$|Y(f)|$};
+\foreach \xx/\hh in {3/0.8,4/1.2,5/3,6/1.2,7/0.8} \draw[->,thick,turuncukalem] (\xx,0)--(\xx,\hh);
+\foreach \xx in {3,4,5,6,7} \node[below] at (\xx,0) {$\xx\mathrm{k}$};
+\draw[<->,turuncukalem] (3,-0.9)--(7,-0.9) node[midway,below] {BW $=4$ kHz};
+\end{tikzpicture}
+\end{center}
+
+\noindent a3)\quad faz tahminsiz demodülatör\\
+non coherent modulator
+
+\section{Zarf Detectörü}
+(Envelope detector)
+
+\noindent $\mathrm{BG}\{m(t)\}=B$ Hz, \quad $f_c\gg B$
+\begin{center}
+\begin{circuitikz}[american]
+\draw (0,0) to[V=$y(t)$] (0,2) to[D] (2.5,2) to[short,*-*] (4,2) to[short,-o] (5.5,2);
+\draw (0,0) to[short] (4,0) to[short,*-o] (5.5,0);
+\draw (2.5,2) to[C=$C$,*-*] (2.5,0);
+\draw (4,2) to[R=$R$,*-*] (4,0);
+\draw (5.5,0) to[open,v^=$v_c(t)$] (5.5,2);
+\draw[murekkep] (5.5,2) to[C] (7.3,2);
+\end{circuitikz}
+\end{center}
+\[ y(t)=A_c\bigl[1+\mu\,m_n(t)\bigr]\cos(2\pi f_c t) \]
+
+\sekilnotu[2]{Çizim: $t$ ekseni boyunca genlik modülasyonlu $y(t)$ dalga şekli (siyah; sağda ok ile $y(t)$ etiketi). Turuncu kesikli zarf eğrisi (sağ üstte zarf notu); koyu kırmızı $v_c(t)$ eğrisi tepe noktalarını izleyip tepeler arasında düşüyor (sağda ok ile $v_c(t)$). Solda mavi not: RC çok küçük; ortada turkuaz not: RC çok büyük; solda turuncu çift okla $T_c$ işaretli.}
+
+\[ \frac{1}{f_c}\ll RC\ll\frac{1}{B} \]
+\[
+\frac{1}{f_c}\ \downarrow\ \frac{1}{9\mathrm{k}}\ \to\ 0{,}1\cdot10^{-3}
+\qquad\qquad
+\frac{1}{B}\ \downarrow\ \text{(mesajın zamandaki değişimi)}\ \frac{1}{4\mathrm{k}}\ \to\ 0{,}25\cdot10^{-3}
+\]
+
+\end{document}

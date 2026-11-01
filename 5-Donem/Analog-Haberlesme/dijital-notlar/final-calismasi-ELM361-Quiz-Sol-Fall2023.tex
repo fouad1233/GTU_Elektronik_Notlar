@@ -1,0 +1,126 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{ELEC 361 Bonus Quiz çözümü (Fall 2023)}{ELM361-Quiz-Sol-Fall2023.pdf}
+
+\sayfa{1}
+\sekilnotu[1]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. Basılı soru başlığındaki Q (25 p.) ifadesinin üstüne el yazısıyla kırmızı kalemle 30 p. yazılmış.}
+
+\noindent a)
+\begin{align*}
+z(t) &= \underbrace{10.a.m(t)}_{\text{LP}} + \underbrace{10.a.\cos(2\pi f_c t)}_{\text{BP at } f_c} + \underbrace{b.m^2(t)}_{\text{LP}} + \underbrace{2b\,m(t)\cos(2\pi f_c t)}_{\text{BP at } f_c} \\
+&\quad + \underbrace{\tfrac{b}{2}}_{\text{LP}} + \underbrace{\tfrac{b}{2}\cos(2\pi\, 2f_c t)}_{\text{BP at } 2f_c}
+\end{align*}
+\begin{align*}
+Z(f) &= 10a\,M(f) + 5a\,[\delta(f-f_c)+\delta(f+f_c)] + b\,[M(f)\ast M(f)] + b\,[M(f-f_c)+M(f+f_c)] \\
+&\quad + \tfrac{b}{2}\delta(f) + \tfrac{b}{4}\,[\delta(f-2f_c)+\delta(f+2f_c)]
+\end{align*}
+
+\noindent i) DSB-SC-AM: $a=0,\ b=1$, BPF: Gain $1$, C.F.\ $=f_c$, BW $=2B$ Hz $\Rightarrow\ y(t)=2\,m(t)\cos(2\pi f_c t)$
+
+\noindent ii) DSB-LC-AM: $a=1,\ b=1$, Filter the same as i),
+\begin{align*}
+y(t) &= 10\cos(2\pi f_c t)+2\,m(t)\cos(2\pi f_c t)\\
+ &= 10\left[1+\tfrac{2}{10}\,m(t)\right]\cos(2\pi f_c t)
+\end{align*}
+
+\noindent iii) U-SSB: $a=0,\ b=1$, BPF: Gain $1$, C.F.\ $=f_c+\tfrac{B}{2}$, BW $=B$ Hz, i.e.,\\
+Gain $1$ if $f_c\le|f|\le f_c+B \Rightarrow y(t)=2\,[\,m(t)\cos(2\pi f_c t)-m_h(t)\sin(2\pi f_c t)\,]$
+
+\noindent b)
+\[
+y(t)=10\left[1+\underbrace{\tfrac{2}{10}\,4}_{\mu}\,\underbrace{\cos(200\pi t)}_{m_n(t)}\right]\cos(2000\pi t)
+\]
+$\Rightarrow \mu=0{,}8$\qquad Sinusoidal message signal (tone mod.) $\Rightarrow \eta=\dfrac{\mu^2}{2+\mu^2}=0{,}242\cong 24\%$.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=0.85\linewidth,height=5.5cm,axis lines=middle,xlabel={$t$},xtick=\empty,
+ ytick={-18,-10,-2,2,10,18},ymin=-22,ymax=25,domain=0:10.4,samples=300,
+ ymajorgrids,grid style={dotted,kursunkalem},every axis x label/.style={at={(current axis.right of origin)},anchor=west}]
+\addplot[murekkep,thick]{10*(1+0.8*cos(36*x))*cos(360*x)};
+\addplot[kirmizikalem,dashed]{10*(1+0.8*cos(36*x))};
+\addplot[kirmizikalem,dashed]{-10*(1+0.8*cos(36*x))};
+\node[kirmizikalem,font=\small] at (axis cs:5.2,24) {Envelope};
+\node[murekkep,font=\small,anchor=west] at (axis cs:10.2,12) {$y(t)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+y(t) &= 10\cos(2\pi\,1000t)+4\,[\cos(2\pi\,900t)+\cos(2\pi\,1100t)]\\
+Y(f) &= 5\,[\delta(f-1000)+\delta(f+1000)]+2\,[\delta(f-900)+\delta(f+900)]\\
+ &\quad +2\,[\delta(f-1100)+\delta(f+1100)]
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[x=0.42cm,y=0.45cm,murekkep,font=\small]
+\draw[->] (-12.5,0) -- (12.5,0) node[right] {$f$};
+\draw[->] (0,0) -- (0,6.5) node[above] {$Y(f)$};
+\foreach \ax/\ay/\al in {-11/2/{-1100},-10/5/{-1000},-9/2/{-900},9/2/{900},10/5/{1000},11/2/{1100}}{
+ \draw[->,thick] (\ax,0) -- (\ax,\ay) node[above] {$\ay$};
+ \node[below] at (\ax,0) {$\al$};}
+\end{tikzpicture}
+\end{center}
+
+\sayfa{2}
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi. Basılı soru metni ve blok diyagram sayfa 1'dekiyle aynı; Q (25 p.) ifadesinin üstüne el yazısıyla 30 p. yazılmış.}
+
+\noindent $x(t)=m(t)+\cos(2\pi f_c t)$\qquad $\cos^2(2\pi f_c t)=\tfrac12+\tfrac12\cos(2\pi\,2f_c t)$\qquad \okunamadi{$\ldots m(t)\cos(2\pi f_c t)+b$}
+
+\noindent a)
+\begin{align*}
+z(t) &= 10a\,x(t)+b\,x^2(t)\\
+ &= 10a\,m(t)+10a\cos(2\pi f_c t)+b\,m^2(t)+2b\,m(t)\cos(2\pi f_c t)\\
+ &\quad +\tfrac{b}{2}+\tfrac{b}{2}\cos(2\pi\,2f_c t)
+\end{align*}
+
+\noindent i) $a=0\quad b=1 \;\Rightarrow\; z(t)=m^2(t)+2\,m(t)\cos(2\pi f_c t)+\tfrac12+\tfrac12\cos(2\pi\,2f_c t)$\\
+\hspace*{2em}BPF at $f_c$ \qquad BW$=2B$ \qquad $y(t)=2\,m(t)\cos(2\pi f_c t)$
+
+\noindent ii) $a=1\quad b=1$
+\begin{align*}
+z(t)&=10\,m(t)+\underline{10\cos(2\pi f_c t)}+m^2(t)+\underline{2\,m(t)\cos(2\pi f_c t)}\\
+&\quad+\tfrac12+\tfrac12\cos(2\pi\,2f_c t)
+\end{align*}
+BPF at $f_c$ \qquad BW$=2B$ \qquad $y(t)=10\cos(2\pi f_c t)+2\,m(t)\cos(2\pi f_c t)$
+\[
+y(t)=10\left[1+\frac{2\,m(t)}{10}\right]\cos(2\pi f_c t)
+\]
+
+\noindent iii) $a=0\quad b=1 \;\Rightarrow$
+\[
+z(t)=m^2(t)+2\,m(t)\cos(2\pi f_c t)+\tfrac12+\tfrac12\cos(2\pi\,2f_c t)
+\]
+BPF at $f_c+\tfrac{B}{2}$ \qquad BW$=B$
+\[
+y(t)=2\left[m(t)\cos(2\pi f_c t)-m_h(t)\sin(2\pi f_c t)\right]
+\]
+
+\noindent b) $f_c=1\mathrm{k}\qquad m(t)=4\cos(2\pi\,100t)\qquad m_p=4\qquad m_n(t)=\cos(2\pi\,100t)$
+\begin{align*}
+y(t) &= 10\left[1+\frac{8}{10}\,\underbrace{m_n(t)}_{\cos(2\pi\,100t)}\right]\cos(2\pi\,1\mathrm{k}\,t)\qquad \mu=0{,}8\\
+ &= 10\cos(2\pi\,1\mathrm{k}\,t)+8\,[\cos(2\pi\,100t)\cdot\cos(2\pi\,1\mathrm{k}\,t)]\\
+ &= 10\cos(2\pi\,1\mathrm{k}\,t)+4\cos(2\pi\,1{,}1\mathrm{k}\,t)+4\cos(2\pi\,0{,}9\mathrm{k}\,t)
+\end{align*}
+\begin{align*}
+Y(f) &= 5\,[\delta(f+1\mathrm{k})+\delta(f-1\mathrm{k})]\\
+ &\quad +2\,[\delta(f+1{,}1\mathrm{k})+\delta(f-1{,}1\mathrm{k})+\delta(f+0{,}9\mathrm{k})+\delta(f-0{,}9\mathrm{k})]
+\end{align*}
+\begin{align*}
+\eta &= \frac{\mu^2 P_{m_n}}{1+\mu^2 P_{m_n}}\qquad P_{m_n}=\tfrac12\quad\text{Ton modülasyonu}\\
+ &= \frac{\mu^2}{2+\mu^2}\\
+ &\cong \%24
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=0.6\linewidth,height=4.5cm,axis lines=middle,xtick=\empty,ytick={-18,18},ymin=-22,ymax=22,domain=0:10.4,samples=300]
+\addplot[kirmizikalem,thick]{10*(1+0.8*cos(36*x))*cos(360*x)};
+\addplot[kursunkalem]{10*(1+0.8*cos(36*x))};
+\addplot[kursunkalem]{-10*(1+0.8*cos(36*x))};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\end{document}

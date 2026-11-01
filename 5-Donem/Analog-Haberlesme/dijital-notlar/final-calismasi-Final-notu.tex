@@ -1,0 +1,104 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{Açı modülasyonu: FM üretimi ve demodülasyonu}{Final-notu.pdf}
+
+\sayfa{1}
+\section{Ders\#3 Açı modülasyonu lineersizliğe dayanıklıdır}
+\[ \cos^3(\alpha)=\frac34\cos(\alpha)+\frac14\cos(3\alpha) \]
+\[ |\phi(t)|\ll1\ \Rightarrow\ \cos\phi(t)\cong1,\qquad \sin\phi(t)\cong\phi(t) \]
+
+\section{Create FM}
+\section{1) Dolaylı metod (Indirect method)}
+(Armstrong tekniği)
+
+\sekilnotu[1]{Blok şema: $m(t)$ girişi $\to$ [NBFM (DB-FRM)] (üstünde Narrow band Angle Modulation, altında Dar bantlı frekans modülasyonu; çıkışında turuncu $\phi_{NBFM}(t)$ etiketi) $\to$ [Frequency multiplier (Frekans çarpıcı)] (kırmızı not: genlik sınırlayıcı içerir, genlikte bozunmayı düzeltir) $\to$ WBFM (GB-FRM), Wide band frequency modulation.}
+
+-- Genlik ve faz bozulmasına sebep olur
+\begin{align*}
+g(t)&=A_c\cos(2\pi f_c t+\phi(t))\\
+&=A_c\bigl[\cos(2\pi f_c t)\underbrace{\cos(\phi(t))}_{\cong1}-\sin(2\pi f_c t)\underbrace{\sin(\phi(t))}_{\cong\phi(t)}\bigr]
+\end{align*}
+\[
+\underset{\text{NBFM}}{g(t)}=A_c\bigl[\cos(2\pi f_c t)-\phi(t)\sin(2\pi f_c t)\bigr]
+\]
+when $\phi(t)=2\pi k_f\int m(z)\,dz$
+\formulkutu{\begin{aligned}a\cos x+b\sin x&=c\cos(x+\theta)\\ c&=\sqrt{a^2+b^2},\qquad \theta=\tan^{-1}(-b/a)\end{aligned}}
+\begin{align*}
+\underset{\text{NBFM}}{y(t)}&=A_cE(t)\cos(2\pi f_c t+\alpha(t))\\
+E(t)&=\sqrt{1+\phi^2(t)},\qquad \alpha(t)=\arctan(\phi(t))\\
+\phi(t)&=2\pi k_f\int m(z)\,dz
+\end{align*}
+\begin{align*}
+f_i(t)-f_c&=\frac{1}{2\pi}\frac{d\alpha(t)}{dt}\\
+&=\frac{1}{2\pi}\frac{\dot\phi(t)}{1+\phi^2(t)}=\frac{1}{2\pi}\frac{2\pi k_f\,m(t)}{1+\phi^2(t)}
+\end{align*}
+\[
+f_i(t)-f_c=k_f\,m(t)\Bigl[\underbrace{1-\phi^2(t)+\phi^4(t)-\cdots}_{1/(1+\phi^2(t))}\Bigr]
+\]
+
+\section{2) Direct Method}
+Voltage controlled oscillator \quad (Hartley ve Colpitts osilatörlerinde osilasyon frekansı)
+
+\textbf{Gko}
+\begin{align*}
+f_i(t)&=\frac{1}{2\pi\sqrt{LC}},\qquad C=C_0-k\,m(t)\quad\text{(varactor)}\\
+&=\frac{1}{2\pi\sqrt{L[C_0-k\,m(t)]}}=\frac{1}{2\pi\sqrt{LC_0\left[1-\frac{k\,m(t)}{C_0}\right]}}\\
+&=\frac{1}{2\pi\sqrt{LC_0}}\cdot\frac{1}{\left[1-\frac{k\,m(t)}{C_0}\right]^{1/2}}=f_c\left[1-\frac{k\,m(t)}{C_0}\right]^{-1/2}
+\end{align*}
+$f_c$\quad $*\ |x|\ll1\Rightarrow(1+x)^n\cong1+nx$
+\[
+\frac{k\,m(t)}{C_0}\ll1\ \Rightarrow\ f_i(t)\cong f_c\left[1+\frac{k\,m(t)}{2C_0}\right]
+\]
+\[
+f_i(t)=f_c+\underbrace{\frac{k f_c}{2C_0}}_{k_f}\,m(t)
+\]
+* frekans kararlılığı çok iyi değil
+
+\section{FRM (FM)'nin Demodülasyonu}
+\sekilnotu[1]{Blok şema: $y_{FM}(t)$ $\to$ [d/dt] (altında FM to AM convertor) $\to$ $\dot y_{FM}(t)$ $\to$ [Envelope detector] (altında AM demodulator) $\to$ $m(t)$.}
+\begin{align*}
+g_{FM}(t)&=A_c\cos\Bigl(2\pi f_c t+2\pi k_f\int_{-\infty}^{t}m(z)\,dz\Bigr)\\
+\frac{dg_{FM}(t)}{dt}&=-A_c\bigl[\underbrace{2\pi f_c+2\pi k_f\,m(t)}_{\text{zarf}}\bigr]\sin(\theta(t))
+\end{align*}
+\sekilnotu[1]{Çizim: $y_{FM}(t)$ dalga şekli; kırmızı kesikli üst ve alt zarf eğrileri arasında salınan, genliği zamanla değişen işaret; sağda ok ile $y_{FM}(t)$ etiketi.}
+\[
+\frac{dy_{FM}(t)}{dt}=-A_c\Bigl[\underbrace{2\pi f_c+2\pi k_f\,m(t)}_{\text{zarf}>0}\Bigr]\sin(\theta(t))
+\]
+\begin{align*}
+&\forall t\quad \text{zarf}>0\ \text{olması gerekir}\\
+&\forall t\quad f_c+k_f\,m(t)>0\\
+&\forall t\quad f_c>k_f\,\underbrace{\mathrm{maks}|m(t)|}_{m_p}
+\end{align*}
+$A_c$ sabit olmalıdır
+
+\sekilnotu[1]{Blok şema: $y_{FM}(t)=A_c(t)\cos(\theta(t))$ $\to$ [BP limiter] $\to$ $\tilde y_{FM}(t)=A_c\cos(\theta(t))$ $\to$ [d/dt] $\to$ [zarf detektörü] $\to$ kondansatör (DC bloklama) $\to$ $k_f m(t)$ (altında: sabit). BP limiter'dan aşağı ok ile kırmızı kesikli bir kutuya gidilir; kutuda [Hard limiter] $\to$ [BPF, C.F. $=f_c$] bulunur.}
+
+\section{Pratik FM demodülatörleri}
+\begin{itemize}
+\item Balanced modulators: slope detector / balanced discriminator / ratio detector
+\item Zero-crossed detector
+\item Phase Locked loop (PLL) \textit{(Düşük maliyetli ve yüksek performansı \okunamadi{nedeniyle})}
+\end{itemize}
+
+\section{Açı modülasyonunda karışım (interference)}
+Mesajsız taşıyıcı
+\[
+r(t)=\underbrace{A_c\cos(2\pi f_c t)}_{\text{Unmodulated Carrier}}+\overbrace{I\cos[2\pi(f_c+f_i)t]}^{\text{karışım}}
+\]
+\[
+\text{Demodülatör çıkışı: }y_d(t)=\begin{cases}\dfrac{I}{A_c}\sin(2\pi f_i t) & \text{PM}\\[3mm]\dfrac{I\,f_i}{A_c}\cos(2\pi f_i t) & \text{FM}\end{cases}
+\]
+\sekilnotu[1]{Çizim: dikey eksen karışımın genliği; yatay eksende frekans. PM için yatay sabit doğru ($I/A_c$, PM); FM için orijinden başlayıp yaklaşık 21 kHz (net okunmuyor) civarında PM seviyesine ulaşan turuncu artan doğru ($I f/A_c$, FM); kırmızı not: böyle olmasını isteriz, FM with preemphasis and deemphasis filter.}
+
+\sayfa{2}
+Başta zaten FM, sonra türevini alıp PM'e geçebiliriz. Bunu yapan filtreye ön vurgulama filtresi denir.
+
+Additive White Gaussian Noise
+
+\underline{AWGN: kanal gürültüsü}
+\[
+r(t)=y(t)+\underbrace{n(t)}_{\text{AWGN}}
+\]
+
+\end{document}

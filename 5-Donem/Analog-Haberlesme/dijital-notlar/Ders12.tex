@@ -1,0 +1,349 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{Açı modülasyonu, Carson kuralı, tek tonlu FM/PM}{Ders12.pdf}
+
+\sayfa{1}
+\section{Açı modülasyonu}
+\[ y(t)=A_c\cos\big(\overbrace{2\pi f_c t+\phi(t)}^{\theta(t)}\big) \]
+\begin{align*}
+&\hookrightarrow\ k_p\, m(t)\quad\text{FZM}\quad\text{PM}\\
+&\quad\ {=}\,2\pi k_f\int_{-\infty}^{t} m(\tau)\,d\tau\quad\text{FRM}
+\end{align*}
+\[ f_i(t)=\frac{1}{2\pi}\frac{d\theta(t)}{dt}=f_c+\frac{1}{2\pi}\frac{d\phi(t)}{dt} \]
+\[ \theta(t)=2\pi\int_{-\infty}^{t} f_i(\tau)\,d\tau \]
+\[ P_y=\frac{A_c^2}{2} \]
+\[ \mathrm{BG}=\infty\quad\text{(Teorik)} \]
+
+\section{Carson kuralı}
+(Açı modülasyonunun efektif BG)
+\begin{align*}
+\mathrm{BG}\{m(t)\}&=B\ \mathrm{Hz}\\
+\mathrm{BG}&=2B(\beta+1)\ \mathrm{Hz}\ ,\quad \overset{\text{sapma oranı}}{\beta}=\frac{\Delta f}{B}
+\end{align*}
+\[ \text{FM(FRM)}\qquad f_i(t)=f_c+k_f\,m(t)\;\to\;\Delta f=k_f\,m_p,\quad m_p=\max|m(t)| \]
+\begin{align*}
+\text{PM(FZM)}\qquad f_i(t)&=f_c+\frac{k_p}{2\pi}\,\dot m(t)\\
+&\to\ \Delta f=\frac{k_p}{2\pi}\,m_p',\quad m_p'=\max|\dot m(t)|
+\end{align*}
+[$\dot m(t)$ terimi altında küçük not: \okunamadi{t=rev}]
+\[ \Delta\phi=\max|\phi(t)| \]
+\[ k_f,k_p\ll\;\to\;\Delta f\ll\;\to\;\beta\ll1\;\Rightarrow\;\mathrm{BG}=2B \qquad \text{NBFM / NBPM} \]
+\[ k_f,k_p\gg\;\to\;\Delta f\gg\;\to\;\beta\gg1\;\Rightarrow\;\mathrm{BG}\approx2\Delta f \qquad \text{WBFM / WBPM} \]
+
+\begin{ornek}
+$m(t)=a\cos(2\pi f_m t)$\\
+$c(t)=A_c\cos(2\pi f_c t)$
+\end{ornek}
+PM:
+\[ \phi(t)=k_p\,m(t)=\overset{\Delta f/B}{\underset{\beta}{k_p\,a}}\cos(2\pi f_m t)=\beta\cos(2\pi f_m t) \]
+FM:
+\begin{align*}
+\phi(t)&=2\pi k_f\int m(\tau)\,d\tau=2\pi k_f\int a\cos(2\pi f_m\tau)\,d\tau\\
+&=2\pi k_f\,\frac{a\sin(2\pi f_m t)}{2\pi f_m}=\underset{\beta}{\frac{\overset{k_f m_p}{k_f\,a}}{f_m}}\sin(2\pi f_m t)
+\end{align*}
+
+\sayfa{2}
+\[ =\beta\sin(2\pi f_m t) \]
+\[ y(t)=\begin{cases} A_c\cos\big(2\pi f_c t+\beta\cos(2\pi f_m t)\big) & \text{PM}\\ A_c\cos\big(2\pi f_c t+\beta\sin(2\pi f_m t)\big) & \text{FM}\end{cases} \]
+
+\section{Saf sinüsoidal işaretin açı modülasyonu}
+\begin{align*}
+m(t)=a\cos(2\pi f_m t)&\Rightarrow y_{\mathrm{FM}}(t)=A_c\cos\big(2\pi f_c t+\beta\sin(2\pi f_m t)\big),\\
+&\qquad \beta=\frac{k_f\cdot a}{f_m}\\
+m(t)=a\sin(2\pi f_m t)&\Rightarrow y_{\mathrm{PM}}(t)=A_c\cos\big(2\pi f_c t+\beta\sin(2\pi f_m t)\big),\\
+&\qquad \beta=k_p\cdot a
+\end{align*}
+\begin{align*}
+\hat y(t)&=A_c\,e^{j\left(2\pi f_c t+\beta\sin(2\pi f_m t)\right)}=A_c\,e^{j2\pi f_c t}\cdot\underbrace{e^{j\beta\sin(2\pi f_m t)}}_{x(t)}\\
+y(t)&=\mathrm{Re}\{\hat y(t)\}
+\end{align*}
+\[ x(t)=\underbrace{e^{j\beta\sin(2\pi f_m t)}}_{T_m=\frac{1}{f_m}\text{ ile periyodiktir}}=\sum_{n=-\infty}^{\infty}x_n\,e^{j2\pi n f_m t} \]
+\begin{align*}
+x_n&=\frac{1}{T_m}\int_{T_m}x(t)\,e^{-j2\pi n f_m t}\,dt\\
+&=\frac{1}{T_m}\int_0^{T_m}e^{j\beta\sin(2\pi f_m t)}\cdot e^{-j2\pi n f_m t}\,dt
+\end{align*}
+\[ 2\pi f_m t=\alpha\;\Rightarrow\;dt=\frac{d\alpha}{2\pi f_m} \]
+\[ x_n=\frac{1}{T_m}\int_0^{2\pi}e^{j\beta\sin(\alpha)}\cdot e^{-jn\alpha}\,\frac{d\alpha}{2\pi f_m} \]
+[turuncu çizgilerle $T_m$ ve $f_m$ terimleri sadeleştirilmiş]
+\[ \Rightarrow\ x_n=\frac{1}{2\pi}\int_0^{2\pi}e^{j(\beta\sin\alpha-n\alpha)}\,d\alpha \]
+\[ x_n=\frac{1}{2\pi}\int_0^{2\pi}e^{j(\beta\sin\alpha-n\alpha)}\,d\alpha=J_n(\beta) \]
+analitik olarak hesaplayamayız, numerik olarak hesaplanır
+
+Bessel function of the 1st kind and nth order\\
+(n. mertebeden 1. tür Bessel fonk.)
+\[ x(t)=\sum_{n=-\infty}^{\infty}J_n(\beta)\,e^{j2\pi n f_m t} \]
+\[ \hat y(t)=A_c\,e^{j2\pi f_c t}\sum_{n=-\infty}^{\infty}J_n(\beta)\,e^{j2\pi n f_m t} \]
+\[ \hat y(t)=A_c\sum_{n=-\infty}^{\infty}\underset{\text{reel}}{J_n(\beta)}\,e^{j[2\pi(f_c+nf_m)t]} \]
+
+\sayfa{3}
+\[ y(t)=\mathrm{Re}\{\hat y(t)\}=A_c\sum_{n=-\infty}^{+\infty}J_n(\beta)\cdot\cos\big(2\pi(f_c+nf_m)t\big) \]
+\begin{align*}
+y(t)&=A_c\cos\big(2\pi f_c t+\beta\sin(2\pi f_m t)\big)\\
+&=A_c\sum_{n=-\infty}^{+\infty}J_n(\beta)\cos\big(2\pi(f_c+nf_m)t\big)
+\end{align*}
+
+\section{Bessel fonksiyonunu inceleyelim}
+\[ J_{-n}(\beta)=(-1)^n J_n(\beta) \]
+\[ |J_{-n}(\beta)|=|J_n(\beta)| \]
+
+Lathi (Proakis, s.176, Fig 4.4 benzeri)\\
+$\hookrightarrow$ şekil oradan
+
+\sekilnotu[3]{$J_n(\beta)$ grafiği: yatay eksen $n$ ($-10,\ldots,10$ işaretli), dikey eksen $J_n(\beta)$ (0,2; 0,4; 0,6; 0,8 ve $-0{,}2$ işaretli). Üç eğri çizilmiş: $\beta=1$ (turuncu) yaklaşık 0,8'den başlayıp azalarak $n\approx5$'te sıfıra yaklaşıyor; $\beta=2$ (koyu kırmızı) $n\approx2$ civarında yaklaşık 0,5 tepe yapıp $n\approx6$'da sıfıra iniyor; $\beta=3$ (mavi) yaklaşık $-0{,}2$'den başlayıp $n\approx3$ civarında yaklaşık 0,35 tepe yapıp $n\approx7$'de sıfıra iniyor.}
+
+$n>\beta+1$ için $J_n(\beta)\ll$
+
+\sekilnotu[3]{$|Y(f)|$ spektrum çizimi: dikey eksen $|Y(f)|$, yatay eksen $f$. $f_c$'de en uzun çizgi (üzerinde ``$\frac{A_c}{2}|J_n(\beta)|$''); yanlarında yukarı oklar: $f_c\pm f_m$ (turuncu), $f_c\pm2f_m$ (koyu kırmızı) ve en dışta, en kısa $f_c\pm nf_m$ (mavi); dış oklarda kesikli çizgilerle devam eden çizgiler gösteriliyor. Dikey eksenin yanında küçük kıvrık bir ok işareti var.}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.8]
+\draw[->,thick,murekkep] (-1,0) -- (7.2,0);
+\draw[->,thick,murekkep] (0,0) -- (0,3.6) node[above] {$|Y(f)|$};
+\draw[->,thick,murekkep] (0.7,0) -- (0.7,2.0);
+\draw[->,thick,murekkep] (3.04,0) -- (3.04,2.8);
+\draw[->,thick,murekkep] (5.4,0) -- (5.4,2.0);
+\node[below] at (0.7,0) {\scriptsize $f_c-nf_m$};
+\node[below] at (3.04,0) {\scriptsize $f_c$};
+\node[below] at (5.4,0) {\scriptsize $f_c+nf_m$};
+\draw[<->,thick,murekkep] (0.7,-0.9) -- (5.4,-0.9);
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+\mathrm{BG}&=2nf_m\\
+&=2(\beta+1)f_m\ ,\quad \mathrm{BG}\{m(t)\}=f_m=B\\
+&=2(\beta+1)B=2B(\beta+1)
+\end{align*}
+
+\sayfa{4}
+Açı modülasyonu lineer değildir.
+
+\begin{ornek}
+(Proakis)\\
+$c(t)=10\cos(2\pi f_c t)$, $m(t)=\cos(20\pi t)$\\
+FM with $k_f=50$\\
+Find the expression for the modulated signal and determine how many harmonics should be selected to contain 99 \% of the modulated signal power.
+\end{ornek}
+\begin{align*}
+\phi(t)&=2\pi k_f\int m(\tau)\,d\tau=\frac{2\pi k_f}{20\pi}\sin(20\pi t)\\
+&=\underset{\beta}{5}\sin(20\pi t)
+\end{align*}
+\[ y(t)=A_c\cos\big(2\pi f_c t+\phi(t)\big) \]
+\[ y(t)=10\cos\big(2\pi f_c t+\underbrace{5\sin(2\pi f_m t)}_{\phi(t)}\big) \]
+\[ A_c=10,\quad \beta=\frac{\Delta f}{B}=\frac{\overset{50}{k_f}\cdot\overset{1}{m_p}}{10}=5 \]
+\begin{align*}
+y(t)&=10\cos\big(\underbrace{2\pi f_c t+5\sin(20\pi t)}_{\theta(t)}\big)\\
+&\to\ P_y=\frac{A_c^2}{2}=50\ \text{watt (\%\,100)}\\
+y(t)&=A_c\sum_{n=-\infty}^{+\infty}J_n(\beta)\cos\big(2\pi(f_c+nf_m)t\big)\\
+&=10\sum_{n=-\infty}^{+\infty}J_n(5)\cos\big(2\pi(f_c+n\cdot10)t\big)
+\end{align*}
+\begin{align*}
+P_y&=\underset{50\,\mathrm{W}\ (\%\,100)}{\frac{A_c^2}{2}}\sum_{n=-\infty}^{+\infty}J_n^2(\beta)\\
+&\hookrightarrow\ \sum_{n=-\infty}^{+\infty}J_n^2(\beta)=1
+\end{align*}
+\[ \Rightarrow\ \underbrace{\sum_{n=-k}^{k}}_{k\text{ tane harmonik}}J_n^2(\beta)\ge0{,}99 \]
+\[ J_0^2(5)+2\sum_{n=1}^{k}J_n^2(5)\ge0{,}99 \]
+
+Sayfa 176, Tablo 4.1'e göre
+\[
+\left.\begin{array}{l}
+\text{bu şart }k=6\text{ için sağlanıyor}\\
+\text{99\% of the power is within}\\
+\text{the frequencies }f_c\pm k\cdot10\ \to f_m
+\end{array}\right\}\quad f_c-6\cdot10\ \rule[0.5ex]{1.5cm}{0.4pt}\ f_c+6\cdot10
+\]
+\[ \text{B gerektiği}=2\times6\times10=120\ \mathrm{Hz} \]
+
+\sayfa{5}
+\[ \underline{2(\beta+1)\cdot f_m} \]
+\[ 2(\beta+1)B\ \checkmark \]
+\begin{center}
+\begin{tabular}{c c l}
+\toprule
+$n$ & $J_n(5)$ & $\kutula{\dfrac{A_c}{2}}\,J_n(5)$ \quad $\Big(\dfrac{A_c}{2}=5\Big)$ \\
+\midrule
+0 & $-0{,}178$ & $\longrightarrow\ -0{,}89$ \\
+1 & $-0{,}328$ & $\longrightarrow\ -1{,}64$ \\
+2 & $0{,}047$ & $\longrightarrow\ 0{,}235$ \\
+3 & $0{,}365$ & $\longrightarrow\ 1{,}825$ \\
+4 & $0{,}391$ & $\longrightarrow\ 1{,}955$ \\
+5 & $0{,}261$ & $\longrightarrow\ 1{,}305$ \\
+6 & $0{,}131$ & $\longrightarrow\ 0{,}655$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\sekilnotu[5]{$|Y(f)|$ çizgi spektrumu: dikey eksen $|Y(f)|$ (en solda uzun ok), yatay eksen $f$; yatay eksen etiketleri $f_c-60,\ f_c-50,\ \ldots,\ f_c-10,\ f_c,\ f_c+10,\ \ldots,\ f_c+60$ (bazı etiketler üst üste biniyor; sağda $f_c+40$ için kıvrık okla küçük bir etiket). $f_c$ etrafında 10 Hz aralıklı yukarı oklar; çizgilerin üzerindeki değerler soldan sağa (el çiziminde aralıklar düzensiz): 0,655; 1,305; 1,955; 1,825; 1,64; 0,235; 1,64; 0,89 ($f_c$'de); 1,64; 0,235; 1,825; 1,955; 1,305; 0,655. Yatay eksenin altında $f_c-60$'tan $f_c+60$'a uzanan büyük süslü parantez.}
+\[ \mathrm{BG}=120\ \mathrm{Hz} \]
+Mesajı gönderirken Band pass filtreden geçirip yollanabilir.\\
+Bu bant genişliğinde bir IF kullanılabilir.
+
+\begin{ornek}
+Lathi, Ör. 5.2.6\\
+$m(t)=\sin(2000\pi t)$\\
+$k_f=100\,000$, $k_p=10$\\
+a) Estimate BWs of $y_{\mathrm{FM}}(t)$ and $y_{\mathrm{PM}}(t)$\\
+b) Repeat part (a) if the message signal amplitude is doubled\\
+c) $''$ \hfill frequency is $''$
+\end{ornek}
+
+\sayfa{6}
+d) Comment on the sensitivity of FM and PM BWs to the spectrum \textit{(amplitude)} of $m(t)$
+\[ m(t)=\sin\big(2\pi\underset{B}{1000}\,t\big)\ ,\quad B=1000\ \mathrm{Hz} \]
+\begin{align*}
+&\text{a) FM:}\quad \Delta f=k_f\cdot m_p \;\to\; \Delta f=100\ \mathrm{kHz}\\
+&\qquad m_p=\max|m(t)|=1\\
+&\qquad\qquad\downarrow\ \beta=\frac{\Delta f}{B}=100\\
+&\qquad\qquad\hookrightarrow\ \mathrm{BG}=2B(\beta+1)=202\ \mathrm{kHz}
+\end{align*}
+\begin{align*}
+&\text{PM:}\quad \Delta f=\frac{k_p}{2\pi}\cdot m_p'\\
+&\qquad m_p'=\max|\dot m(t)|=\max\big|2\pi\cdot1000\cos(\ \,)\big|=2000\pi\\
+&\qquad \Delta f=\frac{10}{2\pi}\times2000\pi=10\ \mathrm{kHz}\\
+&\qquad\to\ \beta=\frac{\Delta f}{B}=\frac{10\ \mathrm{kHz}}{1\ \mathrm{kHz}}=10\\
+&\qquad \mathrm{BG}_{\mathrm{PM}}=2B(\beta+1)=22\ \mathrm{kHz}
+\end{align*}
+\begin{align*}
+&\text{b) }m(t)=2\sin(2\pi\cdot1000\,t)\\
+&\text{FM}\quad m_p=2\;\to\;\Delta f=k_f\,m_p=200\ \mathrm{kHz}\\
+&\qquad\to\ \beta=\frac{\Delta f}{B}=\frac{200\ \mathrm{kHz}}{1\ \mathrm{kHz}}=200\\
+&\qquad\to\ \mathrm{BG}_{\mathrm{FM}}=2B(\beta+1)=402\ \mathrm{kHz}
+\end{align*}
+\begin{align*}
+&\text{PM}\quad m_p'=4000\pi\;\to\;\Delta f=\frac{k_p}{2\pi}\cdot m_p'=\frac{10}{2\pi}\,4000\pi\\
+&\qquad=20\ \mathrm{kHz}\\
+&\to\ \beta=\frac{\Delta f}{B}=20\;\Rightarrow\;\mathrm{BG}_{\mathrm{PM}}=2B(\beta+1)=42\ \mathrm{kHz}
+\end{align*}
+d) iki modülasyonun da \underline{bant genişliği genliğe} çok duyarlıdır
+
+c)
+\[ m(t)=\sin\big(2\pi\cdot\underset{B}{2000}\,t\big)\;\Rightarrow\;B=2\ \mathrm{kHz} \]
+\begin{align*}
+&\text{FM: }m_p=1\;\to\;\Delta f=k_f\,m_p=100\ \mathrm{kHz}\\
+&\Rightarrow\beta=\frac{\Delta f}{B}=\frac{100\mathrm{k}}{2\mathrm{k}}=50\\
+&\Rightarrow\mathrm{BG}_{\mathrm{FM}}=2\underset{2\mathrm{k}}{B}\big(\underset{50}{\beta}+1\big)=204\ \mathrm{kHz}
+\end{align*}
+
+\sayfa{7}
+\begin{align*}
+&\text{PM: }m_p'=\max|\dot m(t)|=\max|2\pi\,2000\cos(2\pi\,2000\,t)|=4000\pi\\
+&\to\ \Delta f=\frac{k_p}{2\pi}\cdot m_p'=\frac{10}{2\pi}\cdot4000\pi=20\ \mathrm{kHz}\\
+&\to\ \beta=\frac{\Delta f}{B}=\frac{20\mathrm{k}}{2\mathrm{k}}=10\;\to\;\mathrm{BG}_{\mathrm{PM}}=2B(\beta+1)\\
+&\qquad=2\cdot2\mathrm{k}\times(10+1)=44\ \mathrm{kHz}
+\end{align*}
+d) frekans modülasyonu frekansa çok duyarlı değil ama PM modülasyonu çok duyarlıdır.
+
+\begin{ornek}
+Lathi Ex 5.9\\
+An angle modulated signal with carrier frequency $f_c=10^6$ Hz is described by the equation
+\[ y_{\mathrm{EM}}(t)=10\cos\big[2\pi10^6 t+5\sin(3000t)+10\sin(2000\pi t)\big] \]
+[Turuncu/kalem notları: $y_{\mathrm{EM}}$: exponential modulation (angle modulation); 10: $A_c$; $2\pi10^6$: $f_c$; $5\sin(3000t)+10\sin(2000\pi t)$: $\phi(t)$; tüm argüman: $\theta(t)$; $f_1=\frac{3000}{2\pi}$; $f_2=\frac{2000\pi}{2\pi}=1\,\mathrm{kHz}$; $\mathrm{BG}\{m(t)\}=1\,\mathrm{kHz}$]\\
+a) Find the power of the modulated signal\\
+b) Find the max frequency deviation $\Delta f$\\
+c) $''$ the deviation ratio $\beta$\\
+d) $''$ the max phase deviation $\Delta\phi$\\
+e) Estimate the BW of $y_{\mathrm{EM}}(t)$
+\[ \Delta f=\max|f_i(t)-f_c| \]
+\end{ornek}
+\begin{align*}
+&\text{a) }P_y=\frac{A_c^2}{2}=50\ \text{watt}\\
+&\text{b) }f_i(t)=\frac{1}{2\pi}\frac{d\theta(t)}{dt}=f_c+\frac{1}{2\pi}\frac{d\phi(t)}{dt}\\
+&\qquad\Rightarrow\Delta f=\frac{1}{2\pi}\max|\dot\phi(t)|\\
+&\qquad\Delta f=\frac{1}{2\pi}\max\Big|5\times3000\underbrace{\cos(3000t)}_{\approx1}\\
+&\qquad\qquad+10\times2000\pi\underbrace{\cos(2000\pi t)}_{\approx1}\Big|\\
+&\qquad\Delta f\approx\frac{1}{2\pi}\big[15000+20000\pi\big]=12388\ \mathrm{Hz}
+\end{align*}
+\[ \text{c) }\beta=\frac{\Delta f}{B}=\frac{12388}{1\,\mathrm{kHz}} \]
+
+\sayfa{8}
+\begin{align*}
+\phi(t)&=\begin{cases}k_p\,m(t)\\ \text{veya}\\ 2\pi k_f\displaystyle\int m(\tau)\,d\tau\end{cases}\\
+&=\underset{f_1=\frac{3000}{2\pi}\approx477{,}5\ \mathrm{Hz}}{5\sin(3000t)}+\underset{f_2=1000}{10\sin(2000\pi t)}\\
+&\Rightarrow\ \mathrm{BG}=f_2=1\ \mathrm{kHz}
+\end{align*}
+\begin{align*}
+&\text{d) }\Delta\phi=\max|\phi(t)|\\
+&\qquad=\max\Big|5\underbrace{\sin(3000t)}_{1}+10\underbrace{\sin(2000\pi t)}_{\approx1}\Big|\approx15\ \mathrm{rad}
+\end{align*}
+\[ \text{e) }\mathrm{BG}=2B(\beta+1)=2\cdot1\mathrm{k}\times(12{,}388+1)\approx26{,}8\ \mathrm{kHz} \]
+
+\underline{Haftaya 11'de quiz}
+
+\section{Periyodik mesaj işaretinin açı modülasyonu}
+\[ y(t)=A_c\cos\big(2\pi f_c t+\phi(t)\big) \]
+\[ \hookrightarrow\ \begin{cases}{=}\,k_p\,m(t)&\text{PM}\\ {=}\,2\pi k_f\displaystyle\int m(\tau)\,d\tau&\text{FM}\end{cases} \]
+\[ m(t)\quad T_m=\frac{1}{f_m}\ \text{periyodik}\ \Rightarrow\ \phi(t)\quad T_m=\frac{1}{f_m}\ \text{ile periyodik} \]
+\[ \hat y(t)=A_c\,e^{j2\pi f_c t}\underbrace{e^{j\phi(t)}}_{x(t)}\;\to\;y(t)=\mathrm{Re}\{\hat y(t)\} \]
+\begin{align*}
+x(t)&=e^{j\phi(t)}=\sum_n \underset{|c_n|e^{j\angle c_n}}{c_n}\,e^{j2\pi nf_m t}\\
+c_n&=\frac{1}{T_m}\int_{T_m}\underbrace{e^{j\phi(t)}}_{x(t)}\cdot e^{-j2\pi nf_m t}\,dt
+\end{align*}
+\[ \hat y(t)=A_c\cdot e^{j2\pi f_c t}\underbrace{\sum_{n=-\infty}^{+\infty}|c_n|\,e^{j[(2\pi nf_m t)+\angle c_n]}}_{x(t)=e^{j\phi(t)}} \]
+\[ y(t)=\mathrm{Re}\{\hat y(t)\} \]
+\formulkutu{y(t)=A_c\sum_{n=-\infty}^{+\infty}|c_n|\cos\big(2\pi(f_c+nf_m)t+\angle c_n\big)}
+\[ \downarrow\quad P_y=\frac{A_c^2}{2}\sum_{n=-\infty}^{+\infty}|c_n|^2 \]
+
+\sayfa{9}
+\begin{ornek}
+Lathi, Ex 5.3
+\end{ornek}
+\sekilnotu[9]{$m(t)$ üçgen dalga çizimi: genlik $-1$ ile $+1$ arasında (dikey eksende kesikli çizgilerle ``1'' ve ``$-1$'' işaretli), yatay eksen $t$; iki ardışık tepe arasında çift yönlü ok ve ``$2\cdot10^{-4}$'' (periyot); bir yükselen kenarda tepe yüksekliği ``1'' ve tabanı ``$\frac{2\cdot10^{-4}}{4}$'' (turuncu) olarak gösteriliyor.}
+eğim $\dfrac{\text{karşı}}{\text{komşu}}=\dfrac{1}{2\cdot10^{-4}/4}=20000$
+
+a) $\mathrm{BW}_{\mathrm{FM}}=?$ \quad $\mathrm{BW}_{\mathrm{PM}}=?$\\
+if $k_f=10^5$, $k_p=5\pi$\\
+b) Repeat a) if the amplitude of $m(t)$ is doubled\\
+c) Repeat a) if $m(t)$ is time expanded by a factor of 2, i.e, the period of $m(t)$ is $4\cdot10^{-4}$ s
+\[ T_m=2\cdot10^{-4}\ \mathrm{s}\;\to\;f_m=\frac{1}{T_m}=5\ \mathrm{kHz} \]
+\[ |c_n|=\begin{cases}\dfrac{4}{\pi^2n^2}&n\ \text{tek}\\[1ex] 0&n\ \text{çift}\end{cases} \]
+\begin{tabular}{@{}l l l@{}}
+$\to\ n=3$ ise & 3. harmonik & \%11 of the fundamental ($f_m$) $\hookrightarrow$ güce katkısı \%1,21\\
+$n=5$ & 5. harmonik & \%4 of the fundamental ($f_m$) $\to$ \%0,16
+\end{tabular}
+
+$c_3=\dfrac{4}{9\pi^2}=\dfrac{c_1}{9}\approx0{,}11\,c_1$\\
+yani: 3. harmonik birincinin \%11'i;\\
+$|c_3|^2=0{,}0121\,|c_1|^2$ ($=$ 1. harmoniğin \%1,21'i)
+
+Efektif BG'ni $n=3$. harmonik belirler
+\[ B=3f_m=15\ \mathrm{kHz} \]
+\begin{align*}
+&\text{a) FM: }\Delta f=k_f\cdot m_p=100\,000\times1=100\ \mathrm{kHz}\\
+&\qquad\to\ \beta=\frac{\Delta f}{B}=\frac{100\mathrm{k}}{15\mathrm{k}}=6{,}66\\
+&\Rightarrow\mathrm{BG}_{\mathrm{FM}}=2B(\beta+1)=2\cdot15\mathrm{k}\Big(\frac{100}{15}+1\Big)=230\ \mathrm{kHz}\\
+&\text{PM: }\Delta f=\frac{k_p}{2\pi}\,m_p',\qquad m_p'=\max|\dot m(t)|=20\,000\\
+&\Rightarrow\Delta f=\frac{5\pi}{2\pi}\times20\,000=50\ \mathrm{kHz}\;\to\;\beta=\frac{\Delta f}{B}=\frac{50}{15}
+\end{align*}
+
+\sayfa{10}
+\begin{align*}
+\mathrm{BG}_{\mathrm{PM}}&=2B(\beta+1)=2\times15\mathrm{k}\Big(\frac{50}{15}+1\Big)\\
+&=130\ \mathrm{kHz}
+\end{align*}
+\begin{align*}
+&\text{b) FM}\quad m_p=2\;\to\;\Delta f=200\ \mathrm{kHz}\;\Rightarrow\;\mathrm{BG}_{\mathrm{FM}}=2B(\beta+1)\\
+&\qquad=2\big(\underset{200}{\Delta f}+\underset{15}{B}\big)\\
+&\qquad=430\ \mathrm{kHz}
+\end{align*}
+\begin{align*}
+&\text{PM}\quad m_p'=40\,000\;\to\;\Delta f=100\ \mathrm{kHz}\;\Rightarrow\;\mathrm{BG}_{\mathrm{PM}}=2(\Delta f+B)\\
+&\qquad=230\ \mathrm{kHz}
+\end{align*}
+Bant genişliği iki katına çıktı
+\[ \text{c) }T_m=4\cdot10^{-4}\ \mathrm{s}\;\to\;f_m=\frac{1}{T_m}=2{,}5\ \mathrm{kHz} \]
+\[ \mathrm{BG}_{\mathrm{eff}}=B=3f_m=7{,}5\ \mathrm{kHz} \]
+\begin{align*}
+&\text{FM: }\Delta f=k_f\cdot m_p=100\ \mathrm{kHz}\\
+&\qquad\beta=\frac{\Delta f}{B}=\frac{100}{7{,}5}\\
+&\mathrm{BG}_{\mathrm{FM}}=2\big(\underset{100\mathrm{k}}{\Delta f}+\underset{7{,}5}{B}\big)=215\ \mathrm{kHz}
+\end{align*}
+\begin{align*}
+&\text{PM: }\Delta f=\frac{k_p}{2\pi}\cdot m_p'\\
+&\qquad m_p'=\max|\dot m(t)|=10\,000\\
+&\qquad\Delta f=\frac{5\pi}{2\pi}\cdot10\,000=25\ \mathrm{kHz}\\
+&\Rightarrow\mathrm{BG}_{\mathrm{PM}}=2\big(\underset{25}{\Delta f}+\underset{7{,}5}{B}\big)=65\ \mathrm{kHz}
+\end{align*}
+PM bant genişliği yarıya indi, frekans yarıya inince
+
+FM zamandaki genişliğe pek duyarlı değil
+
+\end{document}

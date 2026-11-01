@@ -1,0 +1,350 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{ELEC 361 Midterm Exam (Fall 2023) çözümleri}{ELM361_Fall2023_Midterm_Solutions.pdf}
+
+\sayfa{1}
+\sekilnotu[1]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\[
+x(t)=\sum_{k=-\infty}^{\infty}\Pi\!\left(\frac{t-\frac{k}{1000}}{\frac{1}{2000}}\right)
+\qquad
+\Pi\!\left(\frac{t}{1/2000}\right)\;\Rightarrow
+\]
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=0.9cm,murekkep,font=\small]
+\draw[->] (-1.8,0) -- (1.8,0) node[right] {$t$};
+\draw[->] (0,0) -- (0,1.5);
+\draw[thick] (-1,0)--(-1,1)--(1,1)--(1,0);
+\node[below] at (-1,0) {$\frac{-1}{4000}$};
+\node[below] at (1,0) {$\frac{1}{4000}$};
+\end{tikzpicture}
+\qquad
+\begin{tikzpicture}[x=0.9cm,y=0.9cm,murekkep,font=\small]
+\draw[->] (-6.7,0) -- (6.7,0) node[right] {$t$};
+\draw[->] (0,0) -- (0,1.8) node[above] {$x(t)$};
+\foreach \a in {-4,0,4} \draw[thick] (\a-1,0)--(\a-1,1)--(\a+1,1)--(\a+1,0);
+\node at (-6.2,0.5) {$\cdots$}; \node at (6.2,0.5) {$\cdots$};
+\foreach \tt/\lb in {-5/-5,-3/-3,-1/-1,1/1,3/3,5/5} \draw (\tt,0.05)--(\tt,-0.05) node[below] {$\frac{\lb}{4000}$};
+\node[left] at (0,1) {$1$};
+\end{tikzpicture}
+\end{center}
+\[
+T_0=\frac{4}{4000}=10^{-3}\ \mathrm{sn}\qquad f_0=1\ \mathrm{kHz}\qquad \omega_0=2000\pi
+\]
+
+\noindent a)
+\begin{align*}
+x(t)&=\sum_{n=-\infty}^{\infty}x_n\,e^{jn\omega_0 t}\\
+x_0&=\frac{1}{T_0}\int_{T_0}x(t)\,dt=1000\int_{-\frac{1}{4000}}^{\frac{1}{4000}}1\,dt=1000\cdot\frac{2}{4000}=\frac12
+\end{align*}
+\begin{align*}
+x_n &= \frac{1}{T_0}\int_{T_0}x(t)\,e^{-jn\omega_0 t}\,dt = 10^3\int_{-\frac14 10^{-3}}^{\frac14 10^{-3}}1\cdot e^{-jn\,2000\pi t}\,dt\\
+ &= 10^3\cdot\frac{-1}{jn\cdot 2\cdot 10^3\pi}\Bigl\{e^{-jn\cdot 2\cdot 10^3\cdot\frac14 10^{-3}\pi}-e^{jn\cdot 2\cdot 10^3\cdot\frac14 10^{-3}\pi}\Bigr\}\\
+ &= \frac{1}{\pi n}\cdot\frac{1}{2j}\Bigl\{e^{j\frac{n}{2}\pi}-e^{-j\frac{n}{2}\pi}\Bigr\}\\
+ &= \frac{1}{\pi n}\cdot\sin\!\left(\frac{\pi n}{2}\right),\qquad n\neq 0
+\end{align*}
+\begin{align*}
+x(t) &= \frac12+\sum_{\substack{n\neq 0\\ n\ \text{tek}}}\frac{1}{\pi n}\sin\!\left(\frac{\pi n}{2}\right)e^{jn\,2000\pi t}\\
+\hookrightarrow\ \sin\!\left(\frac{\pi n}{2}\right) &=\begin{cases}\ \ 1, & n=1,5,9,13,\ldots\\ -1, & n=3,7,11,\ldots\end{cases}
+\end{align*}
+\begin{align*}
+S_x(f) &= \sum_n |x_n|^2\,\delta(f-nf_0)\\
+ &= \frac14\,\delta(f)+\sum_{\substack{n\neq0\\ n\ \text{tek}}}\frac{1}{\pi^2n^2}\,\delta(f-n1000)
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[x=0.9cm,y=1.1cm,murekkep,font=\small]
+\draw[->] (-4.8,0) -- (4.8,0) node[right] {$f$ (kHz)};
+\foreach \tt in {-4,-3,-2,-1,0,1,2,3,4} \draw (\tt,0.05)--(\tt,-0.05) node[below] {$\tt$};
+\draw[->,thick] (0,0) -- (0,2) node[right] {$\frac14$};
+\node[left] at (0,2.3) {$S_x(f)$};
+\foreach \tt in {-1,1} \draw[->,thick] (\tt,0)--(\tt,0.8);
+\foreach \tt in {-3,3} \draw[->,thick] (\tt,0)--(\tt,0.3);
+\node[above right] at (1,0.8) {$\frac{1}{\pi^2}$};
+\node[above right] at (3,0.3) {$\frac{1}{9\pi^2}$};
+\node at (-4.5,0.3) {$\cdots$}; \node at (4.5,0.3) {$\cdots$};
+\end{tikzpicture}
+\end{center}
+
+\noindent b)\quad
+\begin{tikzpicture}[murekkep,font=\small,baseline=-0.1cm]
+\node[draw,minimum height=0.6cm] (h) at (0,0) {$h(t)$};
+\draw[->] (-1.6,0) node[left] {$x(t)$} -- (h);
+\draw[->] (h) -- (1.6,0) node[right] {$y(t)$};
+\end{tikzpicture}
+\[
+h(t)=20000\,\mathrm{sinc}\Bigl(\underbrace{10000t-100000}_{10000(t-10)}\Bigr)\ \Longrightarrow\ H(f)=2\,\Pi\!\left(\frac{f}{10000}\right)e^{-j2\pi f10}
+\]
+\noindent $\tau=10000,\ A=2,\ t_0=10$
+\[
+|H(f)|=2\,\Pi\!\left(\frac{f}{10000}\right),\qquad \theta_H(f)=-2\pi\,10f
+\]
+\begin{center}
+\begin{tikzpicture}[x=0.5cm,y=0.6cm,murekkep,font=\small]
+\draw[->] (-4.5,0)--(4.5,0) node[right]{$f$};
+\draw[->] (0,0)--(0,2.8) node[above]{$|H(f)|$};
+\draw[thick] (-3,0)--(-3,2)--(3,2)--(3,0);
+\node[right] at (0,2) {$2$};
+\node[below] at (-3,0) {$-5\mathrm{k}$}; \node[below] at (3,0) {$5\mathrm{k}$};
+\end{tikzpicture}
+\hspace{1.5cm}
+\begin{tikzpicture}[x=0.5cm,y=0.6cm,murekkep,font=\small]
+\draw[->] (-4.5,0)--(4.5,0) node[right]{$f$};
+\draw[->] (0,-2.8)--(0,2.8) node[above]{$\theta_H(f)$};
+\draw[thick] (-3,2)--(3,-2);
+\draw[dashed] (-3,0)--(-3,2); \draw[dashed] (3,0)--(3,-2);
+\node[below] at (-3,0) {$-5\mathrm{k}$}; \node[above] at (3,0) {$5\mathrm{k}$};
+\node[right] at (3,-2) {$-20\pi f$};
+\end{tikzpicture}
+\end{center}
+$\Rightarrow$ $|H(f)|$, $x(t)$'nin spektrumunun tamamında $|K|\neq 0$ olmadığından bu işaret için bozulmasız değildir.
+
+\sayfa{2}
+\noindent c)
+\begin{align*}
+&x(t)=20\cos(2\pi\,2000t)+10\cos(2\pi\,4000t)\\
+&\qquad\downarrow\\
+&X(f)=10\delta(f-2000)+10\delta(f+2000)+5\delta(f-4000)+5\delta(f+4000)
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[x=0.8cm,y=0.5cm,murekkep,font=\small]
+\draw[->] (-4.8,0)--(4.8,0) node[right]{$f$ (kHz)};
+\draw[->] (0,0)--(0,4.2) node[above]{$|X(f)|$};
+\foreach \xx/\hh in {-4/2,-2/4,2/4,4/2} \draw[->,thick] (\xx,0)--(\xx,\hh);
+\foreach \xx in {-4,-2,2,4} \node[below] at (\xx,0) {$\xx$};
+\end{tikzpicture}
+\end{center}
+$|H(f)|$, $X(f)$'in BG'si içinde sabit, $\theta_H(f)$'de lineer olduğu için sistem bu işaret için bozulmasızdır.
+
+\noindent $K=2,\quad t_d=10$
+
+\noindent
+\begin{tikzpicture}[murekkep,font=\small,baseline=-0.1cm]
+\node[draw,minimum height=0.6cm] (h) at (0,0) {$h(t)$};
+\draw[->] (-1.6,0) node[left] {$x(t)$} -- (h);
+\draw[->] (h) -- (1.6,0) node[right] {$y(t)=2x(t-10)$};
+\end{tikzpicture}
+\begin{align*}
+S_y(f)&=|H(f)|^2\cdot S_x(f)\\
+S_x(f)&=100\delta(f-2000)+100\delta(f+2000)+25\delta(f-4000)+25\delta(f+4000)\\
+S_y(f)&=400\delta(f-2000)+400\delta(f+2000)+100\delta(f-4000)+100\delta(f+4000)
+\end{align*}
+\[ \mathcal{F}^{-1}\downarrow \]
+\[ R_y(\tau)=800\cos(2\pi\,2000\tau)+200\cos(2\pi\,4000\tau) \]
+
+\noindent 1.\,yol: $P_y=R_y(0)=800+200=1000\ \mathrm{W}$
+
+\noindent 2.\,yol: $P_y=\displaystyle\int_{-\infty}^{\infty}S_y(f)\,df=2\cdot400+2\cdot100=1000\ \mathrm{W}$
+
+\sayfa{3}
+\sekilnotu[3]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\noindent a)
+\[
+x(t)=m(t)+\cos(2\pi f_c t)\ \xrightarrow{\ \mathcal{F}\ }\ X(f)=M(f)+\tfrac12\delta(f-f_c)+\tfrac12\delta(f+f_c)
+\]
+\begin{align*}
+z(t)&=5x^2(t)=5\bigl[m(t)+\cos(2\pi f_c t)\bigr]^2\\
+ &=5\Bigl[m^2(t)+2m(t)\cos(2\pi f_c t)+\underbrace{\cos^2(2\pi f_c t)}_{\frac12+\frac12\cos(2\pi\,2f_c t)}\Bigr]\\
+z(t)&=5m^2(t)+10\,m(t)\cos(2\pi f_c t)+\tfrac52+\tfrac52\cos(2\pi\,2f_c t)
+\end{align*}
+\[ \mathcal{F}\downarrow \]
+\begin{align*}
+Z(f)&=\underbrace{5M(f)\ast M(f)}_{\text{BG'si } 2B}+5M(f-f_c)+5M(f+f_c)\\
+ &\quad+\tfrac52\delta(f)+\tfrac54\delta(f-2f_c)+\tfrac54\delta(f+2f_c)
+\end{align*}
+
+\noindent i) LPF, Gain$=5$, BW$=2B$
+\[
+Y(f)=25M(f)\ast M(f)+\tfrac{25}{2}\delta(f)\ \longrightarrow\ y(t)=25m^2(t)+\tfrac{25}{2}
+\]
+\noindent ii) BPF, Gain$=2$, BW$=2B$, MF$=f_c$
+\[
+Y(f)=10M(f-f_c)+10M(f+f_c)\ \longrightarrow\ y(t)=20\,m(t)\cos(2\pi f_c t)
+\]
+
+\noindent b) $\rightarrow$ DSB-SC-AM, LC yok.
+\begin{align*}
+m(t)&=10\cos(2\pi\,5\mathrm{k}\,t)+20\cos(2\pi\,10\mathrm{k}\,t),\qquad f_c=50\ \mathrm{kHz}\\
+y(t)&=200\cos(2\pi\,5\mathrm{k}\,t)\cos(2\pi\,50\mathrm{k}\,t)+400\cos(2\pi\,10\mathrm{k}\,t)\cos(2\pi\,50\mathrm{k}\,t)\\
+ &=100\cos(2\pi\,55\mathrm{k}\,t)+100\cos(2\pi\,45\mathrm{k}\,t)\\
+ &\quad+200\cos(2\pi\,60\mathrm{k}\,t)+200\cos(2\pi\,40\mathrm{k}\,t)
+\end{align*}
+\begin{align*}
+Y(f)&=50\delta(f-55\mathrm{k})+50\delta(f+55\mathrm{k})+50\delta(f-45\mathrm{k})+50\delta(f+45\mathrm{k})\\
+&\quad+100\delta(f-60\mathrm{k})+100\delta(f+60\mathrm{k})+100\delta(f+40\mathrm{k})+100\delta(f-40\mathrm{k})
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[x=0.4cm,y=0.025cm,murekkep,font=\small]
+\draw[->] (38,0)--(63,0) node[right]{$f$ (kHz)};
+\node[above] at (41.5,118) {$|Y(f)|$};
+\foreach \xx/\hh in {40/100,45/50,55/50,60/100} \draw[->,thick] (\xx,0)--(\xx,\hh);
+\draw[dotted] (38,100)--(61,100); \draw[dotted] (38,50)--(61,50);
+\node[left] at (38,100) {$100$}; \node[left] at (38,50) {$50$};
+\foreach \xx in {40,45,50,55,60} \node[below] at (\xx,0) {$\xx$};
+\draw[<->] (40,-45)--(60,-45) node[midway,below]{$20\mathrm{k}$};
+\end{tikzpicture}
+\end{center}
+\noindent BG$\{y(t)\}=20\ \mathrm{kHz}$
+\begin{align*}
+P_y &= 4\cdot100^2+4\cdot50^2 = 50\mathrm{k}\ \mathrm{W}\\
+\text{verim} &= \frac{P_m}{P_y}=\frac{\frac{10^2}{2}+\frac{20^2}{2}}{50\mathrm{k}}=0{,}005
+\end{align*}
+
+\sayfa{4}
+\noindent c)\quad
+\begin{tikzpicture}[murekkep,font=\small,baseline=-0.1cm]
+\node[draw,circle,inner sep=1pt] (m) at (0,0) {$\times$};
+\node[draw,align=center,minimum height=0.8cm] (f) at (3,0) {AGF\\ BW $=10\,$kHz};
+\draw[->] (-1.5,0) node[left] {$y(t)$} -- (m);
+\draw[->] (0,-1) node[below] {$\cos(2\pi\,51\mathrm{k}\,t)$} -- (m);
+\draw[->] (m) -- node[above] {$a(t)$} (f);
+\draw[->] (f) -- (5,0) node[right] {$b(t)$};
+\end{tikzpicture}
+\begin{align*}
+a(t)&=y(t)\cos(2\pi\,51\mathrm{k}\,t)=20\,m(t)\underbrace{\cos(2\pi\,50\mathrm{k}\,t)\cdot\cos(2\pi\,51\mathrm{k}\,t)}_{\frac12\cos(2\pi\,1\mathrm{k}\,t)+\frac12\cos(2\pi\,101\mathrm{k}\,t)}\\
+&=10\,m(t)\cos(2\pi\,1\mathrm{k}\,t)+10\,m(t)\cos(2\pi\,101\mathrm{k}\,t),\\
+&\qquad m(t)=10\cos(2\pi\,5\mathrm{k}\,t)+20\cos(2\pi\,10\mathrm{k}\,t)\\
+&=50\cos(2\pi\,6\mathrm{k}\,t)+50\cos(2\pi\,4\mathrm{k}\,t)+100\cos(2\pi\,9\mathrm{k}\,t)+100\cos(2\pi\,11\mathrm{k}\,t)\\
+&\quad+50\cos(2\pi\,96\mathrm{k}\,t)+50\cos(2\pi\,106\mathrm{k}\,t)+100\cos(2\pi\,91\mathrm{k}\,t)+100\cos(2\pi\,111\mathrm{k}\,t)
+\end{align*}
+\begin{align*}
+A(f)&=25\delta(f-4\mathrm{k})+25\delta(f+4\mathrm{k})+25\delta(f-6\mathrm{k})+25\delta(f+6\mathrm{k})\\
+&\quad+50\delta(f-91\mathrm{k})+50\delta(f+91\mathrm{k})+50\delta(f-111\mathrm{k})+50\delta(f+111\mathrm{k})\\
+&\quad+50\delta(f-9\mathrm{k})+50\delta(f+9\mathrm{k})+25\delta(f-96\mathrm{k})+25\delta(f+96\mathrm{k})\\
+&\quad+25\delta(f-106\mathrm{k})+25\delta(f+106\mathrm{k})+50\delta(f-11\mathrm{k})+50\delta(f+11\mathrm{k})
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[x=0.33cm,y=0.5cm,murekkep,font=\small]
+\draw[->] (-1,0)--(38,0) node[right]{$f$ (kHz)};
+\draw[->] (0,0)--(0,3) node[above]{$A(f)$};
+\draw[dashed] (0,2)--(36,2); \draw[dashed] (0,1)--(36,1);
+\node[left] at (0,2) {$50$}; \node[left] at (0,1) {$25$};
+\foreach \xx/\hh in {4/1,6/1,9/2,11/2,15/2,20/1,30/1,35/2} \draw[->,thick] (\xx,0)--(\xx,\hh);
+\foreach \xx/\lb in {2/2,4/4,6/6,8/8,9/9,10/10,11/11,15/91,20/96,24/100,30/106,35/111} \node[below,font=\scriptsize] at (\xx,0) {$\lb$};
+\end{tikzpicture}
+\\[6pt]
+\begin{tikzpicture}[x=0.5cm,y=0.5cm,murekkep,font=\small]
+\draw[->] (-1,0)--(11,0) node[right]{$f$ (kHz)};
+\draw[->] (0,0)--(0,3) node[above]{$B(f)$};
+\draw[dashed] (0,2)--(9,2); \draw[dashed] (0,1)--(9,1);
+\node[left] at (0,2) {$50$}; \node[left] at (0,1) {$25$};
+\foreach \xx/\hh in {4/1,6/1,9/2} \draw[->,thick] (\xx,0)--(\xx,\hh);
+\foreach \xx in {2,4,6,8,9} \node[below] at (\xx,0) {$\xx$};
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+B(f)&=50\delta(f-9\mathrm{k})+50\delta(f+9\mathrm{k})+25\delta(f-4\mathrm{k})+25\delta(f+4\mathrm{k})\\
+&\quad+25\delta(f-6\mathrm{k})+25\delta(f+6\mathrm{k})\\
+b(t)&=100\cos(2\pi\,9\mathrm{k}\,t)+50\cos(2\pi\,4\mathrm{k}\,t)+50\cos(2\pi\,6\mathrm{k}\,t)
+\end{align*}
+* taşıyıcı frekans doğru şekilde tahmin edilmediğinden mesaj işareti geri elde edilememiştir.
+
+\sayfa{5}
+\sekilnotu[5]{Bu sayfa basılı materyal içeriyor (ör. ders slaytı); dijitalleştirilmedi.}
+
+\noindent a) $\text{verim}=\dfrac{\mu^2P_{m_n}}{1+\mu^2P_{m_n}}=0{,}15$ .
+\begin{align*}
+m(t)&=5-10\sin(2000\pi t)\ \longrightarrow\ m_p=15\\
+ &\Rightarrow\ m_n(t)=\frac13-\frac23\sin(2000\pi t)\\
+P_{m_n}&=\left(\frac13\right)^2+\left(-\frac23\right)^2\cdot\frac12=\frac39=\frac13\ \mathrm{W}\\
+\mu^2\cdot\frac13&=\frac{15}{100}+\mu^2\cdot\frac13\cdot\frac{15}{100}\\
+ &\longrightarrow\ \mu^2=0{,}53\ \rightarrow\ \mu=0{,}7276\cong 0{,}728
+\end{align*}
+
+\noindent b) $c(t)=20\cos(2\pi\,10\mathrm{k}\,t)\ \longrightarrow\ A_c=20,\ f_c=10\ \mathrm{kHz}$
+\begin{align*}
+y(t)&=A_c\bigl[1+\mu\,m_n(t)\bigr]\cdot\cos(2\pi f_c t)\\
+ &=20\bigl[1+0{,}24-0{,}48\sin(2\pi\,1000t)\bigr]\cos(2\pi\,10\mathrm{k}\,t)\\
+P_c&=\frac{A_c^2}{2}=\frac{20^2}{2}=200\ \mathrm{W}\\
+P_s&=\mu^2\frac{A_c^2}{2}P_{m_n}=(0{,}728)^2\cdot\frac{20^2}{2}\cdot\frac13=35{,}33\ \mathrm{W}\\
+P_y&=P_c+P_s=235{,}33\ \mathrm{W}
+\end{align*}
+
+\noindent c)
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=0.46\linewidth,height=4.2cm,axis lines=middle,xlabel={$t$ (ms)},
+ xtick={0.5,1,1.5,2},ytick={-5,5,10,15},ymin=-8,ymax=18,xmin=0,xmax=2.3,domain=0:2.2,samples=120,
+ ymajorgrids,grid style={dotted,kursunkalem},
+ every axis x label/.style={at={(current axis.right of origin)},anchor=west},font=\small]
+\addplot[murekkep,thick]{5-10*sin(360*x)};
+\node[right] at (axis cs:0,17) {$m(t)$};
+\end{axis}
+\end{tikzpicture}
+\hfill
+\begin{tikzpicture}
+\begin{axis}[width=0.46\linewidth,height=4.2cm,axis lines=middle,xlabel={$t$},
+ xtick=\empty,ytick={-35,-25,-15,15,25,35},ymin=-40,ymax=44,xmin=0,xmax=2.3,domain=0:2.2,samples=600,
+ ymajorgrids,grid style={dotted,kursunkalem},
+ every axis x label/.style={at={(current axis.right of origin)},anchor=west},font=\small]
+\addplot[murekkep,thick]{20*(1.24-0.48*sin(360*x))*cos(3600*x)};
+\addplot[kursunkalem]{20*(1.24-0.48*sin(360*x))};
+\addplot[kursunkalem]{-20*(1.24-0.48*sin(360*x))};
+\node[right] at (axis cs:0,41) {$y(t)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+\[
+\left.\begin{aligned}
+20\Bigl[1+0{,}728\cdot\tfrac13\Bigr]&=24{,}85\cong25\\
+20\Bigl[1+0{,}728\cdot\bigl(-\tfrac13\bigr)\Bigr]&=15{,}14\cong15
+\end{aligned}\right\}\qquad 20\bigl[1+0{,}728\cdot1\bigr]\cong34{,}56\cong35
+\]
+
+\noindent d)
+\begin{align*}
+m_n(t)&=\frac13-\frac23\sin(2\pi\,1000t)\\
+ &\longrightarrow\ M_n(f)=\frac13\delta(f)-\frac23\cdot\frac{1}{2j}\bigl[\delta(f-1000)-\delta(f+1000)\bigr]\\
+ &=\frac13\delta(f)+\frac13\delta(f-1000)\,e^{j\pi/2}+\frac13\delta(f+1000)\,e^{-j\pi/2}
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[x=0.0018cm,y=2.5cm,murekkep,font=\small]
+\draw[->] (-1400,0)--(1400,0) node[right]{$f$};
+\foreach \xx in {-1000,0,1000} \draw[->,thick] (\xx,0)--(\xx,0.33);
+\draw[dotted] (-1000,0.33)--(1100,0.33);
+\node[above] at (0,0.36) {$|M_n(f)|$};
+\node[above right] at (0,0.1) {$\frac13$};
+\node[below] at (-1000,0) {$-1000$}; \node[below] at (1000,0) {$1000$};
+\end{tikzpicture}
+\hspace{1.5cm}
+\begin{tikzpicture}[x=0.0018cm,y=0.8cm,murekkep,font=\small]
+\draw[->] (-1400,0)--(1400,0) node[right]{$f$};
+\draw[->] (0,-1.4)--(0,1.5) node[above]{$\theta_{M_n}(f)$};
+\fill (1000,1) circle (1.5pt); \fill (-1000,-1) circle (1.5pt);
+\draw[dotted] (0,1)--(1000,1)--(1000,0) (0,-1)--(-1000,-1)--(-1000,0);
+\node[below] at (-1000,0) {$-1000$}; \node[below] at (1000,0) {$1000$};
+\end{tikzpicture}
+\end{center}
+\begin{align*}
+y(t)&=24{,}8\cos(2\pi\,10\mathrm{k}\,t)-9{,}6\underbrace{\sin(2\pi\,1000t)\cdot\cos(2\pi\,10\mathrm{k}\,t)}_{\frac12\sin(-2\pi\,9\mathrm{k}\,t)+\frac12\sin(2\pi\,11\mathrm{k}\,t)}\\
+ &=24{,}8\cos(2\pi\,10\mathrm{k}\,t)+4{,}8\sin(2\pi\,9\mathrm{k}\,t)-4{,}8\sin(2\pi\,11\mathrm{k}\,t)
+\end{align*}
+\begin{align*}
+Y(f)&=12{,}4\delta(f-10\mathrm{k})+12{,}4\delta(f+10\mathrm{k})+2{,}4\delta(f-9\mathrm{k})\,e^{j\pi/2}\\
+&\quad+2{,}4\delta(f+9\mathrm{k})\,e^{-j\pi/2}+2{,}4\delta(f-11\mathrm{k})\,e^{-j\pi/2}+2{,}4\delta(f+11\mathrm{k})\,e^{j\pi/2}
+\end{align*}
+
+\sayfa{6}
+\begin{center}
+\begin{tikzpicture}[x=0.8cm,y=0.13cm,murekkep,font=\small]
+\draw[->] (-1,0)--(8,0) node[right]{$f$ (kHz)};
+\draw[->] (0,0)--(0,16) node[above]{$|Y(f)|$};
+\draw[dotted] (0,12.4)--(7,12.4); \draw[dotted] (0,2.4)--(7,2.4);
+\node[left] at (0,12.4) {$12{,}4$}; \node[left] at (0,2.4) {$2{,}4$};
+\draw[->,thick] (4,0)--(4,2.4); \draw[->,thick] (5,0)--(5,12.4); \draw[->,thick] (6,0)--(6,2.4);
+\node[below] at (4,0) {$9$}; \node[below] at (5,0) {$10$}; \node[below] at (6,0) {$11$};
+\end{tikzpicture}
+\\[10pt]
+\begin{tikzpicture}[x=0.4cm,y=0.9cm,murekkep,font=\small]
+\draw[->] (-9.5,0)--(9.5,0) node[right]{$f$ (kHz)};
+\draw[->] (0,-1.5)--(0,1.5) node[above]{$\theta_Y(f)$};
+\draw[dotted] (-8,1)--(4,1) (-4.6,-1)--(8,-1);
+\draw[dotted] (-8,1)--(-8,0) (4,1)--(4,0) (-4.6,-1)--(-4.6,0) (8,-1)--(8,0);
+\foreach \xx/\yy in {-8/1,4/1,-4.6/-1,8/-1} \fill (\xx,\yy) circle (1.5pt);
+\node[right] at (0,1) {$\frac{\pi}{2}$}; \node[right] at (0,-1) {$-\frac{\pi}{2}$};
+\foreach \xx/\lb in {-8/{-11},-6.2/{-10},-4.6/{-9},4/9,6/10,8/11} \node[below,font=\scriptsize] at (\xx,0) {$\lb$};
+\end{tikzpicture}
+\end{center}
+
+\end{document}

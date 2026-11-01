@@ -1,0 +1,135 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Elektrik alan ve potansiyel: grad, div, rot}{Ders4.pdf}
+
+\sayfa{1}
+\section{Sayfa 17 Problem 1}
+
+\sekilnotu[1]{Solda A noktasında $q$ yükü (üstünde $\vec F_{BA}$ oku, altında $\vec e_r$ birim vektörü), sağda B noktasında $Q$ yükü ve B'den sağa doğru $\vec F_{AB}$ oku.}
+
+\[ \vec e_r = \frac{\vec r}{r} = \frac{\overrightarrow{AB}}{|\overrightarrow{AB}|} \]
+\[ \vec F_{AB} = \frac{1}{4\pi\varepsilon_0}\,\frac{q\cdot Q}{r^2}\,\vec e_r\ \bigl(\vec e_r = \tfrac{\vec r}{r}\bigr) = -\vec F_{BA} \]
+\[ \vec F_{AB} = \frac{1}{4\pi\varepsilon_0}\,\frac{q\cdot Q}{r^3}\,\vec r = -\vec F_{BA} \]
+
+\subsection{N+1 yük olma durumu}
+
+\sekilnotu[1]{Aşağıda $q$ yükü; çevresinde $q_1$, $q_2$, \ldots, $q_N$ yükleri. $q$'dan her yüke kesikli/düz doğrular ve $r_1$, $r_2$, $r_n$ mesafeleri; yüklerin yanında $\vec e_{r_1}$, $\vec e_{r_2}$, $\vec e_{r_N}$ birim vektörleri.}
+
+\[ \vec r_n = r_n\cdot\vec e_n \]
+\[ \vec F_q = \frac{q}{4\pi\varepsilon_0}\sum_{n=1}^{N}\frac{q_n}{(r_n)^2}\,\vec e_n = \frac{q}{4\pi\varepsilon_0}\sum_{n=1}^{N}\frac{q_n}{(r_n)^{3}}\,\vec r_n \]
+
+\subsection{Yükler ayrık değil de bir bölgeye dağılmışsa}
+
+\sekilnotu[1]{Taralı (içi çizgili) ``hacimli cisim''; içinde bir $dv$ hacim elemanı ve oradan çıkan $\vec r$ vektörü. Solda ``V cisminin içindeki toplam yük'' yazısı ve $Q$ ile işaretli ok; sağda $dv$ ve $\rho \triangleq \frac{dQ}{dv}$ okla bağlanmış. Cismin altında (kırmızı) üstü çizili $\bar\rho = 0$ ve altında $\tilde\rho = \bar\rho + \rho$ yazılı.}
+
+\noindent hacimsel yük yoğunluğu $[\rho] = \dfrac{\mathrm{C}}{\mathrm{m}^3}$
+
+\[ \rho\,dv = dQ \]
+\noindent $dQ$: hacim elemanının içindeki yük
+
+\[ d\vec F_q = \frac{1}{4\pi\varepsilon_0}\,\frac{q\cdot dQ}{r^3}\,\vec r \]
+\[ \vec F_q = \int_v d\vec F_q = \frac{q}{4\pi\varepsilon_0}\int_v \frac{dQ}{r^3}\,\vec r = \frac{q}{4\pi\varepsilon_0}\int_v \frac{\rho}{r^3}\cdot\vec r\,dv \]
+
+\sayfa{2}
+\[ \equiv \frac{q}{4\pi\varepsilon_0}\int_x\int_y\int_z \frac{\rho}{r^3}\,\vec r\ \overbrace{dx\,dy\,dz}^{dv} \;\triangleq\; q\cdot\vec E \]
+\noindent $\vec E$: elektrostatik alan vektörü; \okunamadi{} zaman bağlı değil
+
+\noindent $\rho$ genelleştirebilirsek tümünü bir formülde bulabiliriz, (ilerde yapacağız)
+
+\[ \vec E = \underbrace{\frac{1}{4\pi\varepsilon_0}\int\frac{\rho}{r^3}\,\vec r\,dv}_{\text{tüm uzayda}} \]
+
+\medskip\noindent\hrulefill\medskip
+
+\noindent Sorduğum hocanın soruya cevabı
+\[ \vec E = \vec E_1 + \vec E_2 \qquad (\text{superposition}) \]
+
+\sekilnotu[2]{İki ayrı taralı yük bölgesi. Solda yoğunluğu $\rho_1$ olan bölge (içine $\rho_1$ yazılı ok), ondan çıkan $\vec r_1$ ve altında $\vec E_1$ oku; sağda yoğunluğu $\rho_2$ olan bölge, $\vec r_2$ ve altında $\vec E_2$ oku.}
+
+\noindent $\rho_1 + \rho_2 = \rho$ yazarsak genel formülü uygulayabiliriz
+
+\medskip\noindent\hrulefill\medskip
+
+\sekilnotu[2]{Solda kesikli bir oval içinde $\tilde P(\tilde x,\tilde y,\tilde z)$ noktası (solunda ``$dv$'' yazılı, oval hacim elemanını gösteriyor); bu noktadan sağ üstteki $P(x,y,z)$ noktasına $\vec r$ vektörü çizilmiş.}
+
+\[ \vec r = \overrightarrow{\tilde P P} = (x-\tilde x)\,\vec e_x + (y-\tilde y)\,\vec e_y + (z-\tilde z)\,\vec e_z \]
+\[ |\vec r| = r = \sqrt{(x-\tilde x)^2 + (y-\tilde y)^2 + (z-\tilde z)^2} \]
+
+\noindent $\star$ gradiant $x,\,y,\,z$'ye göre
+\[ \operatorname{grad}\!\left(\frac{1}{r}\right) = \operatorname{grad}\left(r^{-1}\right) \]
+\[ = \operatorname{grad}\Bigl[\bigl[(x-\tilde x)^2+(y-\tilde y)^2+(z-\tilde z)^2\bigr]^{-1/2}\Bigr] \]
+\begin{align*}
+&= -\tfrac{1}{2}\,2\,(x-\tilde x)\,\bigl[(x-\tilde x)^2+(y-\tilde y)^2+(z-\tilde z)^2\bigr]^{-3/2}\,\vec e_x\\
+&\quad -\tfrac{1}{2}\,2\,(y-\tilde y)\,\bigl[\,\text{------}\,\bigr]^{-3/2}\,\vec e_y\\
+&\quad -\tfrac{1}{2}\,2\,(z-\tilde z)\,\bigl[\,\text{------}\,\bigr]^{-3/2}\,\vec e_z
+\end{align*}
+\[ \operatorname{grad}(1/r) = -\frac{1}{r^3}\bigl[(x-\tilde x)\,\vec e_x + (y-\tilde y)\,\vec e_y + (z-\tilde z)\,\vec e_z\bigr] \]
+\[ = -\frac{\vec r}{r^3} \]
+\formulkutu{\operatorname{grad}\left(\frac{1}{r}\right) = -\frac{\vec r}{r^3}}
+
+\sayfa{3}
+\noindent $\vec E$'yi böyle yazabiliriz
+\[ \vec E = -\frac{1}{4\pi\varepsilon_0}\int \rho\,\underbrace{\left(-\frac{\vec r}{r^3}\right)}_{\operatorname{grad}(1/r)}dv \]
+
+\noindent P sabit sayarsak
+\[ \vec E = -\frac{1}{4\pi\varepsilon_0}\int_{\tilde x}\int_{\tilde y}\int_{\tilde z}\rho(\tilde x,\tilde y,\tilde z)\,\operatorname{grad}(1/r)\,d\tilde x\,d\tilde y\,d\tilde z \]
+
+\noindent $\star$
+\[ \vec E = -\operatorname{grad}\Bigl[\frac{1}{4\pi\varepsilon_0}\underbrace{\int_{\tilde x}\int_{\tilde y}\int_{\tilde z}\frac{\rho(\tilde x,\tilde y,\tilde z)}{r}\,d\tilde x\,d\tilde y\,d\tilde z}_{\Downarrow}\Bigr] \]
+
+\noindent $\star$ skaler potansiyel fonksiyonu
+\[ V(x,y,z) = \frac{1}{4\pi\varepsilon_0}\int_{\tilde x}\int_{\tilde y}\int_{\tilde z}\frac{\rho(\tilde x,\tilde y,\tilde z)}{r}\,d\tilde x\,d\tilde y\,d\tilde z + \underbrace{V_0}_{\text{sabit}} \]
+\noindent sonsuza giderken $V_0 = 0$'dır
+
+\noindent $\star$
+\formulkutu{\vec E(x,y,z) = -\operatorname{grad}V(x,y,z)}
+
+\noindent Noktasal için bakarsak
+\[ \vec E = -\operatorname{grad}V = -\operatorname{grad}\left[\frac{q}{4\pi\varepsilon_0}\cdot\frac{1}{r}\right] \]
+\[ = -\frac{q}{4\pi\varepsilon_0}\,\underbrace{\operatorname{grad}(1/r)}_{-\vec r/r^3} = \frac{q}{4\pi\varepsilon_0}\,\frac{\vec r}{r^3} \]
+
+\formulkutu{\operatorname{rot}\vec E = \underbrace{-\operatorname{rot}\operatorname{grad}V}_{=\,0} = 0}
+
+\[ \vec\nabla = \frac{\partial}{\partial x}\,\vec e_x + \frac{\partial}{\partial y}\,\vec e_y + \frac{\partial}{\partial z}\,\vec e_z \]
+
+\[ \Delta V = \operatorname{div}\operatorname{grad}V = \frac{\partial^2 V}{\partial x^2} + \frac{\partial^2 V}{\partial y^2} + \frac{\partial^2 V}{\partial z^2} = 0 \quad (\rho = 0\text{'nın dışında}) \]
+\noindent\textit{($\Delta$: laplacian (laplasien); $\operatorname{div}\operatorname{grad}V$: skaler)}
+
+\[ \Delta \triangleq \frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2} \triangleq \vec\nabla\cdot\vec\nabla = |\vec\nabla|^2 \ \star \]
+\[ \Delta f = \frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} + \frac{\partial^2 f}{\partial z^2} \]
+\[ \Delta\vec A = \frac{\partial^2}{\partial x^2}\vec A + \frac{\partial^2\vec A}{\partial y^2} + \frac{\partial^2\vec A}{\partial z^2} \]
+\[ \operatorname{rot}\operatorname{grad}\overset{\text{skaler}}{f} = \vec\nabla\times(\vec\nabla f) = (\vec\nabla\times\vec\nabla)f = 0 \]
+
+\sayfa{4}
+\begin{align*}
+\vec\nabla\times\vec\nabla &= \left(\frac{\partial}{\partial x}\,\vec e_x + \frac{\partial}{\partial y}\,\vec e_y + \frac{\partial}{\partial z}\,\vec e_z\right)\\
+&\qquad \times\left(\frac{\partial}{\partial x}\,\vec e_x + \frac{\partial}{\partial y}\,\vec e_y + \frac{\partial}{\partial z}\,\vec e_z\right)
+\end{align*}
+\noindent\textit{($\vec e_x\times\vec e_y = \vec e_z$, \ $\vec e_x\times\vec e_z = -\vec e_y$, \ $\vec e_y\times\vec e_z = \vec e_x$)}
+\begin{align*}
+&= \frac{\partial^2}{\partial x^2}\,(\vec e_x\times\vec e_x) + \frac{\partial^2}{\partial x\,\partial y}\,\vec e_z - \frac{\partial^2}{\partial x\,\partial y} + \frac{\partial^2}{\partial y\,\partial z}\,\vec e_x\\
+&\quad + \frac{\partial^2}{\partial x\,\partial z}\,\vec e_y - \frac{\partial^2}{\partial y\,\partial z}\,\vec e_x\\
+&= 0
+\end{align*}
+
+\noindent $\star$
+\formulkutu{\operatorname{rot}\vec E = -\operatorname{rot}\operatorname{grad}V = 0}
+
+\begin{ornek}
+$\vec E = 3xy\,\vec e_y$ \quad sağlayan yükleri bulun
+\end{ornek}
+
+\begin{align*}
+\operatorname{rot}\vec E = \vec\nabla\times\vec E &= \left(\frac{\partial}{\partial x}\,\vec e_x + \frac{\partial}{\partial y}\,\vec e_y + \frac{\partial}{\partial z}\,\vec e_z\right)\times(3xy\,\vec e_y)\\
+&= \frac{\partial}{\partial x}(3xy)\,\vec e_z - \frac{\partial\,(3xy)}{\partial z}\,\vec e_x\\
+&= 3y\,\vec e_z + 0 = 3y\,\vec e_z \neq 0
+\end{align*}
+\noindent o zaman bu elektrostatik alan değildir. Böyle bir yük dağılımı yoktur.
+
+\formulkutu{\operatorname{div}\operatorname{rot}\overset{\text{vektör}}{\vec A} = 0 \qquad \text{(her zaman geçerlidir)}}
+\[ = \vec\nabla\cdot\underbrace{(\vec\nabla\times\vec A)}_{\substack{\text{burdan çıkan vektör}\\ \vec\nabla\text{ ve }\vec A\text{'ya diktir}}} \]
+\noindent dikler skaler çarpımı 0'dır
+
+\formulkutu{\operatorname{rot}\operatorname{rot}\vec A = \operatorname{grad}\operatorname{div}\vec A - \Delta\vec A}
+
+\end{document}

@@ -1,0 +1,369 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{TB-ÇYB-GM (DSB-SC-AM): modülasyon ve demodülasyon}{Ders7.pdf}
+
+\sayfa{1}
+\section{Modülasyon}
+
+$\mathrm{BG}\{m(t)\} = B$ Hz \qquad $M(f) = 0,\ |f|>B$
+
+$c(t) = A_c\cos(2\pi f_c t + \theta_c)$
+
+\begin{itemize}
+\item[$\ast$] Genlik modülasyonu (Amplitude modulation - AM)
+\item[$\ast$] Frekans modülasyonu (Frequency modulation - FM) \quad $\Big\}$ Lineer olmayan (non linear)
+\item[$\ast$] Faz modülasyonu (Phase modulation - PM) \quad $\Big\}$ üstel (exponential) mod
+\end{itemize}
+
+\subsection{Double Sideband Suppressed Carrier AM (DSB-SC-AM)}
+Taşıyıcısı Bastırılmış (TB) Çift Yan Bantlı (ÇYB) \\
+Genlik modülasyonu (Gm)
+
+$m(t)$: Mesaj haber işareti / modüle eden işaret (modulating signal)
+
+$c(t) = A_c\cos(2\pi f_c t)$ \quad Taşıyıcı işaret (carrier signal)
+
+\[ y(t) = m(t)\,c(t) = A_c\, m(t)\cos(2\pi f_c t) \]
+$\hookrightarrow$ modüle edilmiş işaret \\
+(modüle edilmiş işaret) modulated signal
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\small]
+  \node[draw,circle,inner sep=1pt] (x) at (0,0) {$\times$};
+  \draw[->] (-2,0) node[above right]{$m(t)$} -- (x);
+  \draw[->] (0,-1.5) node[right]{$c(t)$} -- (x);
+  \draw[->] (x) -- (1.8,0) node[right]{$y(t)=A_c\,m(t)\cos(2\pi f_c t)$};
+  \node at (3.2,-0.8) {$\Updownarrow$};
+  \node[right] at (1.8,-1.5) {$Y(f)=\dfrac{A_c}{2}\bigl[M(f-f_c)+M(f+f_c)\bigr]$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{2}
+\sekilnotu[2]{Sol üstte $m(t)$ zaman grafiği (eksenler $t$ ve $m(t)$): $t=0$ civarında tepe yapıp sağa doğru negatif değere inen yumuşak bir işaret. Çift yönlü ok (``$F$'') ile sağdaki $M(f)$ grafiğine bağlı: $f=0$'da tepe değeri $A$ olan çan şekilli genlik spektrumu, $-B$ ile $B$ arasında; kırmızı kalemle faz eğrisi $\theta_M(f)$ (soldan sağa azalan).}
+
+\sekilnotu[2]{Solda $c(t)=A_c\cos(2\pi f_c t)$ grafiği: kosinüs dalgası, $t=0$'da tepe değeri $A_c$; kesikli çizgilerle $+A_c$ ve $-A_c$ seviyeleri işaretli. Çift yönlü ok (``$F$''). Sağda $C(f)=\dfrac{A_c}{2}\bigl[\delta(f-f_c)+\delta(f+f_c)\bigr]$: $-f_c$ ve $f_c$ noktalarında yukarı yönlü iki dürtü, yükseklikleri kesikli çizgiyle $A_c/2$.}
+
+cos normalde $-1$ ile $1$ arasında sallanır, şimdi $A_c m(t)$ ile $-A_c m(t)$ arasında sallanır.
+
+\sekilnotu[2]{Solda $y(t)=A_c\,m(t)\cos(2\pi f_c t)$ grafiği ($t$ ekseni): koyu kırmızı, hızlı salınan DSB-SC dalga biçimi $y(t)$ (etiket ``$y(t)$''); üst zarfı turuncu kesikli eğri ``$A_c m(t)$'', alt zarfı turkuaz kesikli eğri ``$-A_c m(t)$''. $t=0$'da genlik en büyük; zarf sıfırdan geçerken dalga küçülüp ters işaretle yeniden büyüyor. Sağda $Y(f)=\dfrac{A_c}{2}\bigl[M(f-f_c)+M(f+f_c)\bigr]$ spektrumu: $-f_c$ ve $f_c$ çevresinde iki çan şekilli (turuncu) genlik spektrumu, tepe seviyesi kesikli çizgiyle ``$A\,A_c/2$''; kırmızı faz eğrileri; $f$ ekseni işaretleri: $-f_c-B$, $-f_c$, $-f_c+B$ ve $f_c-B$, $f_c$, $f_c+B$. Her iki bantta $f_c$'nin altındaki yarı mavi taralı (``alt yan bant (AYB), lower side band'', mavi), üstündeki yarı turkuaz taralı (``Üst yan bant (ÜYB), upper side band'', turkuaz). Altta çift yönlü ok: $\mathrm{BG}\{y(t)\}=2B$ Hz.}
+
+Modülasyon işlemi sonucunda bant genişliği iki katına çıkar. (İşaret Bant geçirene döner) Mesaj işaretleri temel banttadır her zaman.
+
+Taşıyıcısı bastırılmış çünkü frekansa bakınca taşıyıcının frekans bileşenleri gözükmüyor.
+
+\sayfa{3}
+\section{Demodülasyon}
+
+\begin{align*}
+y(t) &= m(t)\,c(t)\\
+     &= A_c\, m(t)\cos(2\pi f_c t)
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\small]
+  \node[draw,circle,inner sep=1pt] (x) at (0,0) {$\times$};
+  \draw[->] (-1.8,0) -- (x);
+  \draw[->] (0,-1.3) node[below]{$\cos(2\pi f_c t)$} -- (x);
+  \node[draw,align=center,inner sep=4pt] (f) at (4.2,0) {AGF\\ $\mathrm{BG}=\mathrm{BG}\{m(t)\}=B$ Hz};
+  \draw[->] (x) -- node[above]{$e(t)$} (f);
+  \draw[->] (f.south) -- ++(0,-0.9) node[below]{$z(t)$};
+  \node[anchor=east] at (3.7,-1.9) {$z(t)=\dfrac{A_c\,m(t)}{2}$};
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+e(t) &= y(t)\cos(2\pi f_c t) \quad\to\quad E(f)=\tfrac12\bigl[Y(f-f_c)+Y(f+f_c)\bigr]\\
+     &= A_c\, m(t)\cos^2(2\pi f_c t)\\
+     &\qquad\;\downarrow\; \tfrac12\bigl[1+\cos(4\pi f_c t)\bigr]\\
+e(t) &= \tfrac{A_c}{2}\, m(t) + \tfrac{A_c}{2}\, m(t)\cos(2\pi\cdot 2f_c t)
+\end{align*}
+
+\[ E(f) = \frac{A_c}{2}M(f) + \frac{A_c}{4}\bigl[M(f-2f_c)+M(f+2f_c)\bigr] \]
+
+\sekilnotu[3]{$E(f)$ spektrumu ($f$ ekseni): ortada $f=0$ çevresinde, $-B$ ile $B$ arasında tepe değeri ``$A\,A_c/2$'' olan turuncu çan eğrisi (kırmızı faz eğrisi; altındaki ok ``$z(t)$'' etiketini gösteriyor, muhtemelen $Z(f)$); $-2f_c$ ve $2f_c$ çevresinde ikişer küçük çan eğrisi, tepe seviyeleri kesikli çizgiyle ``$A\,A_c/4$''. $f$ ekseni işaretleri: $-2f_c-B$, $-2f_c$, $-2f_c+B$, $-B$, $B$, $2f_c-B$, $2f_c$, $2f_c+B$. Turkuaz dikdörtgen $[-B,B]$ aralığını çevreliyor ve ``AGF'' etiketli ok ile gösteriliyor.}
+
+AGF Alçak geçiren filtre ile çarparsak işareti elde ederiz.
+
+\[ Z(f) = \frac{A_c}{2}M(f) \;\to\; z(t) = \frac{A_c}{2}m(t) \]
+
+$f_c$'yi küçük seçersek frekansta bileşenler birbirinin üzerine biner ve sinyali tekrar ayıramayız
+
+\begin{align*}
+2f_c - B &\geq B\\
+2f_c &\geq 2B\\
+f_c &\geq B
+\end{align*}
+
+Birde $f_c - B \geq 0 \Rightarrow f_c \geq B$ \hfill Teorik
+
+\sayfa{4}
+$\ast$ Pratik olarak bir anten bir dar bantlı işareti ($f_c \gg B$) bozulmasız yayınlayabilir
+\[ \frac{f_c}{B} \gg 1 \]
+
+Ticari genlik modülasyonunda (Radyo yayınları): \qty{550}{\kilo\hertz} - \qty{1600}{\kilo\hertz}
+
+\formulkutu{100 < \frac{f_c}{B} < 300}
+
+\subsection{TB - ÇYB - GM'nin gücü}
+\[ y(t) = m(t)\,c(t) = A_c\, m(t)\cos(2\pi f_c t) \]
+
+\begin{align*}
+P_y &= \lim_{T\to\infty}\frac1T\int_{-T/2}^{T/2} y^2(t)\,dt\\
+ &= \lim_{T\to\infty}\frac1T\int_{-T/2}^{T/2} A_c^2\, m^2(t)\,\underbrace{\cos^2(2\pi f_c t)}_{\frac12[1+\cos(4\pi f_c t)]}\,dt\\
+ &= \frac{A_c^2}{2}\Bigl[\lim_{T\to\infty}\frac1T\int_{-T/2}^{T/2} m^2(t)\,dt\\
+ &\qquad + \underbrace{\lim_{T\to\infty}\frac1T\int_{-T/2}^{T/2} m^2(t)\cos(4\pi f_c t)\,dt}_{0}\Bigr]\\
+ &= \frac{A_c^2}{2}
+\end{align*}
+
+\formulkutu{P_y = \frac{A_c^2}{2}P_m}
+
+\sekilnotu[4]{Yatay $t$ ekseni, düşey eksen. Kırmızı kalemle çok hızlı salınan $m^2(t)\cos(4\pi f_c t)$ dalgası; üst ve alt zarfları kesikli çizgiyle ``$m^2(t)$'' ve ``$-m^2(t)$''. Sağda süslü parantezle ``çok hızlı değişir'' ve ``$m^2(t)$ yavaş değiştiği için'' notu; turuncu bir ok bu notu, integraldeki ikinci terimin yanındaki turuncu ``0'' işaretine bağlıyor.}
+
+\sayfa{5}
+\subsection{Synchronous / Phase coherent demod}
+Senkron / Faz tahminli demodülasyon
+\begin{enumerate}
+\item Phase Locked Loop (PLL) devresi \\ (Faz kilitlemeli Döngü)
+\item Pilot taşıyıcı kullanmak \quad $y(t)$'ye $A_p\cos(2\pi f_c t)$ ($A_p \ll A_c$) ve bununla sinyal çarpılıp demode edilir \quad $\rightarrow$ Sayfa 133 Şekil 3.9 (2. baskı 126)
+\end{enumerate}
+
+\begin{ornek}
+$m(t) = \mathrm{sinc}(10^4 t)$ \\
+Find DSB-SC-AM signal and its BW if the carrier is a sinusoid with a frequency of \qty{1}{\mega\hertz}
+\end{ornek}
+
+\begin{align*}
+y(t) &= m(t)\,c(t)\\
+c(t) &= 1\cos(2\pi\cdot 10^6\, t)\\
+y(t) &= \mathrm{sinc}(10^4 t)\cos(2\pi\cdot 10^6\, t)
+\end{align*}
+
+\[ A\,2\,\mathrm{sinc}(2t) \;\donusum\; A\,\Pi\!\left(\frac f2\right) \]
+\[ \mathrm{sinc}(10^4 t) \;\donusum\; M(f) = \frac{1}{10^4}\,\Pi\!\left(\frac{f}{10^4}\right) \]
+\[ B = \frac{10^4}{2} = 5\ \mathrm{kHz} \]
+\[ \mathrm{BW}\{y(t)\} = 2B = 10\ \mathrm{kHz} \]
+
+\sayfa{6}
+\begin{ornek}
+Tone modulation: $m(t) = A\cos(2\pi f_m t)$, $f_m \ll f_c$ \quad (saf cosinüs ise; çünkü tek bir frekansı var)
+\end{ornek}
+
+\[ M(f) = \frac A2\bigl[\delta(f-f_m)+\delta(f+f_m)\bigr] \]
+
+\begin{align*}
+y(t) &= m(t)\,c(t) = m(t)\,A_c\cos(2\pi f_c t)\\
+&= A A_c\cos(2\pi f_m t)\cos(2\pi f_c t)\\
+&= \frac{A A_c}{2}\Bigl[\cos\bigl(2\pi\underbrace{(f_c-f_m)}_{=f_1}t\bigr)+\cos\bigl(2\pi\underbrace{(f_c+f_m)}_{f_2}t\bigr)\Bigr]
+\end{align*}
+
+\[ Y(f) = \frac{A A_c}{4}\bigl[\delta(f-f_1)+\delta(f+f_1)+\delta(f-f_2)+\delta(f+f_2)\bigr] \]
+
+\begin{align*}
+e(t) &= y(t)\cos(2\pi f_c t) = A_c\, m(t)\underbrace{\cos^2(2\pi f_c t)}_{\frac12[1+\cos(2\pi\, 2f_c t)]}\\
+&= \frac{A_c}{2}\,\overbrace{m(t)}^{A\cos(2\pi f_m t)} + \frac{A_c}{2}\, m(t)\cos(2\pi\, 2f_c t)
+\end{align*}
+
+\begin{align*}
+e(t) &= \frac{A A_c}{2}\cos(2\pi f_m t) + \frac{A A_c}{2}\underbrace{\cos(2\pi f_m t)\cos(2\pi\, 2f_c t)}\\
+&\qquad\qquad\ \ \frac12\Bigl[\cos\bigl(2\pi\underbrace{(2f_c-f_m)}_{=f_3}\,t\bigr)+\cos\bigl(2\pi\underbrace{(2f_c+f_m)}_{=f_4}\,t\bigr)\Bigr]
+\end{align*}
+
+\begin{align*}
+E(f) &= \frac{A A_c}{4}\bigl[\delta(f-f_m)+\delta(f+f_m)\bigr]\\
+&\quad + \frac{A A_c}{8}\bigl[\delta(f-f_3)+\delta(f+f_3)+\delta(f-f_4)+\delta(f+f_4)\bigr]
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-2.6,0) -- (2.8,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,1.7) node[right]{$M(f)$};
+  \draw[->,line width=1pt] (-2,0) -- (-2,1);
+  \draw[->,line width=1pt] (2,0) -- (2,1);
+  \draw[dashed] (-2,1) -- (2,1);
+  \node[above] at (0.9,1) {$A/2$};
+  \node[below] at (-2,0) {$-f_m$};
+  \node[below] at (2,0) {$f_m$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-5.5,0) -- (5.6,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,1.9) node[right]{$Y(f)$};
+  \foreach \x in {-4.7,-2.3,2.3,4.7} \draw[->,line width=1pt] (\x,0) -- (\x,1);
+  \draw[dashed] (0,1) -- (4.7,1);
+  \node[left] at (0,0.8) {$\dfrac{A A_c}{4}$};
+  \foreach \x/\l in {-4.7/-f_2,-3.5/-f_c,-2.3/-f_1,2.3/f_1,3.5/f_c,4.7/f_2} \node[below] at (\x,0) {$\l$};
+  \foreach \x/\l in {-4.7/-(f_c+f_m),-2.3/-(f_c-f_m),2.3/f_c-f_m,4.7/f_c+f_m} \node[below] at (\x,-0.45) {$\l$};
+  \foreach \x in {-4.7,4.7} \draw[kirmizikalem] (\x,0.5) ellipse (0.3 and 0.85);
+  \foreach \x in {-2.3,2.3} \draw[turuncukalem] (\x,0.5) ellipse (0.3 and 0.85);
+  \node[kirmizikalem] at (4.7,1.9) {üst yan bant};
+  \node[kirmizikalem] at (-4.7,1.9) {üst yan bant};
+  \node[turuncukalem] at (2.3,1.9) {alt yan bant};
+  \node[turuncukalem] at (-2.3,1.9) {alt yan bant};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{7}
+\sekilnotu[7]{$E(f)$ spektrumu ($f$ ekseni): ortada $-f_m$ ve $f_m$ noktalarında iki dürtü, yükseklikleri kesikli çizgiyle ``$A A_c/4$''; bu ikisini çevreleyen kırmızı kesikli dikdörtgen ``AGF'' (okla gösterilmiş), altında kırmızı ok ve ``$z(t)$'' etiketi. Daha dışta ikişer dürtü, yükseklikleri kesikli çizgiyle ``$A A_c/8$''. $f$ ekseni işaretleri: $-f_4=-(2f_c+f_m)$, $-2f_c$, $-f_3=-(2f_c-f_m)$, $-f_m$, $f_m$, $f_3=2f_c-f_m$, $2f_c$, $2f_c+f_m=f_4$.}
+
+\[ P_y = \frac{A_c^2}{2}P_m = \frac{A_c^2}{2}\cdot\frac{A^2}{2} = \frac{A^2A_c^2}{4} \]
+
+\begin{align*}
+y_{\text{a}}(t) &= \frac{A A_c}{2}\cos(2\pi f_1 t) & \to\; P_{y_{\text{a}}} &= \frac{A^2 A_c^2}{8}\\
+y_{\text{ü}}(t) &= \frac{A A_c}{2}\cos(2\pi f_2 t) & \to\; P_{y_{\text{ü}}} &= \frac{A^2 A_c^2}{8}
+\end{align*}
+
+\section{Modülatörler}
+\begin{itemize}
+\item Multiplier modulator (Çarpım modülatörü)
+\item Nonlinear modulator (Lineer olmayan modülatör)
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize,
+  sm/.style={circle,draw,inner sep=1pt}, bx/.style={draw,minimum width=1cm,minimum height=0.6cm,inner sep=2pt}]
+  \node[sm] (s1) at (1.8,1.3) {$+$};
+  \node[sm] (s2) at (1.8,0) {$+$};
+  \draw[->] (0,1.3) node[left]{$m(t)$} -- (s1);
+  \draw[->] (0,0) node[left]{$\cos(2\pi f_c t)$} -- (s2);
+  \draw[->] (0,1.3) -- node[pos=0.85,below left=-1pt]{$-$} (s2);
+  \draw[->] (0,0) -- (s1);
+  \node[bx] (l1) at (3.7,1.3) {LOE};
+  \node[bx] (l2) at (3.7,0) {LOE};
+  \draw[->] (s1) -- (l1);
+  \draw[->] (s2) -- (l2);
+  \node[below] at (l2.south) {$y(t)=a\,x(t)+b\,x^2(t)$};
+  \node[sm] (d) at (5.7,0.65) {$+$};
+  \draw[->] (l1) -| node[near start,above]{$y_1(t)$} (d);
+  \draw[->] (l2) -| node[near start,above]{$y_2(t)$} (d);
+  \node at (5.45,1.1) {$+$};
+  \node at (5.45,0.2) {$-$};
+  \node[bx,align=center] (f) at (7.8,0.65) {BGF\\ BG$=2B$\\ MF$=f_c$};
+  \draw[->] (d) -- node[above]{$z(t)$} (f);
+  \draw[->] (f) -- ++(1.1,0) node[right]{$4b\,m(t)\cos(2\pi f_c t)$};
+  \node[align=left,anchor=south west] at (8.6,1.4) {Single balanced modulator\\ Tek dengeli modülatör};
+  \node[align=left,anchor=north west] at (8.8,-0.1) {girişinde taşıyıcı işareti\\ olmadığı için};
+\end{tikzpicture}
+\end{center}
+
+\[
+\left.\begin{aligned}
+x_1(t) &= m(t) + \cos(2\pi f_c t)\\
+x_2(t) &= -m(t) + \cos(2\pi f_c t)
+\end{aligned}\right\}\quad
+\begin{aligned}
+z(t) &= y_1(t) - y_2(t)\\
+&= 2a\,m(t) + 4b\,m(t)\cos(2\pi f_c t)
+\end{aligned}
+\]
+
+\subsection{Anahtarlama modülatörü (Switching modulator)}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-6,0) -- (6,0);
+  \draw[->] (0,0) -- (0,1.5) node[right]{$w(t)$};
+  \draw (-5,0) -- (-5,0.8) -- (-3,0.8) -- (-3,0);
+  \draw (-1,0) -- (-1,0.8) -- (1,0.8) -- (1,0);
+  \draw (3,0) -- (3,0.8) -- (5,0.8) -- (5,0);
+  \foreach \x/\l in {-4/-T_c,-2/-T_c/2,-1/-T_c/4,1/T_c/4,2/T_c/2,4/T_c} \draw (\x,0.07) -- (\x,-0.07) node[below]{$\l$};
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+w(t) &= \frac12 + \frac2\pi\Bigl[\cos(2\pi f_c t) - \frac13\cos(2\pi\, 3f_c t)\\
+&\qquad + \frac15\cos(2\pi\, 5f_c t) + \cdots\Bigr]
+\end{align*}
+
+\begin{align*}
+m(t)\,w(t) &= \frac12\, m(t) + \frac2\pi\Bigl[m(t)\cos(2\pi f_c t) - \frac13\, m(t)\cos(2\pi\, 3f_c t)\\
+&\qquad + \frac15\, m(t)\cos(2\pi\, 5f_c t) + \cdots\Bigr]
+\end{align*}
+\textit{(Orijinalde $\tfrac12 m(t)$, $\cos(2\pi\, 3f_c t)$ ve $\cos(2\pi\, 5f_c t)$ terimlerinin üzeri kırmızı kalemle çizilmiş.)}
+
+\sayfa{8}
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\small]
+  \node[draw,align=center,inner sep=4pt] (f) at (2.4,0) {BGF\\ BG$=2B$\\ MF$=f_c$};
+  \draw[->] (0,0) -- (f);
+  \draw[->] (f) -- ++(1.2,0) node[right]{$\dfrac{2}{\pi}\,m(t)\cos(2\pi f_c t)$};
+\end{tikzpicture}
+\end{center}
+
+$B = \mathrm{BG}\{m(t)\}$
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, turuncukalem, font=\scriptsize]
+  \draw[->] (-3.5,0) -- (3.5,0);
+  \draw[->] (0,0) -- (0,1.2) node[right]{$H(f)$};
+  \draw (-2.4,0) -- (-2.4,0.6) -- (-1.2,0.6) -- (-1.2,0);
+  \draw (1.2,0) -- (1.2,0.6) -- (2.4,0.6) -- (2.4,0);
+  \node[below] at (-1.8,0) {$-f_c$};
+  \node[below] at (1.8,0) {$f_c$};
+  \draw[<->] (-2.4,-0.7) -- (-1.2,-0.7) node[midway,below]{$2B$};
+  \draw[<->] (1.2,-0.7) -- (2.4,-0.7) node[midway,below]{$2B$};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Nasıl çarpım yaparız}
+\sekilnotu[8]{Devre: solda $m(t)$ gerilim kaynağı (üstü $+$, altı $-$). Kaynağın üst ucundan çıkan tel sağa gidip BGF kutusunun üst girişine, alt ucundan çıkan tel de kutunun alt girişine bağlanıyor. Üst telden aşağı sarkan ucu açık bir $a$ terminali, alt hattın üstünde ucu açık bir $b$ terminali var (aralarında boşluk). Kutu: ``BGF, BG$=2B$, MF$=f_c$''; çıkış uçları $+$ ve $-$, çıkış ifadesi $k\,m(t)\cos(2\pi f_c t)$.}
+
+Shunt bridge modulator (paralel köprülü modülatör)
+
+\sekilnotu[8]{Devre: solda $m(t)$ kaynağı ($\pm$); üst ucundan çıkan tel sağa gidip ucu açık $a$ terminaline, devamında ucu açık $b$ terminaline uzanıyor; alt uçtan çıkan tel aşağıdan sağa doğru ilerliyor.}
+
+Seri köprülü modülatör
+
+\sekilnotu[8]{Diyot köprüsü: üstte düğüm $a$, altta düğüm $b$, solda $c$, sağda $d$. $a$--$c$ arasında $D_1$, $a$--$d$ arasında $D_3$, $c$--$b$ arasında $D_2$, $d$--$b$ arasında $D_4$ diyotları; $c$ ile $d$ arasındaki yatay kolda kaynak, etiketi $A_c\cos(2\pi f_c t)$.}
+
+\[ D_1 \equiv D_2, \qquad D_3 \equiv D_4 \]
+
+\begin{align*}
+v_c > v_d &\Rightarrow \text{Diyotlar iletimde} \Rightarrow a = b\\
+&\qquad V_a = V_b \quad \text{kısa devre}\\
+v_c < v_d &\Rightarrow \text{Diyotlar kesimde} \Rightarrow a \text{ ve } b \text{ arası açık devre}
+\end{align*}
+
+Bu olay $T_c$ ile periyodik olarak gerçekleşir.
+
+\sayfa{9}
+\sekilnotu[9]{Solda $m(t)$ zaman grafiği ($t$ ekseni): yavaş değişen, pozitif değerden negatif değere inen bir işaret. Çift yönlü ok (``$F$'') ile sağdaki $M(f)$ grafiğine bağlı: $-B$ ile $B$ arasında, $f=0$'da tepe yapan çan şekilli spektrum.}
+
+\sekilnotu[9]{$w(t)$ grafiği ($t$ ekseni): dört adet küçük dikdörtgen darbe (periyodik darbe katarı). Altında $m(t)\,w(t)$ grafiği ($t$ ekseni): kırmızı $m(t)$ eğrisi ve altında dikey çubuklar halinde anahtarlanmış hali; eğri sağda negatif bölgeye iniyor. Sağda $\mathcal{F}\{m(t)w(t)\}$ spektrumu: ortada $-B$ ile $B$ arası kırmızı yüksek tepe, $-f_c$ ve $f_c$ çevresinde daha küçük iki tepe, hepsini saran geniş kesikli çan zarfı; $f$ ekseni işaretleri: $-3f_c$, $-f_c$, $-B$, $B$, $f_c$, $3f_c$.}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, kirmizikalem, font=\small]
+  \node[draw,align=center,inner sep=4pt] (f) at (2.4,0) {BGF\\ BG$=2B$\\ MF$=f_c$};
+  \draw[->] (0,0) -- (f);
+  \draw[->] (f) -- ++(1.2,0) node[right]{$\dfrac{2}{\pi}\,m(t)\cos(2\pi f_c t)$};
+\end{tikzpicture}
+\end{center}
+
+\sekilnotu[9]{Kırmızı DSB-SC dalga biçimi $\frac{2}{\pi}m(t)\cos(2\pi f_c t)$ ($t$ ekseni); kesikli zarflar: sağ uçta etiketler ``$-\frac{2}{\pi}m(t)$'' (üstte) ve ``$\frac{2}{\pi}m(t)$'' (altta); zarf sıfırdan geçerken genlik küçülüp ters işaretle yeniden büyüyor.}
+
+Ring modulator (Double balanced mod.) okuyunuz $\ast$
+
+\section{Demodülasyon \okunamadi{anahtarlama} nasıl yapılır??}
+
+\subsection{Demodülatör}
+Çarpıcı + AGF \hfill Senkron demodülasyon yapılmalı
+
+\begin{ornek}
+\sekilnotu[9]{Devre: solda $y(t)$ gerilim kaynağı ($\pm$); üst ucundan çıkan tel sağa gidip ucu açık $a$ terminaline, ardından $b$ terminaline (``Diyot köprüsü'' notu ve okla gösterilmiş) uzanıyor; $b$'den tel AGF kutusunun üst girişine ($+$) bağlanıyor. Alt uçtan çıkan tel kutunun alt girişine ($-$). Kutuda ``AGF, BG $=B$ Hz''; kutunun girişi ``$e(t)$'' etiketli; çıkışta $+$ ve $-$ uçları ve ``$z(t)$''.}
+\[ y(t) = A_c\, m(t)\cos(2\pi f_c t) \]
+\end{ornek}
+
+\sayfa{10}
+\begin{align*}
+e(t) &= y(t)\,w(t)\\
+&= A_c\, m(t)\cos(2\pi f_c t)\cdot\\
+&\qquad\Bigl\{\underbrace{\tfrac12 + \tfrac2\pi\Bigl[\cos(2\pi f_c t) - \tfrac13\cos(2\pi\, 3f_c t) + \tfrac15\cos(2\pi\, 5f_c t) + \cdots\Bigr]}_{w(t)}\Bigr\}\\
+&= \underbrace{\frac{2A_c}{\pi}\, m(t)\cos^2(2\pi f_c t)}_{\frac{2A_c}{\pi}\, m(t)\,\frac12\left[1+\cos(2\pi\, 2f_c t)\right]} + \overbrace{\underbrace{k\, m(t)\cos(2\pi f_c t)}_{k\, m(t)\cos(2\pi\, n f_c t),\ n\neq 1}}^{\text{genellikle}}\\
+&= \frac{A_c}{\pi}\, m(t) + \frac{A_c}{\pi}\, m(t)\cos(2\pi\, 2f_c t)
+\end{align*}
+\textit{(Orijinalde son satırdaki ikinci terim ile daire içindeki terimin altındaki ifade kırmızı kalemle işaretlenmiş/çizilmiş.)}
+
+\[ e(t)\;\rightarrow\;\boxed{\mathrm{AG}}\;\rightarrow\;\frac{A_c}{\pi}\, m(t) = z(t) \]
+
+\end{document}

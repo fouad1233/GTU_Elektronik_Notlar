@@ -1,0 +1,115 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Final çalışması: Çıkmış sınav 2023}{Cikmis-2023.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 1) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{2}
+\section{Soru 1}
+\sekilnotu[2]{Sayfanın üstünde basılı sınav sorusu (Soru 1, şıklar a, b, c) var; dijitalleştirilmedi.}
+
+\sekilnotu[2]{Üç boyutlu koordinat eskizi: $z$ ekseni yukarı, $y$ ekseni sağa, $x$ ekseni sol alta doğru. $z$ ekseni etrafında, yüksekliği $\ell$ olan (kırmızı) bir silindir çizilmiş; üst taban $z=\ell/2$ (``$\ell/2$'' etiketli), alt taban $z=-\ell/2$. Alt tabanda mavi kalemle bir nokta ve bileşenleri $x'$, $y'$ ile uzaklığı $\sqrt{x'^2+y'^2}$ gösterilmiş.}
+
+\sekilnotu[2]{Sağda iki küçük grafik: üstte birim basamak fonksiyonu $u(x)$ ($x=0$'da 0'dan 1'e çıkan basamak, ``1'' etiketli); altta $-\ell/2$ ile $\ell/2$ arasında dikdörtgen darbe.}
+
+\[ \rho_v(x,y,z)=\rho_c\,\delta(x)\,\delta(y)\,\bigl[u(z+\ell/2)-u(z-\ell/2)\bigr] \]
+\[ Q=\ell\cdot\rho_c \qquad\qquad \rho_c=\frac{Q}{\ell} \]
+\[ \Rightarrow\ \rho_v(x,y,z)=\frac{Q}{\ell}\,\delta(x)\,\delta(y)\,\bigl[u(z+\ell/2)-u(z-\ell/2)\bigr] \]
+
+b)
+\[ \oint_S \vec D\cdot d\vec s = Q \]
+\[ \oint_S \varepsilon_0\,\vec E\cdot d\vec s = Q=\ell\rho_c \]
+\[ \int_{z=-\ell/2}^{\ell/2}\int_{\phi=0}^{2\pi}\varepsilon_0\,E_\rho(\rho)\,\underbrace{\rho\,d\phi\,dz}_{ds}=\ell\rho_c=Q \]
+\[ 2\pi\ell\,\varepsilon_0\,\rho\,E_\rho(\rho)=\ell\rho_c \]
+\[ E_\rho(\rho)=\frac{\rho_c}{2\pi\varepsilon_0\rho}\ \Rightarrow\ \vec E=\frac{\rho_c}{2\pi\varepsilon_0\rho}\,\vec e_\rho \]
+
+\sayfa{3}
+ve $\rho=\sqrt{x'^2+y'^2}$ şeklindedir
+\[ E(0,y,0)=\frac{\rho_c}{2\pi\varepsilon_0\sqrt{\okunamadi{}\,y^2}}=\frac{\rho_c}{2\pi\varepsilon_0\,y}=\frac{Q}{2\pi\varepsilon_0\,y\,\ell}\qquad\Bigl(\rho_c=\frac{Q}{\ell}\Bigr) \]
+\[ E(0,d,0)=\frac{Q}{2\pi\varepsilon_0\,d\,\ell} \]
+
+c) P noktasında konulan $q$ yüküne etkiyen kuvvet
+\[ \vec F_q=q\cdot E(0,d,0)=q\cdot\frac{Q}{2\pi\varepsilon_0\,d\,\ell}\ \text{(N) kadar olup $L$'nin} \]
+\noindent $q$'ya uyguladığı kuvvettir.
+
+\sekilnotu[3]{$z$ ekseni (yukarı oklu) ve $y$ ekseni (sağa oklu) çizilmiş. $z$ ekseni boyunca turuncu bir doğru parçası: üst ucu $\ell/2$, alt ucu $-\ell/2$ etiketli. $y$ ekseni üzerinde nokta olarak işaretli $P$; $z$ ekseni üzerinde de orijinin biraz üstünde küçük bir nokta işaretli.}
+
+\begin{align*}
+d\vec F &= \frac{q}{4\pi\varepsilon_0}\cdot\frac{dQ}{r^2}\,\vec e_r\\
+&= \frac{q}{4\pi\varepsilon_0}\,\frac{\rho_v\,dv}{r^2}\,\vec e_r
+\end{align*}
+\[ \vec F=\frac{q}{4\pi\varepsilon_0}\,\frac{Q}{\ell}\int_{r=0}^{\okunamadi{}}\int_{\phi=0}^{2\pi}\int_{\theta=0}^{\pi}\frac{1}{r^2\footnotemark}\,r^2\,\frac{\vec r}{r}\,\sin\theta\,dr\,d\phi\,d\theta \]
+\footnotetext{Orijinalde paydaki $r^2$ çizilerek iptal edilmiş.}
+\[ d\vec F=\int_0^\pi\frac{q\cdot\dfrac{Q}{\ell}}{4\pi\varepsilon_0\,d}\cdot(\sin\theta) \]
+\[ \cos\pi=-1 \qquad \cos 0=-1\,\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $\cos 0=1$ olmalı.}
+\[ \vec F_Q=-\frac{q\cdot Q/\ell}{2\pi\varepsilon_0\,d\,\ell} \]
+
+\sayfa{4}
+\section{Soru 2}
+\sekilnotu[4]{Sayfanın üstünde basılı sınav sorusu (Soru 2, şıklar a, b) var; dijitalleştirilmedi.}
+
+\sekilnotu[4]{Kesit şekli: $z$ ekseni yukarı oklu (ucunda ``$z=0$'' yazıyor), $x$ ekseni sağa oklu. $x$ ekseninin üstündeki sarı bölge $\varepsilon_1$, altındaki turkuaz bölge $\varepsilon_2$ etiketli. $z$ ekseni üzerinde üst bölgede $h$ işareti; üst bölgede nokta olarak $P_1(0,0,h)$, alt bölgede nokta olarak $P_2(0,0,-h)$ yazılı.}
+
+\[ z>0\qquad \Delta V=\frac{-\rho_v}{\varepsilon_1}=\frac{-q}{\varepsilon_1}\,\delta(x-\overset{0}{x'})\,\delta(y-\overset{0}{y'})\,\delta(z-\overset{h}{z'}) \]
+\[ =\frac{-q}{\varepsilon_1}\,\delta(x)\,\delta(y)\,\delta(z-h) \]
+
+\sayfa{5}
+\section{Soru 3}
+\sekilnotu[5]{Sayfanın üstünde basılı sınav sorusu (Soru 3, şıklar a, b) ve Şekil-1 ($Oyz$ düzleminde $z$ yönünde $I_1$, $I_2$, $I_3$ akımı taşıyan üç paralel tel; aralarındaki uzaklıklar $a$ ve $b$) var; dijitalleştirilmedi.}
+
+\[ \vec B=\frac{\mu_0}{2\pi\rho}\,I\,\vec e_\phi \qquad\text{(Biot-Savart)} \]
+$\vec B$ altında bulunup üzerinde $I$ akımı akan bir tele etki eden kuvvet
+\[ d\vec F=I\,d\vec\ell\times\vec B \]
+
+\[ d\vec F_2=I_2\,dz\,\vec e_z\times\vec B_2 \]
+\[ \vec B_2=\frac{\mu_0}{2\pi}\Bigl[\frac{I_3}{b}-\frac{I_1}{a}\Bigr]\vec e_x \]
+\begin{align*}
+\vec F_2 &= \int_0^{\ell}d\vec F_2=\int_0^{\ell}I_2\,\vec e_z\times\vec B_2\,dz\\
+&= \int_0^{\ell}\frac{I_2\mu_0}{2\pi}\Bigl[\frac{I_3}{b}-\frac{I_1}{a}\Bigr]\underbrace{\vec e_z\times\vec e_x}_{\vec e_y}\,dz
+\end{align*}
+\[ \vec F_2=\frac{I_2\mu_0}{2\pi}\Bigl[\frac{I_3}{b}-\frac{I_1}{a}\Bigr]\vec e_y\ \text{olarak bulunur} \]
+
+\par\noindent\rule{\linewidth}{0.4pt}\par
+
+\[ \vec B_1=\frac{\mu_0}{2\pi}\Bigl[\frac{I_3}{a+b}+\frac{I_2}{a}\Bigr]\vec e_x \]
+\[ d\vec F_1=I_1\,dz\,\vec e_z\times\vec B_1 \]
+\begin{align*}
+\vec F_1 &= \int_0^{\ell}d\vec F_1=\int_0^{\ell}I_1\,\vec e_z\times\vec B_1\,dz\\
+&= \int_0^{\ell}\frac{I_1\mu_0}{2\pi}\Bigl[\frac{I_3}{a+b}+\frac{I_2}{a}\Bigr]\underbrace{\vec e_z\times\vec e_x}_{\vec e_y}\,dz
+\end{align*}
+
+\sayfa{6}
+\[ \vec F_1=\frac{I_1\mu_0}{2\pi}\Bigl[\frac{I_3}{a+b}+\frac{I_2}{a}\Bigr]\vec e_y \]
+
+\par\noindent\rule{\linewidth}{0.4pt}\par
+
+\[ \vec B_3=\frac{\mu_0}{2\pi}\Bigl[-\frac{I_1}{a+b}-\frac{I_2}{b}\Bigr]\vec e_x \]
+\sekilnotu[6]{Sağda $x$, $y$, $z$ harfleri ve üzerlerinde döngüsel (dönen) bir ok çizilmiş.}
+
+\[ d\vec F_3=I_2\,dz\,\vec e_z\times\vec B_3\,\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $I_3$ olmalı (sonraki satırlarda da $I_2$ yazılmış).}
+\begin{align*}
+\vec F_3 &= \int_0^{\ell}-I_2\,\frac{\mu_0}{2\pi}\Bigl[\frac{I_1}{a+b}+\frac{I_2}{b}\Bigr]\underbrace{\vec e_z\times\vec e_x}_{\vec e_y}\,dz\\
+&= -\frac{I_2\mu_0}{2\pi}\Bigl[\frac{I_1}{a+b}+\frac{I_2}{b}\Bigr]\vec e_y
+\end{align*}
+
+\section{Silindirik}
+\[ x=\rho\cos\phi \qquad y=\rho\sin\phi \]
+\[ \vec r=\rho\cos\phi\,\vec e_x+\rho\sin\phi\,\vec e_y+z\,\vec e_z \]
+\[ \int_{z=0}^{\okunamadi{D}}\int_{\phi=0}^{2\pi}\int_{\rho=0}^{a}dV=\rho\,d\rho\,d\phi\,dz \]
+
+\[ d\vec F=\rho_s\,ds\,\vec E \]
+\[ ds=a^2\sin\theta\,d\phi\,d\theta \]
+\[ \vec F=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi} \]
+
+\section{Sınır koşulları}
+\[ \rho_s=\varepsilon_1E_n^{(2)}-\varepsilon E_n^{(1)} \]
+\[ \oint_S\vec D\cdot d\vec s=Q \]
+\[ \vec E=\frac{Q}{4\pi\varepsilon_0 r^2}\,\vec e_r\ \ \text{genel} \]
+Sonsuz uzun çizgisel yük dağılımı için
+\[ \vec E=\frac{\rho_c}{2\pi\varepsilon_0\rho}\,\vec e_\rho \]
+
+iletkenlerin
+
+\end{document}

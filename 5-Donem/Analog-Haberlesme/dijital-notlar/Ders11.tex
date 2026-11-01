@@ -1,0 +1,299 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{Süperheterodin alıcı, açı modülasyonu, NBFM}{Ders11.pdf}
+
+\sayfa{1}
+\section{AM Radio Broadcasting (GM Radio yayını)}
+\hfill (\okunamadi{BT-448})
+
+Genlik Modülasyonu (GM) Radyo Alıcısı\\
+(süper heterodin alıcı -- Superheterodyne receiver)
+
+Intermediate frequency (IF) amplifier\\
+$f_{LO}$: Local oscillator frequency
+\[ f_{LO}=f_c+f_{IF} \qquad\qquad f_c'=f_{LO}+f_{IF} \]
+
+\sekilnotu[1]{Bu sayfa basılı materyal içeriyor (Figure 3.34: Frequency-response characteristics of both IF and RF amplifiers; (a) $f_{IF}$ merkezli $B_c$ genişlikli IF bandı, (b) $f_c=f_{LO}-f_{IF}$ merkezli $B_{RF}$ genişlikli RF bandı, (c) $f_c$ ve $f_c'=f_{LO}+f_{IF}$ konumlarında iki bant, aralarında $f_{LO}$ ve $2f_{IF}$); dijitalleştirilmedi. El yazısı eklemeler aşağıda aktarılmıştır; (c) şeklinin altına ayrıca ``910 kHz'' yazılmış.}
+
+\[ B_c < B_{RF} < 2f_{IF} \quad\text{(altlarında sırasıyla: } 10\ \mathrm{kHz},\ 910\ \mathrm{kHz}\text{)} \]
+\[ 455\ \mathrm{kHz} = f_{IF} \quad\text{(intermediate frequency)} \]
+\[ \text{e.g.}\quad f_c=1000,\quad f_{LO}=1455,\quad f_c'=1910,\quad f_c'-f_c=910\ \mathrm{kHz} \]
+
+GM frekans yelpazesi: 535--1605 kHz\\
+GM taşıyıcı frekans yelpazesi: 540--1600 kHz
+\[ B=\mathrm{BG}\{m(t)\}=5\ \mathrm{kHz} \;\Rightarrow\; \mathrm{BG}\{y_{\text{DSB-LC-AM}}(t)\}=2B=10\ \mathrm{kHz} \]
+1. istasyon:
+\[ y_1(t)=A_c\,[1+\mu\, m_{n1}(t)]\cos(2\pi f_c t) \]
+2. istasyon:
+\[ y_2(t)=A_c\,[1+\mu\, m_{n2}(t)]\cos(2\pi f_c' t), \qquad f_c' :\ \text{Image station} \]
+RF amplifier sadece $y_1$'i geçirir.
+
+\sekilnotu[1]{Sayfanın altında yarım kalmış küçük kroki: dikey ve yatay eksen, eksenin sağında dikdörtgen biçimli bir spektrum (ortasında küçük bir çentik).}
+
+\sayfa{2}
+\sekilnotu[2]{Bu sayfa basılı materyal içeriyor (Figure 3.33: A superheterodyne receiver); dijitalleştirilmedi. Basılı blok diyagram: anten $\to$ RF amplifier $\to$ Mixer $\to$ IF amplifier $\to$ Detector $\to$ Audio frequency amplifier $\to$ Speaker; Local oscillator Mixer'e bağlı (RF amplifier'a kesikli çizgiyle de bağlı); Detector'dan IF amplifier'a Automatic volume control (AVC) geri beslemesi. El yazısı eklemeler: RF amplifier ve IF amplifier üzerinde (BGF); RF amplifier altında $f_c=f_{LO}-f_{IF}$; IF amplifier altında $f_{IF}=455$ kHz, $B=10$ kHz; RF amplifier çıkışı / Mixer girişi: $A_c[1+\mu m_n(t)]\cos(2\pi f_c t)$; Mixer çıkışı / IF girişi: $A_c[1+\mu m_{n1}(t)]\cos(2\pi f_{IF} t)+2f_{IF}$ frekanslı bileşen (``$2f_{IF}$ frekanslı bileşen'' kısmı turuncu çizgiyle iptal edilmiş); IF çıkışı / Detector girişi: $A_c[1+\mu m_{n1}(t)]\cos(2\pi f_{IF} t)$; hoparlör girişi: $K\,m_1(t)$; Local oscillator altında $f_{LO}=f_c+f_{IF}$ ve ``Tuning range (Ayarlama Aralığı): 995--2055 kHz''.}
+
+RF kuvvetlendiricisinin çıkışında
+\begin{align*}
+y_1(t) &= A_c\,[1+\mu\, m_{n1}(t)]\cos(2\pi f_c t)\\
+y_2(t) &= A_c\,[1+\mu\, m_{n2}(t)]\cos(2\pi f_c' t) \quad\text{olsun}
+\end{align*}
+\[ f_c=\overset{\text{local osilator}}{f_{LO}}-f_{IF} \;\to\; \text{Intermediate frequency} \]
+\[ f_c'=f_{LO}+f_{IF} \qquad\text{ve}\qquad f_{LO}=f_c+f_{IF} \]
+mixer çıkışı:
+\begin{align*}
+z_1(t) &= A_c\,[1+\mu\, m_{n1}(t)]\cos(2\pi f_{IF}(t)) + 2f_c\ \text{frekanslı bileşen}\\
+z_2(t) &= A_c\,[1+\mu\, m_{n2}(t)]\cos(2\pi f_{IF}(t)) + 2f_c\ \text{frekanslı bileşen}
+\end{align*}
+[$z_2$ satırının sonuna okla işaret edilmiş turuncu not: \okunamadi{$f_c'$'den gelen}]
+
+IF amplifier'ın girişine image station ($f_c'$) gelmemeli yoksa çıkışta işaretler birbirine karışıyor. Bunun için RF amplifier'ın görevi dinlemek istediğimiz istasyonun image istasyonunu geçirmemektir.
+
+IF amplifier'ın görevi de dinlemek istemediğimiz diğer frekansları geçirmemektir. (IF girişine dinlemek istemediğimiz frekanslar da geliyor.)
+
+Çok yüksek frekansta olduğu için ilk başta direkt 10 kHz'le BGF yapamıyoruz. Bu kadar yüksek frekanslarda 10 kHz seçiciliği olan bir BGF tasarlanamıyor.
+
+\sayfa{3}
+\section{Açı (Angle) Modülasyonu}
+\begin{itemize}
+\item Lineer değil
+\item Yüksek BG $\to$ Yüksek gürültü bağışıklığı
+\item Sabit Zarflı ($A_c$'den dolayı) $\to$ Modülasyon tekniklerinin sabit zarflı olması tercih edilir. Çünkü sabit zarflı olmazsa devre doymaya girebilir. Bu da sinyalde kesintiye neden olur.
+\end{itemize}
+\[ y(t)=A_c\cos(\theta(t)) \]
+\begin{align*}
+\theta(t)&=2\pi f_c t+\underset{\text{sabit}}{\theta_0} \;\to\; \underset{\substack{\text{Ani frekans}\\ \text{(Instaneous frequency)}}}{f_i(t)}=\underbrace{\frac{1}{2\pi}\frac{d\theta(t)}{dt}}_{f_c}\\
+&\;\to\; \theta(t)=2\pi\int_{-\infty}^{t} f_i(\alpha)\,d\alpha
+\end{align*}
+ifadeyi genelleştirelim
+\begin{align*}
+\theta(t)&=2\pi f_c t+\underset{\substack{\text{mesaj işaretini}\\ \text{faza koyuyoruz}}}{\overset{\text{Faz}}{\phi(t)}} \;\to\; f_i(t)=f_c+\frac{1}{2\pi}\frac{d\phi(t)}{dt}\\
+&\Rightarrow\ \text{Ani frekans zamanın fonksiyonu oldu}
+\end{align*}
+\begin{align*}
+\underset{\substack{\text{modüle ettiğimiz}\\ \text{işaretin ani frekansı}}}{f_i(t)}-\underset{\substack{\text{taşıyıcı}\\ \text{frekansı}}}{f_c}&=\frac{1}{2\pi}\frac{d\phi(t)}{dt}\\
+&\Rightarrow\ \text{Ani frekansın taşıyıcıdan sapma miktarı}
+\end{align*}
+
+\subsection{1) Phase Mod. (PM) / Faz Modülasyonu (FZM)}
+\[ \phi(t)=k_p\, m(t) \qquad\qquad \theta(t)=2\pi f_c t+k_p\, m(t) \]
+($k_p$: faz sapma sabiti (Phase deviation constant))
+\[ y_{\mathrm{FZM}}(t)=A_c\cos\Big(\overbrace{2\pi f_c t+k_p\, m(t)}^{\theta(t)}\Big) \]
+\[ f_i(t)=f_c+\frac{1}{2\pi}\,k_p\,\frac{dm(t)}{dt} \]
+
+\sayfa{4}
+\subsection{2) Frequency Mod. (FM) / Frekans Modülasyonu (FRM)}
+\[ f_i(t)=f_c+k_f\, m(t) \;\Rightarrow\; \text{ani frekans, mesaj işaretiyle lineer olarak değişiyor.} \]
+($k_f$: frekans sapma sabiti (frequency deviation constant))
+\begin{align*}
+\Rightarrow\ \theta(t)&=2\pi f_c t+2\pi k_f\int_{-\infty}^{t} m(\tau)\,d\tau\\
+y_{\mathrm{FRM}}(t)&=A_c\cos\Big(2\pi f_c t+2\pi k_f\int_{-\infty}^{t} m(\tau)\,d\tau\Big)\\
+y_{\text{Açı}}(t)&=A_c\cos\big(2\pi f_c t+\phi(t)\big)
+\end{align*}
+\begin{align*}
+&\hookrightarrow\ {=}\,k_p\, m(t) \quad \text{FZM}\\
+&\hookrightarrow\ {=}\,2\pi k_f\int_{-\infty}^{t} m(\tau)\,d\tau \quad \text{FRM}
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[blok/.style={draw=murekkep,thick,minimum height=10mm,align=center,text=murekkep}]
+\node[left] (in1) at (0,0) {$m(t)$};
+\node[blok,minimum width=10mm] (int) at (1.8,0) {$\displaystyle\int$};
+\node[blok] (pm) at (5,0) {PM Modulator\\ (FZM)};
+\draw[->] (in1.east) -- (int.west);
+\draw[->] (int.east) -- (pm.west);
+\draw[->] (pm.east) -- ++(1.8,0) node[midway,above] {FRM} node[midway,below] {$y_{\mathrm{FRM}}(t)$};
+\end{tikzpicture}
+
+\bigskip
+\begin{tikzpicture}[blok/.style={draw=murekkep,thick,minimum height=10mm,align=center,text=murekkep}]
+\node[left] (in2) at (0,0) {$m(t)$};
+\node[blok,minimum width=10mm] (dif) at (1.8,0) {$\dfrac{d}{dt}$};
+\node[blok] (fm) at (5,0) {FM Modulator\\ (FRM)};
+\draw[->] (in2.east) -- (dif.west);
+\draw[->] (dif.east) -- (fm.west) node[midway,below] {$\dfrac{dm(t)}{dt}$};
+\draw[->] (fm.east) -- ++(1.8,0) node[midway,above] {FZM} node[midway,below] {$y_{\mathrm{FZM}}(t)$};
+\end{tikzpicture}
+\end{center}
+
+\underline{En genel halde}\\
+Mesaj işaretinin genliği ne olursa olsun bu modülasyon tekniğinin gücü: $P_y=\dfrac{A_c^2}{2}$
+
+\subsection{Genel üstel (Açı) Mod.}
+\begin{align*}
+y_{\text{ÜM}}(t)&=A_c\cos\big(2\pi f_c t+\phi(t)\big)\\
+\phi(t)&=\int_{-\infty}^{t} m(\tau)\,h(t-\tau)\,d\tau
+\end{align*}
+Eğer $h(t)=k_p\,\delta(t)$ $\to$ FZM elde ederiz\\
+Eğer $h(t)=2\pi k_f\,u(t)$ $\to$ FRM elde ederiz.
+
+Optimum performans ikisinin arasında sağlanır. Ancak bunu gerçekleştirmeye kalktığımızda hem verici hem alıcı karmaşıklaşıyor. Bu da maliyet vs. arttırıyor. Biz Radyo yayını yaptığımızdan alıcının basit olmasını istiyoruz.
+
+\medskip
+\noindent\underline{Analog}\\
+5 Ocak Cuma 11.00\\
+$\hookrightarrow$ Bonus Quiz\\
+Buradan alınan puan ara sınava eklenecek.
+
+\sayfa{5}
+\sekilnotu[5]{Bu sayfa basılı materyal içeriyor (Figure 4.2: Frequency and phase modulations of square and sawtooth waves); dijitalleştirilmedi. Şekil: sol üstte kare dalga $m(t)$ ($0$--$2$ arası $+1$, $2$--$4$ arası $-1$), sağ üstte $\int_{-\infty}^{t} m(\tau)\,d\tau$ (üçgen dalga: $t=2$'de $2$'ye çıkıp $t=4$'te $0$'a iniyor); altta solda FM signal ve PM signal, sağda ``Equivalent'' okuyla eşlenmiş FM signal ve PM signal grafikleri. El yazısı (kırmızı) eklemeler: $m(t)$ grafiğinde $t=2$ noktasına okla ``işaret(?) değişiyor''; sol FM grafiğinin solunda ``YF: Yüksek frekans'', ``DF: Düşük frekans'', altında $t\approx1$ için ``YF $f_c+k_f$'', $t\approx3$ için ``DF $f_c-k_f$''; sağ üst FM grafiğinin altında $0$--$1$ arası ``DF'', $1$--$3$ arası ``YF'' (parantezle), $3$--$4$ arası ``DF''; sol PM grafiğinin solunda ``frekans hiç değişmiyor'', ``faz mesajın(?) değiştiği yerde değişiyor'' ve $t=2$'de küçük kırmızı işaret; sağ alt PM grafiğinin altında $0$--$2$ arası ``$f_i(t)=f_c+k_f$'', $2$--$4$ arası ``$f_c-k_f$'' ve şeklin sağ altındaki formüllere kırmızı okla işaret ediliyor.}
+\[ f_i(t)=f_c+\overbrace{\frac{k_p}{2\pi}}^{k_f}\,\frac{dm(t)}{dt} \]
+\[ f_i(t)=f_c+k_f\,\frac{dm(t)}{dt} \]
+
+\subsection{Güç}
+\[ y(t)=A_c\cos\big(2\pi f_c t+\phi(t)\big) \;\to\; \kutula{P_y=\frac{A_c^2}{2}} \qquad \text{güç hep buna eşit} \]
+
+\subsection{BG}
+\[ y(t)=\mathrm{Re}\{\hat y(t)\},\qquad \hat y(t)=A_c\, e^{j(2\pi f_c t+\phi(t))} \qquad [\,2\pi f_c t+\phi(t)=\theta(t)\,] \]
+\[ \hat y(t)=A_c\, e^{j2\pi f_c t}\, e^{j\phi(t)} \]
+\begin{align*}
+e^{x}=\sum_{k=0}^{\infty}\frac{x^k}{k!} \;\to\; e^{j\phi(t)}&=1+j\phi(t)-\frac{\phi^2(t)}{2}-j\frac{\phi^3(t)}{3!}\cdots\\
+&\quad+j^n\frac{\phi^n(t)}{n!}+\cdots
+\end{align*}
+\begin{align*}
+\hat y(t)&=A_c\,[\cos(2\pi f_c t)+j\sin(2\pi f_c t)]\\
+&\quad\cdot\Big[1+j\phi(t)-\frac{\phi^2(t)}{2}+\cdots+j^n\frac{\phi^n(t)}{n!}+\cdots\Big]
+\end{align*}
+\begin{align*}
+y(t)=\mathrm{Re}\{\hat y(t)\}&=A_c\Big[\cos(2\pi f_c t)-\phi(t)\sin(2\pi f_c t)-\frac{\phi^2(t)}{2!}\cos(2\pi f_c t)\\
+&\qquad+\frac{\phi^3(t)}{3!}\sin(2\pi f_c t)+\cdots\Big]
+\end{align*}
+
+\sayfa{6}
+\[ \mathrm{BG}\{m(t)\}=B\ \mathrm{Hz} \;\Rightarrow\; \mathrm{BG}\{\phi(t)\}=B\ \mathrm{Hz} \]
+\begin{align*}
+&\hookrightarrow\ k_p\, m(t)\ \text{(PM)}\\
+&\hookrightarrow\ 2\pi k_f\int m(\tau)\,d\tau\ \text{(FM)}
+\end{align*}
+\[ \mathrm{BG}\{\phi^2(t)\}=2B \;\longrightarrow\; \mathrm{BG}\{\phi^n(t)\}=nB \]
+\begin{align*}
+\mathrm{BG}\{y(t)\}&\to\infty\ \text{(Teorik)}\\
+&\to\ \text{BG Teorikte sonsuzdur ancak güç zayıflar}
+\end{align*}
+
+\subsection{Açı modülasyonu Efektif BG}
+Carson kuralı: $\mathrm{BG}=2B(\beta+1)$, $B=\mathrm{BG}\{m(t)\}$
+
+FM(FRM):
+\[ \beta=\frac{\Delta f}{B},\quad \Delta f=k_f\, m_p,\quad m_p=\max|m(t)| \]
+($\beta$: sapma oranı (deviation Ratio); $\Delta f$: Taşıyıcıdan max sapma miktarı (Max carrier frequency deviation), $f_i(t)=f_c+k_f\,m(t)$)
+
+PM(FZM):
+\[ \beta=\frac{\Delta f}{B},\quad \Delta f=\frac{k_p}{2\pi}\,\frac{dm_p(t)}{dt},\quad \frac{dm_p(t)}{dt}=\max\left|\frac{dm(t)}{dt}\right| \]
+\[ \Big(f_i(t)=f_c+\frac{k_p}{2\pi}\frac{dm(t)}{dt}\Big) \]
+
+\begin{dikkat}
+Not: kitapta buradaki formül yanlıştır. (O formül özel bir durumun formülü). Genelleştirilmiş için buradaki formülleri kullanacağız.
+\end{dikkat}
+\[ \theta(t)=2\pi f_c t+\overset{\text{faz}}{\phi(t)} \]
+\[ \Delta\phi=\max|\phi(t)| \qquad \text{maks faz sapması (max phase deviation)} \]
+FM(FRM):
+\[ \Delta\phi=2\pi k_f\,\max\left|\int m(\tau)\,d\tau\right| \]
+PM(FZM):
+\[ \Delta\phi=k_p\, m_p,\qquad m_p=\max|m(t)| \]
+
+\begin{ornek}
+$m(t)=10\,\mathrm{sinc}(10^4 t)$ $\to$ Find the transmission BW of an FM modulated signal with $k_f=4000$
+\end{ornek}
+\[ m(t)=10\,\mathrm{sinc}(10^4 t) \;\to\; M(f)=\underset{A=\frac{1}{10^3}}{A}\,\Pi\!\left(\frac{f}{\tau}\right)=\frac{1}{10^3}\,\Pi\!\left(\frac{f}{10^4}\right) \]
+\sekilnotu[6]{$\Pi(f/10^4)$ çizimi: dikey eksenin ucunda ``$\Pi(f/10^4)$'' etiketi; eksene göre simetrik, yüksekliği 1 olan dikdörtgen darbe; yatay eksende altta ``5 kHz'' işaretli ok (darbenin yarı genişliği).}
+\[ B=5\ \mathrm{kHz}\qquad \beta=\frac{\Delta f}{B},\quad \Delta f=k_f\, m_p=4000\cdot10=40\ \mathrm{kHz} \]
+\[ \beta=\frac{40\mathrm{k}}{5\mathrm{k}}=8 \;\Rightarrow\; \mathrm{BG}=2B(\beta+1)=2\cdot 5\mathrm{k}\,(8+1)=90\ \mathrm{kHz} \]
+(90 kHz sonucundan okla yukarıdaki not:) mesajın BG'si 5k iken FRM'ninki 90k da çok çok büyük
+
+\sayfa{7}
+\begin{itemize}
+\item Lineer değil (nonlinear)
+\end{itemize}
+\[ \phi(t)=\begin{cases} k_p\, m(t)\\ 2\pi k_f\displaystyle\int m(\tau)\,d\tau \end{cases} \]
+\begin{align*}
+A_c\cos\big(2\pi f_c t+a_1\phi_1(t)+a_2\phi_2(t)\big)&\neq A_c\cos\big(2\pi f_c t+a_1\phi_1(t)\big)\\
+&\quad+A_c\cos\big(2\pi f_c t+a_2\phi_2(t)\big)
+\end{align*}
+\[ k_f\ll k_p\ll 1 \;\Rightarrow\; |\phi(t)|\ll1 \;\Rightarrow\; \phi^n(t)\approx0,\ n\ge2 \]
+\[ y(t)\approx A_c\big[\cos(2\pi f_c t)-\phi(t)\sin(2\pi f_c t)\big] \]
+$\hookrightarrow$ Dar bantlı açı modülasyonu (Narrow band angle mod)
+
+BG az olan sabit zarflı bir modülasyon tekniği elde ettik
+
+\subsection{Narrow Band angle modulation}
+\[ \left.\begin{array}{l}k_f\ll1\\ k_p\ll1\end{array}\right\}\Rightarrow|\phi(t)|\ll1\Rightarrow\begin{cases}\cos(\phi(t))\approx1\\ \sin(\phi(t))\approx\phi(t)\end{cases} \]
+\[ \cos(a+b)=\cos a\cdot\cos b-\sin a\cdot\sin b \]
+\begin{align*}
+y(t)&=A_c\cos\big(\underset{a}{2\pi f_c t}+\underset{b}{\phi(t)}\big)\\
+&=A_c\big[\cos(2\pi f_c t)\cdot\underset{\approx1}{\cos(\phi(t))}-\sin(2\pi f_c t)\underset{\approx\phi(t)}{\sin\phi(t)}\big]
+\end{align*}
+\begin{align*}
+y(t)&=\underbrace{A_c\big[\cos(2\pi f_c t)-\underset{\mathrm{BG}=B\,\mathrm{Hz}}{\phi(t)}\sin(2\pi f_c t)\big]}_{\mathrm{BG}=2B\ \mathrm{Hz}}\\
+&\longrightarrow\ \phi(t)=k_p\,m(t)\ \text{(NBPM)}\\
+&\longrightarrow\ \phi(t)=2\pi k_f\int m(\tau)\,d\tau\ \text{(NBFM)}
+\end{align*}
+\[ \Rightarrow\ \mathrm{BG}\{y(t)\}=2B\ \mathrm{Hz} \]
+
+\subsection{NBPM Modulator}
+\begin{center}
+\begin{tikzpicture}[blok/.style={draw=murekkep,thick,align=center,text=murekkep,minimum height=9mm,inner sep=3pt}]
+\node[left] (m) at (0,0) {$m(t)$};
+\node[blok] (dsb) at (2.2,0) {DSB-SC-AM\\ Modulator};
+\node[draw=murekkep,thick,circle,inner sep=1pt] (sum) at (7.2,0) {$+$};
+\node[blok,minimum width=12mm] (ph) at (2.2,-2.3) {$\pi/2$};
+\node[draw=murekkep,thick,circle,minimum size=9mm,inner sep=0pt] (osc) at (2.2,-4.3) {$\sim$};
+\draw[->] (m.east) -- (dsb.west);
+\draw[->] (dsb.east) -- (sum.west) node[midway,above] {\scriptsize $-A_ck_pm(t)\sin(2\pi f_ct)$};
+\draw[->] (sum.east) -- ++(1.4,0);
+\node[anchor=south west,inner sep=1pt] at ([xshift=1mm]sum.east) {\scriptsize $A_c\cos(2\pi f_ct)-A_ck_pm(t)\sin(2\pi f_ct)$};
+\node[anchor=north west,inner sep=1pt] at ([xshift=8mm]sum.east) {\scriptsize $y_{\mathrm{NBPM}}(t)$};
+\draw[->] (osc.north) -- (ph.south);
+\draw[->] (ph.north) -- (dsb.south) node[midway,right] {\scriptsize $-A_c\sin(2\pi f_ct)$};
+\draw[->] (osc.east) -| (sum.south);
+\node[below] at (osc.south) {\scriptsize $A_c\cos(2\pi f_ct)$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{8}
+\subsection{NBFM Modulator}
+\begin{center}
+\begin{tikzpicture}[blok/.style={draw=murekkep,thick,align=center,text=murekkep,minimum height=9mm,inner sep=3pt}]
+\node[left] (m) at (0,0) {$m(t)$};
+\node[blok] (int) at (1.6,0) {$\displaystyle\int m(\tau)\,d\tau$};
+\node[blok] (dsb) at (4.6,0) {DSB-SC-AM\\ Modulator};
+\node[draw=murekkep,thick,circle,inner sep=1pt] (sum) at (9.9,0) {$+$};
+\node[blok,minimum width=12mm] (ph) at (4.6,-2.3) {$\pi/2$};
+\node[draw=murekkep,thick,circle,minimum size=9mm,inner sep=0pt] (osc) at (4.6,-4.3) {$\sim$};
+\draw[->] (m.east) -- (int.west);
+\draw[->] (int.east) -- (dsb.west);
+\draw[->] (dsb.east) -- (sum.west) node[midway,above=1mm] {\scriptsize $-A_c\Big(\overbrace{2\pi k_f\int m(\tau)\,d\tau}^{\phi(t)}\Big)\sin(2\pi f_ct)$};
+\draw[->] (sum.east) -- ++(1.0,0) node[right] {$y_{\mathrm{NBFM}}(t)$};
+\draw[->] (osc.north) -- (ph.south);
+\draw[->] (ph.north) -- (dsb.south) node[midway,right] {\scriptsize $-A_c\sin(2\pi f_ct)$};
+\draw[->] (osc.east) -| (sum.south);
+\node[below] at (osc.south) {\scriptsize $A_c\cos(2\pi f_ct)$};
+\end{tikzpicture}
+\end{center}
+
+Carson kuralı $\mathrm{BG}=2B(\beta+1)$
+\[
+\left.\begin{aligned}
+\text{FM: }\Delta f&=k_f\,m_p \xrightarrow{\ k_f\ll1\ } \Delta f\ll\\
+\text{PM: }\Delta f&=\frac{k_p}{2\pi}\frac{dm_p}{dt} \xrightarrow{\ k_p\ll1\ } \Delta f\ll
+\end{aligned}\right\}
+\begin{aligned}
+\beta&=\frac{\Delta f}{B}\ll1\\
+\mathrm{BG}&=2B(\beta+1)\approx2B
+\end{aligned}
+\]
+\[ \text{(NB }\overset{\text{Angle}}{\text{A}}\text{M)} \]
+
+\subsection{Wide Band Angle modulation (WBAM)}
+\[
+\left.\begin{aligned}
+\text{FM: }\Delta f&=k_f\,m_p\\
+\text{PM: }\Delta f&=\frac{k_p}{2\pi}\frac{dm_p}{dt}
+\end{aligned}\right\}
+\begin{array}{l}k_f\gg\\ k_p\gg\end{array}
+\;\Rightarrow\;\Delta f\gg\;\Rightarrow\;\beta=\frac{\Delta f}{B}\gg1
+\]
+\[ \mathrm{BG}=2B(\beta+1)\approx2B\beta\approx2\Delta f \]
+
+\end{document}

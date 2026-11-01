@@ -1,0 +1,611 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik Elemanlar}{Diyot devreleri, BJT, MOSFET girişi (s. 21--40)}{Elektronik-elemanlar-notlarim.pdf}
+
+\sayfa{21}
+\section{Rectifier circuits}
+(Doğrultucu \okunamadi{diyot}) \quad \okunamadi{} \quad (constant voltage drop model)
+
+\sekilnotu[21]{Yarım dalga doğrultucu devresi: solda AC kaynak $v_s$ (daire içinde sinüs işareti), üst kolda seri diyot (yanında ``$\approx 0{,}7$ V''), sağ kolda yük direnci $R$, altta toprak/dönüş hattı. Diyoda ok çizilip ``(constant voltage drop model)'' notu bağlanmış.}
+
+\sekilnotu[21]{Sağda $v_s$ ve $v_o$ dalga şekilleri (yatay eksen $t$): $v_s$ tam sinüs; $v_o$ gölgeli, yalnızca pozitif alternanslarda ve tepeleri diyot düşümü kadar (``$\approx 0{,}7$ V'', ok ile gösterilmiş) $v_s$'in altında.}
+
+\sekilnotu[21]{$v_o$--$v_s$ transfer karakteristiği: dikey eksen $v_o$, yatay eksen $v_s$; $v_s=V_D$ noktasına kadar $v_o=0$, sonra eğimi 1 olan doğru (``slope: 1''); yatay eksendeki kırılma noktası $V_D$ olarak işaretli.}
+
+PIV: Peak inverse Diode voltage (Diyot ters gerilimin tepe değeri)
+
+PIV: $V_s$ $\Rightarrow$ nasıl bulunur, diyot kesimdeyken
+
+\sekilnotu[21]{Diyot kesimdeyken devre: solda kaynak $v_s$, üst kolda diyot (altında ``$\approx 0{,}7$ V''); diyotun kaynak tarafındaki ucunda ``$-V_s$'', çıkış tarafındaki ucunda ``0'' yazıyor; sağ kolda $R$ ve toprak.}
+
+\[ \mathrm{PIV} = 0-(-V_s) = V_s \]
+
+\sekilnotu[21]{Orta uçlu transformatörlü tam dalga doğrultucu: solda ``ac line voltage'' yazılı primer sargı; sekonder sargı orta uçtan topraklanmış, üst yarı ve alt yarı gerilimleri ``$v_s$'' (üstte $+$, altta $-$ işaretleri); üst uca ve alt uca birer diyot bağlı, diyotların diğer uçları çıkış düğümünde birleşiyor; çıkış düğümü ile toprak arasında $R$ ve ``$v_o$''. Altında ``Center Tapped Transformer''.}
+
+\begin{tabular}{@{}lcc@{}}
+ & $D_1$ & $D_2$ \\
+In positive cycle & on & off \\
+In negative cycle & off & on
+\end{tabular}
+
+\sekilnotu[21]{Dalga şekilleri: kırmızı çizgi $v_s$ (eksenin altına da inen sinüs), siyah gölgeli çizgi $v_o$ (eksenin üstünde ardışık pozitif yarım dalgalar, tepeleri $v_s$ tepesinin biraz altında); eğriler ``$v_o$'' ve ``$v_s$'' diye etiketli.}
+
+PIV:\\
+In positive cycle $D_2$ is off
+
+\sekilnotu[21]{$D_2$ diyotu: sol ucunda ``$-v_s$'', sağ ucunda ``$v_o$'' yazıyor.}
+
+\[ \mathrm{PIV} = v_o-(-v_s) = v_o+v_s \]
+\[ \max v_o = V_s-V_D \]
+\[ \mathrm{PIV} = (V_s-V_D)+V_s = 2V_s-V_D \]
+
+\sayfa{22}
+\sekilnotu[22]{İdeal transformatör çizimi (``ideal''): birincil sargı $N_1$ (gerilim $V_1$, üstte $+$, altta $-$; akım $I_1$ oku aşağı yönlü), ikincil sargı $N_2$ (gerilim $V_2$, akım $I_2$ oku); iki sargının da üst ucunda nokta işareti var.}
+
+$N_1$ ve $N_2$ sarım sayısı
+\[ \frac{V_1}{N_1} = \frac{V_2}{N_2}, \qquad N_1 I_1 = -N_2 I_2 \]
+
+\sekilnotu[22]{İkinci ideal transformatör çizimi (``ideal''): noktalar farklı uçlarda; birincil sargının üst ucunda, ikincil sargının alt ucunda nokta; $V_1$ ve $V_2$ için üstte $+$; $I_1$ ve $I_2$ okları gösterilmiş.}
+\[ \frac{V_1}{N_1} = -\frac{V_2}{N_2}, \qquad N_1 I_1 = N_2 I_2 \]
+
+\sekilnotu[22]{Üçüncü transformatör çizimi: birincil ve ikincil sargıların üst uçlarında nokta; $V_1$ ve $V_2$ için üstte $+$; $I_1$ ve $I_2$ okları gösterilmiş.}
+\[ \frac{V_1}{N_1} = \frac{V_2}{N_2}, \qquad N_1 I_1 = N_2 I_2 \]
+
+\sekilnotu[22]{Dördüncü transformatör çizimi: birincil sargının üst ucunda, ikincil sargının alt ucunda nokta; $I_1$ oku birincil sargının üstünde, $I_2$ oku ikincil sargıda yukarı yönlü; ikincil gerilimin $+$ ucu üstte; sargılar $N_1$ ve $N_2$.}
+\[ \frac{V_1}{N_1} = -\frac{V_2}{N_2}, \qquad N_1 I_1 = -N_2 I_2 \]
+
+noktalar aynı yerde ise 1. denklem artı,\\
+akımlar aynı noktadan çıkıyorsa 2. $-$
+
+\section{The bridge rectifier}
+\sekilnotu[22]{Köprü doğrultucu devresi: solda ``ac line voltage'' yazılı primer sargı (üst uç $+$, alt uç $-$), yanında sekonder sargı $v_s$ (üst $+$, alt $-$); sekonder uçlarına dört diyotlu köprü bağlı (iki diyot kırmızı kalemle çizilmiş; sağ üstteki diyotun yanında ``$D_1$'', alttakinin yanında ``$D_2$''; bazı diyotların yanında okunamayan kısa notlar ve ``$2V_D$'' yazısı); köprü çıkışında $R$ ve $v_o$ ($+$ ucu sağda), sol düğüm topraklı.}
+
+\sekilnotu[22]{Sağda dalga şekilleri: sıfırdan başlayan sinüs $v_s$; ilk pozitif tepede çift yönlü dikey ok ve ``$2V_D$'', ikinci pozitif tepede ``$V_s$'' yazıyor; gri taralı eğri doğrultulmuş çıkışı gösteriyor (tepeleri $2V_D$ kadar daha alçak).}
+
+Full wave
+
+\begin{tabular}{@{}lcccc@{}}
+ & $D_1$ & $D_2$ & $D_3$ & $D_4$ \\
+Positive Cycle & on & on & off & off \\
+Negative Cycle & off & off & on & on
+\end{tabular}
+
+\sekilnotu[22]{Pozitif alternans devresi (``Positive cycle''): üstte $+v_s$ girişi, aşağı doğru $D_1$ diyotu, ``$+$'' işaretli $v_o$ düğümü, $R$ (yanında akım oku), $D_2$ diyotu ve toprak ($-$ ucu). Yanında negatif alternans devresi (``In Negative Cycle''): üstte $D_4$ diyotu, solda toprak, $R$ (yanında yukarı akım oku), $v_o$ düğümü ve alttaki $D_3$ diyotu.}
+
+\sekilnotu[22]{Sadeleştirilmiş devre: üstte $R$; altta iki diyot, soldaki $D_2$ (``on''), sağdaki $D_3$ (``off''); sol uçta toprak, sağ uçta $v_o$.}
+
+\[ V_{D_3} = V_o-(-V_{D_2}) = V_o+V_{D_2} \qquad (V_{D_2}=V_D) \]
+\[ V_o\ \text{peak} = V_s-2V_D \]
+\[ \Rightarrow\ V_{D_3}(\text{reverse}) = (V_s-2V_D)+V_D = V_s-V_D \]
+
+\sayfa{23}
+\section{Block diagram of a dc power supply}
+{\small\color{kursunkalem}(Başlığın altında okunamayan küçük bir not: \okunamadi{}.)}
+
+\sekilnotu[23]{Doğru akım güç kaynağı blok diyagramı: solda AC kaynak (``$V_s$ standart'' benzeri bir etiket) ve yanında ``110V/\ldots\ 60Hz'' notu; transformatör (sekonder gerilimi $v_s$, üst uç $+$, alt uç $-$); ardından sırayla kutular: ``Diode Rectifier'' $\rightarrow$ ``Filter'' $\rightarrow$ ``Regulator'' $\rightarrow$ ``Load''; kutular arası iki telli bağlantılar (uçlarda küçük daireler).}
+
+\sekilnotu[23]{Blok diyagramın altında dalga şekilleri: solda sinüs; sekonder sinüsü $\rightarrow$ doğrultucu çıkışı (üç ardışık pozitif yarım dalga) $\rightarrow$ filtre çıkışı (yarım dalga tepeleri arasında hafif dalgalanma gösteren eğri); en sağda ok ile küçük bir eksen takımı, üstünde kısa yatay çizgi ve yanında okunamayan bir etiket.}
+
+\section{The rectifier with a filter capacitor: The peak rectifier}
+\sekilnotu[23]{Tepe doğrultucu devresi: solda kaynak $v_I$ (``$+$/$-$'' işaretli daire), üst kolda diyot $D$ (altında okunamayan kısa bir not), sağda kondansatör $C$ ve çıkış ucu $v_O$; alt kol toprak.}
+
+\sekilnotu[23]{Sağda $v_I$ sinüsü (yatay eksen $t$) ve sinüsün pozitif tepe seviyesinde çizilmiş yatay çizgi (``$v_O$'' ile etiketli); sinüsün ikinci yükselişte çizgiyi kestiği noktada küçük bir etiket.}
+
+\sekilnotu[23]{Aynı devreye yük direnci eklenmiş: kaynak $v_I$, diyot, paralel bağlı $C$ ve $R$, çıkış $v_O$.}
+
+\sekilnotu[23]{Sinüs dalgası ve tepeleri birleştiren yatay çizgi; kondansatörün boşalmasından doğan dalgalanma gösteriliyor, ikinci tepeye ok ile ``Ripple'' yazılmış.}
+
+\[ V_r = \frac{V_p}{fCR} \]
+$V_p \rightarrow$ \okunamadi{girişin tepe değeri}
+
+\sekilnotu[23]{Sağ altta küçük devre: solda kaynak $v_s$ ($+$/$-$ işaretli daire), üst telde açık anahtar (eğik çizgi), sağ kolda kondansatör.}
+
+\sayfa{24}
+\section{Limiting and Clamping Circuit}
+\sekilnotu[24]{Sınırlama devresi: solda giriş $v_I$ (üstte $+$, altta $-$), üst kolda seri $R$, çıkış $v_O$ uçlarına (üstte $+$, altta $-$) paralel, ok ucu aşağı bakan bir diyot.}
+
+\sekilnotu[24]{Sağda iki eğri: tam sinüs ve bir kısmı düzleşmiş (kırpılmış) hali; kırpılan kısım ok ile ``limiting'' diye etiketli; üstte okunamayan bir etiket.}
+
+\sekilnotu[24]{$v_O$--$v_I$ karakteristiği (dikey eksen $v_O$, yatay eksen $v_I$): orijinden sol alta uzanan eğimi 1 olan doğru; sağ tarafta ``0,7V'' seviyesinde yatay çizgi (dikey eksende ``0,7V'' yazıyor).}
+
+Limiting occurs when the diodes are conducting
+
+\sekilnotu[24]{İkinci devre: solda $v_I$ ($+$ üstte, $-$ altta), üst kolda seri $R$, çıkış $v_O$ uçlarına paralel, ok ucu yukarı bakan bir diyot.}
+
+\sekilnotu[24]{$v_O$--$v_I$ karakteristiği: solda eksenin biraz altında yatay bir bölüm (altında ``0,7'' yazıyor), sonra eğimi 1 olan yükselen doğru ($v_I$ ekseni sağda).}
+
+\sekilnotu[24]{Üçüncü devre: üst kolda seri $R$; çıkışa paralel, biri aşağı (``$D_1$'' etiketli) biri yukarı yönlü iki diyot.}
+
+\sekilnotu[24]{$v_O$--$v_I$ karakteristiği: üstte ``0,7V'' ve altta ``$-$0,7V'' seviyelerinde yatay çizgiler, aradaki bölgede orijinden geçen eğimi 1 olan doğru. Sağında dalga şekli: tepeleri ve çukurları yatay çizgilerle düzleşmiş sinüs.}
+
+\sekilnotu[24]{Dördüncü devre: giriş ucunda ``$+$'', üst kolda seri $R$; çıkışa paralel kolda aşağı yönlü diyot ve altında 5V'luk batarya (yanında ``5V'' yazıyor); çıkış uçları $+$/$-$.}
+
+\sekilnotu[24]{$v_O$--$v_I$ karakteristiği: dikey eksen $v_O$, yatay eksen $v_I$; eğimi 1 olan doğru ``5,7'' seviyesinde düzleşiyor (dikey eksende ``5,7'' etiketi), yatay eksende ``5'' işareti var.}
+
+\sayfa{25}
+{\small\color{kursunkalem}(Sayfanın en üstünde silik küçük bir not: ``zener diyot diyotun \okunamadi{}''.)}
+
+\sekilnotu[25]{Zener ile sınırlama devresi: solda giriş $v_I$ ($+$ üstte, $-$ altta), üst kolda seri $R$; çıkışa paralel kolda ters yönlü seri bağlı iki zener diyot, üstte ``$Z_1$'' (ok ucu aşağı), altta ``$Z_2$'' (ok ucu yukarı); $Z_1$'in sağında süslü parantezle ``0,7V'', $Z_2$'nin sağında süslü parantezle ``$V_{Z_2}$'' ve silik gri bir not; çıkış uçları $+$/$-$.}
+
+\sekilnotu[25]{Solda iki küçük diyot çizimi: bir zener (yanında $-$/$+$ işaretleri, altında okunamayan ``(\ldots 7V)'' benzeri not) ve bir normal diyot (altında ``$+0{,}7$V''). Sağda $v_O$--$v_I$ karakteristiği (dikey eksen $v_O$): orijinden geçen eğimi 1 olan orta bölge, iki yanda yatay düzleşme; üst seviye ``$(V_{Z_2}+V_D)$'', alt seviye ``$-(V_{Z_1}+V_D)$'' olarak etiketli.}
+
+\section{The clamped Capacitor or DC restorer}
+\sekilnotu[25]{Solda giriş $v_I$ dalga şekli: kare dalga, üst seviye ``+4V'', alt seviye ``$-$6V'' (yatay eksen $t$); altında çıkış $v_O$ dalga şekli: kare dalga, üst seviye ``+10V'', alt seviye 0.}
+
+\sekilnotu[25]{Devre: solda kaynak $v_S$ ($+$ üstte), üst kolda seri kondansatör, sağda çıkış $v_O$; çıkışa paralel, ok ucu yukarı bakan ``Ideal'' etiketli diyot; alt kol dönüş hattı.}
+
+\sekilnotu[25]{Sağ altta sıkışık (dikey çizilmiş) bir sinüs dalgası; solunda çift yönlü dikey ok ve ``$V_{pp}$'', yanında ``$v$ peak'' ve devamı okunamayan bir yazı.}
+
+\section{The voltage Doubler}
+\sekilnotu[25]{Gerilim katlayıcı devresi: solda kaynak $v_s$ (daire içinde işaret), üst kolda seri kondansatör $C_1$, ardından aşağı doğru ``$D_1$'' diyotu; üst kolda sağa doğru $D_2$ diyotu, çıkışta paralel kondansatör $C_2$ ve çıkış ucu $v_o$; altta dönüş hattı. İlk kısmın altında süslü parantezle ``Clamped capacitor'', ikinci kısmın altında ``Peak rectifier'' yazıyor.}
+
+\[ v_o = 2V_p \]
+
+\sayfa{26}
+\sekilnotu[26]{Üstte dalga şekilleri: dikey eksende ``$V_p$'', ``$-V_p$'' ve ``$-2V_p$'' seviyeleri; en üstte büyük genlikli sinüs (okla ``$v_I$'' etiketli), altında sıfırın altına kaymış, tepeleri 0 seviyesine değen koyu bir eğri (sıfır çizgisinin sağ ucuna okla ``$D_1$'' yazılmış), en altta $-2V_p$ seviyesinde yatay çizgi (``$v_o$'' etiketli).}
+
+\section{Special Diode Types}
+\subsection*{The Schottky Barrier Diode (SBD)}
+\sekilnotu[26]{Schottky diyot sembolü: soldan gelen tel, ok ucu sağa bakan diyot, katot çubuğunun uçları S şeklinde bükülmüş.}
+\begin{itemize}
+\item metal semiconductor
+\item voltage drop 0,3V -- 0,5V
+\item faster switching (\okunamadi{zeroby})
+\end{itemize}
+$\rightarrow$ power supply (switched mode)\\
+\hspace*{1.2em}\okunamadi{sample-hold}\\
+\hspace*{1.2em}voltage clamping
+
+\sekilnotu[26]{SBD karakteristiği (dikey eksen akım, yatay eksen gerilim): iki eğri; okla ``SBD'' diye gösterilen eğri normal diyottan daha küçük gerilimde yükseliyor, ``Normal Diode'' okla gösterilen eğri daha sağda; sol alt tarafta ters yön kırılma eğrileri.}
+
+\subsection*{Tunnel Diode (Esaki Diode)}
+{\small\color{kursunkalem}(1957)}
+
+\sekilnotu[26]{Tünel diyot sembolü: tel üzerinde diyot, katot çubuğu uçları bükülmüş. Altında akım--gerilim eğrisi: orijinden yükselip tepe yapan, sonra düşen ve tekrar yükselen eğri; düşen bölgeye okla ``negative resistance'' yazılmış.}
+
+\subsection*{Shockley Diode}
+\sekilnotu[26]{Shockley diyot sembolü: tel üzerinde diyot ve bir dik çubuk. Altında akım--gerilim eğrisi: yatay eksene yakın yavaş yükselen bölge, belirli bir gerilimde dikeye yakın sıçrama ve eğimli doğru olarak devam eden üst kol (yanında ``on'' yazıyor), sol altta ters yönde kırılma eğrisi.}
+
+\subsection*{Varactors}
+\sekilnotu[26]{Varaktör sembolü: aşağı bakan diyot, katot ucunda kondansatör plakaları.}
+$\rightarrow$ Voltage variable capacitors
+
+\subsection*{photo Diode}
+Light $\longrightarrow$ \fbox{Photo Diode} $\longrightarrow$ Electrical signal
+
+\subsection*{LED}
+Electrical $\longrightarrow$ \fbox{LED} $\longrightarrow$ Light
+
+\sayfa{27}
+{\small\color{kursunkalem}(Sayfanın en üstünde ortada silik küçük bir başlık: \okunamadi{Optoizolatör}.)}
+\section{Bipolar Junction Transistor (BJT)}
+{\small\color{kursunkalem}(Başlığın altında silik küçük notlar: \okunamadi{Transfer resistor}; \okunamadi{akım taşıyıcıları ikidir: elektronlar ve boşluklar}.)}
+
+\sekilnotu[27]{NPN transistör yapısı: yan yana üç bölge, soldan sağa n, p, n; sol uçtan ``(E) Emitter'', sağ uçtan ``(C) Collector'', p bölgesinin altından ``(B) Base'' ucu çıkıyor; n--p ara yüzeyine okla ``Emitter Base Junction (EBJ)'', p--n ara yüzeyine okla ``Collector Base Junction (CBJ)'' yazılmış.}
+
+\subsection*{BJT Modes of Operation}
+\begin{tabular}{@{}llll@{}}
+Mode & EBJ & CBJ & \\
+Cut off & Reverse & Reverse & \\
+\vurgu[pembe]{Active} & \vurgu[pembe]{Forward} & \vurgu[pembe]{Reverse} & $\rightarrow$ amplifier \\
+Saturation & Forward & Forward & \\
+(Reverse active) & Reverse & Forward &
+\end{tabular}
+
+$\rightarrow$ Digital circuits\\
+{\small\color{kursunkalem}(Kırmızı bir parantez Cut off ve Saturation satırlarını bu nota bağlıyor.)}
+
+\sekilnotu[27]{Taşıyıcı hareketi çizimi: üç bölgeli dikdörtgen (n, p, n; emitter solda, base ortada, collector sağda); emitter ucu ``E'' (sol dışta akım oku $i_E$), base ucu ``B'' (altta), collector ucu ``C'' (sağda, akım oku $i_C$); emitterden collector'a uzanan elektron okları, okla ``Injected electrons'', ``Diffusing electrons'' ve ``Collected electrons'' etiketleri; base bölgesinde geriye dönen küçük bir ok ve okunamayan kısa bir yazı. Altta iki batarya: emitter--base arasında ``$V_{BE}$'', base--collector arasında ``$V_{CB}$''; ortada kutu içinde ``n p n''. Sağ üstte küçük ``P | N'' kutusu ve altında diyot sembolü.}
+
+Elektrik alanın etkisiyle $i_E > i_C$ \qquad $V_{CB} > V_{BE}$
+
+p bölgesinde recombinasyonu önlemek için çok küçük \okunamadi{yapılır}
+
+akım yönü elektron hareketiyle ters, boşluk hareketiyle aynı yönde
+
+\[ I_C = I_S\,e^{V_{BE}/V_T} \quad\Longrightarrow\quad \kutula{I_B=\left(\frac{I_S}{\beta}\right)e^{V_{BE}/V_T}} \]
+\formulkutu{I_B=\frac{I_C}{\beta} \quad\rightarrow\quad \text{Common Emitter Current Gain}}
+\formulkutu{I_E = I_C+I_B}
+\[ \kutula{I_C=\beta I_B} \qquad I_C \gg I_B \]
+
+$\beta =$ \okunamadi{50, 100, 200} gibi
+
+\[ i_E = i_C+i_B \]
+\[ i_E \rightarrow I_E+i_e, \qquad i_C \rightarrow I_C+i_c, \qquad i_B \rightarrow I_B+i_b \]
+
+\begin{itemize}
+\item p bölgesinde az katkılama yapılır böylece boşluk sayısı az olur ve \okunamadi{çok} recombinasyonun önüne geçer.
+\end{itemize}
+
+\sayfa{28}
+\[ I_C = \beta I_B, \qquad I_E = I_C+I_B \;\Rightarrow\; I_E = \beta I_B + I_B \]
+\[ I_E = \frac{\beta+1}{\beta}\,I_C \;\rightarrow\; \frac{I_C}{\beta} \]
+\formulkutu{I_E = \frac{\beta+1}{\beta}\,I_C}
+\[ I_C = I_S\,e^{V_{BE}/V_T} \]
+\[ I_S = \frac{A_E\, q\, D_n\, n_i^2}{N_A \cdot W} \]
+$A_E$ = Base Emitter Junction Cross sectional Area
+
+$W$ = Effective Base Width.
+
+{\small\color{kursunkalem}(Sol kenarda mavi, altı çizili: \okunamadi{Sayfa 313}.)}
+\section{BJT Large Signal Equivalent models in Forward Active}
+\sekilnotu[28]{Büyük sinyal eşdeğer modeli: solda ``B'' ucu ve ``$i_B$'' akım oku; base ucundan aşağı doğru ok ucu aşağı bakan diyot ``$D_B$'' (altında ``$(I_{SB}=I_S/\beta)$''); sağda bağımlı akım kaynağı (elmas içinde aşağı ok) ``$\beta I_B$'', üst ucundan collector terminaline giden ``$\leftarrow I_C$'' akım oku; diyotun ve kaynağın alt uçları birleşip ``E'' terminaline gidiyor.}
+
+\begin{ornek}[6.1]
+npn transistor \qquad $V_T = 25$ mV\\
+$I_S = 10^{-15}$ A, $\beta = 100$\footnote{Claude notu: üs el yazısında ``$-13$'' gibi de okunabiliyor; aşağıdaki hesaba ($10^{-15}/100 = 10^{-17}$) uygun olarak $-15$ alındı.}\\
+$V_{CC} = 5$ V
+
+\sekilnotu[28]{Devre: solda 5V besleme hattından aşağı doğru ``$10\,\mu$A'' (``$I_B$'' etiketli) akım kaynağı, ardından base düğümü ve toprağa (``E'') giden diyot $D_B$; sağda 5V besleme hattından aşağı $R_C = 3\,\mathrm{k}\Omega$, collector düğümü ``C'' ve bağımlı akım kaynağı ``$\beta I_B$''; diyot ve bağımlı kaynak altta birleşip toprağa (``E'') bağlı. Collector tarafındaki 5V'tan okla sağdaki nota gidiliyor.}
+
+Active modda $\rightarrow$ $V_{BE}=?$, $V_{CE}=?$, $R_B=?$
+\end{ornek}
+
+\begin{cozum}
+\[ I_B = \frac{I_S}{\beta}\,e^{V_{BE}/V_T} \]
+\[ \Rightarrow\ V_{BE} = V_T \ln\frac{I_B}{I_S/\beta} \]
+\[ = 25\ln\left(\frac{10\times 10^{-6}}{10^{-17}}\right) \]
+\[ = 690\ \mathrm{mV} = 0{,}69\ \mathrm{V} \]
+\begin{align*}
+I_C &= \beta I_B = 100\times 10\times 10^{-6} \\
+ &= 1\ \mathrm{mA}
+\end{align*}
+\[ V_C - V_E = V_{CE} = 5-3\times 1 = 2\ \mathrm{V} \qquad\qquad V_{CC}-V_C = R_C I_C \]
+\[ R_B = \frac{5-0{,}69}{10\ \mu\mathrm{A}} = 431\ \mathrm{k}\Omega \]
+aynı koşulları sağlayan \okunamadi{direnç} kaç olmalıdır akım kaynağı yerine
+\end{cozum}
+
+\sayfa{29}
+\sekilnotu[29]{Entegre npn transistör kesiti: üstte ``E'', ``B'', ``C'' uçları; altta yuvarlak köşeli büyük bir n bölgesi (``n''), içinde p bölgesi ve onun içinde küçük n (emitter) bölgesi; E ucu içteki n'ye, B ucu p bölgesine, C ucu dıştaki büyük n bölgesine bağlı.}
+
+Operation in the saturation mode
+
+\sekilnotu[29]{Doyma modu eşdeğer devresi: sol üstte ``B'' ucu ve ``$i_B$'' oku; base düğümünden sağa doğru ok ucu sağa bakan diyot ``$D_C$'' (üstünde ``$I_{SC}\cdot e^{V_{BC}/V_T}$''), diyotun sağındaki düğümden ``C'' terminaline giden ok; base düğümünden aşağı diyot ``$D_B$'' (yanında ``$\left(\frac{I_S}{\beta}\right)e^{V_{BE}/V_T}$''); collector düğümünden aşağı bağımlı akım kaynağı (elmas içinde aşağı ok, yanında ``$I_S e^{V_{BE}/V_T}$''); alt uçlar birleşip emitter terminaline gidiyor.}
+
+\[ I_C = I_S\,e^{V_{BE}/V_T} - I_{SC}\,e^{V_{BC}/V_T} \]
+
+\formulkutu{V_{CE\,\mathrm{sat}} = 0{,}3\ \mathrm{V} \;\downarrow\; \text{at the edge of saturation}}
+
+\sekilnotu[29]{Grafik: yatay eksen $V_{CB}$ (sağa ok), dikey eksen akım; soldaki bölge çift yönlü okla ``saturasyon'', sağdaki bölge ``Active'' diye işaretli; eğri yatay eksenden (``$-0{,}4$'' işaretli noktadan) dik yükselip yatay bir platoya dönüyor; platonun ucunda okunamayan (``$I_E$'' ya da ``$I_C$'' gibi) bir etiket.}
+
+\[ I_B = \left(\frac{I_S}{\beta}\right)e^{V_{BE}/V_T} + I_{SC}\,e^{V_{BC}/V_T} \qquad\qquad \beta = \frac{I_C}{I_B} \]
+
+\subsection*{Saturasyon}
+\[ \beta_{\text{forced}}(\text{sat}) = \frac{I_C}{I_B} \le \beta \]
+\[ V_{CE\,\mathrm{sat}} = V_{BE}-V_{BC} \]
+\[ V_{CE\,\mathrm{sat}} \approx 0{,}1\ \mathrm{V}\ \text{to}\ 0{,}3\ \mathrm{V} \]
+
+\sekilnotu[29]{Transistör sembolleri: solda npn (``npn''): base ucu ``B'' ve ``$I_B$'' oku, collector ucu ``C'' (``$I_C$'' oku aşağı), emitter ucu ``E'' (``$I_E$'' oku aşağı, emitter okunun ucu dışa bakıyor); sağda pnp (``pnp''): base ``B'', üstte emitter ``E'' (``$I_E$'' oku aşağı, ok ucu içe bakıyor), altta collector ``C'' (``$I_C$'' oku aşağı).}
+
+\[ I_E = I_B+I_C \]
+Active \quad $I_C = \beta I_B$
+
+\sayfa{30}
+{\small\color{kursunkalem}(Sayfa üstünde, altı çizili: ``ders 7''.)}
+\section{BJT Circuits}
+{\small\color{kursunkalem}(Sol kenarda küçük, altı çizili: ``Sayfa 321''.)}
+
+\sekilnotu[30]{Solda npn devresi (``npn''): base ucuna soldan giren ``$I_B$'' oku ve ``B''; base ile emitter arasında (altta) ``$V_{BE}$'' bataryası, base ile collector arasında (üstte) ``$V_{CB}$'' bataryası; collector kolunda aşağı yönlü ``$I_C$'', emitter kolunda aşağı yönlü ``$I_E$'' oku ve ``E''.}
+
+\sekilnotu[30]{Sağda pnp devresi (``pnp''): üstte ``$V_{EB}$'' bataryası, emitter ucunda ``E'' ve aşağı yönlü ``$I_E$'' oku; base ucunda ``B'' ve sola doğru ``$I_B$'' oku; altta ``$V_{BC}$'' bataryası; collector ucunda ``C'' ve aşağı yönlü ``$I_C$'' oku.}
+
+\begin{align*}
+I_E &= I_B+I_C & I_E &= I_B+I_C \\
+V_{CE\,\mathrm{sat}} &= 0{,}2\ \mathrm{V} & V_{EC\,\mathrm{sat}} &= 0{,}2\ \mathrm{V}
+\end{align*}
+
+{\small\color{kursunkalem}(Altı çizili: ``S. 322'' ve ``npn''.)}
+
+\sekilnotu[30]{npn devresi: sol uçta ``B'' (altında $+$ işareti ve ``0,7V'', onun altında $-$), üstte ``C'', altta ``E''; sağda düşey gerilim ölçeği: collector seviyesinden aşağı uzanan uzun bir ok ``Active''; altta iki aralık: ``0,4V'' ve emitter seviyesine kadar ``0,3V sat''.}
+
+Base gerilimi referans alırsak 0,4 V aşağına düşmesini Aktif mod için sayabiliriz. Daha fazla düşerse saturasyon olur.
+
+\sekilnotu[30]{pnp devresi (``pnp''): üstte emitter ucu ``E'' (altında $+$ işareti ve ``0,7V''), solda base ucu ``B'' ($-$ işaretli), altta collector ``C''; sağda düşey ölçek: üstte ``0,3V sat'', altında ``0,4V'', yanında aşağı uzanan uzun ok ``active''.}
+
+\[ \star\quad I_C = I_S\,e^{V_{BE}/V_T} \qquad\Big|\qquad I_B = \frac{I_C}{\beta} = \frac{I_S}{\beta}\,e^{V_{BE}/V_T} \]
+\[ I_E = \frac{I_C}{\alpha} = \frac{I_S}{\alpha}\,e^{V_{BE}/V_T} \]
+\[ \alpha = \frac{\beta}{\beta+1}, \qquad V_T = 25\ \mathrm{mV}\ \text{at room temp} \]
+
+\sayfa{31}
+{\small\color{kursunkalem}(Sol üstte kırmızı, altı çizili: ``\okunamadi{Sf. 323} ex 6.2''.)}
+
+\begin{ornek}[6.2]
+$\beta = 100$\\
+$V_{BE} = 0{,}7$ V @ $1$ mA \ ($\nearrow I_C$)\\
+Design the circuit $\Rightarrow$ $I_E = I_C = 2$ mA, $V_C = 5$ V
+
+\sekilnotu[31]{Devre: üstte ``$V_{CC}$'' (yukarı ok, ``15V''), altında $R_C$ ve ``$V_C$'' düğümü; npn transistörün collector'ı bu düğüme bağlı, base ucu toprağa bağlı (toprak sembolü, yanında daire içinde küçük bir işaret); emitter düğümü ``$V_E=-0{,}717$V'', altında $R_E$ ve aşağı yönlü ``2,02mA'' oku, en altta ``$-15$V'' (``$V_{EE}$''); transistörün yanında ``npn''.}
+\end{ornek}
+
+\begin{cozum}
+\[ R_C = \frac{15-5}{2\ \mathrm{mA}} = 5\ \mathrm{k}\Omega \]
+\begin{align*}
+\star\quad I_{C1} &= I_S\,e^{V_{BE1}/V_T} && \text{1mA de 0,7V oluyorsa} \\
+I_{C2} &= I_S\,e^{V_{BE2}/V_T} && \text{2mA de kaç volt olur}
+\end{align*}
+\[ \frac{I_{C2}}{I_{C1}} = e^{\frac{V_{BE2}-V_{BE1}}{V_T}} \]
+\[ \Rightarrow\ V_{BE2}-V_{BE1} = V_T\ln\!\left(\frac{I_{C2}}{I_{C1}}\right) \]
+\[ V_{BE2} = V_{BE1} + V_T\ln\!\left(\frac{I_{C2}}{I_{C1}}\right) \]
+{\small\color{kursunkalem}(İşaretlenenler: $V_{BE1}$ için ``0,7V'', $I_{C2}$ için ``2mA'', $I_{C1}$ için ``1mA''.)}
+\[ \kutula{V_{BE} = 0{,}717\ \mathrm{V}} \]
+\[ I_E = \frac{I_C}{\alpha} = \frac{2}{0{,}99} = 2{,}02\ \mathrm{mA} \]
+\[ R_E = \frac{V_E-(-15)}{I_E} = \frac{-0{,}717+15}{2{,}02} = 7{,}07\ \mathrm{k}\Omega \]
+\begin{align*}
+\star\quad V_{CE} &= 5\ \mathrm{V}-(-0{,}717\ \mathrm{V}) && V_{CE} > 0{,}3\ \mathrm{V}\ \text{o zaman aktif modda}\\
+ &= 5{,}717\ \mathrm{V}
+\end{align*}
+aktif çıkmazsa \okunamadi{sat'a} göre çözmek lazım ve $V_{CE\,\mathrm{sat}}$'ı belirlemek lazım \qquad $V_{CE} = 0{,}2$ V
+\end{cozum}
+
+\sayfa{32}
+\sekilnotu[32]{$I_C$--$V_{CE}$ çıkış karakteristikleri: dikey eksen ``$I_C$'', yatay eksen ``$V_{CE}$''; orijinden dik yükselip sonra hafif eğimle yatayda ilerleyen dört eğri; diz bölgesinin solu yatay bir okla ``sat'', sağı okla ``Active'' diye işaretli; yatay eksenin sol tarafında ``$-V_A$'' etiketli bir nokta.}
+
+\[ I_C = I_S\,e^{V_{BE}/V_T}\left(1+\frac{V_{CE}}{V_A}\right) \]
+{\small\color{kursunkalem}(Süslü parantezin altında silik küçük bir not: \okunamadi{}.)}
+
+\sekilnotu[32]{$I_C$--$V_{BE}$ karakteristikleri: dikey eksen ``$I_C$'', yatay eksen ``$V_{BE}$''; yatay eksenden yükselen üç üstel eğri, soldan sağa ``$T_1$'', ``$T_2$'', ``$T_3$'' etiketli.}
+\[ T_1 > T_2 > T_3 \]
+
+\begin{ornek}[6.3]
+\sekilnotu[32]{Devre: sol kolda ``$V_{BB}$'' (yukarı ok) ve base'e bağlı $R_B = 10\,\mathrm{k}\Omega$; sağ kolda ``$V_{CC}=10$V'' (yukarı ok) ve collector'a bağlı $R_C = 1\,\mathrm{k}\Omega$; npn transistörde base--emitter arasında ``$+$ 0,7V $-$'' işareti, emitter toprakta; solda büyük bir parantezle ``$V_{BE}=0{,}7$ V (constant)'' ve ``$\beta=50$''.}
+
+$V_{BB} = ?$
+\begin{enumerate}[label=\alph*)]
+\item active mod $V_{CE} = 5$V
+\item at the edge of saturation
+\item deep saturation $\beta_{\text{forced}} = 10$
+\end{enumerate}
+\end{ornek}
+
+\begin{cozum}
+a)
+\[ I_C = \frac{10-5}{1\mathrm{k}} = 5\ \mathrm{mA} \]
+\[ \rightarrow\ I_B = \frac{I_C}{\beta} = \frac{5}{50} = 0{,}1\ \mathrm{mA} \]
+\[ V_{BB} = I_B R_B + V_{BE} = (0{,}1)(10)+0{,}7 = \kutula{1{,}7\ \mathrm{V}} \]
+
+$\star$ Sınırda $V_{CE} = 0{,}3$ V\\
+$\star$ Satürasyonda $V_{CE} = 0{,}2$ V
+
+b) at the edge of sat\\
+$\hookrightarrow V_{CE} = 0{,}3$ V
+\[ I_C = \frac{10-0{,}3}{1} = 9{,}7\ \mathrm{mA} \]
+\[ I_B = \frac{9{,}7}{50} = 0{,}194\ \mathrm{mA} \]
+\[ V_{BB} = (0{,}194)(10)+0{,}7 = 2{,}64\ \mathrm{V} \]
+
+c) deep saturation $\rightarrow$ $\beta_{\text{force}} = 10$\\
+$V_{CE} = V_{CE\,\mathrm{sat}} \approx 0{,}2$ V
+\[ I_C = \frac{10-0{,}2}{1} = 9{,}8\ \mathrm{mA} \;\Rightarrow\; I_B = \frac{I_C}{\beta_{\text{force}}} = \frac{9{,}8}{10} = 0{,}98\ \mathrm{mA} \]
+\[ V_{BB} = (0{,}98)\times 10+0{,}7 = 10{,}5\ \mathrm{V} \]
+\end{cozum}
+
+\sayfa{33}
+{\small\color{kursunkalem}(Sol üstte eğik, altı çizili: ``\okunamadi{Sayfa 352}''.)}
+
+\sekilnotu[33]{$I_C$--$V_{CE}$ karakteristikleri (dikey eksen ``$I_C$'', yatay eksen ``$V_{CE}$''): orijinden yükselip yatay ilerleyen dört eğri; yatay eksende ``$BV_{CEO}$'' işaretli dikey çizgide eğriler yukarı doğru kıvrılıyor (kırılma).}
+
+\sekilnotu[33]{$h_{FE}$ ($\beta$)--$I_C$ grafiği: dikey eksen ``$h_{FE}$ ($\beta$)'', yatay eksen ``$I_C$''; üst üste tümsek şeklinde birkaç eğri; ``$T=125^\circ$'', ``$T=25^\circ$'' ve ``$T=-55^\circ$'' etiketleri üstten aşağıya doğru yazılmış.}
+
+\[ h_{FE} \leftrightarrow \beta \]
+
+{\small\color{kursunkalem}(Başlığın solunda küçük, altı çizili bir sayı: \okunamadi{}.)}
+\section{BJT Circuits at DC}
+\sekilnotu[33]{Active modda npn eşdeğer devresi (``npn''): solda ``B'' ucu ve base--emitter arasında batarya; sağda collector kolunda bağımlı akım kaynağı (elmas içinde aşağı ok) ``$\beta I_B$''; sağ üstte ``C'' ucu ve ``$+$'', yanında ``$V_{CE} > 0{,}3$V'', altında ``$-$''; alt uç ``E''.}
+
+\sekilnotu[33]{Active modda pnp eşdeğer devresi (``pnp''): üstte emitter ucu ``E''; solda ``$+$'' ve ``0,7V'' bataryası, base ucu ``B'' ($-$ işaretli); sağda bağımlı akım kaynağı ``$\beta I_B$'' ve yanında ``$V_{EC} > 0{,}3$V''; altında ``Active'' yazıyor.}
+
+\subsection*{Saturation}
+\sekilnotu[33]{Saturation: npn devresi (``npn''): sol üstte ``B'' ($+$) ucu ve ``0,7V'' bataryası ($-$ altta); sağda collector ucu ``C'' ile seri batarya ``$V_{CE\,\mathrm{sat}}=0{,}2$V''; alt uç ``E''.}
+
+\sekilnotu[33]{Saturation: pnp devresi (``pnp''): üstte emitter ``E'', solda ``0,7V'' bataryası ($+$ üstte) ve base ucu ``B'', sağda batarya ``$V_{EC\,\mathrm{sat}}=0{,}2$V''.}
+
+\sayfa{34}
+\[ I_C \rightarrow I_B = \frac{I_C}{\beta} \;\Rightarrow\; I_E = I_B+I_C \]
+
+\begin{ornek}[6.4]
+\sekilnotu[34]{Devre: üstte ``$+10$V'' (yukarı ok), altında $R_C = 4{,}7\,\mathrm{k}\Omega$ ve ``$V_C$'' düğümü; npn transistörün base ucuna soldan yukarı oklu ``$+4$V'' kaynağı bağlı; emitter düğümü ``$V_E$'', altında $R_E = 3{,}3\,\mathrm{k}\Omega$ ve toprak; $R_E$'nin solunda kutu içinde okunması zor bir not (``$\beta=100$'' gibi).}
+
+$V_B, V_E, V_C = ?$\\
+$I_B, I_C, I_E = ?$
+\end{ornek}
+
+\begin{cozum}
+\[ V_E = 4-V_{BE} \approx 4-0{,}7 = 3{,}3\ \mathrm{V} \]
+\[ I_E = \frac{V_E-0}{R_E} = \frac{3{,}3}{3{,}3} = 1\ \mathrm{mA} \]
+\begin{align*}
+I_C+I_B &= I_E \\
+\beta I_B+I_B &= I_E \\
+I_B(\beta+1) &= I_E
+\end{align*}
+\formulkutu{I_B = \frac{I_E}{\beta+1}}
+\[ I_C = \alpha I_E, \qquad \alpha = \frac{\beta}{\beta+1} = \frac{100}{101} \simeq 0{,}99 \]
+\[ I_C = 0{,}99\times 1 = 0{,}99\ \mathrm{mA} \]
+\[ V_C = 10-I_C R_C = 10-0{,}99\times 4{,}7 \simeq 5{,}3\ \mathrm{V} \]
+\[ I_B = \frac{I_E}{\beta+1} = \frac{1}{101} \simeq 0{,}01\ \mathrm{mA} \]
+\end{cozum}
+
+\begin{ornek}[6.5]
+\sekilnotu[34]{Devre: üstte ``10V'' (yukarı ok), altında $R_C = 4{,}7\,\mathrm{k}\Omega$ ve collector düğümü; npn transistörün base ucuna yukarı oklu ``6V'' kaynağı bağlı; emitter düğümü ``$V_E$'', altında $R_E = 3{,}3\,\mathrm{k}\Omega$ ve toprak; devrenin altında ``$\beta=50$ (at test)'' gibi okunan bir not.}
+
+$V_B, V_C, V_E, I_B, I_C, I_E = ?$
+\end{ornek}
+
+\begin{cozum}
+\[ V_E = 6-0{,}7 = 5{,}3\ \mathrm{V}, \qquad I_E = \frac{5{,}3}{3{,}3} = 1{,}6\ \mathrm{mA}, \qquad I_E \simeq I_C \]
+\[ V_C \simeq 10-(1{,}6)(4{,}7) = 2{,}48\ \mathrm{V} \]
+$V_{CE}$ Aktif \okunamadi{çıkmazsa} o zaman yanlış\footnote{Claude notu: el yazısında bu satırdaki rakamlar tam okunamadı (1,6 ya da 1,61; sonuç yaklaşık 2,4--2,5 V).}
+
+Sat
+\[ V_E = 6-0{,}7 = 5{,}3\ \mathrm{V} \]
+\[ V_C = 5{,}5\ \mathrm{V} \]
+\[ I_C = \frac{10-5{,}5\ \mathrm{V}}{4{,}7} = 0{,}96\ \mathrm{mA} \]
+\[ I_E = \frac{5{,}3}{3{,}3} = 1{,}6\ \mathrm{mA} \]
+\[ I_B = I_E-I_C = 0{,}64\ \mathrm{mA} \]
+$V_{CE} = 0{,}2$ V alırız
+\end{cozum}
+
+\sayfa{35}
+$\star$ npn $\rightarrow V_{CE}$\\
+pnp $\rightarrow V_{EC}$
+
+\begin{ornek}[6.6]
+\sekilnotu[35]{Devre: üstte ``10V'' (yukarı ok), altında $R_C = 4{,}7\,\mathrm{k}\Omega$; npn transistörün collector düğümüne ``10V'' yazılmış (sağa ok); base ucu toprağa bağlı (toprak sembolü, yanında daire içinde 0); emitter düğümüne ``0V'' yazılmış; altında $R_E = 3{,}3\,\mathrm{k}\Omega$ ve alt ucunda yatay çizgiyle gösterilmiş bir uç; solda okunamayan küçük bir not (``$\ldots$ mA'' gibi).}
+
+$I_{B,C,E}$, $V_B$, $V_C$, $V_E$
+\end{ornek}
+{\small\color{kursunkalem}($I_{B,C,E}$ ifadesinin altında küçük bir ``0'' yazıyor.)}
+
+{\small\color{kursunkalem}(Sol üstte küçük: ``340''.)}
+\begin{ornek}[6.7]
+\sekilnotu[35]{pnp devresi (``pnp''): üstte ``10V'' (yukarı ok), altında $R_E = 2\,\mathrm{k}\Omega$, emitter düğümü ``E'' (yanında ``0,7V''); base ucu ``B'' toprağa bağlı (yanında ``0V''); collector düğümü ``C'', altında $R_C = 1\,\mathrm{k}\Omega$ ve ``$-10$V''; emitter yanında ``$+$ 0,7V'' işareti; solda küçük düşey bir ölçek çizimi (değerleri okunamıyor); collector düğümünden sağdaki hesaba giden bir ok.}
+\end{ornek}
+
+\begin{cozum}
+\[ \frac{10-0{,}7}{2} = 4{,}65\ \mathrm{mA} = I_E \ \checkmark \]
+$\beta = 100$ kabul edelim
+\[ I_B = \frac{4{,}65}{101} \approx 0{,}05\ \mathrm{mA}\ \checkmark \]
+\[ I_C = 4{,}6\ \mathrm{mA}\ \checkmark \]
+\[ -10+(4{,}6)(1\mathrm{k}) = -5{,}4 \]
+pnp $\rightarrow V_{EC} \rightarrow (0{,}7\mathrm{V})-(-5{,}4) = 6{,}1\ \mathrm{V}$
+\end{cozum}
+
+\sekilnotu[35]{pnp DC modeli (``pnp DC model''): üstte bir uç, altında ``2k$\Omega$'' direnci ve emitter düğümü; emitter hattından base ucuna (``B'') ``0,7V'' bataryası; sağda bağımlı akım kaynağı ``$\beta I_B$'' (elmas içinde aşağı ok); onun altında ``C'' düğümü, ``1k$\Omega$'' direnç ve ``$-10$V''; yanında ``$V_{EC} > 0{,}3$V''.}
+
+\sayfa{36}
+\begin{ornek}[6.8]
+\sekilnotu[36]{Devre: üstte ``10V'' (yukarı ok), altında $R_C = 2\,\mathrm{k}\Omega$ (yanında aşağı yönlü ``$I_C$'' oku) ve collector düğümü (sağa ok ile ``1,4V''); npn transistörün base ucuna soldan $R_B = 100\,\mathrm{k}\Omega$ ile ``5V'' kaynağı (yukarı ok) bağlı, base yanında ``0,7''; emitter düğümü sağa ok ile ``0V'' ve toprağa bağlı; altta ``$\beta=100$''.}
+\end{ornek}
+
+\begin{cozum}
+\[ I_B = \frac{5-0{,}7\,\mathrm{V}}{R_B} = 0{,}043\ \mathrm{mA} \]
+\[ I_C = \beta I_B = (100)(0{,}043) = 4{,}3\ \mathrm{mA} \]
+\[ V_C = 10-(I_C)(R_C) = 10-(4{,}3)(2) = 1{,}4\ \mathrm{V} \]
+\[ I_E = (\beta+1)I_B = 101\times 0{,}043 \approx 4{,}3\ \mathrm{mA} \]
+\end{cozum}
+
+\begin{ornek}[6.9]
+\sekilnotu[36]{pnp devresi: üstte ``5V'' (yukarı ok), altında $1\,\mathrm{k}\Omega$ (yanında aşağı yönlü ``4,3mA'' oku) ve emitter düğümü (sağa ok ile ``0,7''); base ucuna soldan $10\,\mathrm{k}\Omega$ ile toprak bağlı; collector düğümü (sağa ok ile ``43V'', ``4,3V'' olarak da okunabiliyor), altında $10\,\mathrm{k}\Omega$ (yanında ``4,3mA'') ve ``$-5$V''.}
+
+$0{,}7-$\okunamadi{43} \qquad aktif mod değil
+\end{ornek}
+
+\begin{cozum}
+\sekilnotu[36]{Doyma analizi için pnp devresi: üstte $1\,\mathrm{k}\Omega$ (yukarı ok, +5V hattına gidiyor) ve emitter düğümü ``$0{,}7+V_B$''; base ucuna soldan $10\,\mathrm{k}\Omega$ ile toprak bağlı, base düğümünde ``$V_B$''; yanında ``$V_{EC\,\mathrm{sat}}=0{,}2$V''; collector düğümü ``$0{,}5\mathrm{V}+V_B$'', altında $10\,\mathrm{k}\Omega$ ve ``$-5$V''.}
+
+\begin{align*}
+I_B &= \frac{V_B}{10} = 0{,}1\,V_B \\
+I_C &= \frac{V_B+0{,}5-(-5\mathrm{V})}{10} \\
+ &= \frac{V_B+5{,}5}{10} = 0{,}1\,V_B+0{,}55 \\
+I_E &= \frac{5-(V_B+0{,}7)}{1\mathrm{k}} \\
+ &= 4{,}3-V_B
+\end{align*}
+\[ 4{,}3-V_B = (0{,}1\,V_B)+(0{,}1\,V_B+0{,}55) \]
+\[ V_B = \frac{3{,}75}{1{,}2} \simeq 3{,}13\ \mathrm{V} \qquad\rightarrow\qquad V_E = 3{,}83\ \mathrm{V}, \quad V_C = 3{,}63\ \mathrm{V} \]
+\begin{align*}
+I_E &= 1{,}17\ \mathrm{mA} \\
+I_C &= 0{,}86\ \mathrm{mA} \\
+I_B &= 0{,}31\ \mathrm{mA}
+\end{align*}
+\formulkutu{\beta = \frac{I_C}{I_B} \approx 2{,}8}
+\end{cozum}
+
+\sayfa{37}
+{\small\color{kursunkalem}(Başlığın altında mavi, altı çizili: ``sf: 345''.)}
+\begin{ornek}[6.10]
+\sekilnotu[37]{Devre: sol kolda üstte ``15V'', altında $R_{B1} = 100\,\mathrm{k}\Omega$, base düğümü, onun altında $R_{B2} = 50\,\mathrm{k}\Omega$ ve toprak; base düğümü npn transistörün base ucuna bağlı; sağ kolda üstte ``15V'' (yukarı ok), $R_C = 5\,\mathrm{k}\Omega$, transistör, emitter'da $R_E = 3\,\mathrm{k}\Omega$ ve toprak.}
+
+$\downarrow$ Thevenin Eşdeğeri
+
+\sekilnotu[37]{Thevenin eşdeğer devresi: solda kaynak ``$V_{BB}$'' ($+$ üstte), ona seri direnç ``33,3k$\Omega$'' (altında ``$R_{BB}$''), sonra transistörün base ucu; base--emitter arasında ``$+$ 0,7V $-$'' işareti; collector'da $R_C = 5\,\mathrm{k}\Omega$ (sağa ok ile ``8,6V'' gibi okunan bir etiket); emitter'da $R_E = 3\,\mathrm{k}\Omega$ ve toprak. Alttan büyük bir ok $V_{BB}$ kaynağından aşağıdaki hesaplara gidiyor.}
+\end{ornek}
+
+\begin{cozum}
+\[ V_{BB} = 15\,\frac{R_{B2}}{R_{B1}+R_{B2}} = 15\cdot\frac{50}{100+50} = 5\ \mathrm{V} \]
+\[ R_{BB} = R_{B1}\parallel R_{B2} = 100\parallel 50 = 33{,}3\ \mathrm{k}\Omega \]
+\[ V_{BB} = I_B R_{BB}+V_{BE}+I_E R_E \]
+\[ I_B = \frac{I_E}{\beta+1} \]
+\[ I_E = \frac{V_{BB}-V_{BE}}{R_E+\left(R_{BB}/(\beta+1)\right)} \]
+\[ I_E = \frac{5-0{,}7}{3+\dfrac{33{,}3}{\beta+1}} \]
+\[ I_E = 1{,}29\ \mathrm{mA} \]
+\[ I_B = \frac{1{,}29}{101} = 0{,}0127\ \mathrm{mA} \]
+\[ V_B = V_{BE}+I_E R_E = 0{,}7\ \mathrm{V}+1{,}29\cdot 3 = \kutula{4{,}57\ \mathrm{V}} \]
+\[ I_C = \alpha I_E = 0{,}99\cdot 1{,}29 = 1{,}28\ \mathrm{mA} \]
+\[ V_C = 15-I_C R_C = 15-(1{,}28)(5) = 8{,}6\ \mathrm{V} \]
+\end{cozum}
+
+\sayfa{38}
+\begin{ornek}[6.11]
+\sekilnotu[38]{İki katlı devre: solda ``15V'' (yukarı ok), $R_{B1} = 100\,\mathrm{k}\Omega$, $T_1$'in base düğümü ve altında $R_{B2}$ ile toprak; ortada npn $T_1$ (base akımı ``$I_{B1}$'' oku): üstte ``15V'' (yukarı ok) ve $R_{C1} = 5\,\mathrm{k}\Omega$ (yanında aşağı oklu ``$I_{C1}-I_{B2}$''), collector düğümü ``$V_{C1}$'' (sağa ok; bu düğüm sağdaki transistörün base ucuna bağlı), emitter'da ``$I_{E1}$'' oku ve $R_{E1} = 3\mathrm{k}$, toprak; sağda pnp $T_2$ (``pnp''): üstte ``15V'' (yukarı ok), $R_{E2} = 2\,\mathrm{k}\Omega$, emitter akımı ``$I_{E2}$'', emitter--base arasında ``$+$ 0,7V $-$'', collector akımı ``$I_{C2}$'' ve $R_{C2} = 2{,}7\,\mathrm{k}\Omega$ ile toprak. Daire içinde ``1'' ve ``2'' numaralı iki yay ok (çevrim) çizilmiş: ``1'' pnp transistörün emitter tarafında, ``2'' $R_{C1}$ yanında.}
+
+$I_{B2} = ?$\\
+$V_{C1} = ?$
+\end{ornek}
+
+\begin{cozum}
+\[ (1)\quad 15-(R_{E2})(I_{E2})-0{,}7 = V_{C1} \]
+\[ (2)\quad 15-(I_{C1}-I_{B2})\,R_{C1} = V_{C1} \]
+\[ 14{,}3-(101)\,I_{B2}\,(2\mathrm{k}) = V_{C1} \qquad (1) \]
+\[ 15-(1{,}28-I_{B2})\,5\mathrm{k} = V_{C1} \qquad (2) \]
+\[ V_{C1} = 8{,}738\ \mathrm{V} \approx 8{,}74 \qquad\qquad I_{B2} = 27{,}5\ \mu\mathrm{A} \]
+\end{cozum}
+
+\sayfa{39}
+\begin{ornek}[6.12]
+\sekilnotu[39]{Tümleyen (npn + pnp) devre: üstte ``$+5$V'' ve npn $Q_1$ (``npn''; uçları $B_1$, $C_1$, $E_1$); altta pnp $Q_2$ (``pnp''; uçları $B_2$, $E_2$, $C_2$) ve ``$-5$V''; iki transistörün base uçları ($B_1$, $B_2$) birleşik ve soldan ``5V'' kaynağı $10\,\mathrm{k}\Omega$ ile bu düğüme bağlı; emitter uçları ($E_1$, $E_2$) birleşik ve $1\,\mathrm{k}\Omega$ ile toprağa bağlı; emitter--base arasında ``0,7V'' işaretleri. Sol altta, $B_2$'den çıkan bir okla ``ikisi bir arada çalışmaz''.}
+\end{ornek}
+
+\sekilnotu[39]{Aynı devre yeniden çizilmiş: npn $Q_1$ (``$Q_1$'', ``npn'', uçlar $B_1$, $C_1$), pnp $Q_2$ (``$Q_2$'', ``pnp'', ucu $C_2$), ``$+5$V'' ve ``$-5$V''; girişte ``5V'' ve $10\,\mathrm{k}\Omega$, emitter'larda $1\,\mathrm{k}\Omega$ ve toprak. Bir ``$\Rightarrow$'' oku sağdaki çizime gidiyor.}
+{\small\color{kursunkalem}(Çizimin altında altı çizili iki satırlık not: \okunamadi{$Q_1$ on; $Q_2$ off}.)}
+
+\sekilnotu[39]{Sağdaki çizim: solda ``5V'' (daire) ve $10\,\mathrm{k}\Omega$ ile transistörün base ucu; transistör sembolü (emitter oku içe bakıyor) çevresinde ``$V_{EB}$ $+$'' işareti ve ``$I_{E2}$'', ``$I_{B2}$'', ``$I_{C2}$'' okları; emitter hattında sağa doğru yukarı oklu $1\,\mathrm{k}\Omega$ ve toprak; sağ üstte ``$<0$''; ortada ``$\times$'' işareti; solda ``by ohm law'' benzeri okunamayan bir yazı.}
+akım söylediğiniz yönde çıkmadı
+
+\sekilnotu[39]{Tek transistörlü devre: solda ``5V'' ve ``10k'' direnci ile base ucu; collector'a ``$+5$V'' (yukarı ok); emitter'da ``1k'' direnç ve toprak, yanında dairesel oklu ``$I_E$''.}
+
+\begin{cozum}
+\[ 5\ \mathrm{V} = (10\mathrm{k})\,I_{B1}+0{,}7+(101)\,I_{B1}\,(1\mathrm{k}) \]
+\[ 4{,}3 = 111\mathrm{k}\,I_{B1} \;\Rightarrow\; I_{B1} \simeq 0{,}039\ \mathrm{mA} \]
+\[ \Rightarrow\ I_{E1} = 101\,I_{B1} \simeq 3{,}9\ \mathrm{mA} \]
+\end{cozum}
+
+\sayfa{40}
+\section{MOSFET}
+(Metal oxide semiconductor field effect Transistor)
+
+{\small\color{kursunkalem}(Sol kenarda oval içinde küçük bir not: \okunamadi{nFET}.)}
+
+\sekilnotu[40]{Üç boyutlu NMOS çizimi (üstte küçük ``nmos'' yazısı): bloğun üstünde ortada ``Gate'', iki yanında ``S'' (source) ve ``D'' (drain) uçları ve altlarında n bölgeleri; ``w (width)'' ve ``(length)'' ölçüleri, ``channel Region'' etiketi, altta ``B'' ucu; sol kenarda kesilmiş küçük yazılar.}
+
+\begin{tabular}{@{}lcl@{}}
+D: Drain & $\rightarrow$ & Savak \\
+S: Source & $\rightarrow$ & Kaynak \\
+G: Gate & $\rightarrow$ & Geçit \\
+B: Body (Bulk) & $\rightarrow$ & Gövde
+\end{tabular}
+
+Source ve drain yer değiştirebilir çünkü simetriktir.
+
+\subsection*{Genel bilgi}
+\sekilnotu[40]{Fin yapısı çizimi: U biçimli iki çıkıntı (kanatçık) ve üzerlerinde gate; okla ``Fin'' yazılmış. Altında okla ``Gate all around'' ve yatay duran bir silindir (nanotel) çizimi.}
+
+\sekilnotu[40]{MOSFET kesiti: ``p type substrate (Body)'' (p tipi taban), içinde iki ``n+'' bölgesi; üstte soldan ``source (S)'', ortada ``G'' (gate) ve sağda ``Drain (D)'' uçları; gate altında oksit ve ``$t_{ox}$'' (``oxide thickness'') ölçüsü; ``channel'' etiketi; okla ``Depletion Region'' ve okla ``elektronlar etkili''; altta ``B'' ucu.}
+
+{\small\color{kursunkalem}(Sağ tarafta altı çizili bir başlık: \okunamadi{Modeller}.)}
+
+Unipolar tek kutupludur
+
+Kullanabilmek için\\
+$\rightarrow$ kanal oluşmalı\\
+$\rightarrow$ $V_{DS} > 0$
+
+Mosfet türleri: {\small\color{kursunkalem}(\okunamadi{üretimde kanal\ldots})}\\
+Enhancement $\rightarrow$ kanal oluşmalı\\
+Depletion $\rightarrow$ kanal \okunamadi{azaltılmalı}
+
+Threshold Voltage (Eşik seviyesi)\\
+$\downarrow$ $V_{GS}$'ye uygulanmalı $\rightarrow$ $V_t$, $V_{TH}$\\
+karışmamalı: $V_T = kT/q$ (farklı)
+
+\sekilnotu[40]{Sol altta uçları ``A'' ve ``B'' etiketli yatay bir silindir çizimi; silindirin altında gölgeli, belirsiz bir şekil.}
+
+\end{document}
