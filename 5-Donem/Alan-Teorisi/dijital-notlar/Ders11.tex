@@ -1,0 +1,126 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Yüzeysel yüke etki eden kuvvet}{Ders11.pdf}
+
+\sayfa{1}
+\section{Yüzeysel yüke etki eden kuvvet}
+
+$q_1 \ldots q_n$ tane yük olsun.
+
+$q_1$ yüküne etki eden kuvveti:
+\[ \vec F_1 = \frac{q_1}{4\pi\varepsilon}\sum_{i=2}^{n} q_i\,\frac{\vec r_i}{r_i^{3}} \]
+
+\sekilnotu[1]{$V$ bölgesi (kapalı oval bir bölge) içinde $\rho_v$ yük yoğunluğuyla dağıtılmış yükler. Bölge içinde bir $P$ noktası ve etrafında ``$S_\mu$ küredir'' diye etiketlenmiş küçük bir küre (turuncu/kırmızı daire, yarıçap $\mu$); $P$'den bölgedeki bir yük elemanına $r'$ vektörü, yanında $\rho_v$. Sağda $V$'yi gösteren ok: ``yük yoğunluğu ile yükleri dağıtalım''; $P$'den aşağı ok: ``$P$ noktasına etki eden kuvveti hesaplayalım''.}
+
+$P$ noktasına etki eden kuvveti hesaplayalım.
+
+$S_\mu$ küresi dışında bulunan bütün yükleri içerideki birim yüke etki kuvvet (Elektrik alan). Bu kuvveti hesaplayıp, $\mu\to 0$ götürülürse $P$ noktasındaki elektrik alanı buluruz.
+\[ \vec E(P) = \frac{1}{4\pi\varepsilon}\lim_{\mu\to 0}\int_{V-V_\mu} \rho_v\,\frac{\vec r'}{r'^{3}}\,dV \]
+
+\sekilnotu[1]{Eğri bir $S$ yüzeyi (``$S$ yüzeyi'', ``$\rho_s$ yoğunluğu'') ve üzerinde $P$ noktası. $P$'nin hemen üstünde $P^+$ (turuncu $\vec n$ ``normal vektör'' yönünde, mesafe $h$), hemen altında $P^-$ (mesafe $h$). $P$ çevresinde mavi kesikli küçük disk, ``$S_\mu$ yüzeyi'', yarıçap $\mu$. Yüzeyin sol alt ucunda bir $ds$ elemanı; $ds$'den $P^+$, $P$ ve $P^-$ noktalarına turkuaz $\vec r_+$, $\vec r$, $\vec r_-$ vektörleri. Sağda ayrı çizim ``$S_\mu$ nedir'': yüzeyi dik kesen bir silindir (kutu), yarıçapı $\mu$, yüzeyle kesişen taralı disk $S_\mu$.}
+
+$P$ noktası üzerindeki elektrik alanı bulalım.
+\[ \vec E(P) = \frac{1}{4\pi\varepsilon}\lim_{\mu\to 0}\int_{S-S_\mu} \rho_s\,\frac{\vec r'}{r'^{3}}\,ds \]
+
+Daha basit bir yol bulmaya çalışalım
+\begin{align*}
+\vec E(P_+) &= \frac{1}{4\pi\varepsilon}\int_S \rho_s\,\frac{\vec r_+}{r_+^{3}}\,ds \\
+\vec E(P_-) &= \frac{1}{4\pi\varepsilon}\int_S \rho_s\,\frac{\vec r_-}{r_-^{3}}\,ds
+\end{align*}
+
+\sayfa{2}
+\begin{align*}
+\vec E(P_+) &= \frac{1}{4\pi\varepsilon}\int_{S-S_\mu}\rho_s\,\frac{\vec r_+}{r_+^{3}}\,ds
+  + \overbrace{\frac{1}{4\pi\varepsilon}\int_{S_\mu}\rho_s\,\frac{\vec r_+}{r_+^{3}}\,ds}^{e(h,\mu)\,\hat n} \\[4mm]
+\vec E(P_-) &= \frac{1}{4\pi\varepsilon}\int_{S-S_\mu}\rho_s\,\frac{\vec r_-}{r_-^{3}}\,ds
+  + \underbrace{\frac{1}{4\pi\varepsilon}\int_{S_\mu}\rho_s\,\frac{\vec r_-}{r_-^{3}}\,ds}_{-e(h,\mu)\,\hat n}
+\end{align*}
+
+(yani $h\to 0$'a götürsek)
+\begin{align*}
+\lim_{P_+\to P}\vec E(P_+) &= \vec E(P) + e(0,\mu)\,\hat n \\
+\lim_{P_-\to P}\vec E(P_-) &= \vec E(P) - e(0,\mu)\,\hat n
+\end{align*}
+\begin{align*}
+\vec E^{+}(P) &= \vec E(P) + e(0,\mu)\,\hat n \\
+\vec E^{-}(P) &= \vec E(P) - e(0,\mu)\,\hat n
+\end{align*}
+
+$\mu\to 0$'a götürürsek
+\[
+\begin{array}{rrcl}
+ & \vec E^{+}(P) &=& \vec E(P) + e(0)\,\hat n \\
++\ & \vec E^{-}(P) &=& \vec E(P) - e(0)\,\hat n \\ \hline
+ & \vec E(P) &=& \tfrac12\bigl[\vec E^{+}(P)+\vec E^{-}(P)\bigr]
+\end{array}
+\]
+
+Herhangi bir $\rho_s\,ds$ yüzeysel yüküne etki eden kuvvet:
+\[ d\vec F = \frac12\,\rho_s\,ds\,\bigl[\vec E^{+}+\vec E^{-}\bigr] \]
+
+\subsection{Sayfa 55 problem 1}
+La la la laaa la la laaaa
+
+\begin{center}
+\begin{tikzpicture}[line width=0.8pt,murekkep]
+  \draw[-{Stealth}] (0,-0.7) -- (0,2.3) node[right] {$z$};
+  \draw (-1.5,1.4) -- (5.2,1.4);
+  \draw (-1.5,0) -- (5.2,0);
+  \node[anchor=west] at (0.05,1.0) {$h$};
+  \node[anchor=west] at (0.05,-0.35) {$0$};
+  \node at (4.75,1.0) {$\rho_h$};
+  \node at (4.9,-0.4) {$\rho_0$};
+  \draw[-{Stealth}] (5.2,0) .. controls (5.65,0.5) and (5.85,1.3) .. (5.95,1.75) node[right] {yüzey};
+\end{tikzpicture}
+\end{center}
+
+a) $z=0$'daki ve $z=h$'taki elektrik alanı doğrudan bulunuz.
+
+\hspace{1.5em}{\small sadece $\rho_h$'ın etkisi var diyelim}
+\[ \vec E(0) = -\frac{\rho_h}{2\varepsilon}\,\vec e_z \qquad\qquad \vec E(h) = +\frac{\rho_0}{2\varepsilon}\,\vec e_z \]
+
+b) $z>h$, \ $0<z<h$, \ $z<0$
+\[ \vec E = \frac{\rho_0+\rho_h}{2\varepsilon}\,\vec e_z \]
+
+\sayfa{3}
+$0<z<h$
+\[ \vec E = \frac{(\rho_0-\rho_h)}{2\varepsilon}\,\vec e_z \]
+$z<0$
+\[ \vec E = -\frac{(\rho_0+\rho_h)}{2\varepsilon}\,\vec e_z \]
+
+c) $z=0$ ve $z=h$
+
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+\begin{align*}
+\vec E(0) &= \tfrac12\bigl[\vec E^{+}(0)+\vec E^{-}(0)\bigr] \\
+\vec E^{+}(0) &= \frac{(\rho_0-\rho_h)}{2\varepsilon}\,\vec e_z \\
+\vec E^{-}(0) &= -\frac{(\rho_0+\rho_h)}{2\varepsilon}\,\vec e_z \\
+\vec E(0) &= \frac12\left[\frac{\rho_0-\rho_h-\rho_0-\rho_h}{2\varepsilon}\,\vec e_z\right] \\
+ &= -\frac{\rho_h}{2\varepsilon}\,\vec e_z
+\end{align*}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.47\linewidth}
+\[
+\left\{\begin{aligned}
+\vec E(h) &= \tfrac12\bigl[\vec E^{+}(h)+\vec E^{-}(h)\bigr] \\
+\vec E^{+}(h) &= \frac{\rho_0+\rho_h}{2\varepsilon}\,\vec e_z \\
+\vec E^{-}(h) &= \frac{(\rho_0-\rho_h)}{2\varepsilon}\,\vec e_z \\
+\vec E(h) &= \frac12\left[\frac{\rho_0+\rho_h+\rho_0-\rho_h}{2\varepsilon}\right]\vec e_z \\
+\vec E(h) &= \frac{\rho_0}{2\varepsilon}\,\vec e_z
+\end{aligned}\right.
+\]
+\end{minipage}
+
+d) $z=0$ üzerinde $S$ alan parçasına etki eden kuvvet
+\begin{align*}
+\vec F &= \frac12\,\rho_0\,S\,\bigl[\vec E^{+}(0)+\vec E^{-}(0)\bigr] \\
+ &= -\frac{\rho_0\,\rho_h\,S}{2\varepsilon}\,\vec e_z
+\end{align*}
+
+e) $\rho_h=\rho_0 \;\Rightarrow\; \vec F = -\dfrac{\rho_0^{2}}{2\varepsilon}\,\vec e_z$
+
+\hspace{1.5em}$\rho_h=-\rho_0 \;\Rightarrow\; \vec F = \dfrac{\rho_0^{2}}{2\varepsilon}\,\vec e_z$
+
+\end{document}

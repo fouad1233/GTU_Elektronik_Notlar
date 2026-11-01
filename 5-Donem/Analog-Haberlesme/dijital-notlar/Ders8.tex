@@ -1,0 +1,604 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{Frekans karıştırıcı, DSB-SC, AM modülasyonu: güç ve verim}{Ders8.pdf}
+
+\sayfa{1}
+\section{Örnek: Frekans karıştırıcı (Frequency mixer)}
+Changes carrier frequency $f_c$ \textit{(yüksek)} to $f_I$ \textit{(düşük)}\\
+i.e, $m(t)\cos(2\pi f_c t) \to m(t)\cos(2\pi f_I t)$
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[circle,draw,inner sep=1pt] (mix) at (0,0) {$\times$};
+  \node[draw,rectangle,align=center,inner sep=3pt] (bpf) at (3.4,0) {BGF\\ MF $=f_I$};
+  \draw[->] (-3.2,0) -- node[above]{$m(t)\cos(2\pi f_c t)$} (mix);
+  \draw[->] (mix) -- node[above]{$x(t)$} (bpf);
+  \draw[->] (bpf) -- node[above,kirmizikalem]{$m(t)\cdot\cos(2\pi f_I t)$} (7.2,0);
+  \draw[->] (0,-1.1) -- (mix);
+  \node[below] at (0,-1.1) {$2\cos\bigl(2\pi(f_c+f_I)t\bigr)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+x(t) &= 2m(t)\cos(2\pi f_c t)\cos\bigl(2\pi(f_c \pm f_I)t\bigr)\\
+f_k &= f_c - f_I \quad\text{veya}\quad f_k = f_c + f_I\\
+&= m(t)\bigl[\cos(2\pi(f_c-f_k)t) + \cos(2\pi(f_c+f_k)t)\bigr]
+\end{align*}
+\begin{align*}
+f_k = f_c - f_I &\Rightarrow x(t) = m(t)\Bigl[\textcolor{kirmizikalem}{\underline{\cos(2\pi f_I t)}} + \textcolor{turuncukalem}{\underline{\cos\bigl(2\pi(2f_c - f_I)t\bigr)}}\Bigr]\\[3mm]
+f_k = f_c + f_I &\Rightarrow x(t) = m(t)\Bigl[\underbrace{\cos(2\pi f_I t)}_{\textcolor{kirmizikalem}{\text{\small Bant geçiren filtreden geçerler}}} + \underbrace{\cos\bigl(2\pi(2f_c + f_I)t\bigr)}_{\textcolor{turuncukalem}{\text{\small BGF'den geçmez}}}\Bigr]
+\end{align*}
+
+$f_I = \qty{450}{\kilo\hertz}$\\
+$f_c = \qty{1000}{\kilo\hertz}$\\
+Çok yüksek frekanslarda devre tasarlamak zor o yüzden \okunamadi{düşürüyoruz}
+
+\sekilnotu[1]{Önce $M(f)$ olsun: $f$ ekseninde $-B$ ile $B$ arasında, tepe değeri 1 olan yarım elips biçiminde bir spektrum (eksende $-B$, 0, $B$ işaretli). Altında $X(f)$ çizimi (not: ``simetriği de var''): $f_I-B$, $f_I$, $f_I+B$ arasında $f_I$ merkezli tepe değeri $1/2$ olan yarım elips; çevresinde kırmızı kesikli BGF kutusu; $2f_c-f_I$ merkezli ikinci yarım elips (kırmızı; uçları $2f_c-f_I-B$ ve sağ uç etiketi $2f_c-f_I$ [muhtemelen $+B$]); $2f_c$ işareti; $2f_c+f_I$ merkezli üçüncü yarım elips (turuncu; uçları $2f_c+f_I-B$ ve $2f_c+f_I+B$)}
+
+$\star\ f_I - B \ge 0 \;\Rightarrow\; f_I \ge B$\\
+Saf olarak elde edebilmek için
+\[ 2f_c - f_I - B \ge f_I + B \;\Rightarrow\; 2(f_c - f_I) \ge 2B \;\Rightarrow\; (f_c - f_I) \ge B \]
+
+\sayfa{2}
+\section{4.2.4 kağıttaki soruları çözelim}
+\begin{ornek}[4.2-4 (basılı soru)]
+Design a DSB-SC modulator to generate $km(t)\cos\omega_c t$, where $m(t)$ is band-limited to $B$ Hz, using the modulator of Fig.\ P4.2-4 whose carrier generator gives $\cos^3\omega_c t$ instead of $\cos\omega_c t$ (any filter allowed).
+(a) What kind of filter is required? (b) Determine the signal spectra at points $b$ and $c$ and the frequency bands occupied. (c) What is the minimum usable value of $\omega_c$? (d) Would this scheme work if the carrier were $\cos^2\omega_c t$? (e) Would it work for $\cos^n\omega_c t$, any integer $n\ge 2$?
+\end{ornek}
+
+\sekilnotu[2]{Basılı Şekil P4.2-4: $m(t)$ girişi (a noktası) $\to$ çarpıcı $\otimes$ (altından $\cos^3\omega_c t$ giriyor) $\to$ (b) $\to$ Filter $\to$ (c) $\to$ $km(t)\cos\omega_c t$; yanda (b) spektrumu $M(\omega)$: $-2\pi B$ ile $2\pi B$ arasında, tepe değeri $A$ olan yarım elips. El yazısı eklemeler: çıkışın altına $\cos(2\pi f_c t)$, çarpıcıya giren taşıyıcının altına $\cos^3(2\pi f_c t)$ yazılmış.}
+
+\subsection{DSB-SC-AM modulator}
+$\mathrm{BG}\{m(t)\} = B\ \mathrm{Hz}$
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-2,0) -- (2.2,0);
+  \draw[->] (0,0) -- (0,1.7) node[right]{$M(f)$};
+  \draw (-1,0) arc[start angle=180,end angle=0,x radius=1,y radius=1.1];
+  \node[left] at (0,1.1) {$A$};
+  \node[below] at (-1,0) {$-B$}; \node[below] at (0,0) {$0$}; \node[below] at (1,0) {$B$};
+\end{tikzpicture}
+\end{center}
+
+a) $x(t) = m(t)\cos^3(2\pi f_c t)$
+\begin{align*}
+\cos^3(\alpha) &= \cos(\alpha)\cdot\cos^2(\alpha)\\
+&= \cos\alpha\ \tfrac{1}{2}\bigl[1+\cos(2\alpha)\bigr]\\
+&= \tfrac{1}{2}\cos(\alpha)+\tfrac{1}{2}\cos(\alpha)\cos(2\alpha)\\
+&= \tfrac{1}{2}\cos(\alpha)+\tfrac{1}{4}\bigl[\cos(\alpha)+\cos(3\alpha)\bigr]\\
+\cos^3\alpha &= \tfrac{3}{4}\cos(\alpha)+\tfrac{1}{4}\cos(3\alpha)
+\end{align*}
+\begin{align*}
+x(t) &= m(t)\cdot\cos^3(2\pi f_c t)\\
+&= \underbrace{\tfrac{3}{4}\,m(t)\cos\bigl(\underbrace{2\pi f_c t}_{\alpha}\bigr)}_{\textcolor{kirmizikalem}{\text{\small o zaman filtremiz bu işareti geçirmeli}}} + \tfrac{1}{4}\,m(t)\cos(2\pi\,3f_c\,t)
+\end{align*}
+$\alpha \searrow$ $2B$ bant genişliğine sahip
+
+O zaman BGF\\
+MF $= f_c$\\
+BG $= 2B$
+
+\sayfa{3}
+b)\\
+\textcircled{a}\ a)
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-2,0) -- (2.2,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,1.7) node[right]{$M(f)$};
+  \draw (-1,0) arc[start angle=180,end angle=0,x radius=1,y radius=1.1];
+  \node[left] at (0,1.1) {$A$};
+  \node[below] at (-1,0) {$-B$}; \node[below] at (1,0) {$B$};
+\end{tikzpicture}
+\end{center}
+
+\textcircled{b}
+\[ X(f) = \tfrac{3}{8}\bigl[M(f-f_c)+M(f+f_c)\bigr] + \tfrac{1}{8}\bigl[M(f-3f_c)+M(f+3f_c)\bigr] \]
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-7.6,0) -- (7.6,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,2.6) node[above]{$X(f)$};
+  \foreach \cx in {-6.3, 6.3} \draw (\cx-0.9,0) arc[start angle=180,end angle=0,x radius=0.9,y radius=0.6];
+  \foreach \cx in {-2.1, 2.1} \draw (\cx-0.9,0) arc[start angle=180,end angle=0,x radius=0.9,y radius=1.5];
+  \draw[dashed,kursunkalem] (-6.3,0.6) -- (6.3,0.6);
+  \draw[dashed,kursunkalem] (-2.1,1.5) -- (2.1,1.5);
+  \node[anchor=east] at (0,1.5) {$3A/8$};
+  \node[anchor=east] at (0,0.6) {$A/8$};
+  \foreach \cx/\xa/\xb/\xm in {-6.3/{-3f_c-B}/{-3f_c+B}/{-3f_c}, -2.1/{-f_c-B}/{-f_c+B}/{-f_c}, 2.1/{f_c-B}/{f_c+B}/{f_c}, 6.3/{3f_c-B}/{3f_c+B}/{3f_c}} {
+    \node[anchor=north] at (\cx-0.9,-0.1) {$\xa$};
+    \node[anchor=north] at (\cx+0.9,-0.1) {$\xb$};
+    \node[anchor=north] at (\cx,-0.6) {$\xm$};
+  }
+  \draw[dashed,kirmizikalem] (-3.0,0) rectangle (-1.2,1.95);
+  \draw[dashed,kirmizikalem] (1.2,0) rectangle (3.0,1.95);
+  \node[kirmizikalem,font=\small] (bg) at (4.6,2.5) {BGF};
+  \draw[->,kirmizikalem] (-2.1,1.95) to[bend left=12] (bg.west);
+  \draw[->,kirmizikalem] (2.1,1.95) -- (bg.west);
+\end{tikzpicture}
+\end{center}
+
+\textcircled{c}\footnote{Şekildeki eksen etiketi el yazısında $X(f)$ olarak görünüyor; Claude notu: muhtemelen $Y(f)$ olmalı.}
+\begin{align*}
+y(t) &= \tfrac{3}{4}\,m(t)\,\cos(2\pi f_c t)\\
+Y(f) &= \tfrac{3}{8}\bigl[M(f-f_c)+M(f+f_c)\bigr]
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-4.6,0) -- (4.6,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,2.2) node[above]{$X(f)$};
+  \foreach \cx in {-2.1, 2.1} \draw (\cx-0.9,0) arc[start angle=180,end angle=0,x radius=0.9,y radius=1.5];
+  \draw[dashed,kursunkalem] (-2.1,1.5) -- (2.1,1.5);
+  \node[anchor=south west] at (0,1.5) {$3A/8$};
+  \foreach \cx/\xa/\xb/\xm in {-2.1/{-f_c-B}/{-f_c+B}/{-f_c}, 2.1/{f_c-B}/{f_c+B}/{f_c}} {
+    \node[anchor=north] at (\cx-0.9,-0.1) {$\xa$};
+    \node[anchor=north] at (\cx+0.9,-0.1) {$\xb$};
+    \node[anchor=north] at (\cx,-0.6) {$\xm$};
+  }
+\end{tikzpicture}
+\end{center}
+
+c)\quad $f_c - B \ge 0 \;\Rightarrow\; \kutula{f_c \ge B}$
+\begin{align*}
+3f_c - B \ge f_c + B &\;\Rightarrow\; 2f_c \ge 2B\\
+&\;\Rightarrow\; f_c \ge B
+\end{align*}
+
+d)\quad $\cos^2(2\pi f_c t) = \tfrac{1}{2}\bigl[1+\cos(2\pi\,2f_c t)\bigr]$
+\begin{align*}
+x(t) &= m(t)\cos^2(2\pi f_c t)\\
+&= \tfrac{1}{2}\,m(t) + \tfrac{1}{2}\,m(t)\cos(2\pi\,2f_c\,t)
+\end{align*}
+Hayır.
+
+\sayfa{4}
+e)\quad $\cos^n(2\pi f_c t),\ n \ge 2$\\
+Evet, $n$ tek ise
+
+\section{Problem 4-2-9 Lathi}
+\begin{ornek}[4.2-9 (basılı soru)]
+System shown in Fig.\ P4.2-9 is used for scrambling audio signals. The output $y(t)$ is the scrambled version of the input $m(t)$. (a) Find the spectrum of the scrambled signal $y(t)$. (b) Suggest a method of descrambling $y(t)$ to obtain $m(t)$.
+(Fig.\ P4.2-9: $m(t)$ with $M(\omega)$ between $-15$ kHz and $15$ kHz $\to$ multiplier with $2\cos 30{,}000\pi t$ $\to$ low-pass filter 0--15 kHz $\to$ $y(t)$, scrambled output.)
+\end{ornek}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\small]
+  \draw[->] (-2.6,0) -- (3.0,0) node[right]{$f$ (kHz)};
+  \draw[->] (0,0) -- (0,1.9) node[right]{$M(f)$};
+  \draw (-1.8,0) -- (-1.8,1.2) -- (0,0) -- (1.8,1.2) -- (1.8,0);
+  \draw[dashed,kursunkalem] (-1.8,1.2) -- (1.8,1.2);
+  \node[above right] at (0,1.15) {$1$};
+  \node[kirmizikalem] at (-1.35,0.25) {$-$};
+  \node[kirmizikalem] at (1.35,0.25) {$+$};
+  \node[below] at (-1.8,0) {$-15$}; \node[below] at (1.8,0) {$15$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[circle,draw,inner sep=1pt] (mix) at (0,0) {$\times$};
+  \node[draw,rectangle,align=center,minimum width=2.6cm,minimum height=1.2cm] (lpf) at (4.4,0) {LPF\\ $B=15$ kHz};
+  \draw[->] (-2.2,0) -- node[above]{$m(t)$} (mix);
+  \draw[->] (mix) -- node[above]{$x(t)$} (lpf);
+  \draw[->] (lpf.east) -- ++(2.4,0);
+  \node[anchor=north west,align=left,inner sep=1pt] at ([yshift=-2pt]lpf.east) {$y(t)$\\ Scrambled\\ output};
+  \draw[->] (0,-1.4) -- (mix);
+  \node[below] at (0,-1.4) {$2\cos\bigl(2\pi\,\underbrace{15000}_{B}\,t\bigr)$};
+\end{tikzpicture}
+\end{center}
+
+a)\quad $x(t) = 2\,m(t)\cos(2\pi B t)$
+\[ X(f) = M(f-B) + M(f+B) \]
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-4.4,0) -- (4.8,0) node[right]{$f$ (kHz)};
+  \draw[->] (0,0) -- (0,2.1) node[above right]{$X(f)$};
+  \draw (-3.6,0) -- (-3.6,1.2) -- (-1.8,0) -- (0,1.2) -- (1.8,0) -- (3.6,1.2) -- (3.6,0);
+  \node[kirmizikalem] at (-3.15,0.22) {$-$}; \node[kirmizikalem] at (-0.65,0.22) {$+$};
+  \node[kirmizikalem] at (0.65,0.22) {$-$}; \node[kirmizikalem] at (3.15,0.22) {$+$};
+  \draw[dashed,kirmizikalem] (-1.8,0) -- (-1.8,1.7) -- (1.8,1.7) -- (1.8,0);
+  \node[kirmizikalem] (agf) at (3.0,1.9) {AGF};
+  \draw[->,kirmizikalem] (agf.west) -- (1.85,1.72);
+  \foreach \xx/\ll in {-3.6/{-30}, -1.8/{-15}, 0/{0}, 1.8/{15}, 3.6/{30}} \node[anchor=north] at (\xx,-0.08) {$\ll$};
+  \node[anchor=north] at (-1.8,-0.5) {$-B$}; \node[anchor=north] at (1.8,-0.5) {$B$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-3.2,0) -- (3.4,0) node[right]{$f$ (kHz)};
+  \draw[->] (0,0) -- (0,1.9) node[above right]{$Y(f)$};
+  \draw (-1.8,0) -- (0,1.2) -- (1.8,0);
+  \node[above right] at (0,1.1) {$1$};
+  \node[kirmizikalem] at (-0.65,0.22) {$+$}; \node[kirmizikalem] at (0.65,0.22) {$-$};
+  \node[anchor=north] at (-1.8,-0.08) {$-15$}; \node[anchor=north] at (1.8,-0.08) {$15$};
+  \node[anchor=north] at (-1.8,-0.5) {$-B$}; \node[anchor=north] at (1.8,-0.5) {$+B$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{5}
+b)\quad Descrambling: $y(t) \to m(t)$
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[circle,draw,inner sep=1pt] (mix) at (0,0) {$\times$};
+  \node[draw,rectangle,align=center,minimum width=2.6cm,minimum height=1.3cm] (lpf) at (4.0,0) {AGF\\ BG $=B$ Hz};
+  \draw[->] (-2.4,0) -- node[below]{$y(t)$} (mix);
+  \draw[->] (mix) -- node[below]{$z_1(t)$} (lpf);
+  \draw[->] (lpf.east) -- ++(2.4,0) node[below,pos=0.75]{$z_2(t)$};
+  \draw[->] (0,-1.2) -- (mix);
+  \node[below] at (0,-1.2) {$\cos(2\pi B t)$};
+\end{tikzpicture}
+\end{center}
+
+\[ z_1(t) = y(t)\cos(2\pi B t) \;\Rightarrow\; Z_1(f) = \tfrac{1}{2}\bigl[Y(f-B)+Y(f+B)\bigr] \]
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-4.4,0) -- (4.8,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,2.1) node[above right]{$Z_1(f)$};
+  \draw (-3.6,0) -- (-1.8,1.2) -- (0,0) -- (1.8,1.2) -- (3.6,0);
+  \node[kirmizikalem] at (-2.15,0.2) {$+$}; \node[kirmizikalem] at (-1.45,0.2) {$-$};
+  \node[kirmizikalem] at (1.45,0.2) {$+$}; \node[kirmizikalem] at (2.15,0.2) {$-$};
+  \draw[dashed,kirmizikalem] (-1.8,0) -- (-1.8,1.7) -- (1.8,1.7) -- (1.8,0);
+  \node[kirmizikalem] (agf) at (3.0,1.8) {AGF};
+  \draw[->,kirmizikalem] (agf.west) -- (1.85,1.72);
+  \foreach \xx/\ll in {-3.6/{-30}, 0/{0}, 3.6/{30}} \node[anchor=north] at (\xx,-0.08) {$\ll$};
+  \node[anchor=north] at (-1.8,-0.08) {$-B$}; \node[anchor=north] at (-1.8,-0.5) {$=-15$};
+  \node[anchor=north] at (1.8,-0.08) {$B=15$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-3.0,0) -- (3.4,0) node[right]{$f$ (kHz)};
+  \draw[->] (0,0) -- (0,1.9) node[right]{$z_2(t)=\tfrac{1}{2}m(t)$};
+  \draw (-1.8,0) -- (-1.8,1.1) -- (0,0) -- (1.8,1.1) -- (1.8,0);
+  \draw[dashed,kursunkalem] (-1.8,1.1) -- (1.8,1.1);
+  \node[above right] at (0,1.05) {$1/2$};
+  \node[kirmizikalem] at (-1.35,0.22) {$-$}; \node[kirmizikalem] at (1.35,0.22) {$+$};
+  \node[anchor=north] at (-1.8,-0.08) {$-15$}; \node[anchor=north] at (1.8,-0.08) {$15$};
+\end{tikzpicture}
+\end{center}
+
+Bu soruyu niye yaptık ??\\
+Mesaj işaretini şifrelemek için mesaj işareti karıştırılır. Böylece mesajı okumak için deşifre etmek lazım.
+
+\section{DSB-Large carrier (LC)-AM \,/\, Büyük taşıyıcılı (BT) - ÇYB-GM}
+Conventional AM / Commercial AM $\equiv$ AM (Ticari GM)
+
+Faz tahminsiz demodülasyon yapılabilir. Burada maksat alıcıyı basitleştirmek. Alıcı daha ucuz olur.
+
+İlk sayısal haberleşme s. telegraf, analogta ise radyo.
+
+Verici karmaşık olur alıcı ise ucuz olur.
+
+\sayfa{6}
+\[ y(t) = A_c\bigl[\underbrace{1+\mu\,m_n(t)}_{\text{\small modüle eden işaret}}\bigr]\cos(2\pi f_c t) \]
+
+$0<\mu<1$ \quad modülasyon indeksi
+\[ \underbrace{m_p}_{\text{\small peak value}} = \mathrm{maks}\,|m(t)| \;\Rightarrow\; \underbrace{m_n(t)}_{\text{\small normalleştirilmiş mesaj işareti}} = \frac{m(t)}{m_p} \]
+
+bütün $t$'ler için $\forall t\quad |m_n(t)| \le 1$
+\[ -1 \le m_n(t) \le 1 \]
+$\forall t\quad -1 \le m_n(t) \le 1$\\
+$\Rightarrow \forall t\quad 0 < 1+\mu\,m_n(t) < 2$\\
+$\Rightarrow \forall t\quad 1+\mu\,m_n(t) \ge 0$ \qquad modüle eden işaret her zaman pozitif
+
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (0,-2.1) -- (0,1.7) node[right]{$m(t)$};
+  \draw[->] (0,0) -- (4.9,0) node[right]{$t$};
+  \draw plot[smooth] coordinates {(0,0) (0.45,0.22) (0.9,1.0)};
+  \draw plot[smooth] coordinates {(0.9,1.0) (1.45,0) (2.2,-1.0) (3.0,-1.5) (3.6,-1.6) (4.5,-1.4)};
+  \draw[dashed,kursunkalem] (0,-1.6) -- (3.6,-1.6);
+  \node[left] at (0,1.0) {$5$};
+  \node[left] at (0,-1.6) {$-8$};
+\end{tikzpicture}\\[1mm]
+$m_p=\mathrm{maks}\,|m(t)|=8$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (0,-2.1) -- (0,1.7) node[right]{$m_n(t)=\dfrac{m(t)}{m_p}=\dfrac{m(t)}{8}$};
+  \draw[->] (0,0) -- (4.9,0) node[right]{$t$};
+  \draw plot[smooth] coordinates {(0,0) (0.45,0.22) (0.9,1.0)};
+  \draw plot[smooth] coordinates {(0.9,1.0) (1.45,0) (2.2,-1.0) (3.0,-1.5) (3.6,-1.6) (4.5,-1.4)};
+  \draw[dashed,kursunkalem] (0,1.0) -- (0.9,1.0);
+  \draw[dashed,kursunkalem] (0,-1.6) -- (3.6,-1.6);
+  \node[left] at (0,1.0) {$5/8$};
+  \node[left] at (0,-1.6) {$-1$};
+\end{tikzpicture}
+\end{minipage}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (0,0) -- (0,2.5) node[right]{$1+\mu\,m_n(t)$};
+  \draw[->] (0,0) -- (5.0,0) node[right]{$t$};
+  \draw (0,1.3) -- (0.9,1.95);
+  \draw plot[smooth] coordinates {(0.9,1.95) (1.4,1.5) (2.0,1.05) (2.8,0.65) (3.6,0.42) (4.2,0.36)};
+  \draw[dashed,kursunkalem] (0,1.95) -- (0.9,1.95);
+  \draw[dashed,kursunkalem] (0,1.3) -- (4.2,1.3);
+  \draw[dashed,kursunkalem] (0,0.36) -- (4.2,0.36);
+  \node[left] at (0,1.95) {$1+\mu\,\tfrac{5}{8}$};
+  \node[left] at (0,1.3) {$1$};
+  \node[left] at (0,0.36) {$1-\mu$};
+\end{tikzpicture}
+\end{center}
+
+$\mu$ 1 olmasını tercih etmiyoruz
+
+$0<\mu<1$ arasında seçilirse\\
+$\Rightarrow \forall t\quad 1+\mu\,m_n(t) > 0$
+
+\sekilnotu[6]{$y(t)=A_c[1+\mu\,m_n(t)]\cos(2\pi f_c t)$ grafiği. Dikey eksen değerleri ($A_c$ ile ölçekli; solda büyük bir süslü parantez ve ``$A_c$'' yazılı), yukarıdan aşağıya: $1+\mu\frac{5}{8}$, $1$, $1-\mu$, $-(1-\mu)$, $-1$, $-(1+\mu\frac{5}{8})$. Kırmızı, yüksek frekanslı $y(t)$ salınımı bir zarfın içinde: üst zarf 1'den başlayıp (kesikli dikey çizgi hizasında) $1+\mu\frac{5}{8}$ tepesine çıkar, sonra $1-\mu$ düzeyine doğru azalır; alt zarf simetriktir. Zarf eğrisine oklu not: ``$y(t)$'nin zarfı (envelope) $=m(t)$''.}
+
+$y(t)$'nin zarfı (envelope) $= m(t)$\footnote{Claude notu: zarf aslında $A_c[1+\mu\,m_n(t)]$ ifadesidir (mesajla orantılı değişir); muhtemelen kastedilen budur.} $\longrightarrow$ Faz tahminsiz demodülasyon, zarf demodülatörü (Envelop detector)
+
+mesaj işareti zarfta gizli
+
+\sayfa{7}
+Eğer $\mu>1$
+
+\sekilnotu[7]{$\mu>1$ için $y(t)$ grafiği (solda turuncu büyük parantez ve ``$A_c\times$''). Dikey eksen değerleri: $1+\mu\frac{5}{8}$ (tepe), $-(1-\mu)$, $1$ ve eksenin altında $1-\mu$, $-1$, $-1-\mu\frac{5}{8}$. Kırmızı yüksek frekanslı salınımın zarfı ilk kesikli dikey çizgi hizasında $1+\mu\frac{5}{8}$ tepesine çıkar, ikinci kesikli dikey çizgi hizasında $t$ eksenini keser, sonra tekrar yükselerek yaklaşık $-(1-\mu)$ düzeyine ulaşır; alt zarf simetriktir. Üst zarf turuncu ile vurgulanmış; turuncu not: ``zarf $\neq m(t)$''; sağdaki siyah not: ``zarf demodülatörü ile işaret çözülemez''.}
+
+$\star$ Eğer $\mu>1$ (Aşırı modülasyon)\\
+Over modulation
+
+\begin{align*}
+y(t) &= A_c\bigl[1+\mu\,m_n(t)\bigr]\cos(2\pi f_c t)\\
+&= \underbrace{A_c\cos(2\pi f_c t)}_{\textcolor{kirmizikalem}{\substack{\text{BT}\\ \text{Büyük taşıyıcı}}}} + \underbrace{\mu A_c\,m_n(t)\cos(2\pi f_c t)}_{\textcolor{kirmizikalem}{\text{TB-ÇYB-GM}}}
+\end{align*}
+\[ Y(f) = \frac{A_c}{2}\bigl[\delta(f-f_c)+\delta(f+f_c)\bigr] + \frac{\mu A_c}{2}\bigl[M_n(f-f_c)+M_n(f+f_c)\bigr] \]
+
+\noindent
+\begin{minipage}[b]{0.34\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-1.9,0) -- (2.7,0) node[right]{$f$};
+  \draw[->] (0,-0.1) -- (0,2.0) node[above right]{$M_n(f)$};
+  \draw (-1,0) -- (0,1.0) -- (1,0);
+  \node[left] at (0,1.0) {$A$};
+  \node[right] at (1.1,1.0) {olsun};
+  \node[below] at (-1,0) {$-B$}; \node[below left] at (0,0) {$0$}; \node[below] at (1,0) {$B$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[b]{0.64\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-4.4,0) -- (4.7,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,2.4) node[above right]{$Y(f)$};
+  \draw[->,kirmizikalem] (-2.4,0) -- (-2.4,2.1) node[above right]{$A_c/2$};
+  \draw[->,kirmizikalem] (2.4,0) -- (2.4,2.1) node[above right]{$A_c/2$};
+  \draw (-3.3,0) -- (-2.4,1.3) -- (-1.5,0);
+  \draw (1.5,0) -- (2.4,1.3) -- (3.3,0);
+  \draw[dashed,kursunkalem] (-2.4,1.3) -- (2.4,1.3);
+  \node[above] at (1.0,1.3) {$\mu A A_c/2$};
+  \node[anchor=north] at (-3.3,-0.05) {$-f_c-B$}; \node[anchor=north] at (-2.4,-0.45) {$-f_c$}; \node[anchor=north] at (-1.5,-0.05) {$-f_c+B$};
+  \node[anchor=north] at (1.5,-0.05) {$f_c-B$}; \node[anchor=north] at (2.4,-0.45) {$f_c$}; \node[anchor=north] at (3.3,-0.05) {$f_c+B$};
+  \draw[<->] (1.5,-1.1) -- (3.3,-1.1);
+  \node[anchor=north] at (2.4,-1.1) {BG $=2B$ Hz};
+\end{tikzpicture}
+\end{minipage}
+
+\sayfa{8}
+\begin{ornek}
+Ton modülasyonu $\Rightarrow m(t)=c\cos(2\pi f_m t),\ f_m \ll f_c$\\
+for $\mu=\tfrac{1}{2}$, sketch DSB-LC-AM signal $g(t)$\\
+\hspace*{4em}$''$ \quad $Y(f)$
+\end{ornek}
+
+\[ m(t) = \underbrace{c}_{c>0}\cos(2\pi f_m t) \;\Rightarrow\; m_p = c \;\Rightarrow\; m_n(t) = \frac{m(t)}{m_p} = \cos(2\pi f_m t) \]
+\begin{align*}
+y(t) &= A_c\bigl[1+\mu\,m_n(t)\bigr]\cos(2\pi f_c t)\\
+&= A_c\bigl[1+\tfrac{1}{2}\cos(2\pi f_m t)\bigr]\cos(2\pi f_c t)
+\end{align*}
+$f_m \ll f_c \;\Rightarrow\; T_m \gg T_c$
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=10.5cm, height=6.2cm, xmin=0, xmax=3.3, ymin=-1.85, ymax=1.85,
+  xtick=\empty, ytick={-1.5,-1,-0.5,0.5,1,1.5},
+  yticklabels={$-1{,}5$,$-1$,$-0{,}5$,$0{,}5$,$1$,$1{,}5$},
+  xlabel={$t$}, ylabel={$y(t)$}, ymajorgrids=true, grid style={dashed,kursunkalem}]
+  \addplot[kirmizikalem, domain=0:3.2, samples=480] {(1+0.5*cos(deg(2*pi*x)))*cos(deg(2*pi*7*x))};
+  \addplot[murekkep, domain=0:3.2, samples=160] {1+0.5*cos(deg(2*pi*x))};
+  \addplot[turuncukalem, domain=0:3.2, samples=160] {-(1+0.5*cos(deg(2*pi*x)))};
+  \node[anchor=east,font=\small] at (axis cs:-0.35,0) {$A_c\times$};
+  \node[anchor=west,align=left,font=\scriptsize] (en) at (axis cs:3.4,1.55) {$y(t)$'nin zarfı $m(t)$\\ $1+\frac{1}{2}\cos(2\pi f_m t)$};
+  \draw[->,kursunkalem] (en.south west) -- (axis cs:3.0,1.5);
+  \node[anchor=west,kirmizikalem,font=\scriptsize] at (axis cs:3.4,0.6) {$\rightarrow\ y(t)$};
+  \node[anchor=west,turuncukalem,font=\scriptsize] at (axis cs:3.4,-0.9) {$\rightarrow\ -\bigl[1+\frac{1}{2}\cos(2\pi f_m t)\bigr]$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\begin{align*}
+y(t) &= A_c\bigl[1+\tfrac{1}{2}\cos(2\pi f_m t)\bigr]\cos(2\pi f_c t)\\
+&= A_c\cos(2\pi f_c t) + \frac{A_c}{2}\cos(2\pi f_m t)\cos(2\pi f_c t)\\
+&= A_c\cos(2\pi f_c t) + \frac{A_c}{4}\Bigl[\cos\bigl(2\pi(f_c-f_m)t\bigr)+\cos\bigl(2\pi(f_c+f_m)t\bigr)\Bigr]
+\end{align*}
+\begin{align*}
+Y(f) = \frac{A_c}{2}\bigl[\delta(f-f_c)+\delta(f+f_c)\bigr] &+ \frac{A_c}{8}\bigl[\delta(f-f_1)+\delta(f+f_1)\\
+&\qquad\ + \delta(f-f_2)+\delta(f+f_2)\bigr]
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-5.2,0) -- (5.4,0) node[right]{$f$};
+  \draw[->] (0,0) -- (0,2.7) node[above right]{$Y(f)$};
+  \draw[->] (-3.0,0) -- (-3.0,2.0) node[above right]{$A_c/2$};
+  \draw[->] (3.0,0) -- (3.0,2.0) node[above right]{$A_c/2$};
+  \foreach \xx in {-4.0,-2.0,2.0,4.0} \draw[->] (\xx,0) -- (\xx,0.6);
+  \draw[dashed,kursunkalem] (-2.0,0.6) -- (2.0,0.6);
+  \node[above] at (0.9,0.6) {$A_c/8$};
+  \node[anchor=north] at (-4.0,-0.05) {$-f_2$}; \node[anchor=north] at (-3.0,-0.05) {$-f_c$}; \node[anchor=north] at (-2.0,-0.05) {$-f_1$};
+  \node[anchor=north] at (-2.0,-0.5) {$=-[f_c-f_m]$};
+  \node[anchor=north] at (3.0,-0.05) {$f_c$};
+  \node[anchor=north] at (2.0,-0.5) {$f_1=f_c-f_m$}; \node[anchor=north] at (4.0,-0.5) {$f_2=f_c+f_m$};
+  \draw[<->] (2.0,-1.3) -- (4.0,-1.3);
+  \node[anchor=north] at (3.0,-1.3) {BG $=2f_m$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{9}
+\section{BT - ÇYB-GM'nin Gücü}
+\begin{align*}
+y(t) &= A_c\bigl[1+\mu\,m_n(t)\bigr]\cos(2\pi f_c t)\\
+&= \underbrace{A_c\cos(2\pi f_c t)}_{\textcolor{kirmizikalem}{\substack{\text{Taşıyıcı}\\ \text{(carrier)}}}} + \underbrace{\mu A_c\,m_n(t)\cos(2\pi f_c t)}_{\textcolor{kirmizikalem}{\substack{\text{yan bandlar}\\ \text{(side bands)}}}}
+\end{align*}
+
+\begin{align*}
+\text{Taşıyıcının gücü} &= P_c = \frac{A_c^2}{2}\\
+\text{Yan bandın gücü} &= P_s = \frac{\mu^2 A_c^2}{2}\cdot P_{m_n}\\
+P_{m_n} &= \lim_{T\to\infty}\frac{1}{T}\int_{-T/2}^{T/2}|m_n(t)|^2\,dt
+\end{align*}
+
+\textcolor{kirmizikalem}{$\star$ $m_n$'nin ortalaması pratikte 0 o yüzden $\frac{1}{2}m_n(t)$'nin gücü yaklaşık 0 o yüzden iki işaretin çarpımından gelen katkı $(a+b)^2 = a^2+b^2+2ab$ görmezden gelinir.}
+
+\[ P_y = P_c + P_s = \frac{A_c^2}{2} + \frac{\mu^2 A_c^2}{2}P_{m_n} \]
+\[ \underset{\text{\small(Efficiency)}}{\text{Verim}} = V = \frac{P_s}{P_y} = \frac{P_s}{P_c+P_s} = \frac{\mu^2\,\frac{A_c^2}{2}\,P_{m_n}}{\frac{A_c^2}{2}+\mu^2\,\frac{A_c^2}{2}\,P_{m_n}} \]
+\[ V = \frac{\mu^2 P_{m_n}}{1+\mu^2 P_{m_n}} \]
+
+Ton modülasyonu $\to m(t)=c\cos(2\pi f_m t) \to m_n(t)=\cos(2\pi f_m t)$\\
+\hspace*{9em}$P_{m_n}=\tfrac{1}{2}$
+\[ \Rightarrow V = \frac{\mu^2\cdot\frac{1}{2}}{1+\mu^2\,\frac{1}{2}} = \frac{\mu^2}{2+\mu^2} \]
+
+ton modülasyonu verimi $V=\dfrac{\mu^2}{2+\mu^2}$\\
+$\mu=1 \to V_{\mathrm{max}} = \dfrac{1}{3} = \%33$
+
+Pratikte verim $V\simeq\%25$ olur.
+
+Neden yapıyoruz alıcı ucuzluyor verici pahalı oluyor, böyle herkes alabiliyor alıcıyı.
+
+\begin{dikkat}
+Verim sorabilir
+\end{dikkat}
+
+\begin{ornek}
+$m(t)=5\cos(2\pi f_m t)$ \qquad $\mu=\tfrac{1}{2},\ A_c=10$\\
+$y(t)=?$ \quad $P_c=?$ \quad $P_s=?$ \quad $V=?$
+\end{ornek}
+
+\sayfa{10}
+$m_p = 5 \;\Rightarrow\; m_n(t) = \cos(2\pi f_m t)$
+\begin{align*}
+y(t) &= A_c\bigl[1+\mu\,m_n(t)\bigr]\cos(2\pi f_c t)\\
+&= 10\bigl[1+\tfrac{1}{2}\cos(2\pi f_m t)\bigr]\cos(2\pi f_c t)
+\end{align*}
+\begin{align*}
+P_c &= \frac{A_c^2}{2} = \frac{10^2}{2} = 50\ \mathrm{W}\\
+P_s &= \frac{\mu^2A_c^2}{2}\cdot P_{m_n} = \frac{(\frac{1}{2})^2\cdot 10^2}{2} = \frac{1}{2}\footnotemark = \frac{100}{16} = 6{,}25\ \mathrm{W}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $\cdot\,\frac{1}{2}$ ($P_{m_n}=\frac{1}{2}$ ile çarpım) olmalı.}
+\[ P_y = P_c+P_s = 56{,}25\ \mathrm{W} \]
+\begin{align*}
+V &= \frac{P_s}{P_y} = \frac{P_s}{P_c+P_s} = \frac{6{,}25}{50+6{,}25} = \frac{6{,}25}{56{,}25} = \frac{1}{9}\\
+&\quad\text{veya}\quad V = \frac{\mu^2}{2+\mu^2} = \frac{\frac{1}{4}}{2+\frac{1}{4}} = \frac{1}{9}
+\end{align*}
+
+\begin{ornek}[(Proakis)]
+$m(t)=3\cos(200\pi t)+\sin(600\pi t)$ is used to modulate the carrier $c(t)=\cos(2\pi\cdot 10^5 t)$. The modulation Index is $\mu=0{,}85$. Determine the power in the carrier component and in the sideband components of the modulated signal.
+\end{ornek}
+
+$m(t) = 3\cos(200\pi t)+\sin(600\pi t)$
+
+\textcolor{kirmizikalem}{Max değeri bulmak için türev alıp 0'a eşitleriz}
+\begin{align*}
+m'(t) &= -3\cdot 200\pi\sin(200\pi t) + 600\pi\cos(600\pi t) = 0\\
+600\pi\sin(200\pi t) &= 600\pi\cos(600\pi t)\\
+\sin(200\pi t) &= \cos(600\pi t)\\
+\cos\bigl(\tfrac{\pi}{2}-200\pi t\bigr) &= \cos(600\pi t)\\
+\Rightarrow\ \tfrac{\pi}{2}-200\pi t &= 600\pi t\\
+\tfrac{\pi}{2} &= 800\pi t \ \Rightarrow\ t=\tfrac{1}{1600}
+\end{align*}
+\formulkutu{\sin\alpha = \cos\!\left(\tfrac{\pi}{2}-\alpha\right)}
+
+\[ m(t)\Big|_{t=\frac{1}{1600}} = m\!\left(\tfrac{1}{1600}\right) = 3{,}6955 = m_p \]
+\[ m_n(t) = \frac{m(t)}{3{,}6955} = 0{,}8118\cos(200\pi t)+0{,}2706\sin(600\pi t) \]
+\[ P_{m_n} = \tfrac{1}{2}\bigl[0{,}8118^2+0{,}2706^2\bigr] = 0{,}3661\ \mathrm{W} \]
+$P_c = \dfrac{1}{2}$
+
+\sayfa{11}
+\[ P_s = \frac{\mu^2A_c^2}{2}\,P_{m_n} = \frac{(0{,}85)^2\,(1)^2\,0{,}3661}{2} = 0{,}1323\ \mathrm{W} \]
+\textcolor{kirmizikalem}{$\star$ yaklaşık olarak maksimum bulunabilir böyle cos 1 olur veya sin 1 seçilebilir}
+
+\begin{ornek}[Lathi, Pr.\ 4.3-3]
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (-0.4,0) -- (7.6,0) node[right]{$t$};
+  \draw[dashed,kursunkalem] (-0.3,1.2) -- (7.2,1.2);
+  \draw[dashed,kursunkalem] (-0.3,-1.2) -- (7.2,-1.2);
+  \draw (0,-1.2) -- (1.5,1.2) -- (3.0,-1.2) -- (4.5,1.2) -- (6.0,-1.2) -- (6.9,0.24);
+  \node[left] at (-0.3,1.2) {$10$}; \node[left] at (-0.3,-1.2) {$-10$};
+  \node[above right] at (-0.3,1.2) {$m(t)$};
+  \draw[<->,kirmizikalem] (1.5,1.0) -- (4.5,1.0);
+  \node[kirmizikalem,below] at (3.0,1.0) {$10^{-3}$};
+\end{tikzpicture}
+\end{center}
+$A_c=20,\ \mu=0{,}75$\\
+a) Sketch $y(t)=?$\\
+b) $P_c,\ P_s,\ P_y,\ V=\ ?$
+\end{ornek}
+
+\begin{align*}
+y(t) &= A_c\bigl[1+\mu\,m_n(t)\bigr]\cos(2\pi f_c t)\\
+&= 20\bigl[1+0{,}75\,m_n(t)\bigr]\cos(2\pi f_c t)
+\end{align*}
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=11cm, height=7cm, xmin=0, xmax=4.3, ymin=-40, ymax=40,
+  xtick=\empty, ytick={-35,-20,-5,5,20,35}, ymajorgrids=true, grid style={dashed,kursunkalem},
+  xlabel={$t$}, ylabel={$y(t)$}]
+  \addplot[kirmizikalem, domain=0:4, samples=801] {(20+15*(1-2*abs(mod(x+0.5,2)-1)))*cos(360*5*x)};
+  \addplot[murekkep, domain=0:4, samples=161] {20+15*(1-2*abs(mod(x+0.5,2)-1))};
+  \addplot[murekkep, domain=0:4, samples=161] {-(20+15*(1-2*abs(mod(x+0.5,2)-1)))};
+  \node[anchor=west,font=\scriptsize] at (axis cs:4.1,22) {Zarf};
+  \node[anchor=west,kirmizikalem,font=\scriptsize] at (axis cs:4.1,0) {$\rightarrow\ y(t)$};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\sayfa{12}
+b)\quad $P_c = \dfrac{A_c^2}{2} = \dfrac{20^2}{2} = 200\ \mathrm{W}$
+\[ P_s = \frac{\mu^2A_c^2}{2}\,P_{m_n} \]
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, font=\scriptsize]
+  \draw[->] (0,-1.8) -- (0,2.0) node[right]{$m_n(t)$};
+  \draw[->] (-1,0) -- (7.6,0) node[right]{$t$};
+  \draw (0,1.5) -- (3.0,-1.5) -- (6.0,1.5);
+  \draw[dashed,kursunkalem] (3.0,0) -- (3.0,-1.5);
+  \draw[dashed,kursunkalem] (6.0,0) -- (6.0,1.5);
+  \draw[dashed,kursunkalem] (0,-1.5) -- (3.0,-1.5);
+  \node[left] at (0,1.5) {$1$}; \node[left] at (0,-1.5) {$-1$};
+  \node[above] at (3.0,0) {$T_0/2$};
+  \node[below] at (1.5,0) {$T_0/4$}; \node[below] at (4.5,0) {$3T_0/4$};
+  \node[below,anchor=north west] at (5.0,0) {$T_0 = 10^{-3}$};
+  \node[kirmizikalem,anchor=west,align=left] (s1) at (2.2,2.0) {eğim: $m_n(t)=-\dfrac{4}{10^{-3}}\,t+1$\\ $=-4000\,t+1$};
+  \draw[->,kirmizikalem] (0.55,0.95) to[bend left=35] (s1.west);
+  \node[kirmizikalem,anchor=west,align=left] (s2) at (4.2,-1.4) {$m(t)=\dfrac{4}{10^{-3}}\,t-3$\\ $=4000\,t-3$};
+  \draw[->,kirmizikalem] (3.4,-1.1) -- (s2.west);
+\end{tikzpicture}\footnote{Şekilde ikinci formül el yazısında $m(t)$ olarak yazılmış; Claude notu: muhtemelen $m_n(t)$ olmalı.}
+\end{center}
+
+\begin{align*}
+P_{m_n} &= \frac{1}{T_0}\int_{T_0}|m_n(t)|^2\,dt\\
+&= \frac{1}{10^{-3}}\left[\int_0^{10^{-3}/2}(-4000\,t+1)^2\,dt + \int_{10^{-3}/2}^{10^{-3}}(4000\,t-3)^2\,dt\right]\\
+&= 0{,}3334\ \mathrm{W}
+\end{align*}
+\[ P_s = \frac{\mu^2A_c^2}{2}\,P_{m_n} = \frac{(0{,}75)^2\times 20^2}{2}\times 0{,}3334 = 37{,}5\ \mathrm{W} \]
+\begin{align*}
+P_y &= P_c+P_s = 200+37{,}5 = 337{,}5\ \mathrm{W}\footnotemark\\
+V &= \frac{P_s}{P_y} = \frac{37{,}5}{237{,}5} = 0{,}1578 \simeq 0{,}16 = \%16
+\end{align*}
+\footnotetext{Claude notu: $200+37{,}5 = 237{,}5$ olmalı (bir sonraki satırda da $237{,}5$ kullanılıyor).}
+
+\end{document}

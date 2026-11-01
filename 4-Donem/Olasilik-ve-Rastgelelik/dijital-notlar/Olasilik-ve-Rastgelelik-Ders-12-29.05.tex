@@ -1,0 +1,92 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Olasılık ve Rastgelelik}{Ödev 2 çözümleri: ortak yoğunluk, kovaryans, koşullu beklenti}{Olasilik-ve-Rastgelelik-Ders-12-29.05.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 1–4, 7, 11, 14–32) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{5}
+\[
+\textcircled{1}\quad f(x,y)=\begin{cases}\dfrac{15}{2}\,x\,(2-x-y), & 0<x<1,\ 0<y<1,\\[2mm] 0, & \text{diğer}\end{cases}
+\]
+\begin{align*}
+\textbf{a)}\quad f_X(x)&=\int_0^1 \frac{15}{2}\,x\,(2-x-y)\,dy=\frac{15}{2}\Bigl(2xy-x^2y-\frac12\,xy^2\Bigr)\Big|_0^1\\
+&=\frac{15}{2}\Bigl(2x-x^2-\frac12\,x\Bigr)=\frac{15}{4}\,x\,(-x+3)\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $\frac{15}{4}\,x\,(-2x+3)$ olmalı.}
+\begin{align*}
+\textbf{b)}\quad f_Y(y)&=\int_0^1 \frac{15}{2}\,x\,(2-x-y)\,dx=\frac{15}{2}\Bigl(x^2-\frac{x^3}{3}-\frac12\,x^2y\Bigr)\Big|_0^1
+\end{align*}
+
+\sayfa{6}
+\begin{align*}
+&=\frac{15}{2}\Bigl(1-\frac13-\frac12\,y\Bigr)=\frac{15}{12}\,(4-3y)
+\end{align*}
+\begin{align*}
+\textbf{c)}\quad f_{Y|X}(y|x)&=\frac{f_{X,Y}(x,y)}{f_X(x)}=\frac{15}{2}\,x\,(2-x-y)\,\frac{4}{15}\,\frac{1}{x\,(3-x)}=\frac{2\,(2-x-y)}{(3-x)}\\[5mm]
+\textbf{d)}\quad f_{X|Y}(x|y)&=\frac{f_{X,Y}(x,y)}{f_Y(y)}=\frac{15}{2}\,x\,(2-x-y)\,\frac{12}{15}\,\frac{1}{4-3y}=\frac{6x\,(2-x-y)}{4-3y}
+\end{align*}
+
+\sayfa{8}
+\[
+\textcircled{3}\text{\footnotemark}\quad f(x,y)=\begin{cases}6e^{-2x-3y}, & 0<x,y<\infty\\[2mm] 0, & \text{diğer}\end{cases}
+\]
+\footnotetext{Claude notu: orijinal dosyadaki basılı ödev sorusunda bu, 2. sorudur.}
+\[
+\textbf{a)}\quad \mathrm{Cov}(X,Y)=E[XY]-E[X]\,E[Y]
+\]
+\begin{align*}
+E[X]&=\int_0^\infty\!\!\int_0^\infty x\,6e^{-2x-3y}\,dx\,dy\\
+&=6\int_0^\infty e^{-3y}\,dy\int_0^\infty xe^{-2x}\,dx\qquad
+\left(\begin{array}{ll}u=x & du=dx\\ e^{-2x}dx=dv & v=-\frac12\,e^{-2x}\end{array}\right.\\
+&=6\Bigl(-\frac13\Bigr)e^{-3y}\Big|_0^\infty\cdot\Bigl[-\frac{xe^{-2x}}{2}\Big|_0^\infty+\int_0^\infty\frac{e^{-2x}}{2}\,dx\\
+&=2\cdot\Bigl(-\frac14\Bigr)e^{-2x}\Big|_0^\infty=-\frac12\,(0-1)=\frac12
+\end{align*}
+
+\sayfa{9}
+\begin{align*}
+E[Y]&=\int_0^\infty\!\!\int_0^\infty y\,6e^{-2x}e^{-3y}\,dx\,dy\\
+&=6\int_0^\infty e^{-2x}\,dx\int_0^\infty ye^{-3y}\,dy\qquad
+\left(\begin{array}{ll}u=y & du=dy\\ e^{-3y}dy=dv & -\frac13\,e^{-3y}=v\end{array}\right.\\
+&=6\Bigl(-\frac12\Bigr)e^{-2x}\Big|_0^\infty\Bigl[-\frac{ye^{-3y}}{3}\Big|_0^\infty+\int_0^\infty\frac{e^{-3y}}{3}\,dy\Bigr]\\
+&=3\Bigl(-\frac19\Bigr)e^{-3y}\Big|_0^\infty=\frac13
+\end{align*}
+\begin{align*}
+E[XY]&=\int_0^\infty\!\!\int_0^\infty xy\,e^{-2x}e^{-3y}\,dx\,dy\text{\footnotemark}\\
+&=6\Bigl[-\frac{xe^{-2x}}{2}\Big|_0^\infty+\int_0^\infty\frac{e^{-2x}}{2}\,dx\Bigr]\Bigl[-\frac{ye^{-3y}}{3}\Big|_0^\infty+\int_0^\infty\frac{e^{-3y}}{3}\,dy\Bigr]
+\end{align*}
+\footnotetext{Claude notu: integrandda $6$ çarpanı eksik; muhtemelen $xy\,6e^{-2x}e^{-3y}$ olmalı.}
+
+\sayfa{10}
+\begin{align*}
+&=6\Bigl(-\frac14\Bigr)e^{-2x}\Big|_0^\infty\Bigl(-\frac19\Bigr)e^{-3y}\Big|_0^\infty=\frac{6}{4\cdot 9}=\frac16
+\end{align*}
+\[
+\mathrm{Cov}(X,Y)=\frac16-\frac12\cdot\frac13=0
+\]
+\noindent\textbf{b)}\quad $\mathrm{Cov}(X,Y)=0$ olduğundan $X$ ve $Y$ ilintisizdir.
+
+\sayfa{12}
+\[
+\okunamadi{3}\quad E[X|Y=y]=\int_{-\infty}^{\infty}x\,f_{X|Y}(x|y)\,dx
+\]
+\[
+f_{X|Y}(x|y)=\frac{f_{X,Y}(x,y)}{f_Y(y)}
+\]
+\begin{align*}
+f_Y(y)&=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx=\int_0^\infty e^{-x/y}e^{-y}\,dx\\
+&=-y\,e^{-x/y}e^{-y}\Big|_0^\infty=-y\,e^{-y}\,(0-1)=y\,e^{-y}
+\end{align*}
+\[
+f_{X|Y}(x|y)=\frac{e^{-x/y}e^{-y}}{y\,e^{-y}}=\frac1y\,e^{-x/y}
+\]
+
+\sayfa{13}
+\begin{align*}
+E[X|Y=y]&=\int_0^\infty\frac{x}{y}\,e^{-x/y}\,dx=\qquad
+\left(\begin{array}{ll}x=u & dx=du\\ \dfrac1y\,e^{-x/y}dx=dv & -e^{-x/y}=v\end{array}\right.\\
+&=-xe^{-x/y}\Big|_0^\infty+\int_0^\infty e^{-x/y}\,dx=-y\,e^{-x/y}\Big|_0^\infty=y
+\end{align*}
+\[
+\kutula{E[X|Y=y]=y}
+\]
+\end{document}

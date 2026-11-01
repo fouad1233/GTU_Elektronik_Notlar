@@ -1,0 +1,207 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{Series-Series, Shunt-Shunt Feedback and Worked Examples}{Ders12.pdf}
+
+\sayfa{1}
+\section{Series (o) -- Series (I) Feedback Topology}
+\begin{itemize}
+  \item Suitable for transconductance Amplifier
+\end{itemize}
+
+\sekilnotu[1]{Block diagram: source $V_s$ with series $R_s$ feeds the ``Basic Transconductance Amplifier'' block; the output current $I_o$ (arrow pointing toward the amplifier) flows through the load $R_L$. The ``FB'' block sits in series with the output loop (carrying $I_o$) and its output voltage $V_f$ ($-$ on the source side, $+$ on the amplifier side) is in series with the input loop.}
+
+\sekilnotu[1]{Complete model: source $V_s$ with terminals $s$, $s'$ feeds $R_i$ (voltage $v_i$, $+$ top, $-$ bottom). Output side: dependent current source $A v_i$ in parallel with $R_o$, output terminals $o$, $o'$. The dependent voltage source $\beta I_o$ ($+$ top) sits in the input loop between $s'$ and the bottom of $R_i$, and the output current path loops back through the feedback section. Red dashed boxes: ``A circuit'' ($R_i$, $A v_i$, $R_o$) and ``$\beta$ circuit'' ($\beta I_o$).}
+
+\section{Two-port equivalent circuit}
+\sekilnotu[1]{Two-port equivalent: source $V_i$ with $R_s$ (top wire) and $R_{11}$ (bottom wire) feeds the box ``BTA''; at the output the current $I_o$ (arrow toward the box) flows through $R_L$ and $R_{22}$ (bottom wire); an arrow labelled $R_o$ looks in at the output terminals.}
+
+\sekilnotu[1]{``FN'' box with open terminals on both sides: arrow $R_{11}$ looking into the input terminals and arrow $R_{22}$ looking into the output terminals.}
+
+\formulkutu{\frac{I_o}{V_1} = A}
+
+\sekilnotu[1]{``FN'' box with ``$I_1=0$'' marked at the input, $V_f$ ($+$, $-$) across the input terminals and a current source $I_o$ at the output.}
+
+\[ \beta = \frac{V_f}{I_o} \]
+
+\begin{align*}
+  R_{if} &= R_i\,(1+A\beta) \\
+  R_{of} &= R_o\,(1+A\beta) \\
+  A_f &= \frac{A}{1+A\beta}
+\end{align*}
+
+\sayfa{2}
+\section{Shunt -- Shunt feedback topology (Transresistance amplifier)}
+\sekilnotu[2]{Block diagram: current source $I_s$ with parallel $R_s$ feeds the ``Base TRA'' block; at the output the load $R_L$ with $+v_o-$; the ``FBN'' block takes the output ($+v_o-$ drawn at its output side, current $I_o$ arrow) and returns the current $I_f$ (arrow) to the input node, in parallel with the source.}
+
+\[ A_o = \frac{V_{out}}{I_{in}} \]
+
+\sekilnotu[2]{Complete model: current source $I_s$ with terminals $s$, $s'$ feeds $R_i$ (voltage $v_i$, $+$ top, $-$ bottom). Output side: dependent voltage source $A I_i$ in series with $R_o$, output terminals $o$, $o'$. Feedback: dependent current source $\beta V_o$ (arrow pointing down) connected across the input nodes, controlled by $V_o$ (drawn as $+V_o-$ at the output side). Red dashed box: ``A circuit'' ($R_i$, $A I_i$, $R_o$).}
+
+\sekilnotu[2]{Two reduced circuits. Left: terminals $s$, $s'$ with the current $I_s$ (arrow) through $R_{if}$. Right: dependent voltage source $A_f I_s$ in series with $R_{of}$ to the output terminals, with $+v_o-$.}
+
+Close loop equivalent circuit model
+
+\sekilnotu[2]{Equivalent circuit: current source $I_i$ with $R_s$ and $R_{11}$ in parallel (arrow labelled $R_i$ looking into the input terminals) feeds the box ``BTRA''; at the output $R_{22}$ and $R_L$ are in parallel across the output terminals ($+$, $-$, $v_o$); arrow labelled $R_o$ at the output.}
+
+\sayfa{3}
+\sekilnotu[3]{Two sketches of the ``FN'' box. Left: input terminals open with arrow $R_{11}$ looking into the input, output terminals shorted together. Right: input terminals shorted together, output terminals open with arrow $R_{22}$ looking into the output.}
+
+\sekilnotu[3]{``FN'' box with its input shorted and the current $I_f$ (arrow) flowing in the shorted input loop; a voltage source $V_o$ is connected at the output.}
+
+\[ \beta = \frac{I_f}{V_o} \]
+
+\begin{align*}
+  R_{if} &= \frac{R_i}{1+A\beta} \\
+  R_{of} &= \frac{R_o}{1+A\beta} \\
+  A_f &= \frac{A}{1+A\beta}
+\end{align*}
+
+\begin{ornek}[2]
+  Analyze the circuit below and calculate $\dfrac{v_o}{v_s}$, $R_{in}$, and $R_{out}$
+
+  \sekilnotu[3]{Circuit: npn transistor with a $4{,}7\mathrm{k}$ collector resistor to $+12\,$V; a $47\mathrm{k}$ feedback resistor connects the collector to the base; the source $v_s$ (circle with a sine symbol) drives the base through $10\mathrm{k}$; emitter grounded; $0{,}7$ ($+$ at the base, $-$ at the emitter) marked across the base-emitter junction; arrow $R_{in}$ looking into the base node.}
+
+  ignore $r_o$! ($V_A=\infty$) \qquad $\beta=100$
+\end{ornek}
+
+\sekilnotu[3]{Same circuit redrawn for the solution: current $I_y$ (arrow down) in the $47\mathrm{k}$ feedback resistor, current $I_x$ (arrow down) in the $4{,}7\mathrm{k}$ collector resistor (to $+12\,$V), $-0{,}07\,$mA marked on the $10\mathrm{k}$ source resistor, $0{,}7$ across the base-emitter junction, arrow $R_{in}$.}
+
+\begin{align*}
+  I_x &= \frac{12-V_C}{4{,}7\,\mathrm{k}\Omega} & I_B &= I_y - 0{,}07\,\mathrm{mA} \\
+  & & I_C &= 100\,I_B \;\Rightarrow\; 100\,I_y - 7\,\mathrm{mA} = I_C \\
+  I_y &= \frac{V_C-0{,}7}{47\mathrm{k}} & I_C &= I_x - I_y = \frac{12-V_C}{4{,}7\mathrm{k}} - \left(\frac{V_C-0{,}7}{47\mathrm{k}}\right)
+\end{align*}
+
+\[ 100\left(\frac{V_C-0{,}7}{(47\mathrm{k})}\right) - 7\,\mathrm{mA} = \frac{12-V_C}{4{,}7\mathrm{k}} - \left(\frac{V_C-0{,}7}{47\mathrm{k}}\right) \]
+
+\sayfa{4}
+\begin{align*}
+  V_C &= 4{,}95\,\mathrm{V} & & \\
+  I_B &= 0{,}015\,\mathrm{mA} & g_m &= \frac{I_C}{V_T} = 60\,\mathrm{mS} \\
+  I_C &= 1{,}5\,\mathrm{mA} & r_\pi &= (\beta+1)\cdot\frac{1}{g_m} = 1{,}66\,\mathrm{k}\Omega
+\end{align*}
+
+a) Feedback type: Shunt (o) -- Shunt (I) \ \textcolor{turuncukalem}{(Transresistance)}
+
+b) Feedback Network:
+\sekilnotu[4]{Feedback network ``FN'': a single $47\mathrm{k}\Omega$ resistor (dashed outline) between the two terminals.}
+
+c) Calculate $R_{11}$, $R_{22}$, and $\beta$
+\sekilnotu[4]{Two sketches of the feedback network (a $47\mathrm{k}\Omega$ resistor in a dashed box). Left: the output terminal is joined to the lower input terminal by an orange wire (output shorted); orange arrow $R_{11}$ looking into the input, labelled $R_{11} = 47\mathrm{k}\Omega$. Right: resistor with the input side shorted; arrow $R_{22}$ looking into the output, labelled $R_{22} = 47\mathrm{k}\Omega$.}
+
+\sekilnotu[4]{Circuit: $47\mathrm{k}\Omega$ resistor from a node with the current $I_f$ (arrow, node connected to ground) to a voltage source $V_o$ whose other side is grounded.}
+
+\[ \frac{I_f}{V_o} = -\frac{1}{47\mathrm{k}\Omega} = \beta \]
+
+d)
+\sekilnotu[4]{Two-port equivalent: source $v_s$ (sine symbol) with $10\mathrm{k}\Omega$ in series, then $47\mathrm{k}\Omega$ (marked $R_{11}$ in orange) and $1{,}66\mathrm{k}$ in parallel to ground with $v_{\pi1}$ ($+$, $-$) across the latter; output: dependent current source $g_{m1} v_{\pi1}$ (arrow down) in parallel with $47\mathrm{k}\Omega$ (marked $R_{22}$ in orange) and $4{,}7\mathrm{k}\Omega$; output voltage $v_o$ and an arrow $R_o$ looking in from the output.}
+
+\sekilnotu[4]{The same circuit with the source replaced by a current source $I_i$: $I_i$ in parallel with $10\mathrm{k}\Omega$, $47\mathrm{k}\Omega$ and $1{,}66\mathrm{k}$ ($v_{\pi1}$ across it); output: $g_{m1} v_{\pi1}$ in parallel with the two output resistors ($47\mathrm{k}\Omega$ and $4{,}7\mathrm{k}\Omega$); $v_o$ and arrow $R_o$ at the output.}
+
+\[ A = \frac{v_o}{I_i} \;\Rightarrow\; \left|\;\begin{aligned}
+  v_o &= -\overset{\scriptstyle 60\,\mathrm{mS}}{g_{m1}}\,v_{\pi1}\,(4{,}27\mathrm{k}) \\
+  v_o &= -256{,}2\,v_{\pi1} \\
+  v_{\pi1} &= I_i\,(10\mathrm{k}\parallel 47\mathrm{k}\parallel 1{,}66\mathrm{k}) \\
+  v_{\pi1} &= I_i\cdot 1{,}38\mathrm{k}
+\end{aligned}\right. \]
+
+\sayfa{5}
+\begin{align*}
+  v_o &= -256{,}2 \cdot I_i \cdot 1{,}38\mathrm{k} \\
+  A = \frac{v_o}{I_i} &= -353{,}6\,\mathrm{k}\Omega
+\end{align*}
+
+\formulkutu{\begin{aligned} R_i &= 1{,}38\mathrm{k} \\ R_o &= 4{,}27\mathrm{k} \end{aligned}}
+
+\begin{align*}
+  A_f = \frac{A}{1+A\beta} &= \frac{-353{,}6\mathrm{k}}{1 + 353{,}6\mathrm{k}\cdot\dfrac{1}{47\mathrm{k}}} \\
+  &= \frac{-353{,}6\,\mathrm{k}\Omega}{8{,}52}
+\end{align*}
+
+\formulkutu{A_f = -41{,}4\,\mathrm{k}\Omega}
+
+\begin{align*}
+  R_{if} &= \frac{1{,}38\mathrm{k}}{8{,}52} \;\Rightarrow\; R_{if} = 162\,\Omega \\
+  R_{of} &= \frac{4{,}27}{8{,}52} = 501{,}2\,\Omega \\
+  R_{in} &= \left(\frac{1}{162} - \frac{1}{10\mathrm{k}}\right)^{-1} \approx 165\,\Omega \\
+  R_{out} &= R_{of}
+\end{align*}
+
+\begin{align*}
+  \frac{v_o}{I_i} &= -353{,}6\,\mathrm{k}\Omega \\
+  \frac{v_o}{v_s} &= \frac{A_f}{R_s} = -4{,}14\ [\mathrm{V/V}]
+\end{align*}
+
+\begin{ornek}
+  Analyze the current amplifier given below and calculate: $\dfrac{v_o}{v_{in}}$, $\dfrac{I_{out}}{I_{in}}$, $R_{in}$ and $R_{out}$
+
+  Assume $\beta=100$ for small signal, $\infty$ for DC
+\end{ornek}
+
+\sayfa{6}
+$V_A = 75\,\mathrm{V}$
+
+\sekilnotu[6]{Two-stage amplifier with feedback: source $v_s$ with $R_s=10\mathrm{k}\Omega$ in series feeds (through a coupling capacitor) the base of $Q_1$, biased by $100\mathrm{k}\Omega$ (to $+12\,$V) and $15\mathrm{k}\Omega$ (to ground); $Q_1$ has a $10\mathrm{k}\Omega$ collector resistor (to $+12\,$V) and an $870\,\Omega$ emitter resistor; the $Q_1$ collector drives the base of $Q_2$, which has an $8\mathrm{k}\Omega$ collector resistor (to $+12\,$V) and a $3{,}4\mathrm{k}\Omega$ emitter resistor; the $Q_2$ collector goes through a coupling capacitor ($\infty$) to the load $R_L=1\mathrm{k}\Omega$ (current $I_{out}$). The feedback resistor $R_f=10\mathrm{k}\Omega$ runs from the $Q_2$ emitter (through a capacitor, $\infty$) back to the input node. Orange annotations: ``Shunt'' at the input node, ``Series'' at the $Q_2$ emitter capacitor, and current marks (``I'') at the input node and at the $Q_2$ emitter.}
+
+\sekilnotu[6]{The same circuit annotated with DC values in orange: $1{,}57$ at the base of $Q_1$, $0{,}7$ across its base-emitter junction, $0{,}87$ at its emitter (the $870\,\Omega$ emitter resistor is bypassed by a capacitor, $\infty$), $1\,$mA in the $10\mathrm{k}\Omega$ collector resistor, $2\,$V at the $Q_1$ collector, $0{,}7$ across the base-emitter junction of $Q_2$, $1{,}3\,$V at its emitter, $0{,}38$ (mA) in the $8\mathrm{k}\Omega$ resistor and $0{,}38\,$mA in the $3{,}4\mathrm{k}\Omega$ emitter resistor.}
+
+\begin{align*}
+  I_{C1} &= 1\,\mathrm{mA} & I_{C2} &= 0{,}38\,\mathrm{mA} & r_o &= \frac{V_A}{I_C} \\
+  g_{m1} &= 40\,\mathrm{mS} & g_{m2} &= 15{,}2\,\mathrm{mS} & & \\
+  r_{\pi1} &= 2{,}5\,\mathrm{k}\Omega & r_{\pi2} &\approx 6{,}6\,\mathrm{k}\Omega & & \\
+  r_{o1} &= 75\,\mathrm{k}\Omega & r_{o2} &= \frac{75}{0{,}38} \approx 197\,\mathrm{k}\Omega & &
+\end{align*}
+
+a) Feedback type : Series-Shunt
+
+b) Feedback network out two port parameters
+\sekilnotu[6]{Feedback network: $10\mathrm{k}\Omega$ in the top wire between the top input and output terminals and $3{,}4\mathrm{k}\Omega$ from the output top node to the bottom wire (ground); output terminals open; arrow $R_{11}$ looking into the input terminals.}
+
+\[ R_{11} = 13{,}4\,\mathrm{k}\Omega \]
+
+\sekilnotu[6]{The same network with the input side shorted (left ends joined top to bottom), so $10\mathrm{k}\Omega$ and $3{,}4\mathrm{k}\Omega$ appear in parallel at the output; arrow $R_{22}$ looking into the output terminals.}
+
+\[ R_{22} = 10\mathrm{k} \parallel 3{,}4\mathrm{k}\Omega \;\Rightarrow\; R_{22} = 2{,}5\,\mathrm{k}\Omega \]
+
+\sayfa{7}
+\[ \beta = \frac{I_f}{I_o} = \frac{-3{,}4\mathrm{k}}{13{,}4\mathrm{k}} \approx -0{,}25\ [\mathrm{A/A}] \]
+
+\sekilnotu[7]{Circuit for $\beta$: current $I_f$ (arrow) flows through $10\mathrm{k}$ in the top wire; $3{,}4\mathrm{k}$ in parallel with a current source $I_o$ (arrow up) at the right; the left end returns through a wire along the bottom.}
+
+\sekilnotu[7]{Small-signal equivalent circuit: current source $I_s = v_s/R_s$ in parallel with $10\mathrm{k}\Omega$, $13{,}4\mathrm{k}\Omega$ (red), $13\mathrm{k}\Omega$ and $r_{\pi1}$ with $v_{\pi1}$ ($+$, $-$) across it. Then $g_{m1} v_{\pi1}$ (arrow down) in parallel with $r_{o1} = 75\mathrm{k}$, $10\mathrm{k}\Omega$ and $6{,}6\mathrm{k}$ ($r_{\pi2}$, voltage $v_{be2}$ marked in orange). Then $g_{m2} v_{\pi2}$ in parallel with $r_{o2} = 197\mathrm{k}\Omega$, $8\mathrm{k}\Omega$ and the load $1\mathrm{k}\Omega$ (output current $I_{out}$, arrow). A $2{,}5\mathrm{k}\Omega$ resistor in series at the bottom; the output nodes $y$, $y'$ are marked with open circles and orange arrows $R_o$ and $I_{out}$.}
+
+\[ A = \frac{I_{out}}{I_s} \]
+
+\begin{align*}
+  v_{\pi1} &= I_s\,(10\mathrm{k}\parallel 13{,}4\mathrm{k}\parallel 13\mathrm{k}\parallel 2{,}5\mathrm{k}) = 1{,}55\mathrm{k}\,I_s \\
+  v_{be2} &= -g_{m1}\,v_{\pi1}\,\Bigl(75\mathrm{k}\parallel 10\mathrm{k}\parallel\bigl(6{,}6\mathrm{k} + \underbrace{250\mathrm{k}}_{(\beta+1)(2{,}5\mathrm{k})}\bigr)\Bigr) \approx -320\,v_{\pi1}
+\end{align*}
+
+\[ I_{out} \approx \frac{v_{be2}}{\underbrace{\dfrac{6{,}6\mathrm{k}\Omega}{100} + 2{,}5\mathrm{k}}_{\textcolor{turuncukalem}{2{,}57\mathrm{k}\Omega}}} \cdot \frac{8}{9} \]
+
+\[ \frac{I_{out}}{I_s} = -192{,}4\ [\mathrm{A/A}] \]
+
+\[ R_i = 1{,}55\,\mathrm{k}\Omega \]
+
+\begin{align*}
+  R_o &= 2{,}5\mathrm{k}\Omega + \frac{6{,}6\mathrm{k}\Omega}{\underbrace{\beta+1}_{101}} + \frac{10\mathrm{k}\parallel 75\mathrm{k}}{\underbrace{\beta+1}_{101}} \\
+  &= 2{,}7\,\mathrm{k}\Omega
+\end{align*}
+
+\begin{align*}
+  A_f &= \frac{A}{1+A\beta} \\
+  1 + A\beta &= 1 + (-0{,}25 \times -192{,}4)
+\end{align*}
+
+\[ \kutula{1+A\beta = 49{,}1} \]
+
+\[ A_f = \frac{-192{,}4}{49{,}1} \approx -3{,}92\ [\mathrm{A/A}] \]
+
+\sayfa{8}
+\begin{align*}
+  R_{if} &= \frac{R_i}{1+A\beta} = \frac{1{,}55\mathrm{k}}{49{,}1} \approx 31{,}5\,\Omega \\
+  R_{of} &= R_o\,(1+A\beta) = 2{,}7\mathrm{k}\times 49{,}1 \approx 132\,\mathrm{k}\Omega
+\end{align*}
+
+\end{document}

@@ -1,0 +1,243 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{Fark yükselteci: küçük sinyal, CMRR, ortak mod aralığı}{Ders5.pdf}
+
+\sayfa{1}
+\section{Small-Signal Operation of MOS Differential Pair}
+\sekilnotu[1]{Elle çizilmiş MOS fark çifti: iki NMOS, drain'lerinde $V_{DD}$'ye giden birer $R_D$ direnci. Sol gate $V_{G1}$ ile, sağ gate $V_{G2}$ ile gösterilmiş; sol gate'i süren kaynağın yanında $V_{CM} + v_{id}/2$, sağ gate'i süren kaynağın yanında $V_{CM} - v_{id}/2$ yazıyor (kaynakların $+$ uçları üstte, alt uçları toprakta). Ortak source düğümü ile $-V_{SS}$ arasında bir $I$ akım kaynağı (aşağı oklu) ve ona paralel bir $R_{SS}$ direnci var.}
+
+\begin{align*}
+V_{G1} &= V_{CM} + \frac{v_{id}}{2} \\
+V_{G2} &= V_{CM} - \frac{v_{id}}{2}
+\end{align*}
+
+In ac
+
+\sekilnotu[1]{Elle çizilmiş ac eşdeğer (yarım devre) şekli: iki $R_D$'nin de üst ucu toprağa bağlı. Sol kolda $R_D$ yanında aşağı yönlü $g_m\,v_{id}/2$ akımı, drain düğümünde pembe kalemle $v_{O1}$, source kolunda kırmızı kalemle aşağı yönlü $I/2$. Sağ kolda $R_D$ yanında yukarı yönlü $g_m\,v_{id}/2$ akımı, drain düğümünde pembe kalemle $v_{O2}$, source kolunda kırmızı kalemle $I/2$. Gate uçları açık: solda $v_{id}/2$, sağda $-v_{id}/2$. Ortak source düğümü $R_{SS}$ ile toprağa bağlı; düğümden ``virtual ground'' yazan bir ok çıkıyor.}
+
+\begin{align*}
+v_{O1} &= -\frac{g_m\,v_{id}\,R_D}{2} \\
+v_{O2} &= \frac{g_m\,v_{id}\,R_D}{2}
+\end{align*}
+\begin{align*}
+|A_{single}| &= |v_{O1}| = |v_{O2}| = g_m R_D/2 \\
+|A_{diff}| &= \frac{|v_{O1} - v_{O2}|}{v_{id}} = g_m R_D
+\end{align*}
+\[ g_m = \frac{2I_D}{V_{ov}} = \frac{I}{V_{ov}} \qquad \hookrightarrow \qquad |A_{diff}| = \frac{I \cdot R_D}{V_{ov}} \]
+no channel length modulation (``$r_o$ is ignored'')
+
+\sayfa{2}
+\section{Effect of $r_o$}
+\sekilnotu[2]{Sayfa 1'deki ac eşdeğer şekil, her iki NMOS'a paralel (drain--source arasında) kırmızı kalemle $r_o$ eklenmiş hâliyle yeniden çizilmiş: $R_D$'lerin üst uçları toprağa bağlı, gate uçları açık (solda $v_{id}/2$, sağda $-v_{id}/2$), ortak source düğümü $R_{SS}$ ile toprağa bağlı ve ``virtual ground'' notlu. Pembe notlar: sol kolda $R_{out1} = r_o \parallel R_D$, sağ kolda bir okla $R_{out2} = r_o \parallel R_D$. Sağ üstte kırmızı kalemle $r_o = V_A/I_D$.}
+
+\begin{align*}
+v_{O2} = |v_{O1}| &= g_m\,\frac{v_{id}}{2}\,(r_o \parallel R_D) \\
+|A_{single}| &= \frac{1}{2}\,g_m\,(r_o \parallel R_D) \\
+|A_{diff}| &= g_m\,(r_o \parallel R_D)
+\end{align*}
+
+\section{The differential half circuit}
+\sekilnotu[2]{Elle çizilmiş yarım devre: $R_D$'nin üst ucu toprağa bağlı, altında bir NMOS; NMOS'a paralel kırmızı kalemle $r_o$; gate'i $v_{id}/2$ ile sürülüyor, source toprakta. Sol üstte $R_{out1} = r_o \parallel R_D$ notu (bir okla drain düğümünü gösteriyor); $r_o$'nun yanında aşağı oklu $g_m\,\dfrac{v_{id}}{2}$ akımı.}
+
+\begin{align*}
+v_{O1} &= -g_m\,\frac{v_{id}}{2}\,(R_D \parallel r_o) \\
+\frac{v_{O1}}{(v_{id}/2)} &= -g_m\,(R_D \parallel r_o) \\
+\frac{v_{O1}}{v_{id}} &= -\frac{1}{2}\,g_m\,(R_D \parallel r_o)
+\end{align*}
+
+\sayfa{3}
+\section{8.2.3}
+\sekilnotu[3]{Kitaptan yapıştırılmış basılı şekil ve formül: $A_d = \dfrac{v_{od}}{v_{id}} = g_{m1}(r_{o1} \parallel r_{o3})$. (a) Aktif yüklü MOS fark yükselteci: iki NMOS giriş transistörü $Q_1$, $Q_2$ (girişleri $V_{CM} + v_{id}/2$ ve $V_{CM} - v_{id}/2$, ortak source'ta $I$ akım kaynağı ve $-V_{SS}$), iki PMOS yük $Q_3$, $Q_4$ (gate'leri $V_G$'ye bağlı, $V_{DD}$ altında), diferansiyel çıkış $v_{od}$. (b) Yarım devre: üst üste $Q_3$ (gate'i toprakta) ve $Q_1$ (girişi $v_{id}/2$), çıkış orta düğümde.}
+
+\sekilnotu[3]{Elle çizilmiş küçük sinyal yarım devresi: $v_{id}/2$ sinüs kaynağı, $v_{gs}$ uçlarına ($+$ üstte, $-$ altta; alt uç toprakta) bağlı; sağda aşağı yönlü $g_m v_{gs}$ bağımlı akım kaynağı ve ona paralel $r_{o1}$ ile $r_{o3}$ dirençleri (alt uçları toprakta); üst düğüm $V_{O1}$ olarak etiketli.}
+
+\begin{align*}
+V_{O1} &= -g_{m1}\,v_{gs1}\,(r_{o1} \parallel r_{o3}) \\
+\frac{V_{O1}}{v_{id}} &= -\frac{1}{2}\,g_m\,(r_{o1} \parallel r_{o3}) \\
+\frac{v_{O2} - v_{O1}}{v_{id}} &= g_m\,(r_{o2} \parallel r_{o3})
+\end{align*}
+
+\sayfa{4}
+\sekilnotu[4]{Kitaptan yapıştırılmış basılı şekil: (a) kaskod aktif yüklü MOS fark yükselteci; giriş çifti $Q_1$, $Q_2$ (girişleri $V_{CM} + v_{id}/2$ ve $V_{CM} - v_{id}/2$; ortak source'ta $I$ akım kaynağı ve $-V_{SS}$), üstlerinde $Q_3$, $Q_4$ (gate $V_{G1}$), $Q_5$, $Q_6$ (gate $V_{G2}$) ve $Q_7$, $Q_8$ (gate $V_{G3}$) kaskod transistörleri, $V_{DD}$ altında; çıkış $v_{od}$. (b) Yarım devre: $Q_7$, $Q_5$, $Q_3$, $Q_1$ üst üste, çıkış düğümünde yukarı bakan $R_{op}$ ve aşağı bakan $R_{on}$ okları, çıkış $-v_{od}/2$.}
+
+\begin{align*}
+R_{on} = R_{op} &= g_m r_o^2 \\
+A_d &= g_m\,(g_m r_o^2 \parallel g_m r_o^2) \\
+A_d &= \frac{1}{2}\,g_m^2 r_o^2
+\end{align*}
+
+\sekilnotu[4]{Elle çizilmiş büyük bir dikdörtgen, sol üst köşesinde küçük bir kare; kareyi gösteren siyah bir okun yanında $R_D$, kırmızı bir okun yanında ``MOS'' yazıyor; dikdörtgenin sağ üstünde $i_c$ yazıyor. Sağda kitaptan yapıştırılmış basılı formüller: $A_d \equiv \dfrac{v_{od}}{v_{id}} = g_{m1}(R_{on} \parallel R_{op})$, $R_{on} = (g_{m3}r_{o3})\,r_{o1}$, $R_{op} = (g_{m5}r_{o5})\,r_{o7}$.}
+
+\section{Common-Mode Gain and Common-Mode Rejection Ratio}
+\sekilnotu[4]{Elle çizilmiş ortak mod devresi: $V_{DD}$'ye bağlı iki $R_D$, altlarında iki NMOS; her iki gate de $+v_{icm}$ ile sürülüyor. İki kolda da $R_D$ yanında aşağı oklu $g_m v_{icm}$ akımı var; source düğümlerinin altında birer küçük dönen ok çizilmiş. Ortak source düğümünden sağa ``No virtual ground'' yazan bir ok çıkıyor; düğüm, paralel bağlı $I$ akım kaynağı (aşağı oklu) ve $R_{SS}$ direnci üzerinden toprağa bağlı.}
+
+\sayfa{5}
+\sekilnotu[5]{Elle çizilmiş ortak mod devresi (ac): iki $R_D$'nin üst ucu toprağa bağlı; iki NMOS'un gate'i de aynı $+v_{icm}$ ile sürülüyor; iki kolda da $R_D$ yanında aşağı oklu $g_m v_{icm}$ akımı. Ortak source düğümünden sağa bir ok çıkıyor; düğüm, paralel bağlı $I$ akım kaynağı (aşağı oklu) ve $R_{SS}$ üzerinden toprağa bağlı; $R_{SS}$ yanında aşağı oklu $2g_m v_{icm}$ akımı.}
+
+\sekilnotu[5]{Sağ üstte elle çizilmiş küçük bir gerilim bölücü: üstte $R_D$, altında $2R_{SS}$, orta düğümden sağa uzanan bir uç ve yanında $v$. Solunda pembe kalemle $R_D \parallel 2R_{SS}$ yazıyor.}
+
+\begin{align*}
+v_{O1} &= \frac{-R_D}{2R_{SS}}\,v_{icm} \\
+v_{O2} &= \frac{-R_D}{2R_{SS}}\,v_{icm} \\
+|A_{cm\,single}| &\simeq \frac{R_D}{2R_{SS}} \\
+|A_{cm\,diff}| &= 0
+\end{align*}
+
+half circuit
+
+\sekilnotu[5]{Elle çizilmiş yarım devre: üst ucu toprağa bağlı $R_D$, altında gate'i $v_{icm}$ ile sürülen bir NMOS, NMOS'un source'undan toprağa giden $2R_{SS}$.}
+
+\[ \frac{v_{o1}}{v_{icm}} = -\frac{R_D}{2R_{SS}} \]
+
+\sekilnotu[5]{Pembe kalemle çizilmiş küçük sinyal şeması: solda açık uçlu iki terminal (üstteki terminalin yanında $v_{icm}$ ve $B$ yazıyor; terminaller arasında $V_{gs}$, $+$ üstte, $-$ altta). Ortada üst raydan alt raya aşağı yönlü $g_m V_{gs}$ bağımlı akım kaynağı; sağ üstte toprağa bağlı $R_D$; sağda alt raya bağlı $2R_{SS}$. Şemanın çevresinde oklar ve daire içine alınmış notlar var.}
+Pembe kalemle yazılmış notlar (okunuşu kısmen belirsiz):
+\begin{align*}
+& -R_D \cdot g_m V_{gs} \\
+& -R_D\,\frac{1}{2R_{SS}}\,V_{gs} \\
+& +g_m V_{gs}\,2R_{SS} = -V_{gs} \\
+& g_m = -\frac{1}{2R_{SS}} \\
+& V_{O1} = -\frac{R_D}{g_m V_{gs}} \\
+& V_o = 2\,g_m V_{gs} R_{SS}
+\end{align*}
+
+C M R R: \ C $\rightarrow$ Common, \ M $\rightarrow$ mode, \ R $\rightarrow$ Rejection, \ R $\rightarrow$ ratio
+
+in theory
+\begin{align*}
+CMRR_{single} &= \frac{|A_{single\,diff}|}{|A_{single\,common}|} = \frac{\frac{1}{2}\,g_m R_D}{\frac{R_D}{2R_{SS}}} = g_m R_{SS} \\[2mm]
+CMRR_{diff} &= \frac{|A_{diff\,diff}|}{|A_{diff\,cm}|} = \frac{g_m R_D}{0} = \infty
+\end{align*}
+
+CMRR'ın maksimum olmasını isteriz
+
+\sayfa{6}
+\sekilnotu[6]{Elle çizilmiş ortak mod devresi (ac): iki kol, üst uçları toprağa bağlı; sol kolda $R_D$, sağ kolda $R_D + \Delta R_D$; drain düğümleri solda $v_{O1}$, sağda $v_{O2}$. İki NMOS'un gate'i de $v_{icm}$ ile sürülüyor; ortak source düğümü $R_{SS}$ üzerinden toprağa bağlı.}
+
+\begin{align*}
+v_{O1} &= -\frac{R_D}{2R_{SS}}\,v_{icm} \\
+v_{O2} &= -\frac{R_{D1} + \Delta R_D}{2R_{SS}}\,v_{icm} \\
+v_{O2} &= -\frac{R_{D1} + \Delta R_D}{2R_{SS}}\,v_{icm} \\
+v_{O2} - v_{O1} &= \frac{\Delta R_D}{2R_{SS}}\,v_{icm}\footnotemark
+\end{align*}
+\footnotetext{Claude notu: yukarıdaki satırlara göre işaret muhtemelen eksi olmalı: $-\dfrac{\Delta R_D}{2R_{SS}}\,v_{icm}$.}
+\begin{align*}
+A_{cm\,diff} &= \frac{\Delta R_D}{2R_{SS}} = \left(\frac{R_D}{2R_{SS}}\right)\frac{\Delta R_D}{R_D} \\[2mm]
+CMRR &= \left|\frac{A_{diff\,diff}}{A_{cm\,diff}}\right| = \frac{g_m R_D}{\dfrac{\Delta R_D}{2R_{SS}}} = \frac{2\,g_m R_{SS}}{\Delta R_D/R_D}
+\end{align*}
+
+\section{Effect of $g_m$ mismatch on CMRR \quad $g_{m1} \neq g_{m2}$}
+\[ CMRR_{diff} = \frac{2\,g_m R_{SS}}{\Delta g_m / g_m} \]
+\[ \kutula{g_m \;\Rightarrow\; \text{typical value}} \]
+
+\sayfa{7}
+\sekilnotu[7]{Elle çizilmiş fark yükselteci devresi (soru 1, sayfada daire içinde ``1''): üstte $2\,\mathrm{V}$ besleme, iki $R_D$ (sağdakinin yanında pembe kalemle $R_D = 0{,}5\,\mathrm{k}$); drain düğümleri $V_{D1}$ ve $V_{D2}$, ikisinin yanında pembe kalemle $1{,}5\,\mathrm{V}$; iki kolda da pembe kalemle aşağı yönlü $1\,\mathrm{mA}$; iki NMOS'un gate'i de $V_G$ ile etiketli. Ortak source düğümünden, gate'i $V_{G3}$ olan bir NMOS ile $-2\,\mathrm{V}$'a giden kuyruk kolu, yanında pembe kalemle aşağı yönlü $2\,\mathrm{mA}$.}
+\begin{align*}
+I_{D1}, I_{D2} &= \qty{1}{\milli\ampere} \\
+1 &= \frac{1}{2}\,\qty{8}{\milli\ampere\per\volt\squared}\,(V_{ov})^2 \\
+V_{ov1,2} &= \pm\,\qty{0,5}{\volt}
+\end{align*}
+
+\begin{ornek}[1]
+Calculate $V_D$, $V_S$, $V_{DS}$ and $V_{GS}$ if $I_{D3} = \qty{2}{\milli\ampere}$, $R_D = \qty{0,5}{\kilo\ohm}$ and $V_{ov3} = \qty{0,5}{\volt}$. Assume that $Q_1$ and $Q_2$ are identical with $\mu_n C_{ox}(W/L) = \qty{8}{\milli\ampere\per\volt\squared}$, $V_{tn} = \qty{0,5}{\volt}$, $\lambda = 0$
+\end{ornek}
+\begin{cozum}
+\begin{align*}
+V_{GS1} - V_{tn} &= \qty{0,5}{\volt} \\
+0 - V_S - 0{,}5 &= \qty{0,5}{\volt}
+\end{align*}
+\[ \kutula{V_S = \qty{-1}{\volt}} \]
+\begin{align*}
+V_{DS} &= 1{,}5 - (-1) = \qty{2,5}{\volt} \\
+V_{GS} &= \qty{1}{\volt}
+\end{align*}
+In saturation
+\end{cozum}
+
+if $\lambda \neq 0$ \qquad $\lambda = 0{,}1$
+\begin{align*}
+I_{D1,2} &= \frac{1}{2}\,\mu_n C_{ox}\,\frac{W}{L}\,(V_{ov})^2\,(1 + \lambda V_{DS1}) \\
+\qty{1}{\milli\ampere} &= \frac{1}{2}\cdot 8\cdot (V_{ov})^2\cdot(1 + \lambda V_{DS1}) \\
+(V_{ov})^2\,(1 + \lambda V_{DS1}) &= 0{,}25 \\
+V_{DS} = V_D - V_S &= V_D + (V_{GS} - V_G) \\
+&= V_D + (V_{GS} - V_{Tn} - V_G) + V_{tn}
+\end{align*}
+
+\sayfa{8}
+\begin{align*}
+V_{DS} &= V_D + (V_{ov} - V_G) + V_{tn}\footnotemark \\
+V_{DS} &= V_{ov} + 2
+\end{align*}
+\footnotetext{Satırın üzerinde oklarla $V_D \to 1{,}5$, $V_G \to 0$ ve $V_{tn} \to 0{,}5$ değerleri yazılmış.}
+\[ (V_{ov})^2\,\bigl(1 + 0{,}1\,(V_{ov} + 2)\bigr) = 0{,}25 \qquad\qquad V_{ov} = x \ \text{olsun} \]
+\begin{align*}
+x^2\,(1 + 0{,}1x + 0{,}2) &= 0{,}25 \\
+x^2\,(1{,}2 + 0{,}1x) &= 0{,}25
+\end{align*}
+\begin{align*}
+V_{ov} &= \qty{0,448}{\volt} \\
+V_{GS1,2} &= \qty{0,948}{\volt} \\
+V_{S1,2} &= \qty{-0,948}{\volt}
+\end{align*}
+
+\section{Common mode Range}
+\sekilnotu[8]{Elle çizilmiş fark yükselteci devresi: üstte $2\,\mathrm{V}$ besleme, iki $R_D$; drain düğümlerinin yanında kırmızı kalemle $1{,}5\,\mathrm{V}$, her kolda kırmızı kalemle aşağı yönlü $1\,\mathrm{mA}$. İki NMOS'un gate'i de $V_{CM}$ ile sürülüyor; ortak source düğümünde kırmızı kalemle ``??'' yazıyor. Kuyruk kolunda gate'i $V_{G3}$ ($-1\,\mathrm{V} = V_{G3}$) olan bir NMOS, yanında aşağı oklu $2\,\mathrm{mA}$; alt uç $-2\,\mathrm{V}$.}
+\begin{ornek}
+What is the input common mode range? $Q_1$ and $Q_2$ are identical. \\
+$R_D = \qty{0,5}{\kilo\ohm}$ \\
+$\mu_n C_{ox}\,W/L = \qty{8}{\milli\ampere\per\volt\squared}$ \\
+$V_{t1,2,3} = \qty{0,5}{\volt}$ \\
+$V_{G3} = \qty{-1}{\volt}$
+\end{ornek}
+\begin{cozum}
+\begin{align*}
+1 &= \frac{1}{2}\,\qty{8}{\milli\ampere\per\volt\squared}\,(V_{ov})^2 \\
+V_{GS} - V_{tn} &= 0{,}5 \\
+V_{GS} &= \qty{1}{\volt} \\
+V_D &= 2 - 0{,}5\cdot\qty{1}{\milli\ampere} \\
+&= \qty{1,5}{\volt}
+\end{align*}
+$\nearrow$
+\begin{align*}
+V_{GS3} &= -1 - (-2) = \qty{1}{\volt} \\
+V_{ov} &= 1 - 0{,}5 = \qty{0,5}{\volt}
+\end{align*}
+$\downarrow$
+\begin{align*}
+V_{DS3} &\geq V_{ov3} \qquad \text{sat koşulu} \\
+V_{DS3} &\geq \qty{0,5}{\volt} \\
+V_{D3} &\geq \qty{-1,5}{\volt}
+\end{align*}
+\end{cozum}
+
+\sayfa{9}
+\begin{cozum}
+\[ V_{CM} - (-1{,}5) - 0{,}5 \geq 0 \]
+\[ \kutula{V_{CM} \geq \qty{-1}{\volt}} \]
+Triodtan kaçınması lazım üsttekinin
+\begin{align*}
+V_{DS} &\geq V_{GS} - V_t \\
+V_D &\geq V_{CM} - 0{,}5 \\
+V_D + 0{,}5 &\geq V_{CM} \\
+2 &\geq V_{CM}
+\end{align*}
+\[ \qty{-1}{\volt} \leq V_{cm} \leq \qty{2}{\volt} \qquad \text{input cm range} \]
+\end{cozum}
+
+\begin{ornek}[3]
+A MOS differential pair is operated at a bias current (I) of $\qty{0,4}{\milli\ampere}$. If $\mu_n C_{ox} = \qty{0,2}{\milli\ampere\per\volt\squared}$, find the required values of $(W/L)$ and the resulting $g_m$ if the MOSFETs are operated at $V_{ov} = \qty{0,2}{\volt}$, $\qty{0,3}{\volt}$ and $\qty{0,4}{\volt}$. For each value give the max $v_{id}$
+\end{ornek}
+\begin{cozum}
+\[ I = \qty{0,4}{\milli\ampere} \;\rightarrow\; \begin{cases} I_{D1} = \qty{0,2}{\milli\ampere} \\ I_{D2} = \qty{0,2}{\milli\ampere} \end{cases} \]
+\[ \qty{0,2}{\milli\ampere} = \frac{1}{2}\,\mu_n C_{ox}\left(\frac{W}{L}\right)(V_{ov})^2 \]
+\[ 2 = \left(\frac{W}{L}\right)(V_{ov})^2 \]
+For $V_{ov} = \qty{0,2}{\volt}$
+\[ \left(\frac{W}{L}\right) = \frac{2}{(0{,}2)^2} = 50 \;\Rightarrow\; W = \qty{50}{\micro\meter}, \quad L = \qty{1}{\micro\meter} \]
+\[ g_m = \frac{2I_D}{V_{ov}} = \frac{2 \cdot 0{,}2}{0{,}2} = \qty{2}{\milli\siemens}\footnotemark \]
+\footnotetext{Pay ve paydadaki $0{,}2$ çizilerek sadeleştirilmiş.}
+\[ \max(v_{id}) = \ ? \]
+\[ -\sqrt{2}\,V_{ov} \leq v_{id} \leq \sqrt{2}\,V_{ov} \]
+\[ \simeq 0{,}2808 \simeq \qty{280}{\milli\volt} \]
+\end{cozum}
+
+\end{document}

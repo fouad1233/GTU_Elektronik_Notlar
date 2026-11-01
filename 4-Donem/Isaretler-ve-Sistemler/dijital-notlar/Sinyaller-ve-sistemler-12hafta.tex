@@ -1,0 +1,463 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{İşaretler ve Sistemler}{12. hafta -- DTFT, Laplace dönüşümü ve ROC}{Sinyaller-ve-sistemler-12hafta.pdf}
+
+\sayfa{1}\nopagebreak
+\section{Tekrar}
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+  \textbf{$s$ Laplace}\\[1mm]
+  $s=j\omega$\\[1mm]
+  $X(j\omega)=\displaystyle\int_{-\infty}^{\infty}x(t)\,e^{-j\omega t}\,dt$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+  \textbf{Z-Transform}\\[1mm]
+  $z=e^{j\omega}$\\[1mm]
+  $X(e^{j\omega})$
+\end{minipage}
+
+\subsection{Ayrık zamanlı Fourier transformu (Dönüşümü)}
+(Discrete-time Fourier Transform)
+
+FT, periyodik olmayan işaretler için tanımlıdır.
+\[ X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]\,e^{-j\omega n}\qquad (n:\ \text{tamsayı}) \]
+\[ x[n]=\frac{1}{2\pi}\int_{2\pi}X(e^{j\omega})\,e^{j\omega n}\,d\omega \]
+\[ x[n]\ \overset{\mathcal{F}}{\underset{\mathcal{F}^{-1}}{\rightleftarrows}}\ X(e^{j\omega}) \]
+$\Rightarrow$ Ayrık zamanlı FT, $X(e^{j\omega})$, $2\pi$ ile periyodiktir.
+\[ X(e^{j\omega})=X(e^{j(\omega+2\pi)}) \]
+
+\begin{ornek}
+  $x[n]=a^n u[n]$, \ $|a|<1$ ise $X(e^{j\omega})=$ ?
+\end{ornek}\nopagebreak
+\[ X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]\,e^{-j\omega n}\ \underset{\uparrow}{=}\ \sum_{n=0}^{\infty}a^n e^{-j\omega n}=\sum_{n=0}^{\infty}(ae^{-j\omega})^n\ \underset{\uparrow}{=}\ \frac{1}{1-ae^{-j\omega}} \]
+
+\noindent\begin{minipage}{\linewidth}
+\begin{ornek}
+  $x[n]=a^{|n|}$, \ $|a|<1$ ise $X(e^{j\omega})=$ ?
+\end{ornek}\nopagebreak
+\begin{align*}
+  X(e^{j\omega}) &=\sum_{n=-\infty}^{\infty}x[n]\,e^{-j\omega n}=\sum_{n=-\infty}^{\infty}a^{|n|}e^{-j\omega n}
+    =\sum_{n=-\infty}^{-1}a^{-n}e^{-j\omega n}+\sum_{n=0}^{\infty}a^{n}e^{-j\omega n}
+\end{align*}
+\end{minipage}
+\begin{align*}
+  \sum_{n=-\infty}^{-1}(ae^{j\omega})^{-n}\ &\underset{\substack{\uparrow\\ k=-n}}{=}\ \sum_{k=1}^{\infty}(ae^{j\omega})^{k}\ \underset{\substack{\uparrow\\ (ae^{j\omega})^0=1}}{=}\ \sum_{k=0}^{\infty}(ae^{j\omega})^{k}-1\\
+  &=\frac{1}{1-ae^{-j\omega}}-1=\frac{ae^{j\omega}}{1-ae^{j\omega}}\qquad\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $\dfrac{1}{1-ae^{j\omega}}-1$ olmalı.}
+\[ X(e^{j\omega})=\frac{ae^{j\omega}}{1-ae^{j\omega}}+\frac{1}{1-ae^{-j\omega}}=\frac{1-a^2}{1+a^2-2a\cos\omega}\qquad :\ \text{Reel} \]
+\[ X(e^{j\omega})=|X(e^{j\omega})|,\qquad \angle X(e^{j\omega})=0 \]
+
+\sekilnotu[1]{Solda $x[n]=a^{|n|}$ işaretinin çubuk (stem) grafiği: $n$ ekseni üzerinde $n=0$'da en yüksek çubuk (değeri 1), sağda $a$, $a^2$, $a^3$ değerleriyle azalan çubuklar, solda simetrik olarak azalan çubuklar; her iki uçta ``$\ldots$''. Sağda $|X(e^{j\omega})|$ grafiği: $2\pi$ ile periyodik, $\omega=0$ ve $\omega=\pm2\pi$ civarında tepeler, aralarda çukurlar; $\omega=0$ tepesi $\frac{1-a}{1+a}$, çukur değeri $\frac{1+a}{1-a}$ olarak yazılmış\footnote{Claude notu: muhtemelen tepe ve çukur değerleri yer değiştirmiş: $\omega=0$'da $|X|=\frac{1+a}{1-a}$, $\omega=\pi$'de $\frac{1-a}{1+a}$ olmalı.}; $\omega$ ekseninde tepe ve çukur konumlarında etiketsiz küçük işaretler.}
+
+\sayfa{2}\nopagebreak
+\begin{ornek}
+  $x[n]=\begin{cases}1, & |n|\le N_1\\ 0, & |n|>N_1\end{cases}$ \ şeklinde verilen ayrık zamanlı dikdörtgen darbe işaretinin FT bulunuz.
+\end{ornek}\nopagebreak
+\begin{align*}
+  X(e^{j\omega}) &=\sum_{n=-\infty}^{\infty}x[n]\,e^{-j\omega n}=\sum_{n=-N_1}^{N_1}e^{-j\omega n}\\
+  &=\sum_{n=0}^{2N_1}e^{-j\omega(n-N_1)}=e^{j\omega N_1}\sum_{n=0}^{2N_1}e^{-j\omega n}\\
+  &=e^{j\omega N_1}\left[\frac{1-e^{-j\omega(2N_1+1)}}{1-e^{-j\omega}}\right]\\
+  &=e^{j\omega N_1}\,\frac{e^{-j\omega(N_1+1/2)}\left[e^{j\omega(N_1+1/2)}-e^{-j\omega(N_1+1/2)}\right]}{e^{-j\omega/2}\left[e^{j\omega/2}-e^{-j\omega/2}\right]}\\
+  &=\frac{\sin\big(\omega(N_1+1/2)\big)}{\sin(\omega/2)}
+\end{align*}
+Reminder:
+\[ \sum_{k=0}^{M}\alpha^k=\frac{1-\alpha^{M+1}}{1-\alpha},\qquad 1-e^{j\theta}=e^{-j\theta/2}\left[e^{j\theta/2}-e^{-j\theta/2}\right]\qquad\text{\footnotemark} \]
+\footnotetext{Claude notu: muhtemelen $1-e^{-j\theta}$ olmalı.}
+
+$N_1=2$ için
+\sekilnotu[2]{Solda $x[n]$ çubuk grafiği: $n=-2,\dots,2$ konumlarında birim yükseklikte (dikey eksende 1 işaretli) 5 çubuk, ayrıca $n=\pm3,\pm4$ konumlarında eksen üzerinde sıfır noktaları. Sağda $X(e^{j\omega})$ grafiği: $\omega=0$'da tepe değeri 5 (dikey eksende 5 işaretli), iki yanda küçülen yan loblar; $\omega$ ekseninde $-2\pi$, $-\pi$, $\pi$, $2\pi$ işaretli; eğri $\omega=\pm2\pi$ civarında yeniden tepe yapıyor ($2\pi$ ile periyodik).}
+
+\vspace{2mm}
+\noindent
+\begin{minipage}[c]{0.52\linewidth}
+\begin{align*}
+  \textcolor{kirmizikalem}{\star}\quad\delta[n]\ &\overset{\mathcal{F}}{\longleftrightarrow}\ 1\\
+  1\ &\longleftrightarrow\ 2\pi\,\delta(e^{j\omega})
+\end{align*}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.44\linewidth}
+  \centering
+  \begin{tikzpicture}[line width=0.7pt]
+    \draw[kirmizikalem, -{Stealth[length=2mm]}] (-2.2,0) -- (2.3,0);
+    \draw[kirmizikalem, -{Stealth[length=2mm]}] (0,-1.1) -- (0,1.9);
+    \node[murekkep, right] at (2.3,0.05) {$\omega$};
+    \node[murekkep, right] at (0.1,1.7) {$X(e^{j\omega})$};
+    \foreach \x in {-1.6,0,1.6}
+      \draw[murekkep, line width=0.9pt, -{Stealth[length=2mm]}] (\x,0) -- (\x,0.9);
+    \node[murekkep, below] at (-1.6,0) {\small $-2\pi$};
+    \node[murekkep, below] at (1.6,0) {\small $2\pi$};
+  \end{tikzpicture}
+\end{minipage}
+\[ \delta[n-n_0]\ \longleftrightarrow\ e^{-j\omega n_0} \]
+\noindent\rule{0.5\linewidth}{0.5pt}
+\begin{align*}
+  e^{j\omega_0 n}\ &\overset{\mathcal{F}}{\longleftrightarrow}\ 2\pi\,\delta\big(e^{j(\omega-\omega_0)}\big)\\
+  e^{-j\omega_0 n}\ &\overset{\mathcal{F}}{\longleftrightarrow}\ 2\pi\,\delta\big(e^{j(\omega+\omega_0)}\big)
+\end{align*}
+
+\sayfa{3}\nopagebreak
+\section{Periyodik işaretlerin Fourier Transformu}
+\[ x[n]=\sum_{k=\langle N\rangle}x_k\,e^{jk\omega_0 n}=x_0+x_1e^{j\omega_0 n}+x_2e^{j2\omega_0 n}+\cdots+ \]
+\[ x_k=\frac{1}{N}\sum_{n=\langle N\rangle}x[n]\,e^{-jk\omega_0 n},\qquad x_k=x_{k+N} \]
+\[ x[n]=\sum_{k=\langle N\rangle}x_k\,e^{jk\omega_0 n}\ \overset{\mathcal{F}}{\longleftrightarrow}\ X(e^{j\omega})=\sum_{k=-\infty}^{\infty}2\pi x_k\,\delta(\omega-k\omega_0) \]
+
+\sayfa{4}\nopagebreak
+\section{Ayrık Zamanlı Fourier Transformunun Özellikleri}
+\[ x[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ X(e^{j\omega}) \]
+\[ X(e^{j\omega})=\Fou{x[n]} \]
+\[ x[n]=\iFou{X(e^{j\omega})} \]
+
+\begin{enumerate}[label=\arabic*), leftmargin=2.2em, itemsep=5pt]
+  \item Periyodiklik: $X(e^{j\omega})=X(e^{j(\omega+2\pi)})$, \ $2\pi$ ile periyodiktir.
+  \item Lineerlik: $\alpha x_1[n]+\beta x_2[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ \alpha X_1(e^{j\omega})+\beta X_2(e^{j\omega})$
+  \item Zamanda öteleme: $x[n-n_0]\ \overset{\mathcal{F}}{\longleftrightarrow}\ e^{-j\omega n_0}X(e^{j\omega})$\\
+    Genlik spektrumu değişmez, faz spektrumu $-\omega n_0$ kadar ötelenir.
+  \item Frekansta öteleme: $e^{j\omega_0 n}x[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ X(e^{j(\omega-\omega_0)})$
+  \item Zamanda katlama: $x[-n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ X(e^{-j\omega})$
+  \item Eşlenik alma: $x^{*}[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ X^{*}(e^{-j\omega})$
+  \item Fark alma (differencing): $x[n]-x[n-1]\ \overset{\mathcal{F}}{\longleftrightarrow}\ (1-e^{-j\omega})X(e^{j\omega})$
+  \item Birikim (Accumulation):
+    \[ \sum_{m=-\infty}^{n}x[m]\ \overset{\mathcal{F}}{\longleftrightarrow}\ \frac{1}{1-e^{-j\omega}}X(e^{j\omega})+\pi X(e^{j0})\sum_{k=-\infty}^{\infty}\delta(\omega-2\pi k) \]
+  \item Frekansta türev: $n\,x[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ j\,\dfrac{dX(e^{j\omega})}{d\omega}$\\
+    İspat: $X(e^{j\omega})=\displaystyle\sum_{n=-\infty}^{\infty}x[n]\,e^{-j\omega n}$
+    \[ \frac{d}{d\omega}X(e^{j\omega})=\sum_{n=-\infty}^{\infty}x[n]\,\frac{d}{d\omega}\big(e^{-j\omega n}\big)=-jn\sum_{n=-\infty}^{\infty}x[n]\,e^{-j\omega n}\qquad\text{\footnotemark} \]
+    \footnotetext{Claude notu: $-jn$ çarpanı toplamın içinde olmalı: $\sum_n(-jn)\,x[n]\,e^{-j\omega n}$.}
+  \item \vurgu[turuncu]{Parseval teoremi:} $E_x=\displaystyle\sum_{n=-\infty}^{\infty}|x[n]|^2=\frac{1}{2\pi}\int_{2\pi}|X(e^{j\omega})|^2\,d\omega$
+  \item Çarpma:
+    \[ x_1[n]\cdot x_2[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ \frac{1}{2\pi}\int_{2\pi}X_1(e^{j\alpha})\,X_2(e^{j(\omega-\alpha)})\,d\alpha \]
+\end{enumerate}
+
+\sayfa{5}\nopagebreak
+\section{Konvülasyon}
+\begin{ornek}
+  $H(e^{j\omega})=\begin{cases}1, & 0\le|\omega|\le\omega_c\\ 0, & \omega_c<|\omega|<\pi\end{cases}$ \ ayrık zamanlı alçak geçiren filtrenin dürtü cevabını bulunuz.
+\end{ornek}\nopagebreak
+\sekilnotu[5]{$H(e^{j\omega})$ grafiği: $\omega$ ekseni üzerinde yüksekliği 1 olan (dikey eksende 1 işaretli) dikdörtgen darbeler; ortadaki darbe $-\omega_c$ ile $\omega_c$ arasında, diğerleri $\pm2\pi$ merkezli ve aynı genişlikte (periyodik); eksende $-2\pi$, $-\pi$, $-\omega_c$, $\omega_c$, $\pi$, $2\pi$ işaretli; iki uçta ``$\ldots$''.}
+\begin{align*}
+  h[n] &=\frac{1}{2\pi}\int_{2\pi}H(e^{j\omega})\,e^{+j\omega n}\,d\omega=\frac{1}{2\pi}\int_{-\omega_c}^{\omega_c}e^{j\omega n}\,d\omega\\
+  &=\frac{1}{2\pi}\,\frac{e^{j\omega n}}{jn}\Big|_{-\omega_c}^{\omega_c}=\frac{1}{2j\pi n}\left[e^{j\omega_c n}-e^{-j\omega_c n}\right],
+\end{align*}
+\[ h[n]=\frac{1}{\pi n}\sin(\omega_c n)=\frac{\sin\!\left(\pi\frac{\omega_c}{\pi}n\right)}{\pi\frac{\omega_c}{\pi}n}\cdot\frac{\omega_c}{\pi}=\frac{\omega_c}{\pi}\,\mathrm{sinc}\!\left(\frac{\omega_c}{\pi}n\right) \]
+\begin{flushright}
+  $\nwarrow$ \textit{tam sayı olunca 0'ı yani $n$ eksenini keser}
+\end{flushright}
+\sekilnotu[5]{$h[n]$ grafiği (örneklenmiş sinc): $n=0$'da en yüksek çubuk (tepe), her iki yana doğru azalan pozitif çubuklar, uçlarda $n$ eksenini keserek küçük negatif çubuklar (yan loblar); arkada kesikli/gölgeli sinc zarfı; uçlarda ``$\ldots$''; eksenler $h[n]$ ve $n$.}
+
+\begin{ornek}
+  $x[n]=\alpha^n u[n]$, \ $|\alpha|<1$, \ $y[n]=$ ?\\
+  $h[n]=\beta^n u[n]$, \ $|\beta|<1$
+\end{ornek}\nopagebreak
+{\color{kirmizikalem}Reminder: $\alpha^n u[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ \dfrac{1}{1-\alpha e^{-j\omega}}$}
+\[ \underset{\mathclap{\updownarrow\ \mathcal{F}^{-1}}}{Y(e^{j\omega})}=\frac{1}{(1-\alpha e^{-j\omega})(1-\beta e^{-j\omega})}=\frac{A}{1-\alpha e^{-j\omega}}+\frac{B}{1-\beta e^{-j\omega}} \]
+\[ y[n]=A\alpha^n u[n]+B\beta^n u[n] \]
+
+\sayfa{6}\nopagebreak
+\[ A=\frac{\alpha}{\alpha-\beta}\qquad\qquad B=\frac{-\beta}{\alpha-\beta} \]
+\begin{align*}
+  y[n] &=\frac{1}{\alpha-\beta}\left[\alpha\,\alpha^n u[n]-\beta\,\beta^n u[n]\right]\\
+  &=\frac{1}{\alpha-\beta}\left(\alpha^{n+1}-\beta^{n+1}\right)u[n]
+\end{align*}
+\begin{ornek}
+  $\alpha=\beta$ ise $y[n]=$ ??
+\end{ornek}\nopagebreak
+\[ Y(e^{j\omega})=\frac{1}{(1-\alpha e^{-j\omega})^2} \]
+Reminder:
+\begin{align*}
+  x[n]=\alpha^n u[n]\ &\overset{\mathcal{F}}{\longleftrightarrow}\ X(e^{j\omega})=\frac{1}{1-\alpha e^{-j\omega}}\\
+  n\,x[n]\ &\overset{\mathcal{F}}{\longleftrightarrow}\ j\,\frac{dX(e^{j\omega})}{d\omega}\\
+  x[n-n_0]\ &\overset{\mathcal{F}}{\longleftrightarrow}\ e^{-j\omega n_0}X(e^{j\omega})
+\end{align*}
+\[ \frac{dX(e^{j\omega})}{d\omega}=-j\alpha e^{-j\omega}\,\frac{1}{(1-\alpha e^{-j\omega})^2}=-j\alpha e^{-j\omega}\,Y(e^{j\omega}) \]
+\[ Y(e^{j\omega})=\frac{1}{\alpha}\,e^{j\omega}\,j\,\frac{dX(e^{j\omega})}{d\omega}\ \overset{\mathcal{F}^{-1}}{\longleftrightarrow}\ 
+\begin{aligned}
+  y[n]&=\frac{1}{\alpha}(n+1)\,\alpha^{n+1}u[n+1]\\
+  &\underset{\substack{\uparrow\\ y[-1]=0}}{=}(n+1)\,\alpha^{n}u[n]
+\end{aligned} \]
+\[ (n+1)\,\alpha^n u[n]\ \overset{\mathcal{F}}{\longleftrightarrow}\ \frac{1}{(1-\alpha e^{-j\omega})^2} \]
+
+\begin{ornek}
+  $y[n]-\dfrac{3}{4}\,y[n-1]+\dfrac{1}{8}\,y[n-2]=2x[n]$ ise $h[n]=$ ?
+\end{ornek}\nopagebreak
+\[ Y(e^{j\omega})-\frac{3}{4}e^{-j\omega}Y(e^{j\omega})+\frac{1}{8}e^{-j2\omega}Y(e^{j\omega})=2X(e^{j\omega}) \]
+\[ \underset{\mathclap{\updownarrow\ \mathcal{F}^{-1}}}{H(e^{j\omega})}=\frac{Y(e^{j\omega})}{X(e^{j\omega})}=\frac{2}{1-\frac{3}{4}e^{-j\omega}+\frac{1}{8}e^{-j2\omega}}=\frac{A}{1-\frac{1}{2}e^{-j\omega}}+\frac{B}{1-\frac{1}{4}e^{-j\omega}} \]
+\[ A=4\qquad\qquad B=-2 \]
+\[ h[n]=4\left(\frac{1}{2}\right)^{n}u[n]-2\left(\frac{1}{4}\right)^{n}u[n] \]
+
+\sayfa{7}\nopagebreak
+\section{Laplace Transformu}
+\[ X(s)=\int_{-\infty}^{\infty}x(t)\,e^{-st}\,dt \]
+\[ x(t)\ \overset{\mathcal{L}}{\longleftrightarrow}\ X(s) \]
+\[ X(s)=\Lap{x(t)} \]
+\[ \Rightarrow\ s=\sigma+j\omega\ \ \begin{array}{ll}\to & \sigma:\ \text{Reel kısmı}\\ \hookrightarrow & \omega:\ \text{Sanal kısmı}\end{array} \]
+\begin{align*}
+  X(\sigma+j\omega) &=\int_{-\infty}^{\infty}x(t)\,e^{-(\sigma+j\omega)t}\,dt\\
+  &=\int_{-\infty}^{\infty}x(t)\,e^{-\sigma t}\,e^{-j\omega t}\,dt=\Fou{x(t)\,e^{-\sigma t}}
+\end{align*}
+$\Rightarrow\ s=j\omega$
+\[ X(j\omega)=\int_{-\infty}^{\infty}x(t)\,e^{-j\omega t}\,dt=\Fou{x(t)}=X(s)\Big|_{s=j\omega} \]
+$s$ herhangi bir complex sayı olabilir.
+
+Laplace transformu, $x(t)e^{-\sigma t}$ şeklinde $x(t)$ işaretinin bir reel üstelle çarpımının F.\ Transformudur.
+\[ e^{-\sigma t}\ \to\ \begin{array}{@{}l@{\quad}l@{}}\sigma>0 & \text{zamanda azalan fonk.}\\ \sigma<0 & \text{''}\quad\ \text{artan fonk.}\end{array} \]
+
+\begin{ornek}
+  $x(t)=e^{-at}u(t)$
+\end{ornek}\nopagebreak
+\begin{align*}
+  X(s) &=\int_{-\infty}^{\infty}x(t)\,e^{-st}\,dt=\int_{-\infty}^{\infty}e^{-at}u(t)\,e^{-st}\,dt\\
+  &=\int_{0}^{\infty}e^{-(a+s)t}\,dt=\frac{e^{-(a+s)t}}{-(a+s)}\Big|_{0}^{\infty}\\
+  &=\frac{1}{s+a},\quad\mathrm{Re}\{s+a\}>0
+\end{align*}
+\begin{align*}
+  s=\sigma+j\omega\ &\to\ X(\sigma+j\omega)=\frac{1}{(\sigma+a)+j\omega},\quad\sigma+a>0\\
+  s=j\omega,\ \sigma=0\ &\to\ X(j\omega)=\frac{1}{a+j\omega},\quad a>0
+\end{align*}
+\begin{align*}
+  e^{-at}u(t)\ &\overset{\mathcal{L}}{\longleftrightarrow}\ \frac{1}{s+a},\quad\mathrm{Re}\{s\}>-a\ \ {\color{kirmizikalem}\triangle}\\
+  u(t)\ &\overset{\mathcal{L}}{\longleftrightarrow}\ \frac{1}{s},\quad\mathrm{Re}\{s\}>0\qquad(a=0)
+\end{align*}
+
+\sayfa{8}\nopagebreak
+\begin{ornek}
+  $x(t)=-e^{-at}u(-t)$
+\end{ornek}\nopagebreak
+\begin{align*}
+  X(s) &=\int_{-\infty}^{\infty}x(t)\,e^{-st}\,dt=-\int_{-\infty}^{\infty}e^{-at}u(-t)\,e^{-st}\,dt\\
+  &=\int_{-\infty}^{0}e^{-(a+s)t}\,dt=\frac{1}{s+a},\quad\mathrm{Re}\{s+a\}<0\qquad\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: ikinci satırda integralin önünde $-$ işareti olmalı: $-\int_{-\infty}^{0}e^{-(a+s)t}\,dt=\dfrac{1}{s+a}$.}
+\[ -e^{-at}u(-t)\ \overset{\mathcal{L}}{\longleftrightarrow}\ \frac{1}{s+a},\quad\mathrm{Re}\{s\}<-a\ \ {\color{kirmizikalem}\star} \]
+
+$\Rightarrow$ Yakınsaklık bölgesi (Region of converge, ROC): Laplace transform integralinin yakınsaklığı değer aralığına yakınsaklık bölgesi denir.
+
+\vspace{2mm}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north west lines, pattern color=yesilkalem!70] (-1,-1.6) rectangle (2.1,1.7);
+    \draw[yesilkalem, line width=0.9pt] (-1,-1.7) -- (-1,1.8);
+    \draw[murekkep, -{Stealth[length=2mm]}] (-2.4,0) -- (2.8,0) node[right] {\small $\sigma$};
+    \draw[murekkep, -{Stealth[length=2mm]}] (0,-1.7) -- (0,2.0) node[above right] {\small $j\omega$};
+    \node[murekkep, below] at (-1,0) {\small $-a$};
+    \node[kirmizikalem, right] at (0.1,1.45) {\small Im$\{s\}$};
+    \node[kirmizikalem, below] at (2.3,-0.15) {\small Re$\{s\}$};
+  \end{tikzpicture}\\[1mm]
+  $\mathcal{L}\{e^{-at}u(t)\}=\dfrac{1}{s+a},\ \mathrm{Re}\{s\}>-a$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north east lines, pattern color=yesilkalem!70] (-2.4,-1.6) rectangle (-1,1.7);
+    \draw[yesilkalem, dashed] (-1,-1.7) -- (-1,1.8);
+    \draw[murekkep, -{Stealth[length=2mm]}] (-2.4,0) -- (2.8,0) node[right] {\small $\sigma$};
+    \draw[murekkep, {Stealth[length=2mm]}-{Stealth[length=2mm]}] (0,-1.7) -- (0,2.0) node[above right] {\small $j\omega$};
+    \node[yesilkalem!70!black, below right] at (-1,0) {\small $-a$};
+  \end{tikzpicture}\\[1mm]
+  $\mathcal{L}\{-e^{-at}u(-t)\}=\dfrac{1}{s+a},\ \mathrm{Re}\{s\}<-a$
+\end{minipage}
+
+\noindent\begin{minipage}{\linewidth}
+\begin{ornek}
+  $x(t)=3e^{-2t}u(t)-2e^{-t}u(t)$
+\end{ornek}\nopagebreak
+\begin{align*}
+  e^{-2t}u(t)\ &\overset{\mathcal{L}}{\longleftrightarrow}\ \frac{1}{s+2},\quad\mathrm{Re}\{s\}>-2\\
+  e^{-t}u(t)\ &\longleftrightarrow\ \frac{1}{s+1},\quad\mathrm{Re}\{s\}>-1
+\end{align*}
+\end{minipage}
+\[ X(s)=\frac{3}{s+2}-\frac{2}{s+1}=\frac{s-1}{s^2+3s+2},\quad\mathrm{Re}\{s\}>-1 \]
+
+\noindent
+\begin{minipage}[c]{0.52\linewidth}
+  \centering
+  \begin{tikzpicture}[line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north west lines, pattern color=yesilkalem!70] (-1,-1.6) rectangle (2.1,1.7);
+    \draw[yesilkalem, line width=0.9pt] (-1,-1.7) -- (-1,1.8);
+    \draw[kirmizikalem, -{Stealth[length=2mm]}] (-3,0) -- (2.8,0);
+    \draw[kirmizikalem, -{Stealth[length=2mm]}] (0,-1.7) -- (0,2.0) node[right] {\small Im};
+    \node[yesilkalem!70!black] at (-2,0) {$\times$};
+    \node[yesilkalem!70!black] at (-1,0) {$\times$};
+    \node[yesilkalem!70!black, draw, circle, inner sep=1.5pt] at (1,0) {};
+    \node[yesilkalem!70!black, below] at (-2,-0.1) {\small $-2$};
+    \node[yesilkalem!70!black, below] at (-1,-0.1) {\small $-1$};
+    \node[yesilkalem!70!black, below] at (1,-0.15) {\small $1$};
+  \end{tikzpicture}\\[1mm]
+  {\small\color{yesilkalem!70!black} $s$ düzlemi kutup sıfır çizimi}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.4\linewidth}
+  {\color{kirmizikalem}$\times$ : pole (kutup)\\[3mm] $\circ$ : zero (sıfır)}
+\end{minipage}
+
+\sayfa{9}\nopagebreak
+\begin{ornek}
+  $\delta(t)-\dfrac{4}{3}\,e^{-t}u(t)+\dfrac{1}{2}\,e^{2t}u(t)$
+\end{ornek}\nopagebreak
+\begin{align*}
+  \Lap{\delta(t)} &=\int_{-\infty}^{\infty}\delta(t)\,e^{-st}\,dt=\int_{-\infty}^{\infty}\delta(t)\,e^{-s0}\,dt\\
+  &=\int_{-\infty}^{\infty}\delta(t)\,dt=1
+\end{align*}
+\begin{align*}
+  \delta(t)\ &\overset{\mathcal{L}}{\longleftrightarrow}\ 1,\quad\forall s\ \ (\text{ROC, bütün $s$-düzlemi})\\
+  e^{-t}u(t)\ &\overset{\mathcal{L}}{\longleftrightarrow}\ \frac{1}{s+1},\quad\mathrm{Re}\{s\}>-1\\
+  e^{2t}u(t)\ &\longleftrightarrow\ \frac{1}{s-2},\quad\mathrm{Re}\{s\}>2
+\end{align*}
+\[ X(s)=1-\frac{4}{3}\,\frac{1}{s+1}+\frac{1}{2}\,\frac{1}{s-2}=\frac{(s-1)^2}{(s+1)(s-2)},\quad\mathrm{Re}\{s\}>2\qquad\text{\footnotemark} \]
+\footnotetext{Claude notu: eşitliğin sağ tarafı için $e^{2t}u(t)$ katsayısı muhtemelen $\frac{1}{3}$ olmalı (notun devamında da $\frac{1}{3}e^{2t}u(t)$ yazılmış).}
+
+\begin{center}
+  \begin{tikzpicture}[line width=0.7pt, x=0.9cm, y=0.9cm]
+    \fill[pattern=north west lines, pattern color=yesilkalem!70] (2,-1.7) rectangle (3.6,1.8);
+    \draw[yesilkalem, dashed] (2,-1.8) -- (2,1.9);
+    \draw[murekkep, -{Stealth[length=2mm]}] (-2.4,0) -- (4.0,0) node[right] {\small Re};
+    \draw[murekkep, -{Stealth[length=2mm]}] (0,-1.8) -- (0,2.0) node[right] {\small Im};
+    \node[kirmizikalem] at (-1,0) {$\times$};
+    \node[kirmizikalem] at (2,0) {$\times$};
+    \draw[kirmizikalem] (1,0) circle (0.15);
+    \draw[kirmizikalem] (1,0) circle (0.06);
+    \node[kirmizikalem, below] at (-1,-0.1) {\small $-1$};
+    \node[kirmizikalem, below] at (1,-0.17) {\small $1$};
+    \node[kirmizikalem, below] at (2,-0.1) {\small $2$};
+  \end{tikzpicture}
+\end{center}
+
+$\Rightarrow$ Aynı noktada tekrar eden $s$ sayısına mertebe denir.
+Paydada, $s=-1$ ve $s=2$ olmak üzere birinci mertebeden iki adet kutup ve payda\footnote{Claude notu: sıfır payda yer aldığı için muhtemelen ``pay'da'' olmalı.} $s=1$'de ikinci mertebeden bir adet sıfır vardır.
+
+Not: Laplace transformun ROC'u $j\omega$ eksenini kesmiyorsa Fourier transformu yakınsamaz.
+$\frac{1}{3}e^{2t}u(t)$ ifadesinin Fourier transformu yoktur.
+
+\section{Yakınsama bölgesi (ROC) özellikleri:}
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=5pt]
+  \item $X(s)$'in ROC'u $s$-düzlemindeki $j\omega$ eksenine paralel şeritlerden oluşur.
+\end{enumerate}
+\[ X(s)=X(\sigma+j\omega) \]
+
+\sayfa{10}\nopagebreak
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=5pt, start=2]
+  \item Rasyonel Laplace transform için, ROC herhangi bir kutup içermez.
+  \item $x(t)$ sonlu süreli ve mutlak entegre edilebilir ise, ROC bütün $s$ düzlemidir.
+\end{enumerate}
+\[ \int_{T_1}^{T_2}|x(t)|\,dt<\infty\qquad\qquad \int_{T_1}^{T_2}|x(t)|\,e^{-\sigma t}\,dt<\infty\ \ \leftarrow\ 1)\ \text{özellik} \]
+\begin{itemize}[label=$\to$, leftmargin=2em, itemsep=3pt]
+  \item $\mathrm{Re}\{s\}=\sigma=0$ iken $s=j\omega$ olup ROC içinde kalır.
+  \item $\mathrm{Re}\{s\}=\sigma>0$ iken
+    \[ \int_{T_1}^{T_2}|x(t)|\,e^{-\sigma t}\,dt<e^{-\sigma T_1}\int_{T_1}^{T_2}|x(t)|\,dt<\infty \]
+    olur ve $\mathrm{Re}\{s\}>0$ $s$ düzlemi ROC içinde kalır
+  \item $\mathrm{Re}\{s\}=\sigma<0$ iken
+    \[ \int_{T_1}^{T_2}|x(t)|\,e^{-\sigma t}\,dt<e^{-\sigma T_2}\int_{T_1}^{T_2}|x(t)|\,dt<\infty \]
+    dur ve $\mathrm{Re}\{s\}<0$ $s$ düzlemi ROC içinde kalır.
+\end{itemize}
+
+\begin{ornek}
+  $x(t)=\begin{cases}e^{-at}, & 0<t<T\\ 0, & \text{dışında}\end{cases}$
+\end{ornek}\nopagebreak
+\[ X(s)=\int_{-\infty}^{\infty}x(t)\,e^{-st}\,dt=\int_{0}^{T}e^{-(a+s)t}\,dt=\frac{1}{s+a}\left(1-e^{-(a+s)T}\right) \]
+\begin{itemize}[label=$\leftarrow$, leftmargin=4em, itemsep=2pt]
+  \item 3)'e göre ROC bütün $s$ düzlemi
+  \item {\color{kirmizikalem}$\triangle$} 2)'e göre ROC kutup içermez, $s=-a$ kutup var.
+\end{itemize}
+\begin{align*}
+  s=-a\ \text{iken}\quad X(s) &=\frac{0}{0}\\
+  \lim_{s\to-a}X(s) &=\lim_{s\to-a}\left(\frac{\dfrac{d}{ds}\left(1-e^{-(a+s)T}\right)}{\dfrac{d}{ds}(s+a)}\right)\\
+  &=\lim_{s\to a}\,T\,e^{-aT}e^{-sT}\ \Rightarrow\ X(-a)=T\qquad\text{\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: son satırdaki limitte muhtemelen $s\to-a$ olmalı.}
+
+\noindent\begin{minipage}{\linewidth}
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=5pt, start=4]
+  \item $x(t)$ sağ yanlı ve $\mathrm{Re}\{s\}=\sigma_0$ doğrusu ROC'da ise, $\mathrm{Re}\{s\}>\sigma_0$ için bütün $s$ değerleri de ROC'da var\okunamadi{dır}
+\end{enumerate}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \draw[-{Stealth[length=2mm]}] (-2.2,0) -- (2.4,0) node[right] {\small $t$};
+    \draw[-{Stealth[length=2mm]}] (0,-1.7) -- (0,1.9) node[right] {\small $x(t)$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north east lines, pattern color=murekkep!70] (-0.7,-1.6) rectangle (1.3,1.7);
+    \draw (-0.7,-1.7) -- (-0.7,1.8);
+    \draw (-2.4,0) -- (2.4,0);
+    \draw[-{Stealth[length=2mm]}] (0,-1.7) -- (0,1.9);
+    \node[left] at (-0.75,-0.45) {\small $\sigma_0$};
+  \end{tikzpicture}
+\end{minipage}
+\end{minipage}
+
+\sayfa{11}\nopagebreak
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=5pt, start=5]
+  \item \textit{(orijinalde boş bırakılmış)}
+  \item $x(t)$ çift yanlı ve $\mathrm{Re}\{s\}=\sigma_0$ doğrusu ROC'da ise, ROC, $s$ düzleminde $\mathrm{Re}\{s\}=\sigma_0$ doğrusunu içeren bir şeritten oluşur.
+\end{enumerate}
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \draw[-{Stealth[length=2mm]}] (-2.4,0) -- (2.4,0) node[right] {\small $t$};
+    \draw[-{Stealth[length=2mm]}] (0,-0.8) -- (0,2.0) node[right] {\small $x(t)$};
+    \draw[yesilkalem, line width=0.8pt] plot[smooth] coordinates {(-2.3,0.5) (-1.5,0.55) (-0.9,0.75) (-0.5,1.1) (-0.2,1.5) (0,1.55) (0.25,0.95) (0.6,1.1) (1.2,0.95) (1.9,0.8) (2.3,0.75)};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north east lines, pattern color=yesilkalem!70] (-0.9,-1.5) rectangle (0.9,1.6);
+    \draw[yesilkalem] (-0.9,-1.7) -- (-0.9,1.7);
+    \draw[yesilkalem] (0.9,-1.7) -- (0.9,1.7);
+    \draw[yesilkalem, -{Stealth[length=2mm]}] (-2.2,0) -- (2.4,0) node[right] {\small Re};
+    \draw[yesilkalem, -{Stealth[length=2mm]}] (0,-1.7) -- (0,1.9) node[right] {\small Im};
+    \node[murekkep, below left] at (-0.85,-0.1) {\small $\sigma_R$};
+    \node[murekkep, below right] at (0.85,-0.1) {\small $\sigma_L$};
+  \end{tikzpicture}
+\end{minipage}
+
+\begin{enumerate}[label=\arabic*), leftmargin=2em, itemsep=5pt, start=7]
+  \item $X(s)$ rasyonel ise, ROC, ya kutuplarla sınırlıdır yada sonsuza genişler ve kutup içermez.
+\end{enumerate}
+\begin{itemize}[label=$\to$, leftmargin=2em, itemsep=3pt]
+  \item $x(t)$ sağ yanlı ise ROC, en sağdaki kutuların sağında kalan $s$ düzlemidir
+  \item $x(t)$ sol yanlı ise, ROC en soldaki kutuların solunda kalan $s$ düzlemidir.
+\end{itemize}
+
+\sayfa{12}\nopagebreak
+\begin{ornek}
+  $x(t)=e^{-b|t|}$
+\end{ornek}\nopagebreak
+\begin{align*}
+  X(s) &=\int_{-\infty}^{\infty}x(t)\,e^{-st}\,dt=\int_{-\infty}^{0}e^{bt}\,e^{-st}\,dt+\int_{0}^{\infty}e^{-bt}\,e^{-st}\,dt\\
+  &=\frac{-1}{s-b}+\frac{1}{s+b}\,,\qquad\begin{aligned}&\mathrm{Re}\{s-b\}<0\\&\mathrm{Re}\{s+b\}>0\end{aligned}
+\end{align*}
+\[ X(s)=\frac{-2b}{s^2-b^2},\quad -b<\mathrm{Re}\{s\}<b \]
+\noindent
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \draw[-{Stealth[length=2mm]}] (-2.4,0) -- (2.4,0) node[right] {\small $t$};
+    \draw[-{Stealth[length=2mm]}] (0,-1.6) -- (0,2.1);
+    \draw[line width=0.9pt, domain=-2.3:0, samples=40, smooth] plot (\x, {1.6*exp(1.5*\x)});
+    \draw[line width=0.9pt, domain=0:2.3, samples=40, smooth] plot (\x, {1.6*exp(-1.5*\x)});
+    \node[left] at (0,1.6) {\small $1$};
+    \node[anchor=west] at (0.1,2.05) {\footnotesize $x(t)=e^{-b|t|},\ b>0$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\linewidth}
+  \centering
+  \begin{tikzpicture}[murekkep, line width=0.7pt, x=0.8cm, y=0.8cm]
+    \fill[pattern=north east lines, pattern color=murekkep!70] (-1.2,-1.5) rectangle (1.2,1.6);
+    \draw[line width=0.5pt] (-1.2,-1.7) -- (-1.2,1.8);
+    \draw[line width=0.5pt] (1.2,-1.7) -- (1.2,1.8);
+    \draw[-{Stealth[length=2mm]}] (-2.6,0) -- (2.6,0) node[right] {\small Re};
+    \draw[-{Stealth[length=2mm]}] (0,-1.7) -- (0,1.9) node[right] {\small Im};
+    \node at (-1.2,0) {$\times$};
+    \node at (1.2,0) {$\times$};
+    \node[below left] at (-1.2,-0.05) {\small $-b$};
+    \node[below right] at (1.2,-0.05) {\small $b$};
+  \end{tikzpicture}
+\end{minipage}
+\end{document}

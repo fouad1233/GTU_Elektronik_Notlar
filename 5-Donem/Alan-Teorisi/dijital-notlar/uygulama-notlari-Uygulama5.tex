@@ -1,0 +1,173 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Uygulama 5 -- Yük dağılımları: potansiyel, kuvvet, Gauss}{Uygulama5.pdf}
+
+\sayfa{1}
+\noindent{\color{kirmizikalem}\underline{S.27 Pr.10}\qquad\qquad $\star$\ \fbox{4.65}\ P.2-3-10}
+
+\medskip
+\noindent
+\begin{minipage}[c]{0.44\linewidth}
+  \centering
+  \begin{tikzpicture}[line width=0.7pt,scale=0.85]
+    \draw[-{Stealth}] (0,0) -- (0,3.2) node[right] {$z$};
+    \draw[-{Stealth}] (0,0) -- (4.3,0) node[right] {$y$};
+    \draw[-{Stealth}] (0,0) -- (-2.6,-2.55);
+    \draw (0.14,0.17) circle (1.89);
+    \node at (-1.2,-1.45) {$a$};
+    \fill (1.47,1.5) circle (1pt);
+    \draw[-{Stealth}] (1.47,1.5) -- (3.1,2.3);
+    \node at (3.9,2.45) {$P(r,\theta,\phi)$};
+    \node at (0.75,1.0) {\scriptsize $(a,\theta',\phi')$};
+    \node at (1.95,1.5) {$Q$};
+    \node at (1.8,1.95) {\scriptsize $r'$};
+    \node at (2.0,-0.65) {$\rho_s$};
+  \end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.54\linewidth}
+  a) $V=\ ?$
+  \begin{align*}
+    Q &= \int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\rho_s\,ds, \qquad ds = a^2\sin\theta\,d\phi\,d\theta \\
+      &= \int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\rho_s\,a^2\sin\theta\,d\phi\,d\theta \\
+    \Rightarrow\ Q &= 4\pi a^2\rho_s \ \Rightarrow\ \rho_s=\frac{Q}{4\pi a^2}
+  \end{align*}
+\end{minipage}
+
+\[ dV=\frac{1}{4\pi\varepsilon_0}\,\frac{dQ}{r'}=\frac{1}{4\pi\varepsilon_0}\,\frac{\rho_s\,dS}{r'} \]
+\[ V=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}dV=\int_{\theta=0}^{\pi}\int_{\phi=0}^{2\pi}\frac{\rho_s}{4\pi\varepsilon_0\,r'}\,a^2\sin\theta'\,d\theta'\,d\phi' \]
+
+\sekilnotu[1]{Aynı küre ve eksenler ($z$ yukarı, $y$ sağa, $x$ sol alta). Kırmızı kalemle: yüzeyde kaynak noktası $(a,\theta',\phi')$, orijinden $P(r,\theta,\phi)$'ye $r$ vektörü, kaynaktan $P$'ye $r''$ vektörü, orijinde $\vec e_{r'}$ ve $\vec e_r$ birim vektörleri ve aralarındaki açı $\psi$; $r'$ etiketli bir ok; $P$'nin $xy$ düzlemindeki izdüşümü ve $\phi$ açısı kırmızı kesikli çizgilerle gösterilmiş.}
+
+\noindent
+\begin{minipage}[t]{0.58\linewidth}
+\begin{align*}
+  r'' &= \sqrt{a^2+r^2-2ar\cos\psi} \\
+      &= r\sqrt{1+\frac{a^2}{r^2}-\frac{2a\cos\psi}{r}}
+\end{align*}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.38\linewidth}
+  $\cos\psi$
+\end{minipage}
+\[ \vec e_r\cdot\vec e_{r'}=|\vec e_r|\cdot|\vec e_{r'}|\cos\psi=\cos\psi \]
+\begin{align*}
+  \vec e_r &= \sin\theta\cos\phi\;\vec e_x+\sin\theta\sin\phi\;\vec e_y+\cos\theta\;\vec e_z \\
+  \vec e_{r'} &= \sin\theta'\cos\phi'\;\vec e_z+\sin\theta'\sin\phi'\;\vec e_y+\cos\theta'\;\vec e_z\quad\footnotemark
+\end{align*}
+\footnotetext{Claude notu: muhtemelen ilk terimdeki $\vec e_z$ yerine $\vec e_x$ olmalı.}
+\[ \vec e_r\cdot\vec e_{r'}=\sin\theta\sin\theta'\cos\phi\cos\phi'+\sin\theta\sin\theta'\sin\phi\sin\phi'+\cos\theta\cos\theta' \]
+\[ \cos\psi=\sin\theta\sin\theta'\cos(\phi'-\phi)+\cos\theta\cos\theta' \]
+
+\sayfa{2}
+Basitlik olması için $P$ noktası $z$ ekseni üzerinde olsun. $\theta=0$ olur
+
+\hspace{1.5cm}$\Rightarrow\ \cos\psi=\cos\theta'$
+\[ V=\frac{Q}{16\pi^2\varepsilon_0}\,\frac{2\pi}{\varepsilon_0}\int_{\theta'=0}^{\pi}\frac{\sin\theta'\,d\theta'}{\sqrt{a^2+r^2-2ar\cos\theta'}}\;d\theta'\quad\footnotemark \]
+\footnotetext{Claude notu: $2\pi/\varepsilon_0$ yerine muhtemelen $2\pi$ olmalı (sonraki satırlardaki sonuçla uyumlu).}
+\[ V=\frac{Q}{16\pi^2\varepsilon_0}\,\frac{2\pi}{\varepsilon_0}\,{\color{kirmizikalem}\frac{1}{2ar}}\int_{\theta'=0}^{\pi}\frac{{\color{kirmizikalem}2ar}\,\sin\theta'\,d\theta'}{\sqrt{a^2+r^2-2ar\cos\theta'}}\;d\theta' \]
+\[ =\frac{Q}{8\pi\varepsilon_0\,ar}\left(\underbrace{\sqrt{a^2+r^2+2ar}}_{\sqrt{(a+r)^2}}-\underbrace{\sqrt{a^2+r^2-2ar}}_{\sqrt{(a-r)^2}}\right) \]
+\[ V=\frac{Q}{8\pi\varepsilon_0\,ar}\Bigl(|a+r|-|a-r|\Bigr)\qquad\qquad z\ \text{ekseni üzerinde} \]
+
+b) $\vec E=\ ?$ \qquad $r>a$ \qquad $V=\dfrac{Q}{4\pi\varepsilon_0\,r}$
+\[ \vec E=-\operatorname{grad}V=-\frac{\partial V}{\partial r}\,\vec e_r \]
+\formulkutu{\vec E=\frac{Q}{4\pi\varepsilon_0\,r^2}\,\vec e_r}
+
+c) $V$ ve $\vec E$'nin $r$'ye göre \okunamadi{değişimi}
+\[ V=\begin{cases}\dfrac{Q}{4\pi\varepsilon_0\,r}, & r>a\\[3mm] \dfrac{Q}{4\pi\varepsilon_0\,a}, & r<a\end{cases}
+\qquad\qquad
+\vec E=\begin{cases}\dfrac{Q}{4\pi\varepsilon_0\,r^2}\,\vec e_r, \\[3mm] 0,\end{cases} \]
+
+\sayfa{3}
+\noindent{\color{kirmizikalem}\underline{S.27 Pr 13}\qquad\qquad\qquad sayfa 73}
+
+\begin{center}
+\begin{tikzpicture}[line width=0.7pt,x=1cm,y=0.8cm]
+  \draw[-{Stealth}] (-4.7,0) -- (4.1,0);
+  \draw[-{Stealth}] (0,0) -- (0,2.6) node[right=3pt] {$z$};
+  \draw (-3.8,-0.1) -- (-3.8,0.1);
+  \draw (-1.85,-0.1) -- (-1.85,0.1);
+  \draw (1.9,-0.1) -- (1.9,0.1);
+  \draw (3.65,-0.1) -- (3.65,0.1);
+  \draw (-0.1,1.95) -- (0.1,1.95);
+  \node[anchor=south] at (-3.8,0.15) {\footnotesize $P_1(-a,0,0)$};
+  \node[anchor=south] at (-1.85,0.15) {\footnotesize $P_2(-b,0,0)$};
+  \node[anchor=south] at (1.9,0.15) {\footnotesize $P_3(b,0,0)$};
+  \node[anchor=south] at (3.65,0.15) {\footnotesize $P_4(a,0,0)$};
+  \node at (-3.8,-0.6) {$-Q$};
+  \node at (-1.85,-0.6) {$Q/2$};
+  \node at (1.9,-0.7) {$-\dfrac{Q}{2}$};
+  \node at (3.65,-0.6) {$Q$};
+  \node[anchor=east] at (-0.12,2.1) {\footnotesize $P_5(0,0,c)$};
+  \node[anchor=west] at (0.3,1.95) {$q$};
+  \draw[kirmizikalem,dashed,-{Stealth}] (-3.8,0) -- (0,1.95);
+  \node[kirmizikalem] at (-2.5,1.35) {\footnotesize $\vec r_{15}$};
+\end{tikzpicture}
+\end{center}
+
+a) $q$ yüküne etkiyen $\vec F$ nedir?
+\[ \vec F_{15}=\frac{1}{4\pi\varepsilon_0}\,\frac{(-qQ)}{r_{15}^3}\,\vec r_{15} \]
+\[ \vec r_{15}=(0-(-a))\,\vec e_x+(c-0)\,\vec e_z=a\,\vec e_x+c\,\vec e_z \]
+\[ r_{15}=\sqrt{a^2+c^2} \]
+\formulkutu{\vec F_{15}=\frac{Qq}{4\pi\varepsilon_0}\,\frac{1}{(a^2+c^2)^{3/2}}\,\bigl(-a\,\vec e_x-c\,\vec e_z\bigr)}
+\[ \vec r_{25}=\overset{{\color{kirmizikalem}\vec P_5-\vec P_2}}{b\,\vec e_x+c\,\vec e_z}\ ,\qquad r_{25}=\sqrt{b^2+c^2} \]
+\formulkutu{\vec F_{25}=\frac{Qq}{8\pi\varepsilon_0}\,\frac{1}{(b^2+c^2)^{3/2}}\,\bigl(b\,\vec e_x+c\,\vec e_z\bigr)}
+\[ \vec r_{35}=-b\,\vec e_x+c\,\vec e_z\ ,\qquad r_{35}=\sqrt{b^2+c^2} \]
+\[ \vec F_{35}=\frac{Qq}{4\pi\varepsilon_0}\,\frac{1}{(b^2+c^2)^{3/2}}\,\Bigl(+\frac{b}{2}\,\vec e_x-\frac{c}{2}\,\vec e_z\Bigr) \]
+\[ \vec r_{45}=-a\,\vec e_x+c\,\vec e_z\ ,\qquad r_{45}=\sqrt{a^2+c^2} \]
+\[ \vec F_{45}=\frac{Qq}{4\pi\varepsilon_0}\,\frac{1}{(a^2+c^2)^{3/2}}\,\bigl(-a\,\vec e_x+c\,\vec e_z\bigr) \]
+\[ \vec F=\vec F_{15}+\vec F_{25}+\vec F_{35}+\vec F_{45} \]
+\[ \vec F=\frac{Qq}{4\pi\varepsilon_0}\left[\begin{array}{@{}l@{}}
+  \dfrac{1}{(a^2+c^2)^{3/2}}\Bigl(-a\,\vec e_x-\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$c\,\vec e_z$};\draw[kirmizikalem,line width=0.6pt](s.south west)--(s.north east);}\Bigr)\\[4mm]
+  +\dfrac{1}{(b^2+c^2)^{3/2}}\Bigl(\dfrac12\,b\,\vec e_x+\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$\frac12\,c\,\vec e_z$};\draw[kirmizikalem,line width=0.6pt](s.south west)--(s.north east);}\Bigr)\\[4mm]
+  +\dfrac{1}{(b^2+c^2)^{3/2}}\Bigl(\dfrac12\,b\,\vec e_x-\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$\frac12\,c\,\vec e_z$};\draw[kirmizikalem,line width=0.6pt](s.south west)--(s.north east);}\Bigr)
+\end{array}\right. \]
+
+\sayfa{4}
+\[ \hspace{3.2cm}\left.+\frac{1}{(a^2+c^2)^{3/2}}\Bigl(-a\,\vec e_x+\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$c\,\vec e_z$};\draw[kirmizikalem,line width=0.6pt](s.south west)--(s.north east);}\Bigr)\right] \]
+\formulkutu{\vec F=\frac{Qq}{4\pi\varepsilon_0}\left(\frac{-2a}{(a^2+c^2)^{3/2}}+\frac{b}{(b^2+c^2)^{3/2}}\right)\quad\footnotemark}
+\footnotetext{Claude notu: muhtemelen sonda $\vec e_x$ olmalı (c şıkkında aynı ifade $\vec e_x$ ile yazılmış).}
+
+b) $q$ yükünün potansiyel enerjisi nedir?
+\[ V_1=\frac{-Q}{4\pi\varepsilon_0}\,\frac{1}{\sqrt{a^2+c^2}}\qquad\qquad V_3=\frac{-Q}{4\pi\varepsilon_0}\,\frac{1}{2\sqrt{b^2+c^2}} \]
+\[ V_2=\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{2\sqrt{b^2+c^2}}\qquad\qquad V_4=\frac{Q}{4\pi\varepsilon_0}\,\frac{1}{\sqrt{a^2+c^2}} \]
+\[ V_T=0 \]
+
+c) $a=4b$ halinde $Oy$ ekseni üzerinde hangi noktada hangi noktada $\vec F=0$ olur? $P_9(0,y,0)$
+\begin{align*}
+  \vec F &= \frac{Qq}{4\pi\varepsilon_0}\left(\frac{-2a}{(a^2+y^2)^{3/2}}+\frac{b}{(b^2+y^2)^{3/2}}\right)\vec e_x \\
+  &= \frac{Qq}{4\pi\varepsilon_0}\left(\underbrace{\frac{-8b}{(16b^2+y^2)^{3/2}}+\frac{b}{(b^2+y^2)^{3/2}}}_{0}\right)\vec e_x \\
+  &= \frac{8\,\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$b$};\draw(s.south west)--(s.north east);}}{(16b^2+y^2)^{3/2}}
+   = \frac{\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$b$};\draw(s.south west)--(s.north east);}}{(b^2+y^2)^{3/2}}
+\end{align*}
+\[ 8\,(b^2+y^2)^{3/2}=(16b^2+y^2)^{3/2} \]
+\[ 64\,(b^2+y^2)^3=(16b^2+y^2)^3 \]
+\[ 4\,(b^2+y^2)=16b^2+y^2 \]
+\[ \Rightarrow\ 3y^2=12b^2 \]
+\[ y^2=4b^2 \]
+\[ \kutula{y=\pm 2b}\qquad\text{noktalarında}\quad\vec F=0\quad\text{olur} \]
+
+\sayfa{5}
+\noindent{\color{kirmizikalem}Sayfa 32. 1,2,3 sorularını çözeceğiz}
+
+\medskip
+\noindent Gauss
+\[ \int_S \vec D\cdot ds=Q\qquad\qquad\qquad \vec D=\varepsilon_0\vec E \]
+
+\sekilnotu[5]{Kesikli çizgilerle çizilmiş büyük bir kapalı yüzey (yanında $S$ ve küçük bir $r$ yazılı); içinde düzensiz biçimli kapalı bir bölge, bölgenin içinde $\int\rho_v$ ve $V$. Aşağıdaki ``kapalı yüzeyin içinde yük yok'' yazısından bu bölgeye uzanan bir ok çizilmiş.}
+
+\[ Q=\int_V\rho_v\,dV \]
+\[ {\color{kirmizikalem}\star}\ \operatorname{div}\vec D=\rho \]
+
+\noindent $\vec D$ : deplansman vektörü
+
+\noindent $\varepsilon_0$ : Boş uzayın elektriksel geçirgenliği
+
+\noindent \hspace{2cm}(dielectric permettivity)
+
+\medskip
+\noindent $\Delta V=0$\quad\begin{minipage}[t]{0.7\linewidth}laplacian denklemi\\ kapalı yüzeyin içinde yük yok\end{minipage}
+
+\medskip
+\noindent $\Delta V=-\dfrac{\rho}{\varepsilon_0}$ \ : poisson denklemi
+
+\end{document}

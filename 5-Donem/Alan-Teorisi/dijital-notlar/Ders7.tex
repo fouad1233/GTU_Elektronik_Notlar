@@ -1,0 +1,153 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Elektriksel dipol, kompleks sayılar, Gauss teoremi}{Ders7.pdf}
+
+\sayfa{1}
+\section{Dipol (Elektriksel)}
+
+\[
+p=q\cdot d\ \ (\mathrm{C\cdot m})=\text{sabit}
+\qquad\qquad
+\lim_{\substack{q\to\infty\\ d\to 0}} q\,d=p=\text{sabit}
+\]
+
+\sekilnotu[1]{Dipol geometrisi: $z$ ekseni yukarı, $y$ ekseni sağa, $x$ ekseni sol-aşağı. $z$ ekseni üzerinde $A(0,0,d)$ noktasında $+q$ yükü ve $B(0,0,-d)$ noktasında $-q$ yükü (orijinden her birine uzaklık $d$, süslü parantezle gösterilmiş; $B$ tarafında kesikli çizgi). Sağ üstte $P$ noktası; orijinden $P$'ye $r$, $A$'dan $P$'ye $r_1$, $B$'den $P$'ye $r_2$ doğruları. $r$ ile $+z$ ekseni arasındaki açı $\theta$, $r$ ile $-z$ yönü arasındaki açı $\pi-\theta$.}
+
+\[
+\lim_{d\to 0}\left(\frac{1}{r_1}-\frac{1}{r_2}\right)=\frac{1}{r}-\frac{1}{r}=0
+\]
+
+\[
+V=\frac{q}{4\pi\varepsilon_0}\,\frac{1}{r_1}-\frac{q}{4\pi\varepsilon_0}\,\frac{1}{r_2}
+\]
+
+\[
+\lim_{\substack{q\to\infty\\ d\to 0}}V=V_{dipol}=\frac{1}{4\pi\varepsilon_0}\lim_{\substack{q\to\infty\\ d\to\infty}}\frac{q\,d}{d}\left(\frac{1}{r_1}-\frac{1}{r_2}\right)\footnotemark
+\]
+\footnotetext{Claude notu: muhtemelen $d\to 0$ olmalı.}
+
+\[
+=\frac{1}{4\pi\varepsilon_0}\;\underline{\lim_{\substack{q\to\infty\\ d\to 0}}q\,d}\;\lim_{\substack{q\to\infty\\ d\to 0}}\frac{1}{d}\left(\frac{1}{r_1}-\frac{1}{r_2}\right)
+\]
+
+\[
+V_{dipol}=\frac{p}{4\pi\varepsilon_0}\cdot\lim_{d\to 0}\frac{\left(\dfrac{1}{r_1}-\dfrac{1}{r_2}\right)}{d}
+\]
+
+\begin{align*}
+\widehat{OAP}\quad r_1&=\sqrt{r^2+d^2-2rd\cos\theta}\\
+\widehat{OBP}\quad r_2&=\sqrt{r^2+d^2-2rd\cos(\pi-\theta)}=\sqrt{r^2+d^2+2rd\cos\theta}
+\end{align*}
+
+\[
+V_{dipol}=\frac{p}{4\pi\varepsilon_0}\lim_{d\to 0}\frac{\left(\dfrac{1}{r_1}-\dfrac{1}{r_2}\right)}{d}
+\]
+\[
+=\frac{p}{4\pi\varepsilon_0}\lim_{d\to 0}\frac{\dfrac{1}{\sqrt{r^2+d^2-2rd\cos\theta}}-\dfrac{1}{\sqrt{r^2+d^2+2rd\cos\theta}}}{d}
+\]
+\[
+=\frac{p}{4\pi\varepsilon_0}\lim_{d\to 0}\frac{d}{d(d)}\ \overset{0/0}{\Bigl[(r^2+d^2-2rd\cos\theta)^{-1/2}+(r^2+d^2+2rd\cos\theta)^{-1/2}\Bigr]}\footnotemark
+\]
+\footnotetext{Claude notu: muhtemelen iki terim arasında $-$ olmalı (bir sonraki satır buna uygun).}
+
+\[
+V_{dipol}=\frac{p}{4\pi\varepsilon_0}\lim_{d\to 0}\left[-\frac{1}{2}\,\frac{2d-2r\cos\theta}{(r^2+d^2-2rd\cos\theta)^{3/2}}+\frac{1}{2}\,\frac{2d+2r\cos\theta}{(r^2+d^2+2rd\cos\theta)^{3/2}}\right]
+\]
+\[
+V_{dipol}=\frac{-p}{4\pi\varepsilon_0}\lim_{d\to 0}\left[\frac{d-r\cos\theta}{(r^2+d^2-2rd\cos\theta)^{3/2}}-\frac{d+r\cos\theta}{(r^2+d^2-2rd\cos\theta)^{3/2}}\right]\footnotemark
+\qquad\kutula{\begin{aligned}2p&=2qd\\&=q(2d)\end{aligned}}
+\]
+\footnotetext{Claude notu: ikinci paydada muhtemelen $+2rd\cos\theta$ olmalı.}
+
+\[
+=-\frac{p}{4\pi\varepsilon_0}\left[-\frac{r\cos\theta}{r^3}-\frac{r\cos\theta}{r^3}\right]=\frac{p\cos\theta}{2\pi\varepsilon_0 r^2}
+\qquad\qquad
+V=\frac{2p\cos\theta}{4\pi\varepsilon_0 r^2}
+\]
+{\small $p\ \leftarrow$ dipolun moment yoğunluğu \qquad $2p$ (çemberlenmiş) $\leftarrow$ kitaptaki $p$}
+
+\medskip
+$z$ ekseni boyunca oluşturulmuş $p=qd$ moment yoğunluk bir noktasal dipolun potansiyeli
+
+\sayfa{2}
+\noindent$p=$ dipol moment yoğunluğu \qquad $[p]=\mathrm{C\,m}$
+
+\noindent$[V_{dipol}]=\mathrm{V}$
+
+\[
+\kutula{\begin{array}{l}f(r,\theta,\phi)\\
+\mathrm{grad}\,f=\dfrac{\partial f}{\partial r}\,\vec e_r+\dfrac{1}{r}\,\dfrac{\partial f}{\partial\theta}\,\vec e_\theta+\dfrac{1}{r\sin\theta}\,\dfrac{\partial f}{\partial\phi}\,\vec e_\phi\end{array}}
+\]
+
+\begin{multline*}
+\vec E=-\mathrm{grad}\,V=-\frac{\partial V_{dipol}}{\partial r}\,\vec e_r-\frac{1}{r}\,\frac{\partial V_{dipol}}{\partial\theta}\,\vec e_\theta\\
+-\frac{1}{r\sin\theta}\,\frac{\partial V_{dipol}}{\partial\phi}\,\vec e_\phi
+\end{multline*}
+
+\[
+=\frac{2p\cos\theta}{4\pi\varepsilon_0 r^3}\,\vec e_r+\frac{1}{r}\,\frac{p}{4\pi\varepsilon_0 r^2}\sin\theta\,\vec e_\theta
+\]
+\textcolor{kirmizikalem}{kitaptaki $p$ $\downarrow$}
+\[
+=\frac{p}{4\pi\varepsilon_0}\Bigl[2\cos\theta\,\vec e_r+\sin\theta\,\vec e_\theta\Bigr]
+\]
+
+\textcolor{kirmizikalem}{Yada en baştan}
+\[
+\vec E=\frac{q}{4\pi\varepsilon_0}\,\frac{\vec e_{r_1}}{r_1^2}-\frac{q}{4\pi\varepsilon_0}\,\frac{1}{r_2^2}\,\vec e_{r_2}
+\]
+ama çok daha \okunamadi{zoooooor}!!
+
+\formulkutu{\star\ \mathrm{rot}\,\vec E_{dipol}=0}
+
+\section{Hadi kompleks sayılardan bahsedelim}
+
+\noindent
+\begin{minipage}[c]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[line width=0.8pt]
+  \draw[-{Stealth}] (-2.3,0) -- (2.6,0);
+  \draw[-{Stealth}] (0,-1.1) -- (0,2.4) node[right] {$y$};
+  \draw[-{Stealth}] (0,0) -- (1.3,1.0);
+  \node[anchor=south west] at (1.3,0.95) {$z=x+iy$};
+  \node at (0.42,0.78) {$r$};
+  \draw (0.55,0) arc (0:38:0.55);
+  \node at (0.82,0.18) {$\theta$};
+  \draw (-0.08,1.0) -- (0.08,1.0);
+  \node[anchor=east] at (-0.12,1.0) {$\mathrm{Im}(z)=y$};
+  \node[anchor=north] at (1.3,-0.05) {$x=\mathrm{Re}(z)=r\cos\theta$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.52\linewidth}
+\begin{align*}
+z&=\mathrm{Re}(z)+i\,\mathrm{Im}(z)\\
+r&=\sqrt{x^2+y^2}=|z|\\
+z&=r\cos\theta+i\,r\sin\theta\\
+&=r\,[\cos\theta+i\sin\theta]\\
+&=|z|\,[\cos(\arg z)+i\sin(\arg z)]
+\end{align*}
+\end{minipage}
+
+\sayfa{3}
+\section{Gauss Teoremi}
+
+\[
+\vec A=A_x\,\vec e_x+A_y\,\vec e_y+A_z\,\vec e_z
+\]
+\[
+\underline{A_x,\ A_y,\ A_z\,(x,y,z)}
+\]
+
+\sekilnotu[3]{Düzensiz biçimli kapalı bir yüzey. Yüzey üzerindeki bir noktadan dışarı doğru $\vec n$ birim normali (yüzeye dik, dik açı işaretli); yanında $d\vec S=dS\cdot\vec n$. Yüzeyin sağ kenarının yanında ``$S$'' harfi; sağ kenardan sağa giden bir ok ``kapalı bir $S$ yüzeyi ve hacmi $v$'' yazısını gösteriyor (sonunda çok küçük bir ek var). Alttan bloğun içine doğru giden bir ok ``$v$ bölgesi'' yazısını gösteriyor.}
+
+$v$\quad $S$ tarafından kuşatılan bölge
+
+Gauss--Ostrogradski teoremi
+\formulkutu{\int_{S}\vec A\cdot d\vec S=\int_{v}\mathrm{div}\,\vec A\cdot dv}
+
+\[
+\iint_{S}\vec A\cdot d\vec S=\iiint_{v}\mathrm{div}\,\vec A\cdot dv
+\]
+
+\end{document}

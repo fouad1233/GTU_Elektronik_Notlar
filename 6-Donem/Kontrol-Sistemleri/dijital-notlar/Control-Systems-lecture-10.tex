@@ -1,0 +1,474 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Root Locus}{Control-Systems-lecture-10.pdf}
+
+\section{Root locus}
+\subsection{All possible root locations of a system}
+\sayfa{1}$\to$ For higher order systems the ``degree'' of polynomial in the characteristic equation is high!
+
+\hspace*{1.5em}$\hookrightarrow$ Finding root becomes difficult
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]},
+    blk/.style={draw, minimum width=11mm, minimum height=7mm, inner sep=1pt}]
+  \node (R) at (0,0) {\small $R(s)$};
+  \node[draw,circle,inner sep=0pt,minimum size=5mm] (S) at (1.9,0) {};
+  \node[blk] (K) at (3.7,0) {$k$};
+  \node[blk] (G) at (5.5,0) {$G(s)$};
+  \node (C) at (8.0,0) {\small $C(s)$};
+  \node[blk] (H) at (3.7,-1.6) {$H(s)$};
+  \draw[->] (R.east) -- (S.west);
+  \draw[->] (S.east) -- (K.west);
+  \draw[->] (K.east) -- (G.west);
+  \draw[->] (G.east) -- (C.west);
+  \draw (6.9,0) -- (6.9,-1.6);
+  \draw[->] (6.9,-1.6) -- (H.east);
+  \draw[->] (H.west) -| (S.south);
+  \node[font=\scriptsize] at (0.95,0.28) {$+$};
+  \node[font=\scriptsize] at (2.2,-0.55) {$-$};
+\end{tikzpicture}
+\end{center}
+
+\textcolor{turuncukalem}{accuracy $\to$ TF $+\,R(s)$}
+\[ \frac{C(s)}{R(s)} = \frac{k\,G(s)}{1+k\,G(s)H(s)} \]
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+  \textit{stability} $\to$ $1+k\,G(s)H(s)=0$
+
+  Quality of response ($t_s,\ t_p,\ M$)
+\end{minipage}\hfill
+\begin{minipage}[t]{0.46\linewidth}
+  \[ G(s)=\frac{N_G(s)}{D_G(s)} \]
+  {\small $N_G(s)\to$ Numerator, \ $D_G(s)\to$ Denominator}
+  \[ H(s)=\frac{N_H(s)}{D_H(s)} \]
+\end{minipage}
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]},
+    blk/.style={draw, minimum width=11mm, minimum height=7mm, inner sep=1pt}]
+  \node (R) at (0,0) {\small $R(s)$};
+  \node[draw,circle,inner sep=0pt,minimum size=5mm] (S) at (1.5,0) {};
+  \draw (S.north west) -- (S.south east) (S.north east) -- (S.south west);
+  \node[blk] (G) at (3.4,0) {$G(s)$};
+  \node (C) at (6.2,0) {\small $C(s)$};
+  \node[blk] (K) at (3.9,-1.6) {$k$};
+  \node[blk] (H) at (1.9,-1.6) {$H(s)$};
+  \draw[->] (R.east) -- (S.west);
+  \draw[->] (S.east) -- (G.west);
+  \draw[->] (G.east) -- (C.west);
+  \draw (4.8,0) -- (4.8,-1.6);
+  \draw[->] (4.8,-1.6) -- (K.east);
+  \draw[->] (K.west) -- (H.east);
+  \draw[->] (H.west) -| (S.south);
+  \node[font=\scriptsize] at (0.55,0.28) {$+$};
+  \node[font=\scriptsize] at (1.8,-0.55) {$-$};
+\end{tikzpicture}
+\end{center}
+
+\[ \frac{C(s)}{R(s)} = \frac{G(s)}{1+k\,G(s)H(s)}
+   = \frac{N_G/D_G}{1+k\,\dfrac{N_G}{D_G}\cdot\dfrac{N_H}{D_H}}
+   = \frac{N_G D_H}{D_G D_H + k\,N_G N_H} \]
+
+\[ \text{CLTF}\ \left\{\ \begin{aligned}
+ &\text{zeros of TF} \Rightarrow \text{``Zeroes'' of } G + \text{``poles'' of } H \\
+ &\text{poles of T.F} \Rightarrow D_G D_H + k\,N_G N_H = 0 \ \longrightarrow\ k=0 \Rightarrow D_G D_H = 0
+   \quad (D_G\to \text{poles of } G,\ D_H\to \text{poles of } H)
+\end{aligned}\right. \]
+
+By changing `k' roots of the characteristic equation change from `poles' to `zero' of the `open loop' T.F.
+\[ k\uparrow\infty \Rightarrow N_G N_H = -\mbox{\tikz[baseline=(X.base)]{\node[inner sep=0pt](X){$\displaystyle\frac{D_G D_H}{k}$};\draw[turuncukalem,line width=0.8pt] (X.south west) -- (X.north east);}}\ \textcolor{turuncukalem}{0}
+   \quad (N_G\to\text{zeroes of } G,\ N_H\to\text{zeroes of } H) \]
+
+\sayfa{2}
+\[ G(s)=\frac{s+5}{s(s+1)(s+2)} \qquad
+   \textcolor{kirmizikalem}{\begin{array}{l} \to\ z_1=-5 \\ \to\ p_1=0,\ p_2=-1,\ p_3=-2 \end{array}} \]
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1.2cm, y=1.2cm]
+  \draw[->] (-2.5,0) -- (2.3,0) node[right] {\small Re};
+  \draw[->] (0,-0.8) -- (0,1.9) node[right] {\small Im};
+  \draw[kirmizikalem] (-2.3,0) circle (1.5pt) node[below=3pt] {\small $z_1$};
+  \foreach \xx/\lab in {-1.3/p_3, -0.7/p_2, 0/p_1} {
+    \draw[kirmizikalem] (\xx-0.05,-0.05) -- (\xx+0.05,0.05) (\xx-0.05,0.05) -- (\xx+0.05,-0.05);
+    \node[kirmizikalem,font=\small] at (\xx+0.14,-0.22) {$\lab$};
+  }
+\end{tikzpicture}
+\end{center}
+
+Vector representation in complex plane
+
+\noindent
+\begin{minipage}[c]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}]
+  \draw[->] (-1.7,0) -- (2.3,0) node[right] {\small Re};
+  \draw[->] (0,-1.1) -- (0,1.7) node[right] {\small Im};
+  \draw[->] (0,0) -- (1.2,1.2) node[above right] {\small $s'$};
+  \draw[dashed] (0,1.2) -- (1.2,1.2);
+  \draw[dotted] (1.2,1.2) -- (1.2,0);
+  \node[left] at (0,1.2) {\small $\omega$};
+  \node[below] at (1.2,0) {\small $\sigma$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.48\linewidth}
+\[\begin{aligned}
+ \sigma+j\omega &= R\,e^{j\theta} = R\phase{\theta} \\
+ R &= \sqrt{\sigma^2+\omega^2} \\
+ \theta &= \tan^{-1}\!\left(\frac{\omega}{\sigma}\right)
+\end{aligned}\]
+\end{minipage}
+
+origin of complex plane to $s'$.
+
+\noindent
+\begin{minipage}[c]{0.2\linewidth}
+\[ \left\{\begin{array}{l} R=10 \\ \theta=20 \end{array}\right. \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.76\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}]
+  \draw[->] (-1.2,0) -- (3.9,0);
+  \draw[->] (0,-1.8) -- (0,1.7);
+  \draw[->] (0,0) -- ({3*cos(20)},{3*sin(20)}) node[midway,above,font=\small] {$R$};
+  \draw[dashed] (0,{3*sin(20)}) -- ({3*cos(20)},{3*sin(20)});
+  \draw[dotted] ({3*cos(20)},{3*sin(20)}) -- ({3*cos(20)},0);
+  \node[font=\scriptsize] at (1.55,0.2) {$20^\circ$};
+  \node[left,font=\small] at (0,{3*sin(20)}) {$R\sin\theta = \omega$};
+  \node[below,font=\small] at (1.9,0) {$R\cos\theta = \sigma$};
+\end{tikzpicture}
+\end{minipage}
+
+\[ s = R\cos\theta + jR\sin\theta \]
+
+{\small $s$ is complex}
+
+\noindent $F(s)=s+b$ \hfill for any complex $s$, we'll end up to as a complex number
+\[\begin{aligned}
+ s &= \sigma+j\omega \\
+ F(s) &= (\sigma+b)+j\omega = M\phase{\theta} \\
+ M &= \sqrt{(\sigma+b)^2+\omega^2} \\
+ \theta &= \tan^{-1}\!\left(\frac{\omega}{\sigma+b}\right)
+\end{aligned}\]
+
+\sayfa{3}\begin{minipage}[t]{0.5\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1.3cm, y=1.3cm]
+  \draw[->] (-1.4,0) -- (2.8,0) node[right] {\small Re};
+  \draw[->] (0,-0.8) -- (0,1.4);
+  \draw[->] (0,0) -- (1.22,0.52) node[midway,above,sloped,font=\small] {$M$};
+  \fill (1.3,0.62) circle (0.7pt) node[right,font=\small] {$F(s)$};
+  \draw[dashed] (0,0.58) -- (1.22,0.58);
+  \draw (1.22,0.52) -- (1.22,0);
+  \draw (0.55,0) arc (0:23:0.55);
+  \node[font=\scriptsize] at (0.78,0.13) {$\theta$};
+  \draw[<->] (0.03,-0.22) -- (1.2,-0.22) node[midway,below,font=\small] {$\sigma+b$};
+\end{tikzpicture}
+
+\small Starting from origin of $s$ plane
+\end{minipage}\hfill
+\begin{minipage}[t]{0.46\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1.5cm, y=1.3cm]
+  \draw[->] (-1.0,0) -- (1.9,0);
+  \draw[->] (0,-0.9) -- (0,1.1) node[right] {\small Im};
+  \draw[->] (-0.6,0) -- (0.65,0.58) node[right,font=\small] {$s$};
+  \draw[dashed] (0,0.58) -- (0.65,0.58);
+  \draw[dashed] (0.65,0.58) -- (0.65,0);
+  \node[left,font=\small] at (0,0.58) {$\omega$};
+  \node[right,font=\small] at (0.65,0.3) {$\omega$};
+  \node[below,font=\small] at (0.65,0) {$\sigma$};
+  \node[below,font=\small] at (-0.6,0) {$-b$};
+  \draw (-0.3,0) arc (0:25:0.3);
+  \node[font=\scriptsize] at (-0.14,0.1) {$\theta$};
+\end{tikzpicture}
+
+\small Starting from origin of $F(s)$
+\end{minipage}
+
+\medskip
+\[ F(s)=\frac{s+a}{s+b} \qquad \textcolor{kirmizikalem}{\text{origin of } s+a \text{ (numerator)}} \]
+\[ s=\sigma+j\omega \qquad\Rightarrow\quad F(s)=\frac{\sigma+j\omega+a}{\sigma+j\omega+b}\times\frac{(\sigma+b)-j\omega}{(\sigma+b)-j\omega} \]
+\[ F(s)=\frac{\overbrace{[(\sigma+b)^2+j\omega]}^{\textcolor{kirmizikalem}{R_1e^{j\theta_1}}}\ \overbrace{[(\sigma+b)-j\omega]}^{\textcolor{kirmizikalem}{R_2e^{j\theta_2}}}}{(\sigma+b)^2+\omega^2}\,\text{\footnotemark} \]
+\footnotetext{Claude's note: probably $(\sigma+a)+j\omega$, i.e.\ the numerator $\sigma+j\omega+a$.}
+\[ = \frac{R_1}{\alpha}\,e^{j\theta_1}+\frac{R_2}{\alpha}\,e^{j\theta_2}\,\text{\footnotemark} \]
+\footnotetext{Claude's note: the product of the two terms would give $\frac{R_1R_2}{\alpha}e^{j(\theta_1+\theta_2)}$, not a sum.}
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1.25cm, y=1.25cm]
+  \draw[->] (-2.7,0) -- (4.0,0);
+  \draw[->] (0,-1.5) -- (0,1.9) node[right] {\small Im};
+  \draw[turuncukalem,dashed] (0,1.15) -- (1.86,1.15);
+  \draw[turuncukalem,dashed] (1.86,1.15) -- (1.86,0);
+  \node[turuncukalem,font=\small] at (0.3,1.35) {$\omega$};
+  \node[turuncukalem,font=\small,below] at (1.86,0) {$\sigma$};
+  \draw[kirmizikalem,->] (-1.8,0) -- (1.86,1.15) node[pos=0.3,above,font=\small] {$R_2$};
+  \draw[kirmizikalem,->] (-0.54,0) -- (1.86,1.15) node[pos=0.55,below right,font=\small] {$R_1$};
+  \draw[kirmizikalem] (-1.87,-0.07) -- (-1.73,0.07) (-1.87,0.07) -- (-1.73,-0.07);
+  \draw[kirmizikalem] (-0.54,0) circle (2pt);
+  \node[kirmizikalem,below,font=\small] at (-1.8,0) {$-b$};
+  \node[kirmizikalem,below,font=\small] at (-0.54,0) {$-a$};
+  \draw[kirmizikalem] (-1.4,0) arc (0:17:0.4);
+  \node[kirmizikalem,font=\scriptsize] at (-1.1,0.17) {$\theta_2$};
+  \draw[kirmizikalem] (-0.15,0) arc (0:25:0.4);
+  \node[kirmizikalem,font=\scriptsize] at (0.2,0.2) {$\theta_1$};
+\end{tikzpicture}
+\end{center}
+
+\noindent
+\begin{minipage}[c]{0.6\linewidth}
+\[ F(s)=\frac{M_1\,e^{j\beta_1}}{M_2\,e^{j\beta_2}}
+   = \left|\frac{M_1}{M_2}\right| e^{j(\beta_1-\beta_2)} = M\,e^{j\beta} \]
+\[ F(s)=\frac{\prod_{i=1}^{N}(s+z_i)}{\prod_{i=1}^{m}(s+p_i)}
+   = \frac{(s+z_1)(s+z_2)\cdots}{(s+p_1)(s+p_2)\cdots} \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.36\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=0.9cm, y=0.9cm]
+  \draw[->] (-1.8,0) -- (1.9,0) node[right] {\small Re};
+  \draw[->] (0,-1.1) -- (0,1.4) node[right] {\small Im};
+  \draw (-1.4,0) -- (1.3,0.85);
+  \draw (1.22,0.77) -- (1.38,0.93) (1.22,0.93) -- (1.38,0.77);
+  \node[font=\small] at (-0.5,0.55) {$M$};
+  \node[font=\scriptsize] at (-0.95,0.14) {$\beta$};
+\end{tikzpicture}
+\end{minipage}
+
+at any $s$, the function value is a complex number (in general) which has a ``magnitude'' and a ``phase''
+
+\sayfa{4}
+\[ M = \frac{M_1\cdot M_2\cdots M_N}{M_1'\,M_2'\cdots M_m'} \]
+\[ \theta = \sum \text{Phases of Numerator} - \sum \text{phases of denominator} \]
+
+\[ F(s)=\frac{s+1}{(s+2)\,s} \]
+What is the function value at $s=-3+j4$
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=0.65cm, y=0.65cm]
+  \draw[->] (-4.5,0) -- (5.5,0);
+  \draw[->] (0,-2.1) -- (0,4.6);
+  \draw[dashed] (-3,4) -- (0,4);
+  \draw[dashed] (-3,4) -- (-3,0);
+  \node[right,font=\small] at (0,4) {$4$};
+  \node[below,font=\small] at (-3,0) {$-3$};
+  \node[left,font=\small,align=right] at (-3.15,4) {(Trial\\point) $s$};
+  \draw[turuncukalem,->] (-2,0) -- (-3,4) node[pos=0.3,left,font=\small,kirmizikalem] {$R_3$};
+  \draw[turuncukalem,->] (-1,0) -- (-3,4) node[pos=0.4,right,font=\small,kirmizikalem] {$R_1$};
+  \draw[turuncukalem,->] (0,0) -- (-3,4) node[pos=0.45,right,font=\small,kirmizikalem] {$R_2$};
+  \foreach \xx in {-2,0} {
+    \draw[kirmizikalem] (\xx-0.1,-0.15) -- (\xx+0.1,0.15) (\xx-0.1,0.15) -- (\xx+0.1,-0.15);
+  }
+  \draw[kirmizikalem] (-1,0) circle (2.2pt);
+  \node[kirmizikalem,below,font=\small] at (-2,-0.1) {$-2$};
+  \node[kirmizikalem,below,font=\small] at (-1,-0.1) {$-1$};
+  \node[kirmizikalem,below right,font=\small] at (0,-0.1) {$0$};
+  \draw (-1.55,0) arc (0:104:0.45);
+  \node[font=\scriptsize] at ($(-2,0)+(55:0.8)$) {$\theta_3$};
+  \draw (-0.35,0) arc (0:116.5:0.65);
+  \node[font=\scriptsize] at ($(-1,0)+(45:1.0)$) {$\theta_1$};
+  \draw (0.9,0) arc (0:127:0.9);
+  \node[font=\scriptsize] at ($(0,0)+(35:1.3)$) {$\theta_2$};
+\end{tikzpicture}
+\end{center}
+
+\[ \text{For } \vec{R_1}\ \left\{\begin{array}{l}
+   M_1 \text{ magnitude} = \sqrt{2^2+4^2} \\
+   \text{phase } \beta_1 = \pi-\tan^{-1}\!\left(\dfrac{4}{2}\right)
+\end{array}\right. \]
+\[ \text{For } \vec{R_2}\ \left\{\begin{array}{l}
+   M_2 \text{ mag} = \sqrt{3^2+4^2} \\
+   \beta_2 = \pi-\tan^{-1}\!\left(\dfrac{4}{3}\right)
+\end{array}\right. \]
+\[ \text{For } \vec{R_3}\ \left\{\begin{array}{l}
+   M_3 = \sqrt{1^2+4^2} \\
+   \beta_3 = \pi-\tan^{-1}(4/1)
+\end{array}\right. \]
+
+\[ M=\frac{M_1}{M_2M_3} \]
+\[ \theta=\underbrace{\beta_1}_{\text{numerator}}-\underbrace{\beta_2-\beta_3}_{\text{Denominator}} \]
+
+\sayfa{5}\textcolor{kirmizikalem}{\textbf{4}}\ We need some criteria to check if the trial points ($s$) on the complex plane can be accepted as root of the characteristic equation
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]},
+    blk/.style={draw, minimum width=11mm, minimum height=6mm, inner sep=1pt}]
+  \node (R) at (0,0) {\small $R(s)$};
+  \node[draw,circle,inner sep=0pt,minimum size=5mm] (S) at (1.6,0) {};
+  \draw (S.north west) -- (S.south east) (S.north east) -- (S.south west);
+  \node[blk] (K) at (3.6,0) {$k$};
+  \node[blk] (G) at (5.6,0) {$G(s)$};
+  \node (C) at (8.0,0) {\small $C(s)$};
+  \node[blk] (H) at (3.6,-1.2) {$H(s)$};
+  \draw[->] (R.east) -- (S.west);
+  \draw[->] (S.east) -- (K.west);
+  \draw[->] (K.east) -- (G.west);
+  \draw[->] (G.east) -- (C.west);
+  \draw (6.9,0) -- (6.9,-1.2);
+  \draw[->] (6.9,-1.2) -- (H.east);
+  \draw[->] (H.west) -| (S.south);
+  \node[font=\scriptsize] at (0.95,0.3) {$+$};
+\end{tikzpicture}
+\end{center}
+
+\[ \frac{C(s)}{R(s)} = \frac{k\,G(s)}{1+k\,G(s)H(s)} \]
+\[ 1+k\,G(s)H(s)=0 \;\Rightarrow\; G(s)H(s) = -\frac{1}{k}+0j \]
+\[\begin{aligned}
+ \text{magnitude: } & \left|G(s)H(s)\right| = \left|\frac{1}{k}\right| \\[1mm]
+ \text{phase: } & \angle\, G(s)H(s) = \tan^{-1}\underset{\uparrow\ \text{\small because its negative}}{\left(\frac{0}{-1/k}\right)} = \pm 180(2i+1) \qquad i=0,1,\ldots
+\end{aligned}\]
+
+Any point like `$s$' which satisfies both conditions would be our point of interest (root of characteristic eq)
+
+\textcolor{kirmizikalem}{The locus of points satisfying the phase condition constitutes the root locus plot of the system.}
+
+\subsection{Steps of Drawing}
+1- Find the OL zeros and poles and show on the $s$ plane
+\[ 1+k\,G(s)H(s) \;\Rightarrow\; 1+k\,\frac{Q(s)}{P(s)}=0 \;\Rightarrow\; P(s)+k\,Q(s)=0 \]
+\[ \left\{\begin{aligned}
+ &\text{if } k=0 \Rightarrow P(s)=0 \Rightarrow \text{poles of OLTF} \qquad \text{x symbol} \\
+ &\text{if } k\uparrow\infty \Rightarrow Q(s)=-\mbox{\tikz[baseline=(X.base)]{\node[inner sep=0pt](X){$\displaystyle\frac{P(s)}{k}$};\draw[turuncukalem,line width=0.8pt] (X.south west) -- (X.north east);}}\ \textcolor{turuncukalem}{0} \Rightarrow Q(s)=0 \Rightarrow \text{zeros of OLTF} \qquad \text{o symbol}
+\end{aligned}\right. \]
+
+2- Check the validity of point on `Re' axis
+\sekilnotu[5]{Real-axis sketch with Im (up) and Re (right) axes. On the Re axis, left to right: red x (pole), red o (zero), red x (pole), red x (pole on the Im axis, at the origin); a small orange dot lies to the right of the origin. Test points marked with purple circled counts: 4 (left of the leftmost pole), 3, 2, 1, 0 (right of the origin). Thick blue segments (valid): leftmost pole to the zero, and middle pole to the origin pole; orange segments (not valid): left of the leftmost pole, zero to the middle pole, right of the origin. Legend at top right: blue ``valid section'', orange ``not valid''. Blue notes: ``poles have negative $\theta$, o's positive $\theta$'', ``$-180^\circ$'', arrows labelled 0 and 180, arcs over the two right poles labelled ``$\theta_2=0$'' and ``$\theta_1=\pi$'', ``valid from the next pole''. Orange notes under the axis: arrows labelled 0 and 180, ``180(2i+1) odd'', ``360 not valid'', and a partly illegible note (``if there it's no \ldots'') with an arrow to the orange dot.}
+
+\sayfa{6}\textcolor{kirmizikalem}{$\star$}\ So if the number of zeros/ poles on the right hand side of the zone is `odd', then it passes the phase condition
+
+\noindent
+\begin{minipage}[c]{0.52\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=0.8cm, y=0.8cm]
+  \draw[->] (-4.7,0) -- (2.2,0);
+  \draw[->] (0,-1.5) -- (0,1.8);
+  \foreach \aa/\bb in {-4.1/-3.1, -2.1/-1.0, 0/1.0} {
+    \draw[kirmizikalem,line width=1.6pt] (\aa,0) -- (\bb,0);
+    \node[kirmizikalem,font=\small] at ({(\aa+\bb)/2},0.45) {$\checkmark$};
+  }
+  \foreach \xx in {-3.1,-2.1,1.0} {
+    \draw (\xx-0.12,-0.12) -- (\xx+0.12,0.12) (\xx-0.12,0.12) -- (\xx+0.12,-0.12);
+  }
+  \foreach \xx in {-4.1,-1.0,0} { \draw (\xx,0) circle (2.2pt); }
+  \draw[morkalem,->] (-3.2,0.08) -- (-4.0,0.08);
+  \draw[morkalem,->] (-2.0,0.08) -- (-1.1,0.08);
+  \draw[morkalem,->] (0.9,0.08) -- (0.1,0.08);
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.44\linewidth}
+if $k=0 \longrightarrow k=\infty$
+
+\textcolor{morkalem}{\small $\to$ roots move}
+
+\medskip
+\textcolor{kirmizikalem}{$\star$} poles of CL
+
+Start at poles of O.L.
+
+end at zero '' O.L.
+\end{minipage}
+
+\sekilnotu[6]{Complex pole/zero sketch (Im up, Re right). Real axis, left to right: o, x, x, o, and an x at the origin on the Im axis; thick red segments on the real axis: left of the leftmost o, between the two x's, and between the right o and the origin x. Upper half-plane: an x (circled in orange) joined by an orange dashed horizontal line to an o on its right. Lower half-plane: an x with an orange dashed horizontal line and an angle arc, and an o below-right of it. Orange arrows run from each of these four complex poles/zeros to a test point on the real axis just left of the origin.}
+\textcolor{turuncukalem}{Complex poles/zeroes not effect the acceptable zone at the real axis}
+
+\medskip
+\noindent
+\begin{minipage}[c]{0.56\linewidth}
+\centering
+{\small 3 poles, 1 zero}
+
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=0.55cm, y=0.55cm]
+  \draw[->] (-7.4,0) -- (2.2,0) node[right] {\small Re};
+  \draw[->] (0,-3.0) -- (0,3.8) node[right] {\small Im};
+  \draw (-1.05,-2.3) -- (-1.05,2.3);
+  \draw[->] (-1.05,1.15) -- (-1.05,1.3);
+  \draw[->] (-1.05,-1.15) -- (-1.05,-1.3);
+  \foreach \xx in {-6.05,-2,0} {
+    \draw (\xx-0.15,-0.15) -- (\xx+0.15,0.15) (\xx-0.15,0.15) -- (\xx+0.15,-0.15);
+  }
+  \draw (-3.97,0) circle (2.5pt);
+  \foreach \xx/\nn in {-6.9/4, -5.0/3, -2.95/2, -1.05/1, 0.83/0} {
+    \node[draw,circle,inner sep=0.6pt,font=\tiny] at (\xx,0.8) {\nn};
+  }
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.4\linewidth}
+All poles have to married with zeros :)
+
+if they can't they go to infinity :(
+\end{minipage}
+
+\subsection{3- Asymptote determine}
+if the number of poles and zeros are not the same
+
+\hspace*{1em}Then there will be some asymptotes for the root locus
+
+\hspace*{3em}poles : $n$ \quad $\Rightarrow$ $n-m$: number of asymptotes
+
+\hspace*{3em}zeros : $m$
+
+\hspace*{2em}\textcolor{kirmizikalem}{`$n$' is usually larger than `$m$'}
+
+\textcolor{kirmizikalem}{$\star$} Number of Branches is equal to `$n$'
+
+\sayfa{7}Angle of asymptotes \quad $\displaystyle \Phi=\frac{(2i+1)180}{n-m}$, \quad $i=0,1,2,\ldots,n-m-1$
+
+\medskip
+\noindent $\star$ Centroide of asymptotes \quad $\displaystyle s'=\frac{\sum\text{real part of poles}-\sum\text{real part of zeros}}{n-m}$
+
+\medskip
+\noindent
+\begin{minipage}[c]{0.56\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1.0cm, y=1.0cm]
+  \draw[->] (-3.4,0) -- (1.5,0);
+  \draw[->] (0,-0.5) -- (0,2.1);
+  \draw[kirmizikalem,dashed,line width=0.8pt] (0.48,2.1) -- (0.48,-1.85);
+  \draw (-3,0) circle (2.5pt);
+  \foreach \xx in {-2,-1,0} {
+    \draw (\xx-0.1,-0.1) -- (\xx+0.1,0.1) (\xx-0.1,0.1) -- (\xx+0.1,-0.1);
+  }
+  \foreach \xx/\lbl in {-3/-5, -2/-2, -1/-1, 0.15/0, 0.48/1} {
+    \node[below,font=\small] at (\xx,-0.12) {$\lbl$};
+  }
+  \draw[kirmizikalem,line width=0.8pt] (-2.9,0) -- (-2.1,0);
+  \draw[kirmizikalem,->] (-2.4,0) -- (-2.5,0);
+  \draw[kirmizikalem,line width=0.8pt] (-0.9,0) -- (-0.57,0);
+  \draw[kirmizikalem,->] (-0.75,0) -- (-0.65,0);
+  \draw[kirmizikalem,line width=0.8pt] (-0.1,0) -- (-0.57,0);
+  \draw[kirmizikalem,->] (-0.25,0) -- (-0.35,0);
+  \draw[kirmizikalem,line width=0.8pt] plot[smooth] coordinates {(-0.57,0) (-0.6,0.55) (-0.38,0.96) (0.02,1.29) (0.27,1.57) (0.48,1.9)};
+  \draw[kirmizikalem,line width=0.8pt] plot[smooth] coordinates {(-0.57,0) (-0.57,-0.5) (-0.38,-0.93) (-0.05,-1.09) (0.35,-1.66) (0.48,-1.83)};
+  \draw[kirmizikalem,->] (-0.6,0.4) -- (-0.6,0.5);
+  \draw[kirmizikalem,->] (0.3,1.6) -- (0.36,1.68);
+  \draw[kirmizikalem,->] (-0.1,-1.09) -- (0.0,-1.09);
+  \draw[kirmizikalem,->] (0.45,-1.7) -- (0.48,-1.8);
+  \draw[->] (1.45,0.05) to[bend right] (1.05,0.3);
+  \node[font=\small] at (1.35,0.55) {$90^\circ$};
+\end{tikzpicture}
+
+$n-m=2=$ No of asymp
+\end{minipage}\hfill
+\begin{minipage}[c]{0.4\linewidth}
+\[ \Phi=\frac{(2i+1)180}{2}=(2i+1)90 \]
+\[ \begin{array}{l} i=0 \to \Phi_1=90 \\ i=1 \to \Phi_2=270 \end{array} \]
+\[ \text{centroid: } \frac{(0-1-2)-(-5)}{2}=+1 \]
+\end{minipage}
+
+\subsection{Determine the breaking points}
+$\star$ Branches leave (break out) or enter (break in) the real axis at $90^\circ$
+\sekilnotu[7]{Two sketches. Left (Im axis through the rightmost pole): on the Re axis, left to right, o, o, x, o, o, x, x and an x at the origin, with red arrows along the real axis. A large red arc leaves the real axis between the two right-hand x's (labelled ``break out'', small red arrows pointing up and down) and returns far left to the real axis between the two leftmost o's (labelled ``break in'', arrow pointing up); the lower half of the loop is sketched below the axis, partly dashed. Right: Im (up) and Re (right) axes; one o on the negative real axis and two x's in the left half-plane, symmetric above and below the real axis. Red arcs from each x curve down/up to the real axis at a break-in point left of the o (label ``break in''), red arrows along the real axis point away from that point to the left and to the right; notes ``2 poles $\to$ 2 branches'' and ``1 zero''.}
+
+The characteristic eq
+\[ 1+k\,\frac{Q(s)}{P(s)}=0 \]
+\[ P(s)+k\,Q(s)=0 \]
+\[ \Rightarrow k=-\frac{P(s)}{Q(s)} \]
+repeated root occurs at point of break in/out \quad $\Rightarrow\ \dfrac{dk}{ds}=0$
+
+\hspace*{12em}$\hookrightarrow\ P'Q-Q'P=0$
+
+\sayfa{8}All break points are solution of this polynomial. But not all solutions are break in/out points
+
+Only root of the given expression are acceptable that give a positive gain!
+
+The other approach is that the break in/out point must be on the valid zones of the real axis.
+
+\end{document}

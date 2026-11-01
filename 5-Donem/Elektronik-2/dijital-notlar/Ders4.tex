@@ -1,0 +1,182 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{Kaskod ve fark yükselteçleri}{Ders4.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 4, 5, 11) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\section{The MOS cascode}
+\[ g_{m2}V_{gs2} = g_{m1}v_i \;\Rightarrow\; v_{gs2} = \frac{g_{m1}v_i}{g_{m2}} \]
+\[ i_o = g_{m2}v_{gs2} + \frac{v_{gs2}}{r_{o2}} \]
+\[ i_o = g_{m2}\,\frac{g_{m1}v_i}{g_{m2}} + \frac{g_{m1}v_i}{g_{m2}r_{o2}} \]
+\[ i_o = g_{m1}v_i\left(1 + \frac{1}{g_{m2}r_{o2}}\right) \]
+\[ \frac{i_o}{v_i} = g_{m1} \]
+
+Now, replacing $Q_2$ with its hybrid $\pi$ mode and applying a test voltage $v_x$ to the output node results in the equivalent circuit shown in.
+
+\sekilnotu[1]{Elle çizilmiş küçük sinyal test devresi. Sol üstte $g_2$ (gate) ucu toprağa bağlı; $v_{gs2}$ gerilimi ($+$ üstte, $-$ altta) $g_2$ ile $s_2$ uçları arasında gösterilmiş. $s_2$ ucundan sağa giden tel bir düğüme varıyor; bu düğümden aşağı $r_{o1}$ direnci ile toprağa iniliyor ve düğüm gerilimi $v = i_x r_{o1}$ olarak işaretli. Düğümden yukarı, birbirine paralel $g_{m2}v_{gs2}$ bağımlı akım kaynağı (oku aşağı yönlü) ve $r_{o2}$ direnci bağlı; bunların üst uçları sağdaki test gerilim kaynağı $v_x$'in ($+$ ucu üstte, alt ucu toprakta) $+$ ucuna giden üst tele bağlanıyor. Kırmızı notlar: üst teldeki $i_x$ akımı (ok sola), $s_2$ düğümü tarafındaki $i_x$ ve kaynağın yanında sola bakan bir okla $R_o$ (kırmızı dikey çizgiyle ayrılmış).}
+
+\[ R_o = \frac{v_x}{i_x}, \qquad -v_{gs2} = i_x r_{o1} \]
+\begin{align*}
+v_x &= \bigl(i_x - \kutula{g_{m2}v_{gs2}}\bigr)\,r_{o2} + i_x r_{o1} \\
+    &= i_x r_{o2} + g_{m2}\,i_x r_{o1} r_{o2} + i_x r_{o1} \\
+\Rightarrow\quad v_x &= i_x\bigl(r_{o2} + r_{o1} + g_{m2}\,r_{o2} r_{o1}\bigr)
+\end{align*}
+and \quad $R_o = \dfrac{v_x}{i_x} = r_{o1} + r_{o2} + g_{m2}\,r_{o2} r_{o1}$
+
+\sayfa{2}
+$R_o \simeq (g_{m2}r_{o2})\,r_{o1}$ \quad because the last term will dominate\footnote{Bu ifade, kırmızı bir çizgiyle sayfanın altındaki $A_{vo}$ denklemindeki $R_o$'ya bağlanmış.}
+
+This expression has a simple and elegant interpretation. The CG transistor $Q_2$ raises the output resistance of the amplifier by the factor $(g_{m2}r_{o2})$, which is its intrinsic gain. At the same time, the CG transistor simply passes the current $(g_{m1}v_i)$ to the output node. Thus the CG or cascode transistor very effectively \okunamadi{realizes} the objectives we set for the current buffer with $K = A_{o2} = g_{m2}r_{o2}$.
+
+\sekilnotu[2]{Kitaptan yapıştırılmış basılı şekil. Solda kaskod yükselteç: altta $Q_1$ (girişi $v_i$), üstte $Q_2$ (gate'i $V_{G2}$ ile beslenmiş); $d_2$ düğümünden yüke giden \textit{To Load} oku, $Q_2$'nin source'undan aşağı bakan $Kr_{o1}$ oku ve $Q_1$'in drain'inden aşağı bakan $r_{o1}$ oku. Sağda açık mavi kutuda eşdeğer devre: $g_{m1}v_i$ akım kaynağı ile paralel $Kr_{o1}$ direnci, çıkış $d_2$ (\textit{To Load}).}
+
+\formulkutu{\begin{aligned}
+A_{vo} &= \frac{v_o}{v_i} = \frac{-g_{m1}v_i R_o}{v_i} = -g_{m1}R_o \\
+&= -(g_{m1}r_{o1})(g_{m2}r_{o2})
+\end{aligned}}
+
+For the case $g_{m1} = g_{m2} = g_m$ \quad and $r_{o1} = r_{o2} = r_o$
+\[ A_{vo} = -(g_m r_o)^2 = A_o^2 \]
+
+Thus cascoding results is increasing the gain magnitude from $A_o$ to $A_o^2$
+
+\sayfa{3}
+\sekilnotu[3]{Büyük bir X ile çizilerek iptal edilmiş taslak devre: üst üste iki NMOS (kaskod). Üstteki transistörün gate'i toprağa bağlı, alttakinin gate'i toprağa bağlı bir sinüs kaynağından ($\sim$) sürülüyor; alttaki transistörün source'u toprakta. Üst transistörün drain'inde $R_{Ds}$ direnci var, yanında ``akım kaynağı'' yazıyor (ok $R_{Ds}$'yi gösteriyor). Yan notlar: $\Rightarrow g_{m1}(R_o \,/\!/\, R_{Ds})$ ve $\Rightarrow g_{m1}R_{Ds}$.}
+
+\sekilnotu[3]{Tek NMOS devresi: gate toprağa bağlı; drain'de, üst ucu toprağa bağlı $R_L$ direnci (yanında aşağı bakan bir ok); source'ta toprağa giden $R_s$ direnci ve source ucundan sağa bakan, yanında \okunamadi{} yazan bir ok.}
+
+\begin{align*}
+R_o &= r_o + R_s + g_m r_o R_s \\
+    &= r_o + (1 + g_m r_o)\,R_s
+\end{align*}
+\begin{align*}
+R_{in} &= \frac{r_o + R_L}{1 + g_m r_o} \\
+       &\simeq \frac{1}{g_m} + \frac{R_L}{1 + g_m r_o}
+\end{align*}
+
+\sekilnotu[3]{Kitaptan yapıştırılmış basılı şekil: üç NMOS'lu kaskod yükselteç. $V_{DD}$'den inen akım kaynağı $I$, çıkış $v_o$ en üstteki $Q_3$'ün drain'inde; $Q_3$ (gate $V_{G3}$), $Q_2$ (gate $V_{G2}$) ve $Q_1$ (gate $v_i$) üst üste, $Q_1$'in source'u toprakta. Mavi etiketler: $Q_3$'ün altına $(g_{m3}r_{o3})(g_{m2}r_{o2})r_{o1} = A_0^2\, r_o$, $Q_2$'nin altına $(g_{m2}r_{o2})r_{o1}$, $Q_1$'in altına $r_{o1}$.}
+
+\textcolor{kirmizikalem}{Supply gerilimi bizi limitliyor, mosfetlerin üzerindeki gerilim düşümünden dolayı}
+
+\sayfa{6}
+\sekilnotu[6]{Kitaptan yapıştırılmış basılı şekil: dört BJT'li kaskod yükselteç. $V_{CC}$ altında sırayla $Q_4$ (baz $V_{B4}$), $Q_3$ (baz $V_{B3}$), çıkış düğümü $v_o$, $Q_2$ (baz $V_{B2}$) ve $Q_1$ (baz girişi $v_i$, emiter toprakta). Mavi etiketler: $R_{op} = (g_{m3}r_{o3})(r_{o4}\|r_{\pi3})$, $R_{on} = (g_{m2}r_{o2})(r_{o1}\|r_{\pi2})$, $A_v = -g_{m1}(R_{on}\|R_{op})$, $R_{in} = r_{\pi1}$.}
+
+$r_{\pi3}$ \quad because $r_{o4} \gg r_{\pi3}$
+
+\[ r_{\pi3} = g_{m3}r_{o3}\,\frac{\beta+1}{g_{m3}} \simeq \beta\, r_{o3}\footnotemark \]
+\footnotetext{Pay ve paydadaki $g_{m3}$ çizilerek sadeleştirilmiş.}
+\[ r_\pi = (\beta+1)\,r_e \qquad\qquad r_e = \frac{V_T}{I_E} \]
+\[ g_m = \frac{I_C}{V_T} \qquad\qquad r_e = \frac{1}{g_m} \]
+
+\sekilnotu[6]{Kitaptan yapıştırılmış basılı şekiller. (a) Bazı $v_i$ ile sürülen, emiterinde $R_e$ olan BJT; kolektöre bakan çıkış direnci $R_o = r_o + (R_e\|r_\pi) + g_m r_o (R_e\|r_\pi) \simeq r_o\,[1 + g_m (R_e\|r_\pi)]$. (b) Bazı toprağa bağlı BJT; kolektörde $R_L$ (üst ucu toprakta), emiterde $R_e$: $R_o = r_o + (R_e\|r_\pi) + g_m r_o (R_e\|r_\pi) = r_o + (1 + g_m r_o)(R_e\|r_\pi)$ ve $R_{in} = \dfrac{r_o + R_L}{1 + \frac{1}{\alpha}g_m r_o + \frac{R_L}{r_\pi}} \simeq r_e + \dfrac{R_L}{1 + g_m r_o}$, $R_L \ll \beta r_o$ için.}
+
+\sayfa{7}
+\sekilnotu[7]{Elle çizilmiş devre: NPN $Q_2$'nin bazı $V_{B2}$'ye bağlı, kolektöründen yukarı çıkan telin yanında içeriye bakan $R_o$ oku var; emiteri, gate'i $v_i$ ile sürülen bir NMOS'un drain'ine bağlı, NMOS'un source'u toprakta. Kırmızı kalemle NMOS'a paralel (drain--source arasında) $r_{o1}$ direnci çizilmiş. Emiter düğümünün yanında ``2'' yazıyor.}
+\begin{align*}
+&= r_{o2} + (1 + g_m r_o)(R_E \,\|\, r_\pi) \\
+&= r_{o2} + (1 + g_{m2}r_{o2})(r_{o1} \,\|\, r_\pi)
+\end{align*}
+
+\section{BiCMOS cascodes}
+\sekilnotu[7]{Elle çizilmiş devre: üstte aşağı oklu akım kaynağı; altındaki düğümden sağa $V_{out}$ çıkışı alınmış. Bu düğümün altında gate'i $V$ ile etiketli bir MOSFET, onun altında bazı $v_i$ ile sürülen bir BJT var; BJT'nin emiteri toprağa gidiyor.}
+
+\sekilnotu[7]{Kitaptan yapıştırılmış basılı şekil. (a) $V_{DD}$'den inen akım kaynağı $I$ ve çıkış $v_o$; üstte BJT $Q_2$ (baz $V_{B2}$), altta MOSFET $Q_1$ (gate $v_i$, source toprakta). (b) Akım kaynağı $I$ ve çıkış $v_o$; üst üste MOSFET $Q_3$ (gate $V_{G3}$), BJT $Q_2$ (baz $V_{B2}$) ve BJT $Q_1$ (baz $v_i$). El yazısıyla çizilmiş bir ok (a) devresini işaret ediyor.}
+
+Bu tercih edilir çünkü giriş direnci sonsuz
+
+\sekilnotu[7]{Elle çizilmiş devre: $V_{DD}$'ye bağlı $R_D$ direnci, altında bir NMOS'un drain'i; çıkış $V_{out}$ drain düğümünden alınıyor. NMOS'un source'u toprakta; gate'i seri bağlı iki sinüs kaynağı üzerinden toprağa bağlı: üstte $v_i$, altta $v_n$.}
+\[ V_{out} = -g_m (R_D \,\|\, r_o)(v_i + v_n) \]
+
+\sayfa{8}
+\section{Differential amplifier}
+\sekilnotu[8]{Kitaptan yapıştırılmış basılı şekil: MOSFET fark yükselteci. İki NMOS $Q_1$ ve $Q_2$; drain'leri $R_D$ dirençleri üzerinden $V_{DD}$'ye bağlı, drain gerilimleri $v_{D1}$, $v_{D2}$ ve drain akımları $i_{D1}$, $i_{D2}$; gate'leri sırasıyla toprağa göre $v_{G1}$ ve $v_{G2}$ kaynaklarıyla sürülüyor; ortak source düğümünden $-V_{SS}$'e giden $I$ akım kaynağı.}
+\begin{align*}
+v_{G1} &= \frac{v_i}{2} + v_n \\
+v_{G2} &= -\frac{v_i}{2} + v_n \\
+V_{diffout} &= A_V\,(V_{G1} - V_{G2})
+\end{align*}
+
+\[ \frac{I}{2} = \frac{1}{2}\,k'_n\,\frac{W}{L}\,(v_{GS} - V_t)^2 \]
+\[ V_{ov} = V_{GS} - V_t \]
+\[ \frac{I}{2} = \frac{1}{2}\,k'_n\,\frac{W}{L}\,V_{ov}^2 \]
+\[ V_{ov} = \sqrt{\frac{I}{k'_n\,(W/L)}} \]
+\[ v_{D1} = v_{D2} = V_{DD} - \frac{I}{2}R_D \]
+\begin{align*}
+\max(V_{CM}) &= V_t + V_{DD} - \frac{I}{2}R_D \\
+\min(V_{CM}) &= -V_{SS} + V_{CS} + V_t + V_{ov}
+\end{align*}
+
+\begin{align*}
+V_{GS} &\geq V_t \\
+V_{DS} &\geq V_{GS} - V_{tn} \\
+\underset{\substack{\| \\ V_{GS}}}{V_{CM,\mathrm{max}}} &= V_D + V_{tn}
+\end{align*}
+
+\sayfa{9}
+\sekilnotu[9]{Kitaptan yapıştırılmış basılı fark yükselteci şekli (8. sayfadaki devre); üzerine el yazısıyla eklenenler: iki gate ucunda $G$, iki source ucunda $S$; her kolun akımı için aşağı oklu $I/2$; $v_{D1}$ düğümünün yanında $V_{DD} - R_D\,\frac{I_D}{2}$; akım kaynağı $I$'nın yanında $V_{CS}$ ($+$ üstte, $-$ altta). $Q_2$'nin drain tarafından sağ üste çizilen bir ok aşağıdaki $\frac{2\,I/2}{V_{ov}}$ ifadesini gösteriyor.}
+\[ \frac{2\,I/2}{V_{ov}} = \frac{I}{V_{ov}} \]
+
+$v_{D2} - v_{D1} = 0$ olur
+
+\begin{align*}
+V_{GS} &\geq V_{tn} \\
+V_{CM} - \bigl(-(V_{CS} + V_{SS})\bigr) &\geq V_{tn}
+\end{align*}
+\[ \kutula{V_{CM} \geq -V_{SS} + V_{CS} + V_{tn}} \]
+
+\begin{align*}
+V_{DS} &\geq V_{GS} - V_{tn} \\
+V_D &\geq V_G - V_{tn} \\
+V_D - V_{tn} &> V_{CM} \\
+\max(V_{CM}) &= V_D - V_{tn} \\
+&= V_{DD} - \frac{I}{2}R_D\,V_{tn}\footnotemark
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $V_{DD} - \frac{I}{2}R_D - V_{tn}$ olmalı.}
+\[ -V_{SS} + V_{CS} + V_{tn} < V_{CM} < V_{DD} - \frac{I}{2}R_D - V_{tn} \]
+
+\sayfa{10}
+\sekilnotu[10]{Elle çizilmiş fark yükselteci: iki NMOS; her birinin drain kolunda $V_{DD}$'ye giden bir direnç var (drain düğümleri $v_{O1}$ ve $v_{O2}$ olarak etiketli). Sol transistörün gate'i toprağa bağlı bir sinüs kaynağı $v_{id}$ ile sürülüyor, sağ transistörün gate'i doğrudan toprağa bağlı. İki source ortak düğümde birleşip aşağı oklu bir $I$ akım kaynağına gidiyor. Sağ transistörü gösteren bir okun yanında $g_m = 0$ yazıyor (okunuşu belirsiz). Kırmızı notlar: ortak source düğümünden sağa bir ok ve ``$-V_{tn}$ sınır koşulda'', altında ``$= V_s$''.}
+
+$V_{GS2} = V_{tn} \;\rightarrow\;$ limit condition
+
+\[ \kutula{\begin{aligned}
+I &= \frac{1}{2}\,k'_n\,\frac{W}{L}\,(V_{GS1} - V_{tn})^2 \\
+v_{GS1} &= \sqrt{2}\,V_{ov} + V_{tn}
+\end{aligned}} \]
+
+\formulkutu{\begin{aligned}
+v_{id,\max} &= \sqrt{2}\,V_{ov} \\
+v_{id,\min} &= -\sqrt{2}\,V_{ov}
+\end{aligned}}
+
+\sayfa{12}
+\sekilnotu[12]{Sayfanın üst kısmı basılı materyal içeriyor (ders kitabı, (8.18)--(8.24) denklemleri); dijitalleştirilmedi. El yazısı ekleme: (8.23) denkleminde karekök içindeki $(v_{id}/2)^2/V_{ov}^2$ terimi çizgiyle işaretlenmiş ve bu çizgiden denklemin yanındaki $v_{id} \ll V_{ov}$ notuna bir ok gidiyor.}
+
+\begin{align*}
+i_{D1} &= \frac{I}{2} + \left(\frac{I}{V_{ov}}\right)\left(\frac{v_{id}}{2}\right) \\
+i_{D2} &= \frac{I}{2} - \left(\frac{I}{V_{ov}}\right)\left(\frac{v_{id}}{2}\right)
+\end{align*}
+\begin{align*}
+v_{O1} &= V_{DD} - R_D\, i_{D1} \\
+v_{O2} &= V_{DD} - R_D\, i_{D2} \\
+v_{O2} - v_{O1} &= R_D\, i_{D1} - R_D\, i_{D2} = R_D\,(i_{D1} - i_{D2})
+\end{align*}
+\[ V_{out} = V_{O2} - V_{O1} = R_D \left[\frac{I}{V_{ov}}\cdot v_{id}\right] \]
+
+\sayfa{13}
+\begin{align*}
+\frac{v_{out}}{v_{id}} &= R_D\,\frac{I}{V_{ov}}\,v_{id}\footnotemark \\[2mm]
+\frac{v_{out}}{v_{id}} &= R_D\,\frac{I}{V_{ov}} = g_m R_D
+\end{align*}
+\footnotetext{Claude notu: ilk satırın sağındaki $v_{id}$ muhtemelen fazla yazılmış; sonraki satır $v_{out}/v_{id} = R_D\,I/V_{ov}$ olarak yazılmış.}
+
+\sekilnotu[13]{9. sayfadaki fark yükselteci şekli, aynı el yazısı notlarıyla birlikte yeniden yapıştırılmış (gate'lerde $G$, source'larda $S$, kollarda $I/2$, $v_{D1}$ yanında $V_{DD} - R_D\,\frac{I_D}{2}$, $V_{CS}$ ve sağ üstte $\frac{2\,I/2}{V_{ov}} = \frac{I}{V_{ov}}$).}
+
+\sekilnotu[13]{Elle çizilmiş küçük sinyal devresi: iki NMOS'lu fark çifti; iki $R_D$'nin de üst ucu toprağa bağlı (AC toprak). Sol kol: gate'i $v_{id}/2$ kaynağıyla ($+$ üstte) sürülüyor; $R_D$ üzerinde kırmızı kalemle üstte $+$, altta $-$, drain düğümünde $v_{O1}$ ve aşağı yönlü bir ok ile $g_m\,v_{id}/2$ akımı. Sağ kol: gate'i $v_{id}/2$ kaynağıyla (polarite ters görünüyor) sürülüyor; $R_D$ üzerinde kırmızı kalemle üstte $-$, altta $+$, drain düğümünde $v_{O2}$ ve yukarı yönlü bir ok ile $g_m\,v_{id}/2$ akımı. İki source ortak düğümde birleşiyor; bu düğümde aşağı oklu ``virtual ground'' notu var ve iki source ucunda da kırmızı toprak sembolü çizilmiş.}
+
+\textcolor{kirmizikalem}{ayrı ayrı çözülebilir}
+
+\sekilnotu[13]{Elle çizilmiş yarım devre: toprak sembolüne bağlı $V_{DD}$ ucundan $R_D$ üzerinden bir NMOS'un drain'ine; $R_D$ yanında aşağı oklu $g_m\,\dfrac{v_{id}}{2}$ akımı; gate'i $v_{id}/2$ ile sürülüyor, source toprakta.}
+
+\end{document}

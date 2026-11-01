@@ -1,0 +1,148 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Alan Teorisi}{Elektrostatik potansiyel ve iş}{Ders6.pdf}
+
+\sayfa{1}
+\sekilnotu[1]{Düzensiz biçimli bir hacim ($v$); hacmin içinde orijinde buluşan $x'$ (sol-aşağı), $y'$ (sağ) ve $z'$ (yukarı) eksenleri; orijinden dışarıya, ``$\times$'' ile işaretli ve ``V'' etiketli bir noktaya giden $r'$ vektörü.}
+
+\[
+V=\frac{1}{4\pi\varepsilon_0}\int_{v}\frac{\rho}{r'}
+=\frac{1}{4\pi\varepsilon_0}\iiint_{x',y',z'=-\infty}^{\infty}\frac{\rho(x',y',z')}{r'}\,dx'\,dy'\,dz'+V_0
+\ \rightarrow\ \text{sabit}
+\]
+
+$\downarrow$ Coulomb potansiyeli \ $V(x,y,z)$
+
+\begin{center}
+$\displaystyle r'=\bigl[(x-x')+(y-y')+(z-z')\bigr]^{1/2}$\footnote{Claude notu: muhtemelen $r'=\bigl[(x-x')^2+(y-y')^2+(z-z')^2\bigr]^{1/2}$ olmalı.}
+\end{center}
+
+\[
+\underbrace{\vec E}_{\text{p'deki elektrostatik alan}}=-\mathrm{grad}\,V
+\]
+
+\[
+\mathrm{rot}\,\vec E=-\mathrm{rot}\,\mathrm{grad}\,V=0
+\]
+
+\[
+\Delta V=\mathrm{div}\,\mathrm{grad}\,V=-\mathrm{div}\,\vec E
+\qquad\qquad
+\Delta=\vec\nabla\cdot\vec\nabla=\frac{\partial^2}{\partial x^2}+\frac{\partial^2}{\partial y^2}+\frac{\partial^2}{\partial z^2}
+\]
+
+\[
+\downarrow\quad
+=\frac{1}{4\pi\varepsilon_0}\int_{v}\rho(x',y',z')\,\Delta\!\left(\frac{1}{r'}\right)dv
+\qquad r'\neq 0\ \text{ise}\quad \Delta\!\left(\frac{1}{r'}\right)=0\ \ (\rho\text{'nun olmadığı yerde})
+\]
+
+\[
+\lim_{r\to\infty}V(x,y,z)\to 0 \qquad V_0=0\ \text{kabul edilir}
+\]
+
+\[
+\underbrace{\Delta V=-\frac{\rho}{\varepsilon_0}}_{\text{Poisson denklemi}}\ \text{(her yerde)}
+\qquad\qquad
+\rho\triangleq\frac{dQ}{dv}
+\]
+
+\[
+\begin{array}{rl}
+V(x_1,y_1,z_1)&=\dfrac{1}{4\pi\varepsilon_0}\iiint\cdots+V_0\\
+-\;V(x_2,y_2,z_2)&=\ ''\ \ \iiint\cdots+V_0\\ \hline
+\end{array}
+\]
+\[
+V_1-V_2=\frac{1}{4\pi\varepsilon_0}\left[\iiint\cdots-\iiint\cdots\right]+\underbrace{V_0-V_0}_{0}
+\]
+
+\sayfa{2}
+\sekilnotu[2]{A noktasından B noktasına giden eğri bir yol (uçlar $\times$ ile işaretli); yol üzerinde bir noktada $q$ yükü ve ondan yukarı doğru çizilmiş $\vec F_q$ oku; yol boyunca teğet yönünde $d\vec c$ oku; A ve B yakınında kırmızı kalemle ``$q$'' yazılmış.}
+
+\[
+\vec F_q=q\cdot\vec E=-q\,\mathrm{grad}\,V=-q\,\vec\nabla\cdot V
+\]
+
+{\color{kirmizikalem}dışarıdan yapılan iş}
+\[
+\vec F=-\vec F_q=q\,\mathrm{grad}\,V
+\]
+
+\begin{align*}
+W_{AB}&=\int_A^B\vec F\cdot d\vec c=\int_A^B q\,\mathrm{grad}\,V\,d\vec c\\
+&=q\int_A^B\mathrm{grad}\,V\,d\vec c
+\end{align*}
+
+\[
+dc\,\frac{\partial V}{\partial c}=\mathrm{grad}\,V\cdot\underbrace{\vec t\cdot dc}_{d\vec c}
+\qquad\quad \vec t=d\vec\ell
+\qquad\quad \frac{d\vec c}{dc}\triangleq\vec t
+\]
+
+\begin{align*}
+&=q\int_A^B\mathrm{grad}\,V\cdot d\vec c\\
+&=q\int_A^B\frac{\partial V}{\partial c}\cdot dc=q\,V\Big|_A^B\\
+&=q\,V(B)-q\,V(A)=q\bigl[V(B)-V(A)\bigr]
+\end{align*}
+
+\[
+q=1\,\mathrm{C}\ \text{(birim yük)}
+\]
+\[
+A\to\infty\qquad V(A)\to 0\qquad\Longrightarrow\qquad =\ \underbrace{q}_{1\,\mathrm{C}}\,V(B)
+\]
+
+$V_B$: bir birim yük sonsuzdan sonlu bir B noktasına \okunamadi{getirinceye kadar} yapılan işe o noktadaki potansiyel denir.
+
+$q=1\,\mathrm{C}$ yükü A'dan B'ye getirilinceye kadar yapılan işe potansiyel fark denir.
+
+\sayfa{3}
+\[
+W_{AB}>0\ \Longrightarrow\ V_B>V_A
+\]
+\textcolor{kirmizikalem}{$\searrow$ Enerjiyi biz harcadık anlamına gelir\\ çünkü $\vec F$ bizim uyguladığımız kuvvet}
+
+\medskip
+\noindent$W_{AB}=0$ \quad ne zaman olur
+
+\noindent\hspace*{1.2cm}$V_B=V(B_1)$
+
+\noindent\hspace*{1.2cm}$V_A=V(A_1)$
+
+\noindent\hspace*{1.2cm}$q=0$'sa olur
+
+\noindent\hspace*{1.2cm}$q\neq 0$ için \quad $V_B=V_A$ olmalıdır
+
+\noindent\hspace*{1.2cm}$A\to\infty$ \quad $W_{AB}=q\,V_B$
+
+\[
+\vec F_q=\frac{d}{dt}\bigl[m(v)\,\vec v\,\bigr]
+\]
+$\downarrow$ küçük hızlarda
+\[
+\vec F_q=m_0\cdot\frac{d\vec v}{dt}
+\]
+\[
+d\vec c\cdot\vec F_q=m_0\cdot\frac{d\vec v}{dt}\cdot d\vec c
+\]
+\[
+\vec F_q\cdot d\vec c=m_0\,\frac{d\vec v}{dt}\cdot\vec v\cdot dt
+\qquad\qquad
+\vec v\,/\!/\,d\vec v\ \Rightarrow\ \vec v\cdot d\vec v=v\cdot dv
+\]
+
+\begin{align*}
+\int_A^B-\vec F\cdot d\vec c&=\int_A^B\vec F_q\cdot d\vec c\\
+&=-q\int_A^B\mathrm{grad}\,V\,d\vec c=-q\,(V_B-V_A)\\
+&=m_0\int_A^B\frac{d\vec v}{dt}\cdot\vec v\cdot dt=m_0\int_A^B v\,dv=\frac12\,m_0\,v^2\Big|_A^B\\
+&=\frac12\,m_0\,(v_B^2-v_A^2)
+\end{align*}
+
+\formulkutu[Enerji korunur]{q\,V_B+\frac12\,m_0\,v_B^2=q\,V_A+\frac12\,m_0\,v_A^2}
+
+\sayfa{4}
+\textcolor{kirmizikalem}{$*$ İş yoldan bağımsızdır.}
+
+\end{document}

@@ -1,0 +1,557 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Analog Haberleşme}{Ders 10 -- Tek yan bant (TYB-GM) ve FDM}{Ders10.pdf}
+
+\sayfa{1}
+\section{TYB-GM (SSB-AM)}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-2.8,0) -- (3.6,0) node[right] {$f$};
+  \draw[->] (0,0) -- (0,1.6) node[right] {$M(f)$};
+  \fill[pattern=horizontal lines,pattern color=murekkep] (-1,0) .. controls (-1,0.55) and (-0.55,0.95) .. (0,0.95) -- (0,0) -- cycle;
+  \draw (-1,0) .. controls (-1,0.55) and (-0.55,0.95) .. (0,0.95) -- (1,0);
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-4.4,0) -- (4.4,0);
+  \draw[->] (0,0) -- (0,2.4) node[right] {$\Fou{m(t)\cos(2\pi f_c t)}$};
+  \fill[pattern=north east lines,pattern color=kirmizikalem] (-3.95,0) .. controls (-3.95,0.55) and (-3.5,0.95) .. (-2.95,0.95) -- (-2.95,0) -- cycle;
+  \draw (-3.95,0) .. controls (-3.95,0.55) and (-3.5,0.95) .. (-2.95,0.95) -- (-1.95,0);
+  \draw[dashed] (-2.95,0) -- (-2.95,0.95);
+  \node[below] at (-2.95,0) {\small $-f_c$};
+  \fill[pattern=north east lines,pattern color=kirmizikalem] (2.95,0) -- (2.95,0.95) -- (3.95,0) -- cycle;
+  \draw (1.95,0) .. controls (1.95,0.55) and (2.4,0.95) .. (2.95,0.95) -- (3.95,0);
+  \draw[dashed] (2.95,0) -- (2.95,0.95);
+  \node[below] at (2.95,0) {\small $f_c$};
+  \draw[kirmizikalem,->] (-3.5,0.9) to[bend left=18] (4.0,1.7);
+  \draw[kirmizikalem,->] (3.5,0.3) -- (4.0,1.65);
+  \node[kirmizikalem,anchor=west] at (4.05,1.8) {$Y_{\text{ÜYB}}(f)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-4.4,0) -- (4.4,0);
+  \draw[->] (0,0) -- (0,2.4) node[right] {$\Fou{y_{\text{ÜYB}}(t)\cdot\cos(2\pi f_c t)}$};
+  \draw (-3.8,0) .. controls (-3.8,0.55) and (-3.4,0.93) .. (-2.9,0.93) -- (-2.9,0);
+  \node[below] at (-2.9,0) {\small $-2f_c$};
+  \draw (-1,0) .. controls (-1,0.55) and (-0.55,0.93) .. (0,0.93) -- (1,0);
+  \draw[kirmizikalem,dashed] (-1,0) -- (-1,0.93) -- (0.9,0.93) -- (0.9,0);
+  \draw[kirmizikalem,->] (1.65,1.45) -- (0.95,1.0);
+  \node[kirmizikalem,anchor=west] at (1.6,1.6) {AGF};
+  \draw (2.9,0) -- (2.9,0.93) -- (3.9,0);
+  \node[below] at (2.9,0) {\small $2f_c$};
+\end{tikzpicture}
+\end{center}
+
+\[ y_{\text{TYB}}(t)=A_c\Bigl[m(t)\cos(2\pi f_c t)\ \overset{\text{AYB}}{\underset{\text{ÜYB}}{\pm}}\ m_h(t)\sin(2\pi f_c t)\Bigr] \]
+\hspace{5.5cm}$\rightarrow$ $m(t)$'nin Hilbert dönüşümü
+
+\hspace{9cm}($\okunamadi{Prolcisite}$ $\hat m(t)$)
+
+\medskip
+\noindent
+\begin{minipage}[c]{0.5\linewidth}
+\[ m_h(t)=m(t)\circledast\underbrace{\frac{1}{\pi t}}_{h(t)} \]
+\[ m_h(t)=\frac{1}{\pi}\int_{-\infty}^{\infty}\frac{m(\tau)}{t-\tau}\,d\tau \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[draw,rectangle,inner xsep=5mm,inner ysep=3.5mm] (h) at (0,0) {$h(t)=\dfrac{1}{\pi t}$};
+  \draw[->] (-2.9,0) -- (h.west);
+  \node[below] at (-2.3,0) {$m(t)$};
+  \draw[->] (h.east) -- (2.9,0) node[right] {$m_h(t)$};
+\end{tikzpicture}
+\end{minipage}
+
+\[ h(t)=\frac{1}{\pi t}\ \overset{F}{\longleftrightarrow}\ H(f)=-j\,\mathrm{sgn}(f)=\begin{cases}-j, & f>0\\ j, & f<0\end{cases}=\begin{cases}e^{-j\pi/2}, & f>0\\ e^{j\pi/2}, & f<0\end{cases} \]
+
+\noindent
+\begin{minipage}[c]{0.43\linewidth}
+\[ \left.\begin{aligned} |H(f)| &= 1\\[4mm] \theta_h(f) &= \begin{cases}-\pi/2, & f>0\\ \pi/2, & f<0\end{cases}\end{aligned}\right\}\ \Longrightarrow \]
+\end{minipage}\hfill
+\begin{minipage}[c]{0.55\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, x=0.8cm, y=0.9cm]
+  \draw[->] (-2.7,0) -- (2.7,0) node[right] {$f$};
+  \draw[->] (0,0) -- (0,1.5) node[right] {$|H(f)|$};
+  \draw (-2.3,0.9) -- (2.3,0.9);
+  \node[left] at (-0.05,1.05) {\small $1$};
+  \draw[kirmizikalem,->] (2.4,0.75) -- (3.0,1.05);
+  \node[kirmizikalem,align=left,anchor=west,font=\small] at (3.0,1.2) {tüm geçiren\\filtre};
+  \begin{scope}[yshift=-3cm]
+    \draw[->] (-2.7,0) -- (2.7,0) node[right] {$f$};
+    \draw[->] (0,-0.8) -- (0,1.3) node[right] {$\theta_h(f)$};
+    \draw (-2.3,0.5) -- (0,0.5);
+    \node[right] at (0.05,0.65) {\small $\pi/2$};
+    \draw (0,-0.6) -- (2.3,-0.6);
+    \node[left] at (-0.05,-0.6) {\small $-\pi/2$};
+    \node[kirmizikalem,align=left,anchor=west,font=\small] at (3.0,0.2) {Bu filtre 90\\derece faz\\farkı ekleyecek};
+  \end{scope}
+\end{tikzpicture}
+\end{minipage}
+
+\sayfa{2}
+\begin{align*}
+P_{y_{\text{TYB}}} &= \frac{A_c^2}{2}P_m+\frac{A_c^2}{2}P_{m_h}\qquad\nearrow\ \text{o da $P_m$'e eşit genlik değişmediği için}\\
+&= A_c^2P_m
+\end{align*}
+\[ y_{\text{AYB}}(t)+y_{\text{ÜYB}}(t)=2A_c\,m(t)\cos(2\pi f_c t)=y(t) \]
+
+\begin{ornek}
+\begin{align*}
+m(t)&=\cos(2\pi f_m t)\\
+m_h(t)&=\cos(2\pi f_m t-\pi/2)=\sin(2\pi f_m t)\\
+y_{\text{TYB}}(t)&=A_c\bigl[\cos(2\pi f_m t)\cdot\cos(2\pi f_c t)\pm\sin(2\pi f_m t)\sin(2\pi f_c t)\bigr]\\
+&=A_c\cos\bigl[2\pi(f_c\mp f_m)t\bigr]
+\end{align*}
+\end{ornek}
+
+{\footnotesize\textit{(başlığın üstünde küçük not: \okunamadi{ek anlatılı})}}
+\section{TYB-GM modülatörleri}
+\subsection{1) Filtreleme tekniği (Filtering)}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[draw,circle,inner sep=1pt] (x) at (0,0) {$\times$};
+  \node[draw,rectangle,minimum width=2.8cm,minimum height=1.7cm] (b) at (4.6,0) {BGF};
+  \draw[->] (-2.8,0) -- (x);
+  \node[above] at (-1.5,0) {$m(t)$};
+  \node[below] at (-1.5,0) {\small BG$=B$ Hz};
+  \draw[->] (x) -- (b.west);
+  \node[above] at (1.8,0) {\small $y_{\text{ÇYB}}(t)$};
+  \node[below,align=center] at (1.8,0) {\small DSB-SC\\[-1pt] $\downarrow$\\[-1pt] BG$=2B$ Hz};
+  \draw[->] (0,-1.7) -- (x);
+  \node[below] at (0,-1.7) {$A_c\cos(2\pi f_c t)$};
+  \draw[->] (b.east) -- (8.4,0) node[right] {$y_{\text{TYB}}(t)$};
+  \node[below,align=center] at (9.0,-0.15) {\small $\downarrow$\\[-1pt] BG$=B$ Hz};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-4.7,0) -- (5.3,0) node[right] {$f$};
+  \draw[->] (0,-1.2) -- (0,2.4) node[right] {$|H(f)|$};
+  \node[left] at (0,1.1) {\small $1$};
+  \draw (-0.06,1) -- (0.06,1);
+  \draw (-2.66,0) -- (-2.66,1) -- (-1.74,1) -- (-1.74,0);
+  \draw (1.87,0) -- (1.87,1) -- (2.76,1) -- (2.76,0);
+  \draw[turuncukalem,dashed] (0.93,0) -- (0.93,1) -- (1.82,1);
+  \draw[kirmizikalem] (1.46,0) -- (1.82,1) -- (2.85,1) -- (3.24,0);
+  \draw[kirmizikalem,->] (3.0,0.55) -- (3.75,1.0);
+  \node[kirmizikalem,anchor=west,font=\small] at (3.8,1.05) {pratik filtre};
+  \node[below,font=\small] at (-2.98,0) {$-f_c-B$};
+  \node[below,font=\small] at (-1.21,0) {$-f_c$};
+  \node[below,font=\small,turuncukalem] at (0.73,0) {$f_c-B$};
+  \node[below,font=\small] at (1.76,0) {$f_c$};
+  \node[below,font=\small] at (3.1,0) {$f_c+B$};
+  \draw[<-] (1.9,-0.75) -- (2.8,-0.75);
+  \node[below,font=\small] at (2.35,-0.75) {$B$};
+  \node at (2.3,2.4) {\small ÜYB};
+\end{tikzpicture}
+\end{center}
+
+Mesaj işaretinin 0 Hz civarındaki frekanslarda bileşenleri 0'a yakın olmalıdır
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-1.5,0) -- (5.5,0) node[right] {$f$ (kHz)};
+  \draw[->] (0,0) -- (0,2.8) node[right,font=\small] {Sesin GYF};
+  \draw (-0.06,2.05) -- (0.06,2.05);
+  \foreach \k in {0,1,2,3,4,5} {\draw (\k*0.98,-0.06) -- (\k*0.98,0.06); \node[below,font=\small] at (\k*0.98,-0.05) {\k};}
+  \draw (0,0) to[out=80,in=200] (1.03,2.05) -- (1.12,2.0) -- (1.18,1.36) .. controls (1.6,1.45) and (1.9,1.3) .. (1.95,0.95) -- (2.03,0.32) .. controls (2.5,0.42) and (3.5,0.22) .. (4.9,0.14);
+\end{tikzpicture}
+\end{center}
+
+\sayfa{3}
+\sekilnotu[3]{``ÜYB'' başlıklı (dikey eksen etiketi) spektrum çizimi: $f$ ekseninde $-f_c$ ve $f_c$ işaretli iki nokta. $\pm f_c$ noktalarının solunda ve sağında düzensiz tepeli (ses spektrumuna benzer) birer lob var; spektrum $\pm f_c$'de dikey olarak sıfıra iniyor. $-f_c$'nin solundaki lobun içinde siyah bir ``+''; $f_c$'nin sağındaki lobun çevresinde kırmızı kesikli bir dikdörtgen ve içinde kırmızı bir ``+'' işareti.}
+
+Sesin anlamlı bileşenleri 300--3500 Hz
+
+\subsection{2) Faz öteleme tekniği}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep, scale=0.8, transform shape]
+  \draw[->] (-2.84,0) -- (0,0);
+  \node[below] at (-2.0,-0.05) {$m(t)$};
+  \draw (0,1.9) -- (0,-4.66);
+  \node[draw,rectangle,minimum width=4.3cm,minimum height=1.87cm,align=center] (u) at (4.85,1.865) {DSB-SC-AM\\modülatör};
+  \draw[->] (0,1.9) -- (2.7,1.9);
+  \draw (7.0,1.9) -- (12.4,1.9);
+  \draw[->] (12.4,1.9) -- (12.4,-0.7);
+  \node[above] at (9.7,1.9) {\small $A_c\,m(t)\cos(2\pi f_c t)$};
+  \node[draw,circle,minimum size=0.9cm,inner sep=0pt] (o) at (4.75,-0.41) {$\sim$};
+  \node[right] at (5.25,-0.41) {\small $A_c\cos(2\pi f_c t)$};
+  \draw[->] (o.north) -- (4.75,0.93);
+  \node[draw,rectangle,minimum width=1.65cm,minimum height=0.9cm] (p) at (4.75,-2.0) {$-\pi/2$};
+  \draw (o.south) -- (p.north);
+  \draw[->] (p.south) -- (4.75,-3.79);
+  \node[right] at (4.8,-3.1) {\small $A_c\sin(2\pi f_c t)$};
+  \draw (3.78,-3.79) -- (6.75,-3.79) -- (7.69,-5.58) -- (4.54,-5.58) -- cycle;
+  \node[align=center] at (5.95,-4.6) {\small DSB-SC-AM\\[-1pt]\scriptsize modülatör};
+  \node[draw,rectangle,minimum width=1.0cm,minimum height=1.0cm,inner sep=2pt] (q) at (1.0,-4.66) {\small $-\pi/2$};
+  \draw[->] (0,-4.66) -- (q.west);
+  \draw[->] (q.east) -- (4.19,-4.66);
+  \node[below] at (2.9,-4.7) {$m_h(t)$};
+  \draw (7.25,-4.66) -- (12.4,-4.66);
+  \node[draw,circle,minimum size=1.1cm,inner sep=0pt] (s) at (12.4,-1.25) {$+$};
+  \draw[->] (12.4,-4.66) -- (s.south);
+  \node[font=\small] at (11.9,-0.5) {$\mp$};
+  \draw[->] (s.east) -- (14.1,-1.25) node[right] {$y_{\text{TYB}}(t)$};
+  \node[below] at (10.0,-4.7) {\small $A_c\,m_h(t)\sin(2\pi f_c t)$};
+\end{tikzpicture}
+\end{center}
+
+Hilbert filtresini tüm noktalara 90 derece \okunamadi{ötelemek} gerçekte zordur
+
+\section{TYB-GM -- Demodülatörleri}
+\subsection{1) Faz tahminli demodülasyon (Coherent demodulation)}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[draw,circle,inner sep=1pt] (x) at (0,0) {$\times$};
+  \draw[->] (-3.0,0) -- (x);
+  \node[below] at (-1.9,0) {$y_{\text{TYB}}(t)$};
+  \draw[->] (0,-1.8) -- (x);
+  \node[below] at (0,-1.8) {$\cos(2\pi f_c t)$};
+  \node[draw,rectangle,minimum width=2.6cm,minimum height=1.2cm,align=center] (f) at (4.6,0) {AGF\\BG$=B$ Hz};
+  \draw[->] (x) -- node[below] {$e(t)$} (f.west);
+  \draw[->] (f.east) -- (7.3,0) node[right] {$z(t)$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{4}
+\[ y_{\text{TYB}}(t)=A_c\,m(t)\cos(2\pi f_c t)\mp A_c\,m_h(t)\sin(2\pi f_c t) \]
+\begin{align*}
+e(t)&=y_{\text{TYB}}(t)\cdot\cos(2\pi f_c t)\\
+&=\frac{A_c}{2}m(t)\Bigl[\overbrace{\cos(0)}^{1}+\cos(2\pi\,2f_c t)\Bigr]\mp\\
+&\phantom{=}\ \frac{A_c}{2}m(t)\Bigl[\underbrace{\sin(0)}_{0}+\sin(2\pi\,2f_c t)\Bigr]\quad\footnotemark
+\end{align*}
+\footnotetext{Claude notu: ikinci terimde muhtemelen $m_h(t)$ olmalı (aşağıdaki benzer satırda da aynı durum var).}
+\[ e(t)=\frac{A_c}{2}m(t)+\frac{A_c}{2}\underbrace{\Bigl[m(t)\cos(2\pi\,2f_c t)\mp m_h(t)\sin(2\pi\,2f_c t)\Bigr]}_{\text{$2f_c$'de TYB}} \]
+\hspace{9.5cm}{\color{kirmizikalem}$\swarrow$ AGF'den geçmez}
+\[ z(t)=\frac{A_c}{2}m(t) \]
+
+{\color{kirmizikalem}$\star$ Sınav sorusu alıcıyı tahmin ederken $\theta$ kadar faz farkı}
+\begin{align*}
+e(t)&=y_{\text{TYB}}(t)\cdot\cos(2\pi f_c t)\\
+&=\frac{A_c}{2}m(t)\Bigl[\cos\bigl({\color{kirmizikalem}\theta}\bigr)+\cos\bigl(2\pi\,2f_c t{\color{kirmizikalem}+\theta}\bigr)\Bigr]\mp\\
+&\phantom{=}\ \frac{A_c}{2}m(t)\Bigl[\sin\bigl({\color{kirmizikalem}\theta}\bigr)+\sin\bigl(2\pi\,2f_c t{\color{kirmizikalem}+\theta}\bigr)\Bigr]
+\end{align*}
+\[ e(t)=\frac{A_c}{2}m(t)\cos\theta\mp\frac{A_c}{2}m_h(t)\sin\theta+\text{$2f_c$'de TYB} \]
+\hspace{10.5cm}$\swarrow$ AGF'den geçmez
+
+$\theta$ mesajı bozar, $\theta$ zamana bağlıdır
+
+\subsection{Faz tahminsiz demodülasyon (Non coherent demodulation)}
+Envelope detection of SSB-AM with LC $=$ SSB $+$ C
+\[ y_{\text{SSB+C}}(t)=\underbrace{A_c\cos(2\pi f_c t)}_{\text{LC}}+\underbrace{A\bigl[m(t)\cos(2\pi f_c t)+m_h(t)\sin(2\pi f_c t)\bigr]}_{\text{SSB}} \]
+\[ =\bigl[A_c+A\,m(t)\bigr]\cos(2\pi f_c t)+A\,m_h(t)\sin(2\pi f_c t) \]
+\[ =E(t)\cos\bigl(2\pi f_c t+\theta(t)\bigr) \]
+\formulkutu{\begin{aligned}a\cos x+b\sin x&=c\cos(x+\theta)\\ c=\sqrt{a^2+b^2},&\qquad\theta=-\arctan(b/a)\end{aligned}}
+
+\sayfa{5}
+\begin{align*}
+E(t)&=\Bigl[\bigl(A_c+A\,m(t)\bigr)^2+\bigl(A\,m_h(t)\bigr)^2\Bigr]^{1/2}\\
+&=\Bigl[A_c^2+A^2m^2(t)+2AA_c\,m(t)+A^2m_h^2(t)\Bigr]^{1/2}\\
+&=A_c\Bigl[1+\frac{A^2m^2(t)}{A_c^2}+\frac{A^2m_h^2(t)}{A_c^2}+\frac{2A\,m(t)}{A_c}\Bigr]^{1/2}
+\end{align*}
+\[ \left.\begin{aligned}A_c&\gg A\,|m(t)|\\ \Rightarrow\ A_c&\gg A\,|m_h(t)|\end{aligned}\right\}\ \Rightarrow\ E(t)\approx A_c\Bigl[1+\frac{2A\,m(t)}{A_c}\Bigr]^{1/2} \]
+\[ \approx A_c\Bigl[1+\frac{A\,m(t)}{A_c}\Bigr] \]
+\[ =A_c+A\,m(t) \]
+\formulkutu{{\color{kirmizikalem}\star}\ |x|\ll 1\ \Rightarrow\ (1+x)^n\approx 1+n\,x}
+
+\noindent
+\begin{minipage}[c]{0.26\linewidth}
+{\color{kirmizikalem}ÇYB-GM\\[3mm] TYB-GM}
+\end{minipage}
+\begin{minipage}[c]{0.7\linewidth}
+\[ \left.\begin{aligned}A_c&\ge|m(t)|\\ A_c&\gg|m(t)|\end{aligned}\right\}\ V_{\text{TYB}}<V_{\text{ÇYB}} \]
+\end{minipage}
+
+\section{Artık Yan Band (AYB)-GM}
+{\color{kirmizikalem}(Vestigial Side band (VSB)-AM)\\ {\small asymmetric sideband}}
+\begin{flushright}
+{\color{turuncukalem}HF bandı}\\[2mm]
+Siyah beyaz televizyon 6 MHz
+\end{flushright}
+\[ \mathrm{BG}\{\text{AYB}\}=1{,}25\,\mathrm{BG}\{\text{TYB}\} \]
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-2.6,0) -- (2.8,0) node[right] {$f$};
+  \draw[->] (0,0) -- (0,1.5) node[right] {$M(f)$};
+  \draw (-1,0) arc[start angle=180,end angle=0,x radius=1,y radius=0.85];
+  \node[below,font=\small] at (-1,0) {$-B$};
+  \node[below,font=\small] at (1,0) {$B$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-3.4,0) -- (3.4,0);
+  \draw[->] (0,0) -- (0,1.5) node[right] {$Y_{\text{USB}}(f)$};
+  \draw (-3.07,0) arc[start angle=180,end angle=90,x radius=1,y radius=1] -- (-2.07,0);
+  \draw (2.05,0) -- (2.05,1) arc[start angle=90,end angle=0,x radius=1,y radius=1];
+  \node[below,font=\small] at (-3.07,0) {$f_c-B$};
+  \node[below,font=\small] at (-2.07,0) {$f_c$};
+  \node[below,font=\small] at (2.05,0) {$f_c$};
+  \node[below,font=\small] at (3.05,0) {$f_c+B$};
+\end{tikzpicture}\footnote{Claude notu: ikinci şekilde sol taraftaki etiketler muhtemelen $-f_c-B$ ve $-f_c$ olmalı.}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-3.6,0) -- (3.6,0) node[right] {$f$};
+  \draw[->] (0,-1.0) -- (0,2.6) node[right] {$Y_{\text{VSB}}(f)$};
+  \draw[dashed] (-2.04,0) -- (-2.04,2.5);
+  \draw[dashed] (2.05,0) -- (2.05,2.5);
+  \draw (-3.04,0) .. controls (-3.0,0.7) and (-2.6,1.0) .. (-2.3,1.0) .. controls (-2.1,1.0) and (-2.0,0.5) .. (-1.9,0.2) .. controls (-1.8,0.06) and (-1.6,0.04) .. (-1.5,0.04);
+  \draw (1.67,0) .. controls (1.9,0.1) and (2.1,1.0) .. (2.53,1.0) .. controls (2.9,1.0) and (3.07,0.5) .. (3.07,0);
+  \node[below,font=\small] at (-3.04,0) {$-f_c-B$};
+  \node[below,font=\small] at (-1.95,0) {$-f_c$};
+  \node[below,font=\small] at (2.05,0) {$f_c$};
+  \node[below,font=\small] at (3.2,0) {$f_c+B$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{6}
+Modülatör
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[draw,circle,inner sep=1pt] (x) at (0,0) {$\times$};
+  \draw[->] (-2.6,0) -- (x);
+  \node[above] at (-1.5,0) {$m(t)$};
+  \draw[->] (0,-1.6) -- (x);
+  \node[below] at (0,-1.6) {$2\cos(2\pi f_c t)$};
+  \node[draw,rectangle,minimum width=2.4cm,minimum height=1.3cm,align=center] (b) at (4.5,0) {BPF\\$H_i(f)$};
+  \draw[->] (x) -- node[above] {$x(t)$} (b.west);
+  \draw[->] (b.east) -- (8.0,0) node[right] {$y_{\text{VSB}}(t)$};
+  \draw[->] (4.2,0.65) -- (5.0,1.15);
+  \node[anchor=west,align=left,font=\small] at (5.1,1.4) {AYB şekillendirme filtresi\\(VSB shaping filter)};
+\end{tikzpicture}
+\end{center}
+
+Demodülatör
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \node[draw,circle,inner sep=1pt] (x) at (0,0) {$\times$};
+  \draw[->] (-3.0,0) -- (x);
+  \node[below] at (-1.8,0) {$y_{\text{VSB}}(t)$};
+  \draw[->] (0,-1.6) -- (x);
+  \node[below] at (0,-1.6) {$2\cos(2\pi f_c t)$};
+  \node[draw,rectangle,minimum width=2.4cm,minimum height=1.4cm,align=center] (b) at (4.2,0) {LPF\\$H_o(f)$};
+  \draw[->] (x) -- node[below] {$e(t)$} (b.west);
+  \draw[->] (b.east) -- (7.2,0) node[right] {$m(t)$};
+  \draw[->] (4.8,-0.7) -- (4.9,-1.15);
+  \node[anchor=west,font=\small] at (5.0,-1.4) {Dengeleyici AGF (Equalizing LPF)};
+\end{tikzpicture}
+\end{center}
+
+\subsection{Faz tahminli demodülasyon}
+\begin{align*}
+e(t)&=2y_{\text{VSB}}(t)\cos(2\pi f_c t)\ \rightarrow\ E(f)=Y_{\text{VSB}}(f-f_c)+Y_{\text{VSB}}(f+f_c)\\
+M(f)&=E(f)\cdot H_o(f)=\bigl[Y_{\text{VSB}}(f-f_c)+Y_{\text{VSB}}(f+f_c)\bigr]H_o(f)\\
+x(t)&=2m(t)\cos(2\pi f_c t)\ \rightarrow\ X(f)=\underline{M(f-f_c)+M(f+f_c)}\\
+Y_{\text{VSB}}(f)&=X(f)H_i(f)\\
+&=\underline{M(f-f_c)H_i(f)+M(f+f_c)H_i(f)}
+\end{align*}
+\begin{align*}
+M(f)&=\Bigl[\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$M(f-2f_c)H_i(f-f_c)$};\draw[kirmizikalem,line width=0.6pt](s.south west)--(s.north east);}+M(f)H_i(f-f_c)+M(f)H_i(f+f_c)\\
+&\qquad+\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$M(f+2f_c)H_i(f+f_c)$};\draw[kirmizikalem,line width=0.6pt](s.south west)--(s.north east);}\Bigr]H_o(f)
+\end{align*}
+\hspace{4.5cm}{\color{kirmizikalem}$\swarrow$ AGF'den geçmezler}
+\[ \tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$M(f)$};\draw[turuncukalem,line width=0.6pt](s.south west)--(s.north east);}=\tikz[baseline=(s.base)]{\node[inner sep=1pt](s){$M(f)$};\draw[turuncukalem,line width=0.6pt](s.south west)--(s.north east);}\bigl[H_i(f-f_c)+H_i(f+f_c)\bigr]H_o(f) \]
+\formulkutu{H_o(f)=\frac{1}{H_i(f-f_c)+H_i(f+f_c)}\ ,\qquad |f|\le B\ \text{iken}}
+\[ \text{Eğer}\quad H_i(f-f_c)+H_i(f+f_c)=1\ ,\qquad \overbrace{|f|\le B}^{-B\,\le\,f\,\le\,B} \]
+
+\sayfa{7}
+\[ H_o(f)=1,\ |f|\le B=\Pi\Bigl(\frac{f}{2B}\Bigr)\qquad\text{ideal AGF} \]
+\sekilnotu[7]{Küçük bir el çizimi: eğik bir eksen üzerinde dikdörtgen darbe ($\Pi$ fonksiyonu); eksende iki yerde $B$ etiketi.}
+
+\section{VSB+C}
+\[ A_{c,\text{DSB-LC}}<A_{c,\text{VSB}}<A_{c,\text{SSB+C}} \]
+\[ V_{\text{DSB-LC}}>V_{\text{VSB+C}}>V_{\text{SSB+C}} \]
+
+-- Temel bant video işareti: (siyah beyaz) $=$ \qty{4,5}{\mega\hertz}
+
+\hspace{0.8cm}AYB $\rightarrow$ BG $=$ \qty{6}{\mega\hertz}
+
+\section{Television signal spectra}
+$X(f)$ with audio spectrum
+\begin{center}
+\begin{tikzpicture}[>=Stealth, line width=0.7pt, murekkep]
+  \draw[->] (-0.3,0) -- (11.0,0) node[above,font=\small] {$f$ (MHz)};
+  \draw[->] (0,0) -- (0,2.9);
+  \draw (1.06,0) .. controls (1.4,0.05) and (1.55,0.45) .. (1.78,0.75) -- (4.3,0.75) .. controls (4.55,0.45) and (4.7,0.05) .. (4.9,0) .. controls (5.0,-0.04) and (5.2,-0.04) .. (5.46,0) .. controls (5.7,0.05) and (5.8,0.98) .. (6.07,0.98) .. controls (6.4,0.98) and (6.5,0.15) .. (6.7,0);
+  \draw (3.02,0.06) -- (3.02,-0.06);
+  \node[below,font=\small] at (3.02,-0.05) {$f_c$};
+  \draw[dashed] (6.07,0) -- (6.07,1.6);
+  \draw[dashed] (6.7,0) -- (6.7,1.6);
+  \draw[<->] (6.07,1.7) -- (6.7,1.7);
+  \node[above,font=\small] at (6.4,1.7) {0,25 MHz};
+  \draw[kirmizikalem,->] (6.35,0.45) -- (7.1,1.0);
+  \node[kirmizikalem,anchor=west,font=\small] at (7.15,1.05) {audio spectrum (FM)};
+  \node[below,font=\scriptsize] at (5.95,-0.05) {$f_c+4{,}5$};
+  \draw[->] (6.7,0) -- (6.85,-0.25);
+  \node[anchor=west,font=\scriptsize] at (6.85,-0.4) {$f_c+4{,}75$ Hz};
+  \foreach \xx in {5.46,6.04,6.67} {\draw[turuncukalem,dash pattern=on 3pt off 2pt] (\xx,0.7) -- (\xx,-6.3);}
+  \begin{scope}[yshift=-5.97cm]
+    \draw[->] (-0.3,0) -- (11.0,0) node[above,font=\small] {$f$ (MHz)};
+    \draw[->] (0,0) -- (0,4.9);
+    \node[anchor=west,font=\small] at (0.2,4.65) {$Y_{\text{VSB}}(f)$ wit audio $+$ Carrier};
+    \draw[->] (3.03,0) -- (3.03,4.47);
+    \draw[dashed] (2.44,0) -- (2.44,4.17);
+    \draw[<->] (2.44,3.75) -- (3.03,3.75);
+    \node[anchor=west,font=\scriptsize] at (2.5,3.98) {0,75 MHz};
+    \draw[line width=1.6pt] (1.74,0) .. controls (2.1,0.1) and (2.3,0.4) .. (2.44,0.72);
+    \draw (2.44,0.72) -- (4.42,0.72) .. controls (4.7,0.4) and (4.9,0.02) .. (5.1,0) .. controls (5.2,-0.03) and (5.3,-0.03) .. (5.42,0) .. controls (5.7,0.05) and (5.8,1.07) .. (6.1,1.07) .. controls (6.4,1.07) and (6.5,0.15) .. (6.66,0);
+    \node[anchor=east,font=\scriptsize] at (2.0,-0.35) {$f_c-1{,}25$};
+    \node[font=\scriptsize] at (2.75,-0.65) {$f_c-0{,}75$};
+    \node[anchor=west,font=\scriptsize] at (3.1,-0.35) {$f_c$};
+    \node[anchor=west,font=\scriptsize] at (6.8,-0.35) {$f_c+4{,}75$};
+    \draw[kirmizikalem,<->] (1.8,-1.0) -- (6.7,-1.0);
+    \node[kirmizikalem,below] at (4.2,-1.0) {BG $=6$ MHz};
+  \end{scope}
+\end{tikzpicture}
+\end{center}
+
+\sayfa{8}
+\okunamadi{Applications}
+\section{Frequency Division Multiplexing (FDM)}
+(Frekans Bölmeli Çoklama -- FBÇ)
+
+\begin{center}
+\begin{tikzpicture}[x=0.0098cm,y=0.0098cm,>=Stealth,line width=0.6pt,murekkep,font=\scriptsize]
+  % mesaj spektrumları
+  \draw[->] (0,-527) -- (295,-527);
+  \draw[->] (137,-527) -- (137,-405);
+  \node[anchor=west] at (150,-415) {$M_1(f)$};
+  \draw (85,-527) -- (137,-480) -- (190,-527);
+  \node at (85,-565) {$-B_1$};
+  \node at (190,-565) {$B_1$};
+  \draw[->] (15,-677) -- (295,-677) node[right] {$f$};
+  \draw[->] (137,-677) -- (137,-590);
+  \node[anchor=west] at (150,-595) {$M_2(f)$};
+  \draw (85,-677) arc[start angle=180,end angle=0,x radius=52,y radius=47];
+  \node at (85,-702) {$-B_2$};
+  \node at (190,-702) {$B_2$};
+  \draw[->] (20,-875) -- (275,-875);
+  \draw[->] (137,-875) -- (137,-775);
+  \node[anchor=west] at (150,-780) {$M_3(f)$};
+  \draw (85,-875) .. controls (120,-870) and (130,-840) .. (137,-812) .. controls (145,-840) and (160,-870) .. (190,-875);
+  \node at (85,-903) {$-B_3$};
+  \node at (190,-903) {$B_3$};
+  % modülatörler
+  \draw (440,-495) rectangle (540,-563);
+  \node at (490,-529) {mod 1};
+  \draw[->] (340,-527) -- (440,-527);
+  \node at (385,-510) {$m_1(t)$};
+  \draw (505,-600) circle (28);
+  \node at (505,-600) {$\sim$};
+  \draw[->] (505,-572) -- (505,-563);
+  \node[anchor=west] at (545,-600) {$f_{c1}$};
+  \draw (540,-527) -- (700,-527) -- (812,-650);
+  \node at (670,-468) {(TB-ÇYB-GM)};
+  \node at (665,-500) {DSB-SC-AM};
+  \draw (435,-645) rectangle (545,-712);
+  \node at (490,-678) {mod 2};
+  \draw[->] (345,-678) -- (435,-678);
+  \node at (395,-663) {$m_2(t)$};
+  \draw (490,-760) circle (28);
+  \node at (490,-760) {$\sim$};
+  \draw[->] (490,-732) -- (490,-712);
+  \node[anchor=west] at (530,-760) {$f_{c2}$};
+  \draw (545,-678) -- (803,-678);
+  \node at (670,-660) {DSB-LC-AM};
+  \node at (680,-702) {(BT-ÇYB-AM)};
+  \draw (435,-827) rectangle (532,-922);
+  \node at (485,-872) {mod 3};
+  \draw[->] (345,-872) -- (435,-872);
+  \node at (395,-845) {$m_3(t)$};
+  \draw (532,-872) -- (705,-872) -- (815,-695);
+  \node at (650,-855) {SSB-AM(USB)};
+  \node at (650,-895) {(ÜYB-GM)};
+  % toplayıcı, kanal
+  \draw (835,-672) circle (32);
+  \node at (835,-672) {$+$};
+  \draw[->] (867,-672) -- (940,-672);
+  \node at (902,-655) {$x(t)$};
+  \draw (940,-638) rectangle (1048,-718);
+  \node at (994,-678) {channel};
+  \node[align=center] at (955,-512) {Çoklanmış işaret\\(Multiplexed\\signal)};
+  \draw[->] (897,-628) to[bend left=25] (832,-498);
+  % BPF ve demodülatörler
+  \draw[->] (1048,-677) -- (1085,-480) -- (1128,-480);
+  \draw[->] (1048,-677) -- (1122,-677);
+  \draw[->] (1048,-677) -- (1072,-872) -- (1120,-872);
+  \draw (1128,-435) rectangle (1288,-533);
+  \node at (1165,-462) {BPF$_1$};
+  \node at (1210,-558) {CF$=f_{c1}$};
+  \node at (1210,-582) {BW$=2B_1$};
+  \draw[->] (1288,-481) -- (1355,-481);
+  \draw (1355,-435) rectangle (1525,-528);
+  \node at (1440,-478) {Demod 1};
+  \draw[->] (1525,-478) -- (1560,-478);
+  \node[anchor=west] at (1562,-478) {$m_1(t)$};
+  \draw (1122,-632) rectangle (1278,-737);
+  \node[anchor=west,align=left] at (1135,-684) {BPF$_2$\\CF$=f_{c2}$\\BW$=2B_2$};
+  \draw[->] (1278,-683) -- (1342,-683);
+  \draw (1342,-635) rectangle (1472,-727);
+  \node at (1407,-680) {Demod 2};
+  \draw[->] (1472,-680) -- (1545,-680);
+  \node[anchor=west] at (1548,-680) {$m_2(t)$};
+  \draw (1120,-790) rectangle (1278,-945);
+  \node[anchor=west,align=left] at (1135,-868) {BPF$_3$\\CF$=f_{c3}+\frac{B_3}{2}$\\BW$=B_3$};
+  \draw[->] (1278,-873) -- (1330,-873);
+  \draw (1330,-808) rectangle (1460,-937);
+  \node at (1395,-855) {Demod 3};
+  \draw[->] (1460,-860) -- (1530,-860);
+  \node[anchor=west] at (1533,-860) {$m_3(t)$};
+\end{tikzpicture}
+\end{center}
+
+\begin{center}
+\begin{tikzpicture}[x=0.0098cm,y=0.0098cm,>=Stealth,line width=0.6pt,murekkep,font=\scriptsize]
+  \draw[->] (74,-1548) -- (74,-1060);
+  \node[anchor=west] at (95,-975) {$X(f)$};
+  \draw[->] (74,-1548) -- (1530,-1548) node[right] {$f$};
+  \draw (305,-1548) -- (380,-1400) -- (460,-1548);
+  \draw[dashed] (380,-1400) -- (380,-1548);
+  \draw[kirmizikalem,dash pattern=on 1pt off 2pt] (307,-1548) -- (307,-1397) -- (458,-1397) -- (458,-1548);
+  \node[kirmizikalem] at (395,-1368) {BPF$_1$};
+  \draw (687,-1548) arc[start angle=180,end angle=0,x radius=75,y radius=68];
+  \draw[->] (765,-1548) -- (765,-1315);
+  \draw[kirmizikalem,dash pattern=on 1pt off 2pt] (687,-1548) -- (687,-1397) -- (838,-1397) -- (838,-1548);
+  \node[kirmizikalem] at (865,-1368) {BPF$_2$};
+  \draw (1143,-1548) -- (1143,-1470) .. controls (1170,-1500) and (1210,-1540) .. (1245,-1548);
+  \draw[kirmizikalem,dash pattern=on 1pt off 2pt] (1140,-1548) -- (1140,-1397) -- (1258,-1397) -- (1258,-1548);
+  \node[kirmizikalem] at (1315,-1440) {BPF$_3$};
+  \node at (295,-1585) {$f_{c1}-B_1$};
+  \node at (385,-1585) {$f_{c1}$};
+  \node at (485,-1582) {$f_{c1}+B_1$};
+  \node at (685,-1583) {$f_{c2}-B_2$};
+  \node at (772,-1583) {$f_{c2}$};
+  \node at (880,-1578) {$f_{c2}+B_2$};
+  \node at (1128,-1588) {$f_{c3}$};
+  \node at (1270,-1583) {$f_{c3}+B_3$};
+  \draw[->] (1185,-1555) -- (1185,-1600);
+  \node at (1220,-1650) {$f_{c3}+\frac{B_3}{2}$};
+  \draw[<->] (300,-1622) -- (467,-1622);
+  \node at (350,-1655) {$2B_1$};
+  \draw[<->] (677,-1620) -- (862,-1620);
+  \node at (765,-1652) {$2B_2$};
+  \node[kirmizikalem,align=center] at (575,-1640) {Koruma\\bandı};
+  \draw[kirmizikalem] (462,-1552) -- (480,-1578) -- (665,-1572);
+  \node[kirmizikalem] at (580,-1695) {Guard band};
+  \draw[kirmizikalem,<-] (700,-1690) -- (880,-1688) to[out=0,in=-90] (975,-1610) -- (975,-1595);
+  \draw[kirmizikalem] (865,-1590) -- (975,-1597) -- (1100,-1590);
+\end{tikzpicture}
+\end{center}
+
+\end{document}
