@@ -2,11 +2,11 @@
 
 # GTÜ Elektronik Mühendisliği Ders Notları
 
-![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 1913](https://img.shields.io/badge/dosya-1913-6e7781) ![dijital not: 116](https://img.shields.io/badge/dijital%20not-116-e36209)
+![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 2252](https://img.shields.io/badge/dosya-2252-6e7781) ![dijital not: 144](https://img.shields.io/badge/dijital%20not-144-e36209)
 
 Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının **7 dönemine** (2021–2022 Güz – 2024–2025 Güz) ait ders notları, çıkmış sorular, ödevler, laboratuvar raporları ve projeler.
 
-Bu depo, GTÜ Elektronik Mühendisliği mezunu **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)) tarafından hazırlanmıştır. Notların çoğu tablette tutulmuş el yazısı notlardır; önemli bir kısmının LaTeX ile yazılmış, okunması ve aranması kolay **dijital versiyonları** da vardır. Toplam **46 ders**, **1913 dosya** (692 PDF), **116 dijital not** ve **25 proje** bulunur. Tüm içerik öğrenciler için **ücretsizdir**: dilediğiniz gibi indirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz. Faydalı olduysa depoya ⭐ vermeyi unutmayın.
+Bu depo, GTÜ Elektronik Mühendisliği mezunu **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)) tarafından hazırlanmıştır. Notların çoğu tablette tutulmuş el yazısı notlardır; önemli bir kısmının LaTeX ile yazılmış, okunması ve aranması kolay **dijital versiyonları** da vardır. Toplam **46 ders**, **2252 dosya** (720 PDF), **144 dijital not** ve **25 proje** bulunur. Tüm içerik öğrenciler için **ücretsizdir**: dilediğiniz gibi indirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz. Faydalı olduysa depoya ⭐ vermeyi unutmayın.
 
 *English speakers: see the [English section](#english) at the end of this page.*
 
@@ -100,10 +100,10 @@ Tablolardaki sayılar yaklaşık belge sayısıdır: bir lab, ödev veya proje k
 
 | Ders | Kod | İçerik |
 |---|---|---|
-| [Analog Haberleşme](5-Donem/Analog-Haberlesme/) | ELM361 | 12 ders notu · 4 uygulama notu · 21 dijital not · 10 çıkmış sınav · 8 sınav çalışması · 2 ödev · 2 proje |
+| [Analog Haberleşme](5-Donem/Analog-Haberlesme/) | ELM361 | 12 ders notu · 4 uygulama notu · 22 dijital not · 10 çıkmış sınav · 8 sınav çalışması · 2 ödev · 2 proje |
 | [Elektromanyetik Alan Teorisi](5-Donem/Alan-Teorisi/) | ELM341 | 15 ders notu · 9 uygulama notu · 27 dijital not · 8 çıkmış sınav · 3 sınav çalışması · 1 proje |
-| [Elektromekanik Enerji Dönüşümü](5-Donem/Elektromekanik-Enerji-Donusumu/) | — | 1 sınav çalışması |
-| [Elektronik II](5-Donem/Elektronik-2/) | — | 12 ders notu · 8 dijital not · 1 sınav çalışması |
+| [Elektromekanik Enerji Dönüşümü](5-Donem/Elektromekanik-Enerji-Donusumu/) | — | 1 dijital not · 1 sınav çalışması |
+| [Elektronik II](5-Donem/Elektronik-2/) | — | 12 ders notu · 13 dijital not · 1 sınav çalışması |
 | [Elektronik II Laboratuvarı](5-Donem/Elektronik-2-Lab/) | ELEC337 | 3 lab · 1 proje |
 | [Mikroişlemciler](5-Donem/Mikroislemciler/) | ELEC334 | 12 slayt · 3 çıkmış sınav · 3 ödev |
 | [Mikroişlemciler Laboratuvarı](5-Donem/Mikroislemciler-Lab/) | ELEC335 | 5 lab · 1 kod dosyası |
@@ -114,8 +114,8 @@ Tablolardaki sayılar yaklaşık belge sayısıdır: bir lab, ödev veya proje k
 |---|---|---|
 | [Elektromanyetik Dalga Teorisi](6-Donem/Dalga-Teorisi/) | — | 3 ders notu · 1 ödev · 1 proje |
 | [Haberleşme Laboratuvarı](6-Donem/Sayisal-Haberlesme-Lab/) | ELM366 | 4 lab |
-| [Kontrol Sistemleri](6-Donem/Kontrol-Sistemleri/) | ELEC322 | 12 ders notu · 2 dijital not · 8 sınav çalışması · 1 proje |
-| [Sayısal Haberleşme](6-Donem/Sayisal-Haberlesme/) | ELM365 | 14 ders notu · 1 ödev · 1 proje |
+| [Kontrol Sistemleri](6-Donem/Kontrol-Sistemleri/) | ELEC322 | 12 ders notu · 18 dijital not · 8 sınav çalışması · 1 proje |
+| [Sayısal Haberleşme](6-Donem/Sayisal-Haberlesme/) | ELM365 | 14 ders notu · 5 dijital not · 1 ödev · 1 proje |
 | [Sayısal İşaret İşlemenin Temelleri](6-Donem/Sayisal-Isaret-Isleme/) | ELM367 | 14 ders notu · 3 ödev |
 | [Sayısal İşaret İşleme Laboratuvarı](6-Donem/Sayisal-Isaret-Isleme-Lab/) | ELM368 | 6 lab · 1 proje |
 
@@ -150,10 +150,12 @@ El yazısı notların bir kısmı, okunması ve içinde arama yapılması kolay 
 | 4. Dönem | [Elektronik I](4-Donem/Elektronik-1/README.md#dijital-notlar-latex) | 9 |
 | 4. Dönem | [İşaretler ve Sistemler](4-Donem/Isaretler-ve-Sistemler/README.md#dijital-notlar-latex) | 18 |
 | 4. Dönem | [Olasılık ve Rastgelelik](4-Donem/Olasilik-ve-Rastgelelik/README.md#dijital-notlar-latex) | 2 |
-| 5. Dönem | [Analog Haberleşme](5-Donem/Analog-Haberlesme/README.md#dijital-notlar-latex) | 21 |
+| 5. Dönem | [Analog Haberleşme](5-Donem/Analog-Haberlesme/README.md#dijital-notlar-latex) | 22 |
 | 5. Dönem | [Elektromanyetik Alan Teorisi](5-Donem/Alan-Teorisi/README.md#dijital-notlar-latex) | 27 |
-| 5. Dönem | [Elektronik II](5-Donem/Elektronik-2/README.md#dijital-notlar-latex) | 8 |
-| 6. Dönem | [Kontrol Sistemleri](6-Donem/Kontrol-Sistemleri/README.md#dijital-notlar-latex) | 2 |
+| 5. Dönem | [Elektromekanik Enerji Dönüşümü](5-Donem/Elektromekanik-Enerji-Donusumu/README.md#dijital-notlar-latex) | 1 |
+| 5. Dönem | [Elektronik II](5-Donem/Elektronik-2/README.md#dijital-notlar-latex) | 13 |
+| 6. Dönem | [Kontrol Sistemleri](6-Donem/Kontrol-Sistemleri/README.md#dijital-notlar-latex) | 18 |
+| 6. Dönem | [Sayısal Haberleşme](6-Donem/Sayisal-Haberlesme/README.md#dijital-notlar-latex) | 5 |
 
 **Derleme:** `.tex` dosyalarını kendiniz derlemek için XeLaTeX (ör. TeX Live) gerekir; şablon, fontlar ve betik [`latex-sablon/`](latex-sablon/README.md) klasöründedir:
 
@@ -222,7 +224,7 @@ Hatalı bir not, eksik bir dosya ya da kırık bir bağlantı görürseniz [issu
 
 ## English
 
-**GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 1913 files (692 PDFs), 116 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
+**GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 2252 files (720 PDFs), 144 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
 
 ### How to use
 
@@ -277,17 +279,17 @@ Every semester and course folder has a README that links every file. Counts in t
 | [4](4-Donem/) | [Logic Circuits and Design](4-Donem/Lojik-Devreler/) | ELM234 / ELM235 | 12 lecture notes · 4 past exams · 3 assignments · 5 labs · 4 code files |
 | [4](4-Donem/) | [Probability and Randomness](4-Donem/Olasilik-ve-Rastgelelik/) | ELM218 | 13 lecture notes · 2 digital notes · 1 exam-prep file · 2 assignments · 1 code file |
 | [4](4-Donem/) | [Turkish II](4-Donem/Turkce-2/) | — | 3 assignments |
-| [5](5-Donem/) | [Analog Communication Systems](5-Donem/Analog-Haberlesme/) | ELM361 | 12 lecture notes · 4 recitation notes · 21 digital notes · 10 past exams · 8 exam-prep files · 2 assignments · 2 projects |
+| [5](5-Donem/) | [Analog Communication Systems](5-Donem/Analog-Haberlesme/) | ELM361 | 12 lecture notes · 4 recitation notes · 22 digital notes · 10 past exams · 8 exam-prep files · 2 assignments · 2 projects |
 | [5](5-Donem/) | [Electromagnetic Field Theory](5-Donem/Alan-Teorisi/) | ELM341 | 15 lecture notes · 9 recitation notes · 27 digital notes · 8 past exams · 3 exam-prep files · 1 project |
-| [5](5-Donem/) | [Electromechanical Energy Conversion](5-Donem/Elektromekanik-Enerji-Donusumu/) | — | 1 exam-prep file |
-| [5](5-Donem/) | [Electronics II](5-Donem/Elektronik-2/) | — | 12 lecture notes · 8 digital notes · 1 exam-prep file |
+| [5](5-Donem/) | [Electromechanical Energy Conversion](5-Donem/Elektromekanik-Enerji-Donusumu/) | — | 1 digital note · 1 exam-prep file |
+| [5](5-Donem/) | [Electronics II](5-Donem/Elektronik-2/) | — | 12 lecture notes · 13 digital notes · 1 exam-prep file |
 | [5](5-Donem/) | [Electronics Laboratory II](5-Donem/Elektronik-2-Lab/) | ELEC337 | 3 labs · 1 project |
 | [5](5-Donem/) | [Microprocessors](5-Donem/Mikroislemciler/) | ELEC334 | 12 slide decks · 3 past exams · 3 assignments |
 | [5](5-Donem/) | [Microprocessors Laboratory](5-Donem/Mikroislemciler-Lab/) | ELEC335 | 5 labs · 1 code file |
 | [6](6-Donem/) | [Electromagnetic Wave Theory](6-Donem/Dalga-Teorisi/) | — | 3 lecture notes · 1 assignment · 1 project |
 | [6](6-Donem/) | [Communications Laboratory](6-Donem/Sayisal-Haberlesme-Lab/) | ELM366 | 4 labs |
-| [6](6-Donem/) | [Control Systems](6-Donem/Kontrol-Sistemleri/) | ELEC322 | 12 lecture notes · 2 digital notes · 8 exam-prep files · 1 project |
-| [6](6-Donem/) | [Digital Communications](6-Donem/Sayisal-Haberlesme/) | ELM365 | 14 lecture notes · 1 assignment · 1 project |
+| [6](6-Donem/) | [Control Systems](6-Donem/Kontrol-Sistemleri/) | ELEC322 | 12 lecture notes · 18 digital notes · 8 exam-prep files · 1 project |
+| [6](6-Donem/) | [Digital Communications](6-Donem/Sayisal-Haberlesme/) | ELM365 | 14 lecture notes · 5 digital notes · 1 assignment · 1 project |
 | [6](6-Donem/) | [Fundamentals of Digital Signal Processing](6-Donem/Sayisal-Isaret-Isleme/) | ELM367 | 14 lecture notes · 3 assignments |
 | [6](6-Donem/) | [Digital Signal Processing Laboratory](6-Donem/Sayisal-Isaret-Isleme-Lab/) | ELM368 | 6 labs · 1 project |
 | [7](7-Donem/) | [Image Processing](7-Donem/Goruntu-Isleme/) | ELM463 | 11 lecture notes · 2 assignments · 6 labs · 1 project |

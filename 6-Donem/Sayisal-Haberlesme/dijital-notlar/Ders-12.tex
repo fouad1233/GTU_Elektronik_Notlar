@@ -1,0 +1,238 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{FSK, ASK, QAM ve M'li modülasyonun vektör uzayı gösterimi}{Ders-12.pdf}
+
+\sayfa{1}
+\begin{center}sayfa 202\end{center}
+
+\section{M-FSK}
+\subsection{Ortogonal modülasyon}
+\subsection{Frekans kaydırmalı Anahtarlama (FKA)}
+\subsection{Frequency Shift keying (FSK)}
+\[ s_i(t)=\sqrt{\frac{2E}{T}}\cos(2\pi f_it)\ ,\ \begin{array}[t]{@{}l@{}}0\le t\le T\\ i=1,\dots,M=2^k\end{array} \]
+\[ f_i=f_c+(i-1)\Delta f \]
+\[ \Delta f=\begin{cases}\dfrac{1}{2T} & \text{Faz tahminli demod.}\\[6pt] \dfrac{1}{T} & \text{'' tahminsiz ''}\end{cases} \]
+\[ \int_0^T s_i(t)\,s_j(t)\,dt=\begin{cases}0 & i\ne j\\ E & i=j\end{cases} \]
+\[ \forall_i\ \ E_i=E \]
+\[ M\uparrow\ \rightarrow\ \mathrm{BG}\uparrow\quad(\mathrm{BGV}\downarrow)\quad\times\ \underset{\text{performans iyileşir}}{P_b\downarrow}\quad\Rightarrow\ \underset{\text{(Power efficient)}}{\text{güç verimli}} \]
+\[ \mathrm{BGV}=\frac{R_b\ \text{bit/sn}}{\mathrm{BG}\ \text{Hz}} \]
+
+\subsection{Özel durum}
+$M=2^1\ \Rightarrow\ k=1$ bit $\Rightarrow$ ikili FRKA (iFRKA)\\
+\hspace*{4em}Binary FSK \quad (BFSK)
+
+\elcizimi[0.4]{sekiller/Ders-12-s1-1.png}[1]
+
+\[ \left.\begin{aligned}
+\text{``1''}\ \rightarrow\ s_1(t)&=\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct)\ ,\ 0\le t\le T\\
+\text{``0''}\ \rightarrow\ s_2(t)&=\sqrt{\tfrac{2E}{T}}\cos\bigl(2\pi(f_c+\Delta f)t\bigr)\ ,\ 0\le t\le T
+\end{aligned}\right\}\ \int_0^T s_1(t)\,s_2(t)\,dt=0 \]
+\[ \downarrow\ \rho=0 \]
+\[ P_b=Q\!\left(\sqrt{\frac{E_b}{N_0}}\right)\ ,\ E_b=E \]
+
+Unipolar signaling $\times$ carrier
+
+\elcizimi[0.5]{sekiller/Ders-12-s1-2.png}[1]
+
+\[
+\begin{aligned}
+&\xrightarrow{\text{performansı daha iyi}}\ \mathrm{BPSK:}\ P_b=Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right)\\
+&\hspace{3em}\mathrm{BFSK:}\ P_b=Q\!\left(\sqrt{\frac{E_b}{N_0}}\right)\\
+&\hspace{1.5em}\uparrow\ \text{Bant genişliği daha fazla}
+\end{aligned}
+\]
+
+M arttıkça FSK'ın PSK'dan daha iyi bir performansa sahip olur
+
+PSK'nın zarfı sabit değil, devreleri doymaya sokuyor.
+\begin{flushright}
+Sayfa 174\\
+Şekil 4.5
+\end{flushright}
+
+\sayfa{2}
+\subsection{Ortogonal modülasyon}
+Birbirine ortogonal işaret
+\[ \left.\begin{aligned}
+s_1(t)&=\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct)\ ,\ 0\le t\le T\\
+s_2(t)&=\sqrt{\tfrac{2E}{T}}\sin(2\pi f_ct)\ ,\ 0\le t\le T
+\end{aligned}\right\}\ \rho=0 \]
+Bant genişliği: FSK'dan \okunamadi{tasarruf}
+
+\elcizimi[0.4]{sekiller/Ders-12-s2-1.png}[2]
+\begin{align*}
+s_1(t)&=\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct)\ ,\ 0\le t\le T\\
+&=\sqrt{\tfrac{2E}{T}}\,\Pi\!\left(\frac{t-T/2}{T}\right)\cos(2\pi f_ct)
+\end{align*}
+\elcizimi[0.35]{sekiller/Ders-12-s2-2.png}[2]
+\elcizimi[0.4]{sekiller/Ders-12-s2-3.png}[2]
+
+\section{Genlik Kaydırmalı Anahtarlama}
+\subsection{Amplitude Shift Keying (ASK) / PAM}
+\[ s_i(t)=\sqrt{\tfrac{2}{T}}\,A_i\cos(2\pi f_ct)\ ,\ 0\le t\le T\ ,\ i=1,\dots,M=2^k \]
+\[ \mathrm{BG}=\frac{2}{T}\ \mathrm{Hz} \]
+\[ M\uparrow\ \Rightarrow\ \text{BG aynı}\ (\mathrm{BGV}\uparrow)\ \times\ P_b\uparrow\qquad\Rightarrow\ \text{BG verimli teknik} \]
+
+\begin{ornek}
+$k=2\qquad M=2^2=4$
+\end{ornek}
+\begin{center}
+\begin{tabular}{cc@{\ }l@{\quad}c@{\quad}l}
+ & & \emph{1. Teknik} & & \emph{2. Teknik}\\
+0 & 0 & $\rightarrow A_1=A$ & & $A_1=A$\\
+0 & 1 & $\rightarrow A_2=2A$ & $\Rightarrow$ & $A_2=-A$\\
+1 & 0 & $\rightarrow A_3=3A$ & & $A_3=2A$\\
+1 & 1 & $\rightarrow A_4=4A$ & & $A_4=-2A$
+\end{tabular}
+\end{center}
+\[ \longrightarrow\ E_i=\underbrace{\frac{2}{T}A_i^2\,\frac{1}{2}}_{\text{\okunamadi{güç}}}\times\underset{\text{zaman}}{T}=A_i^2\ \text{joule} \]
+\[ E_i=A_i^2 \]
+\[ E_{\mathrm{ort}}=\frac{30A^2}{4}=7{,}5A^2\qquad\qquad E_{\mathrm{ort}}=\frac{10A^2}{4}=2{,}5A^2 \]
+\begin{dikkat}
+Sınav
+\end{dikkat}
+Daha az enerjiyle aynı performans elde ederiz
+
+\subsection{Özel durum:}
+$M=2\ \rightarrow$ ikili GKA (iGKA)\\
+\hspace*{4em}Binary ASK (BASK)
+\[ \left.\begin{aligned}
+s_1(t)&=\sqrt{\tfrac{2}{T}}\,A\cos(2\pi f_ct)\ ,\ 0\le t\le T\\
+s_2(t)&=-\sqrt{\tfrac{2}{T}}\,A\cos(2\pi f_ct)\ ,\ 0\le t\le T
+\end{aligned}\right\}\ \text{Binary ASK}=\text{Binary PSK} \]
+\[ \nwarrow\ A_2=-A \]
+\[ P_b=Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right),\ E_b=A^2 \]
+
+\sayfa{3}
+\[ M=2\ \left\{\ A_1=A\ ,\ A_2=2A\right. \]
+
+\elcizimi[0.8]{sekiller/Ders-12-s3-1.png}[3]
+
+\subsection{Özel durum}
+On off keying (OOK) / Var-yok anahtarlama (VYA)
+\begin{align*}
+s_1(t)&=\sqrt{\tfrac{2}{T}}\,A\cos(2\pi f_ct)\ ,\ 0\le t\le T\\
+s_2(t)&=0\ ,\ 0\le t\le T\ \longrightarrow\ \sqrt{\tfrac{2A^2}{T}}=\sqrt{\tfrac{2E}{T}}\ ,\ E=A^2
+\end{align*}
+Unipolar signaling $\times$ carrier
+\[ \int_0^T s_1(t)\,s_2(t)\,dt=0\ \Rightarrow\ \rho=0\ \Rightarrow\ P_b=Q\!\left(\sqrt{\frac{E_b}{N_0}}\right) \]
+\okunamadi{BPSK}'ın performansı daha iyi
+
+Bant genişlikleri aynı
+
+\okunamadi{BPSK}'ta iki kaynak gerekiyor, burada ise tek kaynak yeter.
+
+\elcizimi[0.55]{sekiller/Ders-12-s3-2.png}[3]
+\[ \rightarrow\ E_b=\frac{A^2}{2} \]
+
+Zarf daha kesik (Sadece FSK'da sabit)
+
+-- İFKA, İFRKA, İGKA, VYA
+
+Alıcı yapısı temel band haberleşmesi ile aynı,
+
+\elcizimi[0.85]{sekiller/Ders-12-s3-3.png}[3]
+
+\sayfa{4}
+\elcizimi[0.9]{sekiller/Ders-12-s4-1.png}[4]
+
+\subsection{İFKA (BPSK), İGKA (BASK)}
+\[ h(t)=s_1(T-t)-s_2(T-t)=2s_1(T-t)=s_1(T-t) \]
+\[ P_b=Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right) \]
+
+\subsection{İFRKA (BFSK)}
+\[ h(t)=s_1(T-t)-s_2(T-t) \]
+\[ P_b=Q\!\left(\sqrt{\frac{E_b}{N_0}}\right) \]
+
+\subsection{VYA (OOK)}
+\[ h(t)=s_1(T-t)-s_2(T-t)=s_1(T-t) \]
+\[ P_b=Q\!\left(\sqrt{\frac{E_b}{N_0}}\right) \]
+
+\[ P_b=Q\!\left(\frac{a_1-a_2}{2\sigma_0}\right)=Q\!\left(\sqrt{\frac{E_d}{2N_0}}\right)=Q\!\left(\sqrt{\frac{E_b}{N_0}(1-\rho)}\right)\ \checkmark \]
+
+En mükemmel haberleşme beyin sinyalleri.
+
+\section{Genlik--Faz Kaydırmalı Anahtarlama}
+\subsection{Amplitude--Phase Shift Keying (ASK--PSK)}
+$=$ Quadrature Amplitude Modulation (QAM)\\
+\hspace*{2em}Dörtlü Genlik Modülasyon (DGM)
+\[ s_i(t)=\sqrt{\tfrac{2}{T}}\,\underbrace{A_i}_{a}\cos\bigl(2\pi f_ct+\overbrace{\phi_i}^{b}\bigr)\ ,\ 0\le t\le T\ ,\ i=1,\dots,M=2^k \]
+\[ \phi_i=\frac{2\pi(i-1)}{M} \]
+\[ =\sqrt{\tfrac{2}{T}}\,A_i\cos\phi_i\cos(2\pi f_ct)-\sqrt{\tfrac{2}{T}}\,A_i\sin\phi_i\sin(2\pi f_ct) \]
+\begin{flushright}
+ADSL \okunamadi{Modemlerde} önce kullanılıyordu
+\end{flushright}
+\[ M\uparrow\ \Rightarrow\ \text{BG aynı}\ (\mathrm{BGV}\uparrow)\ \times\ P_b\uparrow\ \Rightarrow\ \text{BG verimli teknik} \]
+BGV \quad Genlik K.A, PSK, QAM
+
+M en az \okunamadi{} olmalı \hfill PSK, ve ASK'dan daha iyi $P_b$'ye sahiptir
+
+\sayfa{5}
+\elcizimi[0.4]{sekiller/Ders-12-s5-1.png}[5]
+
+Sınır 4 kbit bakır kablolu\\
+\hspace*{1.5em}QAM modem hızı 33,6 kbit/sn\\
+\hspace*{1.5em}Trellis Coded Modulation (TCM) \quad hem kaynak hem kanal kodlama\\
+\hspace*{3em}Modem hızı 56 kbit/sn
+
+\[ \text{ADSL}\quad(\underbrace{\text{OFTM'in muadili:}}_{\text{kablosuz}}\ \ \underbrace{\text{Discrete Multitone Modulation}}_{\text{kablolu}}) \]
+
+\section{M'li modülasyon teknikleri: Alım}
+(AWGN kanalda) optimum alıcı
+
+\elcizimi[0.85]{sekiller/Ders-12-s5-2.png}[5]
+\[ z_i(T)=\int_0^T r(t)\,s_i(t)\,dt\qquad i=1,\dots,M \]
+\elcizimi[0.4]{sekiller/Ders-12-s5-3.png}[5]
+
+\sayfa{6}
+M'li modülasyon işaretlerini vektör uzayında temsil etmek
+\subsection{M-PSK}
+\[ s_i(t)=\sqrt{\frac{2E}{T}}\cos(2\pi f_ct+\phi_i)\ ,\ 0\le t\le T\ ,\ i=1,\dots,M=2^k \]
+\[ =\sqrt{\frac{2E}{T}}\cos\phi_i\cos(2\pi f_ct)-\sqrt{\frac{2E}{T}}\sin\phi_i\sin(2\pi f_ct) \]
+
+\subsection{Tanım:}
+Temel fonksiyonlar (Basis function)
+\[ \left.\begin{aligned}
+\psi_1(t)&=\sqrt{\tfrac{2}{T}}\cos(2\pi f_ct)\ ,\ 0\le t\le T\\
+\psi_2(t)&=-\sqrt{\tfrac{2}{T}}\sin(2\pi f_ct)\ ,\ 0\le t\le T
+\end{aligned}\right\}\qquad \int_0^T\psi_1(t)\,\psi_2(t)\,dt=0 \]
+\[ E_{\psi_1}=E_{\psi_2}=\frac{2}{T}\cdot\frac{1}{2}\,T=1 \]
+
+$\psi_1(t)$ ve $\psi_2(t)$ ortonormal işaretler
+\[ s_i(t)=\underbrace{\sqrt{E}\cos\phi_i}_{s_{i1}}\,\psi_1(t)+\underbrace{\sqrt{E}\sin\phi_i}_{s_{i2}}\,\psi_2(t)\quad\checkmark \]
+M tane işaret $\psi_1$ ve $\psi_2$ dediğimiz ortonormal işaretlerin lineer kombinasyonu şeklinde yazılabilir.\\
+Vektör olarak temsil edilir
+\[ \underset{\text{vektör}}{\vec{s}_i}=\underbrace{[\,s_{i1}\ \ s_{i2}\,]}_{\substack{\text{uzayın eksenleri}\\ \psi_1\text{ ve }\psi_2\text{ iken}}}=\bigl[\sqrt{E}\cos\phi_i\ \ \sqrt{E}\sin\phi_i\bigr]\ ,\ i=1,\dots,M=2^k \]
+
+\elcizimi[0.6]{sekiller/Ders-12-s6-1.png}[6]
+
+bu örnek için $E_{s_i}=\|s_i\|^2=\sum_{j=1}^{N=2}s_{ij}^2=s_{i1}^2+s_{i2}^2=E$ \qquad $\|s_i\|$ uzunluk
+
+\[ M=4\quad(k=2) \]
+\begin{center}
+\begin{tabular}{c@{\qquad}c@{\qquad}l}
+$i$ & $\phi_i=\dfrac{2\pi(i-1)}{M}$ & \\
+\midrule
+1 & $0$ & $\rightarrow s_1=[\sqrt{E}\ \ 0]$\\
+2 & $\pi/2$ & $\rightarrow s_2=[0\ \ \sqrt{E}]$\\
+3 & $\pi$ & $\rightarrow s_3=[-\sqrt{E}\ \ 0]$\\
+4 & $3\pi/2$ & $\rightarrow s_4=[0\ \ -\sqrt{E}]$
+\end{tabular}
+\end{center}
+
+\sayfa{7}
+\elcizimi[0.85]{sekiller/Ders-12-s7-1.png}[7]
+
+$r$ hangisine daha yakınsa \okunamadi{o} olarak karar veriyor
+
+bir sembollük hata 2 bitlik hataya karşılık geliyor\\
+$s_2$ gönderince en çok $s_3$ ve $s_1$'in lehine hata yapmaktır.
+
+\elcizimi[0.9]{sekiller/Ders-12-s7-2.png}[7]
+\[ x=[x_1\ \ x_2\ \cdots\ x_N]\qquad x\cdot y=\sum_{i=1}^{N}x_iy_i \]
+\[ y=[y_1\ \ y_2\ \cdots\ y_N]\qquad \uparrow\ \text{iç çarpım (inner product)} \]
+
+FSK'ya uygulanamaz
+
+\end{document}

@@ -1,0 +1,402 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektromekanik Enerji Dönüşümü}{Final notu -- elektromekanik dönüşüm, DC ve asenkron makineler}{Final-notu.pdf}
+
+\sayfa{1}
+\section{Chapter 3}
+externally force move the conductor opposite to the magnetic force, mech. energy converted into electric energy
+
+\subsection{Energy}
+\[ W_i=\underset{\text{output}}{W_o}+\underset{\text{loss}}{W_e}+\underset{\text{change in stored energy}}{W_f} \]
+\sekilnotu[1]{Printed figure: $N$-turn coil on a magnetic core, source $e(t)$, current $i$, flux $\phi$.}
+\noindent\textit{In a conservative system:}
+\begin{align*}
+dW_i&=v\,i\,dt\qquad(\text{input energy})\\
+&=-e\,i\,dt\\
+e&=-\frac{d\lambda}{dt}=-\frac{dN\Phi}{dt}
+\end{align*}
+\fbox{\parbox{0.9\linewidth}{The energy supplied by the source stored in the system as mag. energy ($W_i=W_m$)}}
+\[ L=\frac{N\Phi}{i}\qquad(\text{inductance}) \]
+\[ \lambda=\text{total flux linkages}\ \rightarrow\ dW_i=i\,d\lambda=N\,i\,d\Phi \]
+\[ \Rightarrow\ W_i=\int i\,d\lambda=N\int i\,d\Phi \]
+\noindent\textit{In a linear system the energy stored in the system}
+\begin{center}\vurgu{$W_m=\tfrac12 N\Phi i=\tfrac12 L i^2$}\end{center}
+\[ Ni=H\ell\quad\text{and}\quad\Phi(t)=A\,dB\ \Rightarrow\ W_i=\ell A\int H\,dB \]
+
+\section{3.3 Magnetic Field as a Medium}
+\subsection{Case 1. Constant Flux}
+A magnetic circuit is moved by a distance $dx$ in time $dt$ in a region where the flux is held constant. The energy supplied by the source must be zero because the initial and final values of the flux are the same.
+
+\noindent For a conservative system
+\[ F_m\,dx+dW_m=0\qquad F_m=-\frac{dW_m}{dx} \]
+\noindent The mechanical force acting on the magnetic circuit.
+
+\subsection{Case 2. Constant Current}
+For a change in flux $d\phi$ when $I$ is held constant. the energy input:
+\[ dW_i=I\,d\phi\quad\text{and}\quad dW_m=\tfrac12 I\,d\phi\ \Rightarrow\ dW_i=2\,dW_m \]
+\noindent For conservative system \quad $F_m\,dx+dW_m=2\,dW_m$ \quad $F_m=\dfrac{dW_m}{dx}$
+
+\noindent When the flux is constant \quad $F_m=-\dfrac{\partial W_m(\phi,x)}{\partial x}$
+
+\noindent When the current is constant \quad $F_m=\dfrac{\partial W_m(I,x)}{\partial x}$
+
+\noindent The rate of change of stored magnetic energy (constant flux)
+\[ \frac{dW_m}{dx}=\frac12 N\Phi\frac{\partial i}{\partial x}=-\frac12 i^2\frac{\partial L}{\partial x}\qquad\vurgu{$F_m=\tfrac12 i^2\dfrac{\partial L}{\partial x}$} \]
+\noindent\textit{total airgap inductance}
+
+\subsection{Magnetic Circuit with Air Gap}
+\sekilnotu[1]{Printed figure: magnetic circuit with air gap (fixed member, movable member, gap $x$, winding $N$, force $F$).}
+\[ W_i=\ell A\int H\,dB \]
+\noindent so the energy in each air gap
+\[ W_g=\tfrac12\mu_0H_0^2Ax=\frac{1}{2\mu_0}B_0^2Ax \]
+\formulkutu{B_0=\mu_0H_0}
+\noindent When the Flux constant $\Phi=BA$
+\[ F_g=-\tfrac12\mu_0H_0^2A=-\frac{1}{2\mu_0}B_0^2A \]
+\fbox{$\mu$ relative permeability}
+
+\medskip
+\noindent\vurgu{$L=\dfrac{N^2}{R}$}\quad\vurgu{$R=\dfrac{\ell}{\mu A}$}\quad\vurgu{$F_{\mathrm{gravity}}=mg$}
+\formulkutu{F_{\mathrm{spring}}=\frac{\text{tork}}{\text{çap}}}
+\noindent The rotor of dc machine called armature.
+
+\noindent Wound machine (mach. with electromagnets)
+
+\subsection{Generator Action}
+\sekilnotu[1]{Printed figure: cross-section of a 2-pole machine (yoke, stator, magnets, rotor, air gap); student's labels: YOKE, stator, Rotor, Air.}
+\noindent 2 pole machine.\\
+mechanical Angle $\theta_m=\theta$ \ (Electrical Angle)\\
+The arc by the coil $=180^\circ$ $\Rightarrow$ full pitch coil\\
+less than $180^\circ$ fractional pitch coil
+\sekilnotu[1]{Printed plots: (a) N and S magnet poles over the yoke, (b) flux per pole set by the magnets, (c) flux passing through a coil rotating at a constant speed, induced emf in the coil. Student's labels: ``Flux per pole set by the magnets'', ``Flux passing through a coil rotating at a constant speed'', ``Induced emf in the coil''.}
+\sekilnotu[1]{Printed figure: ``2 pole ac current generator'' (rotating coil between N and S poles, forces $F$, speed $\omega_m$, torque $T_s$).}
+
+\noindent If $\phi_p$ is the flux per pole: $\phi=\phi_p\cos\theta$
+
+\noindent $\theta$: the angular position of the coil in electrical degrees
+\[ e=-\frac{d\phi}{dt}=\phi_p\sin\theta\,\frac{d\theta}{dt}\qquad\text{where }\frac{d\theta}{dt}\text{ is the angular freq.} \]
+\[ e=\phi_p\omega\sin\omega t\quad\rbrace\quad\theta=\theta_m\ \text{in 2pole machine.} \]
+
+\subsection{Multiple Machines}
+\noindent Ex: 4 pole machine $\Rightarrow$ $\theta$ is $720^\circ$ while $\theta_m$ still $360^\circ$
+
+\noindent If there are $P$ poles in a machine $\theta=\dfrac{P}{2}\theta_m$
+
+\noindent angular f. of the induced emf \ \vurgu{$\omega=\dfrac{P}{2}\,\omega_m$} \ $\rightarrow$ angular f. of the rotor
+\[ \omega=2\pi f\ \Rightarrow\ f=\frac{P}{4\pi}\omega_m\quad\rbrace\quad\vurgu{$\underset{\text{rad/s}}{\omega_m}=\dfrac{2\pi}{60}\overset{\text{rpm}}{N_m}$} \]
+\[ f=\frac{P}{120}N_m,\qquad N_m=\frac{120f}{P} \]
+\noindent The max value of the induced emf in a single turn coil
+\begin{center}\vurgu{$E_m=\phi_p\omega=\dfrac{P}{2}\phi_p\omega_m=\dfrac{2\pi P}{120}\phi_pN_m$}\end{center}
+\noindent In a dc machine, the average value of the induced voltage in a single turn coil is
+\[ \vurgu{$E_c=\dfrac{2}{\pi}E_m=\dfrac{P}{\pi}\phi_p\omega_m=\dfrac{P}{30}\phi_pN_m$}\qquad E_{\mathrm{eff}}=\frac{E_m}{\sqrt2} \]
+
+\subsection{Force on a Conductor}
+\noindent Lorentz equation:
+\[ \vec F=\int i\,\underset{\text{lenght of the current carrying element}}{d\vec\ell}\times\overset{\text{magnetic flux density}}{\vec B} \]
+\noindent For linear current-carrying conductor:
+\[ \vec F=i\,\vec L\times\vec B \]
+\noindent Motor action: the force on the upper conductors of the coil
+\[ \vec F=iLB\,\vec a_\phi\quad\text{(the same down)} \]
+\[ F_c=2iBL\qquad\text{total force experienced.} \]
+\[ \text{Torque: }T_e=F_e\cdot r=2Bilr\qquad\text{for each conductor} \]
+
+\subsection{Revolving Field of a Three Phase Motor:}
+\sekilnotu[1]{Printed figure: ``2 pole, three phase motor'' (three-phase stator winding with coil sides 1, 1', 2, 2', 3, 3', closed-loop rotor).}
+\begin{align*}
+i_1&=I_m\sin\omega t\\
+i_2&=I_m\sin(\omega t-120^\circ)\\
+i_3&=I_m\sin(\omega t+120^\circ)
+\end{align*}
+\noindent Instant1 ($\omega t=0$) $\Rightarrow$ $\Phi_{r1}=\sqrt{\Phi_2^2+\Phi_3^2+2\Phi_2\Phi_3\cos(60)}$
+\[ =1{,}5\,\Phi_m \]
+\noindent Instant2 ($\omega t=60^\circ$) $\Rightarrow$ $\Phi_{r2}=1{,}5\,\Phi_m$
+
+\noindent Instant3 ($\omega t=120^\circ$) $\Rightarrow$ $\Phi_{r3}=\Phi_{r1}$ and $120^\circ$ phase shift
+
+\noindent In a 2 pole motor, the time taken by the flux to complete one revolution along the periphery of the air gap is the same as input. $T$
+
+\noindent For $P$ pole: $T_s=\dfrac{P}{2}T$
+
+\noindent the speed of the revolving field in revolutions per second \quad $n_s=\dfrac{1}{T_s}=\dfrac{2f}{P}$ \quad (dönme frekansı)
+\[ \vurgu{$N_s=\dfrac{120f}{P}\,[\mathrm{rpm}]$}\ ,\quad\omega_s=\frac{4\pi f}{P}=\frac{2}{P}\omega \]
+\noindent Sabit frekanslı bir kaynak için hız sabit.
+
+\noindent\textbf{Slip speed:} (the difference between synchronous and rotor speed)
+\[ N_r=N_s-N_m\ ,\quad\omega_r=\omega_s-\omega_m\ \rightarrow\ \text{rotor speed} \]
+\noindent\textbf{Per unit slip:} $s=\dfrac{\omega_r}{\omega_s}=\dfrac{\omega_s-\omega_m}{\omega_s}$
+\[ \Rightarrow\omega_m=(1-s)\omega_s\ ,\quad N_m=(1-s)N_s \]
+
+\subsection{Revolving Field of two Phase Motor}
+\[ i_1=I_m\sin\omega t\ /\ i_2=I_m\sin(\omega t-90^\circ)=-I_m\cos\omega t \]
+\[ \Phi_1=\Phi_m\sin\omega t\ /\ \Phi_2=-\Phi_m\cos\omega t \]
+
+\subsection{Synchronous Motor}
+\noindent power angle $\delta$: rotor lags, revolving field
+
+\noindent The power is proportional $\sin\delta$
+
+\noindent Under no load, $\delta$ is almost zero
+
+\noindent The torque developed max @ $\delta=90^\circ$
+
+\subsection{Reluctance motor:}
+\[ R(\theta)=\frac{2g}{\mu A}\ \rightarrow\ \text{effective airgap} \]
+\noindent $\theta=0$ $\Rightarrow$ air gap min
+\[ L(\theta)=0{,}5(L_d+L_q)+0{,}5(L_d-L_q)\cos2\theta \]
+\noindent Torque developed by rotating the system \quad $T_e=\dfrac12 i^2\dfrac{dL}{d\theta}$ \quad \formulkutu{\underset{\text{rotor speed}}{\omega_m}=\frac{2}{P}\omega}
+\noindent Torque exerted on the rotor \quad $T_e=-\dfrac12 i^2(L_d-L_q)\sin2\theta$
+\[ \theta=\omega_mt+\delta\ \Rightarrow\ T_e=-\frac12 i^2(L_d-L_q)\sin\big[2\omega_mt+2\delta\big] \]
+\[ \Rightarrow T_{e}(\mathrm{avg})=-0{,}125\,(L_d-L_q)I_m^2\sin2\delta \]
+\noindent which max when $\delta=45^\circ$
+
+\section{Direct current Generators}
+\subsection{Induced emf Equation:}
+\noindent Average value of the induced emf \quad $E_c=\dfrac{P}{\pi}\phi_p\omega_m\ \rbrace\ f=\dfrac{P}{4\pi}\omega_m\ \rbrace\ N_m=\dfrac{120f}{P}$ \quad (of induced v.)
+
+\noindent Let $N_c$ be the turns per coil, $C$ total number of coil (slots for a 2 layer winding) and $a$ the number of parallel paths ($a=2$ for wave, $a=P$ for lap winding)
+
+\noindent The total turns per parallel path: $N_a=\dfrac{C}{a}\overset{\text{turns per coil}}{N_c}$ \quad turns between negative and positive brushes
+\[ \underset{\text{between two terminal nodes}}{E_a}=\frac{PC}{\pi a}N_c\omega_m\phi_p\ \rbrace\ \vurgu{$Z=2CN_c$}\quad\text{total number of conductors} \]
+\[ E_a=k_a\phi_p\omega_m\ \Rightarrow\ \vurgu{$k_a=\dfrac{ZP}{2\pi a}$}\quad\text{(machine constant)} \]
+\noindent The electrical power developed by the generator:
+\begin{center}\vurgu{$P_d=E_aI_a=k_a\phi_p\omega_mI_a=T_d\omega_m$}\end{center}
+\noindent Since in mech system: $P_d=T_d\omega_m\Rightarrow T_d=K_a\phi_pI_a$
+
+\noindent The actual pole area: $A_p=\dfrac{2\pi rL}{P}$ $\rightarrow$ length of the machine
+
+\noindent Effective: $A_e=A_p\times$ armature\% $\rbrace\ \phi_p=BA_e$
+\[ E_{coil}=\frac{C}{a}E_a\ \rbrace\ E_{turn}=E_{coil}/\text{turns} \]
+\[ E_{conductor}=\frac{E_{coil}}{P}\ \rbrace\ \text{Torque experienced by a single turn, current-carrying coil in a uniform magnetic field: }T_e=2BiLr\ \text{(effective }\ell\text{).} \]
+\[ T_c=2BLrI_c\quad\text{(Average torque)} \]
+\noindent The average torque developed by a dc machine:
+\[ T_d=\Big[\frac{2BLrI_a}{a}\Big][CN_c]=\frac{BLrZ}{a}I_a \]
+\noindent The torque developed by the dc machine:
+\[ T_d=\frac{PZ}{2\pi a}BA_pI_a=k_a\phi_pI_a \]
+\[ \phi_p=k_fI_f,\quad E_a=k_1k_fI_f \]
+\[ E_{a2}=\frac{\omega_{m2}}{\omega_{m1}}E_{a1} \]
+\sekilnotu[1]{Printed figure: magnetization curve (induced emf $E_a$ at no load versus field current $I_f$ or field mmf; air-gap line and magnetic circuit curve).}
+
+\subsection{Voltage regulation}
+\[ VR\%=\frac{V_{nL}-V_{FL}}{V_{FL}}\times100 \]
+\[ \underset{\text{rotational loss}}{P_r}=\underset{\text{friction windage}}{P_{fw}}+\underset{\text{magnetic loss}}{P_m} \]
+
+\subsection{For generator}
+\noindent Power Flow diagram: $V_a=V_t+I_aR_a$
+\[ P_o=T_s\omega_m-P_r-P_{cu} \]
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s1-1.png}[1]
+
+\subsection{A seperately Exited DC Generator}
+\elcizimi[0.5]{sekiller/final-calismasi-Final-notu-s1-2.png}[1]
+\begin{align*}
+V_t&=I_f(R_{fw}+R_{fx})=I_fR_f\\
+E_a&=V_t+I_aR_a\\
+I_L&=I_a
+\end{align*}
+\begin{align*}
+P_{inm}&=P_d+P_r\\
+P_{in}&=P_{inm}+V_fI_f
+\end{align*}
+\begin{center}\vurgu{$\eta=\dfrac{P_{out}}{P_{in}}$}\end{center}
+
+\subsection{A Shunt generator}
+\sekilnotu[1]{Printed circuit: shunt generator (field winding $N_f$, $R_{fw}$, $R_{fx}$, armature $E_a$, $R_a$, load $R_L$, $V_t$).}
+\begin{align*}
+I_a&=I_L+I_f\\
+V_t&=I_fR_f\\
+V_t&=I_LR_L=E_a-I_aR_a
+\end{align*}
+
+\subsection{A series Generator}
+\sekilnotu[1]{Printed circuit: series generator (series field $R_s$, $N_s$, diverter $R_d$, armature $E_a$, $R_a$, load $R_L$).}
+\begin{align*}
+V_t&=E_a-I_aR_a-I_sR_s\\
+I_sR_s&=I_dR_d\\
+I_a=I_L&=I_s+I_d
+\end{align*}
+
+\subsection{Compound Generators}
+\sekilnotu[1]{Printed circuit: compound generator (series field $R_s$, $N_s$ with diverter $R_d$, shunt field $R_{fw}$, $N_f$, $R_{fx}$, armature $E_a$, $R_a$, load $R_L$).}
+
+\sayfa{2}
+\subsection{Short shunt}
+\begin{align*}
+I_a&=I_L+I_f\ \rbrace\ I_s=\frac{R_d}{R_d+R_s}I_L\\
+V_t&=E_a-I_aR_a-I_sR_s\ \rbrace\ V_f=E_a-I_aR_a\\
+\mathrm{mmf}&=I_fN_f\pm I_sN_s-\mathrm{mmf}_{fd}
+\end{align*}
+
+\subsection{Maximum Efficiency Criterion}
+\noindent For a PM dc generator, the power output is
+\[ P_o=V_tI_L\ \rbrace\ P_{in}=V_tI_L+I_L^2R_a+P_r \]
+\[ \eta=\frac{V_tI_L}{V_tI_L+I^2R_a+P_r}\ \rbrace\ \underset{\text{Max efficiency}}{I_{LM}^2R_a=P_r\quad I_{LM}=\sqrt{\frac{P_r}{R_a}}} \]
+\begin{tabular}{@{}l l@{}}
+Seperately excited: & $I_{LM}^2R_a=P_r+I_f^2R_f$\\
+Shunt : & $I_{LM}^2R_a=P_r+I_f^2(R_a+R_f)$\\
+Series: & $I_{LM}^2(R_a+R_s)=P_r$\\
+Short-Shunt: & $I_{LM}^2(R_a+R_s)=P_r+I_f^2(R_a+R_f)$\\
+Long Shunt: & $I_{LM}^2(R_a+R_s)=P_r+I_f^2(R_a+R_s+R_f)$
+\end{tabular}
+
+\section{DC motor}
+\[ T_d=k_a\phi_pI_a\ \rbrace\ E_a=k_a\phi_p\omega_m \]
+\[ I_a=\frac{\overset{\text{Applied voltage across armature}}{V_s-E_a}}{\underset{\text{total resistance at armature}}{R}}\ \rbrace\ V_s=E_a+I_aR \]
+
+\subsection{Speed Regulation}
+\[ SR\%=\frac{N_{mnL}-N_{mFL}}{N_{mFL}}\times100=\frac{\omega_{mnL}-\omega_{mFL}}{\omega_{mFL}}\times100 \]
+
+\elcizimi[0.7]{sekiller/final-calismasi-Final-notu-s2-1.png}[2]
+
+\subsection{A series Motor}
+\sekilnotu[2]{Printed circuit: series motor (field $R_s$, $N_s$, rheostat $R_{ax}$, armature $R_a$, currents $I_a$, $I_s$, $I_L$, source $V_s$).}
+\[ \phi_p=k_fI_a\ \rbrace\ E_a=k_ak_fI_a\omega_m \]
+\[ T_d=K_a\phi_pI_a=k_ak_fI_a^2\ \rbrace\ \begin{aligned}E_a&=V_s-I_aR\\ R&=R_a+R_s+R_{ax}\end{aligned} \]
+\[ \omega_m=\frac{V_s-I_aR}{K_ak_fI_a}\ \Rightarrow\ I_a=\frac{V_s}{K_ak_f\omega_m+R} \]
+\[ P_d=E_aI_a=[V_s-I_aR_a]I_a \]
+\noindent The max power developed when
+\[ P_{dm}=\frac{V_s^2}{4R}\quad\text{when}\quad I_{am}=\frac{V_s}{2R} \]
+
+\subsection{A shunt motor}
+\[ T_d=K_a\phi_pI_a=KI_a \]
+\sekilnotu[2]{Printed circuit: shunt motor (starter rheostat $R_{ax}$, armature $E_a$, $R_a$, $I_a$, shunt field $R_{fw}$, $N_f$, $R_{fx}$, $I_f$, source $V_s$, $I_L$).}
+\[ \vurgu{$\displaystyle k_a\phi_p=\frac{E_a}{\omega_m}$} \]
+\[ E_a=V_s-I_aR_a\ \rbrace\ \vurgu{$E_a=k_a\phi_p\omega_m$}\ \rbrace\ \omega_m=\frac{V_s-I_aR_a}{k_a\phi_p} \]
+\[ \omega_m=\omega_{mnL}-\frac{R_a}{k_a\phi_p}I_a\ \rbrace\ \Rightarrow\ \omega_{mnL}=V_s/k_a\phi_p \]
+\noindent As $R_a\to0$, the speed of shunt motor $\omega_m\to\omega_{mnL}$. In other words, a shunt motor is basically a constant speed motor.
+\[ T_d=\frac{k_a\phi_pV_s}{R_a}-\frac{k_a^2\phi_p^2}{R_a}\omega_m\ \rbrace\ P_{d\max}=\frac{V_s^2}{4R_a} \]
+\[ I_{fnL}=\frac{V_s}{R_f}\qquad P_{cunL}=I_a^2R_a+I_f^2R_f \]
+\[ E_a=V_s-I_aR_a\ \rbrace\ P_{in}=V_sI_L\ \rbrace\ P_d=E_a\cdot I_a\ \rbrace\ \eta=\frac{P_o}{P_{in}} \]
+
+\sekilnotu[2]{Printed circuit: compound motor (starter resistor $R_{ax}$, series field winding $R_s$, $N_s$, shunt field winding $R_{fw}$, $N_f$, $R_{fx}$, armature $E_a$, $R_a$, $T_s$, $\omega_m$, source $V_s$); the student marked the short shunt and long shunt connections in red.}
+\[ \begin{aligned}
+\phi_p&=\phi_{sh}\overset{\text{\okunamadi{cum/diff}}}{\pm}k_fI_a\\
+\Rightarrow T_d&=k_aI_a\phi_{sh}\pm k_ak_fI_a^2\\
+\omega_m&=\frac{V_s-I_a(R_a+R_s)}{k_a(\phi_{sh}\pm k_fI_a)}
+\end{aligned} \]
+
+\section{Methods of Speed Control}
+\subsection{Armature Resistance Control}
+\noindent For series or a compound motor:
+\[ \omega_m=\frac{V_s-I_aR_a}{k_a\phi_p}\qquad\text{where }R=R_a+R_s+R_c \]
+\noindent for a shunt motor
+\[ R=R_a+R_c \]
+
+\subsection{Field Control method}
+\noindent Inserting an external resistor in series with the field winding.
+\[ \overset{\text{For same torque}}{\underset{\text{new}}{I_{an}}}=\frac{\phi_p}{\phi_{pn}}I_a\ \rbrace\ N_{mn}=\frac{\phi_pE_{an}}{\phi_{pn}E_a}N_m \]
+\[ P_{in}=V_s(I_{an}+I_{fn})\qquad P_{dn}=E_{an}I_{an} \]
+
+\section{Braking or Reversing DC motors}
+\noindent \underline{Plugging:} \vurgu{Reverse Supply} connections to the armature terminals. At any time during the plugging,
+\[ \vurgu{$\displaystyle I_a=\frac{V_s+E_a}{R+R_a}$}=\frac{V_s}{R+R_a}+\frac{\overset{E_a=k_a\phi_p\omega_m}{E_a}}{R+R_a}\ \leftarrow\ \text{external Res.} \]
+\noindent So the braking torque:
+\[ T_b=K_aI_a\phi_p=k_1\phi_p+k_2\phi_p^2\omega_m \]
+\[ \vurgu{$\displaystyle k_1=\frac{k_aV_s}{R+R_a}$}\qquad \vurgu{$\displaystyle k_2=\frac{K_a^2}{R+R_a}$}\qquad\text{for series motor} \]
+\noindent For shunt: \vurgu{$T_b=k_3+k_4\omega_m$}
+\[ k_3=k_1\phi_p\quad\text{and}\quad k_4=k_2\phi_p^2 \]
+\noindent When the speed reach 0, $T_b=k_3$.
+
+\subsection{Dynamic Braking}
+\noindent The armature disconnected from S. connected across a variable resistor R. The back emf produce a reverse current.
+
+\noindent At any time in $t\ge0$:
+\[ I_a=\frac{E_a}{R+R_a}=\frac{k_a\phi_p\omega_m}{R+R_a} \]
+\noindent Braking torque:
+\[ T_b=k_a\phi_pI_a=\frac{k_a^2\phi_p^2\omega_m}{R+R_a}=k_2\phi_p^2\omega_m \]
+\[ \text{for series motor:}\ T_b=K_2k_f^2I_a^2\omega_m\ \rbrace\ \text{for shunt:}\ T_b=k_4\omega_m \]
+
+\section{Polyphase Induction Motors}
+\noindent The Synchronous Speed of the revolving field is
+\[ N_s=\frac{120f}{P}\ \Rightarrow\ \omega_s=\frac{4\pi f}{P}\qquad\text{(f of the current in the stator.)} \]
+\noindent {\small (slip) revolving field relative rotor speed}
+\[ \left.\begin{aligned}
+N_r&=N_s-N_m & \omega_r&=\omega_s-\omega_m\\
+N_m&=(1-s)N_s & \omega_m&=(1-s)\omega_s
+\end{aligned}\ \right\}\ s=\frac{N_r}{N_s}=\frac{\omega_r}{\omega_s}\quad\text{(per unit)} \]
+\[ \overset{\text{rotor emf}}{f_r}=\frac{PN_r}{120}=\frac{P(N_s-N_m)}{120}=\frac{PN_s}{120}\left[\frac{N_s-N_m}{N_s}\right] \]
+\noindent $f_r=sf$ $\mid$ At stand still, the slip is 1 and $f_r=f$
+
+\sekilnotu[2]{Printed per-phase equivalent circuit of the induction motor with ideal transformer $a:1$ ($R_1$, $jX_1$, $I_1$, $V_1$, $I_\phi$, $R_c$, $jX_m$, $I_c$, $I_m$, $E_1$; rotor side $R_r$, $jX_r$, $I_r$, $E_r$); labels re-written by hand, rotor branch marked $R_r/s$, $jX_b$ (``de olabilir'').}
+\noindent Per phase eq. circuit
+\[ \tilde I_r=\frac{\tilde E_r}{R_r+jX_r}=\frac{s\tilde E_b}{R_r+jsX_b}=\frac{\tilde E_b}{(R_r/s)+jX_b}\qquad a=\frac{N_1k_{w1}}{N_2k_{w2}} \]
+\noindent {\small per phase emf in rotor cct.}
+\[ \tilde E_1=\overset{\text{4.44}}{\frac{2\pi}{\sqrt2}}fN_1\underset{\text{stator w. fac.}}{k_{w1}}\Phi_m \]
+\noindent per phase induced emf in the stator winding.
+\[ \tilde E_b=\frac{2\pi}{\sqrt2}fN_2k_{w2}\Phi_m \]
+\noindent per phase induced emf in the rotor winding under blocked-rotor condition.
+
+\sekilnotu[2]{Printed equivalent circuit referred to the stator ($R_1$, $jX_1$, $R_2/s$, $jX_2$, $I_1$, $I_\phi$, $I_2$, $R_c$, $jX_m$, $I_c$, $I_m$, $E_1$); student's note: ``$E_1$ reflected to stator''.}
+\[ R_2=a^2R_r\ \rbrace\ X_2=a^2X_b\ \rbrace\ \tilde I_2=\frac{\tilde I_r}{a}\ \rbrace\ \tilde E_1=\frac{I_2R_2}{s}+jI_2X_2 \]
+\[ I_\phi=I_c+I_m\ \rbrace\ I_c=\frac{E_1}{R_c}\ \rbrace\ I_m=\frac{E_1}{jX_m}\ \rbrace\ I_1=I_\phi+I_2 \]
+\[ V_1=E_1+I_1(R_1+jX_1)\ \rbrace\ P_{dr}=3I_2^2R_2/s \]
+\sekilnotu[2]{Printed equivalent circuit with load resistance $R_2(1-s)/s$ ($R_1$, $jX_1$, $R_2$, $jX_2$, $I_1$, $I_\phi$ (excitation), $I_2$, $R_c$, $jX_m$, $I_c$, $I_m$, $E_1$).}
+\[ P_{in}=3V_1I_1\cos\theta\ \rbrace\ \overset{\text{total stator cct.}}{P_{scl}}=3I_1^2R_1\ \rbrace\ \overset{\substack{\text{total core loss}\\\text{(magnetic loss)}}}{P_m}=3I_c^2R_c \]
+\[ \underset{\text{air gap}}{P_{ag}}=P_{in}-P_{scl}-P_m=\frac{3I_2^2R_2}{s}\ \rbrace\ P_{rcl}=3I_2^2R_2=sP_{ag} \]
+
+\[ P_d=P_{ag}-P_{rcl}=\frac{3I_2^2(1-s)R_2}{s}=(1-s)P_{ag}\ \text{\okunamadi{}}\ sP_{ag} \]
+\[ S=1-s=\frac{N_m}{N_s}=\frac{\omega_m}{\omega_s} \]
+\sekilnotu[2]{Printed power-flow diagrams of the induction motor ($P_{in}=3V_1I_1\cos\theta$, $P_{scl}=3I_1^2R_1$, $P_m=3I_c^2R_c$, $P_{ag}=3I_2^2R_2/s$, $P_{rcl}=3I_2^2R_2$, $P_d=(1-s)P_{ag}$, $P_o=T_s\omega_m$, $P_r=P_{fw}+P_{st}$ in the first diagram and $P_r=P_{fw}+P_{st}+P_m$ in the second), labels re-written by hand; notes: ``when core loss sim. by $R_c$'' (first diagram) and ``treated as a part of rot loss'' (second diagram).}
+\noindent Torque developed by the motor
+\[ T_d=\frac{P_d}{\omega_m}=\frac{P_{ag}}{\omega_s}=\frac{3I_2^2R_2}{s\omega_s}\qquad\kutula{P_o=P_d-P_r} \]
+
+\subsection{Speed Torque Characteristic}
+\noindent When $s=1$
+\[ I_2=\frac{E_1}{\sqrt{R_1^2+X_2^2}}\text{\footnotemark}\ ,\quad T_{ds}=\frac{3I_2^2R_2}{\omega_s}\quad\leftarrow\ \text{starting torque} \]
+\footnotetext{Claude notu: muhtemelen $R_2^2+X_2^2$ olmalı.}
+\noindent because $(R_2\ll X_2)$
+\[ I_2\approx\frac{E_1}{X_2} \]
+\noindent When the slip falls (below breakdown slip $s_b$), the hypothetical resistance becomes the dominating factor.
+
+\noindent $R_2/s\gg X_2$
+\[ I_2=\frac{sE_1}{R_2}\qquad\text{The torque developed by the motor is now proportional to the slip $s$} \]
+\noindent $\star$ Y bağlantıdaki hat gerilimine $V_L$ dersek faz gerilim $V_p=\dfrac{V_L}{\sqrt3}$ olur.
+
+\noindent The stator current
+\[ \tilde I_1=\frac{\tilde V_1}{\tilde Z_{in}}=a\phase{\theta}\ \rbrace\ \text{p.f}=\cos(\theta) \]
+\noindent An approximate Eq. circuit
+\sekilnotu[2]{Printed approximate equivalent circuit of the induction motor ($R_1$, $jX_1$, $R_2$, $jX_2$, $I_1$, $I_\phi$, $I_2$, $R_c$, $jX_m$, $I_c$, $I_m$, load $R_2(1-s)/s$); labels also written by hand.}
+
+\subsection{Maximum Power Criterion}
+\[ R_e=R_1+R_2\ \rbrace\ X_e=X_1+X_2 \]
+\[ Z_e=|R_e+jX_e|=\sqrt{R_e^2+X_e^2}=\frac{R_2}{s_p}(1-s_p) \]
+\noindent $P_d$ is max when the equivalent $^{s_p}$load resistance is equal to the magnitude of the standstill impedance of the motor.
+
+\[ \Rightarrow s_p=\frac{R_2}{R_2+Z_e}\ \Rightarrow\ \vurgu{$\displaystyle P_{dm}=\frac32\left[\frac{V_1^2}{R_e+Z_e}\right]$} \]
+
+\subsection{Maximum Torque Criterion}
+\[ T_d=\frac{3V_1^2R_2/s}{\left[R_e^2+X_e^2+\left[\dfrac{R_2(1-s)}{s}\right]^2+\dfrac{2R_eR_2(1-s)}{s}\right]\omega_s} \]
+\[ \underset{\text{breakdown slip}}{s_b}=\frac{R_2}{\sqrt{R_1^2+(X_1+X_2)^2}} \]
+\[ T_{dm}=\frac{3V_1^2}{2\omega_s}\left[\frac{1}{R_1+\sqrt{R_1^2+(X_1+X_2)^2}}\right]\ \rbrace\ P_d=T_{dm}(1-s_b)\omega_s \]
+\noindent $\star$ If the stator impedance is so small
+
+\noindent When the stator $s_b=\dfrac{R_2}{X_2}$, \ $T_{dm}=\dfrac{3V_1^2}{2\omega_s}\left[\dfrac{1}{X_2}\right]=\dfrac{3V_1^2}{2\omega_s}\left[\dfrac{s_b}{R_2}\right]$
+\[ \tilde I_2=\frac{\tilde V_1}{R_2/s+jX_2}\ ,\quad T_d=\frac{3I_2^2R_2}{s\omega_s}=\left[\frac{3V_1^2}{(R_2/s)^2+X_2^2}\right]\frac{R_2}{s\omega_s} \]
+\[ \frac{T_d}{T_{dm}}=\frac{2ss_b}{s^2+s_b^2} \]
+\noindent When the core loss is considered a part of the rotational loss the power input to the motor using the approximate circuit.
+\[ P_{in}=3V_1I_2\cos\theta\ \leftarrow\text{pf angle}\ \rbrace\ P_o=3V_1I_2\cos\theta-3I_2^2(R_1+R_2)-P_r \]
+\noindent The motor efficiency is
+\[ \eta=\frac{3V_1I_2\cos\theta-3I_2^2(R_1+R_2)-P_r}{\text{\okunamadi{}}} \]
+\noindent $3I_2^2(R_1+R_2)=P_r$ as the criterion for the maximum efficiency of an induction motor. {\small (stator and rotor copper losses.)}
+
+\subsection{Equivalent Circuit Parameters}
+\noindent The Stator resistance test:
+\[ R_1=0{,}5R_{\text{\okunamadi{dc}}}\,\mathrm{Y}\ \rbrace\ \vurgu{$R_1=1{,}5R\,\Delta$} \]
+\noindent The blocked-Rotor Test:
+\[ \hat Z_e=R_1+R_2+j(X_1+X_2)=R_e+jX_e \]
+\sekilnotu[2]{Printed circuit for the blocked-rotor test (source $\tilde V_{br}$, current $\tilde I_{br}$, $R_1$, $jX_1$, $R_2$, $jX_2$); labels written by hand.}
+\[ X_1=X_2=0{,}5X_e \]
+\[ R_e=\frac{P_{br}}{I_{br}^2}\ \rbrace\ \vurgu{$R_2=R_e-R_1$} \]
+\[ Z_e=\frac{V_{br}}{I_{br}}\ \rbrace\ X_e=\sqrt{Z_e^2-R_e^2} \]
+
+\subsection{The No-load test}
+\noindent $W_{oc}$ = power input $\rbrace$ $I_{oc}$ input Current $\rbrace$ $V_{oc}$ rated applied voltage
+
+\noindent Let $P_{fw}$ be the friction and windage loss on a per-phase basis.
+
+\noindent Then, the power loss in $R_c$ is $P_{oc}=W_{oc}-P_{fw\phi}$
+\[ R_c=\frac{V_{oc}^2}{P_{oc}}\ \rbrace\ \cos\theta_{oc}=\frac{W_{oc}}{V_{oc}I_{oc}}\ \rbrace\ X_m=\frac{V_{oc}}{I_{oc}\sin\theta_{oc}} \]
+\[ S_{oc}=V_{oc}I_{oc}\ \rbrace\ Q_{oc}=\sqrt{S_{oc}^2-W_{oc}^2}\ \rbrace\ X_m=\frac{V_{oc}^2}{Q_{oc}} \]
+\sekilnotu[2]{Printed circuit for the no-load test (source $\tilde V_{oc}$, current $\tilde I_{oc}$, $R_c$, $jX_m$).}
+
+\subsection{The load test}
+
+\end{document}

@@ -1,0 +1,285 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{RC darbe, kontrollü SAK, sayısal taşıyıcılı modülasyon (PSK/FSK)}{Ders-11.pdf}
+
+\sayfa{1}
+\section{Raised Cosine (RC) Pulse}
+\subsection{Yükseltilmiş kosinüs darbesi}
+
+\[
+H(f)=\begin{cases}
+1, & |f|<2W_0-W\\[4pt]
+\cos^2\!\left(\dfrac{\pi}{4}\,\dfrac{|f|+W-2W_0}{W-W_0}\right), & 2W_0-W<|f|<|W|\\[8pt]
+0, & |f|>W
+\end{cases}
+\]
+
+\sekilnotu[1]{RC filtresi: $|H(f)|$ grafiği (dikey eksen $|H(f)|$, yatay eksen el yazısında ``$t$'' diye etiketlenmiş, muhtemelen $f$). Mavi dikdörtgen spektrum: yükseklik 1, $-\frac{1}{2T}$ ile $\frac{1}{2T}$ arasında ($r=0$). Koyu kırmızı ($r=0{,}5$, yaklaşık $\pm\frac{3}{4T}$'de sıfır) ve turuncu ($r=1$, $\pm\frac{1}{T}$'de sıfır) kosinüs biçimli eğriler, orijinde tepe değeri 1. Eksen işaretleri: $-\frac{1}{T},-\frac{3}{4T},-\frac{1}{2T},-\frac{1}{4T},\frac{1}{4T},\frac{1}{2T},\frac{3}{4T},\frac{1}{T}$. $\frac{1}{2T}$ altında süslü parantez: $W_0=R_s/2$. Mor etiketler: $r=0$, $r=0{,}5$, $r=1$.}
+
+\[ W_0=\frac{R_s}{2}=\frac{1}{2T}\qquad \text{min Nyquist BW for rectangular spectrum} \]
+\[ W-W_0=\text{Aşırı BG (Excess BW)} \]
+
+\[
+\begin{aligned}
+r&=\frac{W-W_0}{W_0}\qquad \text{Azalma faktörü (roll-off factor)}\\
+&\phantom{=}\ 0\le r\le 1
+\end{aligned}
+\]
+\[ \rightarrow\ W=W_0(1+r) \]
+\formulkutu{W=\frac{R_s}{2}(1+r)\ \mathrm{Hz}}
+$\rightarrow$ Temel band haberleşmede RC darbesinin BG\\
+$W\rightarrow$ Mutlak BG (Absolute BW)
+
+$\rightarrow$ Band geçiren Haberleşme
+\[ W_{\text{ÇYB}}=R_s(1+r)\ \mathrm{Hz}\qquad \text{(Taşıyıcılı haberleşme)} \]
+
+\[ h(t)=2W_0\,\mathrm{sinc}(2W_0t)\,\frac{\cos[2\pi(W-W_0)t]}{1-[4(W-W_0)t]^2}\qquad \text{azalma hızı }\frac{1}{t^3} \]
+
+\sekilnotu[1]{$h(t)$ grafiği (dikey eksen etiketi ``$h(t)\,2W_0$'' gibi, muhtemelen $h(t)/2W_0$). Siyah eğri $r=0$ (sinc), mavi eğri $r=1$, koyu kırmızı eğri $r=0{,}5$. $t=0$'da tepe; ana lob $-T$ ile $T$ arasında. Turuncu kesikli çizgilerle sıfır geçişleri $-2T,-T,T,2T,3T$ işaretli. $r=1$ ve $r=0{,}5$ eğrileri yan loblarda çok daha küçük genlikli (daha hızlı sönümlenir).}
+
+\sayfa{2}
+\sekilnotu[2]{$P_b$ -- $E_b/N_0$ (dB) grafiği: dikey eksen $P_b$ (işaretler yukarıdan aşağıya $10^{-3}$ (üstteki okunaksız), $10^{-4}$, $10^{-5}$; $10^{-4}$ seviyesinde kesikli yatay çizgi), yatay eksen $E_b/N_0$ (dB), işaretler 10 ve 12. Siyah eğri 10 dB'de neredeyse dikey olarak iner. Kırmızı eğri sağa kaymış, sonra yatay bir tabana oturur. Kırmızı etiket: ``Degredation due to ISI (SAK)''; siyah etiket: ``semboller arası karışım'' (ok SAK'a); ``Error floor (hata katı)'' (ok yatay bölüme); ``gücü belli bir süre sonra ne kadar \okunamadi{artırsanız artırın}''.}
+
+Çözüm $\rightarrow$ equalization
+
+\[
+H(f)=H_t(f)\,\underset{\text{channel}}{H_c(f)}\,
+\underbrace{H_r(f)}_{\displaystyle \underset{\substack{\Vert\\ \frac{1}{H_c(f)}}}{H_e(f)}\,H_r'(f)}
+\quad\Rightarrow\quad
+\underset{\text{RC}}{H(f)}=\underset{\substack{\text{Root RC}\\ \text{(RRC)}}}{H_t(f)}\,\underset{\text{RRC}}{H_r'(f)}
+\]
+
+\[ h_r'(t)=h_t(T-t)\qquad \text{Karşılayıcı filtre} \]
+
+\begin{ornek}[3.3]
+(s.143, Ex 3.3)
+
+\sekilnotu[2]{Basılı kitap kesiti (``Example 3.3 Bandwidth Requirements'', (a) ve (b) şıkları) basılı materyal içeriyor; dijitalleştirilmedi.}
+
+4 level PAM\\
+$R=2400$ bits/s\\
+RC 100\% excess BW ($r=1$)
+
+\sekilnotu[2]{Dört seviyeli PAM darbe dizisi: sıfır ekseni üzerinde ardışık dört dikdörtgen darbe; $00\to +A$, $01\to -A$, $10\to +2A$, $11\to -2A$ (her darbenin altında yukarı ok ve ikili kodu yazılı).}
+\end{ornek}
+
+\[ M=2^k=4\ \Rightarrow\ k=2\ \text{bits/symbol (pulse)} \]
+\[ \underset{\text{sembol hızı}}{R_s}=\frac{R_b\ \text{bit/s}}{k\ \text{bits/sembol}}=\frac{2400\ \text{bit/sn}}{2\ \text{bit/sn}\footnotemark}=1200\ \tfrac{\text{sembol}}{\text{sn}}\ \text{(darbe)} \]
+\footnotetext{Claude notu: muhtemelen 2 bit/sembol olmalı.}
+\[ W=\frac{R_s}{2}(1+r)=\frac{1200}{2}(1+1)=1200\ \mathrm{Hz} \]
+b) $W_{\mathrm{DSB}}=R_s(1+r)=2400\ \mathrm{Hz}$
+
+\sayfa{3}
+\section{Kontrollü SAK ile işaretleşme}
+\subsection{(Signaling with controlled ISI)}
+\subsection{(Kısmi cevaplı işaretleşme -- Partial response signaling)}
+
+Sıfır SAK için 2. Nyquist kriteri:
+\[ h(nT)=\begin{cases} 1, & n=0,1\\ 0, & \text{Diğer}\end{cases} \]
+
+Çift kutuplu\\
+``1'' $\rightarrow h(t)$\\
+``0'' $\rightarrow -h(t)$
+
+\sekilnotu[3]{$h(t)$ grafiği: dikey eksen $h(t)$, yatay eksen işaretleri $-3T,-2T,-T,0,T,2T,3T,4T$; dikey eksende $\frac{4}{\pi}$ ve 1 işaretli, 1 seviyesinde kesikli yatay çizgi. Turuncu eğri $h(t)$: $t=T/2$'de tepe değeri $\frac{4}{\pi}$, $t=0$ ve $t=T$'de değeri 1, $-T$ ve $2T$'de sıfır, sonra küçük yan loblar. Koyu kırmızı eğri $h(t-T)$ (okla etiketli): turuncu eğrinin $T$ kadar sağa kaymış hali, $t=T$ ve $t=2T$'de değeri 1 (kesikli dikey çizgiler bu noktalardan eksene iner). $t=T$'deki kesişim noktasına küçük bir etiketli ok var (``$h(0)$'' ya da ``$h(T)$'' gibi okunuyor).}
+
+Her iki darbe $+$ $\Rightarrow$ Örnek $=2$\\
+'' '' '' $-$ $\Rightarrow$ '' $=-2$\\
+Darbeler zıt işaretli $\Rightarrow$ '' $=0$\\
+Eğer örnek $>0$ $\Rightarrow$ Mevcut bit ve önceki bit ``1''\\
+\hspace*{1.5em}örnek $<0$ $\Rightarrow$ '' '' '' '' ``0''\\
+\hspace*{1.5em}'' $=0$ $\Rightarrow$ Mevcut bit önceki bitin tümleyenidir
+
+\begin{center}
+\begin{tabular}{l*{13}{c}}
+İletilen dizi: & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1\\
+Örnekler: & 1 & 2 & 0 & 0 & 2 & 0 & $-2$ & $-2$ & 0 & 0 & 0 & 2 & 2\\
+Tespit edilen dizi: & 1 & 1 & 0 & 1 & 1 & 0 & 0 & 0 & 1 & 0 & 1 & 1 & 1
+\end{tabular}
+\end{center}
+
+\subsection{Duo binary darbe}
+\[
+h(t)=\frac{\sin(\pi R_s t)}{\pi R_s t\,(1-R_s t)}
+=\frac{\sin(\pi t/T)}{\frac{\pi t}{T}\left(1-\frac{t}{T}\right)}
+=\underbrace{\mathrm{sinc}\!\left(\frac{t}{T}\right)+\mathrm{sinc}\!\left(\frac{t-T}{T}\right)}_{\text{\okunamadi{süresi: 3T}}}
+\]
+$\rightarrow$ Azalma hızı $\dfrac{1}{t^2}$
+\begin{align*}
+h(t)\xrightarrow{\ \mathcal{F}\ } H(f)&=\frac{2}{R_s}\cos\!\left(\frac{\pi f}{R_s}\right)\Pi\!\left(\frac{f}{R_s}\right)e^{-j\pi f/R_s}\\
+&=2T\cos(\pi fT)\,\Pi(fT)\,e^{-j\pi fT}
+\end{align*}
+
+\sayfa{4}
+\sekilnotu[4]{Duobinary filtre genlik cevabı: dikey eksen $|H(f)|$, yatay eksen $f$; $f=0$'da tepe yapan yarım kosinüs kemeri, yanında ``$2T\cos(\pi fT)$''. Eksenin altında sol uçta $-\frac{R_s}{2}=-\frac{1}{2T}$, sağ uçta $\frac{R_s}{2}=\frac{1}{2T}$ (kemer bu noktalarda sıfıra iner). Sağ üstte ``kosinüs filtresi'' etiketi.}
+
+RC darbesinden daha az BG'ye sahip\\
+bu filtre $\dfrac{1}{t^2}$ ile azalmakta \qquad senkronizasyon hataları\\
+daha fazla \qquad RC'de $\dfrac{1}{t^3}$ ile azalmakta
+
+\begin{ornek}[3.8]
+S.164 Pr 3.8
+
+\sekilnotu[4]{Basılı kitap problemi (3.8, (a) ve (b) şıkları) basılı materyal içeriyor; dijitalleştirilmedi.}
+\end{ornek}
+
+a) $R=10$ Mbit/s\\
+16 level PAM w/o ISI
+\[ M=2^k=16\ \rightarrow\ k=4\ \text{bits/symbol (pulse)} \]
+\[ R_s=\frac{R}{k}=\frac{10\ \text{Mbits/s}}{4\ \text{bits/symbol}}=2{,}5\ \text{M}\ \frac{\text{symbols}}{\text{s}} \]
+\[ W=\frac{R_s}{2}=1{,}25\ \mathrm{MHz} \]
+b) $W=1{,}375$ MHz
+\[ \underset{1{,}375}{W}=\underset{1{,}25}{\frac{R_s}{2}}(1+r)\ \rightarrow\ r=0{,}1 \]
+
+\begin{ornek}[3.9]
+Pr. 3.9
+
+$Q_{\mathrm{dist}}\le\pm 0{,}1\%$ of peak to peak signal voltage\\
+$f_s=8000$ samples/s\\
+$M=32$ PAM
+
+\sekilnotu[4]{Basılı kitap problemi (3.9) basılı materyal içeriyor; dijitalleştirilmedi.}
+\end{ornek}
+
+Min theo BW w/o ISI
+\[ \Delta v=\frac{2x_p}{L}\ \rightarrow\ \frac{\Delta v}{2}=\frac{x_p}{L}\le\frac{0{,}1}{100}\,2x_p\ \rightarrow\ L\ge\frac{100}{0{,}2}=500 \]
+\[ \underbrace{2^n}_{512}\ge L>500\ \Rightarrow\ 2^n=512\ \Rightarrow\ n=9\ \text{bits/sample}\qquad \mathrm{BG}=36\,\mathrm{kHz} \]
+\[
+\left.\begin{aligned}
+R_b&=n\,f_s=9\ \frac{\text{bits}}{\text{sample}}\times 8000\ \frac{\text{samples}}{\text{s}}=72\ \text{k bits/s}\\
+M&=32=2^5\ \Rightarrow\ k=5\ \text{bits/symbol (pulse)}
+\end{aligned}\right\}\ \text{5 kat BG düştü}
+\]
+
+\sayfa{5}
+\[ R_s=\frac{R_b}{k}=\frac{72\ \text{k bits/s}}{5\ \text{bits/symbol}}=14\,400\ \frac{\text{symbols}}{\text{s}}\ \rightarrow\ W=\frac{R_s}{2}=7200\ \mathrm{Hz} \]
+\begin{flushright}
+$\uparrow$ Bit hata olasılığı daha kötü
+\end{flushright}
+
+\begin{ornek}
+In a CD recording system, 2 voice signals are sampled with a sampling freq.\ of 44,1 kHz, multiplexed an encoded with 16 bits.\\
+a) What is the bitrate?\\
+b) How many bits are needed for a recording of 50 minutes?
+\end{ornek}
+
+\[ \text{a)}\ R_b=\overset{\substack{\text{sinyal}\\ \text{sayısı}}}{2}\cdot n\cdot f_s=2\cdot\frac{16\ \text{bits}}{\text{sample}}\cdot\frac{44{,}1\ \text{ksample}}{\text{sec}}=1\,411\,200\ \frac{\text{bits}}{\text{s}} \]
+\[ \text{b)}\ \#\ \text{of bits}=1\,411\,200\ \frac{\text{bits}}{\text{s}}\times 50\times 60\ \text{s}=4\,233\,600\,000\ \text{bits} \]
+\begin{flushright}
+8'e bölelim: 529,2 M byte\\
+sonra 1000'e
+\end{flushright}
+
+\begin{ornek}[3.9]
+\sekilnotu[5]{Basılı kitap problemi (3.9) basılı materyal içeriyor; dijitalleştirilmedi.}
+\end{ornek}
+
+Min theo BW w/o ISI
+\[ \Delta v=\frac{2x_p}{L}\ \rightarrow\ \frac{\Delta v}{2}=\frac{x_p}{L}\le\frac{0{,}1}{100}\,2x_p\ \rightarrow\ L\ge\frac{100}{0{,}2}=500 \]
+\[ \underbrace{2^n}_{512}\ge L>500\ \Rightarrow\ 2^n=512\ \Rightarrow\ n=9\ \text{bits/sample} \]
+\[
+\left.\begin{aligned}
+R_b&=n\,f_s=9\ \frac{\text{bits}}{\text{sample}}\times 8000\ \frac{\text{samples}}{\text{s}}=72\ \text{k bits/s}\qquad \mathrm{BG}=36\ \mathrm{kHz}\\
+M&=32=2^5\ \Rightarrow\ k=5\ \text{bits/symbol (pulse)}
+\end{aligned}\right\}\ \text{5 kat BG düştü}
+\]
+\[ R_s=\frac{R_b}{k}=\frac{72\ \text{k bits/s}}{5\ \text{bits/symbol}}=14\,400\ \frac{\text{symbols}}{\text{s}}\ \rightarrow\ W=\frac{R_s}{2}=7200\ \mathrm{Hz} \]
+\begin{flushright}
+$\uparrow$ Bit hata olasılığı daha kötü
+\end{flushright}
+
+c) $r=0{,}25\ \Rightarrow$ Bipolar signaling BG?
+\[ R_b=72\ \text{k bits/s}\ \rightarrow\ W=\frac{R_b}{2}(1+r)=\frac{72\,\mathrm{k}}{2}(1+0{,}25)=45\ \mathrm{kHz} \]
+\[ r=0{,}25\ \rightarrow\ M=32\ \text{PAM BG ?}\qquad R_s=14\,400\ \text{symbols/s}\ \rightarrow\ W=\frac{R_s}{2}(1+r)=\frac{14\,400\,(1+0{,}25)}{2}=9\ \mathrm{kHz}\ /\!/ \]
+
+\sayfa{6}
+\section{Sayısal Taşıyıcılı Modülasyon}
+\subsection{(Carrier Mod / Bandpass Mod)}
+\section{Faz Kaydırmalı Anahtarlama (FKA) Mod}
+\subsection{Phase Shift Keying (PSK) Mod}
+
+\elcizimi[0.5]{sekiller/Ders-11-s6-1.png}[6]
+\[ \overset{\text{1 sembol}}{s_i(t)}\ ;\ i=1,\dots,M=2^k\ ;\ 0\le t\le T \]
+\[ R_s=\frac{R_b}{k}=\frac{1\ \text{sembol}}{T\ \text{sn}}=\frac{k\ \text{bit}}{T\ \text{sn}} \]
+
+\[ \text{PSK:}\quad s_i(t)=\sqrt{\frac{2E}{T}}\cos(2\pi f_ct+\phi_i)\ ;\ 0\le t\le T \]
+\[ \phi_i=\frac{2\pi(i-1)}{M}\qquad i=1,\dots,M=2^k \]
+
+\begin{ornek}
+$M=4=2^k\ \Rightarrow\ k=2$ bit/sembol
+\end{ornek}
+
+\elcizimi[0.7]{sekiller/Ders-11-s6-2.png}[6]
+\[
+\begin{aligned}
+00&\ \rightarrow\ s_1(t)=\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct+0)\ ;\ 0\le t\le T\\
+01&\ \rightarrow\ s_2(t)=\sqrt{\tfrac{2E}{T}}\cos\!\left(2\pi f_ct+\tfrac{\pi}{2}\right)\ ;\ 0\le t\le T\\
+10&\ \rightarrow\ s_3(t)=\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct+\pi)\ ;\ \text{''}\\
+11&\ \rightarrow\ s_4(t)=\sqrt{\tfrac{2E}{T}}\cos\!\left(2\pi f_ct+\tfrac{3\pi}{2}\right)\ ;\ \text{''}
+\end{aligned}
+\]
+
+\subsection{Enerji:}
+\[ E_{s_i}=\underbrace{\frac{2E}{T}\,\frac{1}{2}}_{\displaystyle\frac{A^2}{2}}\,T=E \]
+\[ \forall\ E_{s_i}=E \]
+\begin{align*}
+E_{s_i}&=\int_0^T s_i^2(t)\,dt=\frac{2E}{T}\int_0^T\underbrace{\cos^2(2\pi f_ct+\phi_i)\,dt}_{\displaystyle\frac{1}{2}\left[1+\cos(4\pi f_ct)\right]dt}\\
+&=\frac{2E}{T}\,\frac{1}{2}\int_0^T dt=E
+\end{align*}
+\[ \int_0^T\cos(4\pi f_ct)\,dt\approx 0 \]
+
+\subsection{BG}
+\[ s_i(t)=\sqrt{\frac{2E}{T}}\,\Pi\!\left(\frac{t-T/2}{T}\right)\cos(2\pi f_ct+\phi_i) \]
+\elcizimi[0.7]{sekiller/Ders-11-s6-3.png}[6]
+
+\sayfa{7}
+\elcizimi[0.6]{sekiller/Ders-11-s7-1.png}[7]
+
+M arttığında BG aynı kalıyor. Bu önemli bir avantaj
+
+Bant genişliği verimli teknik
+\[ \underset{\substack{\swarrow\\ \text{BG verimliliği}}}{\mathrm{BGV}}=\frac{R_b\ \text{bit/sn}}{\underset{\substack{\downarrow\\ \mathrm{BG}}}{W}\ \text{Hz}}\qquad\frac{\text{bit/sn}}{\text{Hz}} \]
+\begin{flushright}
+$\nearrow$ bir Hz bant genişliğinde bir saniyede gönderilen bit
+\end{flushright}
+
+MPSK: $M\uparrow\ \Rightarrow$ BG aynı $\rightarrow$ BGV$\uparrow$ \qquad BGV verimli teknik (BW efficient mod technique) \qquad $\times$ $P_b\uparrow$ (performans kötüleşiyor)
+
+Bant genişliğinden kazanıyoruz güçten kaybediyoruz
+
+\subsection{Özel durum}
+$k=1,\ M=2\ \Rightarrow$ İkili FKA $=$ İFKA\\
+\hspace*{4em}Binary PSK $=$ BPSK
+\begin{align*}
+\text{``1''}\ \rightarrow\ s_1(t)&=\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct+0)\ ;\ 0\le t\le T\\
+\text{``0''}\ \rightarrow\ s_2(t)&=\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct+\pi)\ ;\ 0\le t\le T\\
+&=-\sqrt{\tfrac{2E}{T}}\cos(2\pi f_ct)\ ;\ 0\le t\le T
+\end{align*}
+\[ \text{Bipolar signaling}\ \times\ \text{carrier}\ \rightarrow\ P_b=Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right)\qquad E_b=E \]
+$\rightarrow$ Sayfa 174\\ Şekil 4.5
+
+\elcizimi[0.5]{sekiller/Ders-11-s7-2.png}[7]
+
+\sayfa{8}
+\section{Ortogonal modülasyon}
+\section{Frekans Kaydırmalı Anahtarlama (FRKA)}
+\subsection{Frequency Shift Keying (FSK)}
+\[ s_i(t)=\sqrt{\frac{2E}{T}}\cos(2\pi f_it)\ ;\ 0\le t\le T\ ,\ i=1,2,3,4 \]
+\[ f_i=f_c+(i-1)\Delta f \]
+\[ \int_0^T s_i(t)\,s_j(t)\,dt=\begin{cases}0, & i\ne j\\ E, & i=j\end{cases}\ \underset{\substack{\text{ortogonal}\\ \text{(Dik)}}}{\Rightarrow} \]
+
+\subsection{Ortogonallik şartı:}
+\[
+\Delta f=\left\{\begin{array}{@{}l@{\quad}l@{\quad}l@{}}
+\dfrac{1}{2T} & \text{Faz tahminli demod. (Coherent demod.)} & \dfrac{\mathrm{BG}}{2}\\[10pt]
+\dfrac{1}{T} & \text{'' tahminsiz '' (Non coherent dmd.)} & \mathrm{BG}\ \nearrow
+\end{array}\right.
+\]
+
+$\rightarrow$ Sayfa 202 Ex.\ 4.3
+
+\[ M\uparrow\ \Rightarrow\ \mathrm{BG}\uparrow\ \Rightarrow\ \mathrm{BGV}\downarrow\qquad\times\ P_b\downarrow \]
+(Power efficient Mod.)
+
+\end{document}

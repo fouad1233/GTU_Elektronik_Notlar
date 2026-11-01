@@ -1,0 +1,253 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Modeling, Laplace Transform \& Partial Fractions}{Control-Systems-lecture-2.pdf}
+
+\sayfa{1}
+\section{Modeling Dynamical Systems}
+\noindent $\rightarrow$ Expression of system's behavior by some \underline{mathematical relations} obtained by setting reasonable assumptions. \hfill \textcolor{turuncukalem}{Differential Eq, Integral Eq, Integro diff Eq}
+
+\medskip
+\noindent Differential Equations
+\begin{itemize}
+\item partial: number of independent variables is more than one \hfill \textcolor{kirmizikalem}{continuous system}
+\[ a_1 \frac{\partial^2 c}{\partial x^2} + a_2 \frac{\partial^2 c}{\partial y^2} + a_3 \frac{\partial^2 c}{\partial x\,\partial y} + a_4 \frac{\partial^2 c}{\partial t^2} = r(t) \qquad \textcolor{turuncukalem}{\text{(Linear PDE, order=2, degree=1)}} \]
+\item ordinary: \hfill \textcolor{kirmizikalem}{Lumped/discretized}
+\[ a_1 \frac{d^2 c}{dt^2} + a_2 \frac{dc}{dt} + a_3 c = r(t) \qquad \textcolor{turuncukalem}{\text{(Linear ODE, order=2)}} \]
+\end{itemize}
+
+\noindent \textcolor{turuncukalem}{ODE, 2$^{\text{nd}}$ order, 3$^{\text{rd}}$ degree} $\longleftrightarrow$
+\[ a_1 \frac{d^2 c}{dt^2} + a_2 \frac{dc}{dt} + a_3 c^3 + a_4 c^2 = r(t) \qquad \textcolor{turuncukalem}{\rightarrow\ \text{non linear}\ \times} \]
+
+\noindent \textcolor{kirmizikalem}{$\ast$ Lumped, discretizing} {\scriptsize (ayrık)}
+
+\medskip
+\noindent
+\begin{minipage}[t]{0.48\linewidth}
+System Dynamics:\\
+\hspace*{1em} Response due to Initial conditions.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\linewidth}
+Dynamical system\\
+\hspace*{1em} $\rightarrow$ A system changing to the time
+\end{minipage}
+
+\[ \text{Systems}\left\{\begin{array}{l}
+\rightarrow\ \text{static}\ \times \\[3pt]
+\text{non-static}\left\{\begin{array}{l}
+\rightarrow\ \text{Dynamic (deterministic)}\ \checkmark \\
+\rightarrow\ \text{stochastic}\ \times
+\end{array}\right.
+\end{array}\right. \]
+
+\noindent We have to talk about linear ODE's that change respect time
+
+\noindent We use laplace to change differential equation to algebraic equation. \quad ($s^2+s+a=r$ algebraic)
+
+\sayfa{2}
+\section{Laplace Transform}
+\[ \underbrace{\mathcal{L}}_{\text{\scriptsize laplace operator}}[f(t)] = \int_0^\infty e^{-st} f(t)\,dt = F(s) \]
+
+\noindent \textcolor{turuncukalem}{\underline{Differential theorem in laplace transform}}
+\[ \mathcal{L}\left(\frac{d^n f(t)}{dt^n}\right) = s^n F(s) - s^{n-1} f(0) - s^{n-2} f'(0) - \cdots - f^{(n-1)}(0) \]
+
+\noindent \textcolor{turuncukalem}{output is $y$} \hfill \textcolor{turuncukalem}{input is $x$}
+\[ a_0 y^{(n)} + a_1 y^{(n-1)} + a_2 y^{(n-2)} + \cdots + a_n y = b_0 x^{(m)} + b_1 x^{(m-1)} + \cdots + b_m x \]
+\noindent \textcolor{turuncukalem}{(the \textcolor{kirmizikalem}{order} is $n$)} \hfill $(n>m)$ \hfill \phantom{(the order is n)}
+
+\noindent Most general ODE for a system.
+
+\noindent Assuming that initial conditions are zero (to ignore transient respons)
+
+\formulkutu{\begin{aligned} a_1\ddot{x}+a_2\dot{x}+a_3\overbrace{x}^{\text{output}} &= \underbrace{r(t)}_{\text{input}} \\ x(t=0) &= x_0 \\ \dot{x}(t=0) &= \dot{x}_0 \end{aligned}}
+
+\noindent Initial condition: n-1'e kadar $y^{n-1}(0),\ y^{(n-2)}(0),\ \ldots,\ y(0)$\\
+\textcolor{kirmizikalem}{n tane bulunmakta}
+
+\medskip
+\noindent Laplace transform $\Downarrow$
+\[ (a_0 s^n + a_1 s^{n-1} + a_2 s^{n-2} + \cdots + a_n)\,Y(s) = (b_0 s^m + b_1 s^{m-1} + b_2 s^{m-2} + \cdots + b_m)\,X(s) \]
+\[ \text{Transfer function} = \frac{\text{output}}{\text{Input}} = \frac{Y(s)}{X(s)} = \frac{b_0 s^m + b_1 s^{m-1} + \cdots + b_m}{a_0 s^n + a_1 s^{n-1} + \cdots + a_n} = G(s) \]
+\noindent \textcolor{turuncukalem}{$\ast$ The max order of derivative define the output of the system}\\
+\hspace*{\fill}\textcolor{turuncukalem}{this is independent to input (intrinsic definition of system)}
+\[ G(s) = \frac{Y(s)}{X(s)} \;\rightarrow\; \underbrace{Y(s)}_{\textcolor{turuncukalem}{\text{response}}} = \underbrace{X(s)}_{\textcolor{turuncukalem}{\text{input}}}\, G(s) \]
+\[ \mathcal{L}^{-1}\ \rightarrow\ y(t) = \int_0^t x(\tau)\, g(t-\tau)\,d\tau = \int_0^t x(t-\tau)\, g(\tau)\,d\tau \]
+
+\sayfa{3}
+\noindent Impulse function in frequency domain
+\[ X(s)=1 \qquad\rightarrow\qquad Y(s)=G(s) \]
+
+\noindent impulse response = T.F. (Transfer function)
+\[ \mathcal{L}^{-1}[G(s)] = g(t) \]
+
+\noindent \textcolor{turuncukalem}{zero initial condition}
+\[ \frac{d^3 c}{dt^3} + 3\frac{d^2 c}{dt^2} + 7\frac{dc}{dt} + 5c = \frac{d^2 r}{dt^2} + 4\frac{dr}{dt} + 3r \]
+\[ \overset{\textcolor{turuncukalem}{\mathcal{L}}}{\Longrightarrow}\ s^3 C(s) + 3s^2 C(s) + 7sC(s) + 5C(s) = s^2 R(s) + 4sR(s) + 3R(s) \]
+\[ \hookrightarrow\ \frac{C(s)}{R(s)} = \underbrace{\frac{s^2+4s+3}{s^3+3s^2+7s+5}}_{\textcolor{turuncukalem}{\text{Dynamical system representation}}} = G(s) \qquad \text{T.F.} \]
+\[ \Rightarrow\ C(s) = R(s)\,G(s) \]
+
+\noindent Find the D.E for the transfer function
+\[ G(s) = \frac{2s+1}{s^2+6s+2} = \frac{C(s)}{R(s)}\ \begin{array}{l}\textcolor{turuncukalem}{\text{output}}\\ \textcolor{turuncukalem}{\text{input}}\end{array} \]
+\[ (2s+1)\,R(s) = C(s)\,(s^2+6s+2) \]
+\[ \mathcal{L}^{-1}\ \rightarrow\ 2\dot{r}(t) + r(t) = \frac{d^2 c(t)}{dt^2} + 6\frac{dc(t)}{dt} + 2c(t) \]
+
+\subsection{Linearity theorem:}
+\[ \mathcal{L}[k f(t)] = K\cdot F(s) \]
+\[ \mathcal{L}[f_1(t)+f_2(t)] = F_1(s)+F_2(s) \qquad \text{Superposition.} \]
+
+\[ \begin{aligned}
+\textcolor{kirmizikalem}{\text{Freq shift}}\quad & \mathcal{L}[e^{-at} f(t)] = F(s+a) \\
+\textcolor{kirmizikalem}{\text{Time shift}}\quad & \mathcal{L}[f(t-T)] = e^{-sT} F(s)
+\end{aligned} \]
+
+\subsection{Scaling:}
+\[ \mathcal{L}[f(at)] = \frac{1}{a}\,F\!\left(\frac{s}{a}\right) \]
+
+\subsection{$\ast$ Differention:}
+\[ \mathcal{L}\left(\frac{d^n f(t)}{dt^n}\right) = s^n F(s) - s^{n-1} f(0) - s^{n-2} f'(0) - \cdots - f^{(n-1)}(0) \]
+
+\sayfa{4}
+\subsection{$\ast$ Integration:}
+\[ \mathcal{L}\left[\int f(t)\,dt\right] = \frac{F(s)}{s} \]
+
+\[ \begin{aligned}
+\textcolor{kirmizikalem}{\ast}\ \text{Final value:}\quad & f(\infty) = \lim_{s\to 0} sF(s)\\
+\text{Initial value}\quad & f(0) = \lim_{s\to\infty} sF(s)
+\end{aligned} \]
+
+\noindent \textcolor{kirmizikalem}{Table to know}
+
+\elcizimi[0.35]{sekiller/Control-Systems-lecture-2-s4-1.png}[4]
+
+\begin{center}
+\renewcommand{\arraystretch}{1.9}
+\setlength{\tabcolsep}{1.6em}
+\begin{tabular}{c|c}
+$f(t)$ & $F(s)$ \\ \hline
+impulse $\delta(t)$ & $1$ \\
+step $u(t)$ & $1/s$ \\
+Ramp $t$ & $1/s^2$ \\
+$\dfrac{t^{n-1}}{(n-1)!}$ & $1/s^n$ \\
+$e^{-at}$ & $\dfrac{1}{s+a}$ \\
+$\dfrac{e^{-at}\,t^{n-1}}{(n-1)!}$ & $\dfrac{1}{(s+a)^n}$ \\
+$\sin(\omega t)$ & $\dfrac{\omega}{s^2+\omega^2}$ \\
+$\cos(\omega t)$ & $\dfrac{s}{s^2+\omega^2}$ \\
+$\sinh \omega t$ & $\dfrac{\omega}{s^2-\omega^2}$ \\
+$\cosh \omega t$ & $\dfrac{s}{s^2-\omega^2}$ \\
+\end{tabular}
+\end{center}
+
+\section{Partial fraction expansion (PFE)}
+\noindent T.F. $G(s)=\dfrac{B(s)}{A(s)}$ \quad
+\begin{tabular}[c]{@{}l@{}}
+$\rightarrow$ numerator $\rightarrow$ roots of numerator polynomial = zero\\
+$\rightarrow$ denominator $\rightarrow$ '' '' denominator '' poles
+\end{tabular}
+
+\medskip
+\noindent \underline{case 1:} Poles are distinct and with multiplicity of unity!\\
+\textcolor{turuncukalem}{tekrarlanmaz, the poles are unique, differents, not repeat}
+
+\[ G(s) = \frac{B(s)}{A(s)} = \frac{b_0 + b_1 s + b_2 s^2 + \cdots + b_m s^m}{a_0 + a_1 s + a_2 s^2 + \cdots + a_n s^n} \]
+\noindent poles are $\lambda_1,\lambda_2,\lambda_3,\ldots,\lambda_n$.\\
+zeros $m$
+
+\sayfa{5}
+\noindent $\displaystyle = \frac{r_1}{s-\lambda_1} + \frac{r_2}{s-\lambda_2} + \cdots + \frac{r_n}{s-\lambda_n}$ \hfill $r_n$ = residues of the function
+
+\medskip
+\noindent How to obtain the redisues.
+\[ \kutula{n>m\ :\ \text{strictly proper (for all physical systems)}}\ \checkmark \]
+\noindent $n=m$ \ : proper
+
+\noindent $n<m$ \ : not proper
+
+\subsection{Example:}
+\[ \frac{s^2-2}{s^3+3s^2+2s} = \frac{s^2-2}{s(s^2+3s+2)} = \frac{r_1}{s} + \frac{r_2}{s+1} + \frac{r_3}{s+2} \]
+\noindent \textcolor{turuncukalem}{Roots are $\left\{\begin{array}{l} s_1=0\\ s_2=-1\\ s_3=-2 \end{array}\right.$}
+\[ = \frac{r_1(s+1)(s+2) + r_2(s)(s+2) + r_3(s)(s+1)}{s(s+1)(s+2)} \]
+\[ r_1(s^2+2s+s+2) + r_2(s^2+2s) + r_3(s^2+s) = s^2-2 \]
+\[ \begin{array}{r} s^0:\\ s^1:\\ s^2: \end{array}\left\{\begin{array}{l} 2r_1=-2 \\ 3r_1+2r_2+r_3=0 \\ r_1+r_2+r_3=1 \end{array}\right. \]
+
+\noindent \textcolor{kirmizikalem}{$\ast$} Second method of residue calculation: \quad $r_k = (s-\lambda_k)F(s)\Big|_{s=\lambda_k}$
+\[ r_1 = sF(s)\Big|_{s=0} \]
+\[ = \frac{s^2-2}{s^2+3s+2}\Big|_{s=0} = \frac{-2}{2} = -1\ \checkmark \]
+
+\sayfa{6}
+\[ G(s) = \frac{B(s)}{A(s)} \ \rightarrow\ \text{roots are } \lambda_k \]
+\[ r_k = \frac{(s-\lambda_k)B(s)}{A(s)}\Big|_{s=\lambda_k} \qquad \textcolor{kirmizikalem}{\ast}\ \text{L'Hopital} \]
+\[ \lim_{s\to\lambda_k} \frac{\text{derivative of num.}}{\text{derivative of den.}} = \lim_{s\to\lambda_k} \frac{B(s)+(s-\lambda_k)B'(s)}{A'(s)} \]
+
+\noindent \textcolor{kirmizikalem}{more efficient}
+\formulkutu[önemli]{r_k = \frac{B(s)}{A'(s)}\Big|_{s=\lambda_k}}
+
+\subsection{Example}
+\[ V^{(3)}-V=0 \qquad\qquad \begin{array}{l} V(0)=1\\ \dot V(0)=0\\ \ddot V(0)=0 \end{array} \]
+\[ \frac{d^3V}{dt^3} = V^{(3)} \]
+\[ \mathcal{L}\ \rightarrow\ s^3V(s) - s^2V(0) - s\dot V(0) - \ddot V(0) - V(s) = 0 \]
+\[ \hookrightarrow\ V(s)(s^3-1) = s^2 \ \Rightarrow\ V(s) = \frac{s^2}{s^3-1} \]
+\[ \begin{array}{r|l}
+s^3-1 & \underline{s-1} \\
+\underline{-s^3+s^2} & s^2+s+1 \\
+s^2-1 & \\
+\underline{-s^2+s} & \\
+s-1 &
+\end{array} \]
+\[ s^3-1 = (s-1)\,(s^2+s+1) \]
+\[ \downarrow\ s_1=1 \qquad\qquad \searrow\ s_{2,3} = \frac{-1\pm j\sqrt{3}}{2} \]
+\noindent three poles of multiplicity one
+\[ V(s) = \frac{s^2}{s^3-1} = \frac{r_1}{s-1} + \frac{r_2}{s+\frac{1}{2}+\frac{\sqrt{3}}{2}j} + \frac{r_3}{s+\frac{1}{2}-\frac{\sqrt{3}}{2}j} \]
+
+\sayfa{7}
+\[ \begin{aligned}
+r_k &= \frac{B(s)}{A'(s)}\Big|_{s=\lambda_k} \\[4pt]
+B(s) &= s^2 \\
+A(s) &= s^3-1 \ \Rightarrow\ A'(s)=3s^2 \\[4pt]
+r_k &= \frac{s^2}{3s^2}\Big|_{s=\lambda_k} \\[4pt]
+r_1 &= \frac{(1)^2}{3(1)^2} = \frac{1}{3} \\[4pt]
+r_2 &= \frac{1}{3} \\[4pt]
+r_3 &= \frac{1}{3}
+\end{aligned} \]
+\[ V(s) = \frac{s^2}{s^3-1} = \frac{1/3}{s-1} + \frac{1/3}{s+\frac{1}{2}+\frac{\sqrt{3}}{2}j} + \frac{1/3}{s+\frac{1}{2}-\frac{\sqrt{3}}{2}j} \]
+\[ V(t) = \mathcal{L}^{-1}\{V(s)\} = \frac{1}{3}\left[ e^{+t} + e^{\left(-\frac{1}{2}-\frac{\sqrt{3}}{2}j\right)t} + e^{(-1/2+\sqrt{3}/2\,j)t} \right] \]
+
+\noindent \textcolor{kirmizikalem}{case 2)} Distinct poles of multiplicity $k_i$
+
+\noindent Transfer function \ $\displaystyle G(s) = \frac{B(s)}{(s-\lambda_1)^{k_1}(s-\lambda_2)^{k_2}\cdots(s-\lambda_\ell)^{k_\ell}}$
+
+\noindent $n$ degree polynomial in the denominator: we expect $n$ roots (poles)
+\[ \begin{aligned}
+&= \frac{r_{1,1}}{s-\lambda_1} + \frac{r_{1,2}}{(s-\lambda_1)^2} + \cdots + \frac{r_{1,k_1}}{(s-\lambda_1)^{k_1}} \\[4pt]
+&\quad + \underbrace{\frac{r_{2,2}}{(s-\lambda_2)^2}}_{\textcolor{kirmizikalem}{\rightarrow\ \frac{r_{2,1}}{s-\lambda_2}}} + \cdots + \frac{r_{2,k_2}}{(s-\lambda_2)^{k_2}} \\[4pt]
+&\quad + \cdots + \frac{r_{\ell,1}}{s-\lambda_\ell} + \frac{r_{\ell,2}}{(s-\lambda_\ell)^2} + \cdots + \frac{r_{\ell,k_\ell}}{(s-\lambda_\ell)^{k_\ell}}
+\end{aligned} \]
+\[ r_{i,k_i} = F(s)(s-\lambda_i)^{k_i}\Big|_{s=\lambda_i} \]
+\[ r_{i,k_i-j} = \frac{1}{j!}\frac{d^j}{ds^j}\left(F(s)(s-\lambda_i)^{k_i}\right)\Big|_{s=\lambda_i} \]
+
+\subsection{Example:}
+\[ F(s) = \frac{1}{s^2(s+1)} \qquad \left\{\begin{array}{ll} \lambda_1=\lambda_2=0 & \rightarrow\ \text{multiplicity 2}\\ \lambda_3=-1 & \rightarrow\ \text{multiplicity 1} \end{array}\right. \]
+\[ = \frac{r_1}{s} + \frac{r_2}{s^2} + \frac{r_3}{s+1} \]
+
+\sayfa{8}
+\[ r_2 = s^2\,\frac{1}{s^2(s+1)}\Big|_{s=0} = 1 \]
+\[ r_1 = \frac{d}{ds}\left(\frac{1}{s+1}\right)\Big|_{s=0} = \frac{-1}{(s+1)^2}\Big|_{s=0} = -1 \]
+\[ r_3 = \underbrace{\frac{B(s)}{A'(s)}}_{\textcolor{turuncukalem}{\text{From case 1}}}\Big|_{s=-1} = \underbrace{\frac{1}{3s^2+2s}}_{\textcolor{turuncukalem}{\text{(s$^3$+s$^2$)'nin türevi}}}\Big|_{s=-1} = 1 \]
+
+\noindent \textcolor{kirmizikalem}{\underline{case 3}} \quad \textcolor{kirmizikalem}{proper ($n=m$) and non proper ($m>n$) T.F.S}
+\[ G(s) = \frac{B(s)}{A(s)} = \frac{b_0 + b_1 s + \cdots + b_m s^n\footnotemark}{a_0 + a_1 s + \cdots + a_n s^n} \]
+\footnotetext{Claude notu: muhtemelen $b_m s^m$ olmalı.}
+\noindent \textcolor{kirmizikalem}{$\ast$} \textcolor{turuncukalem}{make at least some potion of T.F. strictly proper $(n>m)$}
+\[ \frac{s^2+1}{5s^2+3} = \frac{1}{5}\left(\frac{s^2+1}{s^2+3/5}\right) = \frac{1}{5}\left(\frac{s^2+3/5-3/5+1}{s^2+3/5}\right) \]
+\[ = \frac{1}{5}\left(1+\frac{2/5}{s^2+3/5}\right) \]
+
+\[ \frac{s^4+s^3-2s^2+1}{s^3+2s^2+s} \quad \text{(non proper)} \]
+\[ \begin{aligned}
+&= \frac{s\left(\textcolor{turuncukalem}{s^3}+\textcolor{kirmizikalem}{s^2-2s}\right)+1}{s^3+2s^2+s} \\[4pt]
+&= \frac{s\,(s^3+2s^2+s) - s\,(2s^2+s) + s\,(s^2-2s)\ \textcolor{kirmizikalem}{+1}}{s^3+2s^2+s}
+\end{aligned} \]
+\[ = s + \frac{-2s^3 - s^2 + s^3 - 2s^2 + 1}{s^3+2s^2+s} = s - \frac{s^3+3s^2-1}{s^3+2s^2+s} \]
+\[ = s - \frac{(s^3+2s^2+s) - 2s^2 - s + 3s^2 - 1}{s^3+2s^2+s} = s - 1 + \frac{s^2-s-1}{\underbrace{s^3+2s^2+s}_{\textcolor{turuncukalem}{\hookrightarrow\ s(s^2+2s+1)}}}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $s-1-\frac{s^2-s-1}{s^3+2s^2+s}$ olmalı.}
+\noindent \textcolor{turuncukalem}{$g(t) = \delta'(t) + \delta(t) + \ldots$}
+
+\end{document}

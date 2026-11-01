@@ -1,0 +1,166 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{BJT fark yükselteci, CMRR ve aktif yüklü fark yükselteci}{Ders7.pdf}
+
+\sayfa{1}
+\okunamadi{In ac}
+
+\sekilnotu[1]{Elle çizilmiş BJT fark yükselteci (küçük sinyal): üstte $V_{CC}$, iki $R_C$ (üstlerinde yukarı oklar); her $R_C$'nin yanında aşağı yönlü $\frac{I}{2}\alpha$; sol kolektörde aşağı oklu $\frac{\alpha\Delta i}{2}$, sağ kolektörde yukarı oklu $\frac{\alpha\Delta i}{2}$; iki transistör arasında $Q_1 \equiv Q_2$. Sol bazda $\frac{v_i}{2}$ kaynağı ve altında ``small signal'', sağ bazda kırmızı kalemle $\frac{v_i}{2}$ ve karalanmış bir işaret; sol emiterde $I/2$. Ortak emiter düğümünde aşağı oklu $I$ akım kaynağı ve ona paralel $R_{EE}$, alt uç $-V_{EE}$.}
+\begin{align*}
+v_1 &= V_{CC} - \frac{\alpha R_C I}{2} - \frac{\alpha\,\Delta i}{2}\footnotemark \\
+v_2 &= V_{CC} - \frac{\alpha R_C I}{2} + \frac{\alpha\,\Delta i}{2}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $\mp\,\alpha\,\Delta i\,R_C/2$ olmalı ($R_C$ çarpanı eksik; aşağıdaki $v_D = \alpha\,\Delta i\,R_C$ ile uyumlu).}
+\formulkutu{v_D = v_2 - v_1 = \alpha\,\Delta i\, R_C}
+\[ \Delta i = g_m v_i \]
+
+\sekilnotu[1]{Elle çizilmiş BJT fark yükselteci (fark modu): üstte $V_{CC}$, iki $R_C$ (üzerlerinden dolanan birer tel); kolektör akımları ilk çizimdeki gibi ($\frac{I}{2}\alpha$ ve $\frac{\alpha\Delta i}{2}$); $Q_1 \equiv Q_2$. Sol bazda $\frac{v_{id}}{2}$, sağ bazda $\frac{v_{id}}{2}$ kaynağı; sol emiterde $I/2$; iki emiter arasında kırmızı kalemle kıvrık bir ok ve ``0V virtual ground''. Ortak emiter düğümünden yalnızca $R_{EE}$ ile toprağa gidiliyor (akım kaynağı yok).}
+\[ \Delta i = g_m v_{id} \]
+\[ \left.\begin{aligned} v_2 &= \frac{g_m v_{id}}{2}\,R_C \\ v_1 &= -\frac{g_m v_{id}}{2}\,R_C \end{aligned}\right\} \; v_d = g_m v_{id} R_C = v_2 - v_1 \]
+\formulkutu{A_d = g_m R_C = \frac{v_d}{v_{id}}}
+$A_d \rightarrow$ \textit{differential}
+
+\formulkutu{g_m = \frac{I_C}{V_T}}
+
+\sayfa{2}
+\[ A_d = \frac{I_c}{V_T}\,R_C = \frac{I_C R_C}{V_T} \]
+soğukta kazanç artar
+
+\section{Effect of $r_o$?}
+\sekilnotu[2]{Elle çizilmiş BJT fark yükselteci, her transistörün kolektör--emiter ucuna paralel $r_o$ ile: üstte iki $R_C$ (üzerlerinden dolanan teller); her $R_C$'nin yanında aşağı yönlü $\frac{I}{2}\alpha$; sol kolektörde aşağı oklu $\frac{\alpha\Delta i}{2}$, sağ kolektörde yukarı oklu $\frac{\alpha\Delta i}{2}$; sol bazda $v_i$ ve altında ``small signal'', sol emiterde $I/2$; sağ bazda $-\frac{v_{id}}{2}$. Ortak emiter düğümüne ``0'' yazılmış (anahtar benzeri bir çizgiyle gösterilmiş); düğümden aşağı kesik bir dikey çizgi ve yanda $R_{EE}$ ile toprak.}
+\sekilnotu[2]{Yan yana iki ayrı yarım devre: her biri üstte $R_C$ (üzerinden dolanan tel), BJT'nin kolektör--emiterine paralel $r_o$, emiter toprağa. Sol yarım devrenin bazı soldan $\frac{v_{id}}{2}$ ile, sağ yarım devrenin (ayna çizim) bazı sağdan $-\frac{v_{id}}{2}$ ile sürülüyor.}
+\[ v_1 = -\frac{v_{id}}{2}\,g_m\,(r_o \parallel R_C) \qquad\qquad v_2 = \frac{v_{id}}{2}\,g_m\,(r_o \parallel R_C) \]
+\begin{align*}
+v_d = g_m\,(R_C \parallel r_o)\,v_{id} \;\Rightarrow\; A_d = \frac{v_d}{v_{id}} &= g_m\,(R_C \parallel r_o) \\
+&\simeq g_m R_C
+\end{align*}
+
+\sayfa{3}
+\sekilnotu[3]{Elle çizilmiş BJT fark yükselteci (fark modu, bir önceki sayfadakiyle aynı): üstte iki $R_C$, kolektör akımları $\frac{I}{2}\alpha$ ve $\frac{\alpha\Delta i}{2}$, $Q_1 \equiv Q_2$; sol bazda kırmızı okla $\frac{v_{id}}{2}$, sağ bazda $\frac{v_{id}}{2}$; sol emiterde $I/2$; iki emiter arasında kırmızı kıvrık ok ve ``0V virtual ground''; ortak emiter düğümünden $R_{EE}$ ile toprağa. Kırmızı kalemle, sol emiter düğümünden başlayıp (ok ucu içeri bakıyor) devrenin altından dolanarak sağ emiter düğümüne (ok ucu içeri bakıyor) giden ve ortasında ``$R_{id}$'' yazan bir yol çizilmiş.}
+\sekilnotu[3]{Kırmızı kalemle çizilmiş dikdörtgen: üst kenarda iki açık uç arasında ``$R_1 + R_2$''; alt kenarda seri bağlı $R_1$ ve $R_2$, ikisinin ortasında toprak sembolü.}
+\[ R_{id} = 2(\beta + 1)(r_e + R_E) \]
+\sekilnotu[3]{Alt kısımda üç küçük çizim: (solda) kolektöründe direnç, emiterinde $R_E$ olan bir BJT; bazdan içeri bakan ok ve ``$R_{in}$''; (ortada) içeri doğru ok ve ``B'' harfi; (sağda) üstte ``E'' harfi, altına doğru seri $r_e$ ve $R_E$ dirençleri ve toprak.}
+
+\sayfa{4}
+\section{CMRR and Common mode operation}
+
+\elcizimi[0.4]{sekiller/Ders7-s4-1.png}[4]
+
+\section{Ac mode}
+
+\elcizimi[0.65]{sekiller/Ders7-s4-2.png}[4]
+
+\elcizimi[0.55]{sekiller/Ders7-s4-3.png}[4]
+
+\begin{align*}
+A_{cm,\,single} = \frac{v_1}{v_{cm}} &\simeq \frac{-R_C}{2R_{EE}+r_e} = \frac{-R_C}{2R_{EE}} \\
+\frac{v_2}{v_{cm}} &= \frac{-R_C}{2R_{EE}+r_e} \simeq \frac{-R_C}{2R_{EE}}
+\end{align*}
+\[ A_{cm,\,diff} = \frac{v_1 - v_2}{v_{cm}} = 0 \]
+
+\sayfa{5}
+\section{CMRR diff}
+
+\[ \mathrm{CMRR} = \frac{A_{diff}}{A_{cm\,diff}} \]
+\[ \mathrm{CMRR} = \frac{g_m R_C}{0} = \infty \]
+
+\elcizimi[0.5]{sekiller/Ders7-s5-1.png}[5]
+
+\[ \left|\frac{A_{d\,single}}{A_{cm\,single}}\right| = \left|\frac{\frac{1}{2}\,g_m R_C}{\frac{R_C}{2R_{EE}}}\right| = g_m R_{EE} \]
+
+\elcizimi[0.6]{sekiller/Ders7-s5-2.png}[5]
+
+\[ R_{icm} = ? \]
+\[ (\beta+1)\Bigl(R_{EE} + \frac{r_e}{2}\Bigr) \]
+\[ = (\beta+1)(R_{EE}) \]
+
+\sayfa{6}
+\section{Active-Loaded CMOS differential Amplifier}
+
+\elcizimi[0.5]{sekiller/Ders7-s6-1.png}[6]
+
+\elcizimi[0.35]{sekiller/Ders7-s6-2.png}[6]
+
+\elcizimi[0.5]{sekiller/Ders7-s6-3.png}[6]
+
+\elcizimi[0.6]{sekiller/Ders7-s6-4.png}[6]
+
+\elcizimi[0.5]{sekiller/Ders7-s6-5.png}[6]
+
+\[ I_{th} = g_m v_{gs} + \frac{v_{gs}}{r_o} \]
+\[ \frac{V_{th}}{I_{th}} = \frac{1}{g_m + 1/r_o} \]
+\[ = 1/g_m \]
+
+(Single-ended)
+
+Sadece sağ taraftan çıkış alabiliriz. Peki neden böyle bir şeye ihtiyaç duyuyoruz? Diğer devremiz sadece tek giriş alıyor. \okunamadi{Ona iletiyoruz.}
+
+\sayfa{7}
+\elcizimi[0.7]{sekiller/Ders7-s7-1.png}[7]
+
+\elcizimi[0.7]{sekiller/Ders7-s7-2.png}[7]
+
+\begin{align*}
+V_{g3} &= -g_{m1}\,\frac{v_{id}}{2}\,\bigl(1/g_{m3} \parallel r_{o3}\bigr) \\
+&\simeq -\frac{g_{m1}}{g_{m3}}\,\frac{v_{id}}{2}
+\end{align*}
+\[ i_o = g_{m4}\,v_{g3} + g_{m2}\,\frac{v_{id}}{2} \]
+\begin{align*}
+i_o &= \frac{g_{m4}\,g_{m1}}{g_{m3}}\,\frac{v_{id}}{2} + g_m\,\frac{v_{id}}{2} \\
+&= g_m\,v_{id}
+\end{align*}
+\[ g_{m1} = g_{m2},\ g_{m3} = g_{m4} \qquad\qquad = g_{m1,2}\,v_{id} \]
+
+\elcizimi[0.4]{sekiller/Ders7-s7-3.png}[7]
+
+\[ \frac{v_x}{i_x} = R_o \simeq (r_{o2} \parallel r_{o4}) \]
+\[ \frac{v_{out}}{v_{id}} = g_m\,(r_{o2} \parallel r_{o4}) \]
+\[ r_{o2} = r_{o4} = r_o \]
+\[ \Rightarrow\quad = \frac{1}{2}\,g_m r_o \]
+
+\[ A_{cm} \simeq -\frac{1}{2g_{m3}R_{ss}} \]
+\[ \mathrm{CMRR} = (g_m r_o)\,g_m R_{ss} \]
+
+\sayfa{8}
+\elcizimi[0.45]{sekiller/Ders7-s8-1.png}[8]
+
+p tipinin daha az noise var
+
+\[ G_m = g_{m1} = g_{m2} = g_m \]
+\[ R_{out} = r_{o2} \parallel r_{o4} \]
+\[ \frac{v_{out}}{v_{id}} = g_m\,(r_{o2} \parallel r_{o4}) \]
+\[ r_{o2} = r_{o4} = r_o \]
+\[ \frac{v_{out}}{v_{id}} = \frac{1}{2}\,g_m r_o \]
+
+\[ A_{cm} = \frac{-r_{o4}}{\beta_3 R_{EE}} \]
+\[ \mathrm{CMRR} = \frac{1}{2}\,\beta_3\,g_m R_{EE} \]
+
+\elcizimi[0.4]{sekiller/Ders7-s8-2.png}[8]
+
+Consider BJT diff amp $I = 0{,}8\,\mathrm{mA}$ \quad $V_A = 100\,\mathrm{V}$, $\beta = 160$. Find $G_m$, $R_o$, $A_d$ and $R_{iod}$. Find $R_{EE}$, $A_{cm}$ and CMRR when the current source is implemented by a single npn current mirror
+\[ \left[ A_{cm} = \frac{-r_{o4}}{\beta_3 R_{EE}} \right] \]
+
+\[ g_m = \frac{I_C}{V_T} = ? \qquad V_T \to 25\,\mathrm{mV} \]
+\[ g_{m1,2} = \frac{0{,}4\,\mathrm{mA}}{25\,\mathrm{mV}} = 16\,\mathrm{m}\Omega^{-1} \]
+
+\sayfa{9}
+\[ R_o = r_{o2} \parallel r_{o4} \]
+\[ = \frac{V_A}{I_C} \parallel \frac{V_A}{I_C} = \frac{1}{2}\,\frac{100}{0{,}4} = 125\,\mathrm{k\Omega} \]
+\[ A_d = G_m R_o = 16\,\mathrm{m}\Omega^{-1} \times 125\,\mathrm{k\Omega} \]
+\[ A_d = 2000\ [\mathrm{V/V}] \]
+
+\[ R_{id} = 2(\beta+1)(r_e) \;\longrightarrow\; = \frac{1}{g_m} \]
+\[ = 2 \times 160 \times 62{,}5 \]
+\formulkutu{R_{id} = 20\,\mathrm{k\Omega}}
+
+\elcizimi[0.5]{sekiller/Ders7-s9-1.png}[9]
+
+\[ R_{EE} = r_{o5} = \frac{100}{0{,}8} = 125\,\mathrm{k\Omega} \]
+\[ |A_{cm}| = \frac{250\,\mathrm{k}}{160\cdot 125\,\mathrm{k\Omega}} = \frac{1}{80} \]
+
+\[ \mathrm{CMRR} = \frac{A_d}{A_{cm}} = \frac{2000}{\frac{1}{80}} = 160\,000 \]
+\[ = 20\log 160\,000 \]
+\[ = 104{,}08\ \mathrm{dB} \]
+
+\end{document}

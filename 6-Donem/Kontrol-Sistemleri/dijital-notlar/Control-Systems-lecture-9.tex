@@ -1,0 +1,273 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Accuracy of Systems: Steady-State Error (Ders 9)}{Control-Systems-lecture-9.pdf}
+
+\sayfa{1}
+\textbf{Ders 9}
+
+\section{Accuracy of Systems}
+The ability of the system follow the given instruction can be used as a measure of classification.
+
+$\ast$ Common input: step, ramp, parabolic
+\[ u(t)=1 \qquad,\qquad r(t)=t \qquad,\qquad P(t)=t^{2} \]
+\sekilnotu[1]{Three small sketches under the equations, each with axes: step (constant level), ramp (straight line rising from the origin) and parabola (convex curve rising from the origin). Orange note under the step sketch: ``tracking systems''. At the right, a sketch of a ground antenna (red circle) with orbit arcs: an orange low arc labelled ``LEO'', dashed higher arcs labelled ``35 750 km'' and ``Geo'', and ``sat'' at the satellite.}
+
+$\ast$ Comparison of accuracy is possible by using the \vurgu{steady-state error} magnitude!!
+
+if $\zeta<1$ in a second o.s
+\sekilnotu[1]{Two stacked sketches against t. Upper: c(t), an underdamped step response with overshoot that oscillates and settles to a constant value. Lower: e(t), the error, starting at a peak and oscillating about zero while decaying.}
+
+\sekilnotu[1]{Feedback block diagram: R(s) enters a summing junction (plus on the input, minus on the feedback); the junction output goes through block G(s) to the output C(s); a feedback path from the output through block H(s) returns to the junction. An arrow from the junction output carries the annotation given next.}
+\[ E(s)=R(s)-C(s)H(s) \]
+\[ \frac{C(s)}{R(s)}=\frac{G(s)}{1+G(s)H(s)} \]
+\begin{align*}
+&E(s)=R(s)-G(s)H(s)\;\Rightarrow\;\frac{E(s)}{R(s)}=1-\frac{G(s)H(s)}{R(s)}\\
+&\Rightarrow\;\frac{E(s)}{R(s)}=1-\frac{G(s)H(s)}{1+G(s)H(s)}=\frac{1}{1+G(s)H(s)}
+\end{align*}
+\begin{align*}
+e(\infty)=e_{ss}&=\lim_{t\to\infty}e(t)\overset{\text{\scriptsize Final value theorem}}{=}\lim_{s\to0}sE(s)\\
+&=\lim_{s\to0}\frac{sR(s)}{1+G(s)H(s)}
+\end{align*}
+
+\sayfa{2}
+\subsection{Validity of final value theorem}
+If the poles are in zone 1 so it can't have final value
+
+Only works with Zone III and zone IV
+
+Stability $\rightarrow$ CLP $\checkmark$
+
+\hspace*{5.6em}OLP
+
+\sekilnotu[2]{s-plane sketch: horizontal axis Re (arrow), vertical axis Im drawn as a thick line. Right half-plane bounded by red dashes and labelled ``Zone 1'' (red), with ``unstable'' and an arrow at the bottom right; two crosses (poles) in the right half-plane close to the Im axis, one above and one below the Re axis. Left half-plane bounded by blue dashes and labelled ``Zone III'' (blue), with ``stable'' (blue) at the bottom left. The Im axis is coloured orange, labelled ``Zone II'' with an arrow to ``marginally stable'' below it. A purple arrow from the origin towards the lower left is labelled ``Zone IV''.}
+
+\underline{Zone I} :
+\begin{align*}
+&G(s)=\text{T.F}=\frac{1}{s-2}\\
+&\text{FVT}=\lim_{s\to0}sG(s)=\lim_{s\to0}\frac{s}{s-2}=0\quad\times\ \text{wrong}
+\end{align*}
+but
+\sekilnotu[2]{Sketch of c(t) against t: a curve starting at the origin and growing upward exponentially (convex).}
+
+\underline{For Zone II}
+\begin{align*}
+&\text{T.F}=G(s)=\frac{1}{s^{2}+2}\\
+&s_{1,2}=\pm j\sqrt{2}\\
+&\text{FVT}:\ \lim_{s\to0}sG(s)=\lim_{s\to0}\frac{s}{s^{2}+2}=0\quad\times
+\end{align*}
+\sekilnotu[2]{Sketch of a sustained sinusoidal oscillation of constant amplitude about the time axis, with dashed horizontal lines marking the upper and lower amplitude levels.}
+
+\underline{Zone III}
+\begin{align*}
+&\text{T.F}=G(s)=\frac{1}{s+2}\qquad\Rightarrow\ s=-2\\
+&\text{FVT}:\ \lim_{s\to0}\frac{s}{s+2}=0
+\end{align*}
+\sekilnotu[2]{Sketch labelled $e^{-2t}$: a decaying exponential starting high at t=0 and approaching zero along the time axis.}
+
+\sayfa{3}
+\underline{Zone IV} :
+\sekilnotu[3]{s-plane sketch (Im vertical axis, Re horizontal axis) with a cross (pole) at the origin; label ``pole Location''.}
+\begin{align*}
+&\text{TF}=\frac{1}{s}\\
+&\text{FVT}=\lim_{s\to0}s\,\frac{1}{s}=1\\
+&\lambda=0\\
+&e^{\lambda t}=e^{0t}=1
+\end{align*}
+\sekilnotu[3]{Sketch with vertical and horizontal axes: a constant level (horizontal line above the time axis) starting at the vertical axis.}
+
+\sekilnotu[3]{Block diagram: R(s) (plus) enters a summing junction (minus on the feedback), E(s) leaves the junction into block G(s), output C(s); unity feedback path from the output straight back to the junction.}
+\[ \frac{C(s)}{R(s)}=\frac{G(s)}{1+G(s)} \]
+$G(s)$: open loop TF for \vurgu{unity} feedback
+\[ \frac{E(s)}{R(s)}=\frac{1}{1+G(s)} \]
+\sekilnotu[3]{Two block diagrams joined by the sign $\equiv$. Left: R (plus) into a summing junction (minus on the feedback), E after the junction, block G(s), output C, feedback block H(s) from the output back to the junction. Right: R(s) (plus) into a summing junction, one block labelled ``Ge'', output C(s), unity feedback path.}
+\[ G(s)=\frac{k\,(T_as+1)(T_bs+1)\cdots(T_ms+1)}{s^{N}(T_1s+1)(T_2s+1)\cdots(T_ps+1)} \]
+$P_{1,\ldots,N}=0\ \leftarrow$ N multiplicity $\rightarrow$ integrator
+
+$p=\dfrac{-1}{T_1},\ \dfrac{-1}{T_2},\ \ldots$
+
+if N=0 $\rightarrow$ type zero
+
+if N=1 $\rightarrow$ Type one
+
+$\vdots$
+
+In most cases the most integrator is 3
+
+\sayfa{4}
+\section{Accuracy of systems}
+case 1) step input: $R(s)=\dfrac{1}{s}$
+\begin{align*}
+&\frac{E(s)}{R(s)}=\frac{1}{1+G(s)}\\
+&e_{ss}=\lim_{s\to0}\frac{sR(s)}{1+G(s)}
+\end{align*}
+\[ e_{ss}=\lim_{s\to0}\frac{1}{1+G(s)}=\frac{1}{1+\lim\limits_{s\to0}G(s)}=\frac{1}{1+k_p} \]
+\okunamadi{constant}
+\[ k_p=\lim_{s\to0}G(s)\qquad\text{(static position error)}\qquad\text{DC gain} \]
+\[ \text{Type 0:}\quad G(s)=\frac{k(T_as+1)(T_bs+1)\cdots(T_ms+1)}{s^{N}(T_1s+1)(T_2s+1)\cdots(T_ps+1)} \]
+\begin{align*}
+&N=0\Rightarrow k_p=\lim_{s\to0}G(s)=k\\
+&N=1\Rightarrow k_p=\lim_{s\to0}G(s)=\infty\\
+&N=2\Rightarrow k_p=\lim_{s\to0}\ =\infty\\
+&N\geq1\Rightarrow k_p=\infty
+\end{align*}
+case 2) input is ramp
+\[ R(s)=\frac{1}{s^{2}} \]
+\begin{align*}
+e_{ss}&=\lim_{s\to0}\frac{s\,\frac{1}{s^{2}}}{1+G(s)}=\lim_{s\to0}\frac{1}{s\,(1+G(s))}\\
+&=\frac{1}{\lim\limits_{s\to0}sG(s)}=\frac{1}{k_v}
+\end{align*}
+\[ k_v=\text{static velocity error}=\lim_{s\to0}sG(s) \]
+\begin{align*}
+\text{Type 0:}\quad k_v&=\lim_{s\to0}sG(s)\\
+&=\lim_{s\to0}\frac{s\,k(T_as+1)(T_bs+1)\cdots(T_ms+1)}{(T_1s+1)(T_2s+1)\cdots(T_ps+1)}=0
+\end{align*}
+\[ \text{Type 1:}\quad k_v=\lim_{s\to0}sG(s)=\lim_{s\to0}\frac{s\,k(T_as+1)\cdots}{s\,(T_1s+1)}=k \]
+\[ \text{Type 2:}\quad k_v=\lim_{s\to0}\frac{s\,k(T_as+1)\cdots}{s^{2}(T_1s+1)\cdots}=\infty \]
+case 3)
+\[ R(s)=\frac{1}{s^{3}} \]
+\[ e_{ss}=\lim_{s\to0}\frac{s\,\frac{1}{s^{3}}}{1+G(s)}=\frac{1}{\lim\limits_{s\to0}s^{2}G(s)}=\frac{1}{k_a}\ \rightarrow\ \text{static acceleration error} \]
+\[ N=0:\quad k_a=\lim_{s\to0}\frac{s^{2}k(T_as+1)(T_bs+1)\cdots}{(T_1s+1)\cdots}=0 \]
+
+\sayfa{5}
+\begin{center}
+\begin{tabular}{c|c|c|c}
+ & \multicolumn{3}{c}{input}\\
+Type & step & ramp & parabolic\\
+\hline
+0 & $\dfrac{1}{1+k}$ & $\infty$ & $\infty$\\
+1 & $0$ & $\dfrac{1}{k}$ & $\infty$\\
+2 & $0$ & $0$ & $\dfrac{1}{k}$\\
+3 & $0$ & $0$ & $0$
+\end{tabular}
+\end{center}
+
+\underline{Example} :
+\sekilnotu[5]{Block diagram: R(s) (plus) into a summing junction (minus on the feedback), then a block k, then a block 1/(s(s+1)(s+2)), output C(s); unity feedback path from the output back to the junction.}
+\[ \text{OL T.F}=\frac{k}{s(s+1)(s+2)}\qquad\text{Type 1 system} \]
+\sekilnotu[5]{s-plane sketch (Im vertical axis, Re horizontal axis) with a cross at the origin.}
+\[ \frac{E(s)}{R(s)}=\frac{1}{1+G(s)} \]
+\[ e_{ss}=\lim_{s\to0}\frac{sR(s)}{1+G(s)} \]
+\begin{align*}
+e_{ss}&=\lim_{s\to0}\frac{s\cdot\frac{1}{s^{2}}}{1+\frac{k}{s(s+1)(s+2)}}=\lim_{s\to0}\frac{s(s+1)(s+2)}{s\left[s(s+1)(s+2)+k\right]}\\
+&=\frac{2}{k}=0{,}01\Rightarrow k=200\ \checkmark\\
+&\hphantom{=\frac{2}{k}=}\uparrow\ \text{for }e_{ss}=0{,}01\text{ design}
+\end{align*}
+But we have to check stability
+\[ \frac{\dfrac{k}{s(s+1)(s+2)}}{1+\dfrac{k}{s(s+1)(s+2)}}=\frac{k}{s(s+1)(s+2)+k} \]
+
+\sayfa{6}
+\underline{Stability}
+
+$k\rightarrow p$
+\begin{align*}
+&s(s+1)(s+2)+k=0\\
+&s(s^{2}+3s+2)+k=0\\
+&s^{3}+3s^{2}+2s+k=0
+\end{align*}
+\[
+\begin{array}{ccc}
+s^{3}&1&2\\
+s^{2}&3&k\\
+s^{1}&\dfrac{6-k}{3}&0\\
+s^{0}&k&
+\end{array}
+\qquad
+\begin{aligned}
+&\Rightarrow 6-k\geq0\Rightarrow k\leq6\\
+&k\geq0\\
+&0\leq k\leq6
+\end{aligned}
+\]
+$k=6$ is the max possible $k$ here !!!
+
+so max $e_{ss}=0{,}33$ because the system have to be stable because final value theorem is not working with unstable systems.
+
+\section{Steady state error for disturbance}
+\sekilnotu[6]{Block diagram: the input (plus) enters a first summing junction (minus on the feedback from the output); block G$_1$(s) labelled ``controller block''; its output (plus) enters a second summing junction where the disturbance D(s) (plus) enters from above; then block G$_2$(s) labelled ``plant''; output C(s); unity feedback path from the output back to the first junction.}
+\sekilnotu[6]{Sketch labelled ``plane'': side view of a tail/wing with a movable control surface labelled ``ruben'' (ruder) and a smaller ``trim tab'' on it.}
+\begin{align*}
+&C(s)=\left[E(s)G_1(s)+D(s)\right]G_2(s)\\
+&E(s)=R(s)-C(s)\Rightarrow C(s)=R(s)-E(s)\\
+&E(s)=\frac{R(s)}{1+G_1(s)G_2(s)}-\frac{G_2(s)D(s)}{1+G_1(s)G_2(s)}
+\end{align*}
+\begin{align*}
+e_{ss}&=\lim_{s\to0}sE(s)\\
+&=\underbrace{\lim_{s\to0}\frac{sR(s)}{1+G_1G_2}}_{e_R(\infty)}\;-\;\underbrace{\lim_{s\to0}\frac{sG_2D}{1+G_1G_2}}_{e_D(\infty)}
+\end{align*}
+
+
+\sayfa{7}
+because it is negative we can decrease error with it
+
+\begin{ornek}
+Design $k_1$ and $k_2$ so that\\
+1 - $e_{ss}$ due to unit step disturbance : $-0{,}00001$\\
+2 - $e_{ss}$ '' '' ramp input : $0{,}002$
+\end{ornek}
+\elcizimi[0.85]{sekiller/Control-Systems-lecture-9-s7-1.png}[7]
+\begin{align*}
+\frac{k_1(s+3-1)}{s+3}&=\frac{k_1(s+3)}{s+3}-\frac{k_1}{s+3}=k_1-\frac{k_1}{s+3}\\[6pt]
+e_{ss}^{D}&=-\lim_{s\to0}\frac{s\,G_2(s)D(s)}{1+G_1(s)G_2(s)}=-\lim_{s\to0}\frac{G_2(s)}{1+G_1(s)G_2(s)}=\frac{-3}{2k_1}\\[6pt]
+-0{,}00001&=\frac{-3}{2k_1}\;\Rightarrow\;k_1=150\,000
+\end{align*}
+\begin{align*}
+e_{ss}^{R}&=\lim_{s\to0}\frac{sR(s)}{1+G_1(s)G_2(s)}=\lim_{s\to0}\frac{1}{s\left(1+G_1(s)G_2(s)\right)}\\[6pt]
+&=\frac{6}{k_1k_2}=0{,}002\;\Rightarrow\;k_2=0{,}02\\[6pt]
+\text{Total }e_{ss}&=\frac{6}{k_1k_2}-\frac{3}{2k_1}\\[6pt]
+&=0{,}02\footnotemark-0{,}00001
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $0{,}002-0{,}00001$ olmalı.}
+this system order is 3 \quad by finding characteristic equation.
+
+\section{Sensitivity}
+The degree to which changes in the system parameters affect system T.F.\ and hence \underline{performance} \textit{(error, stability, \ldots)} of the system
+
+\sayfa{8}
+\begin{ornek}
+\[ F=\frac{k}{k+a}\qquad\text{if }k=10 \]
+\[
+F=\frac{10}{10+a}\qquad
+\begin{cases}
+a=100\ \rightarrow\ F=\dfrac{10}{110}=0{,}09\\[4pt]
+\qquad(+200\%)\\[4pt]
+a=300\ \rightarrow\ F=\dfrac{10}{310}=0{,}032
+\end{cases}
+\qquad\curvearrowright\ -65\%
+\]
+\[ \frac{\Delta F}{F}\times100=\frac{0{,}032-0{,}091}{0{,}091}\times100=-65\% \]
+\[ \frac{\Delta a}{a}\times100=\frac{300-100}{100}\times100=200\% \]
+(Reduced sensitivity)\\
+This means it's low sensitive to $a$
+
+Average sensitivity : $\dfrac{65\%}{200\%}<1$ \quad (Reduced sensitivity)
+\end{ornek}
+\begin{align*}
+S_{F:a}&=\lim_{\Delta p\to0}\frac{\text{fractional change in function}(F)}{\text{''\ ''\ ''\ parameter}(p)}\\[6pt]
+&=\lim_{\Delta p\to0}\frac{\Delta F/F}{\Delta p/p}=\lim_{\Delta p\to0}\frac{p}{F}\,\frac{\Delta F}{\Delta p}
+\end{align*}
+\[ S_{F:a}=\frac{p}{F}\,\frac{\partial F}{\partial p} \]
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-9-s8-1.png}[8]
+Check the sensitivity of ss.\ error w.r.t.\ parameter 'k'
+\begin{align*}
+e(\infty)=e_{ss}&=\lim_{s\to0}\frac{sR(s)}{1+G(s)}=\lim_{s\to0}\frac{1}{1+G(s)}\\[6pt]
+&=\frac{1}{1+\lim\limits_{s\to0}\frac{k}{s+5}}=\frac{5}{5+k}\\[10pt]
+S_{e:k}&=\frac{k}{e_{ss}}\cdot\frac{\partial e_{ss}}{\partial k}=\left(\frac{k}{\frac{5}{5+k}}\right)\left(-\frac{5}{(5+k)^{2}}\right)\\[8pt]
+&=\frac{k(5+k)}{5}\left(-\frac{5}{(5+k)^{2}}\right)=-\frac{k}{5+k}
+\end{align*}
+for $k=10\;\Rightarrow\;S_{e:k}=\dfrac{-10}{5+10}=\dfrac{-10}{15}=\dfrac{-2}{3}$
+
+if 'k' is changed to 12
+\[ \frac{12-10}{10}\leftarrow\frac{\Delta k}{k}\times100=20\% \]
+$\delta\rightarrow$ delta also
+\[
+\underbrace{S_{e:k}}_{-\frac{2}{3}}\cdot\underbrace{\frac{\Delta k}{k}}_{\frac{1}{5}}=\frac{\delta e_{ss}}{e_{ss}}=-\frac{2}{3}\times\frac{1}{5}=\frac{-2}{15}=-13\%
+\]
+
+\sayfa{9}
+\begin{align*}
+\delta e_{ss}&=-0{,}13\times e_{ss}\\
+&=-0{,}13\times\frac{1}{3}=-0{,}04\qquad\text{the amount of change}
+\end{align*}
+
+\end{document}

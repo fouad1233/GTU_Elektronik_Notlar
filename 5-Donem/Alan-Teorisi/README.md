@@ -81,7 +81,7 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | [Uygulama 8](uygulama-notlari/Uygulama-8.pdf) <sub>Uygulama Notları</sub> | Uygulama 8 – İletkenler: potansiyel, yüzey yükü, kapasite | [PDF](dijital-notlar/uygulama-notlari-Uygulama-8.pdf) · 6 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama-8.tex) |
 | [Uygulama 9](uygulama-notlari/Uygulama-9.pdf) <sub>Uygulama Notları</sub> | Uygulama 9 – Görüntü yöntemi (köşe, dielektrik arayüz) | [PDF](dijital-notlar/uygulama-notlari-Uygulama-9.pdf) · 6 s. | [.tex](dijital-notlar/uygulama-notlari-Uygulama-9.tex) |
 | [Cikmis 2023](final-calismasi/Cikmis-2023.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması: Çıkmış sınav 2023 | [PDF](dijital-notlar/final-calismasi-Cikmis-2023.pdf) · 6 s. | [.tex](dijital-notlar/final-calismasi-Cikmis-2023.tex) |
-| [Final notu kopya](final-calismasi/Final-notu-kopya.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışma notu (Uygulama ve Ders notları) | [PDF](dijital-notlar/final-calismasi-Final-notu-kopya.pdf) · 31 s. | [.tex](dijital-notlar/final-calismasi-Final-notu-kopya.tex) |
+| [Final notu kopya](final-calismasi/Final-notu-kopya.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışma notu (Uygulama ve Ders notları) | [PDF](dijital-notlar/final-calismasi-Final-notu-kopya.pdf) · 36 s. | [.tex](dijital-notlar/final-calismasi-Final-notu-kopya.tex) |
 | [Final notu](final-calismasi/Final-notu.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması notları | [PDF](dijital-notlar/final-calismasi-Final-notu.pdf) · 39 s. | [.tex](dijital-notlar/final-calismasi-Final-notu.tex) |
 
 ## Çıkmış Sorular

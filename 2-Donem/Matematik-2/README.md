@@ -28,8 +28,8 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
-| [MAT 2](ders-notlari/MAT-2.pdf) | Seriler, vektörler ve çok değişkenli fonksiyonlar (s. 1–20) | [PDF](dijital-notlar/MAT-2-s1.pdf) · 54 s. | [.tex](dijital-notlar/MAT-2-s1.tex) |
-| [MAT 2](ders-notlari/MAT-2.pdf) | Çok değişkenli fonksiyonlar, çok katlı integraller (s. 21–32) | [PDF](dijital-notlar/MAT-2-s21.pdf) · 41 s. | [.tex](dijital-notlar/MAT-2-s21.tex) |
+| [MAT 2](ders-notlari/MAT-2.pdf) | Seriler, vektörler ve çok değişkenli fonksiyonlar (s. 1–20) | [PDF](dijital-notlar/MAT-2-s1.pdf) · 70 s. | [.tex](dijital-notlar/MAT-2-s1.tex) |
+| [MAT 2](ders-notlari/MAT-2.pdf) | Çok değişkenli fonksiyonlar, çok katlı integraller (s. 21–32) | [PDF](dijital-notlar/MAT-2-s21.pdf) · 57 s. | [.tex](dijital-notlar/MAT-2-s21.tex) |
 
 ---
 

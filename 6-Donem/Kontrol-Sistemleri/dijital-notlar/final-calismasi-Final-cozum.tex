@@ -1,0 +1,236 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Final çalışması çözümleri (Routh, hata, kök yer eğrisi)}{Final-cozum.pdf}
+
+\sayfa{1}
+\section{Soru 1}
+\sekilnotu[1]{Sayfanın üst kısmında basılı sınav sorusu 1 (İngilizce) bulunuyor; dijitalleştirilmedi. Dört madde: Routh tablosunda tüm satırın sıfır olması, kalıcı hal hatasının nedenleri, kararlılığın giriş işaretine bağlılığı, sıfır ve kutup yerleşiminin kararlılık, doğruluk ve performansa etkisi.}
+
+a) Not always. When an entire row in Routh table becomes zero, it means that at least two poles are on the imaginary axis or real axis or complex poles symmetric with respect to the origin.
+
+\begin{center}
+\begin{tikzpicture}[scale=1.2]
+\draw[->,murekkep] (-3,0) -- (3.2,0);
+\draw[->,murekkep] (0,-1.4) -- (0,1.6);
+\foreach \x/\y in {-1/0, 1/0, -0.7/0.9, 0.7/0.9, -0.7/-0.9, 0.7/-0.9}
+  \draw[turuncukalem,thick] (\x-0.1,\y-0.1) -- (\x+0.1,\y+0.1) (\x-0.1,\y+0.1) -- (\x+0.1,\y-0.1);
+\foreach \y in {-0.45, 0.45}
+  \draw[murekkep,thick] (-0.1,\y-0.1) -- (0.1,\y+0.1) (-0.1,\y+0.1) -- (0.1,\y-0.1);
+\end{tikzpicture}
+\end{center}
+
+b) The steady state error is related with the input of the system and the type of it. For example a type 1 system can follow an step input while inputs like ramp or parabolic signals are not follow accurately.
+
+c) No, stability is a characteristic of the system itself and does not depend on the input signal.
+
+d) pole placement:
+
+\sayfa{2}
+\section{Soru 2}
+\sekilnotu[2]{Sayfanın üst kısmında basılı soru 2 ve blok diyagram bulunuyor; dijitalleştirilmedi (K1 ve K2 kazançları, birim basamak bozucu için kalıcı hal hatası -0,00001 ve birim basamak giriş için 0,002 olacak şekilde belirlenecek). Elle eklenen: blokların üstüne G1(s) (ilk blok) ve G2(s) (ikinci blok) yazılmış.}
+
+\[
+\left\{\begin{aligned} C &= (E G_1 + D) G_2\\ E &= R - C \end{aligned}\right.
+\;\Rightarrow\;
+\begin{aligned}
+R - E &= C\\
+R - E &= (E G_1 + D) G_2\\
+R - E &= E G_1 G_2 + D G_2\\
+\Rightarrow\; E G_1 G_2 + E &= R - D G_2\\
+E &= \frac{R - D G_2}{1 + G_1 G_2}\\
+&= \frac{R}{1 + G_1 G_2} - \frac{G_2 D}{1 + G_1 G_2}
+\end{aligned}
+\]
+
+\[
+e(\infty) = e_{ss} = \lim_{s\to 0} sE(s) = \lim_{s\to 0}\left[\frac{sR}{1+G_1G_2} - \frac{s G_2 D}{1+G_1G_2}\right]
+\]
+
+a) $D(s)=\dfrac{1}{s}$, $R(s)=0$
+\begin{align*}
+-0{,}00001 &= \lim_{s\to 0} \frac{-G_2}{1+G_1G_2} = \lim_{s\to 0} -\frac{\dfrac{k_2}{s(s+4)}}{1+\dfrac{k_1(s+2)}{s+3}\,\dfrac{k_2}{s(s+4)}}\\
+\Rightarrow\quad 0{,}00001 &= \lim_{s\to 0} \frac{k_2(s+3)}{s(s+3)(s+4)+k_1k_2(s+2)} = \frac{3k_2}{2k_1k_2} = \frac{3}{2k_1}
+\end{align*}
+\[ \Rightarrow\; k_1 = 150\,000 \]
+
+b) For $R(s)=\dfrac{1}{s}$, $D(s)=0$ $\Rightarrow$ $E_{ss}=0{,}002$
+\begin{align*}
+0{,}002 &= \lim_{s\to 0}\frac{1}{1+G_1G_2} = \lim_{s\to 0}\frac{1}{1+\dfrac{k_1(s+2)}{s+3}\,\dfrac{k_2}{s(s+4)}}\\
+&= \lim_{s\to 0}\frac{s(s+3)(s+4)}{s(s+3)(s+4)+k_1k_2(s+2)} \neq 0
+\end{align*}
+
+so the second condition may not be satisfied, and for any value of $k_2$ the system tracks unit step input!!
+
+\sayfa{3}
+\section{Soru 3}
+\sekilnotu[3]{Sayfanın üst kısmında basılı soru 3 bulunuyor; dijitalleştirilmedi (bant sürücü için $KG(s)=\dfrac{K(s+6)}{s[(s+0.7)(s+1.2)(s^2+0.8s+6)]}$ aktarım fonksiyonunda sistemi kararlı yapan $K$ aralığı isteniyor; kapalı çevrim denklemi $1+KG(s)=0$).}
+
+\[ 1 + kG(s) = 0 \]
+\[
+1+\frac{k(s+6)}{s[(s+0{,}7)(s+1{,}2)(s^2+0{,}8s+6)]}
+= \frac{s[(s+0{,}7)(s+1{,}2)(s^2+0{,}8s+6)]+k(s+6)}{s[(s+0{,}7)(s+1{,}2)(s^2+0{,}8s+6)]} = 0
+\]
+\[ s[(s+0{,}7)(s+1{,}2)(s^2+0{,}8s+6)]+k(s+6)=0 \]
+\begin{align*}
+\Rightarrow\ & (s^2+0{,}7s)(s^3+0{,}8s^2+6s+1{,}2s^2+0{,}96s+7{,}2)+ks+6k=0\\
+\Rightarrow\ & (s^2+0{,}7s)(s^3+2s^2+6{,}96s+7{,}2)+ks+6k=0\\
+\Rightarrow\ & s^5+2s^4+6{,}96s^3+7{,}2s^2+0{,}7s^4+1{,}4s^3+4{,}872s^2+5{,}04s+ks+6k=0\\
+\Rightarrow\ & s^5+2{,}7s^4+8{,}36s^3+12{,}072s^2+(k+5{,}04)s+6k=0
+\end{align*}
+
+\[
+\begin{array}{c|ccc}
+s^5 & 1 & 8{,}36 & k+5{,}04\\[4pt]
+s^4 & 2{,}7 & 12{,}072 & 6k\\[4pt]
+s^3 & \dfrac{2{,}7\cdot 8{,}36-12{,}072}{2{,}7}=3{,}89 & \dfrac{2{,}7(k+5{,}04)-6k}{2{,}7}=\dfrac{-3{,}3k+13{,}608}{2{,}7} & \\[10pt]
+s^2 & \dfrac{(3{,}89)(12{,}072)-(-3{,}3k+13{,}608)}{3{,}89}=\dfrac{33{,}35+3{,}3k}{3{,}89} & 6k & \\[10pt]
+s^1 & \dfrac{k^2+28{,}37k-41{,}53}{-8{,}24-0{,}82k} & & \\[10pt]
+s^0 & 6k & &
+\end{array}
+\]
+\sekilnotu[3]{Routh tablosunda kırmızı kalemle çapraz çarpım okları ($s^5$ ve $s^4$ satırları arasında), 3,89 değerinin altında kırmızı çizgi ve $s^2$ satırında 2,7 / 2,7 sadeleştirmesi (üstü çizili) var.}
+
+in order to have no change in sign, all components of the first column must be positive which gives the following conditions
+
+1) $k>0$ \quad $\leftarrow$ \textit{dominant}
+
+2) $33{,}35+3{,}3k>0$ \qquad $k>-10.1$
+
+\[ \kutula{k>0} \]
+
+\sayfa{4}
+Let's check the last condition
+\[ \frac{k^2+28{,}37k-41{,}53}{-8{,}24-0{,}82k} > 0 \]
+and $k$ alway $k>0$
+\[ \Rightarrow\ \underbrace{k^2+28{,}37k-41{,}53}_{\mathrm{eq}} < 0 \]
+\begin{align*}
+k<-29{,}76 &\ \to\ \mathrm{eq}>0 && \times\\
+-29{,}76<k<1{,}395 &\ \to\ \mathrm{eq}<0 && \checkmark\\
+k>1{,}395 &\ \to\ \mathrm{eq}>0 && \times
+\end{align*}
+
+So in total the acceptable range is \quad $0<k<1{,}395$
+
+\section{Soru 4}
+\sekilnotu[4]{Sayfanın alt kısmında basılı soru 4 bulunuyor; dijitalleştirilmedi (birim negatif geri beslemeli sistem; a. $G(s)=\dfrac{K(s+1)}{s(s-1)(s^2+6s+30)}$ için kök yer eğrisi, b. grafiğe göre kararlılık için $K$ aralığı, c. aynı sistemin pozitif geri besleme yapısındaki kök yer eğrisi; puan 40/100).}
+
+zero: $z=-1$
+
+poles: $p_1=0$, $p_2=1$, $p_{3,4}=-3\pm j\sqrt{21}$
+
+unmatched branches: $n-m=3$ $\Rightarrow$ 3 asymptotes
+\[
+\Phi_k = \frac{2k+1}{n-m}\cdot 180 \;\to\;
+\begin{cases}
+\Phi_0 = 60^\circ\\
+\Phi_1 = 180^\circ\\
+\Phi_2 = 300^\circ = -60^\circ
+\end{cases}
+\]
+
+So asymptote angles are $\pm 60^\circ$ and $180^\circ$
+
+The centroid of asymptotes may be determined as
+\[
+\sigma = \frac{\Sigma\,\text{real part of poles} - \Sigma\,\text{real part of zeros}}{n-m} = -\frac{4}{3} = -1{,}33
+\]
+
+Now, let's calculate the breaking points by using the characteristic equation
+\[
+s(s-1)(s^2+6s+30)+k(s+1)=0 \;\Rightarrow\; k = -\frac{s(s-1)(s^2+6s+30)}{s+1}
+\]
+
+
+\sayfa{5}
+\[
+\frac{dk}{ds}=0 \Rightarrow \frac{(s-1)(s^2+6s+30)+s(s^2+6s+30)+s(s-1)(2s+6)-s(s-1)(s^2+6s+30)}{(s+1)^2}
+\]
+\[
+\Rightarrow 3s^4+14s^3+39s^2+48s-30=0
+\qquad
+\left\{\begin{aligned}
+s_1 &= 0{,}44 \ \checkmark\\
+s_2 &= -2{,}601 \ \checkmark\\
+s_{3,4} &= -1{,}25 \pm 2{,}67j \ \times
+\end{aligned}\right.
+\]
+\elcizimi[0.45]{sekiller/final-calismasi-Final-cozum-s5-1.png}[5]
+
+Centroid:
+\[
+\frac{\Sigma\,\text{poles}_{r} - \Sigma\,\text{zeros}_{r}}{n-m}
+\]
+$n=4$, \quad $m=1$
+\[
+\frac{-3-3+1-(-1)}{3} = \frac{-6+2}{3} = \frac{-4}{3} = -1{,}33
+\]
+
+Now lets determine the angle of leaving from the complex pols
+
+\noindent $*$ leaving angle: $180^\circ - \Sigma$ angles of other poles w.r.t this pole from $p_3$\\
+\hspace*{4em}$+\ \Sigma\ \angle$'s \quad '' \quad '' zeroes '' \quad ''
+\begin{align*}
+&= 180^\circ - (90^\circ) - \Big(180-\tan^{-1}\tfrac{\sqrt{21}}{3}\Big)\\
+&\quad - \Big(180-\tan^{-1}\tfrac{\sqrt{21}}{4}\Big) + \Big(180-\tan^{-1}\tfrac{\sqrt{21}}{2}\Big)\\
+&= -50{,}75^\circ
+\end{align*}
+for pole $p_4$ the leaving angle will be $50{,}75^\circ$
+
+We can also determine the intersection of the root locus with the imaginary axis by using the routh table as:
+\begin{align*}
+& s(s-1)(s^2+6s+30)+k(s+1)=0\\
+\Rightarrow\ & s\big(s^3+6s^2+30s-s^2-6s-30\big)+k(s+1)=0\\
+& = s^4+5s^3+24s^2-30s+ks+k=0\\
+& = s^4+5s^3+24s^2+(k-30)s+k=0
+\end{align*}
+
+\sayfa{6}
+\providecommand{\halka}[1]{\tikz[baseline=(c.base)]\node[draw,circle,inner sep=0.8pt,font=\scriptsize\sffamily](c){#1};}
+\[
+\begin{array}{l@{\qquad}c@{\qquad}c@{\qquad}c}
+s^4 & 1 & 24 & k\\
+s^3 & 5 & k-30 & \\
+s^2 & 30-\dfrac{k}{5} & k & \\
+s^1 & \dfrac{k^2-155k+4500}{k-150} & & \\
+s^0 & k & &
+\end{array}
+\qquad
+\begin{array}{l}
+\text{\halka{1}}\ k>0\\[4pt]
+\text{\halka{2}}\ 30-\dfrac{k}{5}>0 \to k<150\\[4pt]
+\text{\halka{3}}\ \dfrac{k^2-155k+4500}{k-150}>0
+\end{array}
+\]
+
+In order to be stable, all the above conditions must hold.
+
+So $k^2-155k+4500<0$ then $38{,}68<k<116{,}31$ to make it happen
+
+and finally all the three condition are satisfied for $38{,}68<k<116{,}31$
+
+There are two cases where we can construct a full zero row in the $s^1$ row
+
+for $k=38{,}68$ and $k=116{,}31$ this row becomes zero.
+
+The auxiliary equation for these two cases are
+\[
+\left(30-\frac{k}{5}\right)s^2+k=0
+\]
+\halka{a} $k=38{,}68:\quad 22{,}26s^2+38{,}68=0$
+
+\halka{b} $k=116{,}31:\quad 6{,}74s^2+116{,}31=0$
+
+so the $j\omega$ crossings are
+\begin{align*}
+s_{1,2} &= \pm j\,1{,}32\\
+s_{3,4} &= \pm j\,4{,}15
+\end{align*}
+According to the current data, we can plot the root locus to a high degree of accuracy but if we
+
+\elcizimi[0.8]{sekiller/final-calismasi-Final-cozum-s6-1.png}[6]
+
+\sayfa{7}
+\elcizimi[0.7]{sekiller/final-calismasi-Final-cozum-s7-1.png}[7]
+
+\end{document}

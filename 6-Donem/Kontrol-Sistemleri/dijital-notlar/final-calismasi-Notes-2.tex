@@ -1,0 +1,100 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Kök yer eğrisi ve kompanzatör tasarımı soruları}{Notes-2.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 1, 4) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{2}
+\sekilnotu[2]{Sayfada basılı kitap soruları 3 (dört $G(s)$ için kök yer eğrisi) ve 6 (kök yer eğrisi, break-in noktası) bulunuyor; dijitalleştirilmedi. Yalnızca el yazısı eklemeler aktarıldı.}
+
+$s=-1$ \quad 3 pole\\
+$s=-4$
+\[
+\frac{\Sigma p-\Sigma z}{n-m} = -\frac{7}{4} = -1{,}75
+\]
+\elcizimi[0.6]{sekiller/final-calismasi-Notes-2-s2-1.png}[2]
+
+\sayfa{3}
+\sekilnotu[3]{Sayfada basılı kitap soruları 9 (Şekil P8.5, iki olası kök yer eğrisi) ve 12 ($G(s)=\dfrac{K(s^2+2)}{(s+3)(s+4)}$, kök yer eğrisi) bulunuyor; dijitalleştirilmedi. Yalnızca el yazısı eklemeler aktarıldı.}
+\elcizimi[0.6]{sekiller/final-calismasi-Notes-2-s3-1.png}[3]
+
+$s=\pm\sqrt{2}\,j$\\
+$s=-3$ \quad $s=-4$
+
+\elcizimi[0.65]{sekiller/final-calismasi-Notes-2-s3-2.png}[3]
+
+\sayfa{5}
+\sekilnotu[5]{Sayfada basılı kitap soruları 27 ($G(s)=\dfrac{K(s^2-2s+2)}{(s+2)(s+4)(s+5)(s+6)}$; kök yer eğrisi, asimptotlar, kararlılık aralığı, kopma noktaları vb.) ve 31 ($G(s)=\dfrac{K(s+6)}{(s^2+10s+26)(s+1)^2(s+\alpha)}$; baskın kutuplar için $\zeta=0{,}45$, $\omega_n=9/8$ rad/s olacak şekilde $K$ ve $\alpha$ tasarımı) bulunuyor; dijitalleştirilmedi. Yalnızca el yazısı eklemeler aktarıldı.}
+
+zero $= 1\pm j$
+
+\elcizimi[0.45]{sekiller/final-calismasi-Notes-2-s5-1.png}[5]
+
+\[
+\frac{-17-2}{2} = -\frac{19}{2}
+\]
+
+$\zeta=0{,}45$ \qquad $\omega_n=\dfrac{9}{8}$
+\[
+\zeta\omega_n = 0{,}506
+\]
+\elcizimi[0.4]{sekiller/final-calismasi-Notes-2-s5-2.png}[5]
+\[
+\omega_d = \omega_n\sqrt{1-\zeta^2} = j\,1{,}0047
+\]
+
+\sayfa{6}
+\sekilnotu[6]{Sayfada basılı kitap soruları 5 ($G(s)=\dfrac{K}{(s+3)(s+5)(s+7)}$, $K_p=20$ için kompanzatör tasarımı) ve 8 (Şekil P9.2, $\dfrac{K}{s(s+10)(s+20)}$ sistemi için PD denetleyici; yerleşme süresi 4 kat azaltılacak, \%20 aşım) bulunuyor; dijitalleştirilmedi. Yalnızca el yazısı eklemeler aktarıldı.}
+
+Sayfa 535 \quad 5)
+\begin{align*}
+M_p = 0{,}1 &= e^{-\frac{\pi}{\omega_d}\sigma} \to \zeta\omega_n\\
+0{,}1 &= e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\\
+\ln 0{,}1 &= \frac{-\pi\zeta}{\sqrt{1-\zeta^2}}\\
+0{,}73 &= \frac{\zeta}{\sqrt{1-\zeta^2}}\\
+0{,}537 &= \frac{\zeta^2}{1-\zeta^2}\\
+0{,}537-0{,}537\zeta^2 &= \zeta^2\\
+\zeta &= 0{,}59
+\end{align*}
+
+\begin{align*}
+M_p = 0{,}2 &= e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\\
+&\to \zeta = 0{,}46
+\end{align*}
+\[
+t_s = \frac{-\ln x}{\zeta\omega_n} \to \div 4
+\]
+
+\sayfa{7}
+\sekilnotu[7]{Sayfada basılı kitap örneği 9.1 (ideal integral kompanzatör, Şekil 9.4) ve soru 23 (Şekil P8.8: $G(s)=\dfrac{K}{(s+1)(s+2)(s+3)(s+4)}$; kök yer eğrisi, asimptotlar, kopma noktaları, kararlılık aralığı, 0,7 sönüm oranı için $K$; sıfır eklenmiş yapı) bulunuyor; dijitalleştirilmedi. Yalnızca el yazısı eklemeler aktarıldı.}
+
+$k=164{,}6$
+\[
+k_p = \lim_{s\to0} G(s) = \frac{164{,}6}{20} = 8{,}23
+\]
+\[
+e(\infty) = \frac{1}{1+k_p} = 0{,}108
+\]
+
+Centroid: $\Sigma\,\text{poles}-\Sigma\,\text{zeroes}$
+\begin{align*}
+&= -1-2-3-4\\
+&= -10 \qquad\qquad \theta_a = \frac{(2k+1)\pi}{4}
+\end{align*}
+\[
+\text{b)}\quad 1+\frac{K}{(s+1)(s+2)(s+3)(s+4)}
+\]
+\[
+K+(s+1)(s+2)(s+3)(s+4)=0
+\]
+
+\sayfa{8}
+\[
+k = -s^4 + 10s^3 + 35s^2 + 50s + (k+24)\footnotemark
+\]
+\footnotetext{Claude notu: $K+(s+1)(s+2)(s+3)(s+4)=0$ denkleminden $K=-(s^4+10s^3+35s^2+50s+24)$ olması beklenir.}
+\[
+\frac{dk}{ds} = -4s^3
+\]
+
+\end{document}

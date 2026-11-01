@@ -1,0 +1,428 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Stability, Routh Criterion, Control Actions}{Control-Systems-lecture-8.pdf}
+
+\sayfa{1}
+\section{1. Quality of response}
+
+Closed Loop TF $=\dfrac{\omega_n^2}{\kutula{s^2+2\zeta\omega_n s+\omega_n^2}}=\Delta(s)$
+
+\medskip
+$\Delta(s)=0 \;\to\;$ characteristic roots (poles)
+
+\sekilnotu[1]{s-plane (axes Im and Re) with poles marked by x and the step response sketched for each pole location. Black x's on the negative real axis (real poles): response r(t) rises smoothly to a dashed final value, labelled ``overdamped (non oscilating)'' and ``overdamping (non oscilating)''. Red x's (complex pair) in the left half-plane: red response with overshoot and decaying oscillation around a dashed line, labelled ``oscilating damped''. Orange x's on the imaginary axis (one above, one below the origin): orange arrow to a sustained oscillation of constant amplitude around a dashed line. Blue x's (complex pair) in the right half-plane, labelled ``unstable (oscilatory)'': blue curve with growing oscillation. Purple x on the positive real axis: purple arrow to an exponentially growing curve.}
+
+\section{2. Stability}
+
+This is a characteristic of the system, and `not' governed by the input signal.
+
+$\star$ States of stability
+
+\sekilnotu[1]{s-plane: vertical axis Im with the label $\omega_d=\omega_n\sqrt{1-\zeta^2}$, horizontal axis Re $=\zeta\omega_n$. The imaginary axis is drawn in red and marked ``marginally stable'' (arrow to it). Left half-plane marked ``Stable'' (arrow pointing left) and, below the axis, a red double-arrow line labelled ``LHP (Left half plane)''; right half-plane marked ``unstable'' (arrow) and ``RHP'' with a red line under it. Orange x's: two on the negative real axis, one below the axis close to the origin, and one above the axis just left of the imaginary axis labelled ``Dominant'' with an arrow pointing to it.}
+
+\sayfa{2}
+\section{Routh methode}
+
+Gives a way of determining stability state without the requirement of finding the poles
+
+$-$ No specific pole is given but the numbers of poles on the RHP is found.
+
+\[
+\frac{C(s)}{R(s)}=\frac{\overbrace{b_0s^m+b_1s^{m-1}+\cdots+b_m}^{\text{zeros}}}{\underbrace{a_0s^n+a_1s^{n-1}+\cdots+a_n}_{\text{poles}\qquad \Delta(s)\ \text{characteristic eq}}}\qquad m\le n
+\]
+
+$\star$ zero pole cancellation is not happening
+
+\[
+\Delta(s)=a_0s^n+a_1s^{n-1}+\cdots+a_{n-1}s+a_n \quad:\quad \text{polynomial of degree `$n$'}
+\]
+
+if we can decompose it: $(a_1s^2+a_2s+a_3)$ and $(\beta_1 s+\beta_2)$ by multiplying them
+
+\medskip
+$s+2=0 \to s=-2$
+
+$s-2=0 \to s=+2$
+
+so $\beta_1$ and $\beta_2$ should be pozitive \qquad $\beta_1=\dfrac{a_{n-1}\,a_n}{a_2}$
+
+\bigskip
+Requirement \#1: all coefficients $(a_n)$ must be positive and nonzero!!
+
+Requirement \#2: Construct the table of Routh
+
+\[
+\begin{array}{c|ccccc}
+s^{n}   & a_0 & a_2 & a_4 & \cdots & a_n\\
+s^{n-1} & a_1 & a_3 & a_5 & \cdots & 0\\
+s^{n-2} & b_1 & b_2 & \cdots & 0 & 0\\
+s^{n-3} & c_1 & c_2 & \cdots & 0 & \\
+\vdots  &     &     &        &   & \\
+s^{0}   & g_1 & g_2 & \cdots &   &
+\end{array}
+\]
+
+\sekilnotu[2]{In the original, the first column of the Routh table ($a_0, a_1, b_1, c_1, \dots, g_1$) is enclosed by a red dashed rectangle.}
+
+\sayfa{3}
+\begin{align*}
+b_1&=\frac{a_1a_2-a_0a_3}{a_1}\\[6pt]
+b_2&=\frac{a_1a_4-a_0a_5}{a_1}\\
+&\ \,\vdots\\
+c_1&=\frac{b_1a_3-a_1b_2}{b_1}
+\end{align*}
+
+Conclusion: The number changes in signs $=$ number of poles on the RHP (look to the first column)
+
+\begin{ornek}
+$s^4+2s^3+3s^2+4s+5=0$
+\end{ornek}
+
+Pass the necessary condition
+
+\[
+\begin{array}{c|ccc}
+s^4 & 1 & 3 & 5\\
+s^3 & 2 & 4 & 0\\
+s^2 & 1 & 5 & 0\\
+s^1 & -6 & 0 & \\
+s^0 & 5 & &
+\end{array}
+\]
+
+\sekilnotu[3]{Annotations on the Routh table in the original: the $s^4$ row entries 1, 3, 5 are written in red; the 2 in the $s^3$ row is circled in blue; two blue crossing arrows (1 to 4 and 2 to 3, the second marked with a minus sign) indicate the cross-multiplication; an orange curved arrow from the 1 of the $s^2$ row to the note $\frac{2\times 3-1\times 4}{2}$; red curved arrows down the first column from 1 to $-6$ and from $-6$ to 5 (sign changes).}
+
+2 changes of sign: two poles on the RHP.
+
+\sekilnotu[3]{s-plane (Im vertical, Re horizontal) with three x's: one on the positive real axis close to the origin and two (a conjugate pair) in the right half-plane, upper right and lower right, symmetric about the real axis.}
+
+it can be oscilatory or not, we don't know
+
+\sayfa{4}
+\subsection{Exception \#1}
+
+The value of the cell in the first column at some specific row becomes zero
+
+$\hookrightarrow$ just replace zero with $\varepsilon>0$ and move on
+
+\[
+\Delta(s)=s^3-3s+2=0\ \Rightarrow\ \kutula{s^3+0s^2-3s+2}=0
+\]
+
+$\to$ Definitely unstable because there is negative coefficient
+
+$\varepsilon>0$
+\[
+\begin{array}{c|cc}
+s^3 & 1 & -3\\
+s^2 & \varepsilon & 2\\
+s^1 & \dfrac{-3\varepsilon-2}{\varepsilon} & 0\\[8pt]
+s^0 & 2 &
+\end{array}
+\]
+
+\sekilnotu[4]{Annotations on the table in the original: in the $s^2$ row the 0 is crossed out and replaced by $\varepsilon$; the entry $\frac{-3\varepsilon-2}{\varepsilon}$ of the $s^1$ row is labelled ``negative'' (orange); red curved arrows down the first column from $\varepsilon$ to $\frac{-3\varepsilon-2}{\varepsilon}$ and from there to 2 (sign changes).}
+
+we have got two roots on the $j\omega$ axis.\footnote{Claude notu: muhtemelen ``RHP'' olmalı (iki işaret değişimi var).}
+
+\subsection{Exception \#2}
+
+getting a full zero row!
+
+\[
+s^5+2s^4+24s^3+48s^2-25s-50=0
+\]
+
+\[
+\begin{array}{c|ccc}
+s^5 & 1 & 24 & -25\\
+s^4 & 2 & 48 & -50\\
+s^3 & 8 & 96 & \\
+s^2 & 24 & -50 & \\
+s^1 & 112{,}7 & 0 & \\
+s^0 & -50 & &
+\end{array}
+\]
+
+\sekilnotu[4]{Annotations on the table in the original: the three entries of the $s^4$ row (2, 48, $-50$) are circled in red; in the $s^3$ row both zeros are crossed out and replaced by 8 and 96 (orange); an orange curved arrow from the $s^1$ entry 112,7 down to the $s^0$ entry.}
+
+1 change in sign $\to$ 1 pole: it have to be real because complex pole have conjugate
+
+construct an auxilary equation
+
+\[
+P(s)=2s^4+48s^2-50
+\]
+\[
+\frac{dP}{ds}=8s^3+96s \quad\to\quad \text{we have to use it}
+\]
+
+Solution of the auxilary eq. gives us some of the poles of the main system
+
+\[
+2s^4+48s^2-50=0 \;\Rightarrow\; \begin{cases} s^2=-25 & \to\ s_{1,2}=\pm 5j\\ s^2=1 & \to\ s_{3,4}=\pm 1\end{cases}
+\]
+
+\sayfa{5}
+case 1 of exception $\to$ at least two poles on the imaginary axis
+
+case 2 exception $\to$ some poles are symmetric with respect to the origin
+
+\sekilnotu[5]{s-plane (Im, Re axes) with x's placed symmetrically about the origin: black x's on the real axis (one left and one right of the origin) and on the imaginary axis (one above and one below the origin), and orange x's in all four quadrants (upper-left, upper-right, lower-left, lower-right).}
+
+\section{Relative stability}
+
+\sekilnotu[5]{s-plane (Im, Re axes) with a dashed vertical line to the left of the imaginary axis (the axis shifted to $s=-\sigma$), labelled \okunamadi{$\sigma=j\omega$} where it crosses the real axis and at its lower end. The region left of the dashed line is labelled ``stable relative to $s=-\sigma$'' (red); the region right of it is labelled ``unstable relative to $s=-\sigma$'' (upper right). Four slanted strokes (two above and two below the real axis) are drawn to the right of the dashed line.}
+
+$s+\sigma=\hat{s}$ \qquad at $s=-\sigma \;\to\; \hat{s}=0$
+
+$\hookrightarrow\ s=\hat{s}-\sigma$
+
+\begin{ornek}
+$\dddot{c}+6\ddot{c}+11\dot{c}+kc=\ddot{r}-r$
+
+$\dfrac{C(s)}{R(s)}=\dfrac{s^2-1}{s^3+6s^2+11s+k}$
+
+find possible $k$ values so that all poles are in the shaded area?
+\end{ornek}
+
+\[
+\Delta(s)=s^3+6s^2+11s+k=0
+\]
+$s=\hat{s}-1$
+
+\sekilnotu[5]{s-plane (Im, Re axes) with a dashed vertical line at $s=-1$ (labelled ``$-1$'' on the real axis and ``$s=-1$'' at its lower end); the region to the left of the dashed line is shaded with slanted hatch strokes.}
+
+\sayfa{6}
+\begin{align*}
+\Delta(\hat{s})&=(\hat{s}-1)^3+6(\hat{s}-1)^2+11(\hat{s}-1)+k=0\\
+&=\hat{s}^3+3\hat{s}^2+2\hat{s}+k-6=0
+\end{align*}
+
+necessary condition
+\[
+\kutula{k>6}
+\]
+
+\[
+\begin{array}{c|ccc}
+\hat{s}^3 & 1 & 2 & 0\\
+\hat{s}^2 & 3 & k-6 & 0\\
+\hat{s}^1 & \dfrac{6-(k-6)}{3} & 0 & \\[8pt]
+\hat{s}^0 & k-6 & &
+\end{array}
+\]
+
+all elements have to be pozitive
+\[
+\frac{6-k+6}{3}=\frac{12-k}{3}>0
+\]
+$\Rightarrow\ k<12$
+
+$\hookrightarrow\ 6<k<12$
+
+\subsection{Method \#2 for the first exception case}
+
+$\left(\begin{array}{l} s_1=+2\\ \alpha=\tfrac12\end{array}\right)\ \Rightarrow\ s=\dfrac{1}{\alpha}$
+
+This change of variable gives us the reciprocal of the root
+
+\[
+s^5+2s^4+3s^3+6s^2+5s+3=0
+\]
+
+\[
+\begin{array}{c|ccc@{\qquad}c@{\qquad}c}
+ & & & & \text{if } \varepsilon>0 & \text{if } \varepsilon<0\\[4pt]
+s^5 & 1 & 3 & 5 & + & +\\
+s^4 & 2 & 6 & 3 & + & +\\
+s^3 & \varepsilon & 7/2 & & + & -\\
+s^2 & \dfrac{6\varepsilon-7}{\varepsilon} & 3 & & - & +\\[8pt]
+s^1 & \dfrac{42\varepsilon-49-6\varepsilon^2}{12\varepsilon-14} & 0 & & + & +\\[8pt]
+s^0 & 3 & 0 & & + & +
+\end{array}
+\]
+
+\sekilnotu[6]{Annotations in the original: in the $s^3$ row the 0 is crossed out and replaced by ``$\varepsilon>0$'' (orange); the two sign columns (if $\varepsilon>0$ and if $\varepsilon<0$) are written to the right of the table, each with two red curved arrows marking the two sign changes (for $\varepsilon>0$ between the $s^3$, $s^2$ and $s^1$ signs; for $\varepsilon<0$ between the $s^4$, $s^3$ and $s^2$ signs).}
+
+Two poles are on the RHP
+
+\sayfa{7}
+\[
+s=\frac{1}{\alpha}
+\]
+
+\begin{align*}
+&\left(\tfrac{1}{\alpha}\right)^5+2\left(\tfrac{1}{\alpha}\right)^4+3\left(\tfrac{1}{\alpha}\right)^3+6\left(\tfrac{1}{\alpha}\right)^2+5\left(\tfrac{1}{\alpha}\right)+3=0\\
+&\left(\tfrac{1}{\alpha}\right)^5\Big[1+2\left(\tfrac{1}{\alpha}\right)^{-1}+3\left(\tfrac{1}{\alpha}\right)^{-2}\\
+&\qquad{}+6\left(\tfrac{1}{\alpha}\right)^{-3}+5\left(\tfrac{1}{\alpha}\right)^{-4}+3\left(\tfrac{1}{\alpha}\right)^{-5}\Big]=0
+\end{align*}
+
+$\Rightarrow\ 1+2\alpha+3\alpha^2+6\alpha^3+5\alpha^4+3\alpha^5=0$
+
+\[
+\begin{array}{c|ccc}
+\alpha^5 & 3 & 6 & 2\\
+\alpha^4 & 5 & 3 & 1\\
+\alpha^3 & 4{,}2 & 1{,}4 & \\
+\alpha^2 & 1{,}33 & 1 & \\
+\alpha^1 & -1{,}75 & 0 & \\
+\alpha^0 & 1 & &
+\end{array}
+\]
+
+\sekilnotu[7]{Annotations on the table in the original: red curved arrows to the right of the first column from $1{,}33$ down to $-1{,}75$ and from $-1{,}75$ down to $1$ (two sign changes); a dashed line is drawn through the $\alpha^4$ row.}
+
+Solve this:\footnote{Claude notu: üsler küçük yazıldığı için okunması zor; ardışık üsler (7'den 0'a) varsayıldı.}
+\[
+s^7+3s^6+5s^5+9s^4+9s^3+7s^2+3s+2=0
+\]
+
+\sayfa{8}
+\section{Control actions}
+
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-8-s8-1.png}[8]
+
+\[
+E(s)=R(s)-C(s)
+\]
+
+$R(s)$ is the input and ``can not'' affect stability and accuracy of the system
+
+\elcizimi[0.85]{sekiller/Control-Systems-lecture-8-s8-2.png}[8]
+
+\formulkutu{k_i\int e(t)\,dt}
+
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-8-s8-3.png}[8]
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-8-s8-4.png}[8]
+
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-8-s8-5.png}[8]
+
+\sayfa{9}
+$k_d\,\dot{e}\ \rightarrow$ rate of change of error
+
+\elcizimi[0.85]{sekiller/Control-Systems-lecture-8-s9-1.png}[9]
+
+Derivative operator is always used with `P' and `I' operations
+\[
+\left\{\begin{array}{l}
+\text{PD}\ \checkmark \qquad \text{PI}\ \checkmark \qquad \text{PID}\ \checkmark\\
+\text{ID}\ \checkmark
+\end{array}\right.
+\]
+
+\noindent\hspace*{4em}D\ $\times$
+
+\section{1) proportional action}
+$\rightarrow$ responsible for \vurgu{stability}
+
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-8-s9-2.png}[9]
+
+\[
+G(s)=\frac{k_p}{\tau s+1}
+\]
+\[
+\mathrm{CLTF:}\quad\frac{C(s)}{R(s)}=\frac{G(s)}{1+G(s)}=\frac{k_p}{\tau s+1+\kutula{k_p}}
+\]
+$k_p$ is also responsible for the location of the pole
+
+\begin{align*}
+E(s)&=R(s)-C(s)\\
+&=R(s)\left(1-\frac{C(s)}{R(s)}\right)\\
+&=R(s)\left(1-\frac{G(s)}{1+G(s)}\right)\\
+&=R(s)\left(\frac{1}{1+G(s)}\right)
+\end{align*}
+
+Steady state error \hfill \underline{Final value theorem}
+\[
+e_{ss}=\,?\,=e(\infty)=\lim_{t\to\infty}e(t)=\lim_{s\to 0}sE(s)
+\]
+\[
+e_{ss}=\lim_{s\to 0}\frac{sR(s)}{1+G(s)}
+\]
+if $R(s)=\frac{1}{s}$ step
+\begin{align*}
+e_{ss}&=\frac{1}{1+G(0)}\\
+&=\frac{1}{1+k_p}\qquad k_p\uparrow^{\infty}\ \Rightarrow\ e_{ss}\downarrow 0
+\end{align*}
+
+\sayfa{10}
+\elcizimi[0.85]{sekiller/Control-Systems-lecture-8-s10-1.png}[10]
+
+\section{2) Integral action}
+$\rightarrow$ responsible for error
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-8-s10-2.png}[10]
+
+\[
+G(s)=\frac{k_i}{s(\tau s+1)}
+\]
+(A pole added to the open loop function)
+
+\elcizimi[0.35]{sekiller/Control-Systems-lecture-8-s10-3.png}[10]
+
+\[
+\frac{C(s)}{R(s)}=\frac{k_i}{s(\tau s+1)+k_i}
+\]
+\[
+E(s)=R(s)\left(\frac{1}{1+G(s)}\right)
+\]
+\begin{align*}
+R(s)&=\frac{1}{s}\\
+e_{ss}&=\lim_{s\to 0}s\,\frac{1}{s}\left(\frac{1}{1+G(s)}\right)=\frac{1}{1+G(0)}=0
+\end{align*}
+
+\section{3) Derivative action}
+(responsible for sensitivity and increases stability in that sense)
+\[
+G(s)=\frac{k_d s}{\tau s+1}\qquad\text{OLTF}
+\]
+
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-8-s10-4.png}[10]
+
+\elcizimi[0.45]{sekiller/Control-Systems-lecture-8-s10-5.png}[10]
+
+\[
+E(s)=R(s)\left(\frac{1}{1+G(s)}\right)
+\]
+
+\sayfa{11}
+\[
+E(s)=R(s)\left(\frac{1}{1+G(s)}\right)=R(s)\left(\frac{\tau s+1}{k_d s+\tau s+1}\right)
+\]
+\[
+R(s)=\frac{1}{s}\ \Rightarrow\ e_{ss}=\lim s\left(\frac{1}{s}\right)\left(\frac{\tau s+1}{k_d s+\tau s+1}\right)=1
+\]
+
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-8-s11-1.png}[11]
+
+\[
+\frac{C(s)}{R(s)}=\frac{k_p+k_d s}{k_p+k_d s+Js^2}\qquad\Delta(s)
+\]
+\[
+s^2+\underbrace{\frac{k_d}{J}}_{2\zeta\omega_n}s+\underbrace{\frac{k_p}{J}}_{\omega_n^2}=0
+\]
+\[
+\omega_n=\sqrt{\frac{k_p}{J}}
+\]
+\[
+\zeta=\frac{1}{2\omega_n}\,\frac{k_d}{J}=\frac{1}{2}\sqrt{\frac{J}{k_p}}\,\frac{k_d}{J}
+\]
+\[
+e^{-\zeta\omega_n t}\left(\,\text{-- -- ------}\,\right)
+\]
+\[
+E(s)=R(s)\,\frac{1}{1+G(s)}
+\]
+\begin{align*}
+R(s)&=\frac{1}{s}\\
+e_{ss}&=\lim_{s\to 0}s\left(\frac{1}{s}\right)\frac{1}{1+G(0)}
+\end{align*}
+\begin{align*}
+G(s)&=\frac{k_p+k_d s}{Js^2}=\infty\\
+e_{ss}&=0
+\end{align*}
+
+\end{document}

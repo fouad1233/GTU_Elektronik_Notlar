@@ -1,0 +1,684 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{State Space and 2nd Order Systems}{Control-Systems-lecture-5.pdf}
+
+\sayfa{1}
+\section{State Space}
+
+$2^{\mathrm{nd}}$ order D.E. $\xrightarrow{\text{S.S.}}$ 2 first order D.E.
+
+System of $\left\{\begin{array}{l}2^{\mathrm{nd}}\ \text{order}\\ \text{equations}\\ (n)\end{array}\right.$ $\xrightarrow{\text{S.S.}}$ $2n$ first order D.E.
+
+\begin{ornek}
+$\ddot{x}+\alpha_1\dot{x}+\alpha_2 x=u$
+
+$x$: output $2^{\mathrm{nd}}$ order D.E.
+
+$u$: input
+
+\sekilnotu[1]{Sketch of a curve: axes with $x$ on the vertical axis and $t$ on the horizontal axis. The orange curve starts at a positive value on the $x$-axis, rises quickly to a peak (overshoot), dips slightly and then settles to a constant steady-state value.}
+
+\begin{align*}
+x &= y_1 & \dot{y}_1 &= \dot{x} = y_2\\
+\dot{x} &= y_2 & \dot{y}_2 &= \ddot{x} = u-\alpha_1\dot{x}-\alpha_2 x\\
+ & & &= u-\alpha_1 y_2-\alpha_2 y_1
+\end{align*}
+$y_1,\,y_2$ (circled): state variables
+
+\[
+\frac{d}{dt}\underbrace{\begin{bmatrix}y_1\\y_2\end{bmatrix}}_{\text{state variable vector }(x)}
+=\underbrace{\begin{bmatrix}0&1\\-\alpha_2&-\alpha_1\end{bmatrix}}_{A}
+\underbrace{\begin{bmatrix}y_1\\y_2\end{bmatrix}}_{X}
++\underbrace{\begin{bmatrix}0\\1\end{bmatrix}}_{\text{input vector }(B)}
+\underbrace{u}_{\text{output}\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen input olmalı.}
+
+\sekilnotu[1]{Triangle diagram with three nodes: D.E. (top), S.S. (bottom left) and T.F. (bottom right), connected by curved arrows. The arrow between D.E. and S.S. is labelled ``state variable''; the arrows between D.E. and T.F. are labelled $\mathcal{L}$ and $\mathcal{L}^{-1}$; S.S. and T.F. are connected by arrows in both directions.}
+
+\[
+\dot{\vec{X}} = A\,\vec{X}+\vec{B}\,u
+\]
+\end{ornek}
+
+\subsection{State space representation}
+
+$\hookrightarrow$ Fundamental operation (Mathematically) is two lower the order of D.E to half. If you are having $2n$ equation of $2^{\mathrm{nd}}$ order this method produces $4n$ D.E. of $1^{\mathrm{st}}$ order.
+
+$\ast$ States of a system are the min number of variables to know at $t=t_0$ in order to describe the dynamics (response) at any later time.
+
+\begin{ornek}
+$\ddot{y}+\alpha_1\dot{y}+\alpha_2 y=\dot{u}+\alpha_3 u$, \quad $y$: output, $u$: input
+
+States can be $y(0),\ \dot{y}(0)\ \to\ y(t)=\checkmark$
+\end{ornek}
+
+$\text{variables}\ \left\{\begin{array}{l}\to\ \text{output}\\ \to\ \text{input}\\ \to\ \text{state}\end{array}\right.$
+
+\sayfa{2}
+\section{State space representations}
+
+\[
+\left\{\begin{array}{l}
+\to\ \text{physical variable}\ \checkmark\\
+\to\ \text{phase variable}\ \checkmark\\
+\to\ \text{canonical variable}\ \left\{\begin{array}{l}\to\ \text{observer}\ \times\\ \to\ \text{controller}\ \times\end{array}\right.
+\end{array}\right.
+\]
+
+In physical variable form we just look at the energy storing elements
+
+\begin{tabular}{@{}l@{\ }l@{\qquad\qquad}l@{}}
+Capacitor: & $\frac{1}{2}Cv^2$ & Voltage: state variable\\
+Inductor: & $\frac{1}{2}Li^2$ & Current \quad $''$\\
+mass: & $\frac{1}{2}I\omega^2\ /\ \frac{1}{2}mv^2$ & $\substack{\omega\\ v}$ : state variable\\
+spring: & $\frac{1}{2}kx^2$ &
+\end{tabular}
+
+\subsection{Phase variable form}
+
+\subsubsection{Case 1: No derivative of the input}
+
+\[
+\dot{u}=\frac{du}{dt}\ \left\{\begin{array}{ll}
+\to\ \text{forward difference} & \displaystyle\lim_{\Delta t\to 0}\frac{u(t+\Delta t)-u(t)}{\Delta t}\Big|_{t=0}\\[2.5ex]
+\to\ \text{backward difference} & \displaystyle\lim_{\Delta t\to 0}\frac{u(t)-u(t-\Delta t)}{\Delta t}\quad t=-\Delta t\\[2.5ex]
+\to\ \text{central difference} & \displaystyle\lim_{\Delta t\to 0}\frac{u\!\left(t+\frac{\Delta t}{2}\right)-u\!\left(t-\frac{\Delta t}{2}\right)}{\Delta t}
+\end{array}\right.
+\]
+
+\[
+\begin{array}{l}\dot{y}=u\\ \Downarrow\\ y\text{: output}\\ u\text{: input}\end{array}
+\qquad
+\begin{array}{l}\ddot{y}=\ddot{u}\\ y\text{: output}\\ u\text{: input}\end{array}
+\left\{\begin{array}{l}
+\text{for } \ddot{y}=\ddot{u}-\dot{y}\\
+\text{you have to know } y(0),\dot{y}(0)\ \text{ok.}\\
+\text{and } \ddot{u}\text{ is given}
+\end{array}\right.
+\]
+
+\medskip\hrule\medskip
+
+\[
+\overset{\text{order}}{y^{(n)}}+a_1y^{(n-1)}+a_2y^{(n-2)}+\cdots+a_ny=u
+\]
+
+\[
+\text{state variables}\ \left\{\begin{array}{l}x_1=y\\x_2=\dot{y}\\x_3=\ddot{y}\\ \vdots\\ x_n=y^{(n-1)}\end{array}\right.
+\xrightarrow{\ \frac{d}{dt}\ }
+\begin{array}{l}\dot{x}_1=\dot{y}=x_2\\ \dot{x}_2=\ddot{y}=x_3\\ \vdots\end{array}
+\]
+
+\[
+\dot{x}_n=y^{(n)}=u-a_1\overset{x_n}{y^{(n-1)}}-a_2\overset{x_{n-1}}{y^{(n-2)}}-\cdots-a_n\overset{x_1}{y}
+\]
+
+\[
+\begin{bmatrix}\dot{x}_1\\\dot{x}_2\\\dot{x}_3\\\vdots\\\dot{x}_n\end{bmatrix}
+=
+\begin{bmatrix}
+0&1&0&\multicolumn{2}{c}{\cdots}&0\\
+0&0&1&\multicolumn{2}{c}{\cdots}&0\\
+0&0&0&1&\cdots&0\\
+\vdots&&&&&\vdots\\
+-a_n&-a_{n-1}&-a_{n-2}&\multicolumn{2}{c}{\cdots}&-a_1
+\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\x_3\\\vdots\\x_n\end{bmatrix}
++
+\begin{bmatrix}0\\0\\0\\\vdots\\1\end{bmatrix}u
+\]
+
+\sayfa{3}
+\[
+\dot{\vec{X}}=A_{n\times n}\,\vec{X}_{n\times 1}+B_{n\times 1}\,u
+\]
+
+\[
+\dot{\vec{X}}=A\vec{X}+Bu\ \to\ \text{state space representation}
+\]
+
+\[
+y_{1\times 1}=\underbrace{\begin{bmatrix}1&0&0&\cdots&0\end{bmatrix}}_{C}\underbrace{\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}}_{X}=C\vec{X}+\overset{0}{\rlap{$\diagup$}Du}
+\]
+
+\begin{tabular}{@{}ll@{}}
+$A$: & state matrix\\
+$B$: & input vector\\
+$C$: & output vector\\
+$D$: & Direct-\okunamadi{transmission} matrix/vector
+\end{tabular}
+
+\subsubsection{Case 2: Derivative of input is present}
+
+\[
+\overbrace{\dddot{y}+a_1\ddot{y}+a_2\dot{y}+a_3y}^{\text{LHS}}=\overbrace{b_0\dddot{u}+b_1\ddot{u}+b_2\dot{u}+b_3u}^{\text{RHS}}
+\]
+RHS $\to$ statically related \qquad (can be chosen) $u$: input, $y$: output
+
+\[
+\left\{\begin{array}{l}x_1=y\\x_2=\dot{y}\\x_3=\ddot{y}\end{array}\right.
+\ \to\
+\left\{\begin{array}{l}\dot{x}_1=\dot{y}=x_2\\ \dot{x}_2=\ddot{y}=x_3\\ \dot{x}_3=\dddot{y}=\mathrm{RHS}-\mathrm{LHS}\end{array}\right.
+\]
+LHS: left hand side\\
+RHS: right hand side
+
+Burdan SS. formatına sokamayız\\
+O yüzden bunu yapalım
+
+\[
+y^{(n)}+a_1y^{(n-1)}+a_2y^{(n-2)}+\cdots+a_ny=b_0u^{(n)}+b_1u^{(n-1)}+\cdots+b_nu
+\]
+$u$: input\\
+$y$: output \qquad\qquad number of state variables $n$
+
+ezberlemeye gerek yok, gerekirse sınavda verilir
+
+\[
+\left\{\begin{array}{l}
+x_1=y-\beta_0u\\
+x_2=\dot{y}-\beta_0\dot{u}-\beta_1u=\dot{x}_1-\beta_1u\\
+x_3=\ddot{y}-\beta_0\ddot{u}-\beta_1\dot{u}-\beta_2u=\dot{x}_2-\beta_2u\\
+\vdots\\
+x_n=\dot{x}_{n-1}-\beta_{n-1}u
+\end{array}\right.
+\]
+
+\begin{align*}
+\beta_0&=b_0\\
+\beta_1&=b_1-a_1\beta_0\\
+\beta_2&=b_2-a_1\beta_1-a_2\beta_0\\
+&\ \vdots\\
+\beta_{n-1}&=b_{n-1}-a_1\beta_{n-2}-\cdots-a_{n-2}\beta_1-a_{n-1}\beta_0
+\end{align*}
+
+\sayfa{4}
+\subsection{Phase variable form}
+
+\[
+\left\{\begin{array}{l}
+\dot{x}_1=\dot{y}-\beta_0\dot{u}=x_2+\beta_1u\\
+\dot{x}_2=\ddot{y}-\beta_0\ddot{u}-\beta_1\dot{u}=x_3+\beta_2u\\
+\vdots\\
+\dot{x}_n=-a_nx_1-a_{n-1}x_2-\cdots-a_1x_n+\beta_nu
+\end{array}\right.
+\]
+
+\[
+\begin{bmatrix}\dot{x}_1\\\dot{x}_2\\\vdots\\\dot{x}_n\end{bmatrix}
+=
+\begin{bmatrix}
+0&1&0&0&\cdots&0\\
+0&0&1&0&\cdots&0\\
+\vdots\\
+-a_n&-a_{n-1}&-a_{n-2}&\multicolumn{2}{c}{\cdots}&-a_1
+\end{bmatrix}
+\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}
++
+\begin{bmatrix}\beta_1\\\beta_2\\\vdots\\\beta_n\end{bmatrix}u
+\]
+
+\[
+\dot{\vec{X}}=A\vec{X}+Bu
+\]
+\[
+y=x_1+\beta_0u=\underbrace{\begin{bmatrix}1&0&0&\cdots&0\end{bmatrix}}_{C}\begin{bmatrix}x_1\\x_2\\\vdots\\x_n\end{bmatrix}+(\beta_0)u
+\]
+\[
+y=C\vec{X}+Du
+\]
+
+\[
+\text{T.F}=\frac{Y(s)}{U(s)}=\frac{b_0s^n+b_1s^{n-1}+\cdots+b_{n-1}s+b_n}{s^n+a_1s^{n-1}+\cdots+a_{n-1}s+a_n}
+\]
+
+\begin{ornek}
+\[
+\overbrace{\dddot{y}+a_1\ddot{y}+a_2\dot{y}+a_3y}^{\text{LHS}}=\overbrace{b_0\dddot{u}+b_1\ddot{u}+b_2\dot{u}+b_3u}^{\text{RHS}}
+\]
+
+\begin{align*}
+\beta_0&=b_0\\
+\beta_1&=b_1-a_1\beta_0\\
+\beta_2&=b_2-a_1\beta_1-a_2\beta_0\\
+\beta_3&=b_3-a_1\beta_2-a_2\beta_1-a_3\beta_0
+\end{align*}
+
+\begin{align*}
+x_1&=y-b_0u\\
+x_2&=\dot{y}-b_0\dot{u}-(b_1-a_1\beta_0)u\\
+x_3&=\ddot{y}-b_0\ddot{u}-(b_1-a_1\beta_0)\dot{u}-(b_2-a_1\beta_1-a_2\beta_0)u
+\end{align*}
+\end{ornek}
+
+\sayfa{5}
+\sekilnotu[5]{Top of the page: a pasted, low-contrast photograph of a handwritten derivation; its legible parts are transcribed below.}
+
+\[
+\left\{\begin{array}{l}
+x_1=y-\beta_0u\\
+x_2=\dot{y}-\beta_0\dot{u}-\beta_1u\\
+x_3=\ddot{y}-\beta_0\ddot{u}-\beta_1\dot{u}-\beta_2u
+\end{array}\right.
+\ \to\
+\left\{\begin{array}{l}
+\dot{x}_1=\dot{y}-\beta_0\dot{u}=x_2+\beta_1u\\
+\dot{x}_2=\ddot{y}-\beta_0\ddot{u}-\beta_1\dot{u}=x_3+\beta_2u
+\end{array}\right.
+\]
+
+\begin{align*}
+\beta_0&=b_0\\
+\beta_1&=b_1-a_1\beta_0\\
+\beta_2&=b_2-a_1\beta_1-a_2\beta_0
+\end{align*}
+
+\begin{align*}
+\dot{x}_3&=\dddot{y}-\beta_0\dddot{u}-\beta_1\ddot{u}-\beta_2\dot{u}\\
+&=\left(-a_1\ddot{y}-a_2\dot{y}-a_3y+b_0\dddot{u}+b_1\ddot{u}+b_2\dot{u}+b_3u\right)\\
+&\qquad-\beta_0\dddot{u}-\beta_1\ddot{u}-\beta_2\dot{u}\\
+&=\Big[-a_1\left(\ddot{y}-\beta_0\ddot{u}-\beta_1\dot{u}-\beta_2u\right)-a_1\beta_0\ddot{u}-a_1\beta_1\dot{u}-a_1\beta_2u\\
+&\qquad-a_2\left(\dot{y}-\beta_0\dot{u}-\beta_1u\right)-a_2\beta_0\dot{u}-a_2\beta_1u\\
+&\qquad-a_3\left(y-\beta_0u\right)-a_3\beta_0u\Big]\\
+&\qquad+b_0\dddot{u}+b_1\ddot{u}+b_2\dot{u}+b_3u-\beta_0\dddot{u}-\beta_1\ddot{u}-\beta_2\dot{u}\\
+&=-a_1x_3-a_2x_2-a_3x_1+\dddot{u}\underbrace{(b_0-\beta_0)}_{0}+\ddot{u}\underbrace{(b_1-\beta_1-a_1\beta_0)}_{0}\\
+&\qquad+\dot{u}\underbrace{(-a_1\beta_1-a_2\beta_0+b_2-\beta_2)}_{0}+u\underbrace{(-a_1\beta_2-a_2\beta_1-a_3\beta_0+b_3)}_{\beta_3}
+\end{align*}
+
+\[
+\left\{\begin{array}{l}
+\dot{x}_1=x_2+\beta_1u\\
+\dot{x}_2=x_3+\beta_2u\\
+\dot{x}_3=-a_1x_3-a_2x_2-a_3x_1+\beta_3u
+\end{array}\right.
+\qquad\qquad y=x_1+\beta_0u
+\]
+
+\[
+\dot{\vec{X}}=A\vec{X}+Bu\ \to\ \text{time domain}
+\]
+\[
+y=C\vec{X}+Du
+\]
+
+$\mathcal{L}$: S.S. $\to$ TF
+\[
+sX(s)-X(0)=AX(s)+BU(s)\ \to\ (sI-A)\vec{X}(s)=BU(s)
+\]
+\[
+X(s)=(sI-A)^{-1}BU(s)\ \to\ Y(s)=CX(s)+DU(s)
+\]
+\[
+Y(s)=C(sI-A)^{-1}BU(s)+DU(s)
+\]
+\[
+G(s)=\frac{Y(s)}{U(s)}=C(sI-A)^{-1}B+D
+\]
+$\hookrightarrow$ a vector of T.F
+\[
+G(s)=\frac{Y(s)}{U(s)}=C(sI-A)^{-1}B+D
+\]
+
+\sayfa{6}
+\sekilnotu[6]{Triangle diagram with D.E. at the top, S.S. at the bottom left and T.F. at the bottom right, connected by curved arrows: D.E. $\to$ S.S. labelled ``state variable''; D.E. $\to$ T.F. labelled $\mathcal{L}$; T.F. $\to$ D.E. labelled $\mathcal{L}^{-1}$; T.F. $\to$ S.S. labelled ``Signal flow graph''; S.S. $\to$ T.F. labelled ``Equation''.}
+
+\sekilnotu[6]{Block diagram: $R(s)$ enters a summing junction (+ from $R(s)$, $-$ from the feedback), followed by a block $\frac{1}{s}$ (its output labelled $x_1$), then a block $\frac{10}{s+5}$ (its output labelled $x_2$), then the output $Y(s)$. The feedback path starts at the output $x_2$, passes through a block $\frac{1}{s+1}$ (its output labelled $x_3$) and returns to the negative input of the summing junction.}
+
+\[
+\frac{Y(s)}{X(s)}=\frac{1}{s}\ \to\ \text{integration}
+\qquad\qquad
+\frac{Y(s)}{X(s)}=s\ \to\ \text{derivative}
+\]
+
+\[
+\frac{x_3}{x_2}=\frac{1}{s+1}\ ,\qquad \frac{x_2}{x_1}=\frac{10}{s+5}\ ,\qquad \frac{x_1}{R-x_3}=\frac{1}{s}
+\]
+
+\[
+\begin{array}{lll}
+x_2=sx_3+x_3 & 10x_1=sx_2+5x_2 & sx_1=R-x_3\\
+\Rightarrow sx_3=x_2-x_3 & \Rightarrow sx_2=10x_1-5x_2 & \Rightarrow \dot{x}_1=r-x_3\\
+\Rightarrow \dot{x}_3=x_2-x_3 & \Rightarrow \dot{x}_2=10x_1-5x_2 &
+\end{array}
+\]
+
+\[
+\left.\begin{array}{l}\dot{x}_1=-x_3+r\\ \dot{x}_2=10x_1-5x_2\\ \dot{x}_3=x_2-x_3\end{array}\right\}
+\ \to\
+\begin{Bmatrix}\dot{x}_1\\\dot{x}_2\\\dot{x}_3\end{Bmatrix}
+=
+\begin{bmatrix}0&0&-1\\10&-5&0\\0&1&-1\end{bmatrix}
+\begin{Bmatrix}x_1\\x_2\\x_3\end{Bmatrix}
++
+\begin{Bmatrix}1\\0\\0\end{Bmatrix}r
+\]
+
+\sekilnotu[6]{Block diagram: $R(s)$ enters a summing junction (+), followed by a block $as+b$, then a block $\frac{1}{s^2}$, then the output $Y(s)$. The output is fed back to the summing junction.}
+
+\[
+\frac{as+b}{s^2}=\frac{a}{s}+\frac{b}{s^2}=\frac{1}{s}\left(a+\frac{b}{s}\right)
+\]
+
+\sekilnotu[6]{Block diagram: $R(s)$ enters a first summing junction (+ from $R(s)$, $-$ on the lower input; feedback line not drawn). Its output (labelled $R-x_1$) splits into two parallel paths: an upper block $a$ and a lower block $\frac{b}{s}$ (its output labelled $x_2$). Both are added in a second summing junction, followed by a block $\frac{1}{s}$ (its output labelled $x_1$) and the output $Y(s)$.}
+
+\[
+\frac{x_2}{R-x_1}=\frac{b}{s}\quad(1)\qquad\qquad sx_2=b(R-x_1)
+\]
+\[
+\frac{x_1}{x_2+a(R-x_1)}=\frac{1}{s}\quad(2)\qquad\qquad sx_1=x_2+a(R-x_1)
+\]
+
+
+\sayfa{7}
+\begin{ornek}
+$m_1\ddot{y}_1=b_1(\dot{y}_2-\dot{y}_1)-k_1y_1+u_1$
+
+$m_2\ddot{y}_2=b_2(\dot{y}_2-\dot{y}_1)-k_2y_2+u_2$
+
+$\left.\begin{array}{l}
+m_1,m_2:\ \text{mass values}\\
+b_1:\ \text{damping value}\\
+k_1,k_2:\ \text{stiffness values}
+\end{array}\right\}$ \textit{these are all numbers}
+
+$u_1,u_2$: inputs, \quad $y_1,y_2$: outputs
+\end{ornek}
+
+\textbf{S.S.}
+\begin{align*}
+x_1&=y_1 & \dot{x}_1&=\dot{y}_1=x_2\\
+x_2&=\dot{y}_1\ \Rightarrow & \dot{x}_2&=\ddot{y}_1=\frac{1}{m_1}\left[b_1(\dot{y}_2-\dot{y}_1)-k_1y_1+u_1\right]\\
+&&&=\frac{1}{m_1}\left[b_1(x_4-x_2)-k_1x_1+u_1\right]\\
+x_3&=y_2\ \Rightarrow & \dot{x}_3&=\dot{y}_2=x_4\\
+x_4&=\dot{y}_2 & \dot{x}_4&=\ddot{y}_2=\frac{1}{m_2}\left[-b_1(\dot{y}_2-\dot{y}_1)-k_2y_2+u_2\right]\\
+&&&=\frac{1}{m_2}\left[-b_1(x_4-x_2)-k_2x_3+u_2\right]
+\end{align*}
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-5-s7-1.png}[7]
+
+\sayfa{8}
+{\setlength{\arraycolsep}{2pt}
+\[
+\frac{d}{dt}\underbrace{\begin{bmatrix}x_1\\x_2\\x_3\\x_4\end{bmatrix}}_{\dot{x}}
+=
+\underbrace{\begin{bmatrix}
+0&1&0&0\\
+-\frac{k_1}{m_1}&-\frac{b_1}{m_1}&0&\frac{b_1}{m_1}\\
+0&0&0&1\\
+0&-\frac{b_1}{m_2}\footnotemark&-\frac{k_2}{m_2}&-\frac{b_1}{m_2}
+\end{bmatrix}}_{A}
+\underbrace{\begin{bmatrix}x_1\\x_2\\x_3\\x_4\end{bmatrix}}_{x}
++
+\underbrace{\begin{bmatrix}
+0&0\\
+\frac{1}{m_1}&0\\
+0&0\\
+0&\frac{1}{m_2}
+\end{bmatrix}}_{B\ (2\times4\footnotemark)}
+\underbrace{\begin{bmatrix}u_1\\u_2\end{bmatrix}}_{\vec{u}\ (2\times1)}
+\]}
+\addtocounter{footnote}{-1}\footnotetext{Claude notu: $\dot{x}_4$ denklemine (s.~7) göre $A$ matrisinin (4,2) elemanı muhtemelen $+b_1/m_2$ olmalı.}%
+\addtocounter{footnote}{1}\footnotetext{Claude notu: $B$ matrisinin boyutu muhtemelen $4\times2$ olmalı.}
+
+\begin{align*}
+sX_2&=bR-X_1b & \dot{x}_2&=br-x_1b\\
+& & \dot{x}_1&=x_2+a(r-x_1)\\
+sX_1&=X_2+a(R-X_1)
+\end{align*}
+
+\[
+\frac{d}{dt}\begin{bmatrix}x_1\\x_2\end{bmatrix}
+=
+\underbrace{\begin{bmatrix}-a&1\\-b&0\end{bmatrix}}_{2\times2}
+\begin{bmatrix}x_1\\x_2\end{bmatrix}
++
+\begin{bmatrix}b\\a\end{bmatrix}\footnotemark
+\begin{bmatrix}r\end{bmatrix}
+\]
+\footnotetext{Claude notu: yukarıdaki denklemlere göre muhtemelen $\begin{bmatrix}a\\b\end{bmatrix}$ olmalı.}
+
+\[
+\dot{\vec{x}}=A\vec{x}+Bu
+\]
+\[
+y=Cx+Du
+\]
+
+\section{1st order system}
+\subsection{III) Ramp Response}
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-5-s8-1.png}[8]
+
+\[
+\left\{\begin{array}{l}r(t)=t\\ R(s)=\dfrac{1}{s^2}\end{array}\right.
+\]
+
+\begin{align*}
+X(s)&=R(s)\frac{1}{Ts+1}=\frac{1}{s^2(Ts+1)} & \begin{array}{l}s_{1,2}=0\\ s_3=-\dfrac{1}{T}\end{array}\\
+&=\frac{A}{s^2}+\frac{B}{s}+\frac{C}{Ts+1}
+\end{align*}
+
+\begin{align*}
+A&=s^2\left(\frac{1}{s^2(Ts+1)}\right)\Big|_{s=0}=1\\
+B&=\frac{d}{ds}\left(s^2\,\frac{1}{s^2(Ts+1)}\right)\Big|_{s=0}=-T\\
+C&=(Ts+1)\,\frac{1}{s^2(Ts+1)}\Big|_{s=-\frac{1}{T}}=T^2
+\end{align*}
+
+\sayfa{9}
+\[
+X(s)=\frac{1}{s^2}-\frac{T}{s}+\frac{T^2}{Ts+1}\qquad=\ \frac{T}{s+\frac{1}{T}}
+\]
+\[
+\mathcal{L}^{-1}\left\{\ x(t)=t-T+Te^{-t/T}\right.
+\]
+
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-5-s9-1.png}[9]
+
+\[
+\hat{x}=1-e^{-t/T}
+\]
+
+\begin{align*}
+e(t)&=r(t)-x(t)\\
+&=t-\left[t-T+Te^{-t/T}\right]\\
+&=T-Te^{-t/T}
+\end{align*}
+
+\begin{align*}
+\text{@ } t=0&\longrightarrow e(0)=0\\
+t\uparrow^{\infty}&\Rightarrow e(\infty)=e_{ss}=T
+\end{align*}
+
+\vurgu[pembe]{Accuracy is defined by `T'.}
+
+Ramp response $=\int$ unit response $=\iint$ impulse response
+
+\[
+\frac{d}{dt}(\text{ramp resp.})=\text{step resp.}
+\]
+\[
+\frac{d^2}{dt^2}(\text{ramp resp.})=\text{impulse resp.}
+\]
+
+\section{2nd order response}
+\textbf{RLC in series}
+\[
+\frac{V_c(s)}{V(s)}=\frac{1}{LCs^2+RCs+1}=\frac{1/LC}{s^2+\frac{R}{L}s+\frac{1}{LC}}
+\]
+
+\textbf{RLC in parallel}
+\[
+\frac{\Phi(s)}{I(s)}=\frac{1}{Cs^2+\frac{s}{R}+\frac{1}{L}}=\frac{1/C}{s^2+\frac{s}{RC}+\frac{1}{LC}}
+\]
+
+\textbf{Spring mass Damper System}
+\[
+\frac{X(s)}{R(s)}=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+\frac{c}{m}s+\frac{k}{m}}
+\]
+\[
+\Rightarrow\ \frac{\text{output}}{\text{input}}=\frac{X(s)}{R(s)}=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}
+\]
+
+$\omega_n$ = natural frequency
+
+$\zeta$ = zeta = damping ratio
+
+\sayfa{10}
+no zeros but 2 poles are present
+\[
+s^2+2\zeta\omega_n s+\omega_n^2=0
+\]
+\begin{align*}
+s_{1,2}&=\frac{-2\zeta\omega_n\pm\sqrt{(2\zeta\omega_n)^2-4\omega_n^2}}{2}\\
+&=-\zeta\omega_n\pm\omega_n\sqrt{\zeta^2-1}\\
+&=\omega_n\left(-\zeta\pm\sqrt{\zeta^2-1}\right)
+\end{align*}
+
+\subsection{Underdamped Systems}
+if $\zeta<1$ $\Rightarrow$ complex conjugate poles \textit{(always oscillatory)}
+
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-5-s10-1.png}[10]
+
+\subsection{critically damped systems}
+(sorry) if $\zeta=1$ $\Rightarrow$ repeated real valued poles
+
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-5-s10-2.png}[10]
+
+if $\zeta>1$ $\Rightarrow$ seperate and real valued poles \hfill overdamped system
+
+\vurgu[pembe]{Homework (homogen solution)}
+
+\section{Response due to external excitation (particular solution)}
+\[
+\frac{C(s)}{R(s)}=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}
+\]
+
+Specify the input
+
+I) Impulse excitation \qquad $R(s)=1$
+
+case I) $\zeta<1$
+\begin{align*}
+\frac{C(s)}{R(s)}&=\frac{\omega_n^2}{(s+\zeta\omega_n-i\omega_d)(s+\zeta\omega_n+i\omega_d)}\\
+&=\frac{A}{s+\zeta\omega_n-i\omega_d}+\frac{B}{s+\zeta\omega_n+i\omega_d}
+\end{align*}
+\begin{align*}
+s_{1,2}&=\omega_n\left(-\zeta\pm\sqrt{\zeta^2-1}\right)\\
+&=\omega_n\left(-\zeta\pm i\sqrt{1-\zeta^2}\right)\\
+&=-\zeta\omega_n\pm i\underbrace{\omega_n\sqrt{1-\zeta^2}}_{\text{damped natural freq.}\,=\,\omega_d}
+\end{align*}
+
+\vurgu[pembe]{The response frequency for damped systems is $\omega_d$}
+
+\[
+\frac{C(s)}{R(s)}=\frac{A}{s+\zeta\omega_n-i\omega_d}+\frac{B}{s+\zeta\omega_n+i\omega_d}\ \Rightarrow\ c(t)
+\]
+\[
+A=\frac{\omega_n^2}{s+\zeta\omega_n+i\omega_d}\Bigg|_{s=-\zeta\omega_n+i\omega_d}
+\]
+
+\sayfa{11}
+\[
+B=\left(\frac{\omega_n^2}{s+\zeta\omega_n-i\omega_d}\right)\Bigg|_{s=-\zeta\omega_n-i\omega_d}
+\]
+\begin{align*}
+c(t)&=A\,e^{(-\zeta\omega_n+i\omega_d)t}+B\,e^{(-\zeta\omega_n-i\omega_d)t}\\
+&=e^{-\zeta\omega_n t}\left(A\,e^{i\omega_d t}+B\,e^{-i\omega_d t}\right)\\
+&=a\,e^{-\zeta\omega_n t}\cos\omega_d t
+\end{align*}
+
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-5-s11-1.png}[11]
+
+\[
+\left\{\begin{array}{l}e^{i\alpha}=\cos\alpha+i\sin\alpha\\ e^{-i\alpha}=\cos\alpha-i\sin\alpha\end{array}\right.
+\ \longrightarrow\ \frac{e^{i\alpha}+e^{-i\alpha}}{2}=\cos\alpha
+\]
+
+case II) $\zeta=1$ \quad ; \quad $s_{1,2}=-\zeta\omega_n$
+\[
+\frac{C(s)}{R(s)}=\frac{\omega_n^2}{(s+\zeta\omega_n)^2}=\frac{\hat{A}}{s+\zeta\omega_n}+\frac{\hat{B}}{(s+\zeta\omega_n)^2}
+\]
+\begin{align*}
+\hat{B}&=(s+\zeta\omega_n)^2\left(\frac{\omega_n^2}{(s+\zeta\omega_n)^2}\right)\Bigg|_{s=-\zeta\omega_n}\\
+\hat{A}&=\frac{d}{ds}\left(\frac{\omega_n^2}{s+\zeta\omega_n}\right)\Bigg|_{s=-\zeta\omega_n}
+\end{align*}
+
+critical damping
+\begin{align*}
+c(t)&=\hat{A}\,e^{-\zeta\omega_n t}+\hat{B}\,t\,e^{-\zeta\omega_n t}\\
+&=e^{-\zeta\omega_n t}\left(\hat{A}+\hat{B}t\right)
+\end{align*}
+
+\okunamadi{case III)} $(\zeta>1)$
+\[
+c(t)=\hat{A}\,e^{\left(-\zeta-\sqrt{\zeta^2-1}\right)\omega_n t}+\bar{B}\,e^{\left(-\zeta+\sqrt{\zeta^2-1}\right)\omega_n t}
+\]
+
+\section{2nd order systems}
+\begin{align*}
+\zeta<1\qquad & s_{1,2}=\underbrace{-\zeta\omega_n}_{\text{Re}}\pm\underbrace{i\omega_d}_{\text{Im}}\\
+\zeta=1\qquad & s_{1,2}=\underbrace{-\zeta\omega_n}_{\text{repeated}}\qquad\text{Re}\\
+\zeta>1\qquad & s_{1,2}=\underbrace{-\zeta\omega_n\pm\sqrt{\zeta^2-1}}_{\text{Re distinct}}\footnotemark
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $-\zeta\omega_n\pm\omega_n\sqrt{\zeta^2-1}$ olmalı.}
+
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-5-s11-2.png}[11]
+
+\sayfa{12}
+If poles are C.C.\ $\to$ response is oscillatory and decaying
+
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-5-s12-1.png}[12]
+
+for \okunamadi{x} $\omega_d=0$ \quad no oscillating frequency
+
+\okunamadi{decays} at the same time
+
+for $\zeta>1$
+\begin{align*}
+s_1&=-\zeta\omega_n+\sqrt{\zeta^2-1}\\
+s_2&=-\zeta\omega_n-\sqrt{\zeta^2-1}
+\end{align*}
+\[
+c(t)=\underbrace{Ae^{s_1t}}_{\text{this is the most important part}}+Be^{s_2t}\ \searrow\ \text{decay fastly}
+\]
+
+\section{Step response calculation}
+\textit{(just for $\zeta<1$)}
+\[
+\left\{\begin{array}{l}\dfrac{C(s)}{R(s)}=\dfrac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}\\[6pt] R(s)=\dfrac{1}{s}\end{array}\right.
+\]
+
+\begin{align*}
+C(s)&=\frac{\omega_n^2}{s\left(s^2+2\zeta\omega_n s+\omega_n^2\right)}=\frac{A}{s}+\frac{Bs+C}{s^2+2\zeta\omega_n s+\omega_n^2}\\
+&=\frac{1}{s}-\frac{s+2\zeta\omega_n}{s^2+2\zeta\omega_n s+\omega_n^2}\\
+&=\frac{1}{s}-\frac{s+\zeta\omega_n}{(s+\zeta\omega_n)^2+\omega_d^2}-\frac{\zeta\omega_n}{(s+\zeta\omega_n)^2+\omega_d^2}
+\end{align*}
+
+\okunamadi{$\dfrac{\zeta}{\sqrt{1-\zeta^2}}\,\omega_d$} \quad \vurgu[pembe]{$\omega_d=\omega_n\sqrt{1-\zeta^2}$}
+
+\[
+\Lap{e^{-at}\sin\omega t}=\frac{\omega}{(s+a)^2+\omega^2}
+\]
+\[
+\Lap{e^{-at}\sin\omega t}\footnotemark=\frac{s+a}{(s+a)^2+\omega^2}
+\]
+\footnotetext{Claude notu: muhtemelen $\cos\omega t$ olmalı.}
+
+\sayfa{13}
+\begin{align*}
+c(t)&=\iLap{C(s)}=1-e^{-\zeta\omega_n t}\cos\omega_d t-\frac{\zeta\,e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\sin\omega_d t\\
+&=1-e^{-\zeta\omega_n t}\left(\cos\omega_d t+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\right)
+\end{align*}
+
+\[
+c(t)=1-\frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\sin\left(\omega_d t+\tan^{-1}\frac{\sqrt{1-\zeta^2}}{\zeta}\right)
+\]
+
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-5-s13-1.png}[13]
+
+\[
+e(t)=r(t)-c(t)=\frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\sin\left(\omega_d t+\phi\right)
+\]
+
+\end{document}

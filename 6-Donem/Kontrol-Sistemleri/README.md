@@ -10,7 +10,7 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [6. Dönem](../README.md) · 2023–2024 Bahar | ELEC322 | Control Systems | 12 ders notu · 2 dijital not · 8 sınav çalışması · 1 proje |
+| [6. Dönem](../README.md) · 2023–2024 Bahar | ELEC322 | Control Systems | 12 ders notu · 18 dijital not · 8 sınav çalışması · 1 proje |
 
 **Bu sayfada:** [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları)
 
@@ -19,17 +19,17 @@
 | Dosya | Tür | Bilgi | Dijital sürüm |
 |---|---|---|---|
 | [Control Systems lecture 1](ders-notlari/Control-Systems-lecture-1.pdf) | PDF | 3 s. | [PDF](dijital-notlar/Control-Systems-lecture-1.pdf) |
-| [Control Systems lecture 2](ders-notlari/Control-Systems-lecture-2.pdf) | PDF | 9 s. |  |
-| [Control Systems lecture 3](ders-notlari/Control-Systems-lecture-3.pdf) | PDF | 9 s. |  |
-| [Control Systems lecture 4](ders-notlari/Control-Systems-lecture-4.pdf) | PDF | 9 s. |  |
-| [Control Systems lecture 5](ders-notlari/Control-Systems-lecture-5.pdf) | PDF | 13 s. |  |
-| [Control Systems lecture 6](ders-notlari/Control-Systems-lecture-6.pdf) | PDF | 9 s. |  |
-| [Control Systems lecture 7](ders-notlari/Control-Systems-lecture-7.pdf) | PDF | 11 s. |  |
-| [Control Systems lecture 8](ders-notlari/Control-Systems-lecture-8.pdf) | PDF | 12 s. |  |
-| [Control Systems lecture 9](ders-notlari/Control-Systems-lecture-9.pdf) | PDF | 9 s. |  |
+| [Control Systems lecture 2](ders-notlari/Control-Systems-lecture-2.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Control-Systems-lecture-2.pdf) |
+| [Control Systems lecture 3](ders-notlari/Control-Systems-lecture-3.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Control-Systems-lecture-3.pdf) |
+| [Control Systems lecture 4](ders-notlari/Control-Systems-lecture-4.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Control-Systems-lecture-4.pdf) |
+| [Control Systems lecture 5](ders-notlari/Control-Systems-lecture-5.pdf) | PDF | 13 s. | [PDF](dijital-notlar/Control-Systems-lecture-5.pdf) |
+| [Control Systems lecture 6](ders-notlari/Control-Systems-lecture-6.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Control-Systems-lecture-6.pdf) |
+| [Control Systems lecture 7](ders-notlari/Control-Systems-lecture-7.pdf) | PDF | 11 s. | [PDF](dijital-notlar/Control-Systems-lecture-7.pdf) |
+| [Control Systems lecture 8](ders-notlari/Control-Systems-lecture-8.pdf) | PDF | 12 s. | [PDF](dijital-notlar/Control-Systems-lecture-8.pdf) |
+| [Control Systems lecture 9](ders-notlari/Control-Systems-lecture-9.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Control-Systems-lecture-9.pdf) |
 | [Control Systems lecture 10](ders-notlari/Control-Systems-lecture-10.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Control-Systems-lecture-10.pdf) |
-| [Control Systems lecture 11](ders-notlari/Control-Systems-lecture-11.pdf) | PDF | 9 s. |  |
-| [Control Systems lecture 12](ders-notlari/Control-Systems-lecture-12.pdf) | PDF | 10 s. |  |
+| [Control Systems lecture 11](ders-notlari/Control-Systems-lecture-11.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Control-Systems-lecture-11.pdf) |
+| [Control Systems lecture 12](ders-notlari/Control-Systems-lecture-12.pdf) | PDF | 10 s. | [PDF](dijital-notlar/Control-Systems-lecture-12.pdf) |
 
 ## Dijital Notlar (LaTeX)
 
@@ -39,21 +39,37 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
 |---|---|---|---|
-| [Control Systems lecture 1](ders-notlari/Control-Systems-lecture-1.pdf) | Control Systems – Lecture 1 | [PDF](dijital-notlar/Control-Systems-lecture-1.pdf) · 3 s. | [.tex](dijital-notlar/Control-Systems-lecture-1.tex) |
-| [Control Systems lecture 10](ders-notlari/Control-Systems-lecture-10.pdf) | Root Locus | [PDF](dijital-notlar/Control-Systems-lecture-10.pdf) · 7 s. | [.tex](dijital-notlar/Control-Systems-lecture-10.tex) |
+| [Control Systems lecture 1](ders-notlari/Control-Systems-lecture-1.pdf) <sub>Ders Notları</sub> | Control Systems – Lecture 1 | [PDF](dijital-notlar/Control-Systems-lecture-1.pdf) · 3 s. | [.tex](dijital-notlar/Control-Systems-lecture-1.tex) |
+| [Control Systems lecture 2](ders-notlari/Control-Systems-lecture-2.pdf) <sub>Ders Notları</sub> | Modeling, Laplace Transform & Partial Fractions | [PDF](dijital-notlar/Control-Systems-lecture-2.pdf) · 8 s. | [.tex](dijital-notlar/Control-Systems-lecture-2.tex) |
+| [Control Systems lecture 3](ders-notlari/Control-Systems-lecture-3.pdf) <sub>Ders Notları</sub> | Block Diagram & Signal Flow Graph | [PDF](dijital-notlar/Control-Systems-lecture-3.pdf) · 10 s. | [.tex](dijital-notlar/Control-Systems-lecture-3.tex) |
+| [Control Systems lecture 4](ders-notlari/Control-Systems-lecture-4.pdf) <sub>Ders Notları</sub> | Modeling: electrical systems, transfer function, state space | [PDF](dijital-notlar/Control-Systems-lecture-4.pdf) · 11 s. | [.tex](dijital-notlar/Control-Systems-lecture-4.tex) |
+| [Control Systems lecture 5](ders-notlari/Control-Systems-lecture-5.pdf) <sub>Ders Notları</sub> | State Space and 2nd Order Systems | [PDF](dijital-notlar/Control-Systems-lecture-5.pdf) · 15 s. | [.tex](dijital-notlar/Control-Systems-lecture-5.tex) |
+| [Control Systems lecture 6](ders-notlari/Control-Systems-lecture-6.pdf) <sub>Ders Notları</sub> | Transient / Steady State Response (1st & 2nd order) | [PDF](dijital-notlar/Control-Systems-lecture-6.pdf) · 9 s. | [.tex](dijital-notlar/Control-Systems-lecture-6.tex) |
+| [Control Systems lecture 7](ders-notlari/Control-Systems-lecture-7.pdf) <sub>Ders Notları</sub> | 2nd/higher order systems, time-domain specs | [PDF](dijital-notlar/Control-Systems-lecture-7.pdf) · 11 s. | [.tex](dijital-notlar/Control-Systems-lecture-7.tex) |
+| [Control Systems lecture 8](ders-notlari/Control-Systems-lecture-8.pdf) <sub>Ders Notları</sub> | Stability, Routh Criterion, Control Actions | [PDF](dijital-notlar/Control-Systems-lecture-8.pdf) · 13 s. | [.tex](dijital-notlar/Control-Systems-lecture-8.tex) |
+| [Control Systems lecture 9](ders-notlari/Control-Systems-lecture-9.pdf) <sub>Ders Notları</sub> | Accuracy of Systems: Steady-State Error (Ders 9) | [PDF](dijital-notlar/Control-Systems-lecture-9.pdf) · 10 s. | [.tex](dijital-notlar/Control-Systems-lecture-9.tex) |
+| [Control Systems lecture 10](ders-notlari/Control-Systems-lecture-10.pdf) <sub>Ders Notları</sub> | Root Locus | [PDF](dijital-notlar/Control-Systems-lecture-10.pdf) · 7 s. | [.tex](dijital-notlar/Control-Systems-lecture-10.tex) |
+| [Control Systems lecture 11](ders-notlari/Control-Systems-lecture-11.pdf) <sub>Ders Notları</sub> | Root Locus (devam) | [PDF](dijital-notlar/Control-Systems-lecture-11.pdf) · 9 s. | [.tex](dijital-notlar/Control-Systems-lecture-11.tex) |
+| [Control Systems lecture 12](ders-notlari/Control-Systems-lecture-12.pdf) <sub>Ders Notları</sub> | Positive feedback root locus, lead/lag compensators | [PDF](dijital-notlar/Control-Systems-lecture-12.pdf) · 13 s. | [.tex](dijital-notlar/Control-Systems-lecture-12.tex) |
+| [Solution 1](final-calismasi/Solution-1.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması – Çözüm 1 | [PDF](dijital-notlar/final-calismasi-Solution-1.pdf) · 6 s. | [.tex](dijital-notlar/final-calismasi-Solution-1.tex) |
+| [Notes 2](final-calismasi/Notes-2.pdf) <sub>Final/Vize Çalışması</sub> | Kök yer eğrisi ve kompanzatör tasarımı soruları | [PDF](dijital-notlar/final-calismasi-Notes-2.pdf) · 5 s. | [.tex](dijital-notlar/final-calismasi-Notes-2.tex) |
+| [Notes 3](final-calismasi/Notes-3.pdf) <sub>Final/Vize Çalışması</sub> | Kalıcı hal hatası ve kapalı çevrim aktarım fonksiyonu | [PDF](dijital-notlar/final-calismasi-Notes-3.pdf) · 2 s. | [.tex](dijital-notlar/final-calismasi-Notes-3.tex) |
+| [Chapter 7 Examples](final-calismasi/Chapter-7-Examples.pdf) <sub>Final/Vize Çalışması</sub> | Chapter 7 Examples: Steady-State Error Problems | [PDF](dijital-notlar/final-calismasi-Chapter-7-Examples.pdf) · 7 s. | [.tex](dijital-notlar/final-calismasi-Chapter-7-Examples.tex) |
+| [Final cozum](final-calismasi/Final-cozum.pdf) <sub>Final/Vize Çalışması</sub> | Final çalışması çözümleri (Routh, hata, kök yer eğrisi) | [PDF](dijital-notlar/final-calismasi-Final-cozum.pdf) · 7 s. | [.tex](dijital-notlar/final-calismasi-Final-cozum.tex) |
+| [Notes](final-calismasi/Notes.pdf) <sub>Final/Vize Çalışması</sub> | Kök yer eğrileri (final çalışması) | [PDF](dijital-notlar/final-calismasi-Notes.pdf) · 13 s. | [.tex](dijital-notlar/final-calismasi-Notes.tex) |
 
 ## Final/Vize Çalışması
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Solution 1](final-calismasi/Solution-1.pdf) | PDF | 9 s. · 14,1 MB |
-| [Notes 2](final-calismasi/Notes-2.pdf) | PDF | 8 s. |
-| [Notes 3](final-calismasi/Notes-3.pdf) | PDF | 2 s. |
-| [Chapter 7 Examples](final-calismasi/Chapter-7-Examples.pdf) | PDF | 7 s. |
-| [Final cozum](final-calismasi/Final-cozum.pdf) | PDF | 7 s. |
-| [Final notu](final-calismasi/Final-notu.pdf) | PDF | 2 s. |
-| [Final](final-calismasi/Final.pdf) | PDF | 2 s. |
-| [Notes](final-calismasi/Notes.pdf) | PDF | 13 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Solution 1](final-calismasi/Solution-1.pdf) | PDF | 9 s. · 14,1 MB | [PDF](dijital-notlar/final-calismasi-Solution-1.pdf) |
+| [Notes 2](final-calismasi/Notes-2.pdf) | PDF | 8 s. | [PDF](dijital-notlar/final-calismasi-Notes-2.pdf) |
+| [Notes 3](final-calismasi/Notes-3.pdf) | PDF | 2 s. | [PDF](dijital-notlar/final-calismasi-Notes-3.pdf) |
+| [Chapter 7 Examples](final-calismasi/Chapter-7-Examples.pdf) | PDF | 7 s. | [PDF](dijital-notlar/final-calismasi-Chapter-7-Examples.pdf) |
+| [Final cozum](final-calismasi/Final-cozum.pdf) | PDF | 7 s. | [PDF](dijital-notlar/final-calismasi-Final-cozum.pdf) |
+| [Final notu](final-calismasi/Final-notu.pdf) | PDF | 2 s. |  |
+| [Final](final-calismasi/Final.pdf) | PDF | 2 s. |  |
+| [Notes](final-calismasi/Notes.pdf) | PDF | 13 s. | [PDF](dijital-notlar/final-calismasi-Notes.pdf) |
 
 ## Projeler
 
@@ -75,4 +91,4 @@ Bu projenin dosyaları GitHub deposundadır: [DC\_Motor\_Speed\_Control](https:/
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Control Systems (ELEC322)* — Semester 6, Spring 2023–24. Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design. This page lists: 12 lecture notes, 2 digital notes, 8 exam-prep files, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Control Systems (ELEC322)* — Semester 6, Spring 2023–24. Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design. This page lists: 12 lecture notes, 18 digital notes, 8 exam-prep files, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

@@ -4,14 +4,14 @@
 
 [Ana sayfa](../README.md) › 5. Dönem
 
-GTÜ Elektronik Mühendisliği 5. dönem dersleri: **7 ders**, 683 dosya, 56 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 5. dönem dersleri: **7 ders**, 787 dosya, 63 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
-| [**Analog Haberleşme**](Analog-Haberlesme/) | ELM361 | Fourier analizi, genlik modülasyonu (AM, DSB, SSB), açı modülasyonu (FM, PM), alıcı yapıları ve haberleşme sistemlerinde gürültü. | 12 ders notu · 4 uygulama notu · 21 dijital not · 10 çıkmış sınav · 8 sınav çalışması · 2 ödev · 2 proje |
+| [**Analog Haberleşme**](Analog-Haberlesme/) | ELM361 | Fourier analizi, genlik modülasyonu (AM, DSB, SSB), açı modülasyonu (FM, PM), alıcı yapıları ve haberleşme sistemlerinde gürültü. | 12 ders notu · 4 uygulama notu · 22 dijital not · 10 çıkmış sınav · 8 sınav çalışması · 2 ödev · 2 proje |
 | [**Elektromanyetik Alan Teorisi**](Alan-Teorisi/) | ELM341 | Vektör analizi, elektrostatik (Coulomb ve Gauss yasaları, potansiyel, sınır koşulları), manyetostatik ve Maxwell denklemleri. | 15 ders notu · 9 uygulama notu · 27 dijital not · 8 çıkmış sınav · 3 sınav çalışması · 1 proje |
-| [**Elektromekanik Enerji Dönüşümü**](Elektromekanik-Enerji-Donusumu/) | — | Manyetik devreler, transformatörler, elektromekanik enerji dönüşümü ilkeleri, DC ve AC makineler. | 1 sınav çalışması |
-| [**Elektronik II**](Elektronik-2/) | — | Çok katlı ve fark kuvvetlendiricileri, akım aynaları, frekans yanıtı, geri besleme ve çıkış katları. | 12 ders notu · 8 dijital not · 1 sınav çalışması |
+| [**Elektromekanik Enerji Dönüşümü**](Elektromekanik-Enerji-Donusumu/) | — | Manyetik devreler, transformatörler, elektromekanik enerji dönüşümü ilkeleri, DC ve AC makineler. | 1 dijital not · 1 sınav çalışması |
+| [**Elektronik II**](Elektronik-2/) | — | Çok katlı ve fark kuvvetlendiricileri, akım aynaları, frekans yanıtı, geri besleme ve çıkış katları. | 12 ders notu · 13 dijital not · 1 sınav çalışması |
 | [**Elektronik II Laboratuvarı**](Elektronik-2-Lab/) | ELEC337 | Tek BJT'li kuvvetlendiricilerin düşük ve yüksek frekans davranışı, LTspice simülasyonları, laboratuvar finali ve fark kuvvetlendiricisi projesi. | 3 lab · 1 proje |
 | [**Mikroişlemciler**](Mikroislemciler/) | ELEC334 | ARM Cortex-M0+ mimarisi ve STM32G0 mikrodenetleyicisi: Assembly ve C ile programlama, bellek ve çevre birimleri, kesmeler ve zamanlayıcılar. | 12 slayt · 3 çıkmış sınav · 3 ödev |
 | [**Mikroişlemciler Laboratuvarı**](Mikroislemciler-Lab/) | ELEC335 | STM32G0 (Nucleo) kartıyla Assembly ve C deneyleri (ör. GPIO, UART) ve laboratuvar raporları. | 5 lab · 1 kod dosyası |
@@ -22,14 +22,14 @@ GTÜ Elektronik Mühendisliği 5. dönem dersleri: **7 ders**, 683 dosya, 56 dij
 
 ## English
 
-**Semester 5 · Fall 2023–24** — 7 courses, 683 files, 56 digital notes. Click a course to see all of its files.
+**Semester 5 · Fall 2023–24** — 7 courses, 787 files, 63 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|
-| [**Analog Communication Systems**](Analog-Haberlesme/) | ELM361 | Fourier analysis, amplitude modulation (AM, DSB, SSB), angle modulation (FM, PM), receivers and noise in communication systems. | 12 lecture notes · 4 recitation notes · 21 digital notes · 10 past exams · 8 exam-prep files · 2 assignments · 2 projects |
+| [**Analog Communication Systems**](Analog-Haberlesme/) | ELM361 | Fourier analysis, amplitude modulation (AM, DSB, SSB), angle modulation (FM, PM), receivers and noise in communication systems. | 12 lecture notes · 4 recitation notes · 22 digital notes · 10 past exams · 8 exam-prep files · 2 assignments · 2 projects |
 | [**Electromagnetic Field Theory**](Alan-Teorisi/) | ELM341 | Vector analysis, electrostatics (Coulomb's and Gauss's laws, potential, boundary conditions), magnetostatics and Maxwell's equations. | 15 lecture notes · 9 recitation notes · 27 digital notes · 8 past exams · 3 exam-prep files · 1 project |
-| [**Electromechanical Energy Conversion**](Elektromekanik-Enerji-Donusumu/) | — | Magnetic circuits, transformers, principles of electromechanical energy conversion, DC and AC machines. | 1 exam-prep file |
-| [**Electronics II**](Elektronik-2/) | — | Multistage and differential amplifiers, current mirrors, frequency response, feedback and output stages. | 12 lecture notes · 8 digital notes · 1 exam-prep file |
+| [**Electromechanical Energy Conversion**](Elektromekanik-Enerji-Donusumu/) | — | Magnetic circuits, transformers, principles of electromechanical energy conversion, DC and AC machines. | 1 digital note · 1 exam-prep file |
+| [**Electronics II**](Elektronik-2/) | — | Multistage and differential amplifiers, current mirrors, frequency response, feedback and output stages. | 12 lecture notes · 13 digital notes · 1 exam-prep file |
 | [**Electronics Laboratory II**](Elektronik-2-Lab/) | ELEC337 | Low- and high-frequency behaviour of single-BJT amplifiers, LTspice simulations, the lab final and a differential-amplifier project. | 3 labs · 1 project |
 | [**Microprocessors**](Mikroislemciler/) | ELEC334 | ARM Cortex-M0+ architecture and the STM32G0 microcontroller: programming in assembly and C, memory and peripherals, interrupts and timers. | 12 slide decks · 3 past exams · 3 assignments |
 | [**Microprocessors Laboratory**](Mikroislemciler-Lab/) | ELEC335 | Assembly and C experiments on the STM32G0 Nucleo board (e.g. GPIO, UART) and lab reports. | 5 labs · 1 code file |

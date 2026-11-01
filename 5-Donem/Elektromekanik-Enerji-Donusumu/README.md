@@ -10,15 +10,25 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [5. Dönem](../README.md) · 2023–2024 Güz | — | Electromechanical Energy Conversion | 1 sınav çalışması |
+| [5. Dönem](../README.md) · 2023–2024 Güz | — | Electromechanical Energy Conversion | 1 dijital not · 1 sınav çalışması |
 
-**Bu sayfada:** [Final/Vize Çalışması](#finalvize-çalışması) · [Kaynak Kitaplar](#kaynak-kitaplar)
+**Bu sayfada:** [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması) · [Kaynak Kitaplar](#kaynak-kitaplar)
+
+## Dijital Notlar (LaTeX)
+
+El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: [latex-sablon](../../latex-sablon/README.md).
+
+> **Uyarı:** Dijital notlar, el yazısı notlardan Claude (Anthropic) yardımıyla oluşturulmuştur; yardımcı kaynak olarak hazırlanmıştır ve hata içerebilir. Orijinal notları ve resmi ders kaynaklarını esas alın.
+
+| Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
+|---|---|---|---|
+| [Final notu](final-calismasi/Final-notu.pdf) | Final notu – elektromekanik dönüşüm, DC ve asenkron makineler | [PDF](dijital-notlar/final-calismasi-Final-notu.pdf) · 15 s. | [.tex](dijital-notlar/final-calismasi-Final-notu.tex) |
 
 ## Final/Vize Çalışması
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Final notu](final-calismasi/Final-notu.pdf) | PDF | 2 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Final notu](final-calismasi/Final-notu.pdf) | PDF | 2 s. | [PDF](dijital-notlar/final-calismasi-Final-notu.pdf) |
 
 ## Kaynak Kitaplar
 
@@ -32,4 +42,4 @@ Derste kullanılan kaynaklar (kitapların kendisi telif hakları nedeniyle depod
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Electromechanical Energy Conversion* — Semester 5, Fall 2023–24. Magnetic circuits, transformers, principles of electromechanical energy conversion, DC and AC machines. This page lists: 1 exam-prep file. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Electromechanical Energy Conversion* — Semester 5, Fall 2023–24. Magnetic circuits, transformers, principles of electromechanical energy conversion, DC and AC machines. This page lists: 1 digital note, 1 exam-prep file. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

@@ -1,0 +1,407 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Root Locus (devam)}{Control-Systems-lecture-11.pdf}
+
+\section{Root locus}
+\sayfa{1}
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]},
+    blk/.style={draw, minimum width=11mm, minimum height=7mm, inner sep=1pt}]
+  \node (R) at (0,0) {\small $R(s)$};
+  \node[draw,circle,inner sep=0pt,minimum size=5mm] (S) at (1.8,0) {};
+  \draw (S.north west) -- (S.south east) (S.north east) -- (S.south west);
+  \node[blk] (K) at (3.7,0) {$k$};
+  \node[blk] (G) at (5.5,0) {$G(s)$};
+  \node (C) at (8.0,0) {\small $C(s)$};
+  \node[blk] (H) at (3.7,-1.6) {$H(s)$};
+  \draw[->] (R.east) -- (S.west);
+  \draw[->] (S.east) -- (K.west);
+  \draw[->] (K.east) -- (G.west);
+  \draw[->] (G.east) -- (C.west);
+  \draw (6.9,0) -- (6.9,-1.6);
+  \draw (6.9,-1.6) -- (H.east);
+  \draw[->] (H.west) -| (S.south);
+  \node[font=\scriptsize] at (1.05,0.3) {$+$};
+  \node[font=\scriptsize] at (2.1,-0.5) {$-$};
+\end{tikzpicture}
+\end{center}
+
+\[ \frac{C(s)}{R(s)}=\frac{k\,G(s)}{1+k\,G(s)H(s)} \]
+\[ 1+k\,G(s)H(s)=0 \;\Rightarrow\; G(s)H(s)=-\frac{1}{k} \qquad
+   \begin{array}{l}
+     \nearrow\ \text{mag: } |G(s)H(s)|=\dfrac{1}{k} \\[2mm]
+     \searrow\ \text{phase: } \angle\, G(s)H(s)=\pm180(2i+1),\ \ i=0,1,\ldots
+   \end{array} \]
+\[ \left\{\begin{array}{l}
+   k=0 \Rightarrow \text{poles of the OLTF} \\
+   k\uparrow\infty \Rightarrow \text{zero '' '' ''}
+\end{array}\right. \]
+
+\noindent
+\begin{minipage}[t]{0.45\linewidth}
+$n$: number of poles
+
+$m$: '' of zeros
+\end{minipage}\hfill
+\begin{minipage}[t]{0.5\linewidth}
+$\left\{\begin{array}{l} n:\ \text{branches} \\ n-m:\ \text{asymptotes} \end{array}\right.$
+\end{minipage}
+
+\[ \Phi=\frac{\pm180\,(2i+1)}{n-m} \]
+\[ \text{Centroid: } \frac{\sum\text{Real poles}-\sum\text{Real zeros}}{n-m} \]
+
+\subsection{5 - Complex conjugate poles}
+\noindent
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1.05cm, y=1.05cm]
+  \draw[->] (-4.0,0) -- (2.1,0) node[right] {\small Re};
+  \draw[->] (0,-1.5) -- (0,1.9) node[right] {\small Im};
+  \draw (-3.67,0) circle (2.5pt);
+  \foreach \px/\py in {-2.42/0, -1.22/0.62, -1.22/-0.58, 0/0} {
+    \draw (\px-0.1,\py-0.1) -- (\px+0.1,\py+0.1) (\px-0.1,\py+0.1) -- (\px+0.1,\py-0.1);
+  }
+  \fill[turuncukalem] (-1.67,0.95) circle (1pt) node[above left,font=\small] {$s$};
+  \draw[turuncukalem,dashed] (-3.67,0) -- (-1.67,0.95);
+  \draw[turuncukalem,dashed] (-2.42,0) -- (-1.67,0.95);
+  \draw[turuncukalem,dashed] (-1.22,0.62) -- (-1.67,0.95);
+  \draw[turuncukalem,dashed] (-1.22,-0.58) -- (-1.67,0.95);
+  \draw[turuncukalem,dashed] (0,0) -- (-1.67,0.95);
+  \draw[turuncukalem,dashed] (-1.22,0.62) -- (0,0.62);
+  \draw[turuncukalem,dashed] (-1.22,-0.58) -- (0,-0.58);
+  \draw[turuncukalem] (-3.22,0) arc (0:25.4:0.45);
+  \node[turuncukalem,font=\scriptsize] at (-3.0,0.28) {$\phi$};
+  \draw[turuncukalem] (-1.87,0) arc (0:51.7:0.55);
+  \node[turuncukalem,font=\scriptsize] at (-1.75,0.3) {$\theta_3$};
+  \draw[turuncukalem] (-0.82,0.62) arc (0:143.7:0.4);
+  \node[turuncukalem,font=\scriptsize] at (-0.7,0.9) {$\theta_1$};
+  \draw[turuncukalem] (0.45,0) arc (0:150.4:0.45);
+  \node[turuncukalem,font=\scriptsize] at (0.35,0.5) {$\theta_4$};
+  \draw[turuncukalem] (-0.82,-0.58) arc (0:106:0.4);
+  \node[turuncukalem,font=\scriptsize] at (-0.7,-0.3) {$\theta_2$};
+  \draw[turuncukalem,->] (-1.75,1.05) -- (-1.55,1.5) node[above,font=\scriptsize,align=center] {put\\trial point};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.47\linewidth}
+\small
+\[ \angle\text{trial point}=\phi_1-\theta_1-\theta_2-\theta_3-\theta_4=180 \]
+\[ \hookrightarrow\ \theta_1=180-\phi_1+\theta_2+\theta_3+\theta_4 \]
+\hspace*{1em}$\downarrow$ departure angle from C.C pole
+\end{minipage}
+
+\[ \theta_i=180-\sum\text{angles from the complex conjugate pole and other zero}\ +\sum\text{angles from }\text{\okunamadi{ditto marks}}\text{ pole} \]
+
+Departure angle from poles?
+
+\hspace*{1em}arrival angle '' zeros
+
+\sayfa{2}\noindent
+\begin{minipage}[c]{0.5\linewidth}
+\centering
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1cm, y=1cm]
+  \draw[->] (-3.9,0) -- (1.6,0);
+  \draw[->] (0,-1.5) -- (0,1.9);
+  \node[right,font=\small] at (0,1.21) {2};
+  \foreach \px/\py in {-3.65/0, -1.22/0, 0/0, -2.43/1.21, -2.43/-1.42} {
+    \draw (\px-0.1,\py-0.1) -- (\px+0.1,\py+0.1) (\px-0.1,\py+0.1) -- (\px+0.1,\py-0.1);
+  }
+  \node[below,font=\small] at (-3.65,-0.1) {$-3$};
+  \node[below,font=\small] at (-1.22,-0.1) {$-1$};
+  \draw[dashed] (-3.65,0) -- (-2.43,1.21);
+  \draw[dash dot] (-1.22,0) -- (-2.43,1.21);
+  \draw[dashed] (0,0) -- (-2.43,1.21);
+  \draw[dash dot] (-2.43,1.21) -- (0,1.21);
+  \draw[dashed] (-2.43,1.21) -- (-2.43,-1.42);
+  \draw[dashed] (-2.43,-1.42) -- (0,-1.42);
+  \draw[turuncukalem] (-3.2,0) arc (0:44.7:0.45);
+  \node[turuncukalem,font=\scriptsize] at (-3.2,0.42) {$\phi_1$};
+  \draw[turuncukalem] (-0.82,0) arc (0:135:0.4);
+  \node[turuncukalem,font=\scriptsize] at (-0.75,0.5) {$\theta_3$};
+  \draw[turuncukalem] (0.4,0) arc (0:153.5:0.4);
+  \node[turuncukalem,font=\scriptsize] at (0.35,0.5) {$\theta_2$};
+  \draw[turuncukalem] (-2.03,-1.42) arc (0:90:0.4);
+  \node[turuncukalem,font=\scriptsize] at (-1.8,-0.95) {$\theta_4$};
+  \draw[turuncukalem] (-2.03,1.21) arc (0:135:0.4);
+  \draw[turuncukalem,->] (-2.43,1.21) -- (-2.7,1.55);
+  \node[turuncukalem,font=\scriptsize] at (-2.0,1.65) {$\theta_1$};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.46\linewidth}
+\small
+\[\begin{aligned}
+ \theta_1 &= 180-\phi_1+\theta_2+\theta_3+\theta_4 \\
+ &= 180-\underline{\tan^{-1}\!\left(\tfrac{2}{1}\right)}+\tan^{-1}\!\left(\tfrac{2}{-2}\right) \\
+ &\quad +\tan^{-1}\!\left(\tfrac{2}{-1}\right)+90^\circ
+\end{aligned}\]
+(arrow from the underlined term:) $\pi-\tan^{-1}\!\left(\tfrac{2}{1}\right)$
+\end{minipage}
+
+\sekilnotu[2]{Root-locus sketch (Im up, Re right). On the real axis, left to right: an o (zero), an x, an x and an x at the origin. Two complex zeros (o) above and below the real axis, with real part between the first and second x; the upper one is labelled ``s'' in red (trial point). Orange dashed lines run from the upper complex zero to the other zeros and poles, with angles marked: $\phi_3$ at the leftmost zero, $\theta_3$ at the first x, $\theta_2$ at the second x, $\theta_1$ at the origin, and $\phi_2$ at the lower complex zero. Blue: thick real-axis segments from the leftmost zero to the first x (arrow pointing left) and from the second x to the origin, plus a blue loop with arrows from the upper complex zero, crossing the real axis between the second x and the origin, down to the lower complex zero.}
+
+\[\begin{aligned}
+ &\phi_1+\phi_2+\phi_3-\theta_1-\theta_2-\theta_3=180 \\
+ &\phi_1=180-\phi_2-\phi_3+\theta_1+\theta_2+\theta_3 \\
+ &\ =180-\sum\text{angles from the trial point (cc zero) to other zeros} \\
+ &\ \ +\sum\ \text{'' \quad '' \quad '' \quad --- \quad poles}
+\end{aligned}\]
+
+\subsection{Step 6 \quad Intersection with the $j\omega$ axis}
+I) \quad $s=\mbox{\tikz[baseline=(X.base)]{\node[inner sep=0pt](X){$\sigma$};\draw[line width=0.8pt] (X.south west) -- (X.north east);\node[above right,font=\scriptsize,inner sep=0pt] at (X.north east) {0};}}\,+j\omega$ \hfill substitute $s=j\omega$ in the characteristic
+
+\[\begin{aligned}
+ & s^2+2s+6=0 \\
+ & s^2+2s+k=0 \\
+ & (j\omega)^2+2j\omega+k=0 \\
+ & -\omega^2+2j\omega+k=0
+\end{aligned}
+\qquad\Rightarrow\qquad
+\begin{array}{r}\text{Im}\\[3mm] \text{Re}\end{array}
+\left\{\begin{array}{l} 2\omega=0 \\ k-\omega^2=0 \end{array}\right.
+\ \Rightarrow\ \left\{\begin{array}{l} \omega=0 \\ k=\omega^2=0 \end{array}\right. \]
+\[ s^3+2s^2+3s+6+k=0 \]
+\sekilnotu[2]{Small sketch: Im and Re axes with a circular arc in the left half-plane that meets the Im axis above and below the origin and crosses the negative real axis; arrowheads at both Im-axis ends of the arc, each with a short straight segment continuing toward the right half-plane.}
+
+\sayfa{3}II) characteristic eq
+
+\hspace*{2em}Routh table
+
+\hspace*{2em}if one of the components of the first column is zero
+
+\hspace*{2em}$\star$ make one full row zero!
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=0.9cm, y=0.9cm]
+  \draw[->] (-3.75,0) -- (2.3,0);
+  \draw[->] (0,-1.4) -- (0,2.45);
+  \foreach \px in {-3.7,-1.22,0} {
+    \draw (\px-0.1,-0.1) -- (\px+0.1,0.1) (\px-0.1,0.1) -- (\px+0.1,-0.1);
+  }
+  \draw (-2.45,0) circle (2.5pt);
+  \draw (-1.85,1.18) circle (2pt);
+  \draw (-1.8,-1.17) circle (2pt);
+  \draw[turuncukalem,->] (-3.6,0.02) -- (-2.55,0.02);
+  \draw[turuncukalem] (-1.15,0) -- (-0.1,0);
+  \draw[turuncukalem,<->] (-0.62,-0.2) -- (-0.62,0.2);
+  \draw[turuncukalem,->] (-1.7,1.35) -- (-1.82,1.22);
+  \draw[turuncukalem,->] (-1.65,-1.35) -- (-1.78,-1.22);
+  \fill[morkalem] (-0.4,0.8) circle (1pt);
+  \draw[morkalem,->] (-0.35,0.82) -- (0.1,0.95);
+  \node[morkalem,font=\small,align=left,right] at (0.1,0.95) {put trial\\point};
+  \node[morkalem,font=\small,align=left,right] at (2.9,1.25) {satisfy the phase\\[1mm] 190 $\curvearrowleft$\\[1mm] 170 $\downarrow$};
+\end{tikzpicture}
+\end{center}
+
+or $s=\sigma+j\omega$
+
+\textcolor{kirmizikalem}{So Step 7- Find the location of root locus of the complex poles!}
+
+Method I) do numerical trial \& error to discover the locations of `$s$' which satisfy the phase condition
+
+Method II) \quad Substitute $s$ as $s=\sigma+j\omega$ in the characteristic equation and mathematically find the phase condition.
+
+\[ 1+k\,G(s)H(s)=0 \]
+\[ G(s)H(s)=-\frac{1}{k} \]
+\[ \hookrightarrow\ \text{mag} = |G(s)H(s)| = \frac{1}{k} \]
+\[ \hookrightarrow\ \text{phase: } \angle\, G(s)H(s) = 180(2i+1) \]
+
+\sekilnotu[3]{Root-locus sketch for an example with $n=2$, $m=2$ (red note at the left). Real axis, left to right: o, o, x, x (the right-hand x on the Im axis). Thick red segments between the two o's (with a red x mark and small arrows at the break-in point, labelled ``break in'') and between the two x's (with red up/down arrows at the break-out point, labelled ``Break out'' plus a short illegible note). A large orange circle passes through the break-in and break-out points. Orange labels: ``$k=\infty$'' at the second o, ``$k=0$'' at both x's, ``$k=100$'' with an arrow at a point on the upper right of the circle, ``$k\uparrow$'' with an arrow near the break-out point; a dashed orange line rises from the left x to the circle and continues as a dashed line to the Im axis.}
+
+\sayfa{4}$\displaystyle |G(s)H(s)| = \frac{\prod_{i=1}^{m} l_i}{\prod_{j=1}^{n} l_j}$
+
+$l_i, l_j$: magnitudes of individual complex function in numerator and denominator
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]},
+    blk/.style={draw, minimum width=3.2cm, minimum height=0.9cm, inner sep=2pt}]
+  \node (R) at (0,0) {\small $R(s)$};
+  \node[draw,circle,inner sep=0pt,minimum size=5mm] (S) at (1.5,0) {};
+  \draw (S.north west) -- (S.south east) (S.north east) -- (S.south west);
+  \node[blk] (G) at (4.3,0) {$\dfrac{k}{s(s+1)(s+2)}$};
+  \node (C) at (7.4,0) {\small $C(s)$};
+  \draw[->] (R.east) -- (S.west);
+  \draw[->] (S.east) -- (G.west);
+  \draw[->] (G.east) -- (C.west);
+  \draw (6.1,0) -- (6.1,-1.2);
+  \draw[->] (6.1,-1.2) -| (S.south);
+  \node[font=\scriptsize] at (0.95,0.3) {$+$};
+\end{tikzpicture}
+\end{center}
+
+\noindent
+\begin{minipage}[t]{0.5\linewidth}
+-plot the root locus
+
+-tune $k$ so that $\zeta=0.5$ for the dominant poles
+
+\medskip
+$\left\{\begin{array}{l} n=3 \\ m=0 \end{array}\right.$ \qquad $\left\{\begin{array}{l} \text{3 branches} \\ \text{3 asymptotes} \end{array}\right.$
+\end{minipage}\hfill
+\begin{minipage}[t]{0.46\linewidth}
+\textcolor{kirmizikalem}{$\angle\, G(s)H(s)=180(2i+1)$}
+
+\textcolor{kirmizikalem}{$-\angle s-\angle s{+}1-\angle s{+}2=$ total phase}
+\end{minipage}
+
+\sekilnotu[4]{Root-locus sketch for $G(s)=k/(s(s+1)(s+2))$ (right side of the page). Poles (x) at $-2$, $-1$ and $0$ (labels ``$-2$'', ``$-1$''); thick red segment on the real axis to the left of $-2$ (arrow pointing left) and between $-1$ and $0$. Orange branches leave the real axis between $-1$ and $0$ and cross the Im axis at $\pm j\sqrt{2}$ (orange labels ``$j\sqrt2$'', ``$-j\sqrt2$'', note ``$k=6$''). Red dash-dot asymptote lines labelled ``$\sigma+1-\frac{\omega}{\sqrt3}=0$'' (upper) and ``$\sigma+1+\frac{\omega}{\sqrt3}=0$'' (lower); blue labels ``$j\sqrt3$'' and ``$-j\sqrt3$'' with arrows to the points where they cross the Im axis. Purple lines/arcs around the dominant-pole region near the origin.}
+
+\[ \text{angles of asymptotes} = \frac{\pm180(2i+1)}{n-m} = \pm60(2i+1)
+   \quad \begin{array}{l} \to 60 \\ \to -60 \\ \searrow 180 \end{array} \]
+\[ \text{Centroid: } \frac{\sum\text{real part of poles}-\sum\text{real parts of zeros}}{n-m} = \frac{0-1-2-0}{3} = -1 \]
+
+$s\nearrow\infty$ \qquad $s\approx s+1\approx s+2$
+\[ G(s)=\frac{k}{s(s+1)(s+2)} = \frac{k}{s^3+3s^2+2s} \approx \frac{k}{s^3+3s^2+3s+1} \]
+
+for large $s$ values
+
+Approximate \quad $\bar{G}(s)\approx\dfrac{k}{(s+1)^3}$
+\[\begin{aligned}
+ \angle\bar{G}(s) &= -3\angle s{+}1 = \pm180(2i+1) \\
+ \Rightarrow\ \underline{\angle(s{+}1)} &= -60(2i+1)
+\end{aligned}\]
+\[ s=\sigma+j\omega \Rightarrow \angle(\sigma+j\omega+1) \approx \tan^{-1}\!\left(\frac{\omega}{\sigma+1}\right) = \pm60(2i+1)
+   \quad \begin{array}{l} \to -60 \\ \to 60 \\ \searrow 180 \end{array} \]
+\[ \tan^{-1}\!\left(\frac{\omega}{\sigma+1}\right)=\pm60,\,180 \]
+
+\sayfa{5}{\small tan} $\downarrow$
+\[ \frac{\omega}{\sigma+1}=\ \begin{array}{l} \to \tan(60)=\sqrt3 \\ \to \tan(-60)=-\sqrt3 \\ \to \tan(180)=0 \end{array} \]
+\[ \Rightarrow\ \left\{\begin{array}{l} \omega=\sqrt3\,(\sigma+1) \\ \omega=-\sqrt3\,(\sigma+1) \\ \omega=0 \end{array}\right. \qquad \text{asymptote equation} \]
+
+The characteristic equ.
+\[ 1+\frac{k}{s(s+1)(s+2)}=0 \]
+\[ \Rightarrow\ \frac{s(s+1)(s+2)+k}{s(s+1)(s+2)}=0 \;\Rightarrow\; k=-s(s+1)(s+2) \]
+\[ \frac{dk}{ds}=0 \;\Rightarrow\; 3s^2+6s+2=0 \;\Rightarrow\;
+   \left\{\begin{array}{l}
+     s_1=-0{,}42 \quad \checkmark \quad \text{\small is acceptable between 0 and -1} \\
+     s_2=-1{,}57 \quad \okunamadi{$\times$}
+   \end{array}\right. \]
+\[ \left\{\begin{array}{ll} k(s_1)>0 & \checkmark \\ k(s_2)<0 & \times \end{array}\right. \]
+
+Intersection with $j\omega$ axis
+
+$s^3+3s^2+2s+k=0$ \qquad $k>0$
+
+\medskip
+\noindent
+\begin{minipage}[t]{0.4\linewidth}
+\[ \begin{array}{l@{\qquad}l@{\qquad}l}
+ s^3 & 1 & 2 \\
+ s^2 & 3 & k \\
+ s & \dfrac{6-k}{3} & 0 \\
+ s^0 & k &
+\end{array} \]
+\end{minipage}\hfill
+\begin{minipage}[t]{0.56\linewidth}
+$6-k=0 \Rightarrow k=0$\footnote{Claude's note: probably $k=6$.}
+
+\medskip
+Auxilary equation
+
+$3s^2+k=0$
+
+Roots of this equation are some of the roots for the characteristic equation
+
+$3s^2+6=0 \Rightarrow s^2=-2 \Rightarrow s_{1,2}=\pm j\sqrt2$
+\end{minipage}
+
+\medskip
+\noindent\textcolor{turuncukalem}{$k<6$} \hspace{6em} $0\le k\le 6$
+
+\sayfa{6}\[ \zeta=0{,}5 \qquad \theta=\cos^{-1}\zeta=\cos^{-1}0{,}5 \qquad
+   \frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2},\ \ \zeta=\,? \]
+
+\begin{center}
+\begin{tikzpicture}[murekkep, line width=0.7pt, >={Stealth[length=2mm]}, x=1.3cm, y=1.3cm]
+  \draw[->] (-2.3,0) -- (2.2,0) node[right,font=\small] {$\zeta\omega_n$};
+  \draw[->] (0,-1.2) -- (0,1.9) node[right,font=\small] {$\omega_d=\omega_n\sqrt{1-\zeta^2}$};
+  \draw[<->] (0,0) -- (-1.22,0.56) node[midway,above right,font=\scriptsize] {$\omega_n$};
+  \draw[dashed] (-1.22,0.56) -- (-1.22,0);
+  \node[left,font=\scriptsize] at (-1.22,0.28) {$\omega_d$};
+  \draw[<->] (-1.22,-0.2) -- (0,-0.2) node[midway,below,font=\scriptsize] {$\zeta\omega_n$};
+\end{tikzpicture}
+\end{center}
+\[ \cos\theta=\frac{\zeta\omega_n}{\omega_n}=\zeta \qquad\quad \theta=\cos^{-1}\zeta \]
+
+\[ \frac{k}{s(s+1)(s+2)} \]
+\[\begin{aligned}
+ s &= \sigma+j\omega \\
+ G(s) &= -\angle s-\angle s{+}1-\angle s{+}2=180(2i+1) \\
+ &= -\angle\sigma{+}j\omega-\angle\sigma{+}1{+}j\omega-\angle\sigma{+}2{+}j\omega= \\
+ &= -\tan^{-1}\!\left(\frac{\omega}{\sigma}\right)-\tan^{-1}\!\left(\frac{\omega}{\sigma+1}\right)-\tan^{-1}\!\left(\frac{\omega}{\sigma+2}\right)=180(2i+1)
+\end{aligned}\]
+\[ \Rightarrow\ \underline{-\tan^{-1}\!\left(\frac{\omega}{\sigma}\right)-\tan^{-1}\!\left(\frac{\omega}{\sigma+1}\right)}
+   =\underline{\tan^{-1}\!\left(\frac{\omega}{\sigma+2}\right)+180(2i+1)} \]
+\textcolor{kirmizikalem}{$\star$} \ $\tan(x\pm y)=\dfrac{\tan x\pm\tan y}{1\mp\tan x\tan y}$
+\[ =\frac{\tan\!\left(\tan^{-1}\frac{\omega}{\sigma}\right)+\tan\!\left(\tan^{-1}\frac{\omega}{\sigma+1}\right)}
+        {1-\tan\!\left(\tan^{-1}\frac{\omega}{\sigma}\right)\tan\!\left(\tan^{-1}\frac{\omega}{\sigma+1}\right)} \]
+\[ =\frac{\tan\!\left(\tan^{-1}\frac{\omega}{\sigma+2}\right)+0}{1-\tan\!\left(\tan^{-1}\frac{\omega}{\sigma+2}\right)\times0} \]
+\[ \Rightarrow\ \left(\frac{\dfrac{\omega}{\sigma}+\dfrac{\omega}{\sigma+1}}
+   {\underset{\textcolor{kirmizikalem}{\beta}}{\kutula{1-\left(\dfrac{\omega}{\sigma}\right)\left(\dfrac{\omega}{\sigma+1}\right)}}}
+   =\frac{\omega}{\sigma+2}\right)\textcolor{kirmizikalem}{\beta} \]
+
+
+\sayfa{7}
+\[ \frac{k\,G(s)}{1+k\,G(s)H(s)=0} \]
+\[ |G(s)H(s)| = \frac{1}{k} \]
+
+\noindent checking the magnitude condition at \okunamadi{$s=s_1$}
+
+\elcizimi[0.62]{sekiller/Control-Systems-lecture-11-s7-1.png}[7]
+
+\[ G(s) = \text{OLTF} = \frac{k(s+2)}{s^2+2s+3} \]
+\[ z_1=-2 \qquad p_{1,2} = -1\mp j\sqrt{2} \]
+
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-11-s7-2.png}[7]
+
+{\color{kirmizikalem}
+\noindent $n$ = number of poles $=2$
+
+\noindent $m$ = \,'' \,'' \,zeroes $=1$
+\[ \text{centroid} = \frac{\sum \text{real of poles} - \sum \text{real of zero}}{1} \]
+\[ = \frac{-1-1-(-2)}{1} = 0 \]}
+
+\noindent break in point:
+\[ 1+\frac{k(s+2)}{s^2+2s+3} = 0 \]
+\[ k = -\frac{s^2+2s+3}{s+2} \]
+\[ \frac{dk}{ds}=0 \Rightarrow \checkmark\ \begin{cases} s_1=-0{,}268 & \times \\ s_2=-3{,}732 & \checkmark\ \text{acceptable} \end{cases} \]
+\[ \phi_1-\theta_1-\theta_2 = 180 \]
+\[ -\theta_1 = 180-\phi_1+\theta_2 \]
+
+\sayfa{8}
+\noindent Departure angles from complex poles
+\[ \theta_1 = 180-90+55 = 145^\circ \]
+\noindent for the complex conjugate pair the department angle is $145^\circ$
+\[ \angle(s{+}2)-\angle(s^2{+}2s{+}3)=180(2i+1) \]
+\[ s=\sigma+j\omega \]
+\[ \angle(s{+}2)-\angle(s{+}1{-}j\sqrt2)-\angle(s{+}1{+}j\sqrt2)=180(2i+1) \]
+\[ \tan^{-1}\!\left(\frac{\omega}{\sigma+2}\right)-\tan^{-1}\!\left(\frac{\omega-\sqrt2}{\sigma+1}\right)-\tan^{-1}\!\left(\frac{\omega+\sqrt2}{\sigma+1}\right)=180(2i+1) \]
+\[ \tan\!\left[\tan^{-1}\!\tfrac{\omega}{\sigma+2}-\tan^{-1}\!\tfrac{\omega-\sqrt2}{\sigma+1}=\tan^{-1}\!\tfrac{\omega+\sqrt2}{\sigma+1}+180(2i+1)\right] \]
+\[ \frac{2\omega(\sigma+1)}{(\sigma+1)^2-(\omega^2-2)}=\frac{\omega}{\sigma+2}\ \Rightarrow\ \omega\left[(\sigma+2)^2+\omega^2-3\right]=0 \]
+
+\noindent if $\omega=0$
+
+\noindent if $(\sigma+2)^2+\omega^2=(\sqrt{3})^2$ \\
+\hspace*{2.5em}$(-2,0)$ \quad radius $=\sqrt{3}$
+
+\noindent and $(x-x_0)^2+(y-y_0)^2=R^2$ \\
+\hspace*{2.5em}circle \\
+\hspace*{2.5em}$(x_0,y_0)$, radius $R$
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-11-s8-1.png}[8]
+
+\[ \frac{k\,G(s)}{1+k\,G(s)H(s)} \]
+\elcizimi[0.45]{sekiller/Control-Systems-lecture-11-s8-2.png}[8]
+\[ \bar{G}(s)=\left(\frac{s+1{,}4}{s+6}\right)\left(\frac{10(s+10)}{s(s+1)(s+10+10k)}\right) \]
+
+\sayfa{9}
+\noindent Characteristic eq
+\[ 1+\bar{G}(s)=0 \]
+\[ \frac{(s+6)\,s(s+1)(s+10+10k)+(s+1{,}4)\,10\,(s+10)}{\beta}=0 \]
+\[ \Rightarrow\ \underbrace{s(s+1)(s+6)(s+10)}_{\alpha_1}+10k\,s(s+1)(s+6)+\underbrace{10(s+1{,}4)(s+10)}_{\alpha_2}\quad (s+10)=0 \]
+\[ 1+k\,\frac{10\,s(s+1)(s+6)}{s(s+1)(s+6)(s+10)+10(s+1{,}4)(s+10)}=0 \]
+\[ z_1=0 \quad z_2=-1 \quad z_3=-6 \]
+\[ p_1=-10,\quad p_2=-3{,}69,\quad p_{3,4}=-1{,}65\pm\text{\okunamadi{1,02}}\,j \]
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-11-s9-1.png}[9]
+
+\end{document}

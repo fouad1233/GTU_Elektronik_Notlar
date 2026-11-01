@@ -1,0 +1,240 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{2nd/higher order systems, time-domain specs}{Control-Systems-lecture-7.pdf}
+
+\sayfa{1}
+\section{In second order eq}
+\[ G(s)=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2} \]
+\[ s^2+2\zeta\omega_n s+\omega_n^2=0\quad
+\begin{cases}
+\zeta<1\ \to\ s_{1,2}=\text{complex conjugates}\\
+\zeta=1\ \to\ s_{1,2}=\text{repeated poles and real}\\
+\zeta>1\ \to\ s_{1,2}=\text{distinct real roots}
+\end{cases} \]
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-7-s1-1.png}[1]
+\begin{align*}
+\omega_d&=\omega_n\sqrt{1-\zeta^2}\\
+s_{1,2}&=-\zeta\omega_n\pm j\omega_d
+\end{align*}
+\[ e^{-\zeta\omega_n t}\Bigl(\cos\omega_d t+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\Bigr) \]
+
+\section{Higher order Systems}
+\[ \frac{X(s)}{U(s)}=\frac{\overbrace{b_0 s^m+b_1 s^{m-1}+b_2 s^{m-2}+\cdots+b_m}^{\text{zeros of the system}}}{\underbrace{s^n+a_1 s^{n-1}+a_2 s^{n-2}+\cdots+a_n}_{\text{poles of the system}}}\qquad m<n \]
+\[ X(s)=\ \text{''}\ U(s) \]
+Step inputs are mostly used in analysis.
+
+If the poles are real and distinct
+\[ \frac{X(s)}{U(s)}=\frac{r_1}{s+p_1}+\frac{r_2}{s+p_2}+\cdots+\frac{r_n}{s+p_n}=\sum_{i=1}^{n}\frac{r_i}{s+p_i} \]
+\[ \overbrace{r_i}^{\text{residual}}=(s+p_i)\,\frac{X(s)}{U(s)}\Bigg|_{s=-p_i} \]
+\[ X(s)=U(s)\sum_{i=1}^{n}\frac{r_i}{s+p_i} \]
+If $U(s)$ is unity (impulse)
+\[ \Rightarrow\ x(t)=\sum r_i\,e^{-p_i t} \]
+
+\sayfa{2}
+If $U(s)=\dfrac{1}{s}$
+\[ X(s)=\frac{1}{s}\left(\frac{b_0 s^m+\cdots+b_m}{s^n+a_1 s^{n-1}+\cdots+a_n}\right) \]
+\[ =\frac{r_0}{s}+\frac{r_1}{s+p_1}+\frac{r_2}{s+p_2}+\cdots+\frac{r_n}{s+p_n} \]
+\[ \Rightarrow\ x(t)=a_0+\sum_{i=1}^{n} r_i\,e^{-p_i t} \]
+
+if poles are not all real valued
+
+for $U(s)=\dfrac{1}{s}$
+\[ X(s)=\frac{a_0}{s}+\sum_{j=1}^{q}\frac{a_j}{s+p_j}+\sum_{k=1}^{r}\frac{b_k(s+\zeta_k\omega_{n_k})+c_k\,\omega_{d_k}}{s^2+2\zeta_k\omega_{n_k}s+\omega_{n_k}^2} \]
+`q' poles are real valued
+
+`2r' poles are complex valued
+\[ q+2r=n \]
+\begin{align*}
+x(t)=a_0+\sum_{j=1}^{q}a_j\,e^{-p_j t}&+\sum_{k=1}^{r}b_k\,e^{-\zeta_k\omega_{n_k}t}\cos\omega_{d_k}t\\
+&+\sum_{k=1}^{r}c_k\,e^{-\zeta_k\omega_{n_k}t}\sin\omega_{d_k}t
+\end{align*}
+\[ \omega_{d_k}=\omega_{n_k}\sqrt{1-\zeta_k^2} \]
+
+if $z_1=p_1\Rightarrow r=0$
+
+zero and pole cancelation
+
+if poles go most further to the $j\omega$ axis the residues decrease
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-7-s2-1.png}[2]
+
+what we need
+\begin{itemize}[label={},leftmargin=2em]
+\item Stability
+\item Accuracy (error)
+\item Quality of response
+\end{itemize}
+
+\sayfa{3}
+\section{Quality of response}
+$\to$ it focus on how we get to the steady state response
+
+\& later we'll be covering accuracy and stability of response as well.
+
+\elcizimi[0.45]{sekiller/Control-Systems-lecture-7-s3-1.png}[3]
+
+\elcizimi[0.85]{sekiller/Control-Systems-lecture-7-s3-2.png}[3]
+
+\[ \text{damping : Re}:\ \zeta\omega_n=\sigma\quad(\text{sigma}) \]
+\[ \text{Freq : Im}:\ \omega_n\sqrt{1-\zeta^2}=\omega_d \]
+
+$\zeta=1$ critically damped case
+
+settles down (gets to the final response) in the minimum amount of time
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-7-s3-3.png}[3]
+
+\sayfa{4}
+$\zeta<1$ : time needed to get from 0\% to 100\%
+
+$\zeta>1$ : \textquotedblright\ \textquotedblright\ \textquotedblright\ \textquotedblright\ \textquotedblright\ 10\% to 90\%
+
+rise time $(t_r)$
+\[ c(t)=1-e^{-\zeta\omega_n t}\Bigl(\cos\omega_d t+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\Bigr) \]
+\begin{align*}
+1&=1-\underbrace{e^{-\zeta\omega_n t_r}\Bigl(\cos\omega_d t_r+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t_r\Bigr)}_{0}\\
+&\Rightarrow\ \cos\omega_d t_r+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t_r=0
+\end{align*}
+$e^{-\zeta\omega_n t_r}$ can not be zero in finite time
+
+only when $t_r\to\infty\ \to\ e^{-\zeta\omega_n t_r}\to 0$
+\begin{align*}
+&1+\frac{\zeta}{\sqrt{1-\zeta^2}}\tan\omega_d t_r=0\\
+&\tan\omega_d t_r=\frac{-\sqrt{1-\zeta^2}}{\zeta}\\
+&\Rightarrow\ \omega_d t_r=\tan^{-1}\Bigl(\frac{-\sqrt{1-\zeta^2}}{\zeta}\Bigr)\\
+&\Rightarrow\ t_r=\frac{1}{\omega_d}\tan^{-1}\Bigl(\frac{-\omega_n\sqrt{1-\zeta^2}}{\omega_n\zeta}\Bigr)\\
+&=\frac{1}{\omega_d}\tan^{-1}\Bigl(\frac{\omega_d}{-\sigma}\Bigr)\\
+&=\frac{\pi-\beta}{\omega_d}=t_r
+\end{align*}
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-7-s4-1.png}[4]
+\begin{align*}
+l^2&=(\zeta\omega_n)^2+\omega_n^2(1-\zeta^2)\\
+l^2&=\omega_n^2
+\end{align*}
+\[ \cos\beta=\frac{\zeta\omega_n}{\omega_n}=\zeta \]
+\[ \beta=\cos^{-1}\zeta \]
+
+peak time $(t_p)$:
+\[ \frac{dc}{dt}=0 \]
+\begin{align*}
+&\zeta\omega_n e^{-\zeta\omega_n t_p}\Bigl(\cos\omega_d t_p+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t_p\Bigr)\\
+&-e^{-\zeta\omega_n t_p}\Bigl(-\omega_d\sin\omega_d t_p+\frac{\zeta\omega_d}{\sqrt{1-\zeta^2}}\cos\omega_d t_p\Bigr)=0
+\end{align*}
+
+\sayfa{5}
+\[ \Rightarrow\ e^{-\zeta\omega_n t_p}\Bigl(\zeta\omega_n\cos\omega_d t_p+\frac{\zeta^2\omega_n^2}{\omega_n\sqrt{1-\zeta^2}}\sin\omega_d t_p+\omega_d\sin\omega_d t_p-\frac{\zeta\omega_d}{\sqrt{1-\zeta^2}}\cos\omega_d t_p\Bigr)=0 \]
+\[ \Bigl(\frac{\zeta^2\omega_n^2}{\omega_d}+\omega_d\Bigr)\sin\omega_d t_p=0 \]
+\[ \Rightarrow\ \omega_d t_p=\pi,2\pi,3\pi,\ldots \]
+\formulkutu{t_p=\frac{\pi}{\omega_d}}
+\[ c(t_p)=1-e^{-\zeta\omega_n\frac{\pi}{\omega_d}}\Bigl(\overbrace{\cos\pi}^{-1}+\frac{\zeta}{\sqrt{1-\zeta^2}}\overbrace{\sin\pi}^{0}\Bigr) \]
+\[ =1+e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}} \]
+\[ \%M_p=\frac{c(t_p)-c(\infty)}{c(\infty)}\times 100\% \]
+\begin{align*}
+M_p&=1+e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}-1=e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\\
+&=e^{-\frac{\pi\zeta\omega_n}{\omega_n\sqrt{1-\zeta^2}}}=e^{-\frac{\pi\sigma}{\omega_d}}
+\end{align*}
+
+Settling time $(t_s)$
+\[ c(t)=1-e^{-\zeta\omega_n t}\Bigl(\cos\omega_d t+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\Bigr) \]
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-7-s5-1.png}[5]
+\[ c(t)=1-a_1\underbrace{\sin(\omega_d t+\alpha)}_{-1<\text{\textquotedblright}<1} \]
+\[ =1\pm a_1 \]
+\[ \sin(\omega_d t+\alpha)=\sin\omega_d t\cos\alpha+\cos\omega_d t\sin\alpha \]
+
+\sayfa{6}
+\[ c(t)=1-e^{-\zeta\omega_n t}\Bigl(\cos\omega_d t+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\Bigr) \]
+\[ c(t)=1-\frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\Bigl(\sqrt{1-\zeta^2}\cos\omega_d t+\zeta\sin\omega_d t\Bigr) \]
+\[ \sin(\omega_d t+\alpha)=\sin\omega_d t\cos\alpha+\cos\omega_d t\sin\alpha \]
+\[ \left\{\begin{aligned}\cos\alpha&=\zeta\\ \sin\alpha&=\sqrt{1-\zeta^2}\end{aligned}\right.\qquad \begin{aligned}\Rightarrow\ \tan\alpha&=\frac{\sqrt{1-\zeta^2}}{\zeta}\\ \alpha&=\tan^{-1}\Bigl(\frac{\sqrt{1-\zeta^2}}{\zeta}\Bigr)\end{aligned} \]
+\[ =1-\frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\sin\Bigl(\omega_d t+\tan^{-1}\Bigl(\frac{\sqrt{1-\zeta^2}}{\zeta}\Bigr)\Bigr) \]
+\[ \text{bounding curves : }1\pm\frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}=\left\{\begin{aligned}&1\pm 0{,}05\quad 5\%\\ &1\pm 0{,}02\quad 2\%\end{aligned}\right. \]
+\[ 5\%\ \Rightarrow\ \frac{e^{-\zeta\omega_n t_s}}{\sqrt{1-\zeta^2}}=0{,}05\ \Rightarrow\ e^{-\zeta\omega_n t_s}=0{,}05\sqrt{1-\zeta^2} \]
+\[ \Rightarrow\ -\zeta\omega_n t_s=\ln 0{,}05+\ln\sqrt{1-\zeta^2} \]
+\[ \Rightarrow\ t_s=-\frac{\ln 0{,}05}{\zeta\omega_n}-\underbrace{\frac{\ln\sqrt{1-\zeta^2}}{\zeta\omega_n}}_{0}\qquad\text{for small }\zeta\text{ values} \]
+\[ \Rightarrow\ t_s=\frac{3}{\zeta\omega_n}=3T\qquad\text{because}\quad\frac{1}{\zeta\omega_n} \]
+
+\sayfa{7}
+\[ t_r=\frac{1}{\omega_d}\tan^{-1}\Bigl(\frac{-\omega_d}{\sigma}\Bigr) \]
+\elcizimi[0.42]{sekiller/Control-Systems-lecture-7-s7-1.png}[7]
+\[ t_p=\frac{\pi}{\omega_d} \]
+\elcizimi[0.42]{sekiller/Control-Systems-lecture-7-s7-2.png}[7]
+\[ M_p=e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}} \]
+\elcizimi[0.42]{sekiller/Control-Systems-lecture-7-s7-3.png}[7]
+
+smaller
+\[ t_s=\frac{3}{\zeta\omega_n}\ \text{or}\ \frac{4}{\zeta\omega_n} \]
+\elcizimi[0.42]{sekiller/Control-Systems-lecture-7-s7-4.png}[7]
+
+$M_p$ and $t_r$ are contradictory !!
+
+$t_d=$ ? delay time
+\[ \frac{1}{2}=c(t) \]
+
+\begin{ornek}
+Step response of a $2^{\mathrm{nd}}$ order system is given
+
+find the approximate T.F
+
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-7-s7-5.png}[7]
+\end{ornek}
+
+\sayfa{8}
+\[ t_p=0{,}01 \]
+\[ M_p=0{,}3=e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\ \Rightarrow\ \zeta=0{,}356 \]
+\[ t_p=0{,}01=\frac{\pi}{\omega_d}\ \to\ \omega_d=100\pi\ \Rightarrow\ \omega_n\sqrt{1-\zeta^2}=100\pi \]
+\[ \Rightarrow\ \omega_n=336 \]
+\[ \frac{C(s)}{R(s)}=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}=\frac{(336)^2}{s^2+2(0{,}356)(336)s+(336)^2} \]
+
+\begin{ornek}
+$\dfrac{C(s)}{R(s)}=\dfrac{k}{s^2+as+k}$ \quad for step input
+
+$k,a=$ ?
+
+Maximum overshoot $\le 10\%$
+
+Settling time $\le 1$ sec \ (5\%)
+\end{ornek}
+\[ M_p=e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\le 0{,}1\ \Rightarrow\ \frac{-\pi\zeta}{\sqrt{1-\zeta^2}}\le\ln(0{,}1) \]
+\[ \Rightarrow\ \frac{\pi\zeta}{\sqrt{1-\zeta^2}}\ge\ln(0{,}1)\footnotemark\ \Rightarrow\ \zeta>0{,}6 \]
+\footnotetext{Claude notu: muhtemelen $\ge-\ln(0{,}1)$ olmalı.}
+\[ t_s=\frac{3}{\zeta\omega_n}\le 1 \]
+\[ \zeta\omega_n\ge 3 \]
+\[ \left\{\begin{aligned}\zeta&=0{,}7\\ \zeta\omega_n&=4\end{aligned}\right.\ \Rightarrow\ \omega_n=\frac{4}{0{,}7} \]
+\[ \left\{\begin{aligned}\omega_n^2&=k\\ 2\zeta\omega_n&=a\end{aligned}\right. \]
+
+\sayfa{9}
+\section{SISO Tool Matlab}
+\elcizimi[0.65]{sekiller/Control-Systems-lecture-7-s9-1.png}[9]
+
+\begin{ornek}
+Find the specific location of poles on the s plane
+
+a) $M_p=12\%$ \ , $t_s=0{,}6$ sec \quad \okunamadi{stable}
+
+b) $M_p=10\%$ \ , $t_s=3$ sec
+\end{ornek}
+\[ M_p=0{,}12=e^{-\frac{\pi\zeta}{\sqrt{1-\zeta^2}}}\ \Rightarrow\ \zeta=0{,}559 \]
+\[ 5\%\quad t_s=\frac{3}{\zeta\omega_n}=0{,}6\ \Rightarrow\ \omega_n=8{,}94\ \text{rad/s} \]
+\elcizimi[0.7]{sekiller/Control-Systems-lecture-7-s9-2.png}[9]
+\[ \zeta\omega_n=0{,}559\cdot 8{,}94=\sigma_1 \]
+\[ \beta=\cos^{-1}\zeta=\cos^{-1}0{,}559=56^\circ \]
+\begin{align*}
+p_1&=-\sigma_1+j\overbrace{\omega_n\sin\beta}^{\omega_n\sqrt{1-\zeta^2}}\\
+p_2&=-\sigma_1-j\omega_n\sin\beta
+\end{align*}
+
+\sayfa{10}
+\section{Find $\zeta$ for the given C.L.T.F.}
+{\small
+\[ G(s)=\frac{1638\,(s^2+2{,}6\,s+1{,}63)}{\underbrace{(s+3{,}24)}_{\text{real pole}}\ \underbrace{(s+0{,}855+j0{,}672)(s+0{,}855-j0{,}672)}_{\text{c.c. pole}}\ \underbrace{(s+5{,}24+j6{,}56)(s+5{,}24-j6{,}56)}_{\substack{\text{c.c.}\\\text{with negative real part}}}} \]
+}
+with negative real part
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-7-s10-1.png}[10]
+
+The system is combine of 2 second degree systems
+
+by looking to the dominant poles 2 can be found
+\[ \tan\beta=\frac{\omega_d}{\sigma}=\frac{0{,}672}{0{,}855}\ \to\ \beta=38{,}16^\circ\ \Rightarrow\ \zeta_1=0{,}78 \]
+\[ \tan\alpha=\frac{6{,}56}{5{,}24}\ \to\ \alpha=51{,}38^\circ\ \Rightarrow\ \zeta_2=0{,}62 \]
+
+\end{document}

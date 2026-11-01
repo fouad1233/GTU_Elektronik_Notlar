@@ -1,0 +1,151 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{Current Mirrors, Widlar/Wilson, Cascode Amplifier}{Ders3.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 1) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{2}
+\sekilnotu[2]{MOS current-mirror schematic: ideal current source $I_{ref}$ (arrow down) at the top left with a black up-arrow annotation $\tfrac{5}{2}I_{ref}$ above it; below the source a yellow-marked node feeds two NMOS transistors on the left (blue labels $\tfrac{I_{ref}}{2}$ with arrows on the two branches); the gates are tied by a yellow wire to a row of five NMOS transistors on the right, whose drains are joined by a dark-red wire fed by a dark-red arrow labelled $\tfrac{5}{2}I_{ref}$; all sources go to ground; a salmon bracket under the five transistors is labelled $5\times\tfrac{I_{ref}}{2}$.}
+
+\section{BJT Circuits}
+
+\sekilnotu[2]{Printed figure of the basic BJT current mirror ($I_{REF}$ source, $Q_1$ and $Q_2$ with joined bases and emitters, $V_{BE}$, output current $I_O$ at $V_O$); handwritten additions: $2I_B$ (arrow) on the wire from the $Q_1$ collector node to the bases, $I_C$ (arrow down) at the $Q_1$ collector and at the $Q_2$ collector, red $I_B$ arrows at the two bases.}
+
+\begin{align*}
+  I_C &= \beta I_B \\
+  I_B &= I_C/\beta
+\end{align*}
+
+\begin{align*}
+  I_{ref} &= I_C + 2I_B \\
+  I_{ref} &= I_C\Bigl(1+\frac{2}{\beta}\Bigr) \\
+  I_O &= I_C
+\end{align*}
+
+\[ \kutula{\frac{I_O}{I_{ref}} = \frac{1}{1+2/\beta}} \approx 1 \]
+
+$\beta$ büyüyünce akım aynasının kalitesi artar
+
+what happens if
+\[ \mathrm{EBJ}_1 = 1 \qquad \mathrm{EBJ}_2 = m \]
+\begin{align*}
+  I_{C1} &= I_S\,e^{V_{BE}/V_T} \\
+  I_{C2} &= m\,I_S\,e^{V_{BE}/V_T} \\
+  I_{C1}\,m &= I_{C2}
+\end{align*}
+
+\sekilnotu[2]{Printed figure of the BJT current mirror ($I_{REF}$, $Q_1$, $Q_2$, $I_O$, $V_O$, $V_{BE}$), reached by an arrow $\Rightarrow$ from the equations on the left; purple additions: $I_{C1}$ (arrow down) at the $Q_1$ collector, base currents $\tfrac{I_{C1}}{\beta}$ (at $Q_1$) and $\tfrac{m\,I_{C1}}{\beta}$ (at $Q_2$), and $I_{C1}\,m$ (arrow down) at the $Q_2$ collector.}
+
+\begin{align*}
+  I_{ref} &= I_{C1} + \frac{(1+m)\,I_{C1}}{\beta} \\
+  &= I_{C1}\Bigl(1+\frac{(m+1)}{\beta}\Bigr) \\
+  I_O &= I_C\,m \\
+  \frac{I_O}{I_{ref}} &= \frac{m}{1+\frac{(m+1)}{\beta}}
+\end{align*}
+
+\[ \frac{I_O}{I_{ref}} = \frac{m}{1+\dfrac{(m+1)}{\beta}} \]
+
+\sayfa{3}
+\section{Current Steering BJT}
+
+\elcizimi[0.85]{sekiller/Ders3-s3-1.png}[3]
+
+\[ I_{ref} = \frac{(V_{CC}-V_{BE})-V_{BE}}{R} \]
+\[ = \frac{V_{CC}-2V_{BE}}{R} = \frac{V_{CC}-V_{BE}-V_{EB}}{R} \]
+
+\sekilnotu[3]{Basılı BJT akım aynası şeması ($I_{REF}$, $Q_1$, $Q_2$, $V_{BE}$); el yazısı ekleme: $Q_2$ kolektörüne çizilmiş direnç ve yanında ``$r_o$ görünür''.}
+
+\[ r_o = \frac{V_A}{I_C} \Rightarrow \text{BJT} \]
+\[ r_o = \frac{V_A}{I_D} = \frac{V_A'\,L}{I_D} \Rightarrow \text{MOSFET} \]
+
+\sayfa{4}
+\section{Wilson Current Mirror}
+
+\elcizimi[0.55]{sekiller/Ders3-s4-1.png}[4]
+
+\[ \frac{I_o}{I_{ref}} = ? \]
+
+\section{Bob Widlar Current Source}
+
+\elcizimi[0.55]{sekiller/Ders3-s4-2.png}[4]
+
+What is the value of $R_{Bias}$
+
+\sayfa{5}
+\elcizimi[0.5]{sekiller/Ders3-s5-1.png}[5]
+
+\[ R_{BIAS} = \frac{4{,}3}{10\,\mu\mathrm{A}} \qquad R_{BIAS} \Rightarrow 430\ \mathrm{k\Omega}\ (\beta=\infty) \]
+\[ R_{BIAS} = 421{,}6\ \mathrm{k\Omega}\ (\beta=100) \]
+
+\[ \frac{I_o}{I_{ref}} = \frac{1}{1+2/\beta} \]
+
+Bob Widlar bunu önermiş
+
+\elcizimi[0.4]{sekiller/Ders3-s5-2.png}[5]
+
+if $\beta=\infty$
+\begin{align*}
+I_{ref} &= I_s\,e^{\frac{V_{BE1}}{V_T}} \\
+I_o &= I_s\,e^{\frac{V_{BE2}}{V_T}}
+\end{align*}
+\begin{align*}
+V_{BE1} &= V_{BE2} + I_o\cdot R_{E2} \\
+V_{BE1} - V_{BE2} &= I_o R_{E2}
+\end{align*}
+
+\[ \frac{I_o}{I_{ref}} = \frac{e^{\frac{V_{BE2}}{V_T}}}{e^{\frac{V_{BE1}}{V_T}}} \]
+
+\sayfa{6}
+\[ \ln\!\left(\frac{I_o}{I_{ref}}\right) = \frac{V_{BE2}-V_{BE1}}{V_T} \]
+\[ V_{BE2} - V_{BE1} = V_T \ln\!\left(\frac{I_o}{I_{ref}}\right) = -I_o\cdot R_{E2} \]
+\[ I_o = \frac{V_T\,\ln\!\left(\frac{I_{ref}}{I_o}\right)}{R_{E2}} \]
+
+\elcizimi[0.45]{sekiller/Ders3-s6-1.png}[6]
+
+$R_1 = ?$\\
+$R_2 = ?$\\
+$\Delta R_{total}$ with previous design
+
+\[ \frac{5-0{,}7}{R_1} = I_{ref} = \frac{4{,}3}{R_1} \]
+\[ I_o = \frac{V_T \cdot \ln\!\left(\frac{4{,}3}{I_o R_1}\right)}{R_{E2}} \]
+\[ 10\,\mu\mathrm{A} = \frac{25\,\mathrm{mV}\cdot\ln\!\left(\frac{I_{ref}}{10\,\mu\mathrm{A}}\right)}{R_2} \]
+\[ I_{ref} = \frac{5-0{,}7}{R_1} \rightarrow 100\mathrm{k} \]
+\[ I_{ref} = 43\,\mu\mathrm{A} \]
+
+\sayfa{7}
+\[ R_2 = \frac{\ln(4{,}3)\;25\,\mathrm{mV}}{10^{-5}\quad 10^{-2}} \Rightarrow R_2 = 3{,}6\ \mathrm{k\Omega} \]
+
+\section{7.3 The Cascode Amplifier}
+
+\elcizimi[0.9]{sekiller/Ders3-s7-1.png}[7]
+
+\[ v_i = V_{gs1} \]
+\[ i_x = \frac{-i}{r_{o1}g_{m2}} \]
+\[ i_y = \frac{-i}{r_{o1}g_{m2}} + g_m v_i \]
+
+\begin{align*}
+i_o &= \frac{-i}{r_{o1}g_{m2}} + g_{m1}v_i - i \\
+v_{out} &= r_{o2}\cdot i_o + \frac{-i}{g_{m2}} \\
+v_{out} &= r_{o2}\left[\frac{-i}{r_{o1}g_{m2}} + g_{m1}v_i - i\right] - \frac{i}{g_{m2}}
+\end{align*}
+\[ i_o = \frac{V_{out} - r_{o1}\,i_x}{r_{o2}} = \frac{V_{out} - V_{gs2}}{r_{o2}} \]
+
+\sayfa{8}
+\[ g_{m1} = g_{m2} \]
+\[ \frac{v_{out}}{v_i} = \frac{r_o\left[\frac{-i}{g_m r_{o1}} + g_m v_i\right] - \frac{i}{g_m}}{v_i} \]
+
+Ödev
+
+\[ i_o = \frac{-g_{m2}\,v_{gs2}}{r_o\,g_{m2}} + g_{m1}v_i - g_{m2}v_{gs2} \]
+\[ g_{m1}v_i = i_o + \frac{v_{gs2}}{r_{o2}} + g_{m2}v_{gs2} \]
+
+\[ R_o \simeq (g_{m2}r_{o2})\,r_{o1} \]
+\[ A_{vo} = \frac{v_o}{v_i} = -g_{m1}R_o \]
+
+\sayfa{9}
+\[ A_{vo} = -(g_{m1}r_{o1})(g_{m2}r_{o2}) \]
+
+For the case $g_{m1} = g_{m2} = g_m$ and $r_{o1} = r_{o2} = r_o$
+\[ A_{vo} = - \]
+
+\end{document}

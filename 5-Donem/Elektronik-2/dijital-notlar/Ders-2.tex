@@ -1,0 +1,110 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{İçsel kazanç, kaskod yükselteç ve akım aynası}{Ders-2.pdf}
+\textit{Not: Orijinal dosyadaki basılı sayfalar (s. 9) dijitalleştirilmedi; yalnızca el yazısı sayfalar aktarıldı.}
+
+\sayfa{1}
+\sekilnotu[1]{El çizimi (üstte): solda MOSFET sembolü (gate ucunda $+$, $v_{gs}$ ve altında $v_{in}$ yazısı, source ucunda $-$, aşağı yönlü $I_D$ oku); ortada BJT sembolü (base ucunda $+$, $v_{be}$ ve altında $v_{in}$, emitter ucunda $-$, aşağı yönlü $I_C$ oku); sağda dikey hatta bağlı bağımlı akım kaynağı (elmas, ok aşağı), yanında kırmızı kalemle $g_m v_{gs}$ (Mos) ve $g_m v_{be}$ (BJT).}
+
+\sekilnotu[1]{Bu sayfanın orta kısmı basılı kitap materyali içeriyor (aktif yüklü CS/CE yükselteç devreleri, küçük işaret modelleri ve (7.1)--(7.6) denklemleri); dijitalleştirilmedi.}
+
+$1\,\mathrm{mA}$, $V_{OV}$, $V_T = 0{,}025$
+\begin{align*}
+A_{v\,(\text{mosfet})} &= g_m r_o = \frac{2I_D}{V_{OV}}\cdot\frac{V_A' L}{I_D} = \frac{2V_A' L}{V_{OV}}\\
+A_{v\,(\text{BJT})} &= g_m r_o = \frac{I_C}{V_T}\cdot\frac{V_A}{I_C} = \frac{V_A}{V_T}
+\end{align*}
+\textcolor{kirmizikalem}{$\uparrow\,\uparrow$ mosfete göre yüksek}
+
+\sayfa{2}
+\[ I_D = \tfrac12\,\mu_n C_{ox}\,\frac{W}{L}\,(V_{GS}-V_{Tn})^2 \]
+\sekilnotu[2]{Bu sayfa basılı kitap materyali içeriyor (7.2.2 The Intrinsic Gain, (7.7)--(7.15) denklemleri); dijitalleştirilmedi. Üzerindeki kırmızı kalem işaretleri: (7.14)'te $A_0$ yanında aşağı ok, $V_{OV}$ yanında yukarı ok; aşağıdaki $I_D$ denkleminde $I_D$ ve karenin üstünde yukarı ok, $L$'nin altında aşağı ok.}
+\begin{equation*} g_m = \frac{I_D}{V_{OV}/2} \tag{7.10} \end{equation*}
+\[ I_D = \tfrac12\,\mu_n C_{ox}\,\frac{W}{L}\,\bigl(\underbrace{V_{GS}-V_{Tn}}_{\textcolor{kirmizikalem}{V_{OV}}}\bigr)^2 \]
+Gerilim kaynağının iç direnci sıfırdır.\\
+Akım kaynağının iç direnci sonsuzdur.
+
+\sekilnotu[2]{El çizimi: üstte $V_{DD}$ (yukarı ok) ucuna bağlı ideal akım kaynağı (daire içinde aşağı ok), kırmızı kesikli çizgiyle çevrelenmiş; yanında ``ideal'' (kaynağı gösteren okla) ve kırmızı/turuncu ``infinite resistance''. Akım kaynağının altındaki düğüm $v_{out}$; onun altında n-MOSFET (gate girişi $v_{in}^{+}$, source toprağa bağlı).}
+
+\sayfa{3}
+\sekilnotu[3]{El çizimi (üstte, siyah): küçük işaret devresi. Üst hatta paralel: bağımlı akım kaynağı (elmas, ok aşağı) ile $r_o$ (sol blok, alt uçları birbirine bağlı), ardından $R_{source}$ (üstünde ``???'') ve $R_{load}$; ikisinin alt ucu toprakta. Altında: ``kazancı nasıl etkiler ??''.}
+
+\sekilnotu[3]{El çizimi: $V_{DD}$ (yukarı ok) -- $R_{source}$ -- $v_{out}$ düğümü -- n-MOSFET (gate girişi $+\,v_{in}\,-$, source toprakta); sağında ``??''.}
+
+\sekilnotu[3]{Sayfanın ortası basılı kitap materyali içeriyor ((7.16)--(7.18) denklemleri, $Q_1$/$Q_2$'li aktif yüklü yükselteç devresi); dijitalleştirilmedi. Üzerindeki kırmızı kalem eklemeleri: $Q_2$ ve $V_{DD}$ kırmızı elipsle çevrelenmiş, $Q_2$ gate'inde ``$V_G$'', ``Active load'' yazısı; sağda çarpı ile iptal edilmiş küçük çizim ($V_{DD}$, $g_m v_{gs2}$ kaynağı, $r_{o2}$).}
+
+\sekilnotu[3]{Orta-sağda turuncu/kırmızı kalemle küçük işaret eşdeğer devresi: $+\,v_{in}\,-$, $+\,v_{gs}\,-$, bağımlı kaynak $g_m v_{gs1}$ ile paralel $r_{o1}$, çıkış $+\,v_o\,-$ (süslü parantezle gösterilmiş), toprak.}
+
+\sekilnotu[3]{Altta küçük işaret eşdeğer devresi: girişte $+\,v_{in}\,-$ ve $+\,v_{gs}\,-$ (üst uçlar kısa devre), bağımlı akım kaynağı $g_m v_{gs1}$ ile paralel $r_{o1}$, çıkış $+\,v_o\,-$; kırmızı kalemle çıkışa paralel $r_{o2}$ eklenmiş (kırmızı toprak, $v_o$ ve yukarı ok).}
+
+\sayfa{4}
+{\color{kirmizikalem}
+\[ \frac{v_{out}}{v_{in}} = \frac{-g_{m1}\,v_{gs1}\,(r_{o1}\parallel r_{o2})}{v_{gs1}} = -g_m\,(r_{o1}\parallel r_{o2}) \]
+\[ \text{if } r_{o1}=r_{o2}=r_o \qquad\qquad A_v = -\tfrac12\, g_m r_o \]
+\[ A_v = \frac12\cdot\frac{2I_D}{V_{OV}}\cdot\frac{V_A' L_1}{I_D}\footnotemark \]
+\footnotetext{Orijinalde $\tfrac12$'deki 2 ile $2I_D$'deki 2 ve pay/paydadaki $I_D$ çizgiyle sadeleştirilmiş.}
+\[ \uparrow A_v = \frac{V_A' L_1\ \uparrow}{V_{OV1}\ \downarrow} \]
+\begin{center}
+$\swarrow$\\
+$V_{DS} \le V_{GS} - V_{TH}\ \nearrow$ sabit\\
+$\downarrow$\\
+fine tuning
+\end{center}
+}
+\[ I_D = \tfrac12\,\mu_n C_{ox}\,\frac{\uparrow W}{\uparrow L}\,(V_{OV})^2 \]
+$I_D$ azalmaması için
+
+Onun yerine multistage yapalım
+
+\sekilnotu[4]{Sayfanın alt kısmı basılı kitap materyali içeriyor (Chapter 7, Building Blocks of Integrated-Circuit Amplifiers; $Q_1$'li devre ve $g_{m1}v_i \parallel r_{o1}$ eşdeğeri (a), kaskat bağlı $Kr_{o1}$'li devre (b)); dijitalleştirilmedi.}
+
+\sayfa{5}
+\section{The Cascode Amplifier}
+\subsection{Cascoding}
+
+\sekilnotu[5]{Basılı kaskod şeması ($Q_2$ üstte, $Q_1$ altta, $V_{G2}$, $v_i$, ``To Load'', $Kr_{o1}$, $r_{o1}$ okları) dijitalleştirilmedi; üzerindeki el eklemeleri: en üstte $V_{DD}$ (yukarı ok) ucuna bağlı $I_{bias}$ akım kaynağı (daire, ok aşağı) ve yanında paralel direnç, yazı $R_{CB}=\infty$; bu kaynak $Q_2$'nin drain ucuna bağlanmış. $Q_1$ gate'i ``G'', $Q_1$ drain düğümü ($Q_2$ source) ``D'', $Q_1$ source (toprak) ``S'' olarak etiketlenmiş.}
+
+\textcolor{kirmizikalem}{?? ödev}
+
+\sekilnotu[5]{El çizimi: $Q_1$ için küçük işaret devresi: $v_i$ girişi, $+\,v_{gs}\,-$, bağımlı akım kaynağı $g_m v_{gs1}$ ile paralel $r_o$, source düğümü ``S'' toprakta. Çıkış düğümünün yanında kırmızı kalemle $Q_2$ devresi: ``G'' ucu, $+\,v_{gs2}\,-$, bağımlı kaynak $g_m v_{gs2}$ ile paralel $r_{o2}$, üst ucu ``D''; $Q_2$'nin source ucu $Q_1$'in çıkış düğümüne bağlı.}
+\[ \textcolor{kirmizikalem}{V_x = -v_{gs2}} \]
+
+\sekilnotu[5]{El çizimi: $v_i$ (kırmızı sinüs kaynağı sembolü, kırmızı toprak), $+\,v_{gs}\,-$, bağımlı kaynak $g_m v_{gs}$ ile paralel $r_o$ ($Q_1$, siyah); buna bağlı, kırmızı kalemle, yukarı oklu bağımlı akım kaynağı $g_{m2} v_{gs2}$ ile paralel $r_{o2}$ ve kırmızı toprak; çıkış $v_o$ ($+$ ucu) sağ üstte.}
+
+\textcolor{kirmizikalem}{\underline{ödev}}
+
+\sayfa{7}
+\section{7.4 IC biasing}
+\subsection{Current mirror}
+
+\sekilnotu[7]{El çizimi: akım aynası. Solda $I_{ref}$ akım kaynağı (daire, ok aşağı) $M_1$'in drain'ine bağlı; $M_1$'in drain'i kendi gate'ine ve $M_2$'nin gate'ine bağlı (diyot bağlantılı); gate hattı ile source'lar arasında $+\,v_{gs}\,-$; her iki source ortak toprakta, altında ``$M_1, M_2$ identical''. $M_2$'nin drain'inden yukarı çıkan koldaki aşağı yönlü akım oku: $I_O = ?$.}
+
+{\color{turuncukalem}
+\[ \frac{I_{D1} = I_{ref} = \tfrac12\mu_n C_{ox}\frac{W}{L}(V_{GS1}-V_{TH1})^2(1+\lambda V_{DS1})}{I_{D2} = I_O = \tfrac12\mu_n C_{ox}\frac{W}{L}(V_{GS2}-V_{TH2})^2(1+\lambda V_{DS2})}\footnotemark \]
+\footnotetext{Orijinalde pay ve paydadaki ortak terimler ($\tfrac12\mu_n C_{ox}\frac{W}{L}$ ve $V_{TH}$) çizgiyle sadeleştirilmiş.}
+}
+\[ \frac{I_{ref}}{I_{D2}} = 1 \qquad\qquad I_{ref} = I_{D2} \]
+
+What happen when we put a load ??
+
+\sekilnotu[7]{El çizimi: aynı akım aynası, bu kez $M_1$'in drain'inde $I_{ref}$ kaynağı yerine $1\,\mathrm{k}\Omega$ direnç ve $5\,\mathrm{V}$ (yukarı ok) besleme; $M_2$'nin drain'inde de $1\,\mathrm{k}\Omega$ direnç ve $5\,\mathrm{V}$ besleme (direnç koluna aşağı yönlü akım oku); $+\,v_{gs}\,-$ ve ortak toprak, altında ``$M_1, M_2$ identical''.}
+
+Bu ihtimalde akımlar aynı ve
+
+\sayfa{8}
+Yükler aynı ise sadece o gerilimler aynıdır. $V_{DS1}=V_{DS2}$
+
+\sekilnotu[8]{El çizimi: $5\,\mathrm{V}$ (yukarı ok) -- $1\,\mathrm{k}\Omega$ direnç (aşağı yönlü $I_{ref}$) -- diyot bağlantılı $M_1$ (source toprakta). $M_1$'in gate hattı sağa, içinde ``Design'' yazan bir kutuya gidiyor; kutuya yukarıdan giren okun yanında $I_{out} = 5I_{ref}$.}
+
+\sekilnotu[8]{Turuncu/kırmızı kalemle: gate hattından çıkan eğri bir ok, tek bir MOSFET sembolüne ve yanındaki ``5/2'' yazısına gidiyor; sağında ``$(W/L)_{\,?} = 5/2$'' ve altında kesir çizgisiyle ``$(W/L)_{\,?} = 1$'' benzeri iki satır (okunması kesin değil).}
+
+\sekilnotu[8]{El çizimi: $5\,\mathrm{V}$ (yukarı ok) -- $1\,\mathrm{k}$ direnç (aşağı yönlü $I_{ref}$) -- diyot bağlantılı $M_1$; gate hattı, alt tarafta halka bir telle birbirine bağlanan ve drain'leri ortak üst hatta giden paralel MOSFET'lere gidiyor (ilk transistörün drain'inde aşağı yönlü $I_{out} = 5I_{ref}$ oku; çizimde soldan iki, sağdan bir transistör var, aralarında kesik çizgi ``- - -''; tüm source'lar toprakta). Solda dikey kırmızı yazı ``current steering''; gate halka telinin altında kırmızı bir çizgi ve kırmızı ``Sadet'' yazısı (okunması kesin değil).}
+
+\sekilnotu[8]{El çizimi (altta, daha küçük): $1\,\mathrm{k}\Omega$ direnç (aşağı yönlü $I_{ref}$) ve diyot bağlantılı $M_1$; gate hattı sağda, birkaç MOSFET'ten oluşan bir gruba gidiyor; sağdaki iki transistörün yanında süslü parantezli ``$1/g_m$'' notları, en üstte besleme hattı. Sol altta küçük MOSFET sembolü taslakları ve çevrelenmiş bir karalama.}
+
+\sayfa{10}
+\elcizimi[0.9]{sekiller/Ders-2-s10-1.png}[10]
+
+\elcizimi[0.85]{sekiller/Ders-2-s10-2.png}[10]
+
+\end{document}

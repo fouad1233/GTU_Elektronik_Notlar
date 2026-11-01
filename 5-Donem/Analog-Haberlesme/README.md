@@ -10,7 +10,7 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [5. Dönem](../README.md) · 2023–2024 Güz | ELM361 | Analog Communication Systems | 12 ders notu · 4 uygulama notu · 21 dijital not · 10 çıkmış sınav · 8 sınav çalışması · 2 ödev · 2 proje |
+| [5. Dönem](../README.md) · 2023–2024 Güz | ELM361 | Analog Communication Systems | 12 ders notu · 4 uygulama notu · 22 dijital not · 10 çıkmış sınav · 8 sınav çalışması · 2 ödev · 2 proje |
 
 Diğer adı: *ELEC 361 – Analog Communication Systems*
 
@@ -40,7 +40,7 @@ Diğer adı: *ELEC 361 – Analog Communication Systems*
 | [Analog Uygulama 1](uygulama-notlari/Analog-Uygulama-1.pdf) | PDF | 12 s. | [PDF](dijital-notlar/uygulama-notlari-Analog-Uygulama-1.pdf) |
 | [Analog Uygulama 2](uygulama-notlari/Analog-Uygulama-2.pdf) | PDF | 9 s. | [PDF](dijital-notlar/uygulama-notlari-Analog-Uygulama-2.pdf) |
 | [Analog uygulama 3](uygulama-notlari/Analog-uygulama-3.pdf) | PDF | 5 s. | [PDF](dijital-notlar/uygulama-notlari-Analog-uygulama-3.pdf) |
-| [ELM 361 Uygulama 3](uygulama-notlari/ELM-361-Uygulama-3.pdf) | PDF | 14 s. |  |
+| [ELM 361 Uygulama 3](uygulama-notlari/ELM-361-Uygulama-3.pdf) | PDF | 14 s. | [PDF](dijital-notlar/uygulama-notlari-ELM-361-Uygulama-3.pdf) |
 
 ## Dijital Notlar (LaTeX)
 
@@ -65,6 +65,7 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | [Analog Uygulama 1](uygulama-notlari/Analog-Uygulama-1.pdf) <sub>Uygulama Notları</sub> | Uygulama 1: Systems, Fourier Series & Transform | [PDF](dijital-notlar/uygulama-notlari-Analog-Uygulama-1.pdf) · 12 s. | [.tex](dijital-notlar/uygulama-notlari-Analog-Uygulama-1.tex) |
 | [Analog Uygulama 2](uygulama-notlari/Analog-Uygulama-2.pdf) <sub>Uygulama Notları</sub> | Uygulama 2: LTI kanal, AM ve çoklama | [PDF](dijital-notlar/uygulama-notlari-Analog-Uygulama-2.pdf) · 10 s. | [.tex](dijital-notlar/uygulama-notlari-Analog-Uygulama-2.tex) |
 | [Analog uygulama 3](uygulama-notlari/Analog-uygulama-3.pdf) <sub>Uygulama Notları</sub> | Uygulama 3: SSB-AM, Weaver modülatörü, SSB-FDM | [PDF](dijital-notlar/uygulama-notlari-Analog-uygulama-3.pdf) · 2 s. | [.tex](dijital-notlar/uygulama-notlari-Analog-uygulama-3.tex) |
+| [ELM 361 Uygulama 3](uygulama-notlari/ELM-361-Uygulama-3.pdf) <sub>Uygulama Notları</sub> | ELM 361 Uygulama 3 – SSB ve FM soruları | [PDF](dijital-notlar/uygulama-notlari-ELM-361-Uygulama-3.pdf) · 14 s. | [.tex](dijital-notlar/uygulama-notlari-ELM-361-Uygulama-3.tex) |
 | [Z1](final-calismasi/Z1.pdf) <sub>Final/Vize Çalışması</sub> | DSB-LC-AM sorusu çözümü (Z1) | [PDF](dijital-notlar/final-calismasi-Z1.pdf) · 3 s. | [.tex](dijital-notlar/final-calismasi-Z1.tex) |
 | [Z2](final-calismasi/Z2.pdf) <sub>Final/Vize Çalışması</sub> | ELM362 Final (2007), Soru 1 çözümü | [PDF](dijital-notlar/final-calismasi-Z2.pdf) · 4 s. | [.tex](dijital-notlar/final-calismasi-Z2.tex) |
 | [ELM361 Fall2023 Midterm Solutions](final-calismasi/ELM361_Fall2023_Midterm_Solutions.pdf) <sub>Final/Vize Çalışması</sub> | ELEC 361 Midterm Exam (Fall 2023) çözümleri | [PDF](dijital-notlar/final-calismasi-ELM361_Fall2023_Midterm_Solutions.pdf) · 6 s. | [.tex](dijital-notlar/final-calismasi-ELM361_Fall2023_Midterm_Solutions.tex) |
@@ -151,4 +152,4 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Analog Communication Systems (ELM361)* — Semester 5, Fall 2023–24. Fourier analysis, amplitude modulation (AM, DSB, SSB), angle modulation (FM, PM), receivers and noise in communication systems. This page lists: 12 lecture notes, 4 recitation notes, 21 digital notes, 10 past exams, 8 exam-prep files, 2 assignments, 2 projects. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Analog Communication Systems (ELM361)* — Semester 5, Fall 2023–24. Fourier analysis, amplitude modulation (AM, DSB, SSB), angle modulation (FM, PM), receivers and noise in communication systems. This page lists: 12 lecture notes, 4 recitation notes, 22 digital notes, 10 past exams, 8 exam-prep files, 2 assignments, 2 projects. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

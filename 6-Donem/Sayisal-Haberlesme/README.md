@@ -10,28 +10,42 @@
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [6. Dönem](../README.md) · 2023–2024 Bahar | ELM365 | Digital Communications | 14 ders notu · 1 ödev · 1 proje |
+| [6. Dönem](../README.md) · 2023–2024 Bahar | ELM365 | Digital Communications | 14 ders notu · 5 dijital not · 1 ödev · 1 proje |
 
-**Bu sayfada:** [Ders Notları](#ders-notları) · [Ödevler](#ödevler) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları)
+**Bu sayfada:** [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Ödevler](#ödevler) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları)
 
 ## Ders Notları
 
-| Dosya | Tür | Bilgi |
-|---|---|---|
-| [Ders1](ders-notlari/Ders1.pdf) | PDF | 5 s. |
-| [Ders2](ders-notlari/Ders2.pdf) | PDF | 11 s. |
-| [Ders3](ders-notlari/Ders3.pdf) | PDF | 12 s. |
-| [Ders 4](ders-notlari/Ders-4.pdf) | PDF | 9 s. |
-| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 10 s. |
-| [Ders 6](ders-notlari/Ders-6.pdf) | PDF | 9 s. |
-| [Ders 7](ders-notlari/Ders-7.pdf) | PDF | 9 s. |
-| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 9 s. |
-| [Ders 9](ders-notlari/Ders-9.pdf) | PDF | 9 s. |
-| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 6 s. |
-| [Ders 11](ders-notlari/Ders-11.pdf) | PDF | 8 s. |
-| [Ders 12](ders-notlari/Ders-12.pdf) | PDF | 7 s. |
-| [Ders 13](ders-notlari/Ders-13.pdf) | PDF | 6 s. |
-| [ELM365-2024 Bahar 5 hafta ders notlari](ders-notlari/ELM365-2024-Bahar-5-hafta-ders-notlari.pdf) | PDF | 7 s. |
+| Dosya | Tür | Bilgi | Dijital sürüm |
+|---|---|---|---|
+| [Ders1](ders-notlari/Ders1.pdf) | PDF | 5 s. |  |
+| [Ders2](ders-notlari/Ders2.pdf) | PDF | 11 s. |  |
+| [Ders3](ders-notlari/Ders3.pdf) | PDF | 12 s. |  |
+| [Ders 4](ders-notlari/Ders-4.pdf) | PDF | 9 s. | [PDF](dijital-notlar/Ders-4.pdf) |
+| [Ders 5](ders-notlari/Ders-5.pdf) | PDF | 10 s. |  |
+| [Ders 6](ders-notlari/Ders-6.pdf) | PDF | 9 s. |  |
+| [Ders 7](ders-notlari/Ders-7.pdf) | PDF | 9 s. |  |
+| [Ders 8](ders-notlari/Ders-8.pdf) | PDF | 9 s. |  |
+| [Ders 9](ders-notlari/Ders-9.pdf) | PDF | 9 s. |  |
+| [Ders 10](ders-notlari/Ders-10.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders-10.pdf) |
+| [Ders 11](ders-notlari/Ders-11.pdf) | PDF | 8 s. | [PDF](dijital-notlar/Ders-11.pdf) |
+| [Ders 12](ders-notlari/Ders-12.pdf) | PDF | 7 s. | [PDF](dijital-notlar/Ders-12.pdf) |
+| [Ders 13](ders-notlari/Ders-13.pdf) | PDF | 6 s. | [PDF](dijital-notlar/Ders-13.pdf) |
+| [ELM365-2024 Bahar 5 hafta ders notlari](ders-notlari/ELM365-2024-Bahar-5-hafta-ders-notlari.pdf) | PDF | 7 s. |  |
+
+## Dijital Notlar (LaTeX)
+
+El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: [latex-sablon](../../latex-sablon/README.md).
+
+> **Uyarı:** Dijital notlar, el yazısı notlardan Claude (Anthropic) yardımıyla oluşturulmuştur; yardımcı kaynak olarak hazırlanmıştır ve hata içerebilir. Orijinal notları ve resmi ders kaynaklarını esas alın.
+
+| Orijinal not | Konu | Dijital PDF | LaTeX kaynağı |
+|---|---|---|---|
+| [Ders 4](ders-notlari/Ders-4.pdf) | Örnekleme teoremi ve örnekleme türleri | [PDF](dijital-notlar/Ders-4.pdf) · 14 s. | [.tex](dijital-notlar/Ders-4.tex) |
+| [Ders 10](ders-notlari/Ders-10.pdf) | Matched filter, SAK ve 1. Nyquist kriteri | [PDF](dijital-notlar/Ders-10.pdf) · 9 s. | [.tex](dijital-notlar/Ders-10.tex) |
+| [Ders 11](ders-notlari/Ders-11.pdf) | RC darbe, kontrollü SAK, sayısal taşıyıcılı modülasyon (PSK/FSK) | [PDF](dijital-notlar/Ders-11.pdf) · 10 s. | [.tex](dijital-notlar/Ders-11.tex) |
+| [Ders 12](ders-notlari/Ders-12.pdf) | FSK, ASK, QAM ve M'li modülasyonun vektör uzayı gösterimi | [PDF](dijital-notlar/Ders-12.pdf) · 10 s. | [.tex](dijital-notlar/Ders-12.tex) |
+| [Ders 13](ders-notlari/Ders-13.pdf) | M-PSK ve MFSK hata olasılığı eğrileri | [PDF](dijital-notlar/Ders-13.pdf) · 7 s. | [.tex](dijital-notlar/Ders-13.tex) |
 
 ## Ödevler
 
@@ -62,4 +76,4 @@
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Digital Communications (ELM365)* — Semester 6, Spring 2023–24. Sampling and pulse-code modulation, baseband transmission, optimum receivers, digital modulation (ASK, PSK, FSK) and bit-error probability. This page lists: 14 lecture notes, 1 assignment, 1 project. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Digital Communications (ELM365)* — Semester 6, Spring 2023–24. Sampling and pulse-code modulation, baseband transmission, optimum receivers, digital modulation (ASK, PSK, FSK) and bit-error probability. This page lists: 14 lecture notes, 5 digital notes, 1 assignment, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

@@ -1,0 +1,256 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Örnekleme teoremi ve örnekleme türleri}{Ders-4.pdf}
+
+\sayfa{1}
+\elcizimi[0.9]{sekiller/Ders-4-s1-1.png}[1]
+
+\section{Dirac katarı}
+\[ x_\delta(t)=\sum_{n=-\infty}^{+\infty}\delta(t-nT_s) \;\overset{F}{\longleftrightarrow}\; X_\delta(f)=\overset{=f_s}{\kutula{\frac{1}{T_s}}}\sum_{n=-\infty}^{+\infty}\delta(f-nf_s) \]
+
+\elcizimi[0.9]{sekiller/Ders-4-s1-2.png}[1]
+
+\begin{align*}
+x_s(t) &= x(t)\cdot x_\delta(t)=x(t)\sum_{n=-\infty}^{\infty}\delta(t-nT_s)\\
+&=\sum_{n=-\infty}^{+\infty}x(nT_s)\,\delta(t-nT_s) \qquad \textcolor{turuncukalem}{\bigl(f(t)\,\delta(t-t_0)=f(t_0)\,\delta(t-t_0)\bigr)}
+\end{align*}
+\noindent $\uparrow$ Örneklenmiş işaret (Dirac katarı ile)
+
+\elcizimi[0.9]{sekiller/Ders-4-s1-3.png}[1]
+
+\noindent $f_s-f_m>f_m$ \\ $f_s>2f_m$
+
+\noindent $f_s\ge(f_N=2f_m)$
+\begin{align*}
+x_s(t) &= x(t)\cdot x_\delta(t)=x(t)\sum_{n=-\infty}^{\infty}\delta(t-nT_s)\\
+&= \kutula{\sum_{n=-\infty}^{\infty}x(nT_s)\,\delta(t-nT_s)}
+\end{align*}
+\formulkutu{f(t)\,\delta(t-t_0)=f(t_0)\,\delta(t-t_0)}
+\[ \updownarrow F \]
+\begin{align*}
+X_s(f) &= X(f)\otimes X_\delta(f)\\
+&= X(f)\otimes f_s\sum_{n=-\infty}^{\infty}\delta(f-nf_s)\\
+&= f_s\sum_{n=-\infty}^{+\infty}X(f)\otimes\delta(f-nf_s)
+\end{align*}
+\[ \kutula{X_s(f)=f_s\sum_{n=-\infty}^{\infty}X(f-nf_s)} \]
+\formulkutu{X(f)\otimes\delta(f-f_0)=X(f-f_0)}
+\noindent $\uparrow$ sbt
+
+\noindent $f_s<2f_m$ olursa \qquad Örtüşme (Aliasing)
+
+\elcizimi[0.5]{sekiller/Ders-4-s1-4.png}[1]
+
+\sayfa{2}
+\noindent Pratikte $x(t)$ zamanda sınırlı, frekansta sınırlı değil (not band limited)
+
+\elcizimi[0.9]{sekiller/Ders-4-s2-1.png}[2]
+
+\noindent Çözüm: Örtüşme engelleyici filtre \\ Anti-aliasing filter
+
+\elcizimi[0.6]{sekiller/Ders-4-s2-2.png}[2]
+
+\section{İşareti yeniden oluşturma}
+\noindent (Signal reconstruction)
+
+\elcizimi[0.45]{sekiller/Ders-4-s2-3.png}[2]
+
+\[ H(f)=A\,\Pi\!\left(\frac{f}{T}\right)=T_s\,\Pi\!\left(\frac{f}{2f_m}\right) \]
+\[ \downarrow F^{-1} \]
+\formulkutu[önemli]{h(t)=2f_mT_s\,\mathrm{sinc}(2f_mt)}
+\noindent Eğer $f_s=2f_m \;\rightarrow\;$ 1 olur
+
+\formulkutu{\begin{array}{c} A\,\Pi\!\left(\frac{t}{T}\right)\overset{F}{\longleftrightarrow}AT\,\mathrm{sinc}(fT)\\[4pt] AT\,\mathrm{sinc}(tT)\overset{F}{\longleftrightarrow}A\,\Pi\!\left(\frac{f}{T}\right)\end{array}}
+
+\begin{align*}
+\hat{x}(t) &= x_s(t)\otimes h(t)\\
+&= h(t)\otimes x_s(t)=h(t)\otimes\sum_{n=-\infty}^{\infty}x(nT_s)\,\delta(t-nT_s)\\
+&= \sum_{n=-\infty}^{\infty}x(nT_s)\,\underbrace{\bigl[h(t)\otimes\delta(t-nT_s)\bigr]}_{\textcolor{kirmizikalem}{h(t-nT_s)}}
+\end{align*}
+\begin{align*}
+\hat{x}(t) &= \sum_{n=-\infty}^{\infty}x(nT_s)\,h(t-nT_s)\\
+&= 2f_mT_s\sum_{n=-\infty}^{\infty}x(nT_s)\,\mathrm{sinc}\bigl[2f_m(t-nT_s)\bigr]
+\end{align*}
+\noindent Üçgen varsa linear interpolasyon \\
+$\Pi$ varsa kare darbelerle temsil edilir
+
+\noindent (yeniden oluşturma denklemi) Reconstruction eq \\
+(İdeal interpolasyon //) ideal interpolation
+
+\sayfa{3}
+\elcizimi[0.7]{sekiller/Ders-4-s3-1.png}[3]
+
+\section{Örnek: Lathi; Prob. 6.1-4}
+\noindent A signal $x(t)=\mathrm{sinc}^2(5t)$ is sampled (using uniformly spaced impulses) at a rate of:\\
+i) 5 Hz, \quad ii) 10 Hz, \quad iii) 20 Hz
+
+\noindent For each of three cases\\
+a) Sketch the sampled signal\\
+b) Sketch the spectrum of the sampled signal\\
+c) Explain whether you can recover the signal $x(t)$ from the sampled signal\\
+d) If the sampled signal is passed through an ideal LPF of BW 5 Hz, Sketch the spectrum of the output signal.
+
+\elcizimi[0.85]{sekiller/Ders-4-s3-2.png}[3]
+
+\formulkutu{AT\,\mathrm{sinc}^2(tT)\overset{F}{\longleftrightarrow}A\,\Lambda\!\left(\frac{f}{T}\right)}
+
+\[ x(t)=\mathrm{sinc}^2(5t)\quad\overset{F}{\longleftrightarrow} \]
+\noindent $A=\dfrac{1}{T}=\dfrac{1}{5}$
+
+\elcizimi[0.4]{sekiller/Ders-4-s3-3.png}[3]
+
+\noindent \textcircled{\small i} \quad $f_s=5\ \mathrm{Hz}\,,\ T_s=\dfrac{1}{f_s}=\dfrac{1}{5}$ sn
+\[ x_\delta(t)=\sum_{n=-\infty}^{\infty}\delta\bigl(t-n\underbrace{T_s}_{1/5}\bigr) \]
+\[ x_s(t)=x(t)\,x_\delta(t)=\sum_{n=-\infty}^{\infty}x(nT_s)\,\delta(t-nT_s) \]
+\[ X_s(f)=f_s\sum_{n=-\infty}^{\infty}X(f-nf_s) \]
+
+\sayfa{4}
+\noindent a)
+
+\elcizimi[0.8]{sekiller/Ders-4-s4-1.png}[4]
+
+\[ \mathrm{sinc}\,k=\frac{\sin(\pi k)}{\pi k}=0 \qquad k\in \mathrm{Z}-\{0\} \]
+
+\elcizimi[0.85]{sekiller/Ders-4-s4-2.png}[4]
+
+\noindent c) No, $f_s=5\ \mathrm{Hz}<2f_m=10\ \mathrm{Hz}$
+
+\noindent d)
+
+\elcizimi[0.65]{sekiller/Ders-4-s4-3.png}[4]
+
+\noindent \textcircled{\small ii} \quad $f_s=10\ \mathrm{Hz}\,,\ T_s=\dfrac{1}{f_s}=\dfrac{1}{10}$ sn
+\[ x_\delta(t)=\sum_{n=-\infty}^{\infty}\delta\bigl(t-n\underbrace{T_s}_{1/10}\bigr) \]
+\[ x_s(t)=x(t)\,x_\delta(t)=\sum_{n=-\infty}^{\infty}x(nT_s)\,\delta(t-nT_s) \]
+\[ X_s(f)=\underset{10}{f_s}\sum_{n=-\infty}^{\infty}X\bigl(f-n\underset{10}{f_s}\bigr) \]
+
+\elcizimi[0.75]{sekiller/Ders-4-s4-4.png}[4]
+
+\sayfa{5}
+\elcizimi[0.65]{sekiller/Ders-4-s5-1.png}[5]
+
+\noindent c) Yes, $f_s=10\ \mathrm{Hz}=2f_m=10\ \mathrm{Hz}$
+
+\noindent d)
+
+\elcizimi[0.3]{sekiller/Ders-4-s5-3.png}[5]
+
+\elcizimi[0.35]{sekiller/Ders-4-s5-2.png}[5]
+
+\noindent \textcircled{\small iii} \quad $f_s=20\ \mathrm{Hz}\,,\ T_s=\dfrac{1}{f_s}=\dfrac{1}{20}$ sn
+\[ x_\delta(t)=\sum_{n=-\infty}^{\infty}\delta\bigl(t-n\underbrace{T_s}_{1/20}\bigr) \]
+\[ x_s(t)=x(t)\,x_\delta(t)=\sum_{n=-\infty}^{\infty}x(nT_s)\,\delta(t-nT_s) \]
+\[ X_s(f)=\underset{20}{f_s}\sum_{n=-\infty}^{\infty}X\bigl(f-n\underset{20}{f_s}\bigr) \]
+
+\elcizimi[0.9]{sekiller/Ders-4-s5-4.png}[5]
+
+\elcizimi[0.8]{sekiller/Ders-4-s5-5.png}[5]
+
+\sayfa{6}
+\noindent c) Yes, $f_s=20\ \mathrm{Hz}>2f_m=10\ \mathrm{Hz}$
+
+\noindent d)
+
+\elcizimi[0.7]{sekiller/Ders-4-s6-1.png}[6]
+
+\section{Pratik örnekleme}
+\noindent (Natural sampling)
+
+\elcizimi[0.9]{sekiller/Ders-4-s6-2.png}[6]
+
+\[ x_p(t)=\sum_{n=-\infty}^{\infty}c_n\,e^{j2\pi nf_0t} \]
+
+\elcizimi[0.5]{sekiller/Ders-4-s6-3.png}[6]
+
+\elcizimi[0.5]{sekiller/Ders-4-s6-4.png}[6]
+
+\[ x_p(t)=\sum_{n=-\infty}^{\infty}c_n\,e^{j2\pi nf_st} \]
+
+\elcizimi[0.3]{sekiller/Ders-4-s6-5.png}[6]
+
+\begin{align*}
+c_n &= \frac{1}{T_s}\int_{-T_s/2}^{T_s/2}x_p(t)\,e^{-j2\pi nf_st}\,dt=\frac{1}{T_s}\int_{-T/2}^{T/2}\frac{1}{T}\,e^{-j2\pi nf_st}\,dt\\
+&= \frac{1}{T_s}\cdot\frac{1}{T}\cdot\left.\frac{e^{-j2\pi nf_st}}{-j2\pi nf_s}\right|_{-T/2}^{T/2}\\
+&= \frac{1}{T_s}\cdot\frac{1}{T}\cdot\kutula{\frac{e^{-j\pi nf_sT}-e^{j\pi nf_sT}}{-j2\pi nf_s}}\\
+&= \frac{1}{T_s}\,\frac{\sin(\pi nf_sT)}{\pi nf_sT}=\frac{1}{T_s}\,\mathrm{sinc}(nf_sT)
+\end{align*}
+\[ c_n=\frac{1}{T_s}\,\mathrm{sinc}(nf_sT) \]
+\[ X_p(f)=\sum_{n=-\infty}^{\infty}c_n\,\delta(f-nf_s)=\frac{1}{T_s}\sum_{n=-\infty}^{\infty}\mathrm{sinc}(nf_sT)\,\delta(f-nf_s) \]
+
+\noindent Darbe Genlik mod.\ (DGM) deniliyor ama bu değil!!! sonra \\
+Pulse amplitude mod (PAM)
+
+\elcizimi[0.6]{sekiller/Ders-4-s6-6.png}[6]
+
+\[ x_s(t)=x(t)\,x_p(t)=x(t)\sum_{n=-\infty}^{\infty}c_n\,e^{j2\pi nf_st} \]
+\[ x_s(t)=\sum_{n=-\infty}^{\infty}c_n\,x(t)\,e^{j2\pi nf_st} \]
+\[ \downarrow F \qquad c_n=f_s\cdot\mathrm{sinc}(nf_sT) \]
+\[ X_s(f)=\sum_{n=-\infty}^{\infty}c_n\,X(f-nf_s) \]
+
+\sayfa{7}
+\elcizimi[0.9]{sekiller/Ders-4-s7-1.png}[7]
+
+\begin{align*}
+x_s(t) &\longleftrightarrow X_s(f)=X(f)\otimes X_p(f)=X(f)\otimes\sum_{n=-\infty}^{\infty}c_n\,\delta(f-nf_s)\\
+&=\sum_{n=-\infty}^{+\infty}c_n\,X(f-nf_s)
+\end{align*}
+
+\section{Örnek: Lathi, Pr. 6.1-3}
+\noindent A signal $x(t)$ band limited to $B$ Hz is sampled by a periodic pulse train $p_{T_s}(t)$ made up of a rectangular pulse of width $\frac{1}{8B}$ seconds (centered at the origin) repeating at the Nyquist rate ($2B$ pulses per second). Show that the sampled signal $x_s(t)$ is given by
+\[ x_s(t)=\frac{1}{4}\,x(t)+\sum_{n=1}^{\infty}\frac{2}{n\pi}\sin\!\left(\frac{n\pi}{4}\right)x(t)\cos(n\omega_st)\,,\qquad \omega_s=2\pi f_s=4\pi B \]
+\noindent Show that the signal $x(t)$ can be recovered by passing $x_s(t)$ through an ideal LPF of BW $B$ Hz and a gain of 4.
+
+\noindent \okunamadi{}
+
+\noindent $f_s=2B$ \\ $T_s=\dfrac{1}{2B}$
+
+\elcizimi[0.65]{sekiller/Ders-4-s7-2.png}[7]
+
+\[ x_s(t)=x(t)\cdot p_{T_s}(t) \]
+\[ p_{T_s}(t)=\frac{1}{4}+\sum_{n=1}^{\infty}\frac{2}{n\pi}\sin\!\left(\frac{n\pi}{4}\right)\cos(n\omega_st)\qquad \omega_s=2\pi f_s=4\pi B \]
+\noindent böyle olduğunu ispatlamamız gerek
+\[ p_{T_s}(t)=a_0+\sum_{n=1}^{\infty}a_n\cos(n\omega_st)+b_n\sin(n\omega_st)\,] \]
+\begin{align*}
+a_0 &= \frac{1}{T_s}\int_{T_s}x(t)\,dt=\frac{1}{T_0}\int_{-T_s/2}^{T_s/2}x(t)\,dt\\
+&= 2B\int_{-1/16B}^{1/16B}1\,dt=2B\cdot\frac{2}{16B}\\
+&= \frac{1}{4}
+\end{align*}
+
+\sayfa{8}
+\noindent $b_n=0$ \quad çünkü fonksiyon çift ($p_{T_s}$ çift $\rightarrow b_n=0$.)
+\begin{align*}
+a_n &= \frac{2}{T_s}\int_{-T_s/2}^{T_s/2}p_{T_s}(t)\cos(n\omega_st)\,dt=4B\int_{-1/16B}^{1/16B}1\cdot\cos(n\omega_st)\,dt\\
+&= 4B\left.\frac{\sin(n\omega_st)}{n\,\underset{4\pi B}{\omega_s}}\right|_{-1/16B}^{1/16B}\\
+&= \frac{1}{n\pi}\left[\sin\!\left(n\cdot4\pi B\cdot\frac{1}{16B}\right)-\sin\!\left(n\cdot4\pi B\cdot\frac{-1}{16B}\right)\right]
+\end{align*}
+\formulkutu{a_n=\frac{2}{n\pi}\sin\!\left(\frac{n\pi}{4}\right)}
+\[ a_0=\frac{\pi}{4}\footnotemark\ \rightarrow\ p_{T_s}(t)=\underbrace{\frac{1}{4}}_{a_0}+\underbrace{\sum_{n=1}^{\infty}\frac{2}{n\pi}\sin\!\left(\frac{n\pi}{4}\right)}_{a_n}\cos(n\omega_st) \]
+\footnotetext{Claude notu: muhtemelen $a_0=\frac{1}{4}$ olmalı.}
+\[ x_s(t)=x(t)\,p_{T_s}(t)=\frac{1}{4}\,x(t)+\sum_{n=1}^{\infty}\frac{2}{n\pi}\sin\!\left(\frac{n\pi}{4}\right)\underbrace{\cos(n\omega_st)}_{e^{j2\pi nf_st}}\,x(t) \]
+
+\noindent b)
+
+\elcizimi[0.45]{sekiller/Ders-4-s8-1.png}[8]
+
+\noindent olsun
+\[ X_s(f)=\frac{1}{4}\,X(f)+\frac{1}{2}\,\frac{2}{n\pi}\sin\!\left(\frac{n\pi}{4}\right)\bigl[X(f-nf_s)+X(f+nf_s)\bigr] \]
+
+\elcizimi[0.85]{sekiller/Ders-4-s8-2.png}[8]
+
+\elcizimi[0.5]{sekiller/Ders-4-s8-3.png}[8]
+
+\sayfa{9}
+\section{Düz Tepeli örnekleme}
+\noindent (Flat top sampling) (FTS)
+
+\elcizimi[0.55]{sekiller/Ders-4-s9-1.png}[9]
+
+\noindent tepeyi takip etmiyor
+
+\elcizimi[0.5]{sekiller/Ders-4-s9-2.png}[9]
+
+\noindent Sample and hold circuit \\ (Örnekle ve tut devresi)
+
+\noindent $x_s(t)$: Darbe Genlik mod (DGM) \\ Pulse amplitude mod
+
+\end{document}

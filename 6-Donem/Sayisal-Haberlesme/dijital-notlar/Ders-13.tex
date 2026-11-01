@@ -1,0 +1,158 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{M-PSK ve MFSK hata olasılığı eğrileri}{Ders-13.pdf}
+
+\sayfa{1}
+\section{Sayfa 222, Şekil 4.29 --- M-PSK}
+\sekilnotu[1]{Basılı şekil (ders kitabı, Şekil 4.29): koheren algılanan M-PSK için bit hata olasılığı $P_B(M)$ -- $E_b/N_0$ (dB) eğrileri; $k=1,2$ (tek eğri), $3$, $4$, $5$; dijitalleştirilmedi. El yazısı eklemeler: $P_B=10^{-4}$ düzeyinde y ekseninden $k=1,2$ eğrisine kesikli yatay çizgi ve $E_b/N_0\approx 8$--$9$ dB'de eksenden yukarı doğru çıkan (diğer eğrileri de kesen) düz düşey çizgi.}
+
+\noindent M arttıkça bit hata olasılığı artıyor \\
+$M\uparrow \;\Rightarrow\; P_b\uparrow$ \quad (performans kötüleşiyor)
+
+\noindent $\times$ BG aynı (BGV$\uparrow$) $\rightarrow$ BG verimli teknik
+\[ \mathrm{BGV}=\frac{R_b\ \text{bit/sn}}{\mathrm{BG}\ \text{Hz}}\ \uparrow \]
+BG verimi: M-QAM $\checkmark$, M-ASK $\checkmark$
+
+\noindent QPSK \quad BPSK'dan avantajlıdır \\
+(2 bit) \quad\quad (1 bit) \quad aynı hata olasılığı
+
+\section{Sayfa 230, Şekil 4.35}
+\noindent Gray kodlama $\Rightarrow$ $P_B \approx \frac{1}{k}P_E$
+
+\sekilnotu[1]{Basılı şekil (ders kitabı, Şekil 4.35): koheren algılanan M-PSK için sembol hata olasılığı $P_E(M)$ -- $E_b/N_0$ (dB) eğrileri, $M=2,4,8,16,32,64$ ($M=2^k$); dijitalleştirilmedi.}
+
+\section{Sayfa 221, Şekil 4.28 (MFSK) --- MFSK}
+
+\sayfa{2}
+\sekilnotu[2]{El çizimi yarı-logaritmik grafik (üstte kırmızı ``MFSK'' etiketi): düşey eksen logaritmik, $10^{-1}, 10^{-2}, 10^{-3}, 10^{-4}, 10^{-5}, 10^{-6}$; yatay eksen $4, 8, 12, 16$ ($E_b/N_0$). Tüm eğriler $10^{-1}$ civarından başlayıp aşağı düşer: solda turuncu eğri demeti ($x\approx 8$--$10$ civarında eksene iner), sağda koyu kırmızı eğriler ($x\approx 11$--$12{,}5$ civarında). Kesikli çizgiler: $10^{-1}$ düzeyinden $x=8$'e yatay, oradan eksene düşey; $10^{-5}$ düzeyinden en sağdaki eğriye ($x\approx 12{,}5$) yatay, oradan eksene düşey.}
+
+\noindent $M\uparrow \;\Rightarrow\; P_b\downarrow \;\times\; \mathrm{BG}\uparrow\ (\mathrm{BGV}\downarrow)$ \\
+(performans iyileşir) \quad (güç verimli)
+
+\noindent Uydu haberleşmesinde kullanılıyor
+
+\noindent Ortogonal modülasyon teknikleri için
+\[ P_b = \frac{M}{2(M-1)}\,P_s \]
+
+\noindent MFSK \quad Gücün önemli olduğu Bant genişliği önemsenmediği yerde MPSK'ya tercih edilir.
+
+\section{Performans ifadeleri}
+\[ \left.\begin{array}{l}\text{2-PSK (BPSK)}\\ \text{4-PSK (QPSK)}\end{array}\right\}\; P_b = Q\!\left(\sqrt{\frac{2E_b}{N_0}}\right) \]
+
+\noindent 2-FSK (BFSK) \quad Faz tahminli \okunamadi{d.} (Coherent \okunamadi{edena}):
+\[ P_b = Q\!\left(\sqrt{\frac{E_b}{N_0}}\right) \qquad \frac{1}{2T}\ \rightarrow\ \text{Bant genişliği bakımından daha avantajlı} \]
+\noindent Faz tahminsiz (Non coherent):
+\[ P_b = \frac{1}{2}\,e^{-\frac{E_b}{2N_0}} \qquad \frac{1}{T} \]
+
+\[ Q(x) \le e^{-x^2/2} \]
+
+\section{MPSK}
+\noindent For large SNRs and $M>8$
+\[ P_s \approx 2Q\!\left(\sqrt{\frac{2E_s}{N_0}}\,\sin\!\left(\frac{\pi}{M}\right)\right) \qquad E_s = k\cdot E_b \]
+\noindent ($E_s$: sembol enerjisi, $E_b$: bit enerjisi)
+
+\noindent $\Rightarrow$ Gray kodlama $\Rightarrow$ $P_b \approx \frac{1}{k}P_s$
+
+
+\sayfa{3}
+\section{MFSK}
+\noindent Faz tahminli de geçerli
+\[ P_s \le (M-1)\,Q\!\left(\sqrt{\frac{E_s}{N_0}}\right) \]
+\[ P_b = \frac{M}{2(M-1)}\,P_s \;\Rightarrow\; P_b \le \frac{M}{2}\,Q\!\left(\sqrt{\frac{E_s}{N_0}}\right) \quad \textcolor{turuncukalem}{\leftarrow k\cdot E_b} \]
+\noindent Faz tahminsiz \quad $P_s \le (M-1)\left(\dfrac{1}{2}\,e^{-\frac{E_b}{N_0}}\right)$
+
+\section{Sayfa 240 Örn.\,4.16}
+\noindent Yalnızca $P_b$ dikkate alınırsa hangisini tercih edersiniz?
+
+\noindent Coherent 8FSK, $\dfrac{E_b}{N_0}=8\ \mathrm{dB}$ \\
+\hspace*{1.5em},, \quad 8-PSK, $\dfrac{E_b}{N_0}=13\ \mathrm{dB}$, gray coded $\;\rightarrow\;\dfrac{E_b}{N_0}=10^{1{,}3}=19{,}952$
+\[ 10\log_{10}\frac{E_b}{N_0}=8 \;\Rightarrow\; \frac{E_b}{N_0}=10^{0{,}8}=6{,}309 \]
+\begin{align*}
+\text{8FSK:}\quad P_b &\le \frac{M}{2}\,Q\!\left(\sqrt{k\,\frac{E_b}{N_0}}\right)=\frac{8}{2}\,\underbrace{Q\!\left(\sqrt{3\cdot 6{,}309}\right)}_{6{,}8\cdot 10^{-6}}\\
+&= 27{,}2\cdot 10^{-6}\approx 3\cdot 10^{-5}
+\end{align*}
+\noindent $M=8=2^3 \;\Rightarrow\; k=3$ bit/sembol
+\begin{align*}
+\text{8PSK:}\quad P_b &= \frac{1}{k}P_s \;\rightarrow\; \frac{1}{3}\cdot 2\,\underbrace{Q\!\left(\underbrace{\sqrt{2\,\underset{3}{k}\,\underset{19{,}952}{\frac{E_b}{N_0}}}\,\sin\!\left(\frac{\pi}{8}\right)}_{4{,}187}\right)}_{1{,}33\cdot 10^{-5}}\\
+&= 0{,}886\cdot 10^{-5}\approx 10^{-5}
+\end{align*}
+\noindent 8PSK'de hata daha az olduğundan tercih ederiz.
+
+\section{Örnek: S.238, Pr 4.7}
+\noindent BFSK, coherent detection, $P(s_1)=P(s_2)=\dfrac{1}{2}$
+\[ \left.\begin{array}{l}
+s_1(t)=0{,}5\cos(2000\pi t)\ \rightarrow\ f_1=1000\ \mathrm{Hz}\\
+s_2(t)=0{,}5\cos(2020\pi t)\ \rightarrow\ f_2=1010\ \mathrm{Hz}
+\end{array}\right\}\ f_2-f_1=10\ \mathrm{Hz} \]
+\noindent ? \quad ortogonallik şartı: $\Delta f=\dfrac{1}{2T}=50\ \mathrm{Hz}$ \quad $\rightarrow$ ortogonal değil
+
+\noindent AWGN, $\dfrac{N_0}{2}=0{,}0001 \;\Rightarrow\; P_b=Q\!\left(\sqrt{\dfrac{E_b}{N_0}(1-\rho)}\right)$ \\
+$T_b=0{,}01\ \mathrm{s}$ \\
+$P_b=\,?$
+\[ E_b = E_{s1}P(s_1)+E_{s2}P(s_2) \]
+\[ E_{s1}=E_{s2}=(0{,}5^2)\cdot\frac{1}{2}\cdot T = 0{,}00125 = 1{,}25\ \mathrm{mJ} \]
+\[ \Rightarrow\; E_b = 0{,}00125\ \mathrm{J} \]
+\begin{align*}
+\rho &= \frac{1}{E_b}\int_0^T s_1(t)\,s_2(t)\,dt = \frac{1}{0{,}00125}\int_0^{0{,}01} 0{,}5\cos(2000\pi t)\;0{,}5\cos(2020\pi t)\,dt\\
+&= \frac{0{,}5^2}{0{,}00125}\cdot\frac{1}{2}\int_0^{0{,}01}\bigl[\cos(20\pi t)+\cos(4020\pi t)\bigr]dt
+\end{align*}
+
+\sayfa{4}
+\[ \rho=0{,}94 \;\Rightarrow\; P_b = Q\!\left(\underbrace{\sqrt{\frac{0{,}00125\,(1-0{,}94)}{2\cdot 0{,}0001}}}_{0{,}6123}\right) = 0{,}2743 \approx 0{,}3 = 3\cdot 10^{-1} \]
+\noindent \hfill $\uparrow$ 10 bitte 3 bit hata
+
+\noindent Ortogonal olsaydı
+\[ P_b = Q\!\left(\sqrt{\frac{E_b}{N_0}}\right) = Q\!\left(\sqrt{\frac{0{,}00125}{2\cdot 0{,}0001}}\right) = Q(2{,}5) = 0{,}0062 \approx 6\cdot 10^{-3} \]
+\noindent \underline{Performansı 200 kat iyileştirdik}
+
+\section{BG}
+\noindent Ortogonal değilken \quad $\dfrac{1}{T}=100$
+
+\elcizimi[0.55]{sekiller/Ders-13-s4-1.png}[4]
+
+\section{Ortogonallik}
+\[ \Delta f = \frac{1}{2T} = 50\ \mathrm{Hz} \;\rightarrow\; \begin{array}{l} f_1=1000\ \mathrm{Hz}\\ f_2=1050\ \mathrm{Hz}\end{array} \]
+
+\elcizimi[0.5]{sekiller/Ders-13-s4-2.png}[4]
+
+\section{Örnek: S.237, Pr. 4.8}
+\sekilnotu[4]{Basılı soru metni (ders kitabı, 4.8): korelatör alıcıda optimum eşik $\gamma_{th}$ sorusu; dijitalleştirilmedi.}
+\[ s_1(t)=\sqrt{\frac{2E}{T}}\,\cos(\omega_0 t) \]
+\[ s_2(t)=\sqrt{\frac{2E}{T}}\,\cos(\omega_0 t+\pi) \]
+\[ P(s_1)=P(s_2) \qquad \text{2-QAM gibi} \]
+\noindent Ref signal $\psi_1(t)=\sqrt{\dfrac{2}{T}}\,\cos(\omega_0 t)$ \\
+$\gamma_0=\,?$
+
+\sayfa{5}
+\[ \psi_1(t)=\sqrt{\frac{2}{T}}\cos(\omega_0 t),\quad 0\le t\le T \;\rightarrow\; \left\{\begin{array}{l} s_1(t)=\sqrt{E}\,\psi_1(t)\\[2pt] s_2(t)=-\sqrt{\dfrac{E}{4}}\,\psi_1(t)\end{array}\right. \]
+
+\elcizimi[0.85]{sekiller/Ders-13-s5-1.png}[5]
+
+\[ a_i=\int_0^T s_i(t)\,\psi_1(t)\,dt \qquad i=1,2 \]
+\noindent temel fonksiyonların enerjisi 1 olmak zorunda
+\begin{align*}
+a_1 &= \int_0^T s_1(t)\cdot\psi_1(t)\,dt=\int_0^T \sqrt{E}\,\psi_1(t)\,\psi_1(t)\,dt=\sqrt{E}\,\underbrace{\int_0^T \psi_1^2(t)\,dt}_{E_{\psi_1}}=\sqrt{E}\\
+a_2 &= \int_0^T s_2(t)\,\psi_1(t)\,dt=-\sqrt{\frac{E}{4}}\int_0^T\psi_1^2(t)\,dt=-\frac{\sqrt{E}}{2}
+\end{align*}
+\[ \gamma_0=\frac{a_1+a_2}{2}=\frac{\sqrt{E}-\sqrt{E}/2}{2}=\frac{\sqrt{E}}{4} \]
+
+\noindent $P_b=\,?$
+\[ P_b = Q\!\left(\frac{a_1-a_2}{2\sigma_0}\right) \]
+\[ \sigma_0^2=\frac{N_0}{2}\,E_{\psi_1} \qquad \text{ve} \qquad E_{\psi_1}=1 \]
+\[ \sigma_0^2=\frac{N_0}{2} \]
+\[ P_b = Q\!\left(\frac{\sqrt{E}+\sqrt{E}/2}{2\sqrt{N_0/2}}\right)=Q\!\left(\sqrt{\frac{9}{8}\,\frac{E}{N_0}}\right) \]
+
+\section{$E_b$ cinsinden ifade edelim}
+\[ E_b = E_{s1}\,P(s_1)+E_{s2}\,P(s_2) \]
+\[ = E\cdot\frac{1}{2}+\frac{E}{4}\cdot\frac{1}{2}=\frac{5E}{8}\;\Rightarrow\; E=\frac{8E_b}{5} \]
+\[ \rightarrow\; P_b = Q\!\left(\sqrt{\frac{9}{5}\,\frac{E_b}{N_0}}\right) \]
+
+\section{II. yol}
+\[ P_b = Q\!\left(\sqrt{\frac{E_b}{N_0}(1-\rho)}\right) \;\xrightarrow[\substack{\rho=-4/5\\ \text{siz hesaplayın}}]{}\; P_b = Q\!\left(\sqrt{\frac{9}{5}\,\frac{E_b}{N_0}}\right) \]
+
+\section{III. yol}
+\[ P_b = Q\!\left(\sqrt{\frac{E_d}{N_0}}\right) \qquad E_d=\int_0^T\bigl[s_1(t)-s_2(t)\bigr]^2dt=\frac{9}{4}E \]
+\noindent $\Rightarrow\; P_b = Q\Bigl(\sqrt{\tfrac{9}{4}\,\tfrac{E}{N_0}}\Bigr)$\footnote{Claude notu: satırın alt kısmı sayfa kenarında kesik; ifade tahminidir.}
+
+\end{document}

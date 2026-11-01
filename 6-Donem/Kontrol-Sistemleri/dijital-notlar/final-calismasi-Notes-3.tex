@@ -1,0 +1,50 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Kalıcı hal hatası ve kapalı çevrim aktarım fonksiyonu}{Notes-3.pdf}
+\providecommand{\sadelestir}[1]{\tikz[baseline=(sx.base)]{\node[inner sep=0pt](sx){$\displaystyle #1$};\draw[turuncukalem,line width=0.7pt](sx.south west)--(sx.north east);}}
+
+\sayfa{1}
+\sekilnotu[1]{Sayfanın üst kısmında basılı sınav sorusu 3 (\%25) bulunuyor: geri beslemeli sistem blok diyagramı; kontrolcü $G_c(s)=K$, süreç $G(s)=\dfrac{s+40}{s(s+10)}$, sensör $H(s)=\dfrac{1}{s+20}$. Dijitalleştirilmedi.}
+
+\[
+\text{CLTF} = F(s) = \frac{kG(s)}{1+kG(s)H(s)}
+\]
+\[
+= \frac{\dfrac{k(s+40)}{s(s+10)}}{1+\dfrac{k(s+40)}{s(s+10)(s+20)}}
+\]
+\[
+= \frac{\dfrac{k(s+40)}{\sadelestir{s(s+10)}}}{\dfrac{s(s+10)(s+20)+k(s+40)}{\sadelestir{s(s+10)}(s+20)}}
+\]
+\[
+F(s) = \frac{k(s+40)(s+20)}{s(s+10)(s+20)+k(s+40)}
+\]
+\[
+e_{ss} = \lim_{s\to0} sE(s) = \lim_{s\to0}\frac{sR(s)}{1+F(s)}
+\]
+For unit step $R(s)=\dfrac{1}{s}$
+\[
+e_{ss} = \lim_{s\to0}\frac{1}{1+\underbrace{F(s)}_{k_p}}
+\]
+\[
+k_p = \lim_{s\to0}\frac{k(s+40)(s+20)}{s(s+10)(s+20)+k(s+40)} = \frac{\sadelestir{k(40)}(20)}{\sadelestir{k(40)}}
+\]
+
+\sayfa{2}
+\[
+e_{ss} = \frac{1}{21} \qquad \text{for unit step input}
+\]
+For ramp input $R(s)=\dfrac{1}{s^2}$
+\begin{align*}
+e_{ss} &= \lim_{s\to0}\frac{1/s}{1+F(s)} = \lim_{s\to0}\frac{1}{s+sF(s)}\\
+&= \lim_{s\to0}\frac{1}{sF(s)} = \frac{1}{k_a}
+\end{align*}
+When $k_a = \displaystyle\lim_{s\to0} sF(s) =$
+\[
+\lim_{s\to0}\frac{s\big(k(s+40)(s+20)\big)}{s(s+10)(s+20)+k(s+40)} = 0
+\]
+\[
+\Rightarrow e_{ss} = \infty
+\]
+
+\end{document}

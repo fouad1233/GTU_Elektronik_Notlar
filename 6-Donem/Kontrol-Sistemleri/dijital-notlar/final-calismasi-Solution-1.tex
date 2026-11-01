@@ -1,0 +1,234 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Final çalışması – Çözüm 1}{Solution-1.pdf}
+
+\sayfa{1}
+\section{Q1}
+\textcolor{kirmizikalem}{20\%\quad 5\% per item}
+
+\begin{enumerate}[label=\alph*)]
+\item Not always. when an entire row in Routh table becomes zero, it means that at least two poles are on the imaginary axis OR real axis OR complex poles symmetric with respect to the origin
+\begin{center}
+\begin{tikzpicture}[scale=0.9]
+\draw[->,murekkep,thick] (-2.4,0) -- (1.95,0);
+\draw[->,murekkep,thick] (0,-1.65) -- (0,1.9);
+\foreach \x/\y in {-1.0/1.25, 0.8/1.3, 0/0.85, -1.25/0, 1.25/0, 0/-0.65, -0.85/-1.1, 1.1/-1.0}
+  \node[yesilkalem] at (\x,\y) {$\times$};
+\end{tikzpicture}
+\end{center}
+\item Steady state error is due to the type of the system as well as the input signal. For example a type 1 system can follow an step input while inputs like ramp or parabolic signals are not followed accurately.
+\item No, stability is a characteristic of the system itself and does not depend on the input signal.
+\item Pole placement: reduces stability, increases accuracy \\
+increases the settling time (slow response)
+
+Zero placement: Increases stability, faster responses will appear (decreasing the settling time), can lead to noise augmentation
+
+In terms of performance, when poles are added, max. overshoot is reduced but for zero placement, $M_p\%$ increases.
+\end{enumerate}
+
+\sayfa{2}
+\section{Q2}
+\[
+\left\{\begin{aligned}
+C(s) &= \bigl(E(s)\,G_1(s)+D(s)\bigr)\,G_2(s)\\
+E(s) &= R(s)-C(s)
+\end{aligned}\right.
+\]
+\[
+\Rightarrow\quad R(s)-E(s)=\bigl(E(s)\,G_1(s)+D(s)\bigr)\,G_2(s)
+\]
+\[
+\Rightarrow\quad E(s)=\frac{R(s)}{1+G_1(s)G_2(s)}-\frac{G_2(s)\,D(s)}{1+G_1(s)G_2(s)}
+\]
+
+The steady state error is \hfill \textcolor{kirmizikalem}{10\%}
+\begin{align*}
+e(\infty)=e_{ss} &= \lim_{s\to 0} sE(s)\\
+&= \lim_{s\to 0}\left[\frac{sR(s)}{1+G_1(s)G_2(s)}-\frac{sG_2(s)D(s)}{1+G_1(s)G_2(s)}\right]
+\end{align*}
+
+\begin{enumerate}[label=\alph*)]
+\item steady-state error due to $D(s)=\frac{1}{s}$, $R(s)=0$ is $-0.00001$
+\begin{align*}
+-0.00001 &= \lim_{s\to 0}-\frac{G_2(s)}{1+G_1(s)G_2(s)}\\
+&= \lim_{s\to 0}-\frac{\dfrac{k_2}{s(s+4)}}{1+\dfrac{k_2}{s(s+4)}\,\dfrac{k_1(s+2)}{s+3}}
+\end{align*}
+\begin{align*}
+\Rightarrow\quad 0.00001 &= \lim_{s\to 0}\frac{k_2(s+3)}{s(s+3)(s+4)+k_1k_2(s+2)}\\
+&= \frac{3k_2}{2k_1k_2}=\frac{3}{2k_1}\qquad\text{\textcolor{kirmizikalem}{5\%}}
+\end{align*}
+\[
+\Rightarrow\quad \kutula{k_1=150{,}000}
+\]
+\item steady-state error due to $R(s)=\frac{1}{s}$, $D(s)=0$ is $0.002$
+\begin{align*}
+0.002 &= \lim_{s\to 0}\frac{1}{1+G_1(s)G_2(s)}\\
+&= \lim_{s\to 0}\frac{s(s+3)(s+4)}{s(s+3)(s+4)+k_1k_2(s+2)}\neq 0\qquad\text{\textcolor{kirmizikalem}{5\%}}
+\end{align*}
+\end{enumerate}
+So the second condition may not be satisfied, and for any value of $k_2$, the system tracks unit step input!
+
+\sayfa{3}
+\section{Q3}
+\[
+1+kG(s)=0
+\]
+\[
+\rightarrow\ s(s+0.7)(s+1.2)(s^2+0.8s+6)+k(s+6)=0
+\]
+\begin{center}(characteristic equation)\end{center}
+\begin{align*}
+\Rightarrow\ & (s^2+0.7s)(s^3+0.8s^2+6s+1.2s^2+0.96s+7.2)+ks+6k=0\\
+\Rightarrow\ & (s^2+0.7s)(s^3+2s^2+6.96s+7.2)+ks+6k=0\\
+\Rightarrow\ & s^5+2s^4+6.96s^3+7.2s^2+0.7s^4+1.4s^3+4.872s^2+5.04s+ks+6k=0\\
+\Rightarrow\ & s^5+2.7s^4+8.36s^3+12.072s^2+(k+5.04)s+6k=0\qquad\text{\textcolor{kirmizikalem}{5\%}}
+\end{align*}
+\[
+\begin{array}{c@{\qquad}c@{\qquad}c@{\qquad}c}
+s^5 & 1 & 8.36 & k+5.04\\[2pt]
+s^4 & 2.7 & 12.072 & 6k\\[2pt]
+s^3 & 3.89 & \dfrac{-3.3k+13.608}{2.7} & \\[6pt]
+s^2 & \dfrac{33.35+3.3k}{3.89} & 6k & \\[6pt]
+s^1 & \dfrac{k^2+28.37k-41.53}{-8.24-0.82k} & 0 & \\[6pt]
+s^0 & 6k & &
+\end{array}
+\qquad\text{\textcolor{kirmizikalem}{10\%}}
+\]
+So in order to have no change in sign, all components of the first column must be positive, which gives the following conditions,
+\begin{enumerate}[label=\arabic*)]
+\item $k>0$
+\item $33.35+3.3k>0 \;\rightarrow\; k>-10.1$
+\end{enumerate}
+
+\sayfa{4}
+from the above two conditions we find out that $k$ must be positive (greater than zero).
+
+Now let's check the last condition.
+\[
+\frac{k^2+28.37k-41.53}{-8.24-0.82k}>0\;\Rightarrow\;\underbrace{k^2+28.37k-41.53}_{\text{eq.}}<0
+\]
+roots of this 2nd order equation are $k_1=1.395$, $k_2=-29.76$
+\[
+\begin{array}{r@{\qquad}l@{\qquad}c}
+k<-29.76 & \rightarrow\ \text{eq}>0 & \times\\
+-29.76<k<1.395 & \rightarrow\ \text{eq}<0 & \checkmark\\
+k>1.395 & \rightarrow\ \text{eq}>0 & \times
+\end{array}
+\]
+So in total the acceptable range is \quad $\kutula{0<k<1.395}$ \hfill \textcolor{kirmizikalem}{5\%}
+
+\sayfa{5}
+\section{Q4}
+\[
+\text{Open loop T.F.:}\quad G(s)=\frac{k(s+1)}{s(s-1)(s^2+6s+30)}
+\]
+Zero: $Z=-1$
+
+Poles: $P_1=0,\ P_2=1,\ P_{3,4}=-3\pm j\sqrt{21}$ \hfill \textcolor{kirmizikalem}{5\%}
+
+unmatched branches : $n-m=3$ $\Rightarrow$ 3 asymptotes
+\[
+\phi_k=\frac{2k+1}{n-m}\cdot 180
+\;\rightarrow\;
+\left\{\begin{aligned}
+\phi_0&=60^\circ\\
+\phi_1&=180^\circ\\
+\phi_2&=300^\circ=-60^\circ
+\end{aligned}\right.
+\qquad\text{\textcolor{kirmizikalem}{5\%}}
+\]
+So asymptote angles are $\pm 60^\circ$ and $180^\circ$.
+
+the centroid of asymptotes may be determined as
+\[
+S=\frac{\sum \text{real part of poles}-\sum \text{real part of zeroes}}{n-m}=-\frac{4}{3}=-1.33
+\qquad\text{\textcolor{kirmizikalem}{5\%}}
+\]
+Now, let's calculate the breaking points by using the characteristic equation
+\[
+s(s-1)(s^2+6s+30)+k(s+1)=0\;\Rightarrow\;k=-\frac{s(s-1)(s^2+6s+30)}{s+1}
+\]
+\[
+\frac{dk}{ds}=0\;\Rightarrow\;\frac{(s-1)(s^2+6s+30)+s(s^2+6s+30)+s(s-1)(2s+6)}{s+1}
+\qquad\text{\textcolor{kirmizikalem}{5\%}}
+\]
+\[
+=\frac{s(s-1)(s^2+6s+30)}{(s+1)^2}
+\]
+\[
+\Rightarrow\ 3s^4+14s^3+39s^2+48s-30=0\;\rightarrow\;
+\left\{\begin{array}{rl@{\qquad}c}
+s_1&{}=+0.44&\checkmark\\
+s_2&{}=-2.601&\checkmark\\
+s_{3,4}&{}=-1.25\pm 2.67j&\times
+\end{array}\right.
+\]
+
+\sayfa{6}
+The first two roots are on the root locus, so they are accepted as break out and break in points.
+
+\sekilnotu[6]{Root locus sketch in the $s$-plane (Re axis to the right, $j\omega$ axis up). Real-axis marks $-3,-2,-1,+1$. Poles ($\times$) at $0$ and $+1$; zero (o) at $-1$; complex poles $P_3$ (upper left, above $-3$) and $P_4$ (lower left, below $-3$), each joined to the $j\omega$ axis by a dashed horizontal line. Red root-locus segments on the real axis: from $-\infty$ (red arrow to the left labeled ``$\infty$ asymptote'') up to the zero at $-1$, with ``Break in'' marked between $-3$ and $-2$ (about $-2.6$); and between $0$ and $+1$, with a double-headed arrow labeled ``break out'' (about $+0.44$). Green dashed asymptote lines leave the centroid (labeled ``Centroid'', between $-2$ and $-1$, about $-1.33$) at $60^\circ$ and $-60^\circ$ (angles marked $60^\circ$ and $-60^\circ$); the upper one is labeled ``asymptote''.}
+
+Now let's determine the angles of leaving from the complex poles,
+
+\noindent
+\begin{tabular}{@{}l@{\quad}l@{}}
+$\ast$ leaving angle: & $180^\circ-\sum$ angles of other poles w.r.t this pole\\
+from $P_3$ & $\phantom{180^\circ}+\sum$ angles of other zeros
+\end{tabular}
+\begin{align*}
+&= 180^\circ-(90^\circ)-\Bigl(180-\tan^{-1}\Bigl(\dfrac{\sqrt{21}}{3}\Bigr)\Bigr)-\Bigl(180-\tan^{-1}\dfrac{\sqrt{21}}{4}\Bigr)\qquad\text{\textcolor{kirmizikalem}{5\%}}\\
+&\quad+\Bigl(180-\tan^{-1}\dfrac{\sqrt{21}}{2}\Bigr)\\
+&= 180^\circ-90^\circ-123.21^\circ-131.12^\circ+113.58^\circ=-50.75^\circ
+\end{align*}
+for pole `$P_4$' the leaving angle will be $+50.75^\circ$.
+
+\sayfa{7}
+we can also determine the intersection of the root locus with the imaginary axis by using the Routh table as,
+\begin{gather*}
+s(s-1)(s^2+6s+30)+k(s+1)=0\\
+\rightarrow\ s^4+5s^3+ks+24s^2+k-30s=0
+\qquad\text{\textcolor{kirmizikalem}{5\%}}\\
+\rightarrow\ s^4+5s^3+24s^2+(k-30)s+k=0
+\end{gather*}
+\[
+\begin{array}{r@{\qquad}c@{\qquad}c@{\qquad}c@{\qquad\qquad}l}
+s^4 & 1 & 24 & k & \\
+s^3 & 5 & k-30 & & \text{\tikz[baseline=(c.base)]\node[draw,circle,inner sep=1pt] (c) {\scriptsize 1};}\ k>0\\
+s^2 & 30-\dfrac{k}{5} & k & & \text{\tikz[baseline=(c.base)]\node[draw,circle,inner sep=1pt] (c) {\scriptsize 2};}\ 30-\dfrac{k}{5}>0\ \rightarrow\ k<150\\[6pt]
+s^1 & \dfrac{k^2-155k+4500}{k-150} & & & \text{\tikz[baseline=(c.base)]\node[draw,circle,inner sep=1pt] (c) {\scriptsize 3};}\ \dfrac{k^2-155k+4500}{k-150}>0\\[6pt]
+s^0 & k & & &
+\end{array}
+\]
+In order to be stable, all the above conditions must hold. So $k^2-155k+4500<0$ then $38.68<k<116.31$ to make it happen and finally all the three conditions are satisfied for $38.68<k<116.31$. \hfill \textcolor{kirmizikalem}{10\%}
+
+There are two cases where we can construct a full zero row, in the $s^1$ row. For $k=38.68$ and $k=116.31$ this row becomes zero, the auxiliary equation for these two cases are
+
+\sayfa{8}
+\[
+\left(30-\frac{k}{5}\right)s^2+k=0
+\]
+\[
+\begin{array}{rcl}
+\text{@ } k=38.68 & : & 22.26\,s^2+38.68=0\\
+\text{@ } k=116.31 & : & 6.74\,s^2+116.31=0
+\end{array}
+\]
+So the $j\omega$-crossings are \hfill \textcolor{kirmizikalem}{5\%}
+\begin{align*}
+s_{1,2}&=\pm j\,1.32\\
+s_{3,4}&=\pm j\,4.15
+\end{align*}
+According to the current data, we can plot the root locus to a high degree of accuracy, but if we want explicit and analytical definition for various branches we should check the phase condition by substituting $s=\sigma+j\omega$ in the open-loop transfer function.
+
+\elcizimi[0.75]{sekiller/final-calismasi-Solution-1-s8-1.png}[8]
+\hfill\textcolor{kirmizikalem}{10\%}
+
+\sayfa{9}
+for positive feedback, the root locus plot is
+
+\elcizimi[0.7]{sekiller/final-calismasi-Solution-1-s9-1.png}[9]
+\hfill\textcolor{kirmizikalem}{5\%}
+
+\end{document}

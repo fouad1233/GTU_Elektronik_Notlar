@@ -1,0 +1,339 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Transient / Steady State Response (1st \& 2nd order)}{Control-Systems-lecture-6.pdf}
+
+\sayfa{1}
+\section{Transient / Steady State Response}
+We may check the responses for 3 characteristics:
+\begin{enumerate}[label=\arabic*-]
+  \item Quality of response
+  \item Accuracy of response (\% error)
+  \item Stability
+\end{enumerate}
+
+Differential equations:
+\begin{align*}
+\text{1st:}\quad & T\dot{x}+x=r\\
+\text{2nd:}\quad & \ddot{x}+a_1\dot{x}+a_2x=r
+\end{align*}
+\[ x(t)=x_h(t)+x_p(t) \]
+\textit{$x_h$: homogenous solution, due to I.C $\Rightarrow$ transient response;\quad $x_p$: particular solution, due to external excitation.}
+
+To check stability we have to check the homogen solution.
+\sekilnotu[1]{Ball resting on top of a hatched dome-shaped hill, arrow $x$ above the ball, label ``I.C''.}
+or it can be unstable due to resonans, $r=\varepsilon\sin\omega t$.
+\[ \text{To get } x_h(t)\ \to\ \begin{cases} T\dot{x}+x=0\\ \ddot{x}+a_1\dot{x}+a_2x=0 \end{cases} \]
+
+\section{First order system}
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+  \node[left] at (0,0) {$R(s)$};
+  \draw[->] (0,0) -- (0.95,0);
+  \node[above] at (0.45,0) {$+$};
+  \draw (1.2,0) circle (0.25);
+  \draw (1.02,-0.18)--(1.38,0.18) (1.02,0.18)--(1.38,-0.18);
+  \draw[->] (1.45,0) -- (2.4,0);
+  \draw (2.4,-0.45) rectangle (3.8,0.45);
+  \node at (3.1,0) {$\dfrac{1}{Ts}$};
+  \draw[->] (3.8,0) -- (5.2,0) node[right]{$X(s)$};
+  \fill (4.5,0) circle (1.5pt);
+  \draw[->] (4.5,0) -- (4.5,-1.1) -- (1.2,-1.1) -- (1.2,-0.25);
+  \node[right] at (1.2,-0.6) {$-$};
+\end{tikzpicture}
+
+$\Downarrow$
+
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+  \node[left] at (0,0) {$R(s)$};
+  \draw[->] (0,0) -- (1,0);
+  \draw (1,-0.45) rectangle (2.7,0.45);
+  \node at (1.85,0) {$\dfrac{1}{Ts+1}$};
+  \draw[->] (2.7,0) -- (3.9,0) node[right]{$X(s)$};
+\end{tikzpicture}
+\end{center}
+
+\[ T\frac{dx}{dt}+x=r \qquad \text{initial condition } x(0)=x_0 \]
+\[ RC\frac{dv_c}{dt}+v_c=V \qquad T\dot{v}_c+v_c=V \;\Rightarrow\; \underbrace{(Ts+1)}_{\text{characteristic equation}}\,V_c=V \]
+\[ \mathcal{L}\ \Rightarrow\ T\,[\,sX(s)-x_0\,]+X=R \ \to\ X(s)\,(Ts+1)=R(s)+T\,x(0) \]
+\[ \to\ X(s)=\underbrace{\frac{R(s)}{Ts+1}}_{\text{particular solut.}}+\underbrace{\frac{T\,x(0)}{Ts+1}}_{\text{homo sol.}} \]
+
+\sayfa{2}
+\subsection{if $R(s)=0 \to$ transient solution}
+$T=RC$
+\[ X(s)=\frac{T\,x(0)}{Ts+1}=T\,x(0)\left(\frac{1/T}{s+1/T}\right)=\frac{x(0)}{s+\frac{1}{T}} \]
+\[ \xrightarrow{\ \mathcal{L}^{-1}\ }\quad x(t)=x_0\,e^{-t/T}=x_0\,e^{s_1 t} \]
+\textit{($s_1$: position of pole determines the rate of decay.)}
+\formulkutu{x(t)=\frac{x(0)}{e^{t/T}}=\frac{x(0)}{e^{|s_1|t}}\qquad |s_1|\uparrow\ \Rightarrow\ x(t)\ \text{decreases faster}}
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick]
+\draw[->,turuncukalem] (-0.3,0)--(4,0) node[right]{$t$};
+\draw[->,turuncukalem] (0,-0.2)--(0,1.8) node[above]{$x$};
+\draw[turuncukalem,domain=0:3.6,smooth,variable=\t] plot ({\t},{1.5*exp(-1.4*\t)});
+\node[left,turuncukalem] at (0,1.5) {$x(0)$};
+\end{tikzpicture}
+\end{center}
+$T$: time constant of the system
+\[ \text{characteristic equation}:\ Ts+1\ \Rightarrow\ s_1=-\frac{1}{T}\quad\text{(pole of the system)} \]
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+\draw[->] (-3.2,0)--(2,0) node[right]{Re};
+\draw[->] (0,-1.8)--(0,1.8) node[above]{Im};
+\node at (-1.6,0) {$\times$};
+\node[below] at (-1.6,-0.15) {$-\frac{1}{T}$};
+\node[below,font=\small] at (-2.4,-1.0) {if $T$ is real};
+\node[left] at (-3.2,0.6) {$\times$ poles};
+\end{tikzpicture}
+\end{center}
+$T\uparrow \Rightarrow |s_1|\downarrow \Rightarrow$ closer to imaginary axis
+
+$T\downarrow \Rightarrow |s_1|\uparrow \Rightarrow$ further from ''
+
+\section{First order systems}
+Assume that there is no initial condition and $R(s)\neq 0$.
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+  \node[left] at (0,0) {$R(s)$};
+  \draw[->] (0,0) -- (1,0);
+  \draw (1,-0.45) rectangle (2.7,0.45);
+  \node at (1.85,0) {$\dfrac{1}{Ts+1}$};
+  \draw[->] (2.7,0) -- (3.9,0) node[right]{$X(s)$};
+\end{tikzpicture}
+\end{center}
+case 1) impulse input: $R(s)=1$
+\[ X(s)=\frac{1}{Ts+1}=\frac{1/T}{s+\frac{1}{T}} \;\Rightarrow\; x(t)=\frac{1}{T}\,e^{-t/T}=|s_1|\,e^{-|s_1|t} \]
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+\draw[->] (-0.3,0)--(4,0) node[right]{$t$};
+\draw[->] (0,-0.2)--(0,1.8) node[above]{$x(t)$};
+\draw[domain=0:3.6,smooth,variable=\t] plot ({\t},{1.5*exp(-1.3*\t)});
+\node[left] at (0,1.5) {$\frac{1}{T}$};
+\end{tikzpicture}
+\end{center}
+
+\sayfa{3}
+\subsection{case II) step excitation}
+\[ r(t)=1,\quad t\ge 0 \]
+\[ R(s)=\frac{1}{s} \]
+\[ X(s)=\frac{1}{s(Ts+1)}=\frac{A}{s}+\frac{B}{Ts+1}=\frac{1}{s}-\frac{T}{Ts+1}=\frac{1}{s}-\frac{1}{s+\frac{1}{T}} \]
+\[ \xrightarrow{\ \mathcal{L}^{-1}\ }\quad x(t)=1-e^{-t/T} \]
+\begin{align*}
+A&=\left.\frac{s}{s(Ts+1)}\right|_{s=0}=1\\
+B&=\left.\frac{Ts+1}{s(Ts+1)}\right|_{s=-\frac{1}{T}}=-T
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep,x=1.6cm,y=2.6cm]
+\draw[->] (-0.1,0)--(4.6,0) node[right]{$t$};
+\draw[->] (0,-0.05)--(0,1.2) node[above]{$x(t)$};
+\draw[turuncukalem,dashed] (0,1)--(4.4,1);
+\draw[turuncukalem,dashed] (0,0.632)--(1,0.632)--(1,0);
+\draw[turuncukalem,dashed] (0,0.865)--(2,0.865)--(2,0);
+\draw[turuncukalem,dashed] (3,0)--(3,0.95);
+\draw[turuncukalem,dashed] (4,0)--(4,0.982);
+\draw[kursunkalem,domain=0:4.4,smooth,variable=\t] plot ({\t},{1-exp(-\t)});
+\draw (0,0)--(1,1);
+\node[left] at (0,1) {1};
+\node[left,turuncukalem] at (0,0.632) {0,632};
+\node[left,turuncukalem] at (0,0.865) {0,86};
+\node[below,turuncukalem] at (1,0) {$T$};
+\node[below,turuncukalem] at (2,0) {$2T$};
+\end{tikzpicture}
+\end{center}
+at $t=0 \to x(0)=0$
+\begin{center}
+\begin{tabular}{c|cl}
+$t$ & $x(t)$ & \\ \hline
+$T$ & 0,632 & \fbox{63\% of the final value}\\
+$2T$ & 0,86 & \\
+$3T$ & 0,95 & \\
+\fbox{$4T$} & 0,98 & \textit{it have to be reasonable setting time}
+\end{tabular}
+\end{center}
+\[ e(t)=r(t)-x(t)=1-1+e^{-t/T}=e^{-t/T} \]
+derivative of response gives us the rate of change (slope of response)
+\[ \text{slope}=\frac{dx(t)}{dt}=\frac{1}{T}\,e^{-t/T} \]
+at $t=0$, we get the max slope: $\left(\dfrac{1}{T}\right)$
+
+\sayfa{4}
+\[ T\dot{x}+x=r \]
+only $x$ has to be continuous
+\[ \ddot{x}+a_1\dot{x}+a_2x=r \]
+$x$ and $\dot{x}$ has to be continuous
+
+\subsection{Impulse response $=\frac{d}{dt}$ (step response)}
+
+\section{1st order system}
+\subsection{III) Ramp Response}
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+  \node[left] at (0,0) {$R(s)$};
+  \draw[->] (0,0) -- (1,0);
+  \draw (1,-0.45) rectangle (2.7,0.45);
+  \node at (1.85,0) {$\dfrac{1}{Ts+1}$};
+  \draw[->] (2.7,0) -- (3.9,0) node[right]{$X(s)$};
+\end{tikzpicture}
+\end{center}
+\[ r(t)=t \;\to\; R(s)=\frac{1}{s^2} \]
+\[ X(s)=R(s)\,\frac{1}{Ts+1}=\frac{1}{s^2(Ts+1)} \qquad \Bigl(s_{1,2}=0,\ s_3=-\tfrac{1}{T}\Bigr) \]
+\[ =\frac{A}{s^2}+\frac{B}{s}+\frac{C}{Ts+1} \]
+\begin{align*}
+A&=s^2\left(\frac{1}{s^2(Ts+1)}\right)\Big|_{s=0}=1\\
+B&=\frac{d}{dt}\footnotemark\left(s^2\,\frac{1}{s^2(Ts+1)}\right)\Big|_{s=0}=-T\\
+C&=(Ts+1)\,\frac{1}{s^2(Ts+1)}\Big|_{s=-\frac{1}{T}}=T^2
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $d/ds$ olmalı.}
+
+\sayfa{5}
+\[ X(s)=\frac{1}{s^2}-\frac{T}{s}+\frac{T^2}{Ts+1}\quad\Bigl[=\ \frac{T}{s+\frac{1}{T}}\Bigr] \]
+\[ \xrightarrow{\ \mathcal{L}^{-1}\ }\quad x(t)=t-T+T\,e^{-t/T} \]
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+\draw[->] (0,0)--(5,0) node[right]{$t$};
+\draw[->] (0,0)--(0,3.6) node[above]{$x(t)$};
+\node[below left] at (0,0) {0};
+\draw (0,0)--(3.6,3.6) node[pos=0.75,above left,font=\footnotesize]{$r(t)=t$};
+\draw[kirmizikalem,domain=0:3.6,smooth,variable=\t] plot ({\t},{\t-0.8+0.8*exp(-\t/0.8)});
+\draw[<->,turuncukalem] (3,2.22)--(3,3) node[midway,right,font=\footnotesize]{$e(t)=T$};
+\end{tikzpicture}
+\end{center}
+\[ \dot{x}=1-e^{-t/T} \]
+\begin{align*}
+e(t)&=r(t)-x(t)\\
+&=t-\left(t-T+T\,e^{-t/T}\right)\\
+&=T-T\,e^{-t/T}
+\end{align*}
+at $t=0 \to e(0)=0$
+
+$t\to\infty \Rightarrow e(\infty)=e_{ss}=T$
+
+Accuracy is defined by `T'.
+\[ \text{Ramp response}=\int \text{unit response}=\iint \text{impulse response} \]
+\begin{align*}
+\frac{d}{dt}(\text{ramp resp})&=\text{step resp}\\
+\frac{d^2}{dt^2}(\text{ramp resp})&=\text{impulse resp}
+\end{align*}
+
+\section{2nd order response}
+RLC in series
+\[ \frac{V_c(s)}{V(s)}=\frac{1}{LCs^2+RCs+1}=\frac{1/LC}{s^2+\frac{R}{L}s+\frac{1}{LC}} \]
+RLC in parallel
+\[ \frac{\Phi(s)}{I(s)}=\frac{1}{Cs^2+\frac{s}{R}+\frac{1}{L}}=\frac{1/C}{s^2+\frac{s}{RC}+\frac{1}{LC}} \]
+Spring mass Damper System
+\[ \frac{X(s)}{R(s)}=\frac{1}{ms^2+cs+k}=\frac{1/m}{s^2+\frac{c}{m}s+\frac{k}{m}} \]
+\[ \Rightarrow\ \frac{\text{output}}{\text{input}}=\frac{X(s)}{R(s)}=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2} \]
+\textit{$\omega_n$ = natural frequency;\quad $\zeta$ = zeta = damping ratio}
+
+\sayfa{6}
+no zeros but 2 poles are present
+\[ s^2+2\zeta\omega_n s+\omega_n^2=0 \]
+\begin{align*}
+s_{1,2}&=\frac{-2\zeta\omega_n\pm\sqrt{(2\zeta\omega_n)^2-4\omega_n^2}}{2}\\
+&=-\zeta\omega_n\pm\omega_n\sqrt{\zeta^2-1}\\
+&=\omega_n\bigl(-\zeta\pm\sqrt{\zeta^2-1}\bigr)
+\end{align*}
+\subsection{Underdamped systems}
+if $\zeta<1 \Rightarrow$ complex conjugate poles \textit{(always oscillatory)}
+\subsection{critically damped systems}
+(sorry) if $\zeta=1 \Rightarrow$ repeated real valued poles
+
+if $\zeta>1 \Rightarrow$ seperate and real valued poles \qquad overdamped system
+\sekilnotu[6]{Small sketches to the right of the three cases. (1) s-plane with Re and Im axes and four poles ($\times$) in the left half-plane, two complex-conjugate pairs above and below the Re axis. (2) Time response t: damped sinusoid oscillating inside a decaying exponential envelope. (3) Arrow from ``repeated real valued poles'' to a small plot of a monotonically decaying curve starting at a vertical axis.}
+
+Homework (homogen solution)
+
+\subsection{Response due to external excitation (particular solution)}
+\[ \frac{C(s)}{R(s)}=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2} \]
+Specifying the input
+
+I) Impulse excitation \qquad $R(s)=1$
+
+case I) $\zeta<1$
+\[ \frac{C(s)}{R(s)}=\frac{\omega_n^2}{(s+\zeta\omega_n-i\omega_d)(s+\zeta\omega_n+i\omega_d)} \]
+\[ =\frac{A}{s+\zeta\omega_n-i\omega_d}+\frac{B}{s+\zeta\omega_n+i\omega_d} \]
+\begin{align*}
+s_{1,2}&=\omega_n\bigl(-\zeta\pm\sqrt{\zeta^2-1}\bigr)\\
+&=\omega_n\bigl(-\zeta\pm i\sqrt{1-\zeta^2}\bigr)\\
+&=-\zeta\omega_n\pm i\,\underbrace{\omega_n\sqrt{1-\zeta^2}}_{\substack{\text{damped natural freq}\\=\omega_d}}
+\end{align*}
+The response frequency for damped systems is $\omega_d$
+\[ \frac{C(s)}{R(s)}=\frac{A}{s+\zeta\omega_n-i\omega_d}+\frac{B}{s+\zeta\omega_n+i\omega_d}\ \Rightarrow\ c(t) \]
+\[ A=\left.\frac{\omega_n^2}{s+\zeta\omega_n+i\omega_d}\right|_{s=-\zeta\omega_n+i\omega_d} \]
+
+\sayfa{7}
+\[ B=\left(\frac{\omega_n^2}{s+\zeta\omega_n-i\omega_d}\right)\Bigg|_{s=-\zeta\omega_n-i\omega_d} \]
+\begin{align*}
+c(t)&=A\,e^{(-\zeta\omega_n+i\omega_d)t}+B\,e^{(-\zeta\omega_n-i\omega_d)t}\\
+&=e^{-\zeta\omega_n t}\bigl(A\,e^{i\omega_d t}+B\,e^{-i\omega_d t}\bigr)\\
+&=\alpha\,e^{-\zeta\omega_n t}\cos\omega_d t
+\end{align*}
+\begin{center}
+\begin{tikzpicture}[>=stealth,thick,murekkep]
+\draw[->] (-0.3,0)--(4.2,0) node[right]{$t$};
+\draw[->] (0,-1.2)--(0,1.5);
+\draw[dashed,domain=0:3.8,variable=\t] plot ({\t},{1.3*exp(-0.5*\t)});
+\draw[dashed,domain=0:3.8,variable=\t] plot ({\t},{-1.3*exp(-0.5*\t)});
+\draw[domain=0:3.8,smooth,samples=100,variable=\t] plot ({\t},{1.3*exp(-0.5*\t)*cos(\t*190)});
+\node[right,font=\small] at (2,1.2) {harmonic damped};
+\end{tikzpicture}
+\end{center}
+\[ \begin{cases} e^{i\alpha}=\cos\alpha+i\sin\alpha\\ e^{-i\alpha}=\cos\alpha-i\sin\alpha \end{cases} \;\to\; \frac{e^{i\alpha}+e^{-i\alpha}}{2}=\cos\alpha \]
+\[ \text{case II)}\ \ \zeta=1\ ;\quad s_{1,2}=-\zeta\omega_n \]
+\[ \frac{C(s)}{R(s)}=\frac{\omega_n^2}{(s+\zeta\omega_n)^2}=\frac{\hat{A}}{s+\zeta\omega_n}+\frac{\hat{B}}{(s+\zeta\omega_n)^2} \]
+\begin{align*}
+\hat{B}&=(s+\zeta\omega_n)^2\left(\frac{\omega_n^2}{(s+\zeta\omega_n)^2}\right)\Big|_{s=-\zeta\omega_n}\\
+\hat{A}&=\frac{d}{ds}\left(\frac{\omega_n^2}{s+\zeta\omega_n}\right)\Big|_{s=-\zeta\omega_n}
+\end{align*}
+critical damping
+\begin{align*}
+c(t)&=\hat{A}\,e^{-\zeta\omega_n t}+\hat{B}\,t\,e^{-\zeta\omega_n t}\\
+&=e^{-\zeta\omega_n t}\bigl(\hat{A}+\hat{B}t\bigr)
+\end{align*}
+III) $(\zeta>1)$
+\[ c(t)=\hat{A}\,e^{(-\zeta-\sqrt{\zeta^2-1})\omega_n t}+\hat{B}\,e^{(-\zeta+\sqrt{\zeta^2-1})\omega_n t} \]
+
+\section{2nd order systems}
+\begin{align*}
+\zeta<1:\quad s_{1,2}&=\underbrace{-\zeta\omega_n}_{\text{Re}}\pm\underbrace{i\omega_d}_{\text{Im}}\\
+\zeta=1:\quad s_{1,2}&=\underbrace{-\zeta\omega_n}_{\text{repeated}}\quad\text{Re}\\
+\zeta>1:\quad s_{1,2}&=\underbrace{-\zeta\omega_n}_{\text{Re distinct}}\pm\sqrt{\zeta^2-1}\footnotemark
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $\pm\,\omega_n\sqrt{\zeta^2-1}$ olmalı.}
+\sekilnotu[7]{s-plane sketch: vertical axis Im labelled $j\omega_d$ (frequency of oscillator), horizontal axis Re labelled $\zeta\omega_n$ (damping, decay rate). Poles ($\times$) to the left of the Im axis: several complex-conjugate pairs above and below the Re axis, and real poles $s_2$, $s_{1,2}$ (repeated) and $s_1$ on the Re axis. Annotations: ``decay rate becomes bigger $\to$ faster decay'' (arrow pointing left), ``larger damping, decay rate is higher'', ``decays faster''.}
+
+\sayfa{8}
+If poles are CC $\to$ response is oscillatory and decaying
+\sekilnotu[8]{Time-response sketch with horizontal t axis and vertical amplitude axis: three damped oscillations of different decay rate and frequency starting from the origin. Black: large amplitude, slow oscillation, slow decay; red: faster oscillation and faster decay; blue: smallest amplitude, fastest decay. Dashed envelope curves (red and black) above and below the axis show the exponential decay.}
+for $\times\ \omega_d=0$ \quad no oscillating frequency; decays at the same time
+
+for $\zeta>1$
+\begin{align*}
+s_1&=-\zeta\omega_n+\sqrt{\zeta^2-1}\\
+s_2&=-\zeta\omega_n-\sqrt{\zeta^2-1}
+\end{align*}
+\[ c(t)=\underbrace{A\,e^{s_1 t}}_{\substack{\text{this is the}\\\text{most important part}}}+B\,e^{s_2 t}\quad\to\ \text{decay fastly} \]
+
+\subsection{Step response calculation}
+(just for $\zeta<1$)
+\[ \left\{\begin{aligned}\frac{C(s)}{R(s)}&=\frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2}\\ R(s)&=\frac{1}{s}\end{aligned}\right. \]
+\begin{align*}
+C(s)&=\frac{\omega_n^2}{s\,(s^2+2\zeta\omega_n s+\omega_n^2)}=\frac{A}{s}+\frac{Bs+C}{s^2+2\zeta\omega_n s+\omega_n^2}\\
+&=\frac{1}{s}-\frac{s+2\zeta\omega_n}{s^2+2\zeta\omega_n s+\omega_n^2}\\
+&=\frac{1}{s}-\frac{s+\zeta\omega_n}{(s+\zeta\omega_n)^2+\omega_d^2}-\frac{\zeta\omega_n}{(s+\zeta\omega_n)^2+\omega_d^2}
+\end{align*}
+\[ \omega_d=\omega_n\sqrt{1-\zeta^2} \]
+\okunamadi{$\zeta\omega_n=\frac{\zeta}{\sqrt{1-\zeta^2}}\,\omega_d$}
+\[ \mathcal{L}\{e^{-at}\sin\omega t\}=\frac{\omega}{(s+a)^2+\omega^2} \]
+\[ \mathcal{L}[e^{-at}\sin\omega t]=\frac{s+a}{(s+a)^2+\omega^2}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $\cos\omega t$ olmalı.}
+
+
+\sayfa{9}
+\begin{align*}
+c(t)=\mathcal{L}^{-1}[C(s)]&=1-e^{-\zeta\omega_n t}\cos\omega_d t-\frac{\zeta\,e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\sin\omega_d t\\
+&=1-e^{-\zeta\omega_n t}\Bigl(\cos\omega_d t+\frac{\zeta}{\sqrt{1-\zeta^2}}\sin\omega_d t\Bigr)
+\end{align*}
+\[ c(t)=1-\frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\,\sin\Bigl(\omega_d t+\tan^{-1}\frac{\sqrt{1-\zeta^2}}{\zeta}\Bigr) \]
+\elcizimi[0.45]{sekiller/Control-Systems-lecture-6-s9-1.png}[9]
+\[ e(t)=r(t)-c(t)=\frac{e^{-\zeta\omega_n t}}{\sqrt{1-\zeta^2}}\sin(\omega_d t+\phi) \]
+
+\end{document}

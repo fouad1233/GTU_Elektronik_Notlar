@@ -1,0 +1,286 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Kök yer eğrileri (final çalışması)}{Notes.pdf}
+
+\sayfa{1}
+\section{Kök yer eğrileri}
+\begin{enumerate}[label=\arabic*)]
+  \item poles-zeros
+  \item $\alpha = n-m$
+  \item centroid : $\sum \text{kutup} - \sum \text{sıfır}$
+\end{enumerate}
+\[ G(s)H(s) = \frac{k}{s(s+2)(s+4)} \]
+
+zeros yok \quad $m=0$
+
+poles $\rightarrow$ $0,\,-2,\,-4$ \quad $n=3$
+\[ \alpha = n-m \;\swarrow \qquad \frac{180(2i+1)}{3} = 60,\,-60,\,180 \]
+\[ \sigma_c = \frac{\sum \text{kutup} - \sum \text{sıfır}}{\alpha} = \frac{-2-4}{3} = -2 \]
+\sekilnotu[1]{Kök yer eğrisi eskizi: gerçel eksen ve sanal eksen çizilmiş; gerçel eksende $-4$, $-2$ ve $0$ noktalarında kutuplar (x). $-2$ ile $0$ arası ve $-4$'ün solu kırmızı kalemle işaretli. $\sigma_c=-2$ noktasından $\pm 60^\circ$ kesikli asimptotlar; $-2$ ve $0$ kutuplarından çıkan dallar sağa kıvrılıp sanal ekseni kesiyor ve asimptotlara doğru gidiyor; $-4$'ten çıkan dal sola gidiyor (ok).}
+\[ \Delta = 1 + G(s)H(s) \]
+\[ \Delta = 1 + \frac{k}{s(s+2)(s+4)} \]
+\[ \Delta = s^3 + 6s^2 + 8s + k = 0 \]
+
+Routh table
+\[ \begin{array}{c|ccc} s^3 & 1 & 8 & 0\\ s^2 & 6 & k & \\ s^1 & a & & \\ s^0 & k & & \end{array} \]
+\sekilnotu[1]{Routh tablosunda $s^2$ satırındaki $k$'den $s^0$ satırındaki $k$'ye kırmızı bir ok iniyor.}
+
+Çaprazın bir altına iniyor
+\[ \left.\begin{aligned} a &= -\frac{\begin{vmatrix} 1 & 8\\ 6 & k\end{vmatrix}}{6}\\[2mm] k &= -\begin{vmatrix} 6 & k\\ a & 0\end{vmatrix}\end{aligned}\right\} \; 0<k<48 \;\downarrow\; \text{kritik kazanç} \]
+\[ k_c = 48 \]
+\[ 6s^2 + \overset{\swarrow 48}{k_c} = 0 \]
+\[ s^2 = \sqrt{-8}\footnotemark \]
+\footnotetext{Claude notu: muhtemelen $s^2=-8$ (yani $s=\sqrt{-8}$) olmalı.}
+\[ s = \pm 2\sqrt{2}\,j \qquad \text{eksenleri kestiği nokta} \]
+
+\sayfa{2}
+\[ G(s) = \frac{s+4}{s(s+2)}\,k \]
+zeros $=-4$ \quad $(m)$
+
+poles $=0,-2$ \quad $(n)$
+\[ \alpha = n-m = 1 \qquad \sigma_c \]
+\sekilnotu[2]{Kök yer eğrisi eskizi: gerçel eksende $-4$'te sıfır (o), $-2$ ve $0$'da kutuplar (x). $-4$'ün solu ve $-2$ ile $0$ arası kırmızı; $-2$--$0$ arasından çıkan kırmızı bir yarım çember yayı eksenin üstünden geçip $-4$'ün solunda eksene iniyor; eksen üzerinde sola ve sağa kırmızı oklar var.}
+\[ G(s) = \frac{(s+4)\,k}{s(s+1)(s+2)} \]
+zeros $=-4$ \quad $m=1$
+
+poles $=0,-1,-2$ \quad $n=3$
+
+$\alpha = n-m = 2 \rightarrow 90^\circ$
+\[ \sigma_c = \frac{\sum \text{kutup} - \sum \text{sıfır}}{\alpha} = \frac{-3+4}{\alpha} = \frac{-1-2+4}{2} = \frac{1}{2} \]
+\sekilnotu[2]{Eskiz: gerçel eksende $-4$'te sıfır (o), $-2$, $-1$ ve $0$'da kutuplar (x). $-1$ ile $0$ arasındaki kırılma noktasından çıkan iki dal eksenin üstüne ve altına çıkıp sağa kıvrılarak yukarı ve aşağı oklarla gidiyor (düşey asimptotlar).}
+\[ G(s) = \frac{(s+4)(s+3)}{s(s+1)(s+2)}\,k \]
+$z=-4,-3 \rightarrow m=2$ \quad $n-m=1$
+
+$p=0,-1,-2 \rightarrow n=3$
+\[ -1-2+\underbrace{4+3}_{7} = 4 \]
+\sekilnotu[2]{Eskiz: gerçel eksende $-4$ ve $-3$'te sıfırlar (o), $-2$, $-1$ ve $0$'da kutuplar (x). Eksenin $-4$'ün solu, $-3$--$-2$ arası ve $-1$--$0$ arası kırmızı. Büyük kırmızı bir eğri $-1$--$0$ arasından çıkıp eksenin üstünden ve altından yay çizerek $-4$'ün solunda eksene dönüyor; en solda sola ok.}
+\sekilnotu[2]{Eskiz: gerçel eksende $-5$'te kutup (x), $-3$ ve $2$'de sıfırlar (o), $-1$'de kutup (x); sanal eksende $\pm1$, $\pm2$ işaretleri; $-3\pm 2j$ noktalarında karmaşık sıfırlar (o), $-\tfrac12\pm j$ noktalarında karmaşık kutuplar (x). Turuncu oklar: $-5$'ten $-3$'e, $-1$'den $2$'ye ve karmaşık kutuplardan karmaşık sıfırlara giden dallar.}
+\[ \frac{\text{zeroes}}{\text{poles}} = \frac{(s-2)(s+3)(s+3+2j)(s+3-2j)}{(s+5)(s+1)(s+\frac12-j)(s+\frac12+j)} \]
+
+$n-m=0$
+
+\begin{tabular}{c|c|c|c}
+ & step & ramp & \\ \hline
+0 & $\frac{1}{1+k_p}$ & & \\ \hline
+1 & & $\frac{1}{k_v}$ & \\ \hline
+2 & & & $\frac{1}{k_a}$
+\end{tabular}
+\begin{align*}
+k_p &= \lim_{s\to 0} G(s)\\
+&= \frac{-2\cdot 3\,(3+2j)(3-2j)}{5\cdot 1\,(\frac12-j)(\frac12+j)}\\
+&= \underline{-4{,}16}
+\end{align*}
+\[ \frac{1}{1+k_p} \rightarrow -0{,}316 \]
+
+\sayfa{3}
+\[ 6-3=3 \;\swarrow \]
+\[ -60 \qquad +60 \qquad +180 \]
+\sekilnotu[3]{s-düzleminde eskiz: orijinden sol üstteki bir kutba (x) giden doğru $\omega_n$ ile etiketli; bu doğru ile sanal eksen arasındaki açı $\theta$, yanında $\sin^{-1}\zeta$ yazıyor; sol altta ayrı bir x daha var.}
+\[ G(s)H(s) = \frac{k\,(s+1-j)(s+1+j)}{(s+2+2j)(s+2-2j)} \]
+zeros: $-1+j$, $-1-j$
+
+poles $=$ $-2-2j$, $-2+2j$
+\sekilnotu[3]{Sol eskiz: s-düzleminde $-2\pm 2j$ noktalarında kutuplar (x, sol tarafta düşey kesikli çizgiyle bağlı) ve $-1\pm j$ noktalarında sıfırlar (o); sağdaki sanal eksende j2, j1, j1, j2 işaretleri (alttaki ikisi muhtemelen $-j1$, $-j2$); turuncu oklar kutuplardan sıfırlara doğru kıvrılıyor.}
+\sekilnotu[3]{Sağ eskiz: s-düzleminde sanal eksen (j2, j1, j1, j2 işaretli) ve gerçel eksen; üstte sol kutup (x), yanında $-1\pm j$ sıfırları (o), en altta alt kutup (x). Üst kutuptan sıfırlara ve alt kutba kırmızı doğrular çizilmiş; açılar $\Theta_1$, $\Theta_2$ ve turuncu işaretlerle gösterilmiş; turuncu not: $180-\tan^{-1}3$, altında $108^\circ$ (okunaklılık düşük).}
+\[ \underbrace{(\Phi_1+\Phi_2)}_{\text{sıfırlar}} - \underbrace{(\Theta_1+\Theta_2)}_{\text{poles}} = \mp 180 \]
+\[ \Theta_1 = \mp 180 + \underbrace{\Theta_2}_{90} - \underbrace{\Phi_1}_{135^\circ} - \Phi_2 \]
+\section{Tekrar}
+\[ M_p = \%25 \qquad t_p = 2\ \mathrm{sn} \]
+\[ t_p = \frac{\pi}{\omega_d} = \frac{\pi}{\omega_n\sqrt{1-\zeta^2}} \]
+\[ M_p = e^{\frac{-\pi\zeta}{\sqrt{1-\zeta^2}}} = 0{,}25 \]
+\[ \frac{-\pi\zeta}{\sqrt{1-\zeta^2}} = \ln 0{,}25 \]
+\[ \frac{\zeta}{\sqrt{1-\zeta^2}} = 0{,}441 \]
+\[ \frac{\zeta^2}{1-\zeta^2} = 0{,}194 \qquad \zeta^2(1+0{,}194) = 1\footnotemark \]
+\footnotetext{Claude notu: muhtemelen sağ taraf $0{,}194$ olmalı.}
+\[ \zeta = 0{,}40 \]
+
+\sayfa{4}
+\[ \overset{\nearrow\, 2\mathrm{s}}{t_p} = \frac{\pi}{\omega_d} \qquad \omega_d = \frac{\pi}{2} \qquad \frac{\pi}{2} = \omega_n\sqrt{1-\zeta^2} \]
+\[ \omega_n = \frac{\frac{\pi}{2}}{\sqrt{1-\zeta^2}} = 1{,}71 \]
+\sekilnotu[4]{Blok diyagram: $X(s)$ girişi toplama noktasına girer (girişte $+$, geri beslemede $-$); ardından sırasıyla $k$ bloğu ve $1/s^2$ bloğu, çıkış $Y(s)$. Çıkıştan geri besleme dalı $1+bs$ bloğundan geçip toplama noktasına negatif olarak dönüyor.}
+\[ G(s) = \frac{k\,\frac{1}{s^2}}{1+\frac{k(1+bs)}{s^2}} \]
+\[ = \frac{k}{s^2+k+kbs} \]
+\[ = \frac{k}{s^2+kbs+k} \qquad\qquad \frac{\omega_n^2}{s^2+2\zeta\omega_n s+\omega_n^2} \]
+\[ k = \omega_n^2 \qquad k = \omega_n^2 = 2{,}92 \]
+\[ kb = 2\zeta\omega_n \]
+\[ b = \frac{2\zeta\omega_n}{\omega_n^2} = 0{,}46 \]
+
+2)
+\[ G(s)H(s) = \frac{k}{s(s+2)(s+4)} \]
+zeroes $\varnothing$
+
+poles \quad $p_1=0$ \quad $p_2=-2$ \quad $p_3=-4$
+\[ \alpha = n-m = 3-0 = 3 \]
+\[ \text{centroid} = \frac{\sum \text{poles} - \sum \text{zeros}}{\alpha} = \frac{-2-4}{\alpha} = \frac{-6}{\alpha} = -2 \]
+\[ \text{Assymptotes angles} = \pm\frac{180(2i+1)}{3} \qquad i=0,\ldots \]
+\[ = 60,\ 180,\ \underbrace{-60}_{300} \]
+\sekilnotu[4]{Kök yer eğrisi eskizi: gerçel eksende $-4$, $-2$ ve $0$'da kutuplar (x); $-4$'ün solu kırmızı; kırılma noktası $-0{,}845$ olarak işaretli; sanal ekseni kestiği nokta okla $2\sqrt{2}$ diye etiketli; turuncu kesikli asimptotlar $\sigma_c=-2$ civarından yukarı ve aşağı doğru gidiyor.}
+
+\sayfa{5}
+\[ \Delta = \frac{s(s+2)(s+4)+k}{s(s+2)(s+4)} = 0 \]
+\[ s(s+2)(s+4)+k = 0 \]
+\[ k = -\underbrace{s(s+2)}_{s^2+2s}(s+4) \]
+\[ \underbrace{s^3+2s^2+4s^2+8s}_{s^3+6s^2+8s} \]
+\[ \frac{dk}{ds} = -(3s^2+12s+8) \]
+kökleri $(3s^2+12s+8)$
+\[ \underbrace{\kutula{s_1=-0{,}845}}_{\text{departure point}} \qquad , \qquad \underbrace{s_2=-3{,}154}_{\times\ \text{non acceptable}} \]
+\[ \downarrow \quad k = 3{,}07 \]
+
+\okunamadi{k range}
+\[ s^3+6s^2+8s+k=0 \]
+\[ \begin{array}{c|ccc} s^3 & 1 & 8 & 0\\ s^2 & 6 & k & \\ s^1 & \frac{48-k}{6} & 0 & \\ s^0 & k & & \end{array} \qquad\qquad \begin{aligned} 48-k &> 0\\ 0<k&<48 \end{aligned} \]
+\[ k=48 \]
+\[ s^3+6s^2+8s+48=0 \]
+\[ s_1=-6 \qquad \underline{s_2=2{,}82\,j} \qquad \underline{s_3=-2{,}82\,j} \]
+
+
+\sayfa{6}
+\[ G(s) = \frac{s+4}{s(s+2)}\,k \]
+zeroes\\
+$s=-4$\\
+$p_1=0$ \qquad $p_2=-2$
+\[ \begin{gathered} \alpha = n-m = 1\\ \downarrow\\ \pm 180 \qquad \sigma_c\ \times \end{gathered} \]
+\elcizimi[0.45]{sekiller/final-calismasi-Notes-s6-1.png}[6]
+$-1$'e kutup ekleyelim
+\[ G(s) = \frac{(s+4)\,k}{s(s+1)(s+2)} \]
+zeroes\\
+$z_1=-4$\\
+$p_1=0$ \qquad $p_2=-1$ \qquad $p_3=-2$
+\[ n-m = 3-1 = 2 \]
+\[ \text{centroid} = \frac{-1-2+4}{2} \]
+\[ = \frac{1}{2} = 0{,}5 \]
+\[ \text{angles} \qquad \frac{180(2i+1)}{2} \qquad \begin{matrix} +90\\ -90 \end{matrix} \]
+\elcizimi[0.5]{sekiller/final-calismasi-Notes-s6-2.png}[6]
+\[ s(s+1)(s+2)+(s+4)k = 0 \]
+\[ (s+4)k = -\big((s^2+s)(s+2)\big) \]
+\[ k = \frac{-(s^3+3s^2+2s)}{(s+4)} \]
+\[ \frac{dk}{ds} = \frac{-(3s^2+6s+2)(s+4)+(s^3+3s^2+2s)(1)}{(s+4)^2} = 0 \]
+\[ = -3s^3-12s^2-6s^2-24s-2s-8+s^3+3s^2+2s = 0 \]
+\[ -2s^3-21s^2-24s-8 = 0 \footnotemark \]
+\footnotetext{Claude notu: muhtemelen $-15s^2$ olmalı ($-12-6+3=-15$).}
+\[ 2s^3+21s^2+24s+8 = 0 \]
+\[ s_1=-5{,}42\ \times \qquad \kutula{s_2=-0{,}45} \qquad s_3=-1{,}62\ \times \]
+
+\sayfa{7}
+\[ s(s+1)(s+2)+(s+4)k = 0 \]
+\[ (s+4)k = -\big((s^2+s)(s+2)\big) \]
+\[ k = \frac{-(s^3+3s^2+2s)}{(s+4)} \]
+\[ s^3+3s^2+2s+ks+4k = 0 \]
+\[ s^3+3s^2+(2+k)s+4k = 0 \]
+\[ \begin{array}{ccc}
+s^3 & 1 & 2+k\\
+s^2 & 3 & 4k\\
+s^1 & \dfrac{6+3k-4k}{3} & \\
+s^0 & 0 &
+\end{array} \]
+\[ 6-k>0 \]
+\[ k<6 \qquad\qquad \text{critical gain} \]
+\[ 0<k<6\ /\!/\ \nearrow \]
+\[ s^3+3s^2+8s+24 = 0 \]
+\[ \begin{array}{ll} s_1=-3 \qquad\qquad & s_2=2{,}82\,j\\ & s_3=-2{,}82\,j \end{array} \]
+$\Rightarrow$ $-3$'e zero ekle
+\[ G(s) = \frac{(s+4)(s+3)\,k}{s(s+1)(s+2)} \]
+$z=-4,\ -3,\ m=2$\\
+$p=0,\ -1,\ -2,\ n=3$
+\[ \alpha = n-m = 1 \]
+\[ \text{angle} = \pm 180 \]
+\elcizimi[0.55]{sekiller/final-calismasi-Notes-s7-1.png}[7]
+\[ s(s+1)(s+2)+\underbrace{(s+4)(s+3)}_{\substack{s^2+3s+4s+12\\ s^2+7s+12}}\,k = 0 \]
+\[ s^3+3s^2+2s+ks^2+7ks+12k = 0 \]
+\[ k(s^2+7s+12) = - \]
+\[ s^3+(3+k)s^2+(2+7k)s+12k = 0 \]
+
+\sayfa{8}
+\elcizimi[0.6]{sekiller/final-calismasi-Notes-s8-1.png}[8]
+\[ n-m=0 \qquad 0\ \text{sonsuz} \]
+\[ G(s) = \frac{(s-2)(s+3)(s+3+2j)(s+3-2j)}{(s+5)(s+1)(s+\frac{1}{2}+j)(s+\frac{1}{2}-j)} \]
+\[ E(s) = \frac{R(s)}{1+G(s)} \ \to\ \frac{1}{s} \]
+\[ \lim_{s\to 0} sE(s) = \frac{1}{1+\underbrace{\lim_{s\to 0}G(s)}_{-12{,}48}} \qquad = -0{,}0871 \]
+\[ E_{ss} = -0{,}0871 \]
+
+\section{Skill Assessment Ex 8,4}
+Unity feedback system
+\[ G(s) = \frac{k(s+2)}{s^2-4s+13} \]
+\[ \text{a)}\quad \begin{aligned} z_1 &= -2\\ p_1 &= 2+3j\\ p_2 &= 2-3j \end{aligned} \]
+\elcizimi[0.5]{sekiller/final-calismasi-Notes-s8-2.png}[8]
+\[ \phi_1-\theta_1-\theta_2 = 180 \]
+\[ \overbrace{36{,}83}^{\arctan(3/4)} - \theta_1 - 90^\circ = 180^\circ \]
+\[ \theta_1 = 36{,}83-90-180 \]
+\[ = -233 \]
+\[ \Delta = 1+G(s) = 0 \]
+\[ s^2-4s+13+k(s+2) = 0 \]
+\[ k = -\frac{s^2-4s+13}{(s+2)} \]
+\[ \frac{dk}{ds} = \frac{-(2s-4)(s+2)+(s^2-4s+13)}{(s+2)^2} = 0 \]
+
+\sayfa{9}
+\[ -(2s^2\mathord{\rlap{\rule[0.7ex]{3.9em}{0.4pt}}{+4s-4s}}-8)+(s^2-4s+13) = 0 \]
+\[ -2s^2+8+s^2-4s+13 = 0 \]
+\[ -s^2-4s+5 = 0 \footnotemark \]
+\footnotetext{Claude notu: muhtemelen $+21$ olmalı.}
+\[ \Rightarrow s^2+4s-21 = 0 \]
+\[ \kutula{\begin{aligned} s_1 &= 3\\ s_2 &= -7 \end{aligned}} \qquad \text{break in point} \]
+\[ s^2-4s+13+k(s+2) = 0 \]
+\[ s^2+(-4+k)s+13+2k = 0 \]
+\[ \begin{array}{c|ccc}
+s^2 & 1 & 13+2k & \\
+s^1 & k-4 & 0 & 0\\
+s^0 & 13+2k & 0 &
+\end{array} \]
+\[ k-4>0 \]
+\[ \kutula{k>4} \]
+\[ k-4=0 \]
+\[ k=4\ \text{olsun} \]
+\[ s^2+13+\underbrace{2\overset{4}{k}}_{8} = 0 \]
+\[ s^2 = -21 \]
+\[ s = \pm j\sqrt{21} \]
+
+\sayfa{10}
+\sekilnotu[10]{Basılı soru 2: Verilen sistemde $K_1$ ve $K_2$ kazançları, birim basamak bozucu girişte kalıcı durum hatası $-0{,}00001$ ve birim basamak girişte kalıcı durum hatası $0{,}002$ olacak şekilde belirlenecek. Blok diyagram ($\frac{K_1(s+2)}{s+3}$ ve $\frac{K_2}{s(s+4)}$ blokları, $D(s)$ bozucu girişi) basılıdır; el yazısıyla $E(s)$, $A_1$, $A_2$ etiketleri eklenmiş. Dijitalleştirilmedi.}
+\[ E(s) = R(s)-C(s) \ \Rightarrow\ C = R-E \]
+\[ C = (EA_1+D)A_2 \]
+\[ R-E = EA_1A_2+DA_2 \]
+\[ R-DA_2 = E(1+A_1A_2) \]
+\[ E = \frac{R}{1+A_1A_2} - \frac{DA_2}{1+A_1A_2} \]
+\[ \text{if } R=0 \qquad D\neq 0 \qquad D=\frac{1}{s} \]
+\[ E = -\frac{DA_2}{1+A_1A_2} \]
+\[ E_{ss} = \lim_{s\to 0} sE(s) = \frac{-A_2}{1+A_1A_2} \]
+\[ = \lim_{s\to 0} - \frac{\dfrac{k_2}{s(s+4)}}{1+\dfrac{k_2}{s(s+4)}\,\dfrac{k_1(s+2)}{(s+3)}} \]
+\[ \Rightarrow 0{,}00001 = \lim_{s\to 0}\frac{k_2(s+3)}{s(s+3)(s+4)+k_1k_2(s+2)} = \frac{3k_2}{2k_1k_2} = \frac{3}{2k_1} \]
+\[ k_1 = 150.000 \]
+\[ \text{b)}\quad R(s)=\frac{1}{s} \qquad D(s)=0 \quad \text{is } 0{,}002 \]
+\[ 0{,}002 = \lim_{s\to 0}\frac{1}{1+G_1G_2} = \lim_{s\to 0}\frac{s(s+3)(s+4)}{s(s+3)(s+4)+k_1k_2(s+2)} \to 0 \]
+
+\sayfa{11}
+\section{Positive Feedback Architecture}
+\elcizimi[0.8]{sekiller/final-calismasi-Notes-s11-1.png}[11]
+\[ \frac{C(s)}{R(s)} = \frac{kG(s)}{1-kG(s)H(s)} \]
+\[ 1-kG(s)H(s) = 0 \]
+\[ |G(s)H(s)| = \frac{1}{k} \]
+\textbf{Arrival angle}
+\[ 360 = \text{zeros angle} - \text{poles angle} \]
+\textcircled{3} \textbf{Asymptotic angle}
+\[ \pm\frac{360\,i}{n-m} \]
+\begin{center}
+zero : lead $\;\longrightarrow\;$ \begin{tabular}[c]{@{}l@{}} sola kayar root \okunamadi{eğrisi}\\ daha stabil, hızlı cevap\\ accuracy kötü \end{tabular}
+\end{center}
+poles : lag
+\[ G_c = k_c\,\frac{s+\frac{1}{T}}{s+\frac{1}{\alpha T}} \qquad\qquad \begin{array}{l} 0<\alpha<1 : \text{lead}\\ \alpha>1 : \text{lag} \end{array} \]
+
+\section{Ex}
+\elcizimi[0.9]{sekiller/final-calismasi-Notes-s11-2.png}[11]
+Dominant pole $=-3+2j$\\
+steady state error $=10\%$
+
+\sayfa{12}
+\sekilnotu[12]{Basılı soru 27 (Şekil P8.3, Bölüm 8.7): Birim geri beslemeli sistem, $G(s)=\dfrac{K(s^2-2s+2)}{(s+2)(s+4)(s+5)(s+6)}$. İstenenler: a) kök yer eğrisini çiz, b) asimptotları bul, c) sistemi kararlı yapan $K$ aralığını bul, d) kırılma noktalarını bul (üstü el ile çizilmiş), e) kapalı çevrim basamak cevabında \%25 aşım veren $K$ değerini bul. Basılı metin dijitalleştirilmedi; $G(s)$'in yanına el yazısıyla aşağıdaki çarpanlar eklenmiş.}
+\[ (1+j)(1-j) \]
+\elcizimi[0.85]{sekiller/final-calismasi-Notes-s12-1.png}[12]
+\[ n-m = 4-2 = 2 \]
+\[ \frac{\Sigma\ \text{r.p. poles}-\Sigma\ \text{r.p. zeroes}}{2} \]
+\[ \sigma_c = \frac{-6-5-4-2\,\mathord{\rlap{\rule[0.7ex]{3em}{0.4pt}}{+1+1}}}{2} = \frac{-15}{2} = -7{,}5 \]
+\[ \phi = \frac{(2i+1)}{2} = \pm 90 \]
+
+\sayfa{13}
+\[ \Delta(s) = 1+\frac{K(s^2-2s+2)}{(s+2)(s+4)(s+5)(s+6)} \]
+\end{document}

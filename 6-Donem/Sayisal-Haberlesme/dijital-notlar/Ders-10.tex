@@ -1,0 +1,214 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Sayısal Haberleşme}{Matched filter, SAK ve 1. Nyquist kriteri}{Ders-10.pdf}
+
+\sayfa{1}
+\textcolor{kirmizikalem}{genel}
+\begin{gather*}
+\gamma_0=\frac{\sigma_0^2}{a_1-a_2}\,\ln\frac{P(s_2)}{P(s_1)}+\frac{a_1+a_2}{2}\;\rightarrow\\
+P_b=\Bigl[1-Q\Bigl(\frac{\gamma_0-a_1}{\sigma_0}\Bigr)\Bigr]P(s_1)+Q\Bigl(\frac{\gamma_0-a_2}{\sigma_0}\Bigr)P(s_2)
+\end{gather*}
+\[
+\Big\downarrow\qquad P(s_1)=P(s_2)=\frac{1}{2}
+\]
+\[
+\gamma_0=\frac{a_1+a_2}{2}\;\rightarrow\;
+P_b=Q\Bigl(\frac{a_1-a_2}{2\sigma_0}\Bigr)=Q\Biggl(\sqrt{\frac{E_d}{2N_0}}\Biggr)=Q\Biggl(\sqrt{\frac{E_b}{N_0}(1-\rho)}\Biggr)
+\]
+\[
+a_i=\int_0^T s_i(t)\bigl[s_1(t)-s_2(t)\bigr]dt=\underbrace{s_i(t)\circledast h(t)}_{a_i(t)}\Big|_{t=T}
+\]
+\elcizimi[0.85]{sekiller/Ders-10-s1-1.png}[1]
+\[
+h(t)=s_1(T-t)-s_2(T-t)
+\]
+\textcolor{kirmizikalem}{! Formüllerin nasıl çıktığını öğren}
+
+Soruda $h(t)$ $s_1(t)$'yi karşılıyor dersek \quad $h(t)=s_1(T-t)$ olur integral devresinde
+\elcizimi[0.2]{sekiller/Ders-10-s1-2.png}[1]
+\begin{align*}
+\sigma_0^2&=\frac{N_0}{2}E_h\\
+E_d&=\int_0^T\bigl[s_1(t)-s_2(t)\bigr]^2dt\qquad\qquad E_b=\sum_{i=1}^{2}P(s_i)\,E_{s_i}\\
+\rho&=\frac{1}{E_b}\int_0^T s_1(t)\,s_2(t)\,dt
+\end{align*}
+\begin{ornek}[(Unipolar signaling)]
+``1'' $\rightarrow s_1(t)=A,\ 0\le t\le T$\\
+``0'' $\rightarrow s_2(t)=0,\ 0\le t\le T$\\
+$P(s_1)=\dfrac{1}{4},\ P(s_2)=\dfrac{3}{4}$\\
+$A=1\ \mathrm{V},\ T=10^{-3}\ \mathrm{sn},\ \dfrac{N_0}{2}=10^{-3}\,\dfrac{\mathrm{Watt}}{\mathrm{Hz}}$\\
+$\gamma_0=?\quad P_b=?$
+\end{ornek}
+\begin{align*}
+a_1&=A^2T=1^2\cdot 10^{-3}=10^{-3}\\
+a_2&=0\\
+h(t)&=s_1(T-t)\underbrace{-\,s_2(T-t)}_{0}=s_1(T-t)
+\end{align*}
+\elcizimi[0.95]{sekiller/Ders-10-s1-3.png}[1]
+
+\sayfa{2}
+\begin{align*}
+E_h&=\int_0^T h^2(t)\,dt=\int_0^T A^2\,dt=A^2T=10^{-3}\\
+\sigma_0^2&=\frac{N_0}{2}\cdot E_h=10^{-3}\cdot10^{-3}=10^{-6}\\
+\gamma_0&=\frac{\sigma_0^2}{a_1-a_2}\ln\frac{P(s_2)}{P(s_1)}+\frac{a_1+a_2}{2}\\
+&=\frac{10^{-6}}{10^{-3}}\ln\frac{3/4}{1/4}+\frac{10^{-3}+0}{2}=1{,}5986\cdot10^{-3}\simeq1{,}6\cdot10^{-3}
+\end{align*}
+\begin{multline*}
+P_b=\Bigl[1-Q\Bigl(\frac{\overset{\textcolor{turuncukalem}{1{,}6\cdot10^{-3}}}{\gamma_0}-\overset{\textcolor{turuncukalem}{10^{-3}}}{a_1}}{\underset{\textcolor{turuncukalem}{10^{-3}}}{\sigma_0}}\Bigr)\Bigr]\underset{\textcolor{turuncukalem}{\frac14}}{P(s_1)}\\
++Q\Bigl(\frac{\overset{\textcolor{turuncukalem}{1{,}6\cdot10^{-3}}}{\gamma_0}-\overset{\textcolor{turuncukalem}{0}}{a_2}}{\underset{\textcolor{turuncukalem}{10^{-3}}}{\sigma_0}}\Bigr)\underset{\textcolor{turuncukalem}{\frac34}}{P(s_2)}
+\end{multline*}
+\begin{gather*}
+P_b=\Bigl[1-\underbrace{Q(0{,}6)}_{2{,}7426\cdot10^{-1}}\Bigr]\frac14+\underbrace{Q(1{,}6)}_{5{,}4799\cdot10^{-2}}\cdot\frac34\\
+=0{,}2225
+\end{gather*}
+\begin{ornek}
+Transfer function of a MF is $H(f)=\dfrac{2-2e^{-j2\pi fT}}{j2\pi f}$\\
+a) Find impulse response of MF and sketch it.\\
+b) $''$ the pulse $s(t)$ matched by this MF an sketch it.\\
+c) If this $s(t)$ is applied to the input of MF, find the output signal of the MF and sketch it. Find the value at the sample instant.\\
+d) If this $s(t)$ is applied to the input of the corelator, find the output signal of the correlator and sketch it. Find the value at the simple instant.
+\end{ornek}
+\[
+\text{a)}\ H(f)=\frac{2}{j2\pi f}-\frac{2e^{-j2\pi fT}}{j2\pi f}\ \xrightarrow{\ \mathcal{F}^{-1}\ }\ h(t)=\mathrm{sgn}(t)-\mathrm{sgn}(t-T)
+\]
+\elcizimi[0.55]{sekiller/Ders-10-s2-1.png}[2]
+\elcizimi[0.4]{sekiller/Ders-10-s2-2.png}[2]
+\[
+\text{b)}\quad h(t)=s(\underbrace{T-t}_{t'})\qquad\rightarrow\qquad h(T-t')=s(t')
+\]
+\[
+\begin{array}{l@{\qquad\qquad}l}
+t'=T-t & \Longrightarrow\ \kutula{s(t)=h(T-t)}\\
+t=T-t' &
+\end{array}
+\]
+\elcizimi[0.4]{sekiller/Ders-10-s2-3.png}[2]
+
+\sayfa{3}
+\elcizimi[0.4]{sekiller/Ders-10-s3-1.png}[3]
+\elcizimi[0.65]{sekiller/Ders-10-s3-2.png}[3]
+\[
+z_1(t)=s_1(t)\circledast h(t)=s(t)\circledast s(t)
+\]
+\[
+A\,\Pi\!\Bigl(\frac{t}{T}\Bigr)\circledast A\,\Pi\!\Bigl(\frac{t}{T}\Bigr)=A^2T\,\Lambda\!\Bigl(\frac{t}{T}\Bigr)
+\]
+\elcizimi[0.35]{sekiller/Ders-10-s3-3.png}[3]
+\elcizimi[0.5]{sekiller/Ders-10-s3-4.png}[3]
+\[
+z_1(T)=4T
+\]
+\elcizimi[0.35]{sekiller/Ders-10-s3-5.png}[3]
+\elcizimi[0.35]{sekiller/Ders-10-s3-6.png}[3]
+\elcizimi[0.35]{sekiller/Ders-10-s3-7.png}[3]
+\[
+z_1(t)=s(t)\circledast h(t)=\int_{-\infty}^{\infty}s(z)\,h(t-z)\,dz
+\]
+\begin{align*}
+t<0&:\quad z_1(t)=0\\
+0<t<T&:\quad z_1(t)=\int_0^t 2\cdot 2\,dt=4t
+\end{align*}
+
+\sayfa{4}
+\elcizimi[0.4]{sekiller/Ders-10-s4-1.png}[4]
+\begin{align*}
+T<t<2T&:\quad z_1(t)=\int_{t-T}^{T}2\cdot 2\,dt=\\
+t>2T&:\quad z_1(t)=0
+\end{align*}
+\[
+z_1(t)=\begin{cases}
+0, & t<0\\
+4t, & 0<t<T\\
+4(2T-t), & T<t<2T\\
+0, & t>2T
+\end{cases}
+\]
+\elcizimi[0.5]{sekiller/Ders-10-s4-2.png}[4]
+\[
+z_1(T)=4T
+\]
+\elcizimi[0.7]{sekiller/Ders-10-s4-3.png}[4]
+\begin{align*}
+z_2(t)&=\int_0^t s(z)\,s(z)\,dz\\
+&=\int_0^t s^2(z)\,dz=4t\qquad\qquad t<T\\
+&\phantom{=}\int_0^T s^2(z)\,dz=4T\qquad\qquad t>T
+\end{align*}
+\[
+z_2(t)=\begin{cases}
+4t, & t<T\\
+4T, & t>T
+\end{cases}
+\]
+\elcizimi[0.45]{sekiller/Ders-10-s4-4.png}[4]
+\[
+z_2(T)=4T
+\]
+\section{Semboller arası karışım (SAK)}
+(Inter symbol Interference - ISI)
+
+(Pulse shaping - Darbe şekillendirme)
+
+\elcizimi[0.95]{sekiller/Ders-10-s4-5.png}[4]
+
+\sayfa{5}
+\elcizimi[0.95]{sekiller/Ders-10-s5-1.png}[5]
+\[
+H(f)=H_t(f)\,H_c(f)\,H_r(f)
+\]
+\section{Sıfır SAK için 1. Nyquist kriteri}
+(1st Nyquist criterion for zero ISI)
+\[
+h(t)=\begin{cases}1, & t=0\\ 0, & t=\pm nT\end{cases}
+\;\Rightarrow\;
+h(nT)=\begin{cases}1 & n=0\\ 0 & n\neq0\end{cases}
+\]
+\[
+\begin{array}{l}
+n=1,2,3,\ldots\\
+T=\dfrac{1}{R_s}\\
+\hspace{1.5em}\uparrow\ \text{sembol hızı}
+\end{array}
+\qquad\qquad
+\begin{array}{l}
+\text{Hız}=R_s\,\dfrac{\text{sembol}}{\text{sn}}\\
+\Rightarrow\ BG=\dfrac{R_s}{2}\ \text{Hz}
+\end{array}
+\]
+\[
+\xrightarrow{\qquad\mathcal{F}^{-1}\qquad}\quad h(t)=\mathrm{sinc}\Bigl(\frac{t}{T}\Bigr)
+\]
+\elcizimi[0.55]{sekiller/Ders-10-s5-2.png}[5]
+\[
+A\tau\,\mathrm{sinc}(t\tau)\ \overset{\mathcal{F}}{\longleftrightarrow}\ A\,\Pi\!\Bigl(\frac{f}{\tau}\Bigr)
+\]
+\textcolor{kirmizikalem}{$\leftarrow$ ideal Nyquist filter for zero ISI}
+
+\textcolor{murekkep}{mavinin katkısı 1, siyahın 0} \quad semboller arası karışım 0
+\elcizimi[0.9]{sekiller/Ders-10-s5-3.png}[5]
+\textcolor{turuncukalem}{Senkron hatasını yaptığımızı düşünelim sembol arası karışım olabilir.}
+\[
+\frac{t}{T}=k\in\mathbb{Z}-\{0\}\;\Rightarrow\;t=kT
+\]
+\section{Raised cosine (RC) darbesi}
+Daha yüksek azalma hızına sahiptir \quad senkronizasyon hatası azalır
+\[
+BG=k\,\frac{R_s}{2}\qquad 1\le k\le 2
+\]
+\section{1. Nyquist kriterinin diğer ifadesi}
+\begin{multline*}
+\underset{\substack{\text{sampled}\\ h(t)}}{h_s(t)}=h(t)\,\overset{\text{\okunamadi{darbe} katarı,}}{s_T(t)}=h(t)\sum_{k}\delta(t-kT)\\
+=\sum_{k}h(kT)\,\delta(t-kT)=\delta(t)
+\end{multline*}
+
+\sayfa{6}
+\[
+\mathcal{F}\Bigl\{h(t)\sum_{k}\delta(t-kT)\Bigr\}=\mathcal{F}\bigl\{\delta(t)\bigr\}
+\]
+\[
+H(f)\circledast\frac{1}{T}\sum_{k}\delta\Bigl(f-\frac{k}{T}\Bigr)=1
+\]
+\[
+\frac{1}{T}\sum_{k}H\Bigl(f-\frac{k}{T}\Bigr)=1\;\Rightarrow\;\kutula{\sum_{k}H\Bigl(f-\frac{k}{T}\Bigr)=T}
+\]
+
+\end{document}

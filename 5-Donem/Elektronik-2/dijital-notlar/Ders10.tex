@@ -1,0 +1,148 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Elektronik II}{BJT yükselteç: alçak ve yüksek frekans cevabı}{Ders10.pdf}
+
+\sayfa{1}
+\elcizimi[0.8]{sekiller/Ders10-s1-1.png}[1]
+
+\begin{align*}
+ & \tau_1 = R_1 C_1\\
+\text{çok küçük}\quad & \tau_2 = R_2 C_2\\
+ & \tau_3 = R_3 C_3
+\end{align*}
+\[ \nearrow\ f_2\ \text{çok büyük}\qquad\qquad \frac{1}{2\pi R C\,\downarrow}\ \Uparrow \]
+
+\elcizimi[0.7]{sekiller/Ders10-s1-2.png}[1]
+
+\begin{ornek}
+Calculate the time constants for all poles at low frequency and estimate $f_L$. Calculate $A_m = ?$
+\[
+\begin{aligned}
+I &= \qty{1}{\milli\ampere} & \beta &= 100\\
+R_B &= \qty{100}{\kilo\ohm} & V_A &= \qty{100}{\volt}\\
+R_C &= \qty{8}{\kilo\ohm} & C_{C1} = C_{C2} = C_E &= \qty{1}{\micro\farad}\\
+R_{sig} &= \qty{5}{\kilo\ohm} & &\\
+R_L &= \qty{5}{\kilo\ohm} & &
+\end{aligned}
+\]
+\end{ornek}
+
+\sayfa{2}
+for mid band gain
+
+\elcizimi[0.9]{sekiller/Ders10-s2-1.png}[2]
+
+\begin{align*}
+g_m &= \frac{I_E}{V_T} = \frac{1\,\mathrm{mA}}{25\,\mathrm{mA}\,\footnotemark} = 40\,\mathrm{mS}\\
+r_e &= \frac{1}{g_m} \simeq 25\,\Omega\\
+r_\pi &= 25\,\Omega \times 101 = 2{,}5\,\mathrm{k}\Omega\\
+r_o &= \frac{V_A}{I_C} = \frac{100}{1} = 100\,\mathrm{k}\Omega
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $25\,\mathrm{mV}$ olmalı.}
+\begin{align*}
+\frac{v_{out}}{v_{sig}} &= \frac{v_{out}}{v_\pi}\cdot\frac{v_\pi}{v_{sig}}\\
+v_{out} &= -g_m v_\pi\,(r_o \parallel R_C \parallel R_L)\\
+\frac{v_{out}}{v_\pi} &= -40\,(2{,}91)\\
+\frac{v_{out}}{v_\pi} &= -116{,}5\\
+v_\pi &= v_{sig}\,\frac{(R_B \parallel r_\pi)}{R_{sig} + (R_B \parallel r_\pi)}\\
+&= \frac{2{,}43}{7{,}43}\,v_{sig}\\
+\frac{v_\pi}{v_{sig}} &= \frac{2{,}43}{7{,}43} = 0{,}32\\
+\frac{v_{out}}{v_{sig}} &= -116{,}5 \times 0{,}32 = -38{,}1\ [\mathrm{V/V}]\\
+&= 31{,}6\ \mathrm{dB}
+\end{align*}
+
+\elcizimi[0.45]{sekiller/Ders10-s2-2.png}[2]
+
+\sayfa{3}
+\elcizimi[0.9]{sekiller/Ders10-s3-1.png}[3]
+
+\elcizimi[0.9]{sekiller/Ders10-s3-2.png}[3]
+\begin{align*}
+R_{C1} &= 5\mathrm{k} + 2{,}43\mathrm{k} = 7{,}43\,\mathrm{k}\Omega\\
+\tau_1 &= R_{C1}\,C_{C1} = 7{,}43\,\mathrm{k}\Omega\cdot 1\,\mu\mathrm{F}\\
+\tau_1 &= 7{,}43\,\mathrm{msec}
+\end{align*}
+
+\elcizimi[0.9]{sekiller/Ders10-s3-3.png}[3]
+\begin{align*}
+R_E &= \frac{2{,}5\mathrm{k} + 4{,}76}{101} \simeq 72\\
+\tau_2 &= R_E C_E = 72\,\Omega \times 1\,\mu\mathrm{F} = 72\,\mu\mathrm{s}
+\end{align*}
+\begin{align*}
+\tau_3 &= R_{C2}\,C_{C2}\\
+R_{C2} &= 5\mathrm{k} + 7{,}4 = 12{,}4\,\mathrm{k}\Omega\\
+\tau_3 &= 12{,}4\,\mathrm{k}\Omega \times 1\,\mu\mathrm{F} = 12{,}4\,\mathrm{msec}\\
+f_1 &= \frac{1}{2\pi\tau_1} = \frac{1}{2\pi\cdot 7{,}43} \simeq 21\,\mathrm{Hz}\\
+f_2 &= \frac{1}{2\pi\tau_2} = \frac{1}{2\pi\cdot 72\,\mu\mathrm{sec}} \simeq 2{,}2\,\mathrm{kHz}
+\end{align*}
+
+\sayfa{4}
+\[ f_3 = \frac{1}{2\pi\tau_3} = \frac{1}{2\pi\cdot 12{,}4\,\mathrm{msec}} \simeq 12{,}8\,\mathrm{Hz} \]
+
+\elcizimi[0.7]{sekiller/Ders10-s4-1.png}[4]
+
+\elcizimi[0.75]{sekiller/Ders10-s4-2.png}[4]
+
+\begin{ornek}
+Calculate the time constants for all poles at high frequency and estimate $f_L$. Calculate $A_m = ?$
+\[
+\begin{aligned}
+I &= \qty{1}{\milli\ampere} & \beta &= 100\\
+R_B &= \qty{100}{\kilo\ohm} & V_A &= \qty{100}{\volt}\\
+R_C &= \qty{8}{\kilo\ohm} & C_{C1} = C_{C2} = C_E &= \qty{1}{\micro\farad}\\
+R_{sig} &= \qty{5}{\kilo\ohm} & f_T &= \qty{800}{\mega\hertz}\\
+R_L &= \qty{5}{\kilo\ohm} & r_x &= \qty{30}{\ohm}\\
+ & & C_\mu &= \qty{1}{\pico\farad}\\
+ & & g_m &= \frac{I_C}{V_T}
+\end{aligned}
+\]
+\end{ornek}
+\[ f_T = \frac{g_m}{2\pi\,(C_\mu + C_\pi)} = \frac{40\,\mathrm{mS}}{2\pi\,(1\,\mathrm{pF} + C_\pi)} = 800\cdot 10^{6} \]
+
+\sayfa{5}
+\[ \underline{40\cdot10^{-3}} = 1600\pi\cdot10^{-6} + 1600\pi\cdot10^{6}\,C_\pi \]
+\[ C_\pi = 6{,}95\,\mathrm{pF} \]
+
+\elcizimi[0.9]{sekiller/Ders10-s5-1.png}[5]
+
+\[ f_T = \frac{g_m}{2\pi\,(C_\mu + C_\pi)} \]
+\[ \Rightarrow\ C_\pi = 6{,}95\,\mathrm{pF} \]
+
+\elcizimi[0.9]{sekiller/Ders10-s5-2.png}[5]
+
+\elcizimi[0.9]{sekiller/Ders10-s5-3.png}[5]
+
+\elcizimi[0.5]{sekiller/Ders10-s5-4.png}[5]
+
+$V_{sig}'$ kaynak dönüşümü yaparak bulalım
+
+\elcizimi[0.45]{sekiller/Ders10-s5-5.png}[5]
+\[ V = V_{sig}\cdot\frac{R_B}{R_{sig}+R_B}\cdot\frac{1}{(R_{sig}\parallel R_B) + r_x + r_\pi}\cdot r_\pi \]
+
+\sayfa{6}
+\elcizimi[0.9]{sekiller/Ders10-s6-1.png}[6]
+
+\textcolor{turuncukalem}{$k = g_m R_L'$}
+
+\textcolor{turuncukalem}{$Z = \dfrac{1}{j\omega C}$}
+
+\begin{align*}
+M_1 &= (1 + g_m R_L') \qquad = 117{,}4\\
+M_2 &\ \Bigl(1 + \frac{1}{\underbrace{g_m R_L'}_{40\,\mathrm{mS}}}\Bigr) \qquad = 1
+\end{align*}
+\[ R_L' = 100\mathrm{k} \parallel 8\mathrm{k} \parallel 5\mathrm{k}\Omega = 2{,}91\,\mathrm{k}\Omega \]
+
+\elcizimi[0.9]{sekiller/Ders10-s6-2.png}[6]
+
+\begin{align*}
+R_{sig}' &= 2{,}5\mathrm{k} \parallel (4{,}76\mathrm{k})\\
+&= 1{,}64\,\mathrm{k}\Omega\\
+f_1 &= \frac{1}{2\pi\cdot 1{,}64\cdot10^{3}\cdot 124{,}3\cdot10^{-12}} = 780\,\mathrm{kHz}\\
+f_2 &= \frac{1}{2\pi\,(2{,}91\mathrm{k}\cdot 1\cdot10^{-12})} \simeq 55\,\mathrm{MHz}
+\end{align*}
+
+\sayfa{7}
+\elcizimi[0.8]{sekiller/Ders10-s7-1.png}[7]
+
+\end{document}

@@ -1,0 +1,365 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[etiket=en]{gtu-el-yazisi}
+\begin{document}
+\notbilgi{Kontrol Sistemleri}{Modeling: electrical systems, transfer function, state space}{Control-Systems-lecture-4.pdf}
+
+\sayfa{1}
+\section{Modeling}
+
+Differential eq for any dynamical system describes the exact response of the system for any desired input
+
+\medskip
+\noindent\textbf{DE} $\rightarrow$ Represented (analized) in Time domain $\rightarrow$ State Space representation\\
+\hspace*{1.4em}$\xrightarrow{\okunamadi{L}}$ Freq domain representation (Transfer function)\\
+\hspace*{3em}$\hookrightarrow$ graphically respresented by block-diagram or signal flow graphs
+
+\noindent{\color{kirmizikalem}General forms appearing in engineering} \quad (DE)
+
+\subsection{Dynamical Systems}
+\begin{itemize}
+  \item Electrical Systems (circuits, opamp)
+  \item Mechanical Systems (Vibration) (oscillating, gears)
+  \item Thermal and fluid system (hydrolic, pneumatic, fluid surface control, thermal)
+  \item Electromechanical Systems
+\end{itemize}
+
+\subsection{Passive elements}
+\elcizimi[0.35]{sekiller/Control-Systems-lecture-4-s1-1.png}[1]
+\elcizimi[0.35]{sekiller/Control-Systems-lecture-4-s1-2.png}[1]
+
+\begin{center}
+\small
+\setlength{\tabcolsep}{5pt}
+\renewcommand{\arraystretch}{2.2}
+\begin{tabular}{@{}l c c c@{}}
+ & Resistors & Capacitors & Inductors \\
+Voltage-current & $V(t)=R\,i(t)$ & $V(t)=\dfrac{1}{C}\displaystyle\int_{0}^{t} i(\tau)\,d\tau$ & $V(t)=L\,\dfrac{di}{dt}$ \\
+Current-Voltage & $i(t)=\dfrac{V(t)}{R}$ & $i(t)=C\,\dfrac{dv(t)}{dt}$ & $i(t)=\dfrac{1}{L}\displaystyle\int_{0}^{t} v(\tau)\,d\tau$ \\
+Voltage-charge & $V(t)=R\,\dfrac{dq(t)}{dt}$ & $V(t)=\dfrac{q}{C}$ & $V(t)=L\,\dfrac{d^{2}q(t)}{dt^{2}}$ \\
+Impedance: $\dfrac{\text{Output}}{\text{input}}$ & $Z=R$ & $\dfrac{1}{Cs}$ & $Ls$ \\
+Admittance $=\dfrac{1}{Z}$ & $Y=\dfrac{1}{R}$ & $Cs$ & $\dfrac{1}{Ls}$ \\
+\end{tabular}
+\end{center}
+
+\sayfa{2}
+\newcommand{\iptal}[1]{\tikz[baseline=(iptaln.base)]{\node[inner sep=1pt](iptaln){$#1$};\draw[line width=0.7pt](iptaln.south west)--(iptaln.north east);}}
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-4-s2-1.png}[2]
+
+\noindent\textbf{Voltage Law}
+\[
+\left\{\begin{aligned}
+V_i &= R\,i + \frac{1}{C}\int i\,dt\\
+V_o &= \frac{1}{C}\int i\,dt
+\end{aligned}\right.
+\ \overset{\text{Laplace}}{\Longrightarrow}\
+\left\{\begin{aligned}
+V_i &= R\,I(s) + \frac{1}{Cs}\,I(s)\\
+V_o &= \frac{1}{Cs}\,I(s)
+\end{aligned}\right.
+\]
+\[
+\frac{V_o}{V_i}=\frac{\dfrac{1}{Cs}\,\iptal{I(s)}}{\left(R+\dfrac{1}{Cs}\right)\iptal{I(s)}}
+=\frac{1}{RCs+1}=\frac{1/RC}{s+1/RC}=\frac{T}{s+T}
+\]
+\begin{center}
+$\dfrac{1}{RC}=T$ constant
+\end{center}
+\[\overset{\mathcal{L}^{-1}}{\Longrightarrow}\]
+\formulkutu{\frac{dV_o(t)}{dt}+T\,V_o(t)=T\,V_i(t)}
+
+First order O.E
+
+The order of input is less than the output
+
+$V_o$: output according to the order of derivative
+
+\noindent$\rightarrow$ integration in time gives the response\\
+@ $t=0$, one IC\\
+$V_o(0)=X$
+
+\noindent{\color{kirmizikalem}You have to know initial conditions}
+
+\subsection{RLC circuit in series}
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-4-s2-2.png}[2]
+
+\[
+V(t) - R\,i(t) - L\,\frac{di(t)}{dt} - \frac{1}{C}\int_{0}^{t} i(\tau)\,d\tau = 0
+\]
+\[
+V(t) = R\,i(t) + L\,\frac{di(t)}{dt} + \frac{1}{C}\int_{0}^{t} i(\tau)\,d\tau
+\qquad \text{integro differential eq } (*)
+\]
+
+\sayfa{3}
+\[
+\left\{\begin{aligned}
+v(t) &: \text{input}\\
+i(t) &: \text{output}
+\end{aligned}\right.
+\]
+\begin{align*}
+\overset{\mathcal{L}}{\longrightarrow}\ V(s) &= R\,I(s) + Ls\,I(s) + \frac{1}{Cs}\,I(s)\\
+\longrightarrow\ \frac{I(s)}{V(s)} &= \frac{1}{R + Ls + \dfrac{1}{Cs}}\\
+&= \frac{Cs}{RCs + LCs^{2} + 1} = \frac{s/L}{s^{2} + \dfrac{R}{L}s + \dfrac{1}{LC}}
+\end{align*}
+\[
+\frac{I}{V} = \frac{s/L}{s^{2} + \dfrac{R}{L}s + \dfrac{1}{LC}}
+\]
+\[
+\Rightarrow\ I\left(s^{2} + \frac{R}{L}s + \frac{1}{LC}\right) = \frac{s}{L}\,(V)
+\]
+\[
+\overset{\mathcal{L}^{-1}}{\Longrightarrow}\ \frac{d^{2}i(t)}{dt^{2}} + \frac{R}{L}\,\frac{di(t)}{dt} + \frac{i(t)}{LC} = \underbrace{\frac{1}{L}\,\frac{dV(t)}{dt}}_{\textcolor{kirmizikalem}{\text{Derivative of the input}}}
+\]
+\noindent{\color{kirmizikalem}Second order O.E}
+\[
+\text{I.C are 2:}\quad
+\left\{\begin{aligned}
+i(0) &= \checkmark\\
+\frac{di(0)}{dt} &= \checkmark
+\end{aligned}\right.
+\]
+\[
+\tikz[baseline=(e.base)]\node[draw,rounded corners=0.8em,inner sep=6pt](e){$\displaystyle i(t),\ \frac{di(t)}{dt}$};
+\ \rightarrow\ \text{State of the System}
+\]
+\noindent{\color{kirmizikalem}Eq (\okunamadi{*})}
+\[
+\left\{\begin{aligned}
+i(t) &= \frac{dq(t)}{dt}\\
+q(t) &= C\,V_c(t)
+\end{aligned}\right.
+\ \Rightarrow\ i(t) = C\,\frac{dV_c(t)}{dt}
+\]
+\[
+V(t) = RC\,\frac{dV_c(t)}{dt} + LC\,\frac{d^{2}V_c(t)}{dt^{2}} + \frac{1}{C}\bigl(C\,V_c(t)\bigr)
+\]
+\[
+\Rightarrow\ V = RC\,\dot{V}_c + LC\,\ddot{V}_c + V_c
+\]
+\noindent 2nd order O.E \hfill I.C.\ $\left\{\begin{array}{l}V_c(0)\\ \dot{V}_c(0)\end{array}\right.$
+
+\noindent Input : $V$\\
+output : $V_c$
+
+\sayfa{4}
+\begin{align*}
+\overset{\mathcal{L}}{\longrightarrow}\ V(s) &= (RCs + LCs^{2} + 1)\,V_c(s)\\
+\longrightarrow\ \frac{V_c}{V} &= \frac{1}{LCs^{2} + RCs + 1}\\
+&= \frac{1/LC}{s^{2} + \dfrac{R}{L}s + 1\footnotemark}
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $1/LC$ olmalı.}
+\[
+\frac{V_c}{V} = \frac{\alpha_1}{s^{2} + \alpha_2 s + \alpha_3}
+\qquad
+\left\{\begin{aligned}
+\alpha_1 &= 1/LC\\
+\alpha_2 &= R/L\\
+\alpha_3 &= 1/LC
+\end{aligned}\right.
+\]
+
+\subsection{RLC circuit in parallel}
+\elcizimi[0.6]{sekiller/Control-Systems-lecture-4-s4-1.png}[4]
+\begin{align*}
+i &= i_R + i_L + i_C\\
+&= \frac{V}{R} + \frac{1}{L}\int_{0}^{t} V(\tau)\,d\tau + C\,\frac{dV(t)}{dt}\qquad {\color{kirmizikalem}\ast\ast}
+\end{align*}
+\noindent input : $i(t)$\\
+output : $V(t)$
+\begin{align*}
+I(s) &= \frac{V(s)}{R} + \frac{V(s)}{Ls} + Cs\,V(s)\\
+\longrightarrow\ \frac{V(s)}{I(s)} &= \frac{1}{\dfrac{1}{R} + \dfrac{1}{Ls} + Cs}
+\end{align*}
+\noindent{\color{kirmizikalem}Here we have the derivative of input}
+
+\noindent Eq (\okunamadi{**})
+\[
+V(t) = \frac{d\Phi(t)}{dt}\quad\rightarrow\ \text{magnetic flux}\quad\text{(Faraday law)}
+\]
+\[
+i(t) = \frac{d\Phi(t)}{R\,dt} + \frac{\Phi(t)}{L} + C\,\frac{d^{2}\Phi(t)}{dt^{2}}
+\]
+\noindent $2^{\mathrm{nd}}$ order\\
+input: $i$\\
+output: $\Phi(t)$
+\[
+\Rightarrow\ I(s) = \left(\frac{s}{R} + \frac{1}{L} + Cs^{2}\right)\Phi(s)
+\]
+\[
+\rightarrow\ \frac{\Phi(s)}{I(s)} = \frac{1}{Cs^{2} + \dfrac{s}{R} + \dfrac{1}{L}}
+= \frac{1/C}{s^{2} + \dfrac{s}{RC} + \dfrac{1}{LC}}
+= \frac{\beta_1}{s^{2} + \beta_2 s + \beta_3}
+\qquad
+\left\{\begin{aligned}
+\beta_1 &= 1/C\\
+\beta_2 &= 1/RC\\
+\beta_3 &= 1/LC
+\end{aligned}\right.
+\]
+
+\sayfa{5}
+\section{Methods of Complex impedences}
+
+\elcizimi[0.35]{sekiller/Control-Systems-lecture-4-s5-1.png}[5]
+\[ V = iR \]
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-4-s5-2.png}[5]
+
+\elcizimi[0.4]{sekiller/Control-Systems-lecture-4-s5-3.png}[5]
+\noindent Impedance in Series \qquad $Z_{eq}=\sum Z_i$\\
+\hspace*{3em}''\hspace{1.5em}'' parallel \qquad $Z_{eq}=\dfrac{1}{\sum \dfrac{1}{Z_i}}$
+
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-4-s5-4.png}[5]
+\[
+\frac{V_o(s)}{V_i(s)} = \frac{Z_2\,I(s)}{Z_1\,I(s) + Z_2\,I(s)} = \frac{Z_2}{Z_1 + Z_2}
+\]
+
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-4-s5-5.png}[5]
+\begin{align*}
+Z_2 &= \frac{1}{Cs}\\
+Z_1 &= R + Ls
+\end{align*}
+\begin{align*}
+\frac{V_o}{V_i} &= \frac{1/Cs}{R + Ls + 1/Cs}\\
+&= \frac{1}{RCs + LCs^{2} + 1}
+\end{align*}
+\[
+\overset{\mathcal{L}^{-1}}{\Longrightarrow}\ V_i = RC\,\frac{dV_o}{dt} + LC\,\frac{d^{2}V_o}{dt^{2}} + V_o
+\]
+
+\elcizimi[0.55]{sekiller/Control-Systems-lecture-4-s5-6.png}[5]
+\[
+Z_1 = \frac{1}{\dfrac{1}{R_1} + C_1 s}
+\qquad
+Z_2 = R_2 + \frac{1}{C_2 s}
+\]
+
+\sayfa{6}
+\[
+\frac{V_o}{V_i} = \frac{R_1C_1R_2C_2\,s^{2} + (R_1C_1 + R_2C_2)\,s + 1}{R_1C_1R_2C_2\,s^{2} + (R_1C_1 + R_2C_2 + R_1C_2)\,s + 1}
+\]
+\[
+\frac{V_o}{V_i} = \frac{\alpha_1 s^{2} + \alpha_2 s + 1}{\alpha_3 s^{2} + \alpha_4 s + 1}
+\]
+\[
+\overset{\mathcal{L}^{-1}}{\Longrightarrow}\ \alpha_1\frac{d^{2}v_i}{dt^{2}} + \alpha_2\frac{dv_i}{dt} + v_i = \alpha_3\frac{d^{2}v_o}{dt^{2}} + \alpha_4\frac{dv_o}{dt} + v_o
+\]
+
+\noindent There is no dynamic behavior \quad there is \okunamadi{statics}
+
+\elcizimi[0.6]{sekiller/Control-Systems-lecture-4-s6-1.png}[6]
+\elcizimi[0.6]{sekiller/Control-Systems-lecture-4-s6-2.png}[6]
+
+\[
+\text{Mesh \#1}\qquad R_1 I_1 + Ls\,I_1 - I_2\,Ls = V \;\Rightarrow\; (R_1 + Ls)\,I_1 - Ls\,I_2 = V
+\]
+\noindent{\color{kirmizikalem}summation of impedances in mesh: $(R_1+Ls)$\\
+impedance of the common element: $Ls$\\
+Voltage source in mesh: $V$}
+\[
+\text{Mesh \#2}\qquad Ls\,I_2 + R_2 I_2 + \frac{1}{Cs}\,I_2 - Ls\,I_1 = 0
+\]
+\[
+\underbrace{\left(Ls + R_2 + \frac{1}{Cs}\right)}_{\text{summation of all impedances in mesh 2}} I_2 - Ls\,I_1 = 0
+\]
+\noindent{\color{kirmizikalem}impedance on the common element ($Ls\,I_1$)}
+\[
+(R + Ls)\,I_1 - Ls\,I_2 = V
+\]
+\[
+\left(R_2 + \frac{1}{Cs} + Ls\right) I_2 - Ls\,I_1 = 0
+\quad\rightarrow\quad
+I_1 = \frac{R_2 + Ls + 1/Cs}{Ls}\footnotemark
+\]
+\footnotetext{Claude notu: muhtemelen $I_2$ ile çarpılmalı.}
+\[
+\left\{\begin{aligned}
+I_1 &= ?\\
+I_2 &= ?
+\end{aligned}\right.
+\]
+\noindent substitution gives
+\[
+(R + Ls)\,\frac{R_2 + Ls + 1/Cs}{Ls}\,I_2 - Ls\,I_2 = V
+\]
+
+\sayfa{7}
+\[
+\longrightarrow\ \frac{I_2}{V} = \frac{1}{\left(\dfrac{R}{Ls} + 1\right)\left(R_2 + \left(s + \dfrac{1}{Cs}\right)\right) - Ls}\footnotemark
+\]
+\footnotetext{Claude notu: muhtemelen $Ls + 1/Cs$ olmalı.}
+\[
+\frac{I_2}{V} = \frac{LCs^{2}}{(R_1 + R_2)CLs^{2} + (R_1R_2C + L)s + R_1}
+\]
+\[
+\Rightarrow\ LC\,\frac{d^{2}v}{dt^{2}} = (R_1 + R_2)CL\,\frac{d^{2}i_2}{dt^{2}} + (R_1R_2C + L)\,\frac{di_2}{dt} + R_1 i_2
+\]
+\[
+\frac{I_1}{V} = \frac{Cs\left(Ls + R_2 + \dfrac{1}{Cs}\right)}{(R_1 + R_2)CLs^{2} + (R_1R_2C + L)s + R_2\footnotemark}
+\]
+\footnotetext{Claude notu: muhtemelen $R_1$ olmalı.}
+
+\elcizimi[0.9]{sekiller/Control-Systems-lecture-4-s7-1.png}[7]
+
+\noindent mesh \#1
+\begin{align*}
+&\left(\begin{array}{c}\text{sum of impedances}\\\text{in the loop}\end{array}\right) I_1
+ - \left(\begin{array}{c}\text{sum of common}\\\text{impedances}\\\text{between loops}\\\text{1 and 2}\end{array}\right) I_2\\
+&\quad - \left(\begin{array}{c}\text{sum of impedances}\\\text{common between}\\\text{loops 1,3}\end{array}\right) I_3
+ = \begin{array}{c}\text{sum of voltage}\\\text{sources in the}\\\text{loop}\end{array}
+\end{align*}
+\begin{align*}
+\#1:\quad & (R_1 + R_2 + L_1 s)\,I_1 - (R_2 + L_3 s)\,I_2 - R_1 I_3 = V\footnotemark\\
+\#2:\quad & (L_1 s + L_2 s + L_3 s + R_2)\,I_2 - (R_2 + L_3 s)\,I_1 - L_1 s\,I_3 = 0\\
+\#3:\quad & \left(\frac{1}{Cs} + L_1 s + R_1\right) I_3 - L_1 s\,I_2 - R_1 I_1 = 0
+\end{align*}
+\footnotetext{Claude notu: muhtemelen $L_3 s$ olmalı.}
+
+\noindent{\color{kirmizikalem}Solve it for $I_1, I_2, I_3 = f(U)$}
+\[
+{\color{kirmizikalem}\ddot{x} + \alpha_1\dot{x} + \alpha_2 x = \underbrace{\beta_0\ddot{u}}_{\textcolor{murekkep}{\text{very rare}}} + \beta_1\dot{u} + \beta_2 u}
+\]
+
+\sayfa{8}
+\section{State space equation}
+
+\noindent $2^{\mathrm{nd}}$ order O.E $\xrightarrow{\text{s.s.}}$ 2 first order O.E
+
+\noindent sys of $\left\{\begin{array}{l}2^{\mathrm{nd}}\text{ order}\\\text{equation}\\(n)\\\text{number}\end{array}\right\}$ $\xrightarrow{\text{s.s}}$ $2n$ '' '' ''
+
+\begin{ornek}
+\[ \ddot{x} + \alpha_1\dot{x} + \alpha_2 x = u \]
+\noindent $x$: output \qquad\qquad $2^{\mathrm{nd}}$ order O.E\\
+$u$: input
+\end{ornek}
+
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-4-s8-1.png}[8]
+\noindent Initial conditions\\
+$x,\ \dot{x}$
+
+\noindent State variables
+\[
+\begin{aligned}
+y_1 &= x\\
+y_2 &= \dot{x}
+\end{aligned}
+\]
+\begin{align*}
+\dot{y}_1 &= \dot{x} = y_2\\
+\dot{y}_2 &= \ddot{x} = u - \alpha_1\dot{x} - \alpha_2 x = u - \alpha_1 y_2 - \alpha_2 y_1
+\end{align*}
+\[
+\underbrace{\frac{d}{dt}\begin{Bmatrix} y_1\\ y_2\end{Bmatrix}}_{\substack{\textcolor{kirmizikalem}{\text{state variable}}\\\textcolor{kirmizikalem}{\text{vector}}\\\textcolor{kirmizikalem}{\dot{\vec{X}}}}}
+=
+\underbrace{\begin{bmatrix} 0 & 1\\ -\alpha_2 & -\alpha_1\end{bmatrix}}_{\textcolor{kirmizikalem}{A}}
+\underbrace{\begin{Bmatrix} y_1\\ y_2\end{Bmatrix}}_{\textcolor{kirmizikalem}{\vec{X}}}
++
+\underbrace{\begin{Bmatrix} 0\\ 1\end{Bmatrix}}_{\substack{\textcolor{kirmizikalem}{\text{input}}\\\textcolor{kirmizikalem}{\text{vector}}\\\textcolor{kirmizikalem}{\vec{B}}}}
+\;\underbrace{u}_{\textcolor{kirmizikalem}{\text{input}}}
+\]
+\formulkutu{\dot{\vec{X}} = A\,\vec{X} + \vec{B}\,u}
+
+\sayfa{9}
+\elcizimi[0.5]{sekiller/Control-Systems-lecture-4-s9-1.png}[9]
+
+\end{document}
