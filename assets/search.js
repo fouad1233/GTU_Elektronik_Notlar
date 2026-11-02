@@ -1,10 +1,12 @@
-/* Basit, bağımlılıksız site içi arama (Türkçe karakter duyarsız). search-index.json dosyasını okur. */
+/* Basit, bağımlılıksız site içi arama (Türkçe karakter duyarsız). data-index ile verilen dizini okur:
+   search-index.json (Türkçe) ya da search-index-en.json (İngilizce). */
 (function () {
   var input = document.getElementById('q'), list = document.getElementById('results');
   var me = document.currentScript;
   if (!input || !list || !me) return;
   var url = me.getAttribute('data-index'), root = me.getAttribute('data-root') || '';
   var empty = me.getAttribute('data-empty') || 'Sonuç bulunamadı';
+  var boost = me.getAttribute('data-boost') || 'Ders';   // bu türdeki sonuçlar (ders sayfaları) biraz öne çıkar
   var data = null, loading = false;
   function fold(s) {
     return String(s).replace(/İ/g, 'i').replace(/I/g, 'i').toLowerCase().replace(/ı/g, 'i')
@@ -31,7 +33,7 @@
         else if (e.g.indexOf(toks[i]) > -1) s += 1;
         else return;
       }
-      if (e.y === 'Ders') s += 2;
+      if (e.y === boost) s += 2;
       res.push([s, e]);
     });
     res.sort(function (a, b) { return b[0] - a[0]; });

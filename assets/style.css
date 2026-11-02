@@ -20,7 +20,7 @@ a:hover{text-decoration-thickness:2px}
 .top nav{display:flex;gap:2px 18px;flex-wrap:wrap;font-size:15px}
 .top nav a{color:var(--ink);text-decoration:none;padding:6px 1px;border-bottom:2px solid transparent}
 .top nav a:hover,.top nav a[aria-current]{border-bottom-color:var(--accent)}
-main{padding-bottom:20px}
+main{padding-bottom:20px;overflow-wrap:break-word}
 h1,h2,h3{line-height:1.2}
 h1{font-family:var(--hand);font-weight:700;font-size:clamp(2.4rem,6.4vw,3.7rem);margin:.15em 0 .2em}
 h2{font-family:var(--hand);font-weight:700;font-size:clamp(1.8rem,4vw,2.3rem);margin:2em 0 .5em}
@@ -28,8 +28,8 @@ h3{font-size:1.12rem;margin:1.2em 0 .35em}
 .kicker{margin:34px 0 0;color:var(--muted);font-size:.95rem;letter-spacing:.02em}
 .hl{background:linear-gradient(transparent 58%,var(--hl) 58%);padding:0 .12em}
 .lead{font-size:1.14rem;max-width:62ch}
-.lead-en,.sub-en{color:var(--muted)}
-.sub-en{margin:-.2em 0 .6em;font-size:1.05rem}
+.lead-en,.sub-en,.lead-alt,.sub-alt{color:var(--muted)}
+.sub-en,.sub-alt{margin:-.2em 0 .6em;font-size:1.05rem}
 .muted{color:var(--muted)}
 .crumbs{margin:22px 0 0;font-size:.92rem;color:var(--muted)}
 .crumbs a{color:var(--muted)}
@@ -71,7 +71,7 @@ h3{font-size:1.12rem;margin:1.2em 0 .35em}
 .outline{font-size:.9rem;color:var(--muted)}
 .proj{padding:12px 18px;margin:12px 0}
 .proj h3{margin:.1em 0 .2em}
-.facts{display:grid;grid-template-columns:max-content 1fr;gap:4px 18px;margin:14px 0}
+.facts{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:4px 18px;margin:14px 0}
 .facts dt{color:var(--muted)}
 .facts dd{margin:0}
 .hero-note{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:26px;align-items:start}
@@ -88,5 +88,6 @@ h3{font-size:1.12rem;margin:1.2em 0 .35em}
 .people img{border-radius:50%;width:56px;height:56px}
 .foot{margin-top:56px;border-top:1px solid var(--line);padding:26px 0 44px;font-size:.9rem;color:var(--muted)}
 .foot p{margin:.4em 0;max-width:80ch}
+.note>*,.hero-note>*{min-width:0}
 @media (max-width:640px){.brand{font-size:23px}.top nav{font-size:14px;gap:0 12px}.note{grid-template-columns:96px 1fr}.hero-note{grid-template-columns:1fr}.hero-note img{max-width:240px}}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
