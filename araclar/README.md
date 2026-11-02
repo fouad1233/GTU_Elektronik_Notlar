@@ -5,10 +5,11 @@ Bu klasördeki betikler, deponun **README sayfalarını** ve **GitHub Pages web 
 | Dosya | Ne yapar |
 |---|---|
 | `make_readmes.py` | Ana README, dönem ve ders README'lerini ve `latex-sablon/README.md` dosyasını üretir; tüm bağlantıları denetler |
-| `build_site.py` | Statik web sitesini üretir (ana sayfa, dönem/ders/dijital not sayfaları, arama, `sitemap.xml`, `robots.txt`) |
-| `check_site.py` | Üretilen sitede bozuk bağlantı, tekrar eden başlık/açıklama ve HTML etiket hatalarını arar |
+| `build_site.py` | Statik, **iki dilli** web sitesini üretir: Türkçe sayfalar kökte, İngilizce karşılıkları `en/` altında (ana sayfa, dönem/ders/dijital not/proje sayfaları, arama, `sitemap.xml`, `robots.txt`) |
+| `check_site.py` | Üretilen sitede bozuk bağlantı, tekrar eden başlık/açıklama, HTML etiket hataları ve Türkçe↔İngilizce sayfa eşleşmesini (hreflang) arar |
 | `yayinla.sh` | Siteyi üretir, denetler ve `gh-pages` dalına gönderir |
-| `courses.json` | Ders adları (TR/EN), kodları, açıklamaları, GitHub depoları, kaynak kitaplar ve proje başlıkları |
+| `courses.json` | Ders adları (TR/EN), kodları, açıklamaları (TR/EN), GitHub depoları, kaynak kitaplar ve proje başlıkları (TR/EN) |
+| `note_titles_en.json` | Dijital notların İngilizce başlıkları (`<ders klasörü>/<pdf adı>` → başlık); yeni dijital not ekleyince buraya da ekleyin, yoksa İngilizce sayfada Türkçe başlık görünür |
 | `site_assets/` | Sitenin stil (`style.css`) ve arama (`search.js`) dosyaları |
 | `site_root/` | Site köküne olduğu gibi kopyalanan dosyalar (ör. Google Search Console doğrulama dosyası — **silmeyin**, silinirse doğrulama bozulur) |
 
@@ -22,7 +23,7 @@ python3 araclar/check_site.py /tmp/gtu-site         # siteyi denetle
 araclar/yayinla.sh                                  # üret + denetle + gh-pages dalına gönder
 ```
 
-**Yeni ders / proje eklerken:** önce klasörü `N-Donem/<Ders-Adi>/` altına koyun, sonra `courses.json` içine dersin adını, kodunu ve açıklamasını yazın. Sitede yalnızca **dijital (LaTeX) notların PDF'leri** barındırılır; diğer dosyalar GitHub bağlantılarıyla listelenir.
+**Yeni ders / proje eklerken:** önce klasörü `N-Donem/<Ders-Adi>/` altına koyun, sonra `courses.json` içine dersin adını, kodunu ve açıklamasını (Türkçe ve İngilizce) yazın; yeni dijital notların İngilizce başlıklarını `note_titles_en.json` dosyasına ekleyin. Sitede yalnızca **dijital (LaTeX) notların PDF'leri** barındırılır; diğer dosyalar GitHub bağlantılarıyla listelenir.
 
 **Depo adı değişirse** `build_site.py` başındaki `USER` / `REPO` sabitlerini ve `courses.json` içindeki `repo_slug` alanını güncelleyin.
 
@@ -35,8 +36,9 @@ araclar/yayinla.sh                                  # üret + denetle + gh-pages
 These scripts generate the repository's **README pages** and the **GitHub Pages website** (https://fouad1233.github.io/GTU_Elektronik_Notlar/) from the folder tree. Re-run them after adding or removing files.
 
 - `make_readmes.py` — writes the main, semester and course READMEs and checks every link.
-- `build_site.py` — builds the static website (home, semester, course and digital-note pages, search index, `sitemap.xml`, `robots.txt`); only the PDFs of the digital (LaTeX) notes are hosted on the site, other files are linked to GitHub.
-- `check_site.py` — looks for broken links, duplicate titles/descriptions and unbalanced HTML in the generated site.
+- `build_site.py` — builds the static **bilingual** website: Turkish pages at the root, an English counterpart of every page under `en/` (home, semester, course, digital-note and project pages, one search index per language, `sitemap.xml`, `robots.txt`); only the PDFs of the digital (LaTeX) notes are hosted on the site (shared by both languages), other files are linked to GitHub.
+- `check_site.py` — looks for broken links, duplicate titles/descriptions, unbalanced HTML and Turkish↔English pairing problems (hreflang) in the generated site.
+- `note_titles_en.json` — English titles of the digital notes (`<course folder>/<pdf name>` → title); add an entry when you add a digital note, otherwise the English page falls back to the Turkish title.
 - `yayinla.sh` — builds, checks and pushes the site to the `gh-pages` branch (served by GitHub Pages).
 - `courses.json` — course names (TR/EN), codes, descriptions, GitHub repos, textbooks and project titles. `site_assets/` — CSS and search script.
 - `site_root/` — files copied as-is to the site root, e.g. the Google Search Console verification file (do not delete it, or verification breaks).

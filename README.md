@@ -4,7 +4,7 @@
 
 ![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 3542](https://img.shields.io/badge/dosya-3542-6e7781) ![dijital not: 204](https://img.shields.io/badge/dijital%20not-204-e36209)
 
-🌐 **Web sitesi:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — arama kutulu, mobil uyumlu; ders sayfaları, dijital notlar ve PDF'ler tek tıkla.
+🌐 **Web sitesi:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — arama kutulu, mobil uyumlu, Türkçe ve İngilizce ([English version](https://fouad1233.github.io/GTU_Elektronik_Notlar/en/)); ders sayfaları, dijital notlar ve PDF'ler tek tıkla.
 
 Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının **7 dönemine** (2021–2022 Güz – 2024–2025 Güz) ait **ders notları, çıkmış sorular (vize, final, quiz), ödevler, laboratuvar raporları ve projeler**. Vize ve final çalışırken kullanabileceğiniz PDF notlar arasında Elektromanyetik Alan Teorisi, Analog Haberleşme, İşaretler ve Sistemler, Kontrol Sistemleri, Haberleşme için RF Sistem Tasarımı, Sayısal Haberleşme, Diferansiyel Denklemler, Elektronik II gibi dersler var.
 
@@ -252,7 +252,7 @@ Tüm katkıcılar: [GitHub katkıcı grafiği](https://github.com/fouad1233/GTU_
 
 **GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 3542 files (780 PDFs), 204 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
 
-🌐 **Website:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — searchable, mobile friendly, with English course names and summaries.
+🌐 **Website:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — searchable, mobile friendly and fully bilingual: the [English version](https://fouad1233.github.io/GTU_Elektronik_Notlar/en/) has English course names, summaries and translated note titles.
 
 ### How to use
 

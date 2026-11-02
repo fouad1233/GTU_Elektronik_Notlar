@@ -7,6 +7,10 @@ Kullanım (depo kökünden):
 Çıktı klasörü `gh-pages` dalına konur (bkz. araclar/yayinla.sh). Site, depo ağacını `make_readmes.py`
 ile aynı modelden (courses.json + klasör yapısı) okur; yalnızca dijital (LaTeX) notların PDF'leri
 siteye kopyalanır, diğer dosyalar GitHub bağlantılarıyla listelenir.
+
+Site iki dillidir: Türkçe sayfalar kökte (ders/, donem/, dijital-notlar/, projeler/), İngilizce karşılıkları
+`en/` altındadır (en/courses/, en/semester/, en/digital-notes/, en/projects/). Her sayfa karşılığına hreflang ile
+bağlanır; PDF'ler ve küçük resimler iki dilde ortaktır. İngilizce başlıklar `note_titles_en.json` dosyasından gelir.
 """
 import argparse
 import datetime
@@ -83,6 +87,20 @@ def trim(s, n=158):
     return s[:n - 1].rsplit(' ', 1)[0].rstrip(' ,;:.-–—') + '…'
 
 
+def fit_list(head, items, more, n=158):
+    """`head` + virgülle ayrılmış öğeler (+ `more`) + '.' — öğeleri ortadan kesmeden n karaktere sığdırır."""
+    items = list(items)
+    out = []
+    for i, it in enumerate(items):
+        tail = (more if i + 1 < len(items) else '') + '.'
+        if len(head + ', '.join(out + [it]) + tail) > n:
+            break
+        out.append(it)
+    if not out:
+        return trim(head + (items[0] if items else ''), n)
+    return head + ', '.join(out) + (more if len(out) < len(items) else '') + '.'
+
+
 def ld_script(obj):
     s = json.dumps(obj, ensure_ascii=False, separators=(',', ':'))
     return '<script type="application/ld+json">%s</script>' % s.replace('</', '<\\/')
@@ -93,8 +111,8 @@ def breadcrumb_ld(items):
         {'@type': 'ListItem', 'position': i + 1, 'name': n, 'item': u} for i, (n, u) in enumerate(items)]}
 
 
-def human(n):
-    return mr.human_size(n)
+def human(n, lang='tr'):
+    return mr.human_size(n, lang)
 
 
 def join_en(items):
@@ -241,11 +259,26 @@ class Note:
     pass
 
 
+def tx(lang, tr, en):
+    """Türkçe ya da İngilizce metni seç / pick the Turkish or English variant."""
+    return tr if lang == 'tr' else en
+
+
+def num(n, lang):
+    s = '{:,}'.format(n)
+    return s.replace(',', '.') if lang == 'tr' else s
+
+
+def pri(lang, p):
+    """Sitemap priority: the English mirror is slightly below the Turkish original."""
+    return p if lang == 'tr' else round(p - 0.1, 1)
+
+
 class Site:
     def __init__(self, R, repo, out, cache_dir, today):
         self.R, self.repo, self.out, self.cache_dir, self.today = R, repo, out, cache_dir, today
         self.urls = []          # (url, priority)
-        self.search = []
+        self.search = {'tr': [], 'en': []}
         self.cslug = {c.key: mr.site_slug(c.dirname) for c in R.courses}
         self.notes = {}         # course key -> [Note]
         self.sems = sorted(R.semesters)
@@ -254,6 +287,10 @@ class Site:
         self.npdf = sum(1 for c in R.courses for f in c.files if f.ext == 'pdf')
         self.ndig = sum(1 for c in R.courses for d in c.digital if d.pdf)
         self.nproj = sum(len(c.projects) for c in R.courses)
+        # dijital notların İngilizce başlıkları (araclar/note_titles_en.json: "<ders klasörü>/<pdf adı>" -> başlık)
+        p = os.path.join(HERE, 'note_titles_en.json')
+        self.titles_en = json.load(open(p, encoding='utf-8')) if os.path.exists(p) else {}
+        self.missing_en = []    # İngilizce başlığı olmayan dijital notlar (Türkçe başlık kullanılır)
 
     # ---- file output -----------------------------------------------------------------------
     def write(self, rel, text, sitemap=None):
@@ -264,50 +301,81 @@ class Site:
         if sitemap is not None:
             self.urls.append((rel[:-len('index.html')] if rel.endswith('index.html') else rel, sitemap))
 
-    def course_url(self, c):
-        return 'ders/%s/' % self.cslug[c.key]
+    # ---- urls (all relative to the site root) ----------------------------------------------
+    def home_url(self, lang):
+        return tx(lang, '', 'en/')
+
+    def sem_url(self, sem, lang):
+        return tx(lang, 'donem/%d/', 'en/semester/%d/') % sem
+
+    def course_url(self, c, lang='tr'):
+        return tx(lang, 'ders/%s/', 'en/courses/%s/') % self.cslug[c.key]
+
+    def note_url(self, n, lang='tr'):
+        return tx(lang, n.url, n.url_en)
+
+    def dig_url(self, lang):
+        return tx(lang, 'dijital-notlar/', 'en/digital-notes/')
+
+    def proj_url(self, lang):
+        return tx(lang, 'projeler/', 'en/projects/')
+
+    def root_of(self, url):
+        depth = len([p for p in url.split('/') if p])
+        return '../' * depth if depth else './'
+
+    def cname(self, c, lang):
+        return c.name_tr if lang == 'tr' else c.name_en
 
     # ---- layout ----------------------------------------------------------------------------
-    def layout(self, url, title, desc, body, ld=None, og_type='website', lang='tr', alt=None, active='',
+    def layout(self, url, title, desc, body, ld=None, og_type='website', lang='tr', other=None, active='',
                root=None, noindex=False):
-        depth = len([p for p in url.split('/') if p])
-        root = root or ('../' * depth if depth else './')
+        """`other`: sitenin köküne göre öteki dildeki karşılık sayfa (hreflang ve dil düğmesi için)."""
+        root = root or self.root_of(url)
         canon = BASE + '/' + url
         head = ['<meta charset="utf-8">', '<meta name="viewport" content="width=device-width,initial-scale=1">',
                 '<title>%s</title>' % esc(title), '<meta name="description" content="%s">' % esc(desc),
                 '<link rel="canonical" href="%s">' % esc(canon),
                 '<meta name="robots" content="%s">' % ('noindex' if noindex else 'index,follow,max-image-preview:large'),
                 '<meta name="author" content="%s">' % AUTHOR]
-        for hl, hu in (alt or []):
-            head.append('<link rel="alternate" hreflang="%s" href="%s">' % (hl, esc(hu)))
+        if other is not None:
+            tr_u, en_u = (url, other) if lang == 'tr' else (other, url)
+            head += ['<link rel="alternate" hreflang="tr" href="%s">' % esc(BASE + '/' + tr_u),
+                     '<link rel="alternate" hreflang="en" href="%s">' % esc(BASE + '/' + en_u),
+                     '<link rel="alternate" hreflang="x-default" href="%s">' % esc(BASE + '/' + tr_u)]
         head += ['<meta name="theme-color" content="#f6f1e3" media="(prefers-color-scheme: light)">',
                  '<meta name="theme-color" content="#131824" media="(prefers-color-scheme: dark)">',
                  '<link rel="icon" href="%sfavicon.svg" type="image/svg+xml">' % root,
                  '<link rel="apple-touch-icon" href="%sapple-touch-icon.png">' % root,
-                 '<meta property="og:site_name" content="%s">' % esc(SITE_TR if lang == 'tr' else SITE_EN),
+                 '<meta property="og:site_name" content="%s">' % esc(tx(lang, SITE_TR, SITE_EN)),
                  '<meta property="og:type" content="%s">' % og_type,
                  '<meta property="og:title" content="%s">' % esc(title),
                  '<meta property="og:description" content="%s">' % esc(desc),
                  '<meta property="og:url" content="%s">' % esc(canon),
                  '<meta property="og:image" content="%s/og-image.png">' % BASE,
                  '<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">',
-                 '<meta property="og:locale" content="%s">' % ('tr_TR' if lang == 'tr' else 'en_US'),
-                 '<meta name="twitter:card" content="summary_large_image">',
+                 '<meta property="og:locale" content="%s">' % tx(lang, 'tr_TR', 'en_US')]
+        if other is not None:
+            head.append('<meta property="og:locale:alternate" content="%s">' % tx(lang, 'en_US', 'tr_TR'))
+        head += ['<meta name="twitter:card" content="summary_large_image">',
                  '<link rel="preload" href="%sassets/caveat.woff" as="font" type="font/woff" crossorigin>' % root,
                  '<link rel="stylesheet" href="%sassets/style.css">' % root]
         if ld:
             head.append(ld_script(ld))
+        sw = other if other is not None else tx(lang, 'en/', '')       # dil düğmesinin hedefi
         if lang == 'tr':
-            nav = [('Dersler', root + '#donemler', ''), ('Dijital notlar', root + 'dijital-notlar/', 'dijital'),
-                   ('Projeler', root + 'projeler/', 'projeler'), ('English', root + 'en/', 'en'),
-                   ('GitHub', GH, 'gh')]
+            nav = [('Dersler', root + '#donemler', '', ''), ('Dijital notlar', root + self.dig_url('tr'), 'dijital', ''),
+                   ('Projeler', root + self.proj_url('tr'), 'projeler', ''),
+                   ('English', root + sw, 'lang', ' lang="en" hreflang="en"'), ('GitHub', GH, 'gh', '')]
             skip, brand = 'İçeriğe geç', 'Elektronik Notları'
         else:
-            nav = [('Courses', root + 'en/#courses', ''), ('Türkçe', root, 'tr'), ('GitHub', GH, 'gh')]
+            nav = [('Courses', root + 'en/#courses', '', ''), ('Digital notes', root + self.dig_url('en'), 'dijital', ''),
+                   ('Projects', root + self.proj_url('en'), 'projeler', ''),
+                   ('Türkçe', root + sw, 'lang', ' lang="tr" hreflang="tr"'), ('GitHub', GH, 'gh', '')]
             skip, brand = 'Skip to content', 'Electronics Notes'
-        navh = ''.join('<a href="%s"%s%s>%s</a>' % (
+        navh = ''.join('<a href="%s"%s%s%s>%s</a>' % (
             esc(h), ' aria-current="page"' if k and k == active else '',
-            ' rel="noopener"' if k == 'gh' else '', esc(t)) for t, h, k in nav)
+            ' rel="noopener"' if k == 'gh' else '', extra, esc(t)) for t, h, k, extra in nav)
         if lang == 'tr':
             foot = (
                 '<p><strong>%s</strong> — Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği ders notları, '
@@ -315,11 +383,11 @@ class Site:
                 '<a href="https://github.com/%s" rel="noopener">%s</a> (@%s), GTÜ Elektronik Mühendisliği mezunu.</p>'
                 '<p>%s</p><p>%s</p>'
                 '<p><a href="%s" rel="noopener">GitHub deposu</a> · <a href="%s/issues" rel="noopener">Hata bildir / '
-                'katkıda bulun</a> · <a href="%sen/">English</a></p>') % (
+                'katkıda bulun</a> · <a href="%s%s" lang="en" hreflang="en">English</a></p>') % (
                 SITE_TR, USER, AUTHOR, USER, esc(mr.DISCLAIMER_TR),
                 'Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve '
                 'Gebze Teknik Üniversitesi\'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.',
-                GH, GH, root)
+                GH, GH, root, sw)
         else:
             foot = (
                 '<p><strong>%s</strong> — lecture notes, past exams, homework, lab reports and projects for '
@@ -328,42 +396,41 @@ class Site:
                 '<p>%s</p><p>Course materials (past exams, slides, handouts) belong to their instructors and GTU '
                 'and are shared for educational purposes only.</p>'
                 '<p><a href="%s" rel="noopener">GitHub repository</a> · <a href="%s/issues" rel="noopener">Report an '
-                'issue / contribute</a> · <a href="%s">Türkçe</a></p>') % (
-                SITE_EN, USER, AUTHOR, USER, esc(mr.DISCLAIMER_EN), GH, GH, root)
+                'issue / contribute</a> · <a href="%s%s" lang="tr" hreflang="tr">Türkçe</a></p>') % (
+                SITE_EN, USER, AUTHOR, USER, esc(mr.DISCLAIMER_EN), GH, GH, root, sw)
         return ('<!doctype html>\n<html lang="%s"><head>\n%s\n</head>\n<body>\n<a class="skip" href="#icerik">%s</a>\n'
                 '<header class="top"><div class="wrap"><a class="brand" href="%s"><span class="brand-mark">GTÜ</span>'
                 '<span>%s</span></a><nav aria-label="%s">%s</nav></div></header>\n'
                 '<main id="icerik" class="wrap">\n%s\n</main>\n<footer class="foot"><div class="wrap">%s</div></footer>\n'
-                '</body></html>\n') % (lang, '\n'.join(head), skip, root, brand,
-                                      'Ana menü' if lang == 'tr' else 'Main menu', navh, body, foot)
+                '</body></html>\n') % (lang, '\n'.join(head), skip, root + self.home_url(lang), brand,
+                                      tx(lang, 'Ana menü', 'Main menu'), navh, body, foot)
 
     # ---- small html pieces -------------------------------------------------------------------
-    def crumbs(self, root, items):
+    def crumbs(self, root, items, lang='tr'):
         parts = []
         for i, (name, href) in enumerate(items):
             parts.append(esc(name) if i == len(items) - 1 or href is None else
                          '<a href="%s">%s</a>' % (esc(href), esc(name)))
-        return '<nav class="crumbs" aria-label="Sayfa yolu">%s</nav>' % ' › '.join(parts)
+        return '<nav class="crumbs" aria-label="%s">%s</nav>' % (tx(lang, 'Sayfa yolu', 'Breadcrumb'), ' › '.join(parts))
 
     def search_box(self, root, lang='tr'):
-        ph = ('Ders veya konu ara… (ör. Laplace, kontrol sistemleri, ELM)' if lang == 'tr' else
-              'Search courses or topics… (e.g. Laplace, control systems)')
-        empty = 'Sonuç bulunamadı' if lang == 'tr' else 'No results'
+        ph = tx(lang, 'Ders veya konu ara…', 'Search courses or topics…')
+        empty = tx(lang, 'Sonuç bulunamadı', 'No results')
+        index = tx(lang, 'search-index.json', 'search-index-en.json')
         return ('<form class="search" role="search" onsubmit="return false"><label class="sr" for="q">%s</label>'
                 '<input id="q" type="search" placeholder="%s" autocomplete="off"></form><ul id="results" class="results" '
-                'aria-live="polite"></ul><script src="%sassets/search.js" defer data-index="%ssearch-index.json" '
-                'data-root="%s" data-empty="%s"></script>') % (
-            'Ara' if lang == 'tr' else 'Search', esc(ph), root, root, root, empty)
+                'aria-live="polite"></ul><script src="%sassets/search.js" defer data-index="%s%s" '
+                'data-root="%s" data-empty="%s" data-boost="%s"></script>') % (
+            tx(lang, 'Ara', 'Search'), esc(ph), root, root, index, root, empty, tx(lang, 'Ders', 'Course'))
 
     def sem_card(self, sem, root, lang='tr'):
         cs = self.R.semesters[sem]
         li = []
         for c in cs:
-            name = c.name_tr if lang == 'tr' else c.name_en
             li.append('<li><a href="%s%s">%s</a>%s</li>' % (
-                root, self.course_url(c), esc(name), ' <span class="code">%s</span>' % esc(c.code) if c.code else ''))
-        head = ('<a href="%sdonem/%d/">%s</a>' % (root, sem, mr.sem_label(sem)) if lang == 'tr'
-                else 'Semester %d' % sem)
+                root, self.course_url(c, lang), esc(self.cname(c, lang)),
+                ' <span class="code">%s</span>' % esc(c.code) if c.code else ''))
+        head = '<a href="%s%s">%s</a>' % (root, self.sem_url(sem, lang), mr.sem_label(sem, lang))
         return '<article class="sem"><h3>%s <small>%s</small></h3><ul>%s</ul></article>' % (
             head, esc(self.R.term(sem, lang)), ''.join(li))
 
@@ -386,9 +453,14 @@ class Site:
                 seen.add(slug)
                 n.slug = slug
                 n.url = 'ders/%s/%s/' % (cs, slug)
+                n.url_en = 'en/courses/%s/%s/' % (cs, slug)
                 n.pdf_url = 'pdf/%s/%s.pdf' % (cs, slug)
                 n.img_url = 'img/%s/%s.jpg' % (cs, slug)
                 n.topic = d.topic or mr.pretty(d.stem)
+                n.topic_en = self.titles_en.get('%s/%s' % (c.key, d.stem))
+                if not n.topic_en:
+                    self.missing_en.append('%s/%s' % (c.key, d.stem))
+                    n.topic_en = n.topic
                 src = ''
                 if d.tex:
                     try:
@@ -420,20 +492,26 @@ class Site:
                 n.wh = Image.open(cached).size
                 lst.append(n)
             self.notes[c.key] = lst
-        seen = {}
-        for lst in self.notes.values():
-            for n in lst:
-                seen.setdefault(fold(self.note_title(n)), []).append(n)
-        for group in seen.values():
-            if len(group) > 1:
-                for n in group:
-                    n.topic = '%s (%s)' % (n.topic, mr.pretty(n.d.stem))
+        # aynı başlığı taşıyan notları dosya adıyla ayırt et (her dil için ayrı)
+        for lang in ('tr', 'en'):
+            seen = {}
+            for lst in self.notes.values():
+                for n in lst:
+                    seen.setdefault(fold(self.note_title(n, lang)), []).append(n)
+            for group in seen.values():
+                if len(group) > 1:
+                    for n in group:
+                        if lang == 'tr':
+                            n.topic = '%s (%s)' % (n.topic, mr.pretty(n.d.stem))
+                        else:
+                            n.topic_en = '%s (%s)' % (n.topic_en, mr.pretty(n.d.stem))
 
-    def note_title(self, n):
+    def note_title(self, n, lang='tr'):
         c = n.c
-        if fold(c.name_tr) in fold(n.topic):
-            return n.topic
-        return '%s – %s' % (c.name_tr, n.topic)
+        name, topic = self.cname(c, lang), tx(lang, n.topic, n.topic_en)
+        if fold(name) in fold(topic):
+            return topic
+        return '%s – %s' % (name, topic)
 
     # ---- static files ------------------------------------------------------------------------
     def static(self):
@@ -460,168 +538,196 @@ class Site:
                     shutil.copyfile(src, os.path.join(self.out, f))
 
     # ---- pages -------------------------------------------------------------------------------
-    def home(self):
-        R, root = self.R, './'
-        n_note_courses = sum(1 for c in R.courses if c.digital)
-        title = 'GTÜ Elektronik Mühendisliği Ders Notları ve Çıkmış Sorular | Gebze Teknik Üniversitesi'
-        desc = trim('GTÜ Elektronik Mühendisliği ders notları, çıkmış sorular, ödevler, lab raporları ve projeler. '
-                    '%d dönem, %d ders, %d dijital (LaTeX) not. Ücretsiz, PDF olarak indirilebilir.' % (
-                        len(self.sems), self.ncourses, self.ndig))
-        top = sorted([c for c in R.courses if c.digital], key=lambda c: (-len(c.digital), c.sem))[:8]
-        examples = ', '.join(c.name_tr for c in top[:6])
-        faq = [
-            ('GTÜ Elektronik Mühendisliği ders notlarını nereden bulabilirim?',
-             'Bu sitede 1. dönemden %d. döneme kadar tüm derslerin sayfaları var. Bir derse tıklayarak ders notlarına, '
-             'slaytlara, çıkmış sorulara, ödevlere, laboratuvar föylerine ve projelere ulaşabilirsiniz. Dosyalar '
-             '<a href="%s" rel="noopener">GitHub\'daki açık depoda</a> durur ve ücretsizdir.' % (self.sems[-1], GH)),
-            ('Çıkmış sorular var mı?',
-             'Evet. Birçok dersin vize, final ve quiz soruları ilgili ders sayfasındaki “Çıkmış Sorular” bölümünde '
-             'listelenir. Bu materyallerin hakları öğretim üyelerine ve Gebze Teknik Üniversitesi\'ne aittir; '
-             'yalnızca eğitim amacıyla paylaşılmıştır.'),
-            ('Dijital notlar nedir, güvenilir mi?',
-             'Tablette tutulmuş el yazısı notların LaTeX ile yeniden yazılmış, el yazısı görünümlü ve aranabilir PDF '
-             'karşılıklarıdır (şu an %d adet). Claude (Anthropic) yardımıyla oluşturuldukları için hata içerebilirler; '
-             'her zaman orijinal notlara ve resmi ders kaynaklarına bakın. Her dijital notun yanında orijinal el '
-             'yazısı sayfaların bağlantısı vardır.' % self.ndig),
-            ('Hangi derslerin dijital notları var?',
-             'Örneğin %s ve diğerleri. Tam liste için <a href="dijital-notlar/">dijital notlar</a> sayfasına bakın.'
-             % esc(examples)),
-            ('Eksik veya hatalı bir şey gördüm, nasıl katkı yapabilirim?',
-             'GitHub\'da <a href="%s/issues" rel="noopener">issue açabilir</a> ya da pull request '
-             'gönderebilirsiniz. Kendi notlarınızı paylaşmak isterseniz de aynı yoldan ulaşın.' % GH),
-        ]
-        faq_html = ''.join('<details><summary>%s</summary><p>%s</p></details>' % (esc(q), a) for q, a in faq)
-        stats = [('%d' % len(self.sems), 'dönem'), ('%d' % self.ncourses, 'ders'), ('{:,}'.format(self.nfiles).replace(',', '.'), 'dosya'),
-                 ('%d' % self.ndig, 'dijital not'), ('%d' % self.nproj, 'proje')]
-        body = (
-            '<p class="kicker">Gebze Teknik Üniversitesi · Elektronik Mühendisliği</p>'
-            '<h1>GTÜ Elektronik Mühendisliği <span class="hl">Ders Notları</span></h1>'
-            '<p class="lead">Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının %d dönemine ait '
-            '<strong>ders notları, çıkmış sorular, ödevler, laboratuvar raporları ve projeler</strong>. Hepsi ücretsiz; '
-            'çoğu el yazısı notun ayrıca LaTeX ile hazırlanmış, aranabilir <strong>dijital</strong> versiyonu da var.</p>'
-            % len(self.sems))
-        body += self.search_box(root)
-        body += '<ul class="chips stats">%s</ul>' % ''.join(
-            '<li><strong>%s</strong>%s</li>' % (a, b) for a, b in stats)
-        body += '<h2 id="donemler">Dönemler ve dersler</h2><div class="grid">%s</div>' % ''.join(
-            self.sem_card(s, root) for s in self.sems)
-        body += (
-            '<h2>Dijital (LaTeX) notlar</h2><p>El yazısı notların bir kısmı, okunması ve içinde arama yapılması kolay olsun '
-            'diye el yazısı görünümlü LaTeX ile yeniden yazıldı; şekiller ve grafikler orijinal çizimlerden alındı. '
-            '<a href="dijital-notlar/">%d dijital notun tamamını</a> inceleyebilirsiniz.</p>'
-            '<ul class="chips">%s</ul><div class="warn"><strong>Uyarı:</strong> %s</div>' % (
-                self.ndig, ''.join('<li><a href="%s%s">%s</a> · %d</li>' % (
-                    root, self.course_url(c) + '#dijital-notlar', esc(c.name_tr), len(c.digital)) for c in top),
-                esc(mr.DISCLAIMER_TR)))
-        body += '<h2>Sık sorulan sorular</h2><div class="faq">%s</div>' % faq_html
-        body += (
-            '<h2>Katkıda bulunanlar</h2><ul class="people">'
-            '<li class="card"><img src="https://github.com/%s.png?size=112" width="56" height="56" alt="" '
-            'loading="lazy"><div><a href="https://github.com/%s" rel="noopener"><strong>%s</strong></a> (@%s)<br>'
-            '<span class="muted">Notların sahibi, depo yöneticisi</span></div></li>'
-            '<li class="card"><div><a href="https://claude.ai" rel="noopener"><strong>Claude (Anthropic)</strong></a><br>'
-            '<span class="muted">Dijital notlar, README\'ler ve site altyapısı (ortak yazar)</span></div></li></ul>'
-            '<p class="muted">Tüm katkıcılar: <a href="%s/graphs/contributors" rel="noopener">GitHub katkıcı grafiği</a>.</p>'
-            % (USER, USER, AUTHOR, USER, GH))
-        ld = {'@context': 'https://schema.org', '@graph': [
-            {'@type': 'WebSite', '@id': BASE + '/#site', 'name': SITE_TR, 'alternateName': [SITE_EN, 'GTÜ Elektronik Notları'],
-             'url': BASE + '/', 'inLanguage': ['tr', 'en'], 'description': desc,
-             'author': {'@type': 'Person', 'name': AUTHOR, 'url': 'https://github.com/' + USER}},
-        ]}
-        alt = [('tr', BASE + '/'), ('en', BASE + '/en/'), ('x-default', BASE + '/')]
-        self.write('index.html', self.layout('', title, desc, body, ld=ld, alt=alt), 1.0)
-        self.search.append({'t': SITE_TR, 'u': '', 'y': 'Sayfa', 'k': 'ana sayfa gtu gebze teknik universitesi'})
-
-    def en_home(self):
-        R, root = self.R, '../'
-        title = 'GTU Electronics Engineering Lecture Notes, Past Exams & Projects | Gebze Technical University'
-        desc = trim('Free lecture notes, past exams, homework, lab reports and projects for Electronics Engineering at '
-                    'Gebze Technical University (GTU): %d semesters, %d courses, %d digital LaTeX notes.' % (
-                        len(self.sems), self.ncourses, self.ndig))
-        body = (
-            '<p class="kicker">Gebze Technical University · Electronics Engineering</p>'
-            '<h1>GTU Electronics Engineering <span class="hl">Lecture Notes</span></h1>'
-            '<p class="lead">Lecture notes, past exams, homework, lab reports and projects from all %d semesters of the '
-            'Electronics Engineering undergraduate programme at <strong>Gebze Technical University (GTU, Turkey)</strong>, '
-            'shared for free. Most course pages are in Turkish with English course names and summaries; many handwritten '
-            'notes also have searchable <strong>digital (LaTeX) versions</strong>.</p>' % len(self.sems))
-        body += self.search_box(root, 'en')
-        body += '<h2 id="courses">Semesters and courses</h2>'
-        for s in self.sems:
-            body += '<h3>Semester %d · %s</h3><ul class="files">' % (s, esc(R.term(s, 'en')))
-            for c in R.semesters[s]:
-                body += '<li><a href="%s%s">%s</a>%s<span class="meta">%s</span></li>' % (
-                    root, self.course_url(c), esc(c.name_en), ' <span class="code">%s</span>' % esc(c.code) if c.code else '',
-                    esc(c.desc_en))
-            body += '</ul>'
-        body += (
-            '<h2>Digital notes</h2><p>Parts of the handwritten notes were transcribed into handwriting-style LaTeX '
-            '(%d documents) so that they are easier to read and search; hand-drawn figures were copied from the originals.</p>'
-            '<div class="warn"><strong>Notice:</strong> %s</div>' % (self.ndig, esc(mr.DISCLAIMER_EN)))
-        faq = [
-            ('Where can I find GTU Electronics Engineering lecture notes?',
-             'Pick a course above. Every course page lists lecture notes, recitation notes, slides, past exams, homework, '
-             'lab sheets and projects with direct links to the files in the <a href="%s" rel="noopener">GitHub repository</a>.' % GH),
-            ('Are there past exams?',
-             'Yes, many courses include past midterms, finals and quizzes. They belong to the instructors and GTU and are '
-             'shared for educational purposes only.'),
-            ('Can I contribute?',
-             'Yes: open an <a href="%s/issues" rel="noopener">issue</a> or a pull request on GitHub.' % GH),
-        ]
-        body += '<h2>FAQ</h2><div class="faq">%s</div>' % ''.join(
-            '<details><summary>%s</summary><p>%s</p></details>' % (esc(q), a) for q, a in faq)
-        body += (
-            '<h2>Contributors</h2><ul class="people"><li class="card"><img src="https://github.com/%s.png?size=112" '
-            'width="56" height="56" alt="" loading="lazy"><div><a href="https://github.com/%s" rel="noopener">'
-            '<strong>%s</strong></a> (@%s)<br><span class="muted">Owner of the notes, repository maintainer</span></div></li>'
-            '<li class="card"><div><a href="https://claude.ai" rel="noopener"><strong>Claude (Anthropic)</strong></a><br>'
-            '<span class="muted">Digital notes, READMEs and site tooling (co-author)</span></div></li></ul>' % (
-                USER, USER, AUTHOR, USER))
-        ld = {'@context': 'https://schema.org', '@type': 'WebSite', 'name': SITE_EN, 'url': BASE + '/en/',
-              'inLanguage': 'en', 'description': desc, 'author': {'@type': 'Person', 'name': AUTHOR,
-                                                                  'url': 'https://github.com/' + USER}}
-        alt = [('tr', BASE + '/'), ('en', BASE + '/en/'), ('x-default', BASE + '/')]
-        self.write('en/index.html', self.layout('en/', title, desc, body, ld=ld, lang='en', alt=alt, active='en'), 0.8)
-
-    def semester(self, sem):
+    def home(self, lang):
         R = self.R
-        root = '../../'
+        url = self.home_url(lang)
+        root = self.root_of(url)
+        other = self.home_url('en' if lang == 'tr' else 'tr')
+        top = sorted([c for c in R.courses if c.digital], key=lambda c: (-len(c.digital), c.sem))[:8]
+        examples = ', '.join(self.cname(c, lang) for c in top[:6])
+        dig_link = root + self.dig_url(lang)
+        if lang == 'tr':
+            title = 'GTÜ Elektronik Mühendisliği Ders Notları ve Çıkmış Sorular | Gebze Teknik Üniversitesi'
+            desc = trim('GTÜ Elektronik Mühendisliği ders notları, çıkmış sorular, ödevler, lab raporları ve projeler: '
+                        '%d dönem, %d ders, %d dijital (LaTeX) not. Ücretsiz.' % (
+                            len(self.sems), self.ncourses, self.ndig))
+            faq = [
+                ('GTÜ Elektronik Mühendisliği ders notlarını nereden bulabilirim?',
+                 'Bu sitede 1. dönemden %d. döneme kadar tüm derslerin sayfaları var. Bir derse tıklayarak ders notlarına, '
+                 'slaytlara, çıkmış sorulara, ödevlere, laboratuvar föylerine ve projelere ulaşabilirsiniz. Dosyalar '
+                 '<a href="%s" rel="noopener">GitHub\'daki açık depoda</a> durur ve ücretsizdir.' % (self.sems[-1], GH)),
+                ('Çıkmış sorular var mı?',
+                 'Evet. Birçok dersin vize, final ve quiz soruları ilgili ders sayfasındaki “Çıkmış Sorular” bölümünde '
+                 'listelenir. Bu materyallerin hakları öğretim üyelerine ve Gebze Teknik Üniversitesi\'ne aittir; '
+                 'yalnızca eğitim amacıyla paylaşılmıştır.'),
+                ('Dijital notlar nedir, güvenilir mi?',
+                 'Tablette tutulmuş el yazısı notların LaTeX ile yeniden yazılmış, el yazısı görünümlü ve aranabilir PDF '
+                 'karşılıklarıdır (şu an %d adet). Claude (Anthropic) yardımıyla oluşturuldukları için hata içerebilirler; '
+                 'her zaman orijinal notlara ve resmi ders kaynaklarına bakın. Her dijital notun yanında orijinal el '
+                 'yazısı sayfaların bağlantısı vardır.' % self.ndig),
+                ('Hangi derslerin dijital notları var?',
+                 'Örneğin %s ve diğerleri. Tam liste için <a href="%s">dijital notlar</a> sayfasına bakın.'
+                 % (esc(examples), dig_link)),
+                ('Eksik veya hatalı bir şey gördüm, nasıl katkı yapabilirim?',
+                 'GitHub\'da <a href="%s/issues" rel="noopener">issue açabilir</a> ya da pull request '
+                 'gönderebilirsiniz. Kendi notlarınızı paylaşmak isterseniz de aynı yoldan ulaşın.' % GH),
+            ]
+        else:
+            title = 'GTU Electronics Engineering Lecture Notes, Past Exams & Projects | Gebze Technical University'
+            desc = trim('Free lecture notes, past exams, homework, labs and projects for Electronics Engineering at '
+                        'Gebze Technical University (GTU): %d semesters, %d courses, %d digital notes.' % (
+                            len(self.sems), self.ncourses, self.ndig))
+            faq = [
+                ('Where can I find GTU Electronics Engineering lecture notes?',
+                 'This site has a page for every course from semester 1 to semester %d. Open a course to reach its '
+                 'lecture notes, slides, past exams, homework, lab sheets and projects. The files live in the '
+                 '<a href="%s" rel="noopener">open GitHub repository</a> and are free to download.' % (self.sems[-1], GH)),
+                ('Are there past exams?',
+                 'Yes. Many courses list their midterm, final and quiz questions in the “Past exams” section of the '
+                 'course page. These materials belong to the instructors and Gebze Technical University and are shared '
+                 'for educational purposes only.'),
+                ('What are the digital notes, and can I trust them?',
+                 'They are searchable, handwriting-style PDF versions of handwritten tablet notes, retyped in LaTeX '
+                 '(%d so far). They were created with the help of Claude (Anthropic) and may contain errors, so always '
+                 'check the original notes and the official course materials. Every digital note links to the '
+                 'scanned handwritten pages.' % self.ndig),
+                ('Which courses have digital notes?',
+                 'For example %s and others. See the <a href="%s">digital notes page</a> for the full list.'
+                 % (esc(examples), dig_link)),
+                ('Are the notes in English?',
+                 'Most notes and exams are written in Turkish, with technical terms often in English. Course names, '
+                 'summaries and the navigation of this site are available in English, and the titles of the digital '
+                 'notes are translated into English.'),
+                ('I found a mistake or something is missing — how can I contribute?',
+                 'Open an <a href="%s/issues" rel="noopener">issue</a> or send a pull request on GitHub. You can reach '
+                 'out the same way if you would like to share your own notes.' % GH),
+            ]
+        faq_html = ''.join('<details><summary>%s</summary><p>%s</p></details>' % (esc(q), a) for q, a in faq)
+        stats = [('%d' % len(self.sems), tx(lang, 'dönem', 'semesters')), ('%d' % self.ncourses, tx(lang, 'ders', 'courses')),
+                 (num(self.nfiles, lang), tx(lang, 'dosya', 'files')),
+                 ('%d' % self.ndig, tx(lang, 'dijital not', 'digital notes')), ('%d' % self.nproj, tx(lang, 'proje', 'projects'))]
+        if lang == 'tr':
+            body = (
+                '<p class="kicker">Gebze Teknik Üniversitesi · Elektronik Mühendisliği</p>'
+                '<h1>GTÜ Elektronik Mühendisliği <span class="hl">Ders Notları</span></h1>'
+                '<p class="lead">Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının %d dönemine ait '
+                '<strong>ders notları, çıkmış sorular, ödevler, laboratuvar raporları ve projeler</strong>. Hepsi ücretsiz; '
+                'çoğu el yazısı notun ayrıca LaTeX ile hazırlanmış, aranabilir <strong>dijital</strong> versiyonu da var.</p>'
+                % len(self.sems))
+        else:
+            body = (
+                '<p class="kicker">Gebze Technical University · Electronics Engineering</p>'
+                '<h1>GTU Electronics Engineering <span class="hl">Lecture Notes</span></h1>'
+                '<p class="lead">Lecture notes, past exams, homework, lab reports and projects from all %d semesters of the '
+                'Electronics Engineering undergraduate programme at <strong>Gebze Technical University (GTU, Turkey)</strong>, '
+                'all free. Most notes and exams are in Turkish; course names, summaries and navigation are in English, and '
+                'many handwritten notes also have searchable <strong>digital (LaTeX) versions</strong>.</p>'
+                % len(self.sems))
+        body += self.search_box(root, lang)
+        body += '<ul class="chips stats">%s</ul>' % ''.join('<li><strong>%s</strong>%s</li>' % (a, b) for a, b in stats)
+        body += '<h2 id="%s">%s</h2><div class="grid">%s</div>' % (
+            tx(lang, 'donemler', 'courses'), tx(lang, 'Dönemler ve dersler', 'Semesters and courses'),
+            ''.join(self.sem_card(s, root, lang) for s in self.sems))
+        chips = ''.join('<li><a href="%s%s">%s</a> · %d</li>' % (
+            root, self.course_url(c, lang) + '#dijital-notlar', esc(self.cname(c, lang)), len(c.digital)) for c in top)
+        if lang == 'tr':
+            body += (
+                '<h2>Dijital (LaTeX) notlar</h2><p>El yazısı notların bir kısmı, okunması ve içinde arama yapılması kolay olsun '
+                'diye el yazısı görünümlü LaTeX ile yeniden yazıldı; şekiller ve grafikler orijinal çizimlerden alındı. '
+                '<a href="%s">%d dijital notun tamamını</a> inceleyebilirsiniz.</p>'
+                '<ul class="chips">%s</ul><div class="warn"><strong>Uyarı:</strong> %s</div>' % (
+                    dig_link, self.ndig, chips, esc(mr.DISCLAIMER_TR)))
+            body += '<h2>Sık sorulan sorular</h2><div class="faq">%s</div>' % faq_html
+            body += (
+                '<h2>Katkıda bulunanlar</h2><ul class="people">'
+                '<li class="card"><img src="https://github.com/%s.png?size=112" width="56" height="56" alt="" '
+                'loading="lazy"><div><a href="https://github.com/%s" rel="noopener"><strong>%s</strong></a> (@%s)<br>'
+                '<span class="muted">Notların sahibi, depo yöneticisi</span></div></li>'
+                '<li class="card"><div><a href="https://claude.ai" rel="noopener"><strong>Claude (Anthropic)</strong></a><br>'
+                '<span class="muted">Dijital notlar, README\'ler ve site altyapısı (ortak yazar)</span></div></li></ul>'
+                '<p class="muted">Tüm katkıcılar: <a href="%s/graphs/contributors" rel="noopener">GitHub katkıcı grafiği</a>.</p>'
+                % (USER, USER, AUTHOR, USER, GH))
+        else:
+            body += (
+                '<h2>Digital (LaTeX) notes</h2><p>Some of the handwritten notes were transcribed into handwriting-style '
+                'LaTeX so they are easier to read and search; figures and graphs were taken from the original drawings. '
+                'Browse <a href="%s">all %d digital notes</a>. The notes themselves are in Turkish.</p>'
+                '<ul class="chips">%s</ul><div class="warn"><strong>Notice:</strong> %s</div>' % (
+                    dig_link, self.ndig, chips, esc(mr.DISCLAIMER_EN)))
+            body += '<h2>FAQ</h2><div class="faq">%s</div>' % faq_html
+            body += (
+                '<h2>Contributors</h2><ul class="people">'
+                '<li class="card"><img src="https://github.com/%s.png?size=112" width="56" height="56" alt="" '
+                'loading="lazy"><div><a href="https://github.com/%s" rel="noopener"><strong>%s</strong></a> (@%s)<br>'
+                '<span class="muted">Owner of the notes, repository maintainer</span></div></li>'
+                '<li class="card"><div><a href="https://claude.ai" rel="noopener"><strong>Claude (Anthropic)</strong></a><br>'
+                '<span class="muted">Digital notes, READMEs and site tooling (co-author)</span></div></li></ul>'
+                '<p class="muted">All contributors: <a href="%s/graphs/contributors" rel="noopener">GitHub contributors '
+                'graph</a>.</p>' % (USER, USER, AUTHOR, USER, GH))
+        site = {'@type': 'WebSite', '@id': BASE + '/' + url + '#site', 'name': tx(lang, SITE_TR, SITE_EN),
+                'alternateName': [SITE_EN, 'GTÜ Elektronik Notları'] if lang == 'tr' else [SITE_TR, 'GTU Electronics Notes'],
+                'url': BASE + '/' + url, 'inLanguage': lang, 'description': desc,
+                'author': {'@type': 'Person', 'name': AUTHOR, 'url': 'https://github.com/' + USER}}
+        ld = {'@context': 'https://schema.org', '@graph': [site]}
+        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, lang=lang, other=other), pri(lang, 1.0))
+        self.search[lang].append({'t': tx(lang, SITE_TR, SITE_EN), 'u': url, 'y': tx(lang, 'Sayfa', 'Page'),
+                                  'k': 'gtu gebze technical university gebze teknik universitesi ana sayfa home'})
+
+    def semester(self, sem, lang):
+        R = self.R
+        url = self.sem_url(sem, lang)
+        root = self.root_of(url)
+        other = self.sem_url(sem, 'en' if lang == 'tr' else 'tr')
         cs = R.semesters[sem]
-        term = R.term(sem, 'tr')
-        title = 'GTÜ Elektronik Mühendisliği %d. Dönem Dersleri ve Notları' % sem
-        desc = trim('GTÜ Elektronik Mühendisliği %d. dönem (%s) dersleri: %s. Ders notları, çıkmış sorular, ödevler, '
-                    'lab ve projeler.' % (sem, term, ', '.join(c.name_tr for c in cs)))
+        term = R.term(sem, lang)
+        home = tx(lang, 'Ana sayfa', 'Home')
+        if lang == 'tr':
+            title = 'GTÜ Elektronik Mühendisliği %d. Dönem Dersleri ve Notları' % sem
+            desc = fit_list('GTÜ Elektronik Mühendisliği %d. dönem (%s) ders notları ve çıkmış sorular: ' % (sem, term),
+                            [c.name_tr for c in cs], ' ve diğerleri')
+        else:
+            title = 'GTU Electronics Engineering Semester %d Courses and Notes' % sem
+            desc = fit_list('GTU Electronics Engineering semester %d (%s) lecture notes and past exams: ' % (sem, term),
+                            [c.name_en for c in cs], ' and more')
         i = self.sems.index(sem)
-        body = self.crumbs(root, [('Ana sayfa', root), (mr.sem_label(sem), None)])
-        body += '<h1>%d. Dönem <span class="hl">Dersleri</span></h1>' % sem
-        body += '<p class="sub-en" lang="en">Semester %d · %s — Gebze Technical University, Electronics Engineering</p>' % (
-            sem, esc(R.term(sem, 'en')))
-        body += ('<p class="lead">GTÜ Elektronik Mühendisliği %d. dönem (%s) dersleri: <strong>%d ders</strong>. '
-                 'Bir derse tıklayınca o dersin ders notları, çıkmış soruları, ödevleri ve projeleri listelenir.</p>' % (
-                     sem, esc(term), len(cs)))
+        body = self.crumbs(root, [(home, root + self.home_url(lang)), (mr.sem_label(sem, lang), None)], lang)
+        if lang == 'tr':
+            body += '<h1>%d. Dönem <span class="hl">Dersleri</span></h1>' % sem
+            body += '<p class="sub-en" lang="en">Semester %d · %s — Gebze Technical University, Electronics Engineering</p>' % (
+                sem, esc(R.term(sem, 'en')))
+            body += ('<p class="lead">GTÜ Elektronik Mühendisliği %d. dönem (%s) dersleri: <strong>%d ders</strong>. '
+                     'Bir derse tıklayınca o dersin ders notları, çıkmış soruları, ödevleri ve projeleri listelenir.</p>' % (
+                         sem, esc(term), len(cs)))
+        else:
+            body += '<h1>Semester %d <span class="hl">Courses</span></h1>' % sem
+            body += ('<p class="sub-alt" lang="tr">%d. Dönem · %s — Gebze Teknik Üniversitesi, Elektronik Mühendisliği</p>' % (
+                sem, esc(R.term(sem, 'tr'))))
+            body += ('<p class="lead">GTU Electronics Engineering semester %d (%s): <strong>%d courses</strong>. '
+                     'Open a course to see its lecture notes, past exams, homework and projects.</p>' % (
+                         sem, esc(term), len(cs)))
         body += '<div class="notes">'
         for c in cs:
-            ct = mr.counts_text(c)
+            ct = mr.counts_text(c, lang)
             body += ('<article class="card" style="padding:14px 18px"><h3 style="margin:0"><a href="%s%s">%s</a>%s</h3>'
                      '<p class="muted" style="margin:.2em 0">%s</p><p class="meta" style="margin:0">%s</p></article>' % (
-                         root, self.course_url(c), esc(c.name_tr),
-                         ' <span class="code">%s</span>' % esc(c.code) if c.code else '', esc(c.desc_tr),
-                         esc(ct if ct != '—' else '')))
+                         root, self.course_url(c, lang), esc(self.cname(c, lang)),
+                         ' <span class="code">%s</span>' % esc(c.code) if c.code else '',
+                         esc(tx(lang, c.desc_tr, c.desc_en)), esc(ct if ct != '—' else '')))
         body += '</div><p class="pager">'
         if i > 0:
-            body += '<a href="%sdonem/%d/">← %s</a>' % (root, self.sems[i - 1], mr.sem_label(self.sems[i - 1]))
+            body += '<a href="%s%s">← %s</a>' % (root, self.sem_url(self.sems[i - 1], lang), mr.sem_label(self.sems[i - 1], lang))
         else:
             body += '<span></span>'
         if i + 1 < len(self.sems):
-            body += '<a href="%sdonem/%d/">%s →</a>' % (root, self.sems[i + 1], mr.sem_label(self.sems[i + 1]))
+            body += '<a href="%s%s">%s →</a>' % (root, self.sem_url(self.sems[i + 1], lang), mr.sem_label(self.sems[i + 1], lang))
         body += '</p>'
-        url = 'donem/%d/' % sem
         ld = {'@context': 'https://schema.org', '@graph': [
-            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': 'tr'},
-            breadcrumb_ld([('Ana sayfa', BASE + '/'), (mr.sem_label(sem), BASE + '/' + url)])]}
-        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld), 0.7)
-        self.search.append({'t': '%s · %s' % (mr.sem_label(sem), term), 'u': url, 'y': 'Dönem',
-                            'k': ' '.join(c.name_tr + ' ' + c.name_en for c in cs)})
+            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': lang},
+            breadcrumb_ld([(home, BASE + '/' + self.home_url(lang)), (mr.sem_label(sem, lang), BASE + '/' + url)])]}
+        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, lang=lang, other=other), pri(lang, 0.7))
+        self.search[lang].append({'t': '%s · %s' % (mr.sem_label(sem, lang), term), 'u': url,
+                                  'y': tx(lang, 'Dönem', 'Semester'),
+                                  'k': ' '.join(c.name_tr + ' ' + c.name_en for c in cs)})
 
     # ---- course page -------------------------------------------------------------------------
     def vocab_build(self):
@@ -657,23 +763,26 @@ class Site:
             return self.tr_fix(' / '.join([mr.folder_label(p) for p in parts[:-1]] + [mr.pretty(f.stem)]))
         return sub
 
-    def file_li(self, f, base, dmap, root):
-        info = ', '.join(x for x in (mr.type_label(f.ext), mr.file_info(f)) if x)
+    def file_li(self, f, base, dmap, root, lang='tr'):
+        info = ', '.join(x for x in (mr.type_label(f.ext, lang), mr.file_info(f, lang)) if x)
         s = '<a href="%s" rel="noopener">%s</a><span class="meta">%s</span>' % (
             esc(blob(f.repo_rel)), esc(self.label(f, base)), esc(info))
         if dmap and f.rel in dmap:
             for i, d in enumerate(dmap[f.rel]):
                 n = self.note_of.get(id(d))
                 if n:
+                    one = len(dmap[f.rel]) == 1
                     s += '<a class="pill" href="%s%s">%s</a>' % (
-                        root, n.url, 'Dijital sürüm' if len(dmap[f.rel]) == 1 else 'Dijital %d' % (i + 1))
+                        root, self.note_url(n, lang),
+                        tx(lang, 'Dijital sürüm', 'Digital version') if one else
+                        '%s %d' % (tx(lang, 'Dijital', 'Digital'), i + 1))
         return '<li>%s</li>' % s
 
-    def gallery(self, imgs):
-        return '%d görsel: %s' % (len(imgs), ' · '.join(
+    def gallery(self, imgs, lang='tr'):
+        return '%d %s: %s' % (len(imgs), tx(lang, 'görsel', 'images'), ' · '.join(
             '<a href="%s" rel="noopener">%d</a>' % (esc(blob(f.repo_rel)), i + 1) for i, f in enumerate(imgs)))
 
-    def files_html(self, c, files, dmap, root, base=''):
+    def files_html(self, c, files, dmap, root, base='', lang='tr'):
         loose, groups = c.split_section(files)
         out = []
         if loose:
@@ -682,8 +791,8 @@ class Site:
                 base = next(iter(tops))
             normal, gal = mr.split_gallery(loose)
             normal.sort(key=lambda f: (f.kind != 'doc', mr.natkey(f.name), f.rel))
-            items = [self.file_li(f, base, dmap, root) for f in normal]
-            items += ['<li>%s</li>' % self.gallery(gal[g]) for g in sorted(gal, key=mr.natkey)]
+            items = [self.file_li(f, base, dmap, root, lang) for f in normal]
+            items += ['<li>%s</li>' % self.gallery(gal[g], lang) for g in sorted(gal, key=mr.natkey)]
             out.append('<ul class="files">%s</ul>' % ''.join(items))
         if groups:
             items = []
@@ -691,54 +800,69 @@ class Site:
                 fl = groups[g]
                 normal, gal = mr.split_gallery(fl)
                 docs = sorted([f for f in normal if f.kind == 'doc'], key=lambda f: mr.natkey(f.rel))
-                inner = [self.file_li(f, g, None, root) for f in docs[:14]]
+                inner = [self.file_li(f, g, None, root, lang) for f in docs[:14]]
                 for d in sorted(gal, key=mr.natkey):
-                    inner.append('<li>%s</li>' % self.gallery(gal[d]))
+                    inner.append('<li>%s</li>' % self.gallery(gal[d], lang))
                 other = len(fl) - len([f for f in docs[:14]]) - sum(len(v) for v in gal.values())
                 if other > 0:
-                    inner.append('<li class="meta"><a href="%s" rel="noopener">+ %d dosya daha (GitHub)</a></li>' % (
-                        esc(tree(c.key + '/' + g)), other))
-                items.append('<li><a href="%s" rel="noopener"><strong>%s</strong></a><span class="meta">%d dosya</span>'
+                    inner.append('<li class="meta"><a href="%s" rel="noopener">%s</a></li>' % (
+                        esc(tree(c.key + '/' + g)), tx(lang, '+ %d dosya daha (GitHub)', '+ %d more files (GitHub)') % other))
+                items.append('<li><a href="%s" rel="noopener"><strong>%s</strong></a><span class="meta">%d %s</span>'
                              '<ul>%s</ul></li>' % (esc(tree(c.key + '/' + g)),
-                                                  esc(mr.folder_label(g.rsplit('/', 1)[-1])), len(fl), ''.join(inner)))
+                                                  esc(mr.folder_label(g.rsplit('/', 1)[-1])), len(fl),
+                                                  tx(lang, 'dosya', 'files'), ''.join(inner)))
             out.append('<ul class="files">%s</ul>' % ''.join(items))
         return ''.join(out)
 
-    def digital_html(self, c, root):
+    def digital_html(self, c, root, lang='tr'):
         notes = self.notes.get(c.key, [])
-        h = ['<p>El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: '
-             '<a href="%s/tree/main/latex-sablon" rel="noopener">latex-sablon</a>.</p>' % GH,
-             '<div class="warn"><strong>Uyarı:</strong> %s</div><div class="notes">' % esc(mr.DISCLAIMER_TR)]
+        if lang == 'tr':
+            h = ['<p>El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. Şablon ve derleme: '
+                 '<a href="%s/tree/main/latex-sablon" rel="noopener">latex-sablon</a>.</p>' % GH,
+                 '<div class="warn"><strong>Uyarı:</strong> %s</div><div class="notes">' % esc(mr.DISCLAIMER_TR)]
+        else:
+            h = ['<p>Searchable digital versions of the handwritten notes, typeset in LaTeX (the notes are written in '
+                 'Turkish). Template and build: <a href="%s/tree/main/latex-sablon" rel="noopener">latex-sablon</a>.</p>' % GH,
+                 '<div class="warn"><strong>Notice:</strong> %s</div><div class="notes">' % esc(mr.DISCLAIMER_EN)]
         for n in notes:
             d = n.d
+            topic = tx(lang, n.topic, n.topic_en)
             heads = ' · '.join(n.heads[:6])
             links = ['<a href="%s%s">PDF</a>' % (root, n.pdf_url)]
             if d.tex:
-                links.append('<a href="%s" rel="noopener">LaTeX kaynağı</a>' % esc(blob(d.tex.repo_rel)))
+                links.append('<a href="%s" rel="noopener">%s</a>' % (esc(blob(d.tex.repo_rel)),
+                                                                      tx(lang, 'LaTeX kaynağı', 'LaTeX source')))
             if d.source:
-                links.append('<a href="%s" rel="noopener">Orijinal el yazısı</a>' % esc(blob(d.source.repo_rel)))
+                links.append('<a href="%s" rel="noopener">%s</a>' % (esc(blob(d.source.repo_rel)),
+                                                                      tx(lang, 'Orijinal el yazısı', 'Original handwriting')))
+            pages = (tx(lang, '%d sayfa · ', '%d pages · ') % n.pages) if n.pages else ''
+            if lang == 'en' and n.pages == 1:
+                pages = '1 page · '
             h.append(
                 '<article class="note"><a class="thumb" href="%s%s"><img src="%s%s" width="%d" height="%d" loading="lazy" '
-                'alt="%s – dijital ders notunun ilk sayfası"></a><div><h3><a href="%s%s">%s</a></h3>'
+                'alt="%s"></a><div><h3><a href="%s%s">%s</a></h3>'
                 '<p class="meta" style="margin-left:0">%s%s</p>%s<p>%s</p></div></article>' % (
-                    root, n.url, root, n.img_url, n.wh[0], n.wh[1], esc(n.topic), root, n.url, esc(n.topic),
-                    ('%d sayfa · ' % n.pages) if n.pages else '', human(n.size),
-                    '<p class="outline">%s</p>' % esc(heads) if heads else '', ' · '.join(links)))
+                    root, self.note_url(n, lang), root, n.img_url, n.wh[0], n.wh[1],
+                    esc(topic + tx(lang, ' – dijital ders notunun ilk sayfası', ' – first page of the digital lecture note')),
+                    root, self.note_url(n, lang), esc(topic), pages, human(n.size, lang),
+                    '<p class="outline" lang="tr">%s</p>' % esc(heads) if heads else '', ' · '.join(links)))
         h.append('</div>')
         return ''.join(h)
 
-    def projects_html(self, c, root):
+    def projects_html(self, c, root, lang='tr'):
         h = []
         for u in c.projects:
+            title, alt_title = (u.title_tr, u.title_en) if lang == 'tr' else (u.title_en or u.title_tr, u.title_tr)
             meta = []
-            if u.title_en and u.title_en != u.title_tr:
-                meta.append('<em>%s</em>' % esc(u.title_en))
+            if alt_title and alt_title != title:
+                meta.append('<em lang="%s">%s</em>' % ('en' if lang == 'tr' else 'tr', esc(alt_title)))
             if u.path:
-                meta.append('Klasör: <a href="%s" rel="noopener">%s/</a>' % (esc(tree(c.key + '/' + u.path)), esc(u.path)))
+                meta.append('%s: <a href="%s" rel="noopener">%s/</a>' % (
+                    tx(lang, 'Klasör', 'Folder'), esc(tree(c.key + '/' + u.path)), esc(u.path)))
             for r in u.repos:
                 meta.append('GitHub: <a href="%s" rel="noopener">%s</a>' % (esc(mr.repo_url(r)), esc(r['name'])))
             h.append('<article class="proj"><h3>%s</h3><p class="meta" style="margin-left:0">%s</p>' % (
-                esc(u.title_tr), ' · '.join(meta)))
+                esc(title), ' · '.join(meta)))
             if u.files:
                 base = u.path or ''
                 loose, groups = [], {}
@@ -749,38 +873,55 @@ class Site:
                     else:
                         loose.append(f)
                 docs = sorted([f for f in loose if f.kind == 'doc'], key=lambda f: mr.natkey(f.name))
-                li = [self.file_li(f, base, None, root) for f in docs]
+                li = [self.file_li(f, base, None, root, lang) for f in docs]
                 for g in sorted(groups, key=mr.natkey):
-                    li.append('<li><a href="%s" rel="noopener"><strong>%s</strong></a><span class="meta">%d dosya</span></li>' % (
-                        esc(tree(c.key + '/' + g)), esc(mr.folder_label(g.rsplit('/', 1)[-1])), len(groups[g])))
+                    li.append('<li><a href="%s" rel="noopener"><strong>%s</strong></a><span class="meta">%d %s</span></li>' % (
+                        esc(tree(c.key + '/' + g)), esc(mr.folder_label(g.rsplit('/', 1)[-1])), len(groups[g]),
+                        tx(lang, 'dosya', 'files')))
                 rest = len(loose) - len(docs)
                 if rest > 0:
-                    li.append('<li class="meta"><a href="%s" rel="noopener">+ %d dosya daha (GitHub)</a></li>' % (
-                        esc(tree(c.key + '/' + base) if base else tree(c.key)), rest))
+                    li.append('<li class="meta"><a href="%s" rel="noopener">%s</a></li>' % (
+                        esc(tree(c.key + '/' + base) if base else tree(c.key)),
+                        tx(lang, '+ %d dosya daha (GitHub)', '+ %d more files (GitHub)') % rest))
                 h.append('<ul class="files">%s</ul>' % ''.join(li))
-            elif u.repos and u.repos[0].get('description_tr'):
-                h.append('<p>%s</p>' % esc(u.repos[0]['description_tr']))
+            elif u.repos and (u.repos[0].get('description_' + lang) or u.repos[0].get('description_tr')):
+                h.append('<p>%s</p>' % esc(u.repos[0].get('description_' + lang) or u.repos[0].get('description_tr')))
             h.append('</article>')
         return ''.join(h)
 
-    def course(self, c):
-        R, root = self.R, '../../'
-        url = self.course_url(c)
+    def course(self, c, lang):
+        R = self.R
+        url = self.course_url(c, lang)
+        root = self.root_of(url)
+        other = self.course_url(c, 'en' if lang == 'tr' else 'tr')
+        name = self.cname(c, lang)
+        alt_name = self.cname(c, 'en' if lang == 'tr' else 'tr')
         has_notes = bool(c.digital) or any(c.sections.get(k) for k in mr.NOTE_CATS)
-        word = 'Ders Notları' if has_notes else 'Ders Materyalleri'
-        extra = ('Çıkmış Sorular' if c.sections.get('cikmis-sorular') else
-                 'Ödevler' if c.sections.get('odevler') else 'Lab' if c.sections.get('laboratuvar') else
-                 'Proje' if c.projects else '')
+        word = tx(lang, 'Ders Notları' if has_notes else 'Ders Materyalleri',
+                  'Lecture Notes' if has_notes else 'Course Materials')
+        if lang == 'tr':
+            extra = ('Çıkmış Sorular' if c.sections.get('cikmis-sorular') else
+                     'Ödevler' if c.sections.get('odevler') else 'Lab' if c.sections.get('laboratuvar') else
+                     'Proje' if c.projects else '')
+        else:
+            extra = ('Past Exams' if c.sections.get('cikmis-sorular') else
+                     'Homework' if c.sections.get('odevler') else 'Labs' if c.sections.get('laboratuvar') else
+                     'Projects' if c.projects else '')
         code_s = ' (%s)' % c.code if c.code else ''
-        title = '%s%s %s%s | GTÜ Elektronik' % (c.name_tr, code_s, word, ', ' + extra if extra else '')
+        title = '%s%s %s%s | %s' % (name, code_s, word, ', ' + extra if extra else '',
+                                    tx(lang, 'GTÜ Elektronik', 'GTU Electronics'))
         tr_cats = [t for t, ok in (('ders notları', has_notes), ('çıkmış sorular', c.sections.get('cikmis-sorular')),
                                     ('ödevler', c.sections.get('odevler')), ('lab', c.sections.get('laboratuvar')),
                                     ('projeler', c.projects), ('slaytlar', c.sections.get('slaytlar'))) if ok]
         en_cats = [t for t, ok in (('lecture notes', has_notes), ('past exams', c.sections.get('cikmis-sorular')),
                                     ('homework', c.sections.get('odevler')), ('lab reports', c.sections.get('laboratuvar')),
                                     ('projects', c.projects), ('slides', c.sections.get('slaytlar'))) if ok]
-        desc = trim('GTÜ Elektronik Mühendisliği %d. dönem %s%s dersi: %s. %s' % (
-            c.sem, c.name_tr, code_s, ', '.join(tr_cats[:5]) or 'ders materyalleri', c.desc_tr))
+        if lang == 'tr':
+            desc = trim('GTÜ Elektronik Mühendisliği %d. dönem %s%s dersi: %s. %s' % (
+                c.sem, c.name_tr, code_s, ', '.join(tr_cats[:5]) or 'ders materyalleri', c.desc_tr))
+        else:
+            desc = trim('GTU Electronics Engineering semester %d course %s%s: %s. %s' % (
+                c.sem, c.name_en, code_s, ', '.join(en_cats[:5]) or 'course materials', c.desc_en))
         present = []
         for k in ORDER:
             if k == 'dijital-notlar':
@@ -793,41 +934,56 @@ class Site:
                 present.append(k)
         extra_h = []
         if c.meta.get('repos'):
-            extra_h.append(('github', 'GitHub Depoları'))
+            extra_h.append(('github', tx(lang, 'GitHub Depoları', 'GitHub repositories')))
         if c.meta.get('textbooks'):
-            extra_h.append(('kitaplar', 'Kaynak Kitaplar'))
-        body = self.crumbs(root, [('Ana sayfa', root), (mr.sem_label(c.sem), root + 'donem/%d/' % c.sem), (c.name_tr, None)])
+            extra_h.append(('kitaplar', tx(lang, 'Kaynak Kitaplar', 'Textbooks')))
+        home = tx(lang, 'Ana sayfa', 'Home')
+        body = self.crumbs(root, [(home, root + self.home_url(lang)),
+                                  (mr.sem_label(c.sem, lang), root + self.sem_url(c.sem, lang)), (name, None)], lang)
         body += '<h1>%s%s <span class="hl">%s</span></h1>' % (
-            esc(c.name_tr), (' <small class="code" style="font-size:1.1rem">%s</small>' % esc(c.code)) if c.code else '', word)
-        body += '<p class="sub-en" lang="en">%s — %s at Gebze Technical University (GTU) Electronics Engineering</p>' % (
-            esc(c.name_en), esc(join_en(en_cats) or 'course materials'))
-        if c.desc_tr:
-            body += '<p class="lead">%s</p>' % esc(c.desc_tr)
-        if c.desc_en:
-            body += '<p class="lead-en" lang="en">%s</p>' % esc(c.desc_en)
-        ct = mr.counts_text(c)
-        chips = ['<li>%s · %s</li>' % (mr.sem_label(c.sem), esc(R.term(c.sem, 'tr')))]
+            esc(name), (' <small class="code" style="font-size:1.1rem">%s</small>' % esc(c.code)) if c.code else '', word)
+        if lang == 'tr':
+            body += '<p class="sub-en" lang="en">%s — %s at Gebze Technical University (GTU) Electronics Engineering</p>' % (
+                esc(c.name_en), esc(join_en(en_cats) or 'course materials'))
+            first, second = ('lead', c.desc_tr), ('lead-en', c.desc_en)
+            second_lang = 'en'
+        else:
+            body += ('<p class="sub-alt" lang="tr">%s — %s · Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği</p>' % (
+                esc(c.name_tr), esc(', '.join(tr_cats) or 'ders materyalleri')))
+            first, second = ('lead', c.desc_en), ('lead-alt', c.desc_tr)
+            second_lang = 'tr'
+        if first[1]:
+            body += '<p class="%s">%s</p>' % (first[0], esc(first[1]))
+        if second[1]:
+            body += '<p class="%s" lang="%s">%s</p>' % (second[0], second_lang, esc(second[1]))
+        ct = mr.counts_text(c, lang)
+        chips = ['<li>%s · %s</li>' % (mr.sem_label(c.sem, lang), esc(R.term(c.sem, lang)))]
         if ct != '—':
             chips += ['<li>%s</li>' % esc(x) for x in ct.split(' · ')]
         body += '<ul class="chips">%s</ul>' % ''.join(chips)
-        toc = [(k, mr.CAT[k]['tr']) for k in present] + extra_h
+        toc = [(k, mr.CAT[k][lang]) for k in present] + extra_h
         if len(toc) > 1:
-            body += '<p class="toc"><strong>Bu sayfada:</strong> %s</p>' % ' '.join(
-                '<a href="#%s">%s</a>' % (k, esc(h)) for k, h in toc)
+            body += '<p class="toc"><strong>%s</strong> %s</p>' % (tx(lang, 'Bu sayfada:', 'On this page:'), ' '.join(
+                '<a href="#%s">%s</a>' % (k, esc(h)) for k, h in toc))
+        if lang == 'en':
+            body += ('<p class="muted"><small>Most files are in Turkish; file and folder names are shown as they appear '
+                     'in the repository.</small></p>')
         dmap = c.digital_by_source()
         for k in present:
             if k == 'dijital-notlar':
-                inner = self.digital_html(c, root)
+                inner = self.digital_html(c, root, lang)
             elif k == 'projeler':
-                inner = self.projects_html(c, root)
+                inner = self.projects_html(c, root, lang)
             else:
-                inner = self.files_html(c, c.sections[k], dmap if k in mr.NOTE_CATS else None, root)
-            body += '<section id="%s"><h2>%s</h2>%s</section>' % (k, esc(mr.CAT[k]['tr']), inner)
+                inner = self.files_html(c, c.sections[k], dmap if k in mr.NOTE_CATS else None, root, lang=lang)
+            body += '<section id="%s"><h2>%s</h2>%s</section>' % (k, esc(mr.CAT[k][lang]), inner)
         repos = c.meta.get('repos') or []
         if repos:
-            body += '<section id="github"><h2>GitHub Depoları</h2><ul class="files">%s</ul></section>' % ''.join(
-                '<li><a href="%s" rel="noopener">%s</a><span class="meta">%s</span></li>' % (
-                    esc(mr.repo_url(r)), esc(r['name']), esc(r.get('description_tr') or '')) for r in repos)
+            body += '<section id="github"><h2>%s</h2><ul class="files">%s</ul></section>' % (
+                tx(lang, 'GitHub Depoları', 'GitHub repositories'), ''.join(
+                    '<li><a href="%s" rel="noopener">%s</a><span class="meta">%s</span></li>' % (
+                        esc(mr.repo_url(r)), esc(r['name']),
+                        esc(r.get('description_' + lang) or r.get('description_tr') or '')) for r in repos))
         books = c.meta.get('textbooks') or []
         if books:
             li = []
@@ -837,170 +993,267 @@ class Site:
                 if b.get('details'):
                     s += ', ' + esc(b['details'])
                 li.append('<li>%s</li>' % s)
-            body += ('<section id="kitaplar"><h2>Kaynak Kitaplar</h2><p class="muted">Derste kullanılan kaynaklar '
-                     '(kitapların kendisi telif hakları nedeniyle yayımlanmaz):</p><ul class="files">%s</ul></section>' %
-                     ''.join(li))
+            body += ('<section id="kitaplar"><h2>%s</h2><p class="muted">%s</p><ul class="files">%s</ul></section>' % (
+                tx(lang, 'Kaynak Kitaplar', 'Textbooks'),
+                tx(lang, 'Derste kullanılan kaynaklar (kitapların kendisi telif hakları nedeniyle yayımlanmaz):',
+                   'Sources used in the course (the books themselves are not published because of copyright):'),
+                ''.join(li)))
         others = [x for x in R.semesters[c.sem] if x is not c]
         if others:
-            body += '<h2>Aynı dönemin diğer dersleri</h2><p>%s</p>' % ' · '.join(
-                '<a href="%s%s">%s</a>' % (root, self.course_url(x), esc(x.name_tr)) for x in others)
-        body += ('<p><a class="btn alt" href="%s" rel="noopener">GitHub\'da klasörü aç</a>'
-                 '<a class="btn alt" href="%sdonem/%d/">← %s</a></p>' % (
-                     esc(tree(c.key)), root, c.sem, mr.sem_label(c.sem)))
-        body += '<p class="muted"><small>Ders materyallerinin hakları ilgili öğretim üyelerine ve GTÜ\'ye aittir; eğitim amacıyla paylaşılmıştır.</small></p>'
+            body += '<h2>%s</h2><p>%s</p>' % (tx(lang, 'Aynı dönemin diğer dersleri', 'Other courses this semester'),
+                                              ' · '.join('<a href="%s%s">%s</a>' % (
+                                                  root, self.course_url(x, lang), esc(self.cname(x, lang))) for x in others))
+        body += ('<p><a class="btn alt" href="%s" rel="noopener">%s</a>'
+                 '<a class="btn alt" href="%s%s">← %s</a></p>' % (
+                     esc(tree(c.key)), tx(lang, 'GitHub\'da klasörü aç', 'Open the folder on GitHub'),
+                     root, self.sem_url(c.sem, lang), mr.sem_label(c.sem, lang)))
+        body += '<p class="muted"><small>%s</small></p>' % tx(
+            lang, 'Ders materyallerinin hakları ilgili öğretim üyelerine ve GTÜ\'ye aittir; eğitim amacıyla paylaşılmıştır.',
+            'Course materials belong to their instructors and GTU and are shared for educational purposes only.')
+        provider = {'@type': 'CollegeOrUniversity', 'name': tx(lang, 'Gebze Teknik Üniversitesi', 'Gebze Technical University'),
+                    'alternateName': tx(lang, 'Gebze Technical University', 'Gebze Teknik Üniversitesi'),
+                    'url': 'https://www.gtu.edu.tr/'}
         ld = {'@context': 'https://schema.org', '@graph': [
-            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': 'tr',
+            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': lang,
              'author': {'@type': 'Person', 'name': AUTHOR, 'url': 'https://github.com/' + USER},
-             'about': {'@type': 'Course', 'name': c.name_tr, 'alternateName': c.name_en,
-                       **({'courseCode': c.code} if c.code else {}),
-                       'provider': {'@type': 'CollegeOrUniversity', 'name': 'Gebze Teknik Üniversitesi',
-                                    'alternateName': 'Gebze Technical University', 'url': 'https://www.gtu.edu.tr/'}}},
-            breadcrumb_ld([('Ana sayfa', BASE + '/'), (mr.sem_label(c.sem), BASE + '/donem/%d/' % c.sem),
-                           (c.name_tr, BASE + '/' + url)])]}
-        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld), 0.9)
-        kw = ' '.join([c.name_en, c.code or '', ' '.join(c.meta.get('aka') or []), c.desc_tr, c.desc_en,
-                       ' '.join(h for n in self.notes.get(c.key, []) for h in n.heads[:4])])
-        self.search.append({'t': c.name_tr + code_s, 'u': url, 'y': 'Ders', 'k': trim(kw, 600)})
+             'about': {'@type': 'Course', 'name': name, 'alternateName': alt_name,
+                       **({'courseCode': c.code} if c.code else {}), 'provider': provider}},
+            breadcrumb_ld([(home, BASE + '/' + self.home_url(lang)),
+                           (mr.sem_label(c.sem, lang), BASE + '/' + self.sem_url(c.sem, lang)), (name, BASE + '/' + url)])]}
+        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, lang=lang, other=other), pri(lang, 0.9))
+        heads = ' '.join(h for n in self.notes.get(c.key, []) for h in n.heads[:4])
+        if lang == 'tr':
+            kw = ' '.join([c.name_en, c.code or '', ' '.join(c.meta.get('aka') or []), c.desc_tr, c.desc_en, heads])
+        else:
+            kw = ' '.join([c.name_tr, c.code or '', ' '.join(c.meta.get('aka') or []), c.desc_en, c.desc_tr, heads])
+        self.search[lang].append({'t': name + code_s, 'u': url, 'y': tx(lang, 'Ders', 'Course'), 'k': trim(kw, 600)})
 
-    def note_page(self, c, i):
-        R, root = self.R, '../../../'
+    def note_page(self, c, i, lang):
+        R = self.R
         notes = self.notes[c.key]
         n = notes[i]
         d = n.d
-        nt = self.note_title(n)
-        title = '%s | Ders Notu · GTÜ Elektronik' % nt
+        url = self.note_url(n, lang)
+        root = self.root_of(url)
+        other = self.note_url(n, 'en' if lang == 'tr' else 'tr')
+        name = self.cname(c, lang)
+        topic = tx(lang, n.topic, n.topic_en)
+        nt = self.note_title(n, lang)
+        home = tx(lang, 'Ana sayfa', 'Home')
         hs = ', '.join(n.heads[:7])
-        desc = trim('%s: %s%s dersi dijital ders notu (LaTeX, %s). GTÜ Elektronik Mühendisliği %d. dönem.' % (
-            n.topic, c.name_tr, ' (%s)' % c.code if c.code else '', ('%d sayfa PDF' % n.pages) if n.pages else 'PDF', c.sem)
-            + (' İçerik: %s.' % hs if hs else ''))
-        crumbs = self.crumbs(root, [('Ana sayfa', root), (mr.sem_label(c.sem), root + 'donem/%d/' % c.sem),
-                                    (c.name_tr, root + self.course_url(c)), (n.topic, None)])
-        facts = ['<dt>Ders</dt><dd><a href="%s%s">%s</a>%s</dd>' % (
-            root, self.course_url(c), esc(c.name_tr), ' (%s)' % esc(c.code) if c.code else ''),
-            '<dt>Dönem</dt><dd>%s · %s</dd>' % (mr.sem_label(c.sem), esc(R.term(c.sem, 'tr'))),
-            '<dt>Biçim</dt><dd>PDF%s · %s · el yazısı görünümlü LaTeX</dd>' % (
-                (' · %d sayfa' % n.pages) if n.pages else '', human(n.size))]
+        if lang == 'tr':
+            title = '%s | Ders Notu · GTÜ Elektronik' % nt
+            desc = trim('%s: %s%s dersi dijital ders notu (LaTeX, %s). GTÜ Elektronik Mühendisliği %d. dönem.' % (
+                topic, c.name_tr, ' (%s)' % c.code if c.code else '', ('%d sayfa PDF' % n.pages) if n.pages else 'PDF', c.sem)
+                + (' İçerik: %s.' % hs if hs else ''))
+        else:
+            title = '%s | Digital Lecture Note · GTU Electronics' % nt
+            desc = trim('%s: digital lecture note for %s%s (%s, in Turkish). GTU Electronics Engineering '
+                        'semester %d.' % (topic, c.name_en, ' (%s)' % c.code if c.code else '',
+                                          ('%d-page PDF' % n.pages) if n.pages else 'PDF', c.sem))
+        crumbs = self.crumbs(root, [(home, root + self.home_url(lang)),
+                                    (mr.sem_label(c.sem, lang), root + self.sem_url(c.sem, lang)),
+                                    (name, root + self.course_url(c, lang)), (topic, None)], lang)
+        if lang == 'tr':
+            pg = (' · %d sayfa' % n.pages) if n.pages else ''
+            facts = ['<dt>Ders</dt><dd><a href="%s%s">%s</a>%s</dd>' % (
+                root, self.course_url(c, lang), esc(name), ' (%s)' % esc(c.code) if c.code else ''),
+                '<dt>Dönem</dt><dd>%s · %s</dd>' % (mr.sem_label(c.sem, lang), esc(R.term(c.sem, lang))),
+                '<dt>Biçim</dt><dd>PDF%s · %s · el yazısı görünümlü LaTeX</dd>' % (pg, human(n.size, lang))]
+        else:
+            pg = (' · %d page%s' % (n.pages, '' if n.pages == 1 else 's')) if n.pages else ''
+            facts = ['<dt>Course</dt><dd><a href="%s%s">%s</a>%s</dd>' % (
+                root, self.course_url(c, lang), esc(name), ' (%s)' % esc(c.code) if c.code else ''),
+                '<dt>Semester</dt><dd>%s · %s</dd>' % (mr.sem_label(c.sem, lang), esc(R.term(c.sem, lang))),
+                '<dt>Format</dt><dd>PDF%s · %s · handwriting-style LaTeX</dd>' % (pg, human(n.size, lang)),
+                '<dt>Language</dt><dd>Turkish</dd>']
         if d.source:
-            facts.append('<dt>Orijinal not</dt><dd><a href="%s" rel="noopener">%s</a></dd>' % (
-                esc(blob(d.source.repo_rel)), esc(d.source.name)))
-        btn = '<a class="btn" href="%s%s">PDF\'i aç (%s)</a>' % (root, n.pdf_url, human(n.size))
+            facts.append('<dt>%s</dt><dd><a href="%s" rel="noopener">%s</a></dd>' % (
+                tx(lang, 'Orijinal not', 'Original note'), esc(blob(d.source.repo_rel)), esc(d.source.name)))
+        btn = '<a class="btn" href="%s%s">%s (%s)</a>' % (
+            root, n.pdf_url, tx(lang, 'PDF\'i aç', 'Open the PDF'), human(n.size, lang))
         if d.tex:
-            btn += '<a class="btn alt" href="%s" rel="noopener">LaTeX kaynağı (.tex)</a>' % esc(blob(d.tex.repo_rel))
+            btn += '<a class="btn alt" href="%s" rel="noopener">%s</a>' % (
+                esc(blob(d.tex.repo_rel)), tx(lang, 'LaTeX kaynağı (.tex)', 'LaTeX source (.tex)'))
         if d.source:
-            btn += '<a class="btn alt" href="%s" rel="noopener">Orijinal el yazısı not</a>' % esc(blob(d.source.repo_rel))
-        body = crumbs + '<p class="kicker" style="margin-top:22px">%s · Dijital ders notu</p>' % esc(c.name_tr)
-        body += '<h1>%s</h1>' % esc(n.topic)
+            btn += '<a class="btn alt" href="%s" rel="noopener">%s</a>' % (
+                esc(blob(d.source.repo_rel)), tx(lang, 'Orijinal el yazısı not', 'Original handwritten note'))
+        body = crumbs + '<p class="kicker" style="margin-top:22px">%s · %s</p>' % (
+            esc(name), tx(lang, 'Dijital ders notu', 'Digital lecture note'))
+        body += '<h1>%s</h1>' % esc(topic)
+        if lang == 'en':
+            body += '<p class="sub-alt" lang="tr">%s – %s</p>' % (esc(c.name_tr), esc(n.topic))
         body += ('<div class="hero-note"><div><dl class="facts">%s</dl><p>%s</p></div>'
-                 '<a href="%s%s"><img src="%s%s" width="%d" height="%d" alt="%s – dijital ders notunun ilk sayfası"></a></div>' % (
-                     ''.join(facts), btn, root, n.pdf_url, root, n.img_url, n.wh[0], n.wh[1], esc(n.topic)))
-        body += '<div class="warn"><strong>Uyarı:</strong> %s<br><span lang="en">%s</span></div>' % (
-            esc(mr.DISCLAIMER_TR), esc(mr.DISCLAIMER_EN))
+                 '<a href="%s%s"><img src="%s%s" width="%d" height="%d" alt="%s"></a></div>' % (
+                     ''.join(facts), btn, root, n.pdf_url, root, n.img_url, n.wh[0], n.wh[1],
+                     esc(topic + tx(lang, ' – dijital ders notunun ilk sayfası', ' – first page of the digital lecture note'))))
+        if lang == 'tr':
+            body += '<div class="warn"><strong>Uyarı:</strong> %s<br><span lang="en">%s</span></div>' % (
+                esc(mr.DISCLAIMER_TR), esc(mr.DISCLAIMER_EN))
+        else:
+            body += '<div class="warn"><strong>Notice:</strong> %s</div>' % esc(mr.DISCLAIMER_EN)
         if n.heads:
-            body += '<h2>Bu notta neler var?</h2><ul class="outline-list">%s</ul>' % ''.join(
-                '<li>%s</li>' % esc(h) for h in n.heads[:60])
+            body += '<h2>%s</h2>%s<ul class="outline-list" lang="tr">%s</ul>' % (
+                tx(lang, 'Bu notta neler var?', 'What is in this note?'),
+                '' if lang == 'tr' else '<p class="muted">Section headings of the note (in Turkish):</p>',
+                ''.join('<li>%s</li>' % esc(h) for h in n.heads[:60]))
         if n.prose:
-            body += ('<h2>Notun metni</h2><details><summary>Düz metin olarak göster (formüller ve çizimler yoktur)</summary>'
-                     '<div class="prose">%s</div></details>' % ''.join('<p>%s</p>' % esc(p) for p in n.prose))
+            body += ('<h2>%s</h2><details><summary>%s</summary><div class="prose" lang="tr">%s</div></details>' % (
+                tx(lang, 'Notun metni', 'Text of the note'),
+                tx(lang, 'Düz metin olarak göster (formüller ve çizimler yoktur)',
+                   'Show as plain text (Turkish; formulas and drawings are not included)'),
+                ''.join('<p>%s</p>' % esc(p) for p in n.prose)))
         body += '<div class="pager">'
-        body += ('<a href="%s%s">← %s</a>' % (root, notes[i - 1].url, esc(notes[i - 1].topic))) if i > 0 else '<span></span>'
+        body += ('<a href="%s%s">← %s</a>' % (
+            root, self.note_url(notes[i - 1], lang), esc(tx(lang, notes[i - 1].topic, notes[i - 1].topic_en)))
+                 ) if i > 0 else '<span></span>'
         if i + 1 < len(notes):
-            body += '<a href="%s%s">%s →</a>' % (root, notes[i + 1].url, esc(notes[i + 1].topic))
+            body += '<a href="%s%s">%s →</a>' % (
+                root, self.note_url(notes[i + 1], lang), esc(tx(lang, notes[i + 1].topic, notes[i + 1].topic_en)))
         body += '</div>'
-        body += '<p><a class="btn alt" href="%s%s#dijital-notlar">← Tüm %s dijital notları</a></p>' % (
-            root, self.course_url(c), esc(c.name_tr))
+        body += '<p><a class="btn alt" href="%s%s#dijital-notlar">%s</a></p>' % (
+            root, self.course_url(c, lang),
+            tx(lang, '← Tüm %s dijital notları' % esc(name), '← All %s digital notes' % esc(name)))
         ld = {'@context': 'https://schema.org', '@graph': [
-            {'@type': 'LearningResource', 'name': nt, 'description': desc, 'url': BASE + '/' + n.url,
+            {'@type': 'LearningResource', 'name': nt, 'description': desc, 'url': BASE + '/' + url,
              'inLanguage': 'tr', 'learningResourceType': 'Lecture notes', 'educationalLevel': 'University',
-             'isPartOf': {'@type': 'CollectionPage', 'url': BASE + '/' + self.course_url(c), 'name': c.name_tr},
-             'about': {'@type': 'Course', 'name': c.name_tr, **({'courseCode': c.code} if c.code else {})},
+             'isPartOf': {'@type': 'CollectionPage', 'url': BASE + '/' + self.course_url(c, lang), 'name': name},
+             'about': {'@type': 'Course', 'name': name, **({'courseCode': c.code} if c.code else {})},
              'author': [{'@type': 'Person', 'name': AUTHOR, 'url': 'https://github.com/' + USER}],
              'encoding': {'@type': 'MediaObject', 'encodingFormat': 'application/pdf',
                           'contentUrl': BASE + '/' + n.pdf_url},
              'thumbnailUrl': BASE + '/' + n.img_url},
-            breadcrumb_ld([('Ana sayfa', BASE + '/'), (mr.sem_label(c.sem), BASE + '/donem/%d/' % c.sem),
-                           (c.name_tr, BASE + '/' + self.course_url(c)), (n.topic, BASE + '/' + n.url)])]}
-        self.write(n.url + 'index.html', self.layout(n.url, title, desc, body, ld=ld, og_type='article'), 0.6)
-        self.urls.append((n.pdf_url, 0.5))
-        self.search.append({'t': nt, 'u': n.url, 'y': 'Dijital not', 'c': c.name_tr,
-                            'k': trim(' '.join(n.heads), 500)})
+            breadcrumb_ld([(home, BASE + '/' + self.home_url(lang)),
+                           (mr.sem_label(c.sem, lang), BASE + '/' + self.sem_url(c.sem, lang)),
+                           (name, BASE + '/' + self.course_url(c, lang)), (topic, BASE + '/' + url)])]}
+        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, og_type='article', lang=lang, other=other),
+                   pri(lang, 0.6))
+        if lang == 'tr':
+            self.urls.append((n.pdf_url, 0.5))
+            self.search['tr'].append({'t': nt, 'u': url, 'y': 'Dijital not', 'c': c.name_tr, 'k': trim(' '.join(n.heads), 500)})
+        else:
+            self.search['en'].append({'t': nt, 'u': url, 'y': 'Digital note', 'c': c.name_en,
+                                      'k': trim(n.topic + ' ' + ' '.join(n.heads), 500)})
 
-    def digital_hub(self):
-        root = '../'
-        title = 'Dijital Ders Notları (LaTeX, PDF) | GTÜ Elektronik Mühendisliği'
-        desc = trim('GTÜ Elektronik Mühendisliği için el yazısı görünümlü %d dijital ders notu (LaTeX/PDF): %s ve diğer '
-                    'dersler.' % (self.ndig, ', '.join(c.name_tr for c in self.R.courses if c.digital)[:80]))
-        body = self.crumbs(root, [('Ana sayfa', root), ('Dijital notlar', None)])
-        body += '<h1>Dijital Ders <span class="hl">Notları</span></h1>'
-        body += ('<p class="lead">Tablette tutulmuş el yazısı ders notlarının LaTeX ile yazılmış, el yazısı görünümlü ve '
-                 'aranabilir PDF versiyonları. Toplam <strong>%d not</strong>, %d derste. Şekil ve grafikler orijinal '
-                 'çizimlerden alınmıştır.</p><div class="warn"><strong>Uyarı:</strong> %s</div>' % (
-                     self.ndig, sum(1 for c in self.R.courses if c.digital), esc(mr.DISCLAIMER_TR)))
-        body += self.search_box(root)
+    def digital_hub(self, lang):
+        url = self.dig_url(lang)
+        root = self.root_of(url)
+        other = self.dig_url('en' if lang == 'tr' else 'tr')
+        names = [self.cname(c, lang) for c in self.R.courses if c.digital]
+        ncourses = len(names)
+        home = tx(lang, 'Ana sayfa', 'Home')
+        if lang == 'tr':
+            title = 'Dijital Ders Notları (LaTeX, PDF) | GTÜ Elektronik Mühendisliği'
+            desc = fit_list('GTÜ Elektronik Mühendisliği için el yazısı görünümlü %d dijital ders notu (LaTeX/PDF): '
+                            % self.ndig, names, ' ve diğer dersler')
+        else:
+            title = 'Digital Lecture Notes (LaTeX, PDF) | GTU Electronics Engineering'
+            desc = fit_list('%d handwriting-style digital lecture notes (LaTeX/PDF) for GTU Electronics Engineering: '
+                            % self.ndig, names, ' and other courses')
+        body = self.crumbs(root, [(home, root + self.home_url(lang)), (tx(lang, 'Dijital notlar', 'Digital notes'), None)], lang)
+        if lang == 'tr':
+            body += '<h1>Dijital Ders <span class="hl">Notları</span></h1>'
+            body += ('<p class="lead">Tablette tutulmuş el yazısı ders notlarının LaTeX ile yazılmış, el yazısı görünümlü ve '
+                     'aranabilir PDF versiyonları. Toplam <strong>%d not</strong>, %d derste. Şekil ve grafikler orijinal '
+                     'çizimlerden alınmıştır.</p><div class="warn"><strong>Uyarı:</strong> %s</div>' % (
+                         self.ndig, ncourses, esc(mr.DISCLAIMER_TR)))
+        else:
+            body += '<h1>Digital Lecture <span class="hl">Notes</span></h1>'
+            body += ('<p class="lead">Handwriting-style, searchable PDF versions of handwritten tablet notes, typeset in '
+                     'LaTeX. <strong>%d notes</strong> in %d courses; figures and graphs come from the original drawings. '
+                     'The notes are written in Turkish, titles are translated.</p>'
+                     '<div class="warn"><strong>Notice:</strong> %s</div>' % (self.ndig, ncourses, esc(mr.DISCLAIMER_EN)))
+        body += self.search_box(root, lang)
         for s in self.sems:
             cs = [c for c in self.R.semesters[s] if self.notes.get(c.key)]
             if not cs:
                 continue
-            body += '<h2>%s · %s</h2>' % (mr.sem_label(s), esc(self.R.term(s, 'tr')))
+            body += '<h2>%s · %s</h2>' % (mr.sem_label(s, lang), esc(self.R.term(s, lang)))
             for c in cs:
-                body += '<h3><a href="%s%s">%s</a> <span class="meta">%d not</span></h3><ul class="files">%s</ul>' % (
-                    root, self.course_url(c), esc(c.name_tr), len(self.notes[c.key]), ''.join(
+                body += '<h3><a href="%s%s">%s</a> <span class="meta">%d %s</span></h3><ul class="files">%s</ul>' % (
+                    root, self.course_url(c, lang), esc(self.cname(c, lang)), len(self.notes[c.key]),
+                    tx(lang, 'not', 'notes'), ''.join(
                         '<li><a href="%s%s">%s</a><span class="meta">%s</span></li>' % (
-                            root, n.url, esc(n.topic), ('%d s.' % n.pages) if n.pages else '')
+                            root, self.note_url(n, lang), esc(tx(lang, n.topic, n.topic_en)),
+                            (tx(lang, '%d s.', '%d p.') % n.pages) if n.pages else '')
                         for n in self.notes[c.key]))
-        url = 'dijital-notlar/'
         ld = {'@context': 'https://schema.org', '@graph': [
-            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': 'tr'},
-            breadcrumb_ld([('Ana sayfa', BASE + '/'), ('Dijital notlar', BASE + '/' + url)])]}
-        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, active='dijital'), 0.8)
-        self.search.append({'t': 'Dijital ders notları', 'u': url, 'y': 'Sayfa', 'k': 'latex pdf dijital el yazisi'})
+            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': lang},
+            breadcrumb_ld([(home, BASE + '/' + self.home_url(lang)),
+                           (tx(lang, 'Dijital notlar', 'Digital notes'), BASE + '/' + url)])]}
+        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, lang=lang, other=other, active='dijital'),
+                   pri(lang, 0.8))
+        self.search[lang].append({'t': tx(lang, 'Dijital ders notları', 'Digital lecture notes'), 'u': url,
+                                  'y': tx(lang, 'Sayfa', 'Page'), 'k': 'latex pdf dijital digital el yazisi handwritten notes'})
 
-    def projects_hub(self):
-        root = '../'
+    def projects_hub(self, lang):
+        url = self.proj_url(lang)
+        root = self.root_of(url)
+        other = self.proj_url('en' if lang == 'tr' else 'tr')
         rows = mr.all_projects(self.R)
-        title = 'Projeler ve Kodlar | GTÜ Elektronik Mühendisliği'
-        desc = trim('GTÜ Elektronik Mühendisliği ders projeleri ve kod depoları: %s.' % ', '.join(
-            u.title_tr for _, u in rows[:6]))
-        body = self.crumbs(root, [('Ana sayfa', root), ('Projeler', None)])
-        body += '<h1><span class="hl">Projeler</span> ve kodlar</h1>'
-        body += '<p class="lead">GTÜ Elektronik Mühendisliği derslerinde hazırlanan dönem projeleri, raporlar, simülasyonlar ve kod depoları.</p>'
+        ptitle = lambda u: u.title_tr if lang == 'tr' else (u.title_en or u.title_tr)
+        home = tx(lang, 'Ana sayfa', 'Home')
+        if lang == 'tr':
+            title = 'Projeler ve Kodlar | GTÜ Elektronik Mühendisliği'
+            desc = fit_list('GTÜ Elektronik Mühendisliği %d ders projesi ve kod deposu (MATLAB, LTspice ve diğerleri): '
+                            % len(rows), list(dict.fromkeys(c.name_tr for c, _ in rows)), ' ve diğerleri')
+        else:
+            title = 'Projects and Code | GTU Electronics Engineering'
+            desc = fit_list('%d GTU Electronics Engineering course projects and code repositories (MATLAB, LTspice and '
+                            'more): ' % len(rows), list(dict.fromkeys(c.name_en for c, _ in rows)), ' and more')
+        body = self.crumbs(root, [(home, root + self.home_url(lang)), (tx(lang, 'Projeler', 'Projects'), None)], lang)
+        if lang == 'tr':
+            body += '<h1><span class="hl">Projeler</span> ve kodlar</h1>'
+            body += ('<p class="lead">GTÜ Elektronik Mühendisliği derslerinde hazırlanan dönem projeleri, raporlar, '
+                     'simülasyonlar ve kod depoları.</p>')
+        else:
+            body += '<h1><span class="hl">Projects</span> and code</h1>'
+            body += ('<p class="lead">Semester projects, reports, simulations and code repositories prepared in the GTU '
+                     'Electronics Engineering courses.</p>')
         last = None
         for c, u in rows:
             if c is not last:
-                body += '<h2><a href="%s%s#projeler">%s</a></h2>' % (root, self.course_url(c), esc(c.name_tr))
+                body += '<h2><a href="%s%s#projeler">%s</a></h2>' % (root, self.course_url(c, lang), esc(self.cname(c, lang)))
                 last = c
             meta = []
-            if u.title_en and u.title_en != u.title_tr:
-                meta.append('<em>%s</em>' % esc(u.title_en))
+            alt_title = u.title_en if lang == 'tr' else u.title_tr
+            if alt_title and alt_title != ptitle(u):
+                meta.append('<em lang="%s">%s</em>' % ('en' if lang == 'tr' else 'tr', esc(alt_title)))
             if u.path:
-                meta.append('<a href="%s" rel="noopener">Klasör: %s/</a>' % (esc(tree(c.key + '/' + u.path)), esc(u.path)))
+                meta.append('<a href="%s" rel="noopener">%s: %s/</a>' % (
+                    esc(tree(c.key + '/' + u.path)), tx(lang, 'Klasör', 'Folder'), esc(u.path)))
             for r in u.repos:
                 meta.append('<a href="%s" rel="noopener">GitHub: %s</a>' % (esc(mr.repo_url(r)), esc(r['name'])))
             body += '<article class="proj"><h3>%s</h3><p class="meta" style="margin-left:0">%s</p></article>' % (
-                esc(u.title_tr), ' · '.join(meta))
+                esc(ptitle(u)), ' · '.join(meta))
         codes = mr.code_repos(self.R)
         if codes:
-            body += '<h2>Diğer kod depoları</h2><ul class="files">'
+            body += '<h2>%s</h2><ul class="files">' % tx(lang, 'Diğer kod depoları', 'Other code repositories')
             for r, cs in codes:
                 body += '<li><a href="%s" rel="noopener">%s</a><span class="meta">%s — %s</span></li>' % (
-                    esc(mr.repo_url(r)), esc(r['name']), esc(r.get('description_tr') or ''),
-                    ', '.join(esc(c.name_tr) for c in cs))
+                    esc(mr.repo_url(r)), esc(r['name']), esc(r.get('description_' + lang) or r.get('description_tr') or ''),
+                    ', '.join(esc(self.cname(c, lang)) for c in cs))
             body += '</ul>'
-        url = 'projeler/'
         ld = {'@context': 'https://schema.org', '@graph': [
-            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': 'tr'},
-            breadcrumb_ld([('Ana sayfa', BASE + '/'), ('Projeler', BASE + '/' + url)])]}
-        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, active='projeler'), 0.7)
-        self.search.append({'t': 'Projeler ve kodlar', 'u': url, 'y': 'Sayfa',
-                            'k': ' '.join(u.title_tr for _, u in rows)})
+            {'@type': 'CollectionPage', 'name': title, 'description': desc, 'url': BASE + '/' + url, 'inLanguage': lang},
+            breadcrumb_ld([(home, BASE + '/' + self.home_url(lang)), (tx(lang, 'Projeler', 'Projects'), BASE + '/' + url)])]}
+        self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, lang=lang, other=other, active='projeler'),
+                   pri(lang, 0.7))
+        self.search[lang].append({'t': tx(lang, 'Projeler ve kodlar', 'Projects and code'), 'u': url,
+                                  'y': tx(lang, 'Sayfa', 'Page'),
+                                  'k': ' '.join(u.title_tr + ' ' + (u.title_en or '') for _, u in rows)})
 
     def not_found(self):
         body = ('<h1>Sayfa bulunamadı</h1><p class="lead">Aradığınız sayfa taşınmış ya da silinmiş olabilir. '
-                '<a href="%s/">Ana sayfaya</a> dönüp dersleri arayabilirsiniz.</p>' % BASE)
-        self.write('404.html', self.layout('404.html', 'Sayfa bulunamadı | ' + SITE_TR, 'Sayfa bulunamadı.', body,
-                                           root=BASE + '/', noindex=True))
+                '<a href="%s/">Ana sayfaya</a> dönüp dersleri arayabilirsiniz.</p>'
+                '<h2 lang="en">Page not found</h2><p lang="en">The page you are looking for may have been moved or deleted. '
+                'Go to the <a href="%s/en/">English home page</a> to search the courses.</p>' % (BASE, BASE))
+        self.write('404.html', self.layout('404.html', 'Sayfa bulunamadı | Page not found | ' + SITE_TR,
+                                           'Sayfa bulunamadı. Page not found.', body, root=BASE + '/', noindex=True))
 
     def finish(self):
-        self.write('search-index.json', json.dumps(self.search, ensure_ascii=False, separators=(',', ':')))
+        self.write('search-index.json', json.dumps(self.search['tr'], ensure_ascii=False, separators=(',', ':')))
+        self.write('search-index-en.json', json.dumps(self.search['en'], ensure_ascii=False, separators=(',', ':')))
         lines = ['<?xml version="1.0" encoding="UTF-8"?>',
                  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
         for u, p in self.urls:
@@ -1014,16 +1267,16 @@ class Site:
         self.prepare_notes()
         self.vocab_build()
         self.note_of = {id(n.d): n for ns in self.notes.values() for n in ns}
-        self.home()
-        self.en_home()
-        for s in self.sems:
-            self.semester(s)
-        for c in self.R.courses:
-            self.course(c)
-            for i in range(len(self.notes.get(c.key, []))):
-                self.note_page(c, i)
-        self.digital_hub()
-        self.projects_hub()
+        for lang in ('tr', 'en'):
+            self.home(lang)
+            for s in self.sems:
+                self.semester(s, lang)
+            for c in self.R.courses:
+                self.course(c, lang)
+                for i in range(len(self.notes.get(c.key, []))):
+                    self.note_page(c, i, lang)
+            self.digital_hub(lang)
+            self.projects_hub(lang)
         self.not_found()
         self.finish()
 
@@ -1054,8 +1307,12 @@ def main(argv=None):
     site.build()
     for w in mr.WARNINGS:
         print('WARNING: ' + w)
-    print('site: %d pages, %d digital notes, %d search entries -> %s' % (
-        len([u for u, _ in site.urls if not u.endswith('.pdf')]), site.ndig, len(site.search), out))
+    if site.missing_en:
+        print('WARNING: %d dijital notun İngilizce başlığı yok (araclar/note_titles_en.json); Türkçe başlık kullanıldı: %s' % (
+            len(site.missing_en), ', '.join(site.missing_en[:5]) + (' …' if len(site.missing_en) > 5 else '')))
+    print('site: %d pages, %d digital notes, %d + %d search entries -> %s' % (
+        len([u for u, _ in site.urls if not u.endswith('.pdf')]), site.ndig, len(site.search['tr']),
+        len(site.search['en']), out))
     return 0
 
 

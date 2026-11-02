@@ -1170,8 +1170,9 @@ def render_main(R):
     L = [MARKER_LINE, '', '# GTÜ Elektronik Mühendisliği Ders Notları', '',
          ' '.join([badge('dönem', len(sems), '1f6feb'), badge('ders', ncourses, '1f6feb'),
                    badge('dosya', nfiles, '6e7781'), badge('dijital not', ndig, 'e36209')]), '',
-         '🌐 **Web sitesi:** [%s](%s) — arama kutulu, mobil uyumlu; ders sayfaları, dijital notlar ve PDF\'ler tek tıkla.'
-         % (site.split('://', 1)[1].rstrip('/'), site), '',
+         '🌐 **Web sitesi:** [%s](%s) — arama kutulu, mobil uyumlu, Türkçe ve İngilizce ([English version](%sen/)); '
+         'ders sayfaları, dijital notlar ve PDF\'ler tek tıkla.'
+         % (site.split('://', 1)[1].rstrip('/'), site, site), '',
          'Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının **%d dönemine** '
          '(%s – %s) ait **ders notları, çıkmış sorular (vize, final, quiz), ödevler, laboratuvar raporları ve '
          'projeler**. Vize ve final çalışırken kullanabileceğiniz PDF notlar arasında %s gibi dersler var.'
@@ -1331,8 +1332,9 @@ def render_main(R):
           'Everything is **free** for students.' % (len(sems), first_e, last_e, R.gh_user, R.gh_user,
                                                     pl(ncourses, 'course'), pl(nfiles, 'file'), pl(npdf, 'PDF'),
                                                     pl(ndig, 'digital note'), pl(nproj, 'project')), '',
-          '🌐 **Website:** [%s](%s) — searchable, mobile friendly, with English course names and summaries.'
-          % (site.split('://', 1)[1].rstrip('/'), site), '',
+          '🌐 **Website:** [%s](%s) — searchable, mobile friendly and fully bilingual: the [English version](%sen/) has '
+          'English course names, summaries and translated note titles.'
+          % (site.split('://', 1)[1].rstrip('/'), site, site), '',
           '### How to use', '',
           'One folder per semester (`N-Donem`) and per course; inside a course, folders by type:', '']
     L += ['- %s — %s' % (names, en) for cat, names, _tr, en in FOLDER_LEGEND if cat in present_cats]
