@@ -16,8 +16,11 @@ python3 "$here/check_site.py" "$out"
 
 msg="${1:-Site güncellemesi $(date +%F)}"
 export GIT_DIR="$repo/.git"
-git fetch -q origin gh-pages 2>/dev/null || true
-parent="$(git rev-parse -q --verify refs/remotes/origin/gh-pages || true)"
+parent=""
+if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+  git fetch -q origin gh-pages          # uzak dalın ucu FETCH_HEAD'e iner (takip dalı gerekmez)
+  parent="$(git rev-parse FETCH_HEAD)"
+fi
 
 cd "$out"
 GIT_INDEX_FILE="$idx" GIT_WORK_TREE="$out" git add -A -f .
