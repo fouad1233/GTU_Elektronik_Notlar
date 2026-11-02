@@ -451,6 +451,13 @@ class Site:
         open(os.path.join(self.out, '.nojekyll'), 'w').close()
         open(os.path.join(self.out, 'robots.txt'), 'w').write(
             'User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n' % BASE)
+        # site_root/ altındaki dosyalar (ör. Google Search Console doğrulama dosyası) olduğu gibi site köküne kopyalanır
+        root_files = os.path.join(HERE, 'site_root')
+        if os.path.isdir(root_files):
+            for f in sorted(os.listdir(root_files)):
+                src = os.path.join(root_files, f)
+                if os.path.isfile(src) and not f.startswith('.'):
+                    shutil.copyfile(src, os.path.join(self.out, f))
 
     # ---- pages -------------------------------------------------------------------------------
     def home(self):

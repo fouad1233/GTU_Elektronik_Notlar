@@ -10,6 +10,7 @@ Bu klasördeki betikler, deponun **README sayfalarını** ve **GitHub Pages web 
 | `yayinla.sh` | Siteyi üretir, denetler ve `gh-pages` dalına gönderir |
 | `courses.json` | Ders adları (TR/EN), kodları, açıklamaları, GitHub depoları, kaynak kitaplar ve proje başlıkları |
 | `site_assets/` | Sitenin stil (`style.css`) ve arama (`search.js`) dosyaları |
+| `site_root/` | Site köküne olduğu gibi kopyalanan dosyalar (ör. Google Search Console doğrulama dosyası — **silmeyin**, silinirse doğrulama bozulur) |
 
 **Gereksinimler:** Python 3.9+, `poppler-utils` (`pdfinfo`, `pdftoppm`), `Pillow`, `fonttools` (`pyftsubset`), `git`.
 
@@ -25,7 +26,7 @@ araclar/yayinla.sh                                  # üret + denetle + gh-pages
 
 **Depo adı değişirse** `build_site.py` başındaki `USER` / `REPO` sabitlerini ve `courses.json` içindeki `repo_slug` alanını güncelleyin.
 
-**Arama motorları:** siteyi Google Search Console ve Bing Webmaster Tools'a ekleyip `https://fouad1233.github.io/GTU_Elektronik_Notlar/sitemap.xml` adresini göndermek taranmayı hızlandırır.
+**Arama motorları:** siteyi Google Search Console ve Bing Webmaster Tools'a eklemek taranmayı hızlandırır. Search Console'da mülkü **URL ön eki** olarak `https://fouad1233.github.io/GTU_Elektronik_Notlar/` adresiyle ekleyin (sonuna `sitemap.xml` yazmayın); doğrulama için verilen `google….html` dosyasını `site_root/` klasörüne koyup `yayinla.sh` çalıştırın. Ardından "Site haritaları" bölümüne `sitemap.xml` yazarak gönderin.
 
 ---
 
@@ -38,5 +39,6 @@ These scripts generate the repository's **README pages** and the **GitHub Pages 
 - `check_site.py` — looks for broken links, duplicate titles/descriptions and unbalanced HTML in the generated site.
 - `yayinla.sh` — builds, checks and pushes the site to the `gh-pages` branch (served by GitHub Pages).
 - `courses.json` — course names (TR/EN), codes, descriptions, GitHub repos, textbooks and project titles. `site_assets/` — CSS and search script.
+- `site_root/` — files copied as-is to the site root, e.g. the Google Search Console verification file (do not delete it, or verification breaks).
 
-Requirements: Python 3.9+, `poppler-utils`, `Pillow`, `fonttools`, `git`. Usage is shown in the commands above. If the repository is renamed, update `USER` / `REPO` at the top of `build_site.py` and `repo_slug` in `courses.json`. Submitting the sitemap to Google Search Console and Bing Webmaster Tools speeds up indexing.
+Requirements: Python 3.9+, `poppler-utils`, `Pillow`, `fonttools`, `git`. Usage is shown in the commands above. If the repository is renamed, update `USER` / `REPO` at the top of `build_site.py` and `repo_slug` in `courses.json`. To speed up indexing, add the site to Google Search Console and Bing Webmaster Tools: use a **URL-prefix** property `https://fouad1233.github.io/GTU_Elektronik_Notlar/` (not the sitemap address), put the verification `google….html` file into `site_root/`, run `yayinla.sh`, then submit `sitemap.xml` under Sitemaps.

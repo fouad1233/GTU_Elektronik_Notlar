@@ -34,7 +34,8 @@ root = os.path.abspath(sys.argv[1])
 pages = []
 for dp, dn, fn in os.walk(root):
     for f in fn:
-        if f.endswith('.html'): pages.append(os.path.join(dp, f))
+        # google<kod>.html Search Console doğrulama dosyalarıdır (sayfa değil); denetime girmez
+        if f.endswith('.html') and not re.match(r'google[0-9a-f]+\.html$', f): pages.append(os.path.join(dp, f))
 bad = 0; nlinks = 0; ids_cache = {}
 titles = {}; descs = {}
 for pg in sorted(pages):
