@@ -393,3 +393,15 @@ Found a mistake, a missing file or a broken link? [Open an issue](https://github
 | 🤖 | **[Claude](https://claude.ai) (Anthropic)** | Digital (LaTeX) notes, READMEs and the website (co-author) |
 
 All contributors: [GitHub contributors graph](https://github.com/fouad1233/GTU_Elektronik_Notlar/graphs/contributors).
+
+---
+
+## ⭐ Star History
+
+<a href="https://star-history.com/#fouad1233/GTU_Elektronik_Notlar&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=fouad1233/GTU_Elektronik_Notlar&type=Date&theme=dark" />
+    <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=fouad1233/GTU_Elektronik_Notlar&type=Date" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=fouad1233/GTU_Elektronik_Notlar&type=Date" />
+  </picture>
+</a>

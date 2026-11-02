@@ -1396,6 +1396,17 @@ def render_main(R):
           '(@%s) | Handwritten notes, homework, reports and projects; owner and maintainer |' % (R.gh_user, R.gh_user, R.gh_user, R.gh_user),
           '| 🤖 | **[Claude](https://claude.ai) (Anthropic)** | Digital (LaTeX) notes, READMEs and the website (co-author) |', '',
           'All contributors: [GitHub contributors graph](%s/graphs/contributors).' % gh, '']
+
+    # --- Star History: dile bağlı olmayan, README'nin en son bölümü (grafiği star-history.com kendiliğinden günceller)
+    sh_img = 'https://api.star-history.com/svg?repos=%s&type=Date' % R.slug
+    L += ['---', '', '## ⭐ Star History', '',
+          '<a href="https://star-history.com/#%s&Date">' % R.slug,
+          '  <picture>',
+          '    <source media="(prefers-color-scheme: dark)" srcset="%s&theme=dark" />' % sh_img,
+          '    <source media="(prefers-color-scheme: light)" srcset="%s" />' % sh_img,
+          '    <img alt="Star History Chart" src="%s" />' % sh_img,
+          '  </picture>',
+          '</a>', '']
     return '\n'.join(L)
 
 
