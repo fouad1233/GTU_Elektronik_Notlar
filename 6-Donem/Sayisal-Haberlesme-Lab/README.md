@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [6. Dönem](../README.md) › Haberleşme Laboratuvarı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 6. dönem dersi **Haberleşme Laboratuvarı** (ELM366) için laboratuvar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/sayisal-haberlesme-lab/) da var.
+
 > Genlik modülasyonu (DSB-LC/SC), SSB ve FM ile ASK modülasyonu deneyleri: ön çalışmalar ve raporlar.
 >
 > *Experiments on amplitude modulation (DSB-LC/SC), SSB and FM, and ASK modulation: pre-lab work and reports.*

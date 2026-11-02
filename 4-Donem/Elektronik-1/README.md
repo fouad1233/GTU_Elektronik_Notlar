@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › Elektronik I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **Elektronik I** için ders notları, çıkmış sorular ve slaytlar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/elektronik-1/) da var.
+
 > Sinyaller ve kuvvetlendiriciler; BJT ve MOSFET kuvvetlendiriciler: DC kutuplama, küçük işaret modelleri, ortak emetör, ortak baz ve ortak kolektör katları.
 >
 > *Signals and amplifiers; BJT and MOSFET amplifiers: DC biasing, small-signal models, common-emitter, common-base and common-collector stages.*

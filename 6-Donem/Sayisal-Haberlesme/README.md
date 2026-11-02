@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [6. Dönem](../README.md) › Sayısal Haberleşme
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 6. dönem dersi **Sayısal Haberleşme** (ELM365) için ders notları, ödevler ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/sayisal-haberlesme/) da var.
+
 > Örnekleme ve darbe kod modülasyonu, temel bant iletim, optimum alıcılar, sayısal modülasyon (ASK, PSK, FSK) ve bit hata olasılığı.
 >
 > *Sampling and pulse-code modulation, baseband transmission, optimum receivers, digital modulation (ASK, PSK, FSK) and bit-error probability.*

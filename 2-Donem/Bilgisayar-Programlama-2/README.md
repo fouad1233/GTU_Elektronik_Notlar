@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [2. Dönem](../README.md) › Bilgisayar Programlama II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **Bilgisayar Programlama II** (INF212) için laboratuvar ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/bilgisayar-programlama-2/) da var.
+
 > Python ile veri yapıları ve algoritmalar: ikili arama ve AVL ağaçları, hash tabloları ve graflar; lab ödevleri ve iki proje.
 >
 > *Data structures and algorithms in Python: binary search and AVL trees, hashing and graphs; lab assignments and two projects.*

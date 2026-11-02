@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [2. Dönem](../README.md) › Malzeme Bilimi
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **Malzeme Bilimi** (MBM104) için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/malzeme-bilimi/) da var.
+
 > Atom yapısı ve bağlar, kristal yapılar ve kusurlar, malzemelerin mekanik ve elektriksel özellikleri.
 >
 > *Atomic structure and bonding, crystal structures and defects, mechanical and electrical properties of materials.*

@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [5. Dönem](../README.md) › Mikroişlemciler Laboratuvarı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Mikroişlemciler Laboratuvarı** (ELEC335) için laboratuvar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/mikroislemciler-lab/) da var.
+
 > STM32G0 (Nucleo) kartıyla Assembly ve C deneyleri (ör. GPIO, UART) ve laboratuvar raporları.
 >
 > *Assembly and C experiments on the STM32G0 Nucleo board (e.g. GPIO, UART) and lab reports.*

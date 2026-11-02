@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › Devre Teorisi II Laboratuvarı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **Devre Teorisi II Laboratuvarı** (ELM228) için laboratuvar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/devre-laboratuvari-2/) da var.
+
 > Devre Teorisi II deneyleri: deney föyleri, ön çalışmalar, MATLAB hesapları ve Multisim simülasyonları.
 >
 > *Circuit Theory II experiments: lab sheets, pre-lab work, MATLAB calculations and Multisim simulations.*

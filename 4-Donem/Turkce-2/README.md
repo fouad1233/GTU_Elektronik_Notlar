@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › Türkçe II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **Türkçe II** için ödevler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/turkce-2/) da var.
+
 > Türk dili II: yazılı anlatım ve kompozisyon ödevleri.
 >
 > *Turkish II: written expression and composition assignments.*

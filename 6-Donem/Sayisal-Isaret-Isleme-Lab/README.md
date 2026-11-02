@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [6. Dönem](../README.md) › Sayısal İşaret İşleme Laboratuvarı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 6. dönem dersi **Sayısal İşaret İşleme Laboratuvarı** (ELM368) için laboratuvar ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/sayisal-isaret-isleme-lab/) da var.
+
 > Python/Jupyter ile haftalık DSP uygulamaları (ön çalışmalar ve kodlar) ve yürüme–koşma ayırma projesi.
 >
 > *Weekly DSP exercises in Python/Jupyter (pre-lab work and code) and a walking-vs-running classification project.*

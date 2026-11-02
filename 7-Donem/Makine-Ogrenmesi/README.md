@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [7. Dönem](../README.md) › Makine Öğrenmesinin Temelleri
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 7. dönem dersi **Makine Öğrenmesinin Temelleri** (ELM472) için ders notları, ödevler ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/makine-ogrenmesi/) da var.
+
 > Gözetimli ve gözetimsiz öğrenme, regresyon ve sınıflandırma, Bayesçi karar teorisi, boyut azaltma, kümeleme ve anomali tespiti, yapay sinir ağlarına giriş.
 >
 > *Supervised and unsupervised learning, regression and classification, Bayesian decision theory, dimensionality reduction, clustering and anomaly detection, and an introduction to neural networks.*

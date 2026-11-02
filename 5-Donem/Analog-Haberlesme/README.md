@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [5. Dönem](../README.md) › Analog Haberleşme
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Analog Haberleşme** (ELM361) için ders notları, çıkmış sorular, ödevler ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/analog-haberlesme/) da var.
+
 > Fourier analizi, genlik modülasyonu (AM, DSB, SSB), açı modülasyonu (FM, PM), alıcı yapıları ve haberleşme sistemlerinde gürültü.
 >
 > *Fourier analysis, amplitude modulation (AM, DSB, SSB), angle modulation (FM, PM), receivers and noise in communication systems.*

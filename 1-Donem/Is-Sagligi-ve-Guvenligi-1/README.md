@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [1. Dönem](../README.md) › İş Sağlığı ve Güvenliği I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **İş Sağlığı ve Güvenliği I** için ders notları, çıkmış sorular ve slaytlar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/is-sagligi-ve-guvenligi-1/) da var.
+
 > İş kazalarının oluşumu, yüksekte çalışma, elle taşıma ve yapı işlerinde güvenlik; Türkiye'de ve dünyada iş sağlığı ve güvenliği.
 >
 > *How workplace accidents happen, working at height, manual handling and construction safety; occupational health and safety in Türkiye and worldwide.*

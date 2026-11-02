@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 4. Dönem
 
-GTÜ Elektronik Mühendisliği 4. dönem dersleri: **8 ders**, 352 dosya, 30 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 4. dönem dersleri: **8 ders**, 352 dosya, 30 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/4/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|

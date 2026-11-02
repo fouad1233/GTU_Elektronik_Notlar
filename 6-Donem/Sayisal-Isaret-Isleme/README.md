@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [6. Dönem](../README.md) › Sayısal İşaret İşlemenin Temelleri
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 6. dönem dersi **Sayısal İşaret İşlemenin Temelleri** (ELM367) için ders notları ve ödevler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/sayisal-isaret-isleme/) da var.
+
 > Ayrık zamanlı işaretler ve sistemler, konvolüsyon, z-dönüşümü, ayrık Fourier dönüşümü ve FFT, sayısal filtre yapıları.
 >
 > *Discrete-time signals and systems, convolution, the z-transform, the discrete Fourier transform and FFT, and digital filter structures.*

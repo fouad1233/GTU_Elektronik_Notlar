@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [2. Dönem](../README.md) › Bilim Metodolojisi
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **Bilim Metodolojisi** için ders notları ve çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/bilim-metodolojisi/) da var.
+
 > Bilgi ve bilim kavramları, bilimsel yöntem (olgu, hipotez, yasa, teori) ve bilim tarihi.
 >
 > *Knowledge and science, the scientific method (facts, hypotheses, laws, theories) and the history of science.*

@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [1. Dönem](../README.md) › Elektrik Mühendisliğine Giriş
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **Elektrik Mühendisliğine Giriş** (ELM101) için ders notları ve slaytlar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/elektrik-muhendisligine-giris/) da var.
+
 > Elektrik-elektronik mühendisliğinin alt alanlarına giriş; elektronik, sinyal işleme ve kriptoloji gibi konularda haftalık tanıtım dersleri.
 >
 > *An introduction to the sub-fields of electrical and electronics engineering, with weekly overview lectures on topics such as electronics, signal processing and cryptology.*

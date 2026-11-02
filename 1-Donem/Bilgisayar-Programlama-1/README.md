@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [1. Dönem](../README.md) › Bilgisayar Programlama I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **Bilgisayar Programlama I** (INF211) için ders notları, laboratuvar, projeler ve slaytlar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/bilgisayar-programlama-1/) da var.
+
 > Python ile algoritma ve programlamaya giriş: veri tipleri, fonksiyonlar, listeler ve dosya işlemleri; haftalık lab ödevleri ve üç proje.
 >
 > *Introduction to algorithms and programming in Python: data types, functions, lists and file handling; weekly lab assignments and three projects.*

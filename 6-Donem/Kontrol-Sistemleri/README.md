@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [6. Dönem](../README.md) › Kontrol Sistemleri
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 6. dönem dersi **Kontrol Sistemleri** (ELEC322) için ders notları ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/kontrol-sistemleri/) da var.
+
 > Sistemlerin matematiksel modellenmesi (transfer fonksiyonu, durum uzayı), geçici ve kalıcı hal analizi, kararlılık, kök yer eğrisi, PID ve kompanzatör tasarımı.
 >
 > *Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design.*

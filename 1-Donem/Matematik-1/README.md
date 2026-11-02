@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [1. Dönem](../README.md) › Matematik I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **Matematik I** (MAT101) için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/matematik-1/) da var.
+
 > Tek değişkenli fonksiyonlarda limit, süreklilik, türev ve integral ile uygulamaları.
 >
 > *Limits, continuity, derivatives and integrals of single-variable functions and their applications.*

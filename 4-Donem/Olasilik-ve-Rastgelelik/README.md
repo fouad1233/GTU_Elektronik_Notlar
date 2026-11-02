@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › Olasılık ve Rastgelelik
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **Olasılık ve Rastgelelik** (ELM218) için ders notları ve ödevler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/olasilik-ve-rastgelelik/) da var.
+
 > Olasılık aksiyomları, koşullu olasılık ve Bayes kuralı, rastgele değişkenler ve dağılımlar, moment üreten fonksiyonlar, limit teoremleri ve rastgele süreçler.
 >
 > *Probability axioms, conditional probability and Bayes' rule, random variables and distributions, moment-generating functions, limit theorems and random processes.*

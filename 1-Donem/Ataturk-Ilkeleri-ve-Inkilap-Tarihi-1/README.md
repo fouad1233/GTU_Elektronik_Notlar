@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [1. Dönem](../README.md) › Atatürk İlkeleri ve İnkılap Tarihi I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **Atatürk İlkeleri ve İnkılap Tarihi I** için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/ataturk-ilkeleri-ve-inkilap-tarihi-1/) da var.
+
 > Osmanlı Devleti'nin son dönemi, Millî Mücadele ve Türkiye Cumhuriyeti'nin kuruluş süreci.
 >
 > *The late Ottoman period, the Turkish War of Independence and the founding of the Republic of Türkiye.*

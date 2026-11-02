@@ -11,3 +11,6 @@
 .DS_Store
 __pycache__/
 *.pyc
+# araclar/ önbellekleri / caches of the generator scripts
+araclar/.make_readmes_cache.json
+araclar/.thumb_cache/

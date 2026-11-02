@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [5. Dönem](../README.md) › Elektromekanik Enerji Dönüşümü
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Elektromekanik Enerji Dönüşümü** için ders notları. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/elektromekanik-enerji-donusumu/) da var.
+
 > Manyetik devreler, transformatörler, elektromekanik enerji dönüşümü ilkeleri, DC ve AC makineler.
 >
 > *Magnetic circuits, transformers, principles of electromechanical energy conversion, DC and AC machines.*

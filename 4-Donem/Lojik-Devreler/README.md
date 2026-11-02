@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › Lojik Devreler ve Tasarım
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **Lojik Devreler ve Tasarım** (ELM234 / ELM235) için ders notları, çıkmış sorular, ödevler ve laboratuvar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/lojik-devreler/) da var.
+
 > Sayı sistemleri, Boole cebri ve lojik kapılar, kombinasyonel ve ardışıl devreler, sonlu durum makineleri ve ALU tasarımı; SystemVerilog ile laboratuvar çalışmaları.
 >
 > *Number systems, Boolean algebra and logic gates, combinational and sequential circuits, finite-state machines and ALU design; SystemVerilog lab work.*

@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › Elektronik I Laboratuvarı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **Elektronik I Laboratuvarı** (ELEC237) için laboratuvar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/elektronik-1-lab/) da var.
+
 > Elektronik I deneyleri, LTspice simülasyonları ve µA741 op-amp devreleriyle (toplayıcı, fark alıcı, integral alıcı) laboratuvar finali.
 >
 > *Electronics I experiments, LTspice simulations and a lab final with µA741 op-amp circuits (adder, subtractor, integrator).*

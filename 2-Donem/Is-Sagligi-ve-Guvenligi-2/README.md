@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [2. Dönem](../README.md) › İş Sağlığı ve Güvenliği II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **İş Sağlığı ve Güvenliği II** için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/is-sagligi-ve-guvenligi-2/) da var.
+
 > İş sağlığı ve güvenliği mevzuatı, risk değerlendirmesi ve korunma yöntemleri.
 >
 > *Occupational health and safety legislation, risk assessment and protective measures.*

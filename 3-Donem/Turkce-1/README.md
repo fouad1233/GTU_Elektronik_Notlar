@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [3. Dönem](../README.md) › Türkçe I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **Türkçe I** (TÜR101) için ders notları, çıkmış sorular ve ödevler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/turkce-1/) da var.
+
 > Türk dili: biçim bilgisi (morfoloji), cümle bilgisi (sentaks) ve yazılı anlatım uygulamaları.
 >
 > *Turkish language: morphology, syntax and written-expression exercises.*

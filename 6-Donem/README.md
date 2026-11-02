@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 6. Dönem
 
-GTÜ Elektronik Mühendisliği 6. dönem dersleri: **6 ders**, 819 dosya, 45 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 6. dönem dersleri: **6 ders**, 819 dosya, 45 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/6/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|

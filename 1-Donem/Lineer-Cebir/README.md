@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [1. Dönem](../README.md) › Lineer Cebir
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **Lineer Cebir** için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/lineer-cebir/) da var.
+
 > Matrisler ve determinantlar, lineer denklem sistemleri, vektör uzayları, lineer dönüşümler, özdeğerler ve özvektörler.
 >
 > *Matrices and determinants, systems of linear equations, vector spaces, linear transformations, eigenvalues and eigenvectors.*

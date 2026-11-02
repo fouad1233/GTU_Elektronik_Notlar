@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [1. Dönem](../README.md) › Fizik I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **Fizik I** (FİZ121) için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/fizik-1/) da var.
+
 > Mekanik: vektörler, kinematik, Newton yasaları, iş ve enerji, momentum ve dönme hareketi.
 >
 > *Mechanics: vectors, kinematics, Newton's laws, work and energy, momentum and rotational motion.*

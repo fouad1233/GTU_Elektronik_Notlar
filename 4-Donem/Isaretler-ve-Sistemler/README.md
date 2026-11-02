@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › İşaretler ve Sistemler
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **İşaretler ve Sistemler** (ELM264) için ders notları ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/isaretler-ve-sistemler/) da var.
+
 > Sürekli ve ayrık zamanlı işaretler, LTI sistemler ve konvolüsyon, Fourier serileri ve dönüşümleri, Laplace ve z-dönüşümü.
 >
 > *Continuous- and discrete-time signals, LTI systems and convolution, Fourier series and transforms, Laplace and z-transforms.*

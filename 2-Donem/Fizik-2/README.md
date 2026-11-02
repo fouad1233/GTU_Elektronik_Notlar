@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [2. Dönem](../README.md) › Fizik II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **Fizik II** için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/fizik-2/) da var.
+
 > Elektrik ve manyetizma: elektrik alan, Gauss yasası, elektrik potansiyeli, kapasitans, akım ve direnç, manyetik alan ve indüksiyon.
 >
 > *Electricity and magnetism: electric fields, Gauss's law, electric potential, capacitance, current and resistance, magnetic fields and induction.*

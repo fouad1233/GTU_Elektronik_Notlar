@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [5. Dönem](../README.md) › Mikroişlemciler
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Mikroişlemciler** (ELEC334) için çıkmış sorular, ödevler ve slaytlar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/mikroislemciler/) da var.
+
 > ARM Cortex-M0+ mimarisi ve STM32G0 mikrodenetleyicisi: Assembly ve C ile programlama, bellek ve çevre birimleri, kesmeler ve zamanlayıcılar.
 >
 > *ARM Cortex-M0+ architecture and the STM32G0 microcontroller: programming in assembly and C, memory and peripherals, interrupts and timers.*

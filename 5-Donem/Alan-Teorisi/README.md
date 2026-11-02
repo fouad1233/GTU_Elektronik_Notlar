@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [5. Dönem](../README.md) › Elektromanyetik Alan Teorisi
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Elektromanyetik Alan Teorisi** (ELM341) için ders notları, çıkmış sorular ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/alan-teorisi/) da var.
+
 > Vektör analizi, elektrostatik (Coulomb ve Gauss yasaları, potansiyel, sınır koşulları), manyetostatik ve Maxwell denklemleri.
 >
 > *Vector analysis, electrostatics (Coulomb's and Gauss's laws, potential, boundary conditions), magnetostatics and Maxwell's equations.*

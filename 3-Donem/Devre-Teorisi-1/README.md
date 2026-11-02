@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [3. Dönem](../README.md) › Devre Teorisi I
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **Devre Teorisi I** için ders notları, çıkmış sorular, ödevler ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/devre-teorisi-1/) da var.
+
 > Temel devre analizi: Kirchhoff yasaları, düğüm ve çevre yöntemleri, Thevenin/Norton eşdeğerleri, birinci ve ikinci dereceden devreler.
 >
 > *Basic circuit analysis: Kirchhoff's laws, nodal and mesh analysis, Thevenin/Norton equivalents, first- and second-order circuits.*

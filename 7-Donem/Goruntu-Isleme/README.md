@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [7. Dönem](../README.md) › Görüntü İşleme
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 7. dönem dersi **Görüntü İşleme** (ELM463) için ders notları, ödevler, laboratuvar ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/goruntu-isleme/) da var.
+
 > Sayısal görüntü temelleri, nokta işlemleri ve histogram, uzamsal filtreleme, morfolojik işlemler ve bölütleme; Python laboratuvarları ve trafik işareti tespiti projesi.
 >
 > *Digital image fundamentals, point operations and histograms, spatial filtering, morphological operations and segmentation; Python labs and a traffic-sign detection project.*

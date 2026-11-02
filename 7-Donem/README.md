@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 7. Dönem
 
-GTÜ Elektronik Mühendisliği 7. dönem dersleri: **3 ders**, 858 dosya, 38 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 7. dönem dersleri: **3 ders**, 858 dosya, 38 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/7/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|

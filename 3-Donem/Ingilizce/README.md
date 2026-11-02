@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [3. Dönem](../README.md) › İngilizce
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **İngilizce** için ders notları. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/ingilizce/) da var.
+
 > İngilizce dersi: ders materyalleri ve vize için kelime listesi.
 >
 > *English course: course materials and a vocabulary list for the midterm.*

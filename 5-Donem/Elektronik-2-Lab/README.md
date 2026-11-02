@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [5. Dönem](../README.md) › Elektronik II Laboratuvarı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Elektronik II Laboratuvarı** (ELEC337) için laboratuvar ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/elektronik-2-lab/) da var.
+
 > Tek BJT'li kuvvetlendiricilerin düşük ve yüksek frekans davranışı, LTspice simülasyonları, laboratuvar finali ve fark kuvvetlendiricisi projesi.
 >
 > *Low- and high-frequency behaviour of single-BJT amplifiers, LTspice simulations, the lab final and a differential-amplifier project.*

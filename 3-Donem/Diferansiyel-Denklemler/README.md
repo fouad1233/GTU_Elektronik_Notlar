@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [3. Dönem](../README.md) › Diferansiyel Denklemler
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **Diferansiyel Denklemler** (MAT215) için ders notları ve çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/diferansiyel-denklemler/) da var.
+
 > Birinci mertebeden denklemler, yüksek mertebeden lineer denklemler, Cauchy–Euler denklemi, mertebe indirgeme, seri çözümleri ve Laplace dönüşümü.
 >
 > *First-order equations, higher-order linear equations, the Cauchy–Euler equation, reduction of order, series solutions and the Laplace transform.*

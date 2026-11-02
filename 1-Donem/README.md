@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 1. Dönem
 
-GTÜ Elektronik Mühendisliği 1. dönem dersleri: **8 ders**, 127 dosya. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 1. dönem dersleri: **8 ders**, 127 dosya. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/1/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|

@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [3. Dönem](../README.md) › Elektronik Elemanlar
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **Elektronik Elemanlar** (ELM231) için ders notları, çıkmış sorular ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/elektronik-elemanlar/) da var.
+
 > Yarıiletken fiziği, pn eklemi ve diyotlar, BJT ve MOSFET'in yapısı, çalışması ve kutuplanması.
 >
 > *Semiconductor physics, the pn junction and diodes, and the structure, operation and biasing of BJTs and MOSFETs.*

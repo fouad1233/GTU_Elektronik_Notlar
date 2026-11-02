@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [5. Dönem](../README.md) › Elektronik II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Elektronik II** için ders notları. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/elektronik-2/) da var.
+
 > Çok katlı ve fark kuvvetlendiricileri, akım aynaları, frekans yanıtı, geri besleme ve çıkış katları.
 >
 > *Multistage and differential amplifiers, current mirrors, frequency response, feedback and output stages.*

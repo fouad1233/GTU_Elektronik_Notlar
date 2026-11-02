@@ -4,13 +4,15 @@
 
 ![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 3542](https://img.shields.io/badge/dosya-3542-6e7781) ![dijital not: 204](https://img.shields.io/badge/dijital%20not-204-e36209)
 
-Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının **7 dönemine** (2021–2022 Güz – 2024–2025 Güz) ait ders notları, çıkmış sorular, ödevler, laboratuvar raporları ve projeler.
+🌐 **Web sitesi:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — arama kutulu, mobil uyumlu; ders sayfaları, dijital notlar ve PDF'ler tek tıkla.
+
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının **7 dönemine** (2021–2022 Güz – 2024–2025 Güz) ait **ders notları, çıkmış sorular (vize, final, quiz), ödevler, laboratuvar raporları ve projeler**. Vize ve final çalışırken kullanabileceğiniz PDF notlar arasında Elektromanyetik Alan Teorisi, Analog Haberleşme, İşaretler ve Sistemler, Kontrol Sistemleri, Haberleşme için RF Sistem Tasarımı, Sayısal Haberleşme, Diferansiyel Denklemler, Elektronik II gibi dersler var.
 
 Bu depo, GTÜ Elektronik Mühendisliği mezunu **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)) tarafından hazırlanmıştır. Notların çoğu tablette tutulmuş el yazısı notlardır; önemli bir kısmının LaTeX ile yazılmış, okunması ve aranması kolay **dijital versiyonları** da vardır. Toplam **46 ders**, **3542 dosya** (780 PDF), **204 dijital not** ve **25 proje** bulunur. Tüm içerik öğrenciler için **ücretsizdir**: dilediğiniz gibi indirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz. Faydalı olduysa depoya ⭐ vermeyi unutmayın.
 
 *English speakers: see the [English section](#english) at the end of this page.*
 
-**Bu sayfada:** [Nasıl kullanılır?](#nasıl-kullanılır) · [Dönemler ve dersler](#dönemler-ve-dersler) · [Dijital (LaTeX) notlar](#dijital-latex-notlar) · [Projeler](#projeler) · [Kaynak kitaplar](#kaynak-kitaplar) · [Telif hakları ve kullanım](#telif-hakları-ve-kullanım) · [Katkıda bulunma](#katkıda-bulunma) · [English](#english)
+**Bu sayfada:** [Nasıl kullanılır?](#nasıl-kullanılır) · [Dönemler ve dersler](#dönemler-ve-dersler) · [Dijital (LaTeX) notlar](#dijital-latex-notlar) · [Projeler](#projeler) · [Kaynak kitaplar](#kaynak-kitaplar) · [Sık sorulan sorular](#sık-sorulan-sorular) · [Telif hakları ve kullanım](#telif-hakları-ve-kullanım) · [Katkıda bulunma](#katkıda-bulunma) · [Katkıda bulunanlar](#katkıda-bulunanlar) · [English](#english)
 
 ## Nasıl kullanılır?
 
@@ -24,7 +26,8 @@ GTU_Elektronik_Notlar/
 │       ├── dijital-notlar/     notların LaTeX versiyonları (.tex + .pdf)
 │       ├── cikmis-sorular/     çıkmış sınav soruları
 │       └── …                   (aşağıdaki tabloya bakın)
-└── latex-sablon/              el yazısı görünümlü LaTeX şablonu
+├── latex-sablon/              el yazısı görünümlü LaTeX şablonu
+└── araclar/                   README ve web sitesini üreten betikler
 ```
 
 | Klasör | İçerik |
@@ -214,6 +217,16 @@ Derslerle ilgili diğer kod depoları:
 
 Derslerde kullanılan kaynak kitaplar, ilgili dersin sayfasında **Kaynak Kitaplar** başlığı altında künyeleriyle listelenmiştir (kitapların kendisi telif hakları nedeniyle depoda yer almaz): [Fizik I](1-Donem/Fizik-1/README.md#kaynak-kitaplar) · [Bilgisayar Programlama II](2-Donem/Bilgisayar-Programlama-2/README.md#kaynak-kitaplar) · [Elektronik Elemanlar](3-Donem/Elektronik-Elemanlar/README.md#kaynak-kitaplar) · [Nümerik Analiz](3-Donem/Numerik-Analiz/README.md#kaynak-kitaplar) · [Elektromanyetik Alan Teorisi](5-Donem/Alan-Teorisi/README.md#kaynak-kitaplar) · [Elektromekanik Enerji Dönüşümü](5-Donem/Elektromekanik-Enerji-Donusumu/README.md#kaynak-kitaplar) · [Mikroişlemciler Laboratuvarı](5-Donem/Mikroislemciler-Lab/README.md#kaynak-kitaplar) · [Görüntü İşleme](7-Donem/Goruntu-Isleme/README.md#kaynak-kitaplar) · [Makine Öğrenmesinin Temelleri](7-Donem/Makine-Ogrenmesi/README.md#kaynak-kitaplar).
 
+## Sık sorulan sorular
+
+**GTÜ Elektronik Mühendisliği ders notlarını nereden indirebilirim?** Yukarıdaki tablolardan dersi seçin; her ders sayfasında ders notları, uygulama notları, slaytlar, çıkmış sorular, ödevler, lab föyleri ve projeler listelenir. Aynı içeriği [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/) arama yaparak da bulabilirsiniz.
+
+**Çıkmış sorular var mı?** Evet, birçok dersin vize/final/quiz soruları ilgili dersin **Çıkmış Sorular** bölümündedir (hakları öğretim üyelerine ve GTÜ'ye aittir).
+
+**Dijital notlar güvenilir mi?** Dijital notlar el yazısı notlardan Claude yardımıyla oluşturulmuştur ve hata içerebilir; her zaman orijinal notlara ve resmi ders kaynaklarına bakın. Her dijital notun yanında orijinal el yazısı sayfaların bağlantısı vardır.
+
+**Ücretsiz mi?** Evet. İndirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz.
+
 ## Telif hakları ve kullanım
 
 - El yazısı notlar, dijital notlar, ödev çözümleri, raporlar ve projeler Fouad Aladhami'nin kendi çalışmalarıdır ve öğrencilerin ücretsiz kullanımı için paylaşılmıştır.
@@ -222,13 +235,24 @@ Derslerde kullanılan kaynak kitaplar, ilgili dersin sayfasında **Kaynak Kitapl
 
 ## Katkıda bulunma
 
-Hatalı bir not, eksik bir dosya ya da kırık bir bağlantı görürseniz [issue açabilir](https://github.com/fouad1233/GTU_Elektronik_Notlar/issues) veya pull request gönderebilirsiniz. Dijital notlardaki hataları bildirirken dosya adını ve sayfa numarasını yazmanız yeterli. Kendi notlarınızı eklemek isterseniz ilgili dersin klasör yapısını kullanın.
+Hatalı bir not, eksik bir dosya ya da kırık bir bağlantı görürseniz [issue açabilir](https://github.com/fouad1233/GTU_Elektronik_Notlar/issues) veya pull request gönderebilirsiniz. Dijital notlardaki hataları bildirirken dosya adını ve sayfa numarasını yazmanız yeterli. Kendi notlarınızı eklemek isterseniz ilgili dersin klasör yapısını kullanın. README sayfaları ve web sitesi `araclar/` klasöründeki betiklerle üretilir (bkz. [araclar/README.md](araclar/README.md)).
+
+## Katkıda bulunanlar
+
+| | Kişi | Katkı |
+|---|---|---|
+| <img src="https://github.com/fouad1233.png?size=96" width="48" height="48" alt="fouad1233"> | **[Fouad Aladhami](https://github.com/fouad1233)** (@fouad1233) | El yazısı notlar, ödevler, raporlar ve projeler; depo sahibi ve yöneticisi |
+| 🤖 | **[Claude](https://claude.ai) (Anthropic)** | Dijital (LaTeX) notlar, README'ler ve web sitesi (ortak yazar) |
+
+Tüm katkıcılar: [GitHub katkıcı grafiği](https://github.com/fouad1233/GTU_Elektronik_Notlar/graphs/contributors).
 
 ---
 
 ## English
 
 **GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 3542 files (780 PDFs), 204 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
+
+🌐 **Website:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — searchable, mobile friendly, with English course names and summaries.
 
 ### How to use
 
@@ -345,10 +369,27 @@ To compile a `.tex` yourself you need XeLaTeX (e.g. TeX Live): `latex-sablon/der
 
 Textbooks are listed (title/author only; the books themselves are not in the repository) on the course pages under “Kaynak Kitaplar”: [Physics I](1-Donem/Fizik-1/README.md#kaynak-kitaplar), [Algorithms and Programming II](2-Donem/Bilgisayar-Programlama-2/README.md#kaynak-kitaplar), [Electronic Devices](3-Donem/Elektronik-Elemanlar/README.md#kaynak-kitaplar), [Numerical Analysis](3-Donem/Numerik-Analiz/README.md#kaynak-kitaplar), [Electromagnetic Field Theory](5-Donem/Alan-Teorisi/README.md#kaynak-kitaplar), [Electromechanical Energy Conversion](5-Donem/Elektromekanik-Enerji-Donusumu/README.md#kaynak-kitaplar), [Microprocessors Laboratory](5-Donem/Mikroislemciler-Lab/README.md#kaynak-kitaplar), [Image Processing](7-Donem/Goruntu-Isleme/README.md#kaynak-kitaplar), [Fundamentals of Machine Learning](7-Donem/Makine-Ogrenmesi/README.md#kaynak-kitaplar).
 
+### FAQ
+
+**Where can I download GTU Electronics Engineering lecture notes?** Pick a course in the table above, or use the [website](https://fouad1233.github.io/GTU_Elektronik_Notlar/): every course page lists lecture notes, recitation notes, slides, past exams, homework, lab sheets and projects.
+
+**Are there past exams?** Yes, many courses include past midterms, finals and quizzes (rights belong to the instructors and GTU).
+
+**Are the digital notes reliable?** They were generated with Claude from handwritten notes and may contain errors; always check the originals and the official course material.
+
 ### Copyright
 
 Handwritten notes, digital notes, homework solutions, reports and projects are Fouad Aladhami's own work, shared free of charge for students. Past exams, slides, homework/lab handouts and other course materials belong to their respective instructors and Gebze Technical University and are shared here for educational purposes only — if you hold the rights and want something removed, please [open an issue](https://github.com/fouad1233/GTU_Elektronik_Notlar/issues). Use the solutions to learn, not to copy.
 
 ### Contributing
 
-Found a mistake, a missing file or a broken link? [Open an issue](https://github.com/fouad1233/GTU_Elektronik_Notlar/issues) or send a pull request. For errors in a digital note, the file name and page number are enough.
+Found a mistake, a missing file or a broken link? [Open an issue](https://github.com/fouad1233/GTU_Elektronik_Notlar/issues) or send a pull request. For errors in a digital note, the file name and page number are enough. The READMEs and the website are generated by the scripts in `araclar/` (see [araclar/README.md](araclar/README.md)).
+
+### Contributors
+
+| | Person | Contribution |
+|---|---|---|
+| <img src="https://github.com/fouad1233.png?size=96" width="48" height="48" alt="fouad1233"> | **[Fouad Aladhami](https://github.com/fouad1233)** (@fouad1233) | Handwritten notes, homework, reports and projects; owner and maintainer |
+| 🤖 | **[Claude](https://claude.ai) (Anthropic)** | Digital (LaTeX) notes, READMEs and the website (co-author) |
+
+All contributors: [GitHub contributors graph](https://github.com/fouad1233/GTU_Elektronik_Notlar/graphs/contributors).

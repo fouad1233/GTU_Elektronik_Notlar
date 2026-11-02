@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [2. Dönem](../README.md) › Matematik II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **Matematik II** için ders notları. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/matematik-2/) da var.
+
 > Diziler ve seriler, çok değişkenli fonksiyonlar, kısmi türevler ve katlı integraller.
 >
 > *Sequences and series, functions of several variables, partial derivatives and multiple integrals.*

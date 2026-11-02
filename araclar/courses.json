@@ -1,0 +1,744 @@
+{
+ "github_user": "fouad1233",
+ "repo_slug": "fouad1233/GTU_Elektronik_Notlar",
+ "semesters": {
+  "1": {
+   "term_tr": "2021–2022 Güz",
+   "term_en": "Fall 2021–22"
+  },
+  "2": {
+   "term_tr": "2021–2022 Bahar",
+   "term_en": "Spring 2021–22"
+  },
+  "3": {
+   "term_tr": "2022–2023 Güz",
+   "term_en": "Fall 2022–23"
+  },
+  "4": {
+   "term_tr": "2022–2023 Bahar",
+   "term_en": "Spring 2022–23"
+  },
+  "5": {
+   "term_tr": "2023–2024 Güz",
+   "term_en": "Fall 2023–24"
+  },
+  "6": {
+   "term_tr": "2023–2024 Bahar",
+   "term_en": "Spring 2023–24"
+  },
+  "7": {
+   "term_tr": "2024–2025 Güz",
+   "term_en": "Fall 2024–25"
+  }
+ },
+ "courses": {
+  "1-Donem/Ataturk-Ilkeleri-ve-Inkilap-Tarihi-1": {
+   "semester": 1,
+   "name_tr": "Atatürk İlkeleri ve İnkılap Tarihi I",
+   "name_en": "Atatürk's Principles and History of the Turkish Revolution I",
+   "code": null,
+   "description_tr": "Osmanlı Devleti'nin son dönemi, Millî Mücadele ve Türkiye Cumhuriyeti'nin kuruluş süreci.",
+   "description_en": "The late Ottoman period, the Turkish War of Independence and the founding of the Republic of Türkiye."
+  },
+  "1-Donem/Bilgisayar-Programlama-1": {
+   "semester": 1,
+   "name_tr": "Bilgisayar Programlama I",
+   "name_en": "Algorithms and Programming I",
+   "code": "INF211",
+   "aka": [
+    "INF 211 – Algorithms and Programming I"
+   ],
+   "description_tr": "Python ile algoritma ve programlamaya giriş: veri tipleri, fonksiyonlar, listeler ve dosya işlemleri; haftalık lab ödevleri ve üç proje.",
+   "description_en": "Introduction to algorithms and programming in Python: data types, functions, lists and file handling; weekly lab assignments and three projects.",
+   "repos": [
+    {
+     "name": "Image-Transformation",
+     "url": "https://github.com/fouad1233/Image-Transformation",
+     "kind": "project",
+     "project": "projeler/proje-2-image-transformation",
+     "description_tr": "INF 211 Proje 2: Python ile görüntü dönüşümü (renk temsili, temel görüntü işlemleri).",
+     "description_en": "INF 211 Project 2: image transformation in Python (colour representation, basic image operations)."
+    },
+    {
+     "name": "Euroleague-project",
+     "url": "https://github.com/fouad1233/Euroleague-project",
+     "kind": "project",
+     "project": "projeler/proje-3-euroleague",
+     "description_tr": "INF 211 Proje 3: basketbol turnuvası oluşturma, oynatma ve istatistik (Python).",
+     "description_en": "INF 211 Project 3: create, play and get statistics for a basketball tournament (Python)."
+    }
+   ],
+   "projects": {
+    "projeler/proje-1": {
+     "tr": "Proje 1 – Kaydırmalı bulmaca (sliding puzzle) oyunu",
+     "en": "Project 1 – Sliding puzzle game"
+    },
+    "projeler/proje-2-image-transformation": {
+     "tr": "Proje 2 – Görüntü dönüşümü (Image Transformation)",
+     "en": "Project 2 – Image Transformation"
+    },
+    "projeler/proje-3-euroleague": {
+     "tr": "Proje 3 – EuroLeague basketbol turnuvası",
+     "en": "Project 3 – EuroLeague basketball tournament"
+    }
+   }
+  },
+  "1-Donem/Elektrik-Muhendisligine-Giris": {
+   "semester": 1,
+   "name_tr": "Elektrik Mühendisliğine Giriş",
+   "name_en": "Introduction to Electrical Engineering",
+   "code": "ELM101",
+   "description_tr": "Elektrik-elektronik mühendisliğinin alt alanlarına giriş; elektronik, sinyal işleme ve kriptoloji gibi konularda haftalık tanıtım dersleri.",
+   "description_en": "An introduction to the sub-fields of electrical and electronics engineering, with weekly overview lectures on topics such as electronics, signal processing and cryptology."
+  },
+  "1-Donem/Fizik-1": {
+   "semester": 1,
+   "name_tr": "Fizik I",
+   "name_en": "Physics I",
+   "code": "FİZ121",
+   "aka": [
+    "FİZ 121 / PHYS 121"
+   ],
+   "description_tr": "Mekanik: vektörler, kinematik, Newton yasaları, iş ve enerji, momentum ve dönme hareketi.",
+   "description_en": "Mechanics: vectors, kinematics, Newton's laws, work and energy, momentum and rotational motion.",
+   "textbooks": [
+    {
+     "authors": "H. D. Young, R. A. Freedman",
+     "title": "University Physics",
+     "details": "14th ed., Pearson",
+     "note_tr": "çözüm kılavuzları",
+     "note_en": "solutions manuals",
+     "_verified": "Drive PDF content: 'University Physics' 14th ed. solutions, (c) 2016 Pearson (2026-10-30)"
+    }
+   ]
+  },
+  "1-Donem/Fizik-1-Lab": {
+   "semester": 1,
+   "name_tr": "Fizik I Laboratuvarı",
+   "name_en": "Physics I Laboratory",
+   "code": null,
+   "description_tr": "Mekanik deneyleri: deney raporları ve final çalışma soruları.",
+   "description_en": "Mechanics experiments: lab reports and final practice questions."
+  },
+  "1-Donem/Is-Sagligi-ve-Guvenligi-1": {
+   "semester": 1,
+   "name_tr": "İş Sağlığı ve Güvenliği I",
+   "name_en": "Occupational Health and Safety I",
+   "code": null,
+   "description_tr": "İş kazalarının oluşumu, yüksekte çalışma, elle taşıma ve yapı işlerinde güvenlik; Türkiye'de ve dünyada iş sağlığı ve güvenliği.",
+   "description_en": "How workplace accidents happen, working at height, manual handling and construction safety; occupational health and safety in Türkiye and worldwide.",
+   "sections": {
+    "is-sagligi-ve-guvenligi.pdf": "cikmis-sorular",
+    "isg.pdf": "cikmis-sorular"
+   }
+  },
+  "1-Donem/Lineer-Cebir": {
+   "semester": 1,
+   "name_tr": "Lineer Cebir",
+   "name_en": "Linear Algebra",
+   "code": null,
+   "description_tr": "Matrisler ve determinantlar, lineer denklem sistemleri, vektör uzayları, lineer dönüşümler, özdeğerler ve özvektörler.",
+   "description_en": "Matrices and determinants, systems of linear equations, vector spaces, linear transformations, eigenvalues and eigenvectors."
+  },
+  "1-Donem/Matematik-1": {
+   "semester": 1,
+   "name_tr": "Matematik I",
+   "name_en": "Mathematics I",
+   "code": "MAT101",
+   "description_tr": "Tek değişkenli fonksiyonlarda limit, süreklilik, türev ve integral ile uygulamaları.",
+   "description_en": "Limits, continuity, derivatives and integrals of single-variable functions and their applications."
+  },
+  "2-Donem/Ataturk-Ilkeleri-ve-Inkilap-Tarihi-2": {
+   "semester": 2,
+   "name_tr": "Atatürk İlkeleri ve İnkılap Tarihi II",
+   "name_en": "Atatürk's Principles and History of the Turkish Revolution II",
+   "code": null,
+   "description_tr": "Cumhuriyet döneminin siyasi, hukuki ve toplumsal inkılapları; Atatürk ilkeleri.",
+   "description_en": "Political, legal and social reforms of the Republican era; Atatürk's principles."
+  },
+  "2-Donem/Bilgisayar-Programlama-2": {
+   "semester": 2,
+   "name_tr": "Bilgisayar Programlama II",
+   "name_en": "Algorithms and Programming II",
+   "code": "INF212",
+   "aka": [
+    "INF 212 – Algorithms and Programming II"
+   ],
+   "description_tr": "Python ile veri yapıları ve algoritmalar: ikili arama ve AVL ağaçları, hash tabloları ve graflar; lab ödevleri ve iki proje.",
+   "description_en": "Data structures and algorithms in Python: binary search and AVL trees, hashing and graphs; lab assignments and two projects.",
+   "textbooks": [
+    {
+     "authors": "T. H. Cormen, C. E. Leiserson, R. L. Rivest, C. Stein",
+     "title": "Introduction to Algorithms",
+     "details": "3rd ed., MIT Press"
+    }
+   ],
+   "projects": {
+    "projeler/proje-1": {
+     "tr": "Proje 1 – Dynamic Integration (BST/AVL ağaçlarıyla sayısal integral)",
+     "en": "Project 1 – Dynamic Integration (numerical integration with BST/AVL trees)"
+    },
+    "projeler/proje-2": {
+     "tr": "Proje 2 – Cycle Detection (graflarda çevrim tespiti)",
+     "en": "Project 2 – Cycle Detection in graphs"
+    }
+   }
+  },
+  "2-Donem/Bilim-Metodolojisi": {
+   "semester": 2,
+   "name_tr": "Bilim Metodolojisi",
+   "name_en": "Scientific Methodology",
+   "code": null,
+   "description_tr": "Bilgi ve bilim kavramları, bilimsel yöntem (olgu, hipotez, yasa, teori) ve bilim tarihi.",
+   "description_en": "Knowledge and science, the scientific method (facts, hypotheses, laws, theories) and the history of science."
+  },
+  "2-Donem/Fizik-2": {
+   "semester": 2,
+   "name_tr": "Fizik II",
+   "name_en": "Physics II",
+   "code": null,
+   "description_tr": "Elektrik ve manyetizma: elektrik alan, Gauss yasası, elektrik potansiyeli, kapasitans, akım ve direnç, manyetik alan ve indüksiyon.",
+   "description_en": "Electricity and magnetism: electric fields, Gauss's law, electric potential, capacitance, current and resistance, magnetic fields and induction."
+  },
+  "2-Donem/Is-Sagligi-ve-Guvenligi-2": {
+   "semester": 2,
+   "name_tr": "İş Sağlığı ve Güvenliği II",
+   "name_en": "Occupational Health and Safety II",
+   "code": null,
+   "description_tr": "İş sağlığı ve güvenliği mevzuatı, risk değerlendirmesi ve korunma yöntemleri.",
+   "description_en": "Occupational health and safety legislation, risk assessment and protective measures."
+  },
+  "2-Donem/Malzeme-Bilimi": {
+   "semester": 2,
+   "name_tr": "Malzeme Bilimi",
+   "name_en": "Materials Science",
+   "code": "MBM104",
+   "aka": [
+    "Malzeme Biliminin Temelleri"
+   ],
+   "description_tr": "Atom yapısı ve bağlar, kristal yapılar ve kusurlar, malzemelerin mekanik ve elektriksel özellikleri.",
+   "description_en": "Atomic structure and bonding, crystal structures and defects, mechanical and electrical properties of materials."
+  },
+  "2-Donem/Matematik-2": {
+   "semester": 2,
+   "name_tr": "Matematik II",
+   "name_en": "Mathematics II",
+   "code": null,
+   "description_tr": "Diziler ve seriler, çok değişkenli fonksiyonlar, kısmi türevler ve katlı integraller.",
+   "description_en": "Sequences and series, functions of several variables, partial derivatives and multiple integrals."
+  },
+  "3-Donem/Devre-Laboratuvari-1": {
+   "semester": 3,
+   "name_tr": "Devre Teorisi I Laboratuvarı",
+   "name_en": "Circuit Theory I Laboratory",
+   "code": "ELM226",
+   "description_tr": "Devre Teorisi I deneyleri: ön çalışmalar, Multisim simülasyonları, ölçüm sonuçları ve laboratuvar finali.",
+   "description_en": "Circuit Theory I experiments: pre-lab work, Multisim simulations, measurements and the lab final."
+  },
+  "3-Donem/Devre-Teorisi-1": {
+   "semester": 3,
+   "name_tr": "Devre Teorisi I",
+   "name_en": "Circuit Theory I",
+   "code": null,
+   "description_tr": "Temel devre analizi: Kirchhoff yasaları, düğüm ve çevre yöntemleri, Thevenin/Norton eşdeğerleri, birinci ve ikinci dereceden devreler.",
+   "description_en": "Basic circuit analysis: Kirchhoff's laws, nodal and mesh analysis, Thevenin/Norton equivalents, first- and second-order circuits.",
+   "sections": {
+    "devre-sorulari-final-oncesi-uygulama.pdf": "sinav-calismasi"
+   },
+   "projects": {
+    "projeler": {
+     "tr": "Thevenin eşdeğeri / akım–gerilim karakteristiği (MATLAB)",
+     "en": "Thevenin equivalent / current–voltage characteristic (MATLAB)"
+    }
+   }
+  },
+  "3-Donem/Diferansiyel-Denklemler": {
+   "semester": 3,
+   "name_tr": "Diferansiyel Denklemler",
+   "name_en": "Differential Equations",
+   "code": "MAT215",
+   "description_tr": "Birinci mertebeden denklemler, yüksek mertebeden lineer denklemler, Cauchy–Euler denklemi, mertebe indirgeme, seri çözümleri ve Laplace dönüşümü.",
+   "description_en": "First-order equations, higher-order linear equations, the Cauchy–Euler equation, reduction of order, series solutions and the Laplace transform."
+  },
+  "3-Donem/Elektronik-Elemanlar": {
+   "semester": 3,
+   "name_tr": "Elektronik Elemanlar",
+   "name_en": "Electronic Devices",
+   "code": "ELM231",
+   "description_tr": "Yarıiletken fiziği, pn eklemi ve diyotlar, BJT ve MOSFET'in yapısı, çalışması ve kutuplanması.",
+   "description_en": "Semiconductor physics, the pn junction and diodes, and the structure, operation and biasing of BJTs and MOSFETs.",
+   "textbooks": [
+    {
+     "authors": "A. S. Sedra, K. C. Smith",
+     "title": "Microelectronic Circuits",
+     "details": "7th ed., 2014"
+    },
+    {
+     "authors": "S. M. Sze",
+     "title": "Semiconductor Devices: Physics and Technology",
+     "details": "2nd ed., Wiley, 2002"
+    }
+   ],
+   "projects": {
+    "projeler": {
+     "tr": "BJT kuvvetlendirici tasarımı (ELM 231 proje ve ödevi)",
+     "en": "BJT amplifier design (ELM 231 project and homework)"
+    }
+   }
+  },
+  "3-Donem/Ingilizce": {
+   "semester": 3,
+   "name_tr": "İngilizce",
+   "name_en": "English",
+   "code": null,
+   "description_tr": "İngilizce dersi: ders materyalleri ve vize için kelime listesi.",
+   "description_en": "English course: course materials and a vocabulary list for the midterm."
+  },
+  "3-Donem/Numerik-Analiz": {
+   "semester": 3,
+   "name_tr": "Nümerik Analiz",
+   "name_en": "Numerical Analysis",
+   "code": "MAT214",
+   "aka": [
+    "MAT 214 – Nümerik Yöntemler"
+   ],
+   "description_tr": "Kök bulma, interpolasyon, sayısal türev ve integral, lineer denklem sistemleri için doğrudan ve iteratif yöntemler, diferansiyel denklemlerin sayısal çözümü.",
+   "description_en": "Root finding, interpolation, numerical differentiation and integration, direct and iterative methods for linear systems, and numerical solution of ODEs.",
+   "textbooks": [
+    {
+     "authors": "R. L. Burden, J. D. Faires",
+     "title": "Numerical Analysis",
+     "details": "9th ed., Brooks/Cole – Cengage Learning, 2010",
+     "_verified": "title page of the Drive PDF (2026-10-30)"
+    }
+   ],
+   "repos": [
+    {
+     "name": "Numerical_Analysis_MATLAB",
+     "url": "https://github.com/fouad1233/Numerical_Analysis_MATLAB",
+     "kind": "code",
+     "description_tr": "MATLAB ile interpolasyon (Lagrange, Newton bölünmüş farklar) ve kök bulma (ikiye bölme, sabit nokta, Newton–Raphson, sekant) yöntemleri.",
+     "description_en": "Interpolation (Lagrange, Newton divided differences) and root-finding (bisection, fixed point, Newton–Raphson, secant) methods in MATLAB."
+    }
+   ],
+   "projects": {
+    "projeler/proje-1": {
+     "tr": "Proje ödevi 1 – Lagrange interpolasyonu (MATLAB)",
+     "en": "Assignment 1 – Lagrange interpolation (MATLAB)"
+    },
+    "projeler/proje-2": {
+     "tr": "Proje ödevi 2 (MATLAB)",
+     "en": "Assignment 2 (MATLAB)"
+    },
+    "projeler/proje-3": {
+     "tr": "Proje ödevi 3 – Kübik spline",
+     "en": "Assignment 3 – Cubic spline"
+    },
+    "projeler/proje-4": {
+     "tr": "Proje ödevi 4 – Gauss eliminasyonu ve lineer sistemler",
+     "en": "Assignment 4 – Gaussian elimination and linear systems"
+    }
+   }
+  },
+  "3-Donem/Turkce-1": {
+   "semester": 3,
+   "name_tr": "Türkçe I",
+   "name_en": "Turkish I",
+   "code": "TÜR101",
+   "description_tr": "Türk dili: biçim bilgisi (morfoloji), cümle bilgisi (sentaks) ve yazılı anlatım uygulamaları.",
+   "description_en": "Turkish language: morphology, syntax and written-expression exercises."
+  },
+  "4-Donem/Devre-Laboratuvari-2": {
+   "semester": 4,
+   "name_tr": "Devre Teorisi II Laboratuvarı",
+   "name_en": "Circuit Theory II Laboratory",
+   "code": "ELM228",
+   "description_tr": "Devre Teorisi II deneyleri: deney föyleri, ön çalışmalar, MATLAB hesapları ve Multisim simülasyonları.",
+   "description_en": "Circuit Theory II experiments: lab sheets, pre-lab work, MATLAB calculations and Multisim simulations."
+  },
+  "4-Donem/Devre-Teorisi-2": {
+   "semester": 4,
+   "name_tr": "Devre Teorisi II",
+   "name_en": "Circuit Theory II",
+   "code": "ELM227",
+   "description_tr": "Sinüzoidal kararlı hal ve AC güç, Laplace dönüşümüyle devre analizi, frekans yanıtı ve pasif filtreler, Fourier serileri.",
+   "description_en": "Sinusoidal steady state and AC power, circuit analysis with the Laplace transform, frequency response and passive filters, Fourier series.",
+   "projects": {
+    "projeler": {
+     "tr": "Güç faktörü düzeltme – üç paralel yükün kompanzasyonu (MATLAB/Simulink)",
+     "en": "Power-factor correction for three parallel loads (MATLAB/Simulink)"
+    }
+   }
+  },
+  "4-Donem/Elektronik-1": {
+   "semester": 4,
+   "name_tr": "Elektronik I",
+   "name_en": "Electronics I",
+   "code": null,
+   "description_tr": "Sinyaller ve kuvvetlendiriciler; BJT ve MOSFET kuvvetlendiriciler: DC kutuplama, küçük işaret modelleri, ortak emetör, ortak baz ve ortak kolektör katları.",
+   "description_en": "Signals and amplifiers; BJT and MOSFET amplifiers: DC biasing, small-signal models, common-emitter, common-base and common-collector stages."
+  },
+  "4-Donem/Elektronik-1-Lab": {
+   "semester": 4,
+   "name_tr": "Elektronik I Laboratuvarı",
+   "name_en": "Electronics Laboratory I",
+   "code": "ELEC237",
+   "description_tr": "Elektronik I deneyleri, LTspice simülasyonları ve µA741 op-amp devreleriyle (toplayıcı, fark alıcı, integral alıcı) laboratuvar finali.",
+   "description_en": "Electronics I experiments, LTspice simulations and a lab final with µA741 op-amp circuits (adder, subtractor, integrator)."
+  },
+  "4-Donem/Isaretler-ve-Sistemler": {
+   "semester": 4,
+   "name_tr": "İşaretler ve Sistemler",
+   "name_en": "Signals and Systems",
+   "code": "ELM264",
+   "description_tr": "Sürekli ve ayrık zamanlı işaretler, LTI sistemler ve konvolüsyon, Fourier serileri ve dönüşümleri, Laplace ve z-dönüşümü.",
+   "description_en": "Continuous- and discrete-time signals, LTI systems and convolution, Fourier series and transforms, Laplace and z-transforms.",
+   "projects": {
+    "projeler/proje-1": {
+     "tr": "Proje 1 – İşaret işlemleri: genlik/faz, öteleme ve ölçekleme (MATLAB + analitik çözüm)",
+     "en": "Project 1 – Signal operations: magnitude/phase, shifting and scaling (MATLAB + analytical solution)"
+    },
+    "projeler/proje-2": {
+     "tr": "Proje 2 – Fourier dönüşümü ve genlik/faz spektrumları (MATLAB + analitik çözüm)",
+     "en": "Project 2 – Fourier transform and magnitude/phase spectra (MATLAB + analytical solution)"
+    }
+   }
+  },
+  "4-Donem/Lojik-Devreler": {
+   "semester": 4,
+   "name_tr": "Lojik Devreler ve Tasarım",
+   "name_en": "Logic Circuits and Design",
+   "code": "ELM234 / ELM235",
+   "description_tr": "Sayı sistemleri, Boole cebri ve lojik kapılar, kombinasyonel ve ardışıl devreler, sonlu durum makineleri ve ALU tasarımı; SystemVerilog ile laboratuvar çalışmaları.",
+   "description_en": "Number systems, Boolean algebra and logic gates, combinational and sequential circuits, finite-state machines and ALU design; SystemVerilog lab work."
+  },
+  "4-Donem/Olasilik-ve-Rastgelelik": {
+   "semester": 4,
+   "name_tr": "Olasılık ve Rastgelelik",
+   "name_en": "Probability and Randomness",
+   "code": "ELM218",
+   "description_tr": "Olasılık aksiyomları, koşullu olasılık ve Bayes kuralı, rastgele değişkenler ve dağılımlar, moment üreten fonksiyonlar, limit teoremleri ve rastgele süreçler.",
+   "description_en": "Probability axioms, conditional probability and Bayes' rule, random variables and distributions, moment-generating functions, limit theorems and random processes."
+  },
+  "4-Donem/Turkce-2": {
+   "semester": 4,
+   "name_tr": "Türkçe II",
+   "name_en": "Turkish II",
+   "code": null,
+   "description_tr": "Türk dili II: yazılı anlatım ve kompozisyon ödevleri.",
+   "description_en": "Turkish II: written expression and composition assignments."
+  },
+  "5-Donem/Alan-Teorisi": {
+   "semester": 5,
+   "name_tr": "Elektromanyetik Alan Teorisi",
+   "name_en": "Electromagnetic Field Theory",
+   "code": "ELM341",
+   "description_tr": "Vektör analizi, elektrostatik (Coulomb ve Gauss yasaları, potansiyel, sınır koşulları), manyetostatik ve Maxwell denklemleri.",
+   "description_en": "Vector analysis, electrostatics (Coulomb's and Gauss's laws, potential, boundary conditions), magnetostatics and Maxwell's equations.",
+   "textbooks": [
+    {
+     "authors": "Mithat İdemen",
+     "title": "Elektromagnetik Alan Teorisinin Temelleri",
+     "details": ""
+    },
+    {
+     "authors": "",
+     "title": "Elektromanyetik – çözümlü problemler kitabı",
+     "details": "",
+     "note_tr": "yazar bilgisi yok",
+     "note_en": "author unknown"
+    }
+   ],
+   "projects": {
+    "projeler": {
+     "tr": "Bilgisayar projesi – eş merkezli iletken küreler (elektrostatik, MATLAB)",
+     "en": "Computer project – concentric conducting spheres (electrostatics, MATLAB)"
+    }
+   }
+  },
+  "5-Donem/Analog-Haberlesme": {
+   "semester": 5,
+   "name_tr": "Analog Haberleşme",
+   "name_en": "Analog Communication Systems",
+   "code": "ELM361",
+   "aka": [
+    "ELEC 361 – Analog Communication Systems"
+   ],
+   "description_tr": "Fourier analizi, genlik modülasyonu (AM, DSB, SSB), açı modülasyonu (FM, PM), alıcı yapıları ve haberleşme sistemlerinde gürültü.",
+   "description_en": "Fourier analysis, amplitude modulation (AM, DSB, SSB), angle modulation (FM, PM), receivers and noise in communication systems.",
+   "projects": {
+    "projeler/proje-1": {
+     "tr": "MATLAB Projesi 1 – DSB-LC AM modülatörü ve demodülatörü",
+     "en": "MATLAB Project 1 – DSB-LC AM modulator and demodulator"
+    },
+    "projeler/proje-2": {
+     "tr": "MATLAB Projesi 2 – FM modülasyonu ve demodülasyonu",
+     "en": "MATLAB Project 2 – FM modulation and demodulation"
+    }
+   }
+  },
+  "5-Donem/Elektromekanik-Enerji-Donusumu": {
+   "semester": 5,
+   "name_tr": "Elektromekanik Enerji Dönüşümü",
+   "name_en": "Electromechanical Energy Conversion",
+   "code": null,
+   "description_tr": "Manyetik devreler, transformatörler, elektromekanik enerji dönüşümü ilkeleri, DC ve AC makineler.",
+   "description_en": "Magnetic circuits, transformers, principles of electromechanical energy conversion, DC and AC machines.",
+   "textbooks": [
+    {
+     "authors": "B. S. Guru, H. R. Hızıroğlu",
+     "title": "Electric Machinery and Transformers",
+     "details": "3rd ed., Oxford University Press, 2001",
+     "_verified": "authors/edition read from the title page of the Drive PDF (2026-10-30)"
+    }
+   ]
+  },
+  "5-Donem/Elektronik-2": {
+   "semester": 5,
+   "name_tr": "Elektronik II",
+   "name_en": "Electronics II",
+   "code": null,
+   "description_tr": "Çok katlı ve fark kuvvetlendiricileri, akım aynaları, frekans yanıtı, geri besleme ve çıkış katları.",
+   "description_en": "Multistage and differential amplifiers, current mirrors, frequency response, feedback and output stages."
+  },
+  "5-Donem/Elektronik-2-Lab": {
+   "semester": 5,
+   "name_tr": "Elektronik II Laboratuvarı",
+   "name_en": "Electronics Laboratory II",
+   "code": "ELEC337",
+   "description_tr": "Tek BJT'li kuvvetlendiricilerin düşük ve yüksek frekans davranışı, LTspice simülasyonları, laboratuvar finali ve fark kuvvetlendiricisi projesi.",
+   "description_en": "Low- and high-frequency behaviour of single-BJT amplifiers, LTspice simulations, the lab final and a differential-amplifier project.",
+   "projects": {
+    "projeler/elektronik-2-projesi": {
+     "tr": "Akım aynasıyla kutuplanan fark kuvvetlendiricisi tasarımı (LTspice)",
+     "en": "Differential amplifier biased by a current mirror (LTspice)"
+    }
+   }
+  },
+  "5-Donem/Mikroislemciler": {
+   "semester": 5,
+   "name_tr": "Mikroişlemciler",
+   "name_en": "Microprocessors",
+   "code": "ELEC334",
+   "description_tr": "ARM Cortex-M0+ mimarisi ve STM32G0 mikrodenetleyicisi: Assembly ve C ile programlama, bellek ve çevre birimleri, kesmeler ve zamanlayıcılar.",
+   "description_en": "ARM Cortex-M0+ architecture and the STM32G0 microcontroller: programming in assembly and C, memory and peripherals, interrupts and timers.",
+   "repos": [
+    {
+     "name": "stm32g0_tutorials",
+     "url": "https://github.com/fouad1233/stm32g0_tutorials",
+     "kind": "tutorial",
+     "description_tr": "STM32G031K8 Nucleo kartı için Assembly ve register seviyesinde C örnekleri (GPIO, SysTick, zamanlayıcı ve harici kesmeler).",
+     "description_en": "Assembly and register-level C examples for the STM32G031K8 Nucleo board (GPIO, SysTick, timer and external interrupts)."
+    }
+   ]
+  },
+  "5-Donem/Mikroislemciler-Lab": {
+   "semester": 5,
+   "name_tr": "Mikroişlemciler Laboratuvarı",
+   "name_en": "Microprocessors Laboratory",
+   "code": "ELEC335",
+   "description_tr": "STM32G0 (Nucleo) kartıyla Assembly ve C deneyleri (ör. GPIO, UART) ve laboratuvar raporları.",
+   "description_en": "Assembly and C experiments on the STM32G0 Nucleo board (e.g. GPIO, UART) and lab reports.",
+   "textbooks": [
+    {
+     "authors": "STMicroelectronics",
+     "title": "RM0444 Reference manual – STM32G0x1 advanced Arm-based 32-bit MCUs",
+     "details": ""
+    },
+    {
+     "authors": "STMicroelectronics",
+     "title": "PM0214 Programming manual – STM32 Cortex-M4 MCUs and MPUs",
+     "details": ""
+    }
+   ],
+   "repos": [
+    {
+     "name": "stm32g0_tutorials",
+     "url": "https://github.com/fouad1233/stm32g0_tutorials",
+     "kind": "tutorial",
+     "description_tr": "STM32G031K8 Nucleo kartı için Assembly ve register seviyesinde C örnekleri (GPIO, SysTick, zamanlayıcı ve harici kesmeler).",
+     "description_en": "Assembly and register-level C examples for the STM32G031K8 Nucleo board (GPIO, SysTick, timer and external interrupts)."
+    }
+   ]
+  },
+  "6-Donem/Dalga-Teorisi": {
+   "semester": 6,
+   "name_tr": "Elektromanyetik Dalga Teorisi",
+   "name_en": "Electromagnetic Wave Theory",
+   "code": null,
+   "description_tr": "Zamanla harmonik alanlar ve düzlem dalgalar, kayıplı ortamlar, yansıma ve kırılma (Brewster açısı) ve dalga kılavuzları.",
+   "description_en": "Time-harmonic fields and plane waves, lossy media, reflection and refraction (Brewster angle) and waveguides.",
+   "projects": {
+    "projeler": {
+     "tr": "Kayıpsız dikdörtgen dalga kılavuzu – TE modları",
+     "en": "Lossless rectangular waveguide – TE modes"
+    }
+   }
+  },
+  "6-Donem/Kontrol-Sistemleri": {
+   "semester": 6,
+   "name_tr": "Kontrol Sistemleri",
+   "name_en": "Control Systems",
+   "code": "ELEC322",
+   "description_tr": "Sistemlerin matematiksel modellenmesi (transfer fonksiyonu, durum uzayı), geçici ve kalıcı hal analizi, kararlılık, kök yer eğrisi, PID ve kompanzatör tasarımı.",
+   "description_en": "Mathematical modelling (transfer functions, state space), transient and steady-state analysis, stability, root locus, PID and compensator design.",
+   "repos": [
+    {
+     "name": "DC_Motor_Speed_Control",
+     "url": "https://github.com/fouad1233/DC_Motor_Speed_Control",
+     "kind": "project",
+     "title_tr": "Dönem projesi – DC motor hız kontrolü",
+     "title_en": "Term project – DC motor speed control",
+     "description_tr": "Kontrol Sistemleri dönem projesi: DC motor hız kontrolü – modelleme (transfer fonksiyonu, durum uzayı), geçici/kalıcı hal analizi, PID, kök yer eğrisi ve ön/geri fazlı kompanzatör tasarımı (proje raporu PDF).",
+     "description_en": "Control Systems term project: DC motor speed control – modelling (transfer function, state space), transient/steady-state analysis, PID, root locus and lead/lag compensator design (report PDF)."
+    }
+   ]
+  },
+  "6-Donem/Sayisal-Haberlesme": {
+   "semester": 6,
+   "name_tr": "Sayısal Haberleşme",
+   "name_en": "Digital Communications",
+   "code": "ELM365",
+   "description_tr": "Örnekleme ve darbe kod modülasyonu, temel bant iletim, optimum alıcılar, sayısal modülasyon (ASK, PSK, FSK) ve bit hata olasılığı.",
+   "description_en": "Sampling and pulse-code modulation, baseband transmission, optimum receivers, digital modulation (ASK, PSK, FSK) and bit-error probability.",
+   "repos": [
+    {
+     "name": "Digital_Communcation_Error_Probability_Performanse_of_Signaling",
+     "url": "https://github.com/fouad1233/Digital_Communcation_Error_Probability_Performanse_of_Signaling",
+     "kind": "project",
+     "project": "projeler",
+     "description_tr": "Sayısal Haberleşme projesi: işaretleme yöntemlerinin hata olasılığı performansı (MATLAB).",
+     "description_en": "Digital Communications project: error-probability performance of signalling schemes (MATLAB)."
+    }
+   ],
+   "projects": {
+    "projeler": {
+     "tr": "İşaretleme yöntemlerinin hata olasılığı performansı (MATLAB)",
+     "en": "Error-probability performance of signalling schemes (MATLAB)"
+    }
+   }
+  },
+  "6-Donem/Sayisal-Haberlesme-Lab": {
+   "semester": 6,
+   "name_tr": "Haberleşme Laboratuvarı",
+   "name_en": "Communications Laboratory",
+   "code": "ELM366",
+   "description_tr": "Genlik modülasyonu (DSB-LC/SC), SSB ve FM ile ASK modülasyonu deneyleri: ön çalışmalar ve raporlar.",
+   "description_en": "Experiments on amplitude modulation (DSB-LC/SC), SSB and FM, and ASK modulation: pre-lab work and reports."
+  },
+  "6-Donem/Sayisal-Isaret-Isleme": {
+   "semester": 6,
+   "name_tr": "Sayısal İşaret İşlemenin Temelleri",
+   "name_en": "Fundamentals of Digital Signal Processing",
+   "code": "ELM367",
+   "description_tr": "Ayrık zamanlı işaretler ve sistemler, konvolüsyon, z-dönüşümü, ayrık Fourier dönüşümü ve FFT, sayısal filtre yapıları.",
+   "description_en": "Discrete-time signals and systems, convolution, the z-transform, the discrete Fourier transform and FFT, and digital filter structures."
+  },
+  "6-Donem/Sayisal-Isaret-Isleme-Lab": {
+   "semester": 6,
+   "name_tr": "Sayısal İşaret İşleme Laboratuvarı",
+   "name_en": "Digital Signal Processing Laboratory",
+   "code": "ELM368",
+   "description_tr": "Python/Jupyter ile haftalık DSP uygulamaları (ön çalışmalar ve kodlar) ve yürüme–koşma ayırma projesi.",
+   "description_en": "Weekly DSP exercises in Python/Jupyter (pre-lab work and code) and a walking-vs-running classification project.",
+   "projects": {
+    "projeler": {
+     "tr": "Yürüme ve koşma ayırma – ivmeölçer verisinde filtreleme, FFT ve enerji karşılaştırması",
+     "en": "Walking vs. running classification – filtering, FFT and energy comparison on accelerometer data"
+    }
+   }
+  },
+  "7-Donem/Goruntu-Isleme": {
+   "semester": 7,
+   "name_tr": "Görüntü İşleme",
+   "name_en": "Image Processing",
+   "code": "ELM463",
+   "description_tr": "Sayısal görüntü temelleri, nokta işlemleri ve histogram, uzamsal filtreleme, morfolojik işlemler ve bölütleme; Python laboratuvarları ve trafik işareti tespiti projesi.",
+   "description_en": "Digital image fundamentals, point operations and histograms, spatial filtering, morphological operations and segmentation; Python labs and a traffic-sign detection project.",
+   "textbooks": [
+    {
+     "authors": "R. C. Gonzalez, R. E. Woods",
+     "title": "Digital Image Processing",
+     "details": "3rd ed."
+    }
+   ],
+   "repos": [
+    {
+     "name": "traffic_sign_detection",
+     "url": "https://github.com/fouad1233/traffic_sign_detection",
+     "kind": "project",
+     "project": "projeler",
+     "description_tr": "Görüntü İşleme dönem projesi: klasik yöntemlerle trafik işareti tespiti (Gauss filtresi, adaptif eşikleme, morfoloji, bağlı bileşen analizi, Hough dönüşümü; Jupyter).",
+     "description_en": "Image Processing term project: traffic-sign detection with classical methods (Gaussian blur, adaptive thresholding, morphology, connected components, Hough transform; Jupyter)."
+    },
+    {
+     "name": "image_processing_tutorials",
+     "url": "https://github.com/fouad1233/image_processing_tutorials",
+     "kind": "code",
+     "description_tr": "Görüntü İşleme lab/ödev çözümleri ve bunlar için yazılmış image_analyzer.py yardımcı kütüphanesi (Python).",
+     "description_en": "Image Processing lab/assignment solutions and the image_analyzer.py helper library written for them (Python)."
+    }
+   ],
+   "projects": {
+    "projeler": {
+     "tr": "Görüntü işleme ile trafik işareti tespiti",
+     "en": "Traffic-sign detection with image processing"
+    }
+   }
+  },
+  "7-Donem/Makine-Ogrenmesi": {
+   "semester": 7,
+   "name_tr": "Makine Öğrenmesinin Temelleri",
+   "name_en": "Fundamentals of Machine Learning",
+   "code": "ELM472",
+   "description_tr": "Gözetimli ve gözetimsiz öğrenme, regresyon ve sınıflandırma, Bayesçi karar teorisi, boyut azaltma, kümeleme ve anomali tespiti, yapay sinir ağlarına giriş.",
+   "description_en": "Supervised and unsupervised learning, regression and classification, Bayesian decision theory, dimensionality reduction, clustering and anomaly detection, and an introduction to neural networks.",
+   "textbooks": [
+    {
+     "authors": "E. Alpaydın",
+     "title": "Introduction to Machine Learning",
+     "details": "3rd ed., MIT Press, 2014"
+    },
+    {
+     "authors": "R. O. Duda, P. E. Hart, D. G. Stork",
+     "title": "Pattern Classification",
+     "details": "2nd ed., Wiley, 2001"
+    },
+    {
+     "authors": "H. Brink, J. W. Richards, M. Fetherolf",
+     "title": "Real-World Machine Learning",
+     "details": "Manning"
+    }
+   ],
+   "repos": [
+    {
+     "name": "machine_learning_tutorials",
+     "url": "https://github.com/fouad1233/machine_learning_tutorials",
+     "kind": "code",
+     "description_tr": "Makine öğrenmesi ödev ve uygulama çalışmaları (Python).",
+     "description_en": "Machine-learning assignments and exercises (Python)."
+    }
+   ],
+   "projects": {
+    "projeler": {
+     "tr": "Şehirlerde anomali tespiti (yörünge kümeleme)",
+     "en": "Anomaly detection in cities (trajectory clustering)"
+    }
+   }
+  },
+  "7-Donem/RF-Tasarim": {
+   "semester": 7,
+   "name_tr": "Haberleşme için RF Sistem Tasarımı",
+   "name_en": "RF System Design for Communications",
+   "code": "ELM667",
+   "description_tr": "RF alıcı-verici sistemleri: kazanç, gürültü, doğrusalsızlık (P1dB, IP3) ve sistem bütçesi; 4G LTE dönem projesi.",
+   "description_en": "RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project.",
+   "projects": {
+    "projeler": {
+     "tr": "4G LTE ağ mimarisi, OFDM ve RF tasarımı (dönem projesi)",
+     "en": "4G LTE network architecture, OFDM and RF design (term project)"
+    }
+   }
+  }
+ }
+}

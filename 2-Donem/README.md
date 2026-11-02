@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 2. Dönem
 
-GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 224 dosya, 2 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır.
+GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 224 dosya, 2 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/2/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|

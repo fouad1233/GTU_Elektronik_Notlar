@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [3. Dönem](../README.md) › Nümerik Analiz
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **Nümerik Analiz** (MAT214) için ders notları, çıkmış sorular ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/numerik-analiz/) da var.
+
 > Kök bulma, interpolasyon, sayısal türev ve integral, lineer denklem sistemleri için doğrudan ve iteratif yöntemler, diferansiyel denklemlerin sayısal çözümü.
 >
 > *Root finding, interpolation, numerical differentiation and integration, direct and iterative methods for linear systems, and numerical solution of ODEs.*

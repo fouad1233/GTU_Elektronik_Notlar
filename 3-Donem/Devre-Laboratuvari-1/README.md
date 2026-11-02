@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [3. Dönem](../README.md) › Devre Teorisi I Laboratuvarı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **Devre Teorisi I Laboratuvarı** (ELM226) için laboratuvar. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/devre-laboratuvari-1/) da var.
+
 > Devre Teorisi I deneyleri: ön çalışmalar, Multisim simülasyonları, ölçüm sonuçları ve laboratuvar finali.
 >
 > *Circuit Theory I experiments: pre-lab work, Multisim simulations, measurements and the lab final.*

@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [6. Dönem](../README.md) › Elektromanyetik Dalga Teorisi
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 6. dönem dersi **Elektromanyetik Dalga Teorisi** için ders notları, ödevler ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/dalga-teorisi/) da var.
+
 > Zamanla harmonik alanlar ve düzlem dalgalar, kayıplı ortamlar, yansıma ve kırılma (Brewster açısı) ve dalga kılavuzları.
 >
 > *Time-harmonic fields and plane waves, lossy media, reflection and refraction (Brewster angle) and waveguides.*

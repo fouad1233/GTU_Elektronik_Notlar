@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [4. Dönem](../README.md) › Devre Teorisi II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **Devre Teorisi II** (ELM227) için ders notları, ödevler ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/devre-teorisi-2/) da var.
+
 > Sinüzoidal kararlı hal ve AC güç, Laplace dönüşümüyle devre analizi, frekans yanıtı ve pasif filtreler, Fourier serileri.
 >
 > *Sinusoidal steady state and AC power, circuit analysis with the Laplace transform, frequency response and passive filters, Fourier series.*

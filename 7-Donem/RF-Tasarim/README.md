@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [7. Dönem](../README.md) › Haberleşme için RF Sistem Tasarımı
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 7. dönem dersi **Haberleşme için RF Sistem Tasarımı** (ELM667) için ders notları, ödevler ve projeler. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/rf-tasarim/) da var.
+
 > RF alıcı-verici sistemleri: kazanç, gürültü, doğrusalsızlık (P1dB, IP3) ve sistem bütçesi; 4G LTE dönem projesi.
 >
 > *RF transceiver systems: gain, noise, nonlinearity (P1dB, IP3) and system budgets; a 4G LTE term project.*

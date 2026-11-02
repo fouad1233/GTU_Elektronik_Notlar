@@ -4,6 +4,8 @@
 
 [Ana sayfa](../../README.md) › [2. Dönem](../README.md) › Atatürk İlkeleri ve İnkılap Tarihi II
 
+Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **Atatürk İlkeleri ve İnkılap Tarihi II** için çıkmış sorular. 🌐 Aynı içerik [web sitesinde](https://fouad1233.github.io/GTU_Elektronik_Notlar/ders/ataturk-ilkeleri-ve-inkilap-tarihi-2/) da var.
+
 > Cumhuriyet döneminin siyasi, hukuki ve toplumsal inkılapları; Atatürk ilkeleri.
 >
 > *Political, legal and social reforms of the Republican era; Atatürk's principles.*
