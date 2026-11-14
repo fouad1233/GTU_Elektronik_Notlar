@@ -568,6 +568,17 @@ class Site:
                 ('Hangi derslerin dijital notları var?',
                  'Örneğin %s ve diğerleri. Tam liste için <a href="%s">dijital notlar</a> sayfasına bakın.'
                  % (esc(examples), dig_link)),
+                ('GTÜ Elektronik Mühendisliği\'nde hangi dersler var?',
+                 'Bu sitede %d dersin sayfası bulunuyor: %s. Her dönem sayfasında o dönemin dersleri, ders kodları ve '
+                 'materyalleri listelenir. Güncel ve resmi öğretim planı için '
+                 '<a href="https://www.gtu.edu.tr/" rel="noopener">gtu.edu.tr</a> adresine bakın.' % (
+                     self.ncourses, ', '.join('<a href="%s%s">%d. dönem</a>' % (root, self.sem_url(x, lang), x)
+                                              for x in self.sems))),
+                ('Bu site GTÜ\'nün resmi sitesi mi?',
+                 'Hayır. Burası, Gebze Teknik Üniversitesi (GTÜ, GTU) Elektronik Mühendisliği mezunu bir öğrencinin kendi '
+                 'ders notlarını paylaştığı gayriresmi ve ücretsiz bir arşivdir. Bölümle ilgili resmi duyuru, öğretim planı ve '
+                 'iletişim bilgileri için <a href="https://www.gtu.edu.tr/" rel="noopener">üniversitenin resmi sitesini</a> '
+                 'kullanın.'),
                 ('Eksik veya hatalı bir şey gördüm, nasıl katkı yapabilirim?',
                  'GitHub\'da <a href="%s/issues" rel="noopener">issue açabilir</a> ya da pull request '
                  'gönderebilirsiniz. Kendi notlarınızı paylaşmak isterseniz de aynı yoldan ulaşın.' % GH),
@@ -598,6 +609,16 @@ class Site:
                  'Most notes and exams are written in Turkish, with technical terms often in English. Course names, '
                  'summaries and the navigation of this site are available in English, and the titles of the digital '
                  'notes are translated into English.'),
+                ('Which courses does GTU Electronics Engineering have?',
+                 'This site has pages for %d courses: %s. Each semester page lists that semester\'s courses, course codes and '
+                 'materials. For the current official curriculum, see '
+                 '<a href="https://www.gtu.edu.tr/" rel="noopener">gtu.edu.tr</a>.' % (
+                     self.ncourses, ', '.join('<a href="%s%s">semester %d</a>' % (root, self.sem_url(x, lang), x)
+                                              for x in self.sems))),
+                ('Is this an official Gebze Technical University website?',
+                 'No. It is an unofficial, free archive where a graduate of Electronics Engineering at Gebze Technical '
+                 'University (GTU, Turkish: GTÜ) shares his own course notes. For official announcements, the curriculum and '
+                 'contact details, use the <a href="https://www.gtu.edu.tr/" rel="noopener">university\'s official website</a>.'),
                 ('I found a mistake or something is missing — how can I contribute?',
                  'Open an <a href="%s/issues" rel="noopener">issue</a> or send a pull request on GitHub. You can reach '
                  'out the same way if you would like to share your own notes.' % GH),
@@ -628,6 +649,31 @@ class Site:
         body += '<h2 id="%s">%s</h2><div class="grid">%s</div>' % (
             tx(lang, 'donemler', 'courses'), tx(lang, 'Dönemler ve dersler', 'Semesters and courses'),
             ''.join(self.sem_card(s, root, lang) for s in self.sems))
+        if lang == 'tr':
+            body += (
+                '<h2 id="hakkinda">GTÜ Elektronik Mühendisliği hakkında</h2><div class="prose">'
+                '<p><strong>GTÜ Elektronik Mühendisliği</strong> (Gebze Teknik Üniversitesi Elektronik Mühendisliği Bölümü; '
+                'İngilizce yazımıyla GTU Elektronik Mühendisliği), Kocaeli\'nin Gebze ilçesindeki Gebze Teknik '
+                'Üniversitesi\'nin Mühendislik Fakültesi\'ne bağlı bir lisans programıdır. Program; devre teorisi, analog ve '
+                'sayısal elektronik, işaretler ve sistemler, haberleşme, elektromanyetik, kontrol sistemleri, mikroişlemciler '
+                've sayısal işaret işleme gibi alanları kapsar.</p>'
+                '<p>Bu arşiv, programın 2021–2025 yılları arasındaki %d dönemine ait <strong>%d dersin</strong> notlarını, '
+                'çıkmış sınav sorularını, ödevlerini, laboratuvar raporlarını ve projelerini tek yerde toplar. Aradığınız dersi '
+                'yukarıdaki dönem listesinden ya da arama kutusundan bulabilirsiniz. Site gayriresmidir; resmi bilgiler için '
+                '<a href="https://www.gtu.edu.tr/" rel="noopener">gtu.edu.tr</a> adresine bakın.</p></div>'
+                % (len(self.sems), self.ncourses))
+        else:
+            body += (
+                '<h2 id="about">About GTU Electronics Engineering</h2><div class="prose">'
+                '<p><strong>GTU Electronics Engineering</strong> (Turkish: <span lang="tr">GTÜ Elektronik Mühendisliği</span>) is '
+                'an undergraduate programme of the Faculty of Engineering at Gebze Technical University in Gebze, Kocaeli, '
+                'Turkey. It covers circuit theory, analog and digital electronics, signals and systems, communications, '
+                'electromagnetics, control systems, microprocessors and digital signal processing.</p>'
+                '<p>This archive collects the notes, past exam questions, homework, lab reports and projects of '
+                '<strong>%d courses</strong> from %d semesters of the programme (2021–2025) in one place. Find a course in the '
+                'semester list above or with the search box. The site is unofficial; for official information see '
+                '<a href="https://www.gtu.edu.tr/" rel="noopener">gtu.edu.tr</a>.</p></div>'
+                % (self.ncourses, len(self.sems)))
         chips = ''.join('<li><a href="%s%s">%s</a> · %d</li>' % (
             root, self.course_url(c, lang) + '#dijital-notlar', esc(self.cname(c, lang)), len(c.digital)) for c in top)
         if lang == 'tr':
@@ -668,7 +714,24 @@ class Site:
                 'alternateName': [SITE_EN, 'GTÜ Elektronik Notları'] if lang == 'tr' else [SITE_TR, 'GTU Electronics Notes'],
                 'url': BASE + '/' + url, 'inLanguage': lang, 'description': desc,
                 'author': {'@type': 'Person', 'name': AUTHOR, 'url': 'https://github.com/' + USER}}
-        ld = {'@context': 'https://schema.org', '@graph': [site]}
+        uni = {'@type': 'CollegeOrUniversity', 'name': tx(lang, 'Gebze Teknik Üniversitesi', 'Gebze Technical University'),
+               'alternateName': ['GTÜ', 'GTU', tx(lang, 'Gebze Technical University', 'Gebze Teknik Üniversitesi')],
+               'url': 'https://www.gtu.edu.tr/'}
+        site['about'] = {'@type': 'EducationalOccupationalProgram',
+                         'name': tx(lang, 'GTÜ Elektronik Mühendisliği', 'GTU Electronics Engineering'),
+                         'alternateName': ['Gebze Teknik Üniversitesi Elektronik Mühendisliği', 'GTU Elektronik Mühendisliği',
+                                           'Gebze Technical University Electronics Engineering'],
+                         'provider': uni}
+        site['keywords'] = tx(lang, 'GTÜ Elektronik Mühendisliği, GTU Elektronik Mühendisliği, Gebze Teknik Üniversitesi '
+                              'Elektronik Mühendisliği, ders notları, çıkmış sorular, vize, final, lab raporları',
+                              'GTU Electronics Engineering, Gebze Technical University, lecture notes, past exams, lab reports')
+        strip = lambda h: re.sub(r'<[^>]+>', '', h)
+        faq_ld = {'@type': 'FAQPage', '@id': BASE + '/' + url + '#faq', 'inLanguage': lang, 'mainEntity': [
+            {'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': strip(a)}} for q, a in faq]}
+        sems_ld = {'@type': 'ItemList', 'name': tx(lang, 'GTÜ Elektronik Mühendisliği dönemleri', 'GTU Electronics Engineering semesters'),
+                   'itemListElement': [{'@type': 'ListItem', 'position': k + 1, 'url': BASE + '/' + self.sem_url(x, lang),
+                                        'name': tx(lang, '%d. Dönem' % x, 'Semester %d' % x)} for k, x in enumerate(self.sems)]}
+        ld = {'@context': 'https://schema.org', '@graph': [site, faq_ld, sems_ld]}
         self.write(url + 'index.html', self.layout(url, title, desc, body, ld=ld, lang=lang, other=other), pri(lang, 1.0))
         self.search[lang].append({'t': tx(lang, SITE_TR, SITE_EN), 'u': url, 'y': tx(lang, 'Sayfa', 'Page'),
                                   'k': 'gtu gebze technical university gebze teknik universitesi ana sayfa home'})
