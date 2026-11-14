@@ -12,7 +12,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **İ
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [1. Dönem](../README.md) · 2021–2022 Güz | — | Occupational Health and Safety I | 8 slayt · 4 çıkmış sınav · 6 sınav çalışması |
+| [1. Dönem](../README.md) · 2021–2022 Güz | — | Occupational Health and Safety I | 8 slayt · 5 çıkmış sınav · 6 sınav çalışması |
 
 **Bu sayfada:** [Slaytlar](#slaytlar) · [Çıkmış Sorular](#çıkmış-sorular) · [Final/Vize Çalışması](#finalvize-çalışması)
 
@@ -35,10 +35,11 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **İ
 |---|---|---|
 | [is sagligi ve guvenligi](is-sagligi-ve-guvenligi.pdf) | PDF | 27 s. |
 | [isg](isg.pdf) | PDF | 11 s. |
+| [`cikmis-sorular/cevaplar-foto.jpg`](cikmis-sorular/cevaplar-foto.jpg) | Görsel |  |
 
 | Klasör | Dosyalar |
 |---|---|
-| [**Final**](cikmis-sorular/final/) | [`IMG-20220106-WA0019.jpg`](cikmis-sorular/final/IMG-20220106-WA0019.jpg) |
+| [**Final**](cikmis-sorular/final/) | 8 görsel: [1](cikmis-sorular/final/IMG-20220106-WA0014.jpg) · [2](cikmis-sorular/final/IMG-20220106-WA0015.jpg) · [3](cikmis-sorular/final/IMG-20220106-WA0016.jpg) · [4](cikmis-sorular/final/IMG-20220106-WA0017.jpg) · [5](cikmis-sorular/final/IMG-20220106-WA0018.jpg) · [6](cikmis-sorular/final/IMG-20220106-WA0019.jpg) · [7](cikmis-sorular/final/IMG-20220106-WA0020.jpg) · [8](cikmis-sorular/final/IMG-20220106-WA0021.jpg) |
 | [**Vize**](cikmis-sorular/vize/) | [`vize-1.jpg`](cikmis-sorular/vize/vize-1.jpg) · [`vize-2.jpg`](cikmis-sorular/vize/vize-2.jpg) · [`vize-3.jpg`](cikmis-sorular/vize/vize-3.jpg) |
 
 ## Final/Vize Çalışması
@@ -58,4 +59,4 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **İ
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Occupational Health and Safety I* — Semester 1, Fall 2021–22. How workplace accidents happen, working at height, manual handling and construction safety; occupational health and safety in Türkiye and worldwide. This page lists: 8 slide decks, 4 past exams, 6 exam-prep files. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Occupational Health and Safety I* — Semester 1, Fall 2021–22. How workplace accidents happen, working at height, manual handling and construction safety; occupational health and safety in Türkiye and worldwide. This page lists: 8 slide decks, 5 past exams, 6 exam-prep files. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

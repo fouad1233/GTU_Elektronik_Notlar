@@ -12,7 +12,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **N�
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [3. Dönem](../README.md) · 2022–2023 Güz | MAT214 | Numerical Analysis | 15 ders notu · 9 dijital not · 4 çıkmış sınav · 4 proje |
+| [3. Dönem](../README.md) · 2022–2023 Güz | MAT214 | Numerical Analysis | 16 ders notu · 9 dijital not · 4 çıkmış sınav · 4 proje |
 
 Diğer adı: *MAT 214 – Nümerik Yöntemler*
 
@@ -36,6 +36,7 @@ Diğer adı: *MAT 214 – Nümerik Yöntemler*
 | [numerik 11.hafta](ders-notlari/numerik-11.hafta.pdf) | PDF | 9 s. | [PDF](dijital-notlar/numerik-11.hafta.pdf) |
 | [numerik anlaiz 11.hafta ders notu ve uygulamasi](ders-notlari/numerik-anlaiz-11.hafta-ders-notu-ve-uygulamasi.pdf) | PDF | 13 s. · 11,9 MB | [PDF](dijital-notlar/numerik-anlaiz-11.hafta-ders-notu-ve-uygulamasi.pdf) |
 | [nunerik analiz 12.hafta ders notu ve uygulamasi](ders-notlari/nunerik-analiz-12.hafta-ders-notu-ve-uygulamasi.pdf) | PDF | 10 s. |  |
+| [Izlence 2022-3 MAT 214](ders-notlari/Izlence_2022-3-MAT-214.docx) | Word |  |  |
 | [numerik analiz notlari vize sonrasi](ders-notlari/numerik-analiz-notlari-vize-sonrasi.pdf) | PDF | 21 s. · 9,7 MB |  |
 
 ## Dijital Notlar (LaTeX)
@@ -127,4 +128,4 @@ Derste kullanılan kaynaklar (kitapların kendisi telif hakları nedeniyle depod
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Numerical Analysis (MAT214)* — Semester 3, Fall 2022–23. Root finding, interpolation, numerical differentiation and integration, direct and iterative methods for linear systems, and numerical solution of ODEs. This page lists: 15 lecture notes, 9 digital notes, 4 past exams, 4 projects. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Numerical Analysis (MAT214)* — Semester 3, Fall 2022–23. Root finding, interpolation, numerical differentiation and integration, direct and iterative methods for linear systems, and numerical solution of ODEs. This page lists: 16 lecture notes, 9 digital notes, 4 past exams, 4 projects. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

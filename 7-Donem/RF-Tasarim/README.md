@@ -104,6 +104,7 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 |---|---|---|
 | [4g lte network architect and ofdm](projeler/4g_lte_network_architect_and_ofdm.pdf) | PDF | 7 s. |
 | [4G LTE network](projeler/4G_LTE_network.docx) | Word |  |
+| [4G LTE network](projeler/4G_LTE_network.pptx) | PowerPoint |  |
 | [4G LTE network yeni](projeler/4G_LTE_network-yeni.pdf) | PDF | 8 s. |
 | [4g lte rf project](projeler/4g_lte_rf_project.pdf) | PDF | 14 s. |
 

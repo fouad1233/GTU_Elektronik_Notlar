@@ -20,7 +20,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **El
 
 | Klasör | Dosyalar |
 |---|---|
-| [**Lab 2**](lab-2/) | [exp2 337](lab-2/exp2_337.pdf) (PDF, 6 s.)<br>[Lab 2 Report](lab-2/Lab-2-Report.pdf) (PDF, 20 s. · 5,3 MB)<br>[`circuit1-2.asc`](lab-2/circuit1-2.asc) · [`circuit1-simplified.asc`](lab-2/circuit1-simplified.asc) |
+| [**Lab 2**](lab-2/) | [exp2 337](lab-2/exp2_337.pdf) (PDF, 6 s.)<br>[Lab 2 Report](lab-2/Lab-2-Report.pdf) (PDF, 20 s. · 5,3 MB)<br>[`circuit1-2.asc`](lab-2/circuit1-2.asc) · [`circuit1-simplified.asc`](lab-2/circuit1-simplified.asc) · [`grafik1-renkli.png`](lab-2/grafik1-renkli.png) |
 | [**Lab 4**](lab-4/) | [exp4 337](lab-4/exp4_337.pdf) (PDF, 7 s.)<br>[lab 4 deney foyu](lab-4/lab-4-deney-foyu.pdf) (PDF, 5 s.)<br>[Lab4 report](lab-4/Lab4_report.pdf) (PDF, 9 s.)<br>[`problem1dc.asc`](lab-4/problem1dc.asc) · [`problem2dc.asc`](lab-4/problem2dc.asc) |
 | [**Final lab**](final-lab/) | [Electronics2lab final report](final-lab/Electronics2lab_final_report.pdf) (PDF, 9 s.)<br>[`final_lab_1_ac_analyze.asc`](final-lab/final_lab_1_ac_analyze.asc) · [`final_lab_4_pot.asc`](final-lab/final_lab_4_pot.asc) · [`dc-sweap-Vbias-Ic.png`](final-lab/dc-sweap-Vbias-Ic.png) · [`final_lab.asc`](final-lab/final_lab.asc) · [`ltspice/deneme/pnp_amplifier.asc`](final-lab/ltspice/deneme/pnp_amplifier.asc) · [`power_conseption.png`](final-lab/power_conseption.png) · [`Vout_max.png`](final-lab/Vout_max.png) · [`Vout_min.png`](final-lab/Vout_min.png) · [`vout_transient_ac_coupling.png`](final-lab/vout_transient_ac_coupling.png) · [`vout_transient_dc_coupling.png`](final-lab/vout_transient_dc_coupling.png) · [`Vout_vid_ac_sweap.png`](final-lab/Vout_vid_ac_sweap.png) |
 

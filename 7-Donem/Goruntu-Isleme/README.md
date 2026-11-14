@@ -82,6 +82,8 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | [FOUAD ALADHAMI Project](projeler/FOUAD_ALADHAMI_Project.pdf) | PDF | 2 s. |
 | [Proje sunumu](projeler/Proje-sunumu.pptx) | PowerPoint | 21,6 MB |
 | [Trafik isareti tespiti](projeler/Trafik-isareti-tespiti.docx) | Word |  |
+| [`flowdiagram_powerpoint.png`](projeler/flowdiagram_powerpoint.png) | Görsel |  |
+| [`horizontal_flow_diagram.png`](projeler/horizontal_flow_diagram.png) | Görsel |  |
 | [`image_processing_project.drawio`](projeler/image_processing_project.drawio) | draw.io |  |
 | [`image_processing_project.png`](projeler/image_processing_project.png) | Görsel |  |
 

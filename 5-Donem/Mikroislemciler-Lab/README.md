@@ -22,7 +22,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Mi
 |---|---|
 | [**Lab 1**](lab-1/) | [lab1 report](lab-1/lab1-report.pdf) (PDF, 21 s.) |
 | [**Lab 2**](lab-2/) | [lab2 report](lab-2/lab2-report.pdf) (PDF, 31 s.)<br>[`F2022EC335_lab2.zip`](lab-2/F2022EC335_lab2.zip) |
-| [**Lab 3**](lab-3/) | [lab3 report](lab-3/lab3-report.pdf) (PDF, 33 s.)<br>[`F2022EC335_lab3.zip`](lab-3/F2022EC335_lab3.zip) |
+| [**Lab 3**](lab-3/) | [F2022 EC335 LAB3 Timers](lab-3/F2022-EC335-LAB3-Timers.pdf) (PDF, 2 s.)<br>[lab3 report](lab-3/lab3-report.pdf) (PDF, 33 s.)<br>[`F2022EC335_lab3.zip`](lab-3/F2022EC335_lab3.zip) |
 | [**Lab 4**](lab-4/) | [F2023 EC335 LAB4 UARTv2](lab-4/F2023-EC335-LAB4-UARTv2.pdf) (PDF, 4 s.)<br>[lab4 problem 2](lab-4/lab4-problem-2.docx) (Word)<br>[lab4 report](lab-4/lab4-report.pdf) (PDF, 21 s.) |
 | [**Lab 5**](lab-5/) | [Micro lab 5 report](lab-5/Micro-lab-5-report.pdf) (PDF, 21 s.)<br>[`F2022EC335_lab5.zip`](lab-5/F2022EC335_lab5.zip) |
 

@@ -56,10 +56,10 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 | [ELM 227 Project](projeler/ELM_227_Project.docx) | Word |  |
 | [Fouad Aladhami ELM 227 Project](projeler/Fouad_Aladhami_ELM_227_Project.pdf) | PDF | 11 s. · 5,5 MB |
 | [`lab4.m`](projeler/lab4.m) | MATLAB |  |
-| [`Ekran-Resmi-2023-05-30-17.01.43.png`](projeler/Ekran-Resmi-2023-05-30-17.01.43.png) | Görsel |  |
 | [`firstcircuit.slx`](projeler/firstcircuit.slx) | Simulink |  |
 | [`powerfactorcorrection.m`](projeler/powerfactorcorrection.m) | MATLAB |  |
 | [`rectangulartopolar.m`](projeler/rectangulartopolar.m) | MATLAB |  |
+| 3 görsel: [1](projeler/Ekran-Resmi-2023-05-30-16.30.41.png) · [2](projeler/Ekran-Resmi-2023-05-30-17.01.30.png) · [3](projeler/Ekran-Resmi-2023-05-30-17.01.43.png) | Görsel | |
 
 ---
 

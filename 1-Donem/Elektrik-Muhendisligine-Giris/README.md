@@ -25,7 +25,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 1. dönem dersi **El
 
 | Klasör | Dosyalar |
 |---|---|
-| [**Kriptoloji**](ders-notlari/kriptoloji/) | 4 görsel: [1](ders-notlari/kriptoloji/IMG-20211126-WA0009.jpg) · [2](ders-notlari/kriptoloji/IMG-20211126-WA0010.jpg) · [3](ders-notlari/kriptoloji/IMG-20211126-WA0013.jpg) · [4](ders-notlari/kriptoloji/IMG-20211126-WA0015.jpg) |
+| [**Kriptoloji**](ders-notlari/kriptoloji/) | 9 görsel: [1](ders-notlari/kriptoloji/IMG-20211126-WA0008.jpg) · [2](ders-notlari/kriptoloji/IMG-20211126-WA0009.jpg) · [3](ders-notlari/kriptoloji/IMG-20211126-WA0010.jpg) · [4](ders-notlari/kriptoloji/IMG-20211126-WA0011.jpg) · [5](ders-notlari/kriptoloji/IMG-20211126-WA0012.jpg) · [6](ders-notlari/kriptoloji/IMG-20211126-WA0013.jpg) · [7](ders-notlari/kriptoloji/IMG-20211126-WA0014.jpg) · [8](ders-notlari/kriptoloji/IMG-20211126-WA0015.jpg) · [9](ders-notlari/kriptoloji/IMG-20211126-WA0016.jpg) |
 
 ## Slaytlar
 

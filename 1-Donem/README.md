@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 1. Dönem
 
-GTÜ Elektronik Mühendisliği 1. dönem dersleri: **8 ders**, 127 dosya. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/1/).
+GTÜ Elektronik Mühendisliği 1. dönem dersleri: **8 ders**, 140 dosya. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/1/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
@@ -13,7 +13,7 @@ GTÜ Elektronik Mühendisliği 1. dönem dersleri: **8 ders**, 127 dosya. Ders a
 | [**Elektrik Mühendisliğine Giriş**](Elektrik-Muhendisligine-Giris/) | ELM101 | Elektrik-elektronik mühendisliğinin alt alanlarına giriş; elektronik, sinyal işleme ve kriptoloji gibi konularda haftalık tanıtım dersleri. | 3 ders notu · 1 slayt · 13 önceki yıl materyali |
 | [**Fizik I**](Fizik-1/) | FİZ121 | Mekanik: vektörler, kinematik, Newton yasaları, iş ve enerji, momentum ve dönme hareketi. | 10 çıkmış sınav |
 | [**Fizik I Laboratuvarı**](Fizik-1-Lab/) | — | Mekanik deneyleri: deney raporları ve final çalışma soruları. | 1 sınav çalışması · 3 lab |
-| [**İş Sağlığı ve Güvenliği I**](Is-Sagligi-ve-Guvenligi-1/) | — | İş kazalarının oluşumu, yüksekte çalışma, elle taşıma ve yapı işlerinde güvenlik; Türkiye'de ve dünyada iş sağlığı ve güvenliği. | 8 slayt · 4 çıkmış sınav · 6 sınav çalışması |
+| [**İş Sağlığı ve Güvenliği I**](Is-Sagligi-ve-Guvenligi-1/) | — | İş kazalarının oluşumu, yüksekte çalışma, elle taşıma ve yapı işlerinde güvenlik; Türkiye'de ve dünyada iş sağlığı ve güvenliği. | 8 slayt · 5 çıkmış sınav · 6 sınav çalışması |
 | [**Lineer Cebir**](Lineer-Cebir/) | — | Matrisler ve determinantlar, lineer denklem sistemleri, vektör uzayları, lineer dönüşümler, özdeğerler ve özvektörler. | 3 çıkmış sınav |
 | [**Matematik I**](Matematik-1/) | MAT101 | Tek değişkenli fonksiyonlarda limit, süreklilik, türev ve integral ile uygulamaları. | 2 çıkmış sınav |
 
@@ -23,7 +23,7 @@ GTÜ Elektronik Mühendisliği 1. dönem dersleri: **8 ders**, 127 dosya. Ders a
 
 ## English
 
-**Semester 1 · Fall 2021–22** — 8 courses, 127 files. Click a course to see all of its files.
+**Semester 1 · Fall 2021–22** — 8 courses, 140 files. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|
@@ -32,6 +32,6 @@ GTÜ Elektronik Mühendisliği 1. dönem dersleri: **8 ders**, 127 dosya. Ders a
 | [**Introduction to Electrical Engineering**](Elektrik-Muhendisligine-Giris/) | ELM101 | An introduction to the sub-fields of electrical and electronics engineering, with weekly overview lectures on topics such as electronics, signal processing and cryptology. | 3 lecture notes · 1 slide deck · 13 previous-year files |
 | [**Physics I**](Fizik-1/) | FİZ121 | Mechanics: vectors, kinematics, Newton's laws, work and energy, momentum and rotational motion. | 10 past exams |
 | [**Physics I Laboratory**](Fizik-1-Lab/) | — | Mechanics experiments: lab reports and final practice questions. | 1 exam-prep file · 3 labs |
-| [**Occupational Health and Safety I**](Is-Sagligi-ve-Guvenligi-1/) | — | How workplace accidents happen, working at height, manual handling and construction safety; occupational health and safety in Türkiye and worldwide. | 8 slide decks · 4 past exams · 6 exam-prep files |
+| [**Occupational Health and Safety I**](Is-Sagligi-ve-Guvenligi-1/) | — | How workplace accidents happen, working at height, manual handling and construction safety; occupational health and safety in Türkiye and worldwide. | 8 slide decks · 5 past exams · 6 exam-prep files |
 | [**Linear Algebra**](Lineer-Cebir/) | — | Matrices and determinants, systems of linear equations, vector spaces, linear transformations, eigenvalues and eigenvectors. | 3 past exams |
 | [**Mathematics I**](Matematik-1/) | MAT101 | Limits, continuity, derivatives and integrals of single-variable functions and their applications. | 2 past exams |

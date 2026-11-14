@@ -2,13 +2,13 @@
 
 # GTÜ Elektronik Mühendisliği Ders Notları
 
-![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 3542](https://img.shields.io/badge/dosya-3542-6e7781) ![dijital not: 204](https://img.shields.io/badge/dijital%20not-204-e36209)
+![dönem: 7](https://img.shields.io/badge/d%C3%B6nem-7-1f6feb) ![ders: 46](https://img.shields.io/badge/ders-46-1f6feb) ![dosya: 3595](https://img.shields.io/badge/dosya-3595-6e7781) ![dijital not: 204](https://img.shields.io/badge/dijital%20not-204-e36209)
 
 🌐 **Web sitesi:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — arama kutulu, mobil uyumlu, Türkçe ve İngilizce ([English version](https://fouad1233.github.io/GTU_Elektronik_Notlar/en/)); ders sayfaları, dijital notlar ve PDF'ler tek tıkla.
 
 Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği lisans programının **7 dönemine** (2021–2022 Güz – 2024–2025 Güz) ait **ders notları, çıkmış sorular (vize, final, quiz), ödevler, laboratuvar raporları ve projeler**. Vize ve final çalışırken kullanabileceğiniz PDF notlar arasında Elektromanyetik Alan Teorisi, Analog Haberleşme, İşaretler ve Sistemler, Kontrol Sistemleri, Haberleşme için RF Sistem Tasarımı, Sayısal Haberleşme, Diferansiyel Denklemler, Elektronik II gibi dersler var.
 
-Bu depo, GTÜ Elektronik Mühendisliği mezunu **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)) tarafından hazırlanmıştır. Notların çoğu tablette tutulmuş el yazısı notlardır; önemli bir kısmının LaTeX ile yazılmış, okunması ve aranması kolay **dijital versiyonları** da vardır. Toplam **46 ders**, **3542 dosya** (780 PDF), **204 dijital not** ve **25 proje** bulunur. Tüm içerik öğrenciler için **ücretsizdir**: dilediğiniz gibi indirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz. Faydalı olduysa depoya ⭐ vermeyi unutmayın.
+Bu depo, GTÜ Elektronik Mühendisliği mezunu **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)) tarafından hazırlanmıştır. Notların çoğu tablette tutulmuş el yazısı notlardır; önemli bir kısmının LaTeX ile yazılmış, okunması ve aranması kolay **dijital versiyonları** da vardır. Toplam **46 ders**, **3595 dosya** (782 PDF), **204 dijital not** ve **25 proje** bulunur. Tüm içerik öğrenciler için **ücretsizdir**: dilediğiniz gibi indirip çalışabilir, arkadaşlarınızla paylaşabilirsiniz. Faydalı olduysa depoya ⭐ vermeyi unutmayın.
 
 *English speakers: see the [English section](#english) at the end of this page.*
 
@@ -58,7 +58,7 @@ Tablolardaki sayılar yaklaşık belge sayısıdır: bir lab, ödev veya proje k
 | [Elektrik Mühendisliğine Giriş](1-Donem/Elektrik-Muhendisligine-Giris/) | ELM101 | 3 ders notu · 1 slayt · 13 önceki yıl materyali |
 | [Fizik I](1-Donem/Fizik-1/) | FİZ121 | 10 çıkmış sınav |
 | [Fizik I Laboratuvarı](1-Donem/Fizik-1-Lab/) | — | 1 sınav çalışması · 3 lab |
-| [İş Sağlığı ve Güvenliği I](1-Donem/Is-Sagligi-ve-Guvenligi-1/) | — | 8 slayt · 4 çıkmış sınav · 6 sınav çalışması |
+| [İş Sağlığı ve Güvenliği I](1-Donem/Is-Sagligi-ve-Guvenligi-1/) | — | 8 slayt · 5 çıkmış sınav · 6 sınav çalışması |
 | [Lineer Cebir](1-Donem/Lineer-Cebir/) | — | 3 çıkmış sınav |
 | [Matematik I](1-Donem/Matematik-1/) | MAT101 | 2 çıkmış sınav |
 
@@ -70,7 +70,7 @@ Tablolardaki sayılar yaklaşık belge sayısıdır: bir lab, ödev veya proje k
 | [Bilgisayar Programlama II](2-Donem/Bilgisayar-Programlama-2/) | INF212 | 4 lab · 2 proje · 3 kod dosyası |
 | [Bilim Metodolojisi](2-Donem/Bilim-Metodolojisi/) | — | 3 ders notu · 3 çıkmış sınav |
 | [Fizik II](2-Donem/Fizik-2/) | — | 2 çıkmış sınav |
-| [İş Sağlığı ve Güvenliği II](2-Donem/Is-Sagligi-ve-Guvenligi-2/) | — | 3 çıkmış sınav |
+| [İş Sağlığı ve Güvenliği II](2-Donem/Is-Sagligi-ve-Guvenligi-2/) | — | 4 çıkmış sınav |
 | [Malzeme Bilimi](2-Donem/Malzeme-Bilimi/) | MBM104 | 2 çıkmış sınav |
 | [Matematik II](2-Donem/Matematik-2/) | — | 1 ders notu · 2 dijital not |
 
@@ -83,7 +83,7 @@ Tablolardaki sayılar yaklaşık belge sayısıdır: bir lab, ödev veya proje k
 | [Diferansiyel Denklemler](3-Donem/Diferansiyel-Denklemler/) | MAT215 | 6 ders notu · 17 uygulama notu · 13 dijital not · 7 çıkmış sınav |
 | [Elektronik Elemanlar](3-Donem/Elektronik-Elemanlar/) | ELM231 | 2 ders notu · 4 dijital not · 2 çıkmış sınav · 1 proje |
 | [İngilizce](3-Donem/Ingilizce/) | — | 1 sınav çalışması |
-| [Nümerik Analiz](3-Donem/Numerik-Analiz/) | MAT214 | 15 ders notu · 9 dijital not · 4 çıkmış sınav · 4 proje |
+| [Nümerik Analiz](3-Donem/Numerik-Analiz/) | MAT214 | 16 ders notu · 9 dijital not · 4 çıkmış sınav · 4 proje |
 | [Türkçe I](3-Donem/Turkce-1/) | TÜR101 | 6 ders notu · 4 çıkmış sınav · 6 ödev |
 
 ### [4. Dönem](4-Donem/) · 2022–2023 Bahar
@@ -128,7 +128,7 @@ Tablolardaki sayılar yaklaşık belge sayısıdır: bir lab, ödev veya proje k
 |---|---|---|
 | [Görüntü İşleme](7-Donem/Goruntu-Isleme/) | ELM463 | 11 ders notu · 11 dijital not · 2 ödev · 6 lab · 1 proje |
 | [Haberleşme için RF Sistem Tasarımı](7-Donem/RF-Tasarim/) | ELM667 | 13 ders notu · 6 ders tekrarı · 16 dijital not · 3 sınav çalışması · 8 ödev · 1 proje |
-| [Makine Öğrenmesinin Temelleri](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 ders notu · 11 dijital not · 1 sınav çalışması · 5 ödev · 1 proje |
+| [Makine Öğrenmesinin Temelleri](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 ders notu · 11 dijital not · 1 sınav çalışması · 6 ödev · 1 proje |
 
 ## Dijital (LaTeX) notlar
 
@@ -250,7 +250,7 @@ Tüm katkıcılar: [GitHub katkıcı grafiği](https://github.com/fouad1233/GTU_
 
 ## English
 
-**GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 3542 files (780 PDFs), 204 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
+**GTU Electronics Engineering course notes** — handwritten lecture notes, past exams, homework, lab reports and projects from **7 semesters** (Fall 2021–22 – Fall 2024–25) of the Electronics Engineering B.Sc. program at Gebze Technical University (GTU), Türkiye, shared by graduate **Fouad Aladhami** ([@fouad1233](https://github.com/fouad1233)). In total: 46 courses, 3595 files (782 PDFs), 204 digital notes and 25 projects. Most material is in Turkish. Everything is **free** for students.
 
 🌐 **Website:** [fouad1233.github.io/GTU_Elektronik_Notlar](https://fouad1233.github.io/GTU_Elektronik_Notlar/) — searchable, mobile friendly and fully bilingual: the [English version](https://fouad1233.github.io/GTU_Elektronik_Notlar/en/) has English course names, summaries and translated note titles.
 
@@ -282,14 +282,14 @@ Every semester and course folder has a README that links every file. Counts in t
 | [1](1-Donem/) | [Introduction to Electrical Engineering](1-Donem/Elektrik-Muhendisligine-Giris/) | ELM101 | 3 lecture notes · 1 slide deck · 13 previous-year files |
 | [1](1-Donem/) | [Physics I](1-Donem/Fizik-1/) | FİZ121 | 10 past exams |
 | [1](1-Donem/) | [Physics I Laboratory](1-Donem/Fizik-1-Lab/) | — | 1 exam-prep file · 3 labs |
-| [1](1-Donem/) | [Occupational Health and Safety I](1-Donem/Is-Sagligi-ve-Guvenligi-1/) | — | 8 slide decks · 4 past exams · 6 exam-prep files |
+| [1](1-Donem/) | [Occupational Health and Safety I](1-Donem/Is-Sagligi-ve-Guvenligi-1/) | — | 8 slide decks · 5 past exams · 6 exam-prep files |
 | [1](1-Donem/) | [Linear Algebra](1-Donem/Lineer-Cebir/) | — | 3 past exams |
 | [1](1-Donem/) | [Mathematics I](1-Donem/Matematik-1/) | MAT101 | 2 past exams |
 | [2](2-Donem/) | [Atatürk's Principles and History of the Turkish Revolution II](2-Donem/Ataturk-Ilkeleri-ve-Inkilap-Tarihi-2/) | — | 1 past exam |
 | [2](2-Donem/) | [Algorithms and Programming II](2-Donem/Bilgisayar-Programlama-2/) | INF212 | 4 labs · 2 projects · 3 code files |
 | [2](2-Donem/) | [Scientific Methodology](2-Donem/Bilim-Metodolojisi/) | — | 3 lecture notes · 3 past exams |
 | [2](2-Donem/) | [Physics II](2-Donem/Fizik-2/) | — | 2 past exams |
-| [2](2-Donem/) | [Occupational Health and Safety II](2-Donem/Is-Sagligi-ve-Guvenligi-2/) | — | 3 past exams |
+| [2](2-Donem/) | [Occupational Health and Safety II](2-Donem/Is-Sagligi-ve-Guvenligi-2/) | — | 4 past exams |
 | [2](2-Donem/) | [Materials Science](2-Donem/Malzeme-Bilimi/) | MBM104 | 2 past exams |
 | [2](2-Donem/) | [Mathematics II](2-Donem/Matematik-2/) | — | 1 lecture note · 2 digital notes |
 | [3](3-Donem/) | [Circuit Theory I](3-Donem/Devre-Teorisi-1/) | — | 1 past exam · 1 exam-prep file · 1 assignment · 1 project |
@@ -297,7 +297,7 @@ Every semester and course folder has a README that links every file. Counts in t
 | [3](3-Donem/) | [Differential Equations](3-Donem/Diferansiyel-Denklemler/) | MAT215 | 6 lecture notes · 17 recitation notes · 13 digital notes · 7 past exams |
 | [3](3-Donem/) | [Electronic Devices](3-Donem/Elektronik-Elemanlar/) | ELM231 | 2 lecture notes · 4 digital notes · 2 past exams · 1 project |
 | [3](3-Donem/) | [English](3-Donem/Ingilizce/) | — | 1 exam-prep file |
-| [3](3-Donem/) | [Numerical Analysis](3-Donem/Numerik-Analiz/) | MAT214 | 15 lecture notes · 9 digital notes · 4 past exams · 4 projects |
+| [3](3-Donem/) | [Numerical Analysis](3-Donem/Numerik-Analiz/) | MAT214 | 16 lecture notes · 9 digital notes · 4 past exams · 4 projects |
 | [3](3-Donem/) | [Turkish I](3-Donem/Turkce-1/) | TÜR101 | 6 lecture notes · 4 past exams · 6 assignments |
 | [4](4-Donem/) | [Circuit Theory II](4-Donem/Devre-Teorisi-2/) | ELM227 | 1 digital note · 1 exam-prep file · 5 assignments · 1 project |
 | [4](4-Donem/) | [Circuit Theory II Laboratory](4-Donem/Devre-Laboratuvari-2/) | ELM228 | 5 labs |
@@ -322,7 +322,7 @@ Every semester and course folder has a README that links every file. Counts in t
 | [6](6-Donem/) | [Digital Signal Processing Laboratory](6-Donem/Sayisal-Isaret-Isleme-Lab/) | ELM368 | 6 labs · 1 project |
 | [7](7-Donem/) | [Image Processing](7-Donem/Goruntu-Isleme/) | ELM463 | 11 lecture notes · 11 digital notes · 2 assignments · 6 labs · 1 project |
 | [7](7-Donem/) | [RF System Design for Communications](7-Donem/RF-Tasarim/) | ELM667 | 13 lecture notes · 6 lecture reviews · 16 digital notes · 3 exam-prep files · 8 assignments · 1 project |
-| [7](7-Donem/) | [Fundamentals of Machine Learning](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 lecture notes · 11 digital notes · 1 exam-prep file · 5 assignments · 1 project |
+| [7](7-Donem/) | [Fundamentals of Machine Learning](7-Donem/Makine-Ogrenmesi/) | ELM472 | 11 lecture notes · 11 digital notes · 1 exam-prep file · 6 assignments · 1 project |
 
 ### Digital (LaTeX) notes
 

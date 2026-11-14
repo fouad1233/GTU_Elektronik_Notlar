@@ -46,7 +46,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 5. dönem dersi **Mi
 | Klasör | Dosyalar |
 |---|---|
 | [**Ödev 1**](odevler/odev-1/) | [2023 FALL ELEC334 HW1 std](odevler/odev-1/2023-FALL-ELEC334-HW1_std.pdf) (PDF, 2 s.)<br>[HM1 report](odevler/odev-1/HM1-report.pdf) (PDF, 5 s.)<br>[`addq4a.s`](odevler/odev-1/addq4a.s) · [`loadandstoreq3.s`](odevler/odev-1/loadandstoreq3.s) · [`stm32g031k8-nucleo-pinout.png`](odevler/odev-1/stm32g031k8-nucleo-pinout.png) |
-| [**Ödev 2**](odevler/odev-2/) | [2023 FALL ELEC334 Microprocessors HW2 std](odevler/odev-2/2023-FALL-ELEC334-Microprocessors-HW2_std.pdf) (PDF, 1 s.)<br>[`substration.s`](odevler/odev-2/substration.s) |
+| [**Ödev 2**](odevler/odev-2/) | [2023 FALL ELEC334 Microprocessors HW2 std](odevler/odev-2/2023-FALL-ELEC334-Microprocessors-HW2_std.pdf) (PDF, 1 s.)<br>[HM2 report](odevler/odev-2/HM2-report.pdf) (PDF, 2 s.)<br>[`substration.s`](odevler/odev-2/substration.s) |
 | [**Ödev 3**](odevler/odev-3/) | [HM3 report](odevler/odev-3/HM3-report.pdf) (PDF, 5 s.) |
 
 ## GitHub Depoları

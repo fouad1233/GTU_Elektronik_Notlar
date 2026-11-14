@@ -76,7 +76,7 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 | Klasör | Dosyalar |
 |---|---|
-| [**3 hafta**](arastirma/3-hafta/) | 2 görsel: [1](arastirma/3-hafta/WhatsApp-Image-2023-03-15-at-12.33.24-2.jpeg) · [2](arastirma/3-hafta/WhatsApp-Image-2023-03-15-at-12.33.24.jpeg) |
+| [**3 hafta**](arastirma/3-hafta/) | 3 görsel: [1](arastirma/3-hafta/WhatsApp-Image-2023-03-15-at-12.29.40.jpeg) · [2](arastirma/3-hafta/WhatsApp-Image-2023-03-15-at-12.33.24-2.jpeg) · [3](arastirma/3-hafta/WhatsApp-Image-2023-03-15-at-12.33.24.jpeg) |
 
 ---
 

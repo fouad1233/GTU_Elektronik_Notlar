@@ -20,6 +20,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 3. dönem dersi **Di
 
 | Dosya | Tür | Bilgi |
 |---|---|---|
+| [dif syllabus](dif-syllabus.docx) | Word |  |
 | [diferansiyel denklemler izlencesi](diferansiyel-denklemler-izlencesi.pdf) | PDF | 2 s. |
 
 ## Ders Notları

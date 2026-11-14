@@ -19,7 +19,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 4. dönem dersi **El
 | Klasör | Dosyalar |
 |---|---|
 | [**Lab 3**](lab-3/) | [Electronic lab report 3](lab-3/Electronic-lab-report-3.docx) (Word)<br>[Exp3](lab-3/Exp3.pdf) (PDF, 8 s.)<br>[`Draft9.asc`](lab-3/Draft9.asc) |
-| [**Final**](final/) | [Final exam report11](final/Final-exam-report11.pdf) (PDF, 10 s.)<br>[Final exam report](final/Final-exam-report.pdf) (PDF, 10 s.)<br>[`uA741_adder_cicuit_ac_2.png`](final/uA741_adder_cicuit_ac_2.png) · [`uA741_adder_cicuit_dc_1.png`](final/uA741_adder_cicuit_dc_1.png) · [`uA741_integrator_cicuit_ac_5.png`](final/uA741_integrator_cicuit_ac_5.png) · [`uA741_substactor_cicuit_dc_3.png`](final/uA741_substactor_cicuit_dc_3.png) · [`uA741_substractor_cicuit_ac_4.png`](final/uA741_substractor_cicuit_ac_4.png) |
+| [**Final**](final/) | [Final exam report11](final/Final-exam-report11.pdf) (PDF, 10 s.)<br>[Final exam report](final/Final-exam-report.pdf) (PDF, 10 s.)<br>[`uA741_adder_cicuit_ac_2_b.png`](final/uA741_adder_cicuit_ac_2_b.png) · [`uA741_adder_cicuit_ac_2.png`](final/uA741_adder_cicuit_ac_2.png) · [`uA741_adder_cicuit_dc_1_b.png`](final/uA741_adder_cicuit_dc_1_b.png) · [`uA741_adder_cicuit_dc_1.png`](final/uA741_adder_cicuit_dc_1.png) · [`uA741_integrator_cicuit_ac_5_b.png`](final/uA741_integrator_cicuit_ac_5_b.png) · [`uA741_integrator_cicuit_ac_5.png`](final/uA741_integrator_cicuit_ac_5.png) · [`uA741_substactor_cicuit_dc_1_b.png`](final/uA741_substactor_cicuit_dc_1_b.png) · [`uA741_substactor_cicuit_dc_3.png`](final/uA741_substactor_cicuit_dc_3.png) · [`uA741_substractor_cicuit_ac_4_b.png`](final/uA741_substractor_cicuit_ac_4_b.png) · [`uA741_substractor_cicuit_ac_4.png`](final/uA741_substractor_cicuit_ac_4.png) |
 
 ---
 

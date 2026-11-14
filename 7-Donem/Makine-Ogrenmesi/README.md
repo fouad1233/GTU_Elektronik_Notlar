@@ -12,7 +12,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 7. dönem dersi **Ma
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [7. Dönem](../README.md) · 2024–2025 Güz | ELM472 | Fundamentals of Machine Learning | 11 ders notu · 11 dijital not · 1 sınav çalışması · 5 ödev · 1 proje |
+| [7. Dönem](../README.md) · 2024–2025 Güz | ELM472 | Fundamentals of Machine Learning | 11 ders notu · 11 dijital not · 1 sınav çalışması · 6 ödev · 1 proje |
 
 **Bu sayfada:** [Genel](#genel) · [Ders Notları](#ders-notları) · [Dijital Notlar (LaTeX)](#dijital-notlar-latex) · [Final/Vize Çalışması](#finalvize-çalışması) · [Ödevler](#ödevler) · [Projeler](#projeler) · [GitHub Depoları](#github-depoları) · [Kaynak Kitaplar](#kaynak-kitaplar)
 
@@ -66,6 +66,10 @@ El yazısı notların LaTeX ile yazılmış, aranabilir dijital versiyonları. �
 
 ## Ödevler
 
+| Dosya | Tür | Bilgi |
+|---|---|---|
+| [report word template](odevler/report-word-template.docx) | Word |  |
+
 | Klasör | Dosyalar |
 |---|---|
 | [**Ödev 1**](odevler/odev-1/) | [ODEV1](odevler/odev-1/ODEV1.ipynb) (Jupyter)<br>[ODEV1](odevler/odev-1/ODEV1.pdf) (PDF, 2 s.) |
@@ -109,4 +113,4 @@ Derste kullanılan kaynaklar (kitapların kendisi telif hakları nedeniyle depod
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Fundamentals of Machine Learning (ELM472)* — Semester 7, Fall 2024–25. Supervised and unsupervised learning, regression and classification, Bayesian decision theory, dimensionality reduction, clustering and anomaly detection, and an introduction to neural networks. This page lists: 11 lecture notes, 11 digital notes, 1 exam-prep file, 5 assignments, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Fundamentals of Machine Learning (ELM472)* — Semester 7, Fall 2024–25. Supervised and unsupervised learning, regression and classification, Bayesian decision theory, dimensionality reduction, clustering and anomaly detection, and an introduction to neural networks. This page lists: 11 lecture notes, 11 digital notes, 1 exam-prep file, 6 assignments, 1 project. Digital notes are LaTeX transcriptions made with Claude and may contain errors. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

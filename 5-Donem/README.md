@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 5. Dönem
 
-GTÜ Elektronik Mühendisliği 5. dönem dersleri: **7 ders**, 839 dosya, 63 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/5/).
+GTÜ Elektronik Mühendisliği 5. dönem dersleri: **7 ders**, 842 dosya, 63 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/5/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
@@ -22,7 +22,7 @@ GTÜ Elektronik Mühendisliği 5. dönem dersleri: **7 ders**, 839 dosya, 63 dij
 
 ## English
 
-**Semester 5 · Fall 2023–24** — 7 courses, 839 files, 63 digital notes. Click a course to see all of its files.
+**Semester 5 · Fall 2023–24** — 7 courses, 842 files, 63 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|

@@ -12,7 +12,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **İ
 
 | Dönem | Ders kodu | İngilizce adı | İçerik |
 |---|---|---|---|
-| [2. Dönem](../README.md) · 2021–2022 Bahar | — | Occupational Health and Safety II | 3 çıkmış sınav |
+| [2. Dönem](../README.md) · 2021–2022 Bahar | — | Occupational Health and Safety II | 4 çıkmış sınav |
 
 ## Çıkmış Sorular
 
@@ -21,6 +21,7 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **İ
 | [isg2 vize](cikmis-sorular/isg2-vize.pdf) | PDF | 10 s. |
 | [isg final](cikmis-sorular/isg-final.pdf) | PDF | 11 s. |
 | [ISG](cikmis-sorular/ISG.pdf) | PDF | 11 s. |
+| [ISG VIZE](cikmis-sorular/ISG-VIZE.docx) | Word |  |
 
 ---
 
@@ -28,4 +29,4 @@ Gebze Teknik Üniversitesi (GTÜ) Elektronik Mühendisliği 2. dönem dersi **İ
 
 <sub>Çıkmış sorular, slaytlar ve föyler gibi ders materyallerinin hakları ilgili öğretim üyelerine ve Gebze Teknik Üniversitesi'ne aittir; burada yalnızca eğitim amacıyla paylaşılmıştır.</sub>
 
-**English:** *Occupational Health and Safety II* — Semester 2, Spring 2021–22. Occupational health and safety legislation, risk assessment and protective measures. This page lists: 3 past exams. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.
+**English:** *Occupational Health and Safety II* — Semester 2, Spring 2021–22. Occupational health and safety legislation, risk assessment and protective measures. This page lists: 4 past exams. Course materials (past exams, slides, handouts) belong to their instructors and GTU and are shared for educational purposes only.

@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 3. Dönem
 
-GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 323 dosya, 26 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/3/).
+GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 325 dosya, 26 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/3/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
@@ -13,7 +13,7 @@ GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 323 dosya, 26 dij
 | [**Diferansiyel Denklemler**](Diferansiyel-Denklemler/) | MAT215 | Birinci mertebeden denklemler, yüksek mertebeden lineer denklemler, Cauchy–Euler denklemi, mertebe indirgeme, seri çözümleri ve Laplace dönüşümü. | 6 ders notu · 17 uygulama notu · 13 dijital not · 7 çıkmış sınav |
 | [**Elektronik Elemanlar**](Elektronik-Elemanlar/) | ELM231 | Yarıiletken fiziği, pn eklemi ve diyotlar, BJT ve MOSFET'in yapısı, çalışması ve kutuplanması. | 2 ders notu · 4 dijital not · 2 çıkmış sınav · 1 proje |
 | [**İngilizce**](Ingilizce/) | — | İngilizce dersi: ders materyalleri ve vize için kelime listesi. | 1 sınav çalışması |
-| [**Nümerik Analiz**](Numerik-Analiz/) | MAT214 | Kök bulma, interpolasyon, sayısal türev ve integral, lineer denklem sistemleri için doğrudan ve iteratif yöntemler, diferansiyel denklemlerin sayısal çözümü. | 15 ders notu · 9 dijital not · 4 çıkmış sınav · 4 proje |
+| [**Nümerik Analiz**](Numerik-Analiz/) | MAT214 | Kök bulma, interpolasyon, sayısal türev ve integral, lineer denklem sistemleri için doğrudan ve iteratif yöntemler, diferansiyel denklemlerin sayısal çözümü. | 16 ders notu · 9 dijital not · 4 çıkmış sınav · 4 proje |
 | [**Türkçe I**](Turkce-1/) | TÜR101 | Türk dili: biçim bilgisi (morfoloji), cümle bilgisi (sentaks) ve yazılı anlatım uygulamaları. | 6 ders notu · 4 çıkmış sınav · 6 ödev |
 
 [← 2. Dönem](../2-Donem/README.md) · [Ana sayfa](../README.md) · [4. Dönem →](../4-Donem/README.md)
@@ -22,7 +22,7 @@ GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 323 dosya, 26 dij
 
 ## English
 
-**Semester 3 · Fall 2022–23** — 7 courses, 323 files, 26 digital notes. Click a course to see all of its files.
+**Semester 3 · Fall 2022–23** — 7 courses, 325 files, 26 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|
@@ -31,5 +31,5 @@ GTÜ Elektronik Mühendisliği 3. dönem dersleri: **7 ders**, 323 dosya, 26 dij
 | [**Differential Equations**](Diferansiyel-Denklemler/) | MAT215 | First-order equations, higher-order linear equations, the Cauchy–Euler equation, reduction of order, series solutions and the Laplace transform. | 6 lecture notes · 17 recitation notes · 13 digital notes · 7 past exams |
 | [**Electronic Devices**](Elektronik-Elemanlar/) | ELM231 | Semiconductor physics, the pn junction and diodes, and the structure, operation and biasing of BJTs and MOSFETs. | 2 lecture notes · 4 digital notes · 2 past exams · 1 project |
 | [**English**](Ingilizce/) | — | English course: course materials and a vocabulary list for the midterm. | 1 exam-prep file |
-| [**Numerical Analysis**](Numerik-Analiz/) | MAT214 | Root finding, interpolation, numerical differentiation and integration, direct and iterative methods for linear systems, and numerical solution of ODEs. | 15 lecture notes · 9 digital notes · 4 past exams · 4 projects |
+| [**Numerical Analysis**](Numerik-Analiz/) | MAT214 | Root finding, interpolation, numerical differentiation and integration, direct and iterative methods for linear systems, and numerical solution of ODEs. | 16 lecture notes · 9 digital notes · 4 past exams · 4 projects |
 | [**Turkish I**](Turkce-1/) | TÜR101 | Turkish language: morphology, syntax and written-expression exercises. | 6 lecture notes · 4 past exams · 6 assignments |

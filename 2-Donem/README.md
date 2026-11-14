@@ -4,7 +4,7 @@
 
 [Ana sayfa](../README.md) › 2. Dönem
 
-GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 224 dosya, 2 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/2/).
+GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 225 dosya, 2 dijital not. Ders adına tıklayınca o dersin tüm dosyalarını listeleyen sayfa açılır. 🌐 [Web sitesinde aç](https://fouad1233.github.io/GTU_Elektronik_Notlar/donem/2/).
 
 | Ders | Kod | Konu | İçerik |
 |---|---|---|---|
@@ -12,7 +12,7 @@ GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 224 dosya, 2 diji
 | [**Bilgisayar Programlama II**](Bilgisayar-Programlama-2/) | INF212 | Python ile veri yapıları ve algoritmalar: ikili arama ve AVL ağaçları, hash tabloları ve graflar; lab ödevleri ve iki proje. | 4 lab · 2 proje · 3 kod dosyası |
 | [**Bilim Metodolojisi**](Bilim-Metodolojisi/) | — | Bilgi ve bilim kavramları, bilimsel yöntem (olgu, hipotez, yasa, teori) ve bilim tarihi. | 3 ders notu · 3 çıkmış sınav |
 | [**Fizik II**](Fizik-2/) | — | Elektrik ve manyetizma: elektrik alan, Gauss yasası, elektrik potansiyeli, kapasitans, akım ve direnç, manyetik alan ve indüksiyon. | 2 çıkmış sınav |
-| [**İş Sağlığı ve Güvenliği II**](Is-Sagligi-ve-Guvenligi-2/) | — | İş sağlığı ve güvenliği mevzuatı, risk değerlendirmesi ve korunma yöntemleri. | 3 çıkmış sınav |
+| [**İş Sağlığı ve Güvenliği II**](Is-Sagligi-ve-Guvenligi-2/) | — | İş sağlığı ve güvenliği mevzuatı, risk değerlendirmesi ve korunma yöntemleri. | 4 çıkmış sınav |
 | [**Malzeme Bilimi**](Malzeme-Bilimi/) | MBM104 | Atom yapısı ve bağlar, kristal yapılar ve kusurlar, malzemelerin mekanik ve elektriksel özellikleri. | 2 çıkmış sınav |
 | [**Matematik II**](Matematik-2/) | — | Diziler ve seriler, çok değişkenli fonksiyonlar, kısmi türevler ve katlı integraller. | 1 ders notu · 2 dijital not |
 
@@ -22,7 +22,7 @@ GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 224 dosya, 2 diji
 
 ## English
 
-**Semester 2 · Spring 2021–22** — 7 courses, 224 files, 2 digital notes. Click a course to see all of its files.
+**Semester 2 · Spring 2021–22** — 7 courses, 225 files, 2 digital notes. Click a course to see all of its files.
 
 | Course | Code | Topics | Contents |
 |---|---|---|---|
@@ -30,6 +30,6 @@ GTÜ Elektronik Mühendisliği 2. dönem dersleri: **7 ders**, 224 dosya, 2 diji
 | [**Algorithms and Programming II**](Bilgisayar-Programlama-2/) | INF212 | Data structures and algorithms in Python: binary search and AVL trees, hashing and graphs; lab assignments and two projects. | 4 labs · 2 projects · 3 code files |
 | [**Scientific Methodology**](Bilim-Metodolojisi/) | — | Knowledge and science, the scientific method (facts, hypotheses, laws, theories) and the history of science. | 3 lecture notes · 3 past exams |
 | [**Physics II**](Fizik-2/) | — | Electricity and magnetism: electric fields, Gauss's law, electric potential, capacitance, current and resistance, magnetic fields and induction. | 2 past exams |
-| [**Occupational Health and Safety II**](Is-Sagligi-ve-Guvenligi-2/) | — | Occupational health and safety legislation, risk assessment and protective measures. | 3 past exams |
+| [**Occupational Health and Safety II**](Is-Sagligi-ve-Guvenligi-2/) | — | Occupational health and safety legislation, risk assessment and protective measures. | 4 past exams |
 | [**Materials Science**](Malzeme-Bilimi/) | MBM104 | Atomic structure and bonding, crystal structures and defects, mechanical and electrical properties of materials. | 2 past exams |
 | [**Mathematics II**](Matematik-2/) | — | Sequences and series, functions of several variables, partial derivatives and multiple integrals. | 1 lecture note · 2 digital notes |
